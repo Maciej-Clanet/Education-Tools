@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Education Tools Hub</title>
+    <meta
+      name="description"
+      content="A friendly static hub for educational tutorials, revision tools, and searchable course units."
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages/home.css" />
+    <script type="module" src="javascript/app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero panel panel-accent">
+        <div class="hero-copy">
+          <p class="eyebrow">Static Learning Hub</p>
+          <h1>Educational tutorials and tools in one simple home.</h1>
+          <p class="hero-text">
+            This front page is a first scaffold for a course catalogue that can
+            grow into lessons, quizzes, and mini-tools without requiring
+            accounts or a backend. Progress can stay in the browser using local
+            storage.
+          </p>
+
+          <div class="hero-points">
+            <article class="mini-card">
+              <h2>No login required</h2>
+              <p>Keep the project static and lightweight for easier hosting.</p>
+            </article>
+
+            <article class="mini-card">
+              <h2>Search by course or topic</h2>
+              <p>Students should be able to jump into the right unit quickly.</p>
+            </article>
+
+            <article class="mini-card">
+              <h2>Ready for tools later</h2>
+              <p>
+                Shared scripts can support quizzes, flashcards, converters, and
+                other mini-tools.
+              </p>
+            </article>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel ad-band" aria-labelledby="leaderboard-heading">
+        <div class="ad-band-copy">
+          <p class="eyebrow">Ad Planning</p>
+          <h2 id="leaderboard-heading">Space for a Google leaderboard slot</h2>
+          <p class="section-copy">
+            This gives us a clean horizontal placement that can later hold a
+            common banner size without cramming ads into the main lesson cards.
+          </p>
+        </div>
+
+        <div
+          class="ad-placeholder ad-placeholder-horizontal"
+          aria-label="Future horizontal advertisement space"
+        >
+          <strong>Horizontal ad slot</strong>
+          <span>Planned for leaderboard-style placements such as 728 x 90 or 970 x 90.</span>
+        </div>
+      </section>
+
+      <main class="catalog-layout" aria-labelledby="catalog-heading">
+        <section class="catalog-intro">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Course Catalogue</p>
+              <h2 id="catalog-heading">Placeholder course selection</h2>
+            </div>
+            <p class="section-copy">
+              Each course card can later branch into unit pages with sidebar
+              navigation, lesson sections, and local-progress activities.
+            </p>
+          </div>
+
+          <section class="panel panel-soft catalog-controls">
+            <div class="catalog-controls-header">
+              <div>
+                <p class="eyebrow">Find A Topic</p>
+                <h3>Search the course list</h3>
+              </div>
+              <p id="results-copy" class="small-note">
+                Loading course placeholders...
+              </p>
+            </div>
+
+            <label class="search-label" for="search-input">
+              Search the placeholder catalogue
+            </label>
+
+            <div class="search-row">
+              <input
+                id="search-input"
+                class="search-input"
+                type="search"
+                placeholder="Try: networks, graphics, programming"
+                autocomplete="off"
+              />
+              <button id="clear-search" class="ghost-button" type="button">
+                Clear
+              </button>
+            </div>
+
+            <div class="search-tags" aria-label="Suggested searches">
+              <button class="tag-chip" type="button" data-suggestion="networks">
+                Networks
+              </button>
+              <button class="tag-chip" type="button" data-suggestion="hardware">
+                Hardware
+              </button>
+              <button class="tag-chip" type="button" data-suggestion="programming">
+                Programming
+              </button>
+              <button class="tag-chip" type="button" data-suggestion="graphics">
+                Graphics
+              </button>
+            </div>
+          </section>
+        </section>
+
+        <section class="catalog-main">
+          <div id="course-grid" class="course-grid" aria-live="polite"></div>
+        </section>
+
+        <aside class="catalog-rail">
+          <section class="panel rail-card">
+            <p class="eyebrow">Planned Layout</p>
+            <h2>Unit pages next</h2>
+            <p>
+              The next phase can add a left sidebar for unit navigation, a main
+              lesson column, and a small right rail for callouts or adverts.
+            </p>
+          </section>
+
+          <section class="panel rail-card rail-card-outline panel-accent-soft">
+            <p class="eyebrow">Ad Ready</p>
+            <h2>Google ad placements</h2>
+            <p>
+              A dedicated rail is usually easier to live with than dropping ads
+              between lesson cards. On desktop this can hold a taller sidebar
+              unit, while smaller screens can fall back to a banner.
+            </p>
+
+            <div class="ad-stack">
+              <div
+                class="ad-placeholder ad-placeholder-vertical"
+                aria-label="Future vertical advertisement space"
+              >
+                <strong>Sidebar ad slot</strong>
+                <span>Good fit for 300 x 600 or similar tall placements.</span>
+              </div>
+
+              <div
+                class="ad-placeholder ad-placeholder-mobile"
+                aria-label="Future mobile advertisement space"
+              >
+                <strong>Fallback banner slot</strong>
+                <span>Can collapse toward 320 x 100 on smaller layouts.</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel rail-card">
+            <p class="eyebrow">Current Setup</p>
+            <h2>Static-first structure</h2>
+            <ul class="plain-list">
+              <li>Shared styles in <code>css/</code></li>
+              <li>Reusable browser helpers in <code>javascript/core/</code></li>
+              <li>Course content planned under <code>content/</code></li>
+              <li>Existing older tools kept in <code>donetools/</code> for now</li>
+            </ul>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <template id="course-card-template">
+      <article class="panel course-card">
+        <div class="course-top">
+          <div>
+            <p class="course-kicker"></p>
+            <h3 class="course-title"></h3>
+          </div>
+          <span class="status-pill">Planning</span>
+        </div>
+
+        <p class="course-summary"></p>
+
+        <div class="info-row">
+          <span class="info-pill course-level"></span>
+          <span class="info-pill course-storage"></span>
+        </div>
+
+        <section class="course-section">
+          <h4>Placeholder units</h4>
+          <ul class="unit-list"></ul>
+        </section>
+
+        <section class="course-section">
+          <h4>Search topics</h4>
+          <div class="topic-list"></div>
+        </section>
+
+        <div class="course-actions">
+          <a class="primary-link spec-link" target="_blank" rel="noreferrer">
+            View specification PDF
+          </a>
+          <span class="secondary-note">Unit pages will plug into this card later.</span>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>

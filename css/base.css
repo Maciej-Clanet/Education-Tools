@@ -1,0 +1,91 @@
+:root {
+  --bg-top: #f6efdf;
+  --bg-bottom: #dcecf4;
+  --page-ink: #24313b;
+  --muted-ink: #5e6d76;
+  --panel: rgba(255, 252, 247, 0.92);
+  --panel-soft: rgba(255, 255, 255, 0.65);
+  --panel-border: rgba(36, 49, 59, 0.1);
+  --shadow: 0 20px 44px rgba(41, 69, 89, 0.14);
+  --teal: #1f877d;
+  --teal-deep: #155f64;
+  --sand: #e8bb62;
+  --sand-deep: #87611f;
+  --line: rgba(36, 49, 59, 0.12);
+  --focus: #0b69ff;
+  --empty: rgba(255, 255, 255, 0.64);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--page-ink);
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(232, 187, 98, 0.34), transparent 24%),
+    radial-gradient(circle at top right, rgba(31, 135, 125, 0.18), transparent 24%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(36, 49, 59, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 49, 59, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.4;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+p,
+li {
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.94em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
