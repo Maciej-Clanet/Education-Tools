@@ -1,19 +1,31 @@
 .hero {
-  padding: clamp(1.4rem, 3vw, 2.6rem);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.45rem;
+  padding: clamp(1.45rem, 3vw, 2.45rem);
+  border-top: 10px solid #ff9a7b;
+  background:
+    radial-gradient(circle at right top, rgba(104, 197, 229, 0.15), transparent 22%),
+    linear-gradient(180deg, rgba(255, 253, 247, 0.98), rgba(255, 248, 236, 0.94));
+}
+
+.hero::before {
+  left: auto;
+  right: 1.5rem;
+  width: 96px;
+  transform: rotate(5deg);
+  background: rgba(106, 200, 232, 0.38);
 }
 
 .hero h1 {
-  max-width: 12ch;
-  margin-bottom: 0.9rem;
-  font-size: clamp(2.5rem, 5.6vw, 4.9rem);
-  line-height: 0.96;
+  max-width: 13ch;
+  margin-bottom: 0.85rem;
+  font-size: clamp(2.7rem, 5.8vw, 5rem);
+  line-height: 0.93;
 }
 
 .hero h2,
 .section-heading h2,
 .rail-card h2 {
-  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-size: clamp(1.4rem, 2vw, 2rem);
 }
 
 .hero-text,
@@ -24,8 +36,8 @@
 }
 
 .hero-text {
-  max-width: 62ch;
-  margin-bottom: 1.4rem;
+  max-width: 58ch;
+  margin-bottom: 1.35rem;
   font-size: 1.08rem;
 }
 
@@ -38,41 +50,60 @@
 }
 
 .hero-points {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .mini-card {
   padding: 1rem 1.05rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.56);
-  border: 1px solid rgba(36, 49, 59, 0.08);
+  border-radius: 18px;
+  border: 1.5px solid rgba(37, 52, 66, 0.11);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .mini-card h2 {
-  margin-bottom: 0.45rem;
-  font-size: 1.22rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.18rem;
 }
 
 .mini-card p {
   margin: 0;
 }
 
+.mini-card-pink {
+  background: linear-gradient(180deg, rgba(255, 240, 242, 0.95), rgba(255, 249, 250, 0.92));
+}
+
+.mini-card-yellow {
+  background: linear-gradient(180deg, rgba(255, 247, 216, 0.95), rgba(255, 252, 240, 0.92));
+}
+
+.mini-card-blue {
+  background: linear-gradient(180deg, rgba(236, 248, 255, 0.95), rgba(246, 252, 255, 0.92));
+}
+
 .catalog-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.85fr) minmax(300px, 320px);
+  grid-template-columns: minmax(0, 1.9fr) minmax(300px, 325px);
   grid-template-areas:
     "intro intro"
     "main rail";
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
 .ad-band {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.94fr);
   gap: 1rem;
   align-items: center;
-  padding: 1.2rem 1.35rem;
-  margin-bottom: 1.5rem;
+  padding: 1.15rem 1.3rem;
+  margin-bottom: 1.45rem;
+  border-style: dashed;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 246, 0.95), rgba(255, 247, 233, 0.9));
+}
+
+.ad-band::before {
+  background: rgba(255, 154, 123, 0.42);
 }
 
 .ad-band-copy p:last-child {
@@ -94,8 +125,14 @@
 }
 
 .catalog-controls {
-  padding: 1.1rem 1.2rem;
-  margin-bottom: 1rem;
+  padding: 1.05rem 1.15rem 1.2rem;
+  border-top: 8px solid #69c8e8;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 251, 255, 0.92));
+}
+
+.catalog-controls::before {
+  background: rgba(242, 207, 106, 0.48);
 }
 
 .catalog-controls-header {
@@ -109,7 +146,7 @@
 
 .catalog-controls h3 {
   margin-bottom: 0;
-  font-size: 1.3rem;
+  font-size: 1.28rem;
 }
 
 .section-heading {
@@ -117,11 +154,11 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.95rem;
 }
 
 .section-copy {
-  max-width: 38ch;
+  max-width: 36ch;
   margin: 0;
   align-self: end;
 }
@@ -134,9 +171,52 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1.35rem;
+  padding: 1.2rem;
   min-height: 100%;
   animation: rise 0.5s ease both;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(252, 248, 241, 0.95));
+}
+
+.course-card::before {
+  top: -13px;
+  left: auto;
+  right: 1rem;
+  width: 70px;
+  height: 24px;
+  transform: rotate(4deg);
+}
+
+.course-card:nth-child(4n + 1) {
+  border-top: 8px solid #ff9a7b;
+}
+
+.course-card:nth-child(4n + 1)::before {
+  background: rgba(255, 154, 123, 0.38);
+}
+
+.course-card:nth-child(4n + 2) {
+  border-top: 8px solid #69c8e8;
+}
+
+.course-card:nth-child(4n + 2)::before {
+  background: rgba(105, 200, 232, 0.38);
+}
+
+.course-card:nth-child(4n + 3) {
+  border-top: 8px solid #f2cf6a;
+}
+
+.course-card:nth-child(4n + 3)::before {
+  background: rgba(242, 207, 106, 0.42);
+}
+
+.course-card:nth-child(4n + 4) {
+  border-top: 8px solid #8bcf88;
+}
+
+.course-card:nth-child(4n + 4)::before {
+  background: rgba(139, 207, 136, 0.42);
 }
 
 .course-card:nth-child(2n) {
@@ -155,17 +235,19 @@
 }
 
 .course-kicker {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.35rem;
   color: var(--sand-deep);
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.84rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
 }
 
 .course-title {
   margin: 0;
-  font-size: 1.5rem;
+  max-width: 15ch;
+  font-size: 1.45rem;
+  line-height: 1.03;
 }
 
 .status-pill,
@@ -174,14 +256,14 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: 0.42rem 0.75rem;
+  padding: 0.4rem 0.72rem;
   border-radius: 999px;
-  font-size: 0.84rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 800;
 }
 
 .status-pill {
-  background: rgba(232, 187, 98, 0.2);
+  background: rgba(242, 207, 106, 0.26);
   color: var(--sand-deep);
 }
 
@@ -192,13 +274,13 @@
 }
 
 .info-pill {
-  background: rgba(21, 95, 100, 0.08);
+  background: rgba(20, 82, 101, 0.08);
   color: var(--teal-deep);
 }
 
 .course-section h4 {
   margin-bottom: 0.55rem;
-  font-size: 1.04rem;
+  font-size: 1rem;
 }
 
 .unit-list,
@@ -215,18 +297,18 @@
 .topic-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: 0.5rem;
 }
 
 .topic-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.42rem 0.75rem;
+  padding: 0.38rem 0.72rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(36, 49, 59, 0.08);
+  background: #fffef8;
+  border: 1px solid rgba(37, 52, 66, 0.1);
   color: var(--page-ink);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .course-actions {
@@ -253,41 +335,59 @@
 }
 
 .rail-card {
-  padding: 1.25rem;
+  padding: 1.15rem;
 }
 
-.rail-card-outline {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 251, 241, 0.88)),
-    var(--panel);
+.rail-card-coral {
+  background: linear-gradient(180deg, rgba(255, 243, 236, 0.98), rgba(255, 250, 246, 0.94));
+}
+
+.rail-card-blue {
+  background: linear-gradient(180deg, rgba(239, 249, 255, 0.98), rgba(248, 252, 255, 0.94));
+}
+
+.rail-card-green {
+  background: linear-gradient(180deg, rgba(242, 251, 239, 0.98), rgba(250, 255, 248, 0.94));
+}
+
+.rail-card-coral::before {
+  background: rgba(255, 154, 123, 0.42);
+}
+
+.rail-card-blue::before {
+  background: rgba(105, 200, 232, 0.42);
+}
+
+.rail-card-green::before {
+  background: rgba(139, 207, 136, 0.42);
 }
 
 .ad-placeholder-horizontal {
-  min-height: 132px;
+  min-height: 128px;
 }
 
 .ad-placeholder-horizontal span {
-  max-width: 36ch;
+  max-width: 34ch;
 }
 
 .ad-placeholder-vertical {
-  min-height: 420px;
+  min-height: 390px;
 }
 
 .ad-placeholder-mobile {
-  min-height: 140px;
+  min-height: 124px;
 }
 
 .empty-state {
-  padding: 1.35rem;
-  border-radius: 24px;
+  padding: 1.25rem;
+  border-radius: 18px;
   background: var(--empty);
-  border: 1px dashed rgba(36, 49, 59, 0.14);
+  border: 1.5px dashed rgba(37, 52, 66, 0.16);
 }
 
 .empty-state h3 {
   margin-bottom: 0.45rem;
-  font-size: 1.35rem;
+  font-size: 1.28rem;
 }
 
 @media (max-width: 980px) {
@@ -304,7 +404,7 @@
   }
 
   .hero h1 {
-    max-width: 14ch;
+    max-width: 13ch;
   }
 
   .ad-placeholder-vertical {
@@ -315,6 +415,11 @@
 @media (max-width: 700px) {
   .hero {
     padding: 1rem;
+  }
+
+  .hero::before {
+    right: 1rem;
+    width: 76px;
   }
 
   .course-top,

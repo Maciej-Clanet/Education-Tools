@@ -1,0 +1,170 @@
+:root {
+  --bg-top: #fff6e8;
+  --bg-bottom: #eef7fb;
+  --page-ink: #253442;
+  --muted-ink: #596876;
+  --panel: rgba(255, 252, 246, 0.95);
+  --panel-soft: rgba(255, 255, 255, 0.84);
+  --panel-border: rgba(37, 52, 66, 0.14);
+  --shadow: 0 8px 0 rgba(37, 52, 66, 0.04), 0 22px 32px rgba(56, 77, 94, 0.12);
+  --teal: #1d748c;
+  --teal-deep: #145265;
+  --sand: #f2cf6a;
+  --sand-deep: #8c6413;
+  --line: rgba(37, 52, 66, 0.14);
+  --empty: rgba(255, 255, 255, 0.8);
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(255, 142, 142, 0.18), transparent 18%),
+    radial-gradient(circle at 82% 16%, rgba(88, 175, 214, 0.18), transparent 18%),
+    radial-gradient(circle at 26% 80%, rgba(253, 211, 97, 0.18), transparent 18%),
+    linear-gradient(180deg, rgba(255, 247, 232, 0.98), rgba(238, 247, 251, 0.98));
+}
+
+body::before {
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      rgba(28, 116, 139, 0.08) 0,
+      rgba(28, 116, 139, 0.08) 1px,
+      transparent 1px,
+      transparent 34px
+    ),
+    radial-gradient(circle, rgba(37, 52, 66, 0.04) 1px, transparent 1.4px),
+    linear-gradient(rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.34));
+  background-size: auto, 18px 18px, auto;
+  opacity: 0.8;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent clamp(3rem, 6vw, 5rem),
+      rgba(223, 107, 111, 0.2) clamp(3rem, 6vw, 5rem),
+      rgba(223, 107, 111, 0.2) calc(clamp(3rem, 6vw, 5rem) + 2px),
+      transparent calc(clamp(3rem, 6vw, 5rem) + 2px)
+    );
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Georgia", "Palatino Linotype", serif;
+}
+
+.page-shell {
+  position: relative;
+  z-index: 1;
+  width: min(1400px, calc(100% - 1.5rem));
+  padding-top: 1rem;
+}
+
+.panel {
+  overflow: visible;
+  border-radius: 22px;
+  border-width: 1.5px;
+  backdrop-filter: none;
+}
+
+.panel-accent::after,
+.panel-accent-soft::after {
+  display: none;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 1rem;
+  width: 86px;
+  height: 22px;
+  border-radius: 8px;
+  background: rgba(245, 199, 86, 0.52);
+  box-shadow: 0 2px 0 rgba(140, 100, 19, 0.08);
+  transform: rotate(-4deg);
+}
+
+.panel-soft {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.eyebrow {
+  color: var(--teal-deep);
+}
+
+.search-input {
+  border-radius: 16px;
+  border-width: 1.5px;
+  background: #fffdfa;
+}
+
+.ghost-button,
+.tag-chip,
+.primary-link {
+  border-radius: 14px;
+}
+
+.ghost-button {
+  background: #fffef8;
+}
+
+.tag-chip {
+  border-width: 1.5px;
+  font-weight: 800;
+}
+
+.tag-chip:nth-child(4n + 1) {
+  background: #e8f6ff;
+  color: #1f6581;
+}
+
+.tag-chip:nth-child(4n + 2) {
+  background: #fff2dd;
+  color: #9a5f17;
+}
+
+.tag-chip:nth-child(4n + 3) {
+  background: #eef8e7;
+  color: #3b6b2f;
+}
+
+.tag-chip:nth-child(4n + 4) {
+  background: #fff0f1;
+  color: #9e4f5a;
+}
+
+.primary-link {
+  background: linear-gradient(135deg, #1c748b, #145265);
+}
+
+.ad-placeholder {
+  border-style: solid;
+  border-width: 1.5px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(250, 245, 232, 0.74));
+}
+
+@media (max-width: 700px) {
+  .page-shell {
+    width: min(100% - 0.75rem, 1400px);
+  }
+
+  .panel::before {
+    left: 0.75rem;
+    width: 72px;
+  }
+}
