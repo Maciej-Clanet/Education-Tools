@@ -6,7 +6,7 @@
     <title>Education Tools Hub</title>
     <meta
       name="description"
-      content="A friendly static hub for educational tutorials, revision tools, and searchable course units."
+      content="Searchable tutorials, revision tools, and course topics to help students learn more easily."
     />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/components.css" />
@@ -18,54 +18,59 @@
     <div class="page-shell">
       <header class="hero panel panel-accent">
         <div class="hero-copy">
-          <p class="eyebrow">Static Learning Hub</p>
-          <h1>Educational tutorials and tools in one simple home.</h1>
+          <p class="eyebrow">Find Your Topic</p>
+          <h1>Learn with tutorials, revision tools, and guided practice.</h1>
           <p class="hero-text">
-            A searchable front page for course units, tutorials, quizzes, and
-            mini-tools that can stay lightweight, account-free, and easy to
-            host.
+            Search by course, unit, or keyword to find the topic you need.
+            Move quickly from a course overview into lessons, quizzes, and
+            mini-tools that support real learning.
           </p>
+        </div>
 
-          <div class="hero-points">
-            <article class="mini-card mini-card-pink">
-              <h2>No login required</h2>
-              <p>Keep the project static and lightweight for easier hosting.</p>
-            </article>
-
-            <article class="mini-card mini-card-yellow">
-              <h2>Search by course or topic</h2>
-              <p>Students should be able to jump into the right unit quickly.</p>
-            </article>
-
-            <article class="mini-card mini-card-blue">
-              <h2>Ready for tools later</h2>
-              <p>
-                Shared scripts can support quizzes, flashcards, converters, and
-                other mini-tools.
-              </p>
-            </article>
+        <section class="panel panel-soft hero-search">
+          <div class="catalog-controls-header">
+            <div>
+              <p class="eyebrow">Start Here</p>
+              <h2>Search the course list</h2>
+            </div>
+            <p id="results-copy" class="small-note">
+              Loading course placeholders...
+            </p>
           </div>
-        </div>
+
+          <label class="search-label" for="search-input">
+            Search the placeholder catalogue
+          </label>
+
+          <div class="search-row">
+            <input
+              id="search-input"
+              class="search-input"
+              type="search"
+              placeholder="Try: networks, graphics, programming"
+              autocomplete="off"
+            />
+            <button id="clear-search" class="ghost-button" type="button">
+              Clear
+            </button>
+          </div>
+
+          <div class="search-tags" aria-label="Suggested searches">
+            <button class="tag-chip" type="button" data-suggestion="networks">
+              Networks
+            </button>
+            <button class="tag-chip" type="button" data-suggestion="hardware">
+              Hardware
+            </button>
+            <button class="tag-chip" type="button" data-suggestion="programming">
+              Programming
+            </button>
+            <button class="tag-chip" type="button" data-suggestion="graphics">
+              Graphics
+            </button>
+          </div>
+        </section>
       </header>
-
-      <section class="panel ad-band" aria-labelledby="leaderboard-heading">
-        <div class="ad-band-copy">
-          <p class="eyebrow">Ad Planning</p>
-          <h2 id="leaderboard-heading">Space for a Google leaderboard slot</h2>
-          <p class="section-copy">
-            This leaves room for a clear horizontal advert placement without
-            interrupting the main learning content.
-          </p>
-        </div>
-
-        <div
-          class="ad-placeholder ad-placeholder-horizontal"
-          aria-label="Future horizontal advertisement space"
-        >
-          <strong>Horizontal ad slot</strong>
-          <span>Can sit like a notice-board strip without blending into lesson content.</span>
-        </div>
-      </section>
 
       <main class="catalog-layout" aria-labelledby="catalog-heading">
         <section class="catalog-intro">
@@ -79,50 +84,6 @@
               navigation, lesson sections, and local-progress activities.
             </p>
           </div>
-
-          <section class="panel panel-soft catalog-controls">
-            <div class="catalog-controls-header">
-              <div>
-                <p class="eyebrow">Find A Topic</p>
-                <h3>Search the course list</h3>
-              </div>
-              <p id="results-copy" class="small-note">
-                Loading course placeholders...
-              </p>
-            </div>
-
-            <label class="search-label" for="search-input">
-              Search the placeholder catalogue
-            </label>
-
-            <div class="search-row">
-              <input
-                id="search-input"
-                class="search-input"
-                type="search"
-                placeholder="Try: networks, graphics, programming"
-                autocomplete="off"
-              />
-              <button id="clear-search" class="ghost-button" type="button">
-                Clear
-              </button>
-            </div>
-
-            <div class="search-tags" aria-label="Suggested searches">
-              <button class="tag-chip" type="button" data-suggestion="networks">
-                Networks
-              </button>
-              <button class="tag-chip" type="button" data-suggestion="hardware">
-                Hardware
-              </button>
-              <button class="tag-chip" type="button" data-suggestion="programming">
-                Programming
-              </button>
-              <button class="tag-chip" type="button" data-suggestion="graphics">
-                Graphics
-              </button>
-            </div>
-          </section>
         </section>
 
         <section class="catalog-main">
@@ -179,6 +140,25 @@
           </section>
         </aside>
       </main>
+
+      <section class="panel ad-band" aria-labelledby="leaderboard-heading">
+        <div class="ad-band-copy">
+          <p class="eyebrow">Ad Planning</p>
+          <h2 id="leaderboard-heading">Space for a Google leaderboard slot</h2>
+          <p class="section-copy">
+            This leaves room for a clear horizontal advert placement without
+            interrupting the main learning content.
+          </p>
+        </div>
+
+        <div
+          class="ad-placeholder ad-placeholder-horizontal"
+          aria-label="Future horizontal advertisement space"
+        >
+          <strong>Horizontal ad slot</strong>
+          <span>Can sit like a notice-board strip without blending into lesson content.</span>
+        </div>
+      </section>
     </div>
 
     <template id="course-card-template">
