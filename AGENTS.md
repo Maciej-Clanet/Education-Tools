@@ -17,8 +17,15 @@ Before making major UI, content, or structure changes, read:
 
 ## Product Direction
 
-- The home page should help users find a course, spec, unit, or topic quickly.
-- Content should be organised primarily by course or specification.
+- The home page should help users find a unit, topic, course, or spec quickly.
+- Home page browsing should prioritise unit pages first, then topic pages, with
+  spec pages shown last unless directly searched for.
+- Spec pages should stay brief and mainly route users into their unit pages.
+- Unit pages should act as scheme-of-work hubs with links to all topics in that
+  unit.
+- Topic pages should be the main learning/SEO pages and should stay
+  unit-agnostic where possible so one topic can support multiple units or
+  specs.
 - Topic or unit pages should support easy sidebar navigation.
 - Users should be able to get back to the full course or unit search easily.
 - Keep room in layouts for future advertising or promoted resources.
@@ -28,11 +35,15 @@ Before making major UI, content, or structure changes, read:
 - Keep the UI simple, friendly, and calm.
 - The preferred visual reference so far is:
   `donetools/unit conversion tutorial/`
+- The chosen visual direction for the main site is currently a scrapbook /
+  notebook hybrid.
+- Keep the hero focused on learning and search. Do not place prominent ad
+  blocks above the catalogue on the home page.
 - Reuse shared patterns rather than building isolated one-off interfaces.
 
 ## Structure Direction
 
-- Shared styles belong in `css/`.
+- Shared styles belong in `css/`, with page-specific styling in `css/pages/`.
 - Reusable browser logic belongs in `javascript/core/`.
 - Local catalogue or structured content data belongs in `javascript/data/` or
   `content/`.
@@ -46,3 +57,5 @@ Before making major UI, content, or structure changes, read:
   multiple lessons and mini-tools later.
 - When adding a new section or page, fit it into the shared structure instead
   of creating an isolated mini-project unless the user asks for that.
+- If you make a major product or IA decision, update `docs/project_requirements.md`
+  and keep this file aligned with it so a new session can resume quickly.

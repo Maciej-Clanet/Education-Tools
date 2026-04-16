@@ -6,7 +6,7 @@
     <title>Education Tools Hub</title>
     <meta
       name="description"
-      content="Searchable tutorials, revision tools, and course topics to help students learn more easily."
+      content="Searchable tutorials, unit pages, and topic explainers to help students learn more easily."
     />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/components.css" />
@@ -21,9 +21,9 @@
           <p class="eyebrow">Find Your Topic</p>
           <h1>Learn with tutorials, revision tools, and guided practice.</h1>
           <p class="hero-text">
-            Search by course, unit, or keyword to find the topic you need.
-            Move quickly from a course overview into lessons, quizzes, and
-            mini-tools that support real learning.
+            Search by unit, topic, or qualification to find the page you need.
+            Move quickly into lessons, quizzes, and mini-tools that support
+            real learning.
           </p>
         </div>
 
@@ -31,15 +31,15 @@
           <div class="catalog-controls-header">
             <div>
               <p class="eyebrow">Start Here</p>
-              <h2>Search the course list</h2>
+              <h2>Search specs, units, and topics</h2>
             </div>
             <p id="results-copy" class="small-note">
-              Loading course placeholders...
+              Loading pages...
             </p>
           </div>
 
           <label class="search-label" for="search-input">
-            Search the placeholder catalogue
+            Search the learning hub
           </label>
 
           <div class="search-row">
@@ -47,7 +47,7 @@
               id="search-input"
               class="search-input"
               type="search"
-              placeholder="Try: networks, graphics, programming"
+              placeholder="Try: unit 2, binary, networking"
               autocomplete="off"
             />
             <button id="clear-search" class="ghost-button" type="button">
@@ -56,17 +56,17 @@
           </div>
 
           <div class="search-tags" aria-label="Suggested searches">
-            <button class="tag-chip" type="button" data-suggestion="networks">
-              Networks
+            <button class="tag-chip" type="button" data-suggestion="unit 2">
+              Unit 2
             </button>
-            <button class="tag-chip" type="button" data-suggestion="hardware">
-              Hardware
+            <button class="tag-chip" type="button" data-suggestion="networking">
+              Networking
+            </button>
+            <button class="tag-chip" type="button" data-suggestion="binary">
+              Binary
             </button>
             <button class="tag-chip" type="button" data-suggestion="programming">
               Programming
-            </button>
-            <button class="tag-chip" type="button" data-suggestion="graphics">
-              Graphics
             </button>
           </div>
         </section>
@@ -76,37 +76,27 @@
         <section class="catalog-intro">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Course Catalogue</p>
-              <h2 id="catalog-heading">Placeholder course selection</h2>
+              <p class="eyebrow">Learning Pages</p>
+              <h2 id="catalog-heading">Browse units, topics, and courses</h2>
             </div>
             <p class="section-copy">
-              Each course card can later branch into unit pages with sidebar
-              navigation, lesson sections, and local-progress activities.
+              Start with units and topics, or use the search bar to jump
+              straight to the lesson or course area you need.
             </p>
           </div>
         </section>
 
         <section class="catalog-main">
-          <div id="course-grid" class="course-grid" aria-live="polite"></div>
+          <div id="catalog-grid" class="catalog-grid" aria-live="polite"></div>
         </section>
 
         <aside class="catalog-rail">
-          <section class="panel rail-card rail-card-coral">
-            <p class="eyebrow">Planned Layout</p>
-            <h2>Unit pages next</h2>
-            <p>
-              The next phase can add a left sidebar for unit navigation, a main
-              lesson column, and a small right rail for callouts or adverts.
-            </p>
-          </section>
-
           <section class="panel rail-card rail-card-blue">
-            <p class="eyebrow">Ad Ready</p>
+            <p class="eyebrow">Sponsored Space</p>
             <h2>Google ad placements</h2>
             <p>
-              A dedicated rail is usually easier to live with than dropping ads
-              between lesson cards. On desktop this can hold a taller sidebar
-              unit, while smaller screens can fall back to a banner.
+              A dedicated rail can hold a taller sidebar ad on desktop, while
+              smaller screens can fall back to a simpler banner placement.
             </p>
 
             <div class="ad-stack">
@@ -128,26 +118,16 @@
             </div>
           </section>
 
-          <section class="panel rail-card rail-card-green">
-            <p class="eyebrow">Current Setup</p>
-            <h2>Static-first structure</h2>
-            <ul class="plain-list">
-              <li>Shared styles in <code>css/</code></li>
-              <li>Reusable browser helpers in <code>javascript/core/</code></li>
-              <li>Course content planned under <code>content/</code></li>
-              <li>Existing older tools kept in <code>donetools/</code> for now</li>
-            </ul>
-          </section>
         </aside>
       </main>
 
       <section class="panel ad-band" aria-labelledby="leaderboard-heading">
         <div class="ad-band-copy">
-          <p class="eyebrow">Ad Planning</p>
+          <p class="eyebrow">Sponsored Space</p>
           <h2 id="leaderboard-heading">Space for a Google leaderboard slot</h2>
           <p class="section-copy">
             This leaves room for a clear horizontal advert placement without
-            interrupting the main learning content.
+            interrupting the main learning flow.
           </p>
         </div>
 
@@ -161,38 +141,22 @@
       </section>
     </div>
 
-    <template id="course-card-template">
-      <article class="panel course-card">
-        <div class="course-top">
+    <template id="catalog-card-template">
+      <article class="panel catalog-card">
+        <div class="catalog-card-top">
           <div>
-            <p class="course-kicker"></p>
-            <h3 class="course-title"></h3>
+            <p class="catalog-card-kicker"></p>
+            <h3 class="catalog-card-title"></h3>
           </div>
-          <span class="status-pill">Planning</span>
+          <span class="type-pill"></span>
         </div>
 
-        <p class="course-summary"></p>
+        <p class="catalog-card-summary"></p>
 
-        <div class="info-row">
-          <span class="info-pill course-level"></span>
-          <span class="info-pill course-storage"></span>
-        </div>
+        <div class="info-row"></div>
 
-        <section class="course-section">
-          <h4>Placeholder units</h4>
-          <ul class="unit-list"></ul>
-        </section>
-
-        <section class="course-section">
-          <h4>Search topics</h4>
-          <div class="topic-list"></div>
-        </section>
-
-        <div class="course-actions">
-          <a class="primary-link spec-link" target="_blank" rel="noreferrer">
-            View specification PDF
-          </a>
-          <span class="secondary-note">Unit pages will plug into this card later.</span>
+        <div class="catalog-card-actions">
+          <button class="primary-link card-button" type="button"></button>
         </div>
       </article>
     </template>

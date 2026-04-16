@@ -1,5 +1,5 @@
 .hero {
-  margin-bottom: 3.1rem;
+  margin-bottom: 6.5rem;
   padding: clamp(1.45rem, 3vw, 2.45rem);
   border-top: 10px solid #ff9a7b;
   background:
@@ -13,9 +13,6 @@
       rgba(255, 253, 247, 0.98),
       rgba(255, 248, 236, 0.94)
     );
-}
-
-.hero-copy {
 }
 
 .hero::before {
@@ -41,15 +38,13 @@
 
 .hero-text,
 .section-copy,
-.course-summary,
+.catalog-card-summary,
 .secondary-note {
   color: var(--muted-ink);
 }
 
 .hero-text {
-  /* max-width: 62ch; */
   text-wrap: balance;
-  margin-bottom: 0;
   font-size: 1.02rem;
   margin-bottom: 32px;
 }
@@ -81,7 +76,7 @@
 }
 
 .hero-points,
-.course-grid,
+.catalog-grid,
 .unit-list,
 .plain-list {
   display: grid;
@@ -139,6 +134,7 @@
     "intro intro"
     "main rail";
   gap: 1.15rem;
+  margin-bottom: 32px;
 }
 
 .ad-band {
@@ -206,14 +202,14 @@
   align-self: end;
 }
 
-.course-grid {
+.catalog-grid {
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
 }
 
-.course-card {
+.catalog-card {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.85rem;
   padding: 1.2rem;
   min-height: 100%;
   animation: rise 0.5s ease both;
@@ -224,7 +220,7 @@
   );
 }
 
-.course-card::before {
+.catalog-card::before {
   top: -13px;
   left: auto;
   right: 1rem;
@@ -233,54 +229,46 @@
   transform: rotate(4deg);
 }
 
-.course-card:nth-child(4n + 1) {
+.catalog-card--spec {
   border-top: 8px solid #ff9a7b;
 }
 
-.course-card:nth-child(4n + 1)::before {
+.catalog-card--spec::before {
   background: rgba(255, 154, 123, 0.38);
 }
 
-.course-card:nth-child(4n + 2) {
+.catalog-card--unit {
   border-top: 8px solid #69c8e8;
 }
 
-.course-card:nth-child(4n + 2)::before {
+.catalog-card--unit::before {
   background: rgba(105, 200, 232, 0.38);
 }
 
-.course-card:nth-child(4n + 3) {
-  border-top: 8px solid #f2cf6a;
-}
-
-.course-card:nth-child(4n + 3)::before {
-  background: rgba(242, 207, 106, 0.42);
-}
-
-.course-card:nth-child(4n + 4) {
+.catalog-card--topic {
   border-top: 8px solid #8bcf88;
 }
 
-.course-card:nth-child(4n + 4)::before {
+.catalog-card--topic::before {
   background: rgba(139, 207, 136, 0.42);
 }
 
-.course-card:nth-child(2n) {
+.catalog-card:nth-child(2n) {
   animation-delay: 0.04s;
 }
 
-.course-card:nth-child(3n) {
+.catalog-card:nth-child(3n) {
   animation-delay: 0.08s;
 }
 
-.course-top {
+.catalog-card-top {
   display: flex;
   justify-content: space-between;
   align-items: start;
   gap: 1rem;
 }
 
-.course-kicker {
+.catalog-card-kicker {
   margin: 0 0 0.35rem;
   color: var(--sand-deep);
   font-size: 0.84rem;
@@ -289,14 +277,17 @@
   letter-spacing: 0.09em;
 }
 
-.course-title {
+.catalog-card-title {
   margin: 0;
-  max-width: 15ch;
   font-size: 1.45rem;
-  line-height: 1.03;
+  line-height: 1.05;
 }
 
-.status-pill,
+.catalog-card-summary {
+  margin: 0;
+}
+
+.type-pill,
 .info-pill {
   display: inline-flex;
   align-items: center;
@@ -308,9 +299,26 @@
   font-weight: 800;
 }
 
-.status-pill {
-  background: rgba(242, 207, 106, 0.26);
-  color: var(--sand-deep);
+.type-pill {
+  border: 1px solid transparent;
+}
+
+.type-pill--spec {
+  background: rgba(255, 154, 123, 0.18);
+  border-color: rgba(255, 154, 123, 0.34);
+  color: #9d583f;
+}
+
+.type-pill--unit {
+  background: rgba(105, 200, 232, 0.18);
+  border-color: rgba(105, 200, 232, 0.34);
+  color: #245f73;
+}
+
+.type-pill--topic {
+  background: rgba(139, 207, 136, 0.2);
+  border-color: rgba(139, 207, 136, 0.36);
+  color: #3d6a39;
 }
 
 .info-row {
@@ -324,11 +332,6 @@
   color: var(--teal-deep);
 }
 
-.course-section h4 {
-  margin-bottom: 0.55rem;
-  font-size: 1rem;
-}
-
 .unit-list,
 .plain-list {
   margin: 0;
@@ -340,27 +343,12 @@
   color: var(--muted-ink);
 }
 
-.topic-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.topic-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.38rem 0.72rem;
-  border-radius: 999px;
-  background: #fffef8;
-  border: 1px solid rgba(37, 52, 66, 0.1);
-  color: var(--page-ink);
-  font-size: 0.88rem;
-}
-
-.course-actions {
-  display: grid;
-  gap: 0.7rem;
+.catalog-card-actions {
   margin-top: auto;
+}
+
+.card-button {
+  align-self: start;
 }
 
 .secondary-note {
@@ -448,6 +436,18 @@
   font-size: 1.28rem;
 }
 
+@media (max-width: 1120px) {
+  .hero {
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-search {
+    width: min(100%, 940px);
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 980px) {
   .catalog-layout,
   .ad-band {
@@ -461,16 +461,6 @@
       "rail";
   }
 
-  .hero h1 {
-    max-width: 14ch;
-  }
-
-  .hero-search {
-    width: min(100%, 940px);
-    margin-top: 1.1rem;
-    margin-bottom: -5.3rem;
-  }
-
   .ad-placeholder-vertical {
     min-height: 180px;
   }
@@ -479,7 +469,7 @@
 @media (max-width: 700px) {
   .hero {
     padding: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.25rem;
   }
 
   .hero::before {
@@ -491,10 +481,10 @@
     padding: 1rem;
     width: min(100%, 940px);
     margin-top: 0.9rem;
-    margin-bottom: -4.5rem;
+    margin-bottom: 0;
   }
 
-  .course-top,
+  .catalog-card-top,
   .section-heading,
   .catalog-controls-header {
     flex-direction: column;

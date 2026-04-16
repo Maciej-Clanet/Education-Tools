@@ -1,60 +1,158 @@
-export const courseCatalog = [
+export const catalogItems = [
   {
-    id: "btec-first-ict",
-    shortLabel: "BTEC First ICT",
-    title: "Pearson BTEC First Information and Creative Technology",
-    level: "Level 1 / Level 2",
+    id: "spec-btec-first-ict",
+    type: "spec",
+    typeLabel: "Spec page",
+    kicker: "Pearson BTEC First ICT",
+    title: "BTEC First Information and Creative Technology",
     summary:
-      "A practical starting point for digital skills, systems understanding, and creating simple media products.",
-    storageMode: "Local quiz saves",
-    specUrl:
-      "https://qualifications.pearson.com/content/dam/pdf/BTEC-Firsts/Information-and-Creative-Technology/2012/Specification-and-sample-assessments/9781446936573_BTECFIRST_L12_CEC_ICT_Iss3.pdf",
-    tags: ["networks", "systems", "graphics", "online safety", "hardware"],
-    units: [
-      {
-        title: "Technology Systems Basics",
-        topics: ["hardware", "software", "performance", "peripherals"],
-      },
-      {
-        title: "The Online World",
-        topics: ["networks", "protocols", "cloud", "security"],
-      },
-      {
-        title: "Creating Digital Products",
-        topics: ["graphics", "planning", "audience", "evaluation"],
-      },
+      "A lightweight qualification hub that can explain the course, its assessment style, and where each unit branch starts.",
+    supportText:
+      "Best for visitors who already know the qualification name and want to jump into the right unit hub.",
+    badges: ["Level 1 / Level 2", "Digital & creative tech"],
+    keywords: [
+      "btec first ict",
+      "pearson",
+      "specification",
+      "creative technology",
     ],
+    actionLabel: "See all units",
+    note: "Keep spec pages short and let the actual unit pages do the heavy lifting.",
   },
   {
-    id: "btec-level-3-computing",
-    shortLabel: "BTEC Level 3 Computing",
-    title: "Pearson BTEC Level 3 National Extended Diploma in Computing",
-    level: "Level 3",
+    id: "spec-btec-level-3-computing",
+    type: "spec",
+    typeLabel: "Spec page",
+    kicker: "Pearson BTEC Level 3 Computing",
+    title: "BTEC Level 3 National Extended Diploma in Computing",
     summary:
-      "A broader computing route with room for theory, projects, development practice, and more advanced digital systems work.",
-    storageMode: "Local progress saves",
-    specUrl:
-      "https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/computing/2016/specification-and-sample-assessments/btec-nat-l3-ext-dip-in-computing-spec.pdf",
-    tags: [
-      "programming",
-      "cyber security",
-      "projects",
-      "data",
-      "systems",
+      "A qualification overview page that can introduce the course structure, key units, and links into deeper learning pages.",
+    supportText:
+      "Useful when students or teachers search by qualification title rather than by a specific unit or topic.",
+    badges: ["Level 3", "Computing"],
+    keywords: [
+      "btec level 3 computing",
+      "extended diploma",
+      "pearson",
+      "qualification",
     ],
-    units: [
-      {
-        title: "Computer Systems and Architecture",
-        topics: ["cpu", "memory", "storage", "performance"],
-      },
-      {
-        title: "Programming and Solution Design",
-        topics: ["algorithms", "logic", "testing", "development"],
-      },
-      {
-        title: "Data, Security, and Project Work",
-        topics: ["databases", "cyber security", "documentation", "planning"],
-      },
-    ],
+    actionLabel: "See all units",
+    note: "The button can lead to a clean unit index instead of a very tall card on the homepage.",
+  },
+  {
+    id: "unit-online-world",
+    type: "unit",
+    typeLabel: "Unit page",
+    kicker: "Unit 1 • BTEC First ICT",
+    title: "The Online World",
+    summary:
+      "A unit hub for internet services, online communication, threats, and the basics of how networked systems connect.",
+    supportText: "From Pearson BTEC First Information and Creative Technology.",
+    badges: ["Subject area: Networking", "Level 1 / Level 2"],
+    keywords: ["unit 1", "online world", "networks", "protocols", "security"],
+    actionLabel: "See all topics",
+    note: "Unit pages can act like scheme-of-work hubs with every lesson linked in order.",
+  },
+  {
+    id: "unit-technology-systems-basics",
+    type: "unit",
+    typeLabel: "Unit page",
+    kicker: "Unit 2 • BTEC First ICT",
+    title: "Technology Systems Basics",
+    summary:
+      "A unit page focused on hardware, software, performance, storage, and the core parts of a computer system.",
+    supportText: "From Pearson BTEC First Information and Creative Technology.",
+    badges: ["Subject area: Systems", "Level 1 / Level 2"],
+    keywords: ["unit 2", "hardware", "software", "peripherals", "performance"],
+    actionLabel: "See all topics",
+    note: "This also tests how the homepage handles a unit number that exists in more than one spec.",
+  },
+  {
+    id: "unit-computer-systems-architecture",
+    type: "unit",
+    typeLabel: "Unit page",
+    kicker: "Unit 2 • BTEC Level 3 Computing",
+    title: "Computer Systems and Architecture",
+    summary:
+      "A higher-level systems hub for CPU components, memory, storage, architecture, and performance factors.",
+    supportText: "From Pearson BTEC Level 3 National Extended Diploma in Computing.",
+    badges: ["Subject area: Computer systems", "Level 3"],
+    keywords: ["unit 2", "architecture", "cpu", "memory", "storage"],
+    actionLabel: "See all topics",
+    note: "A good test case for searches like Unit 2 where the qualification matters.",
+  },
+  {
+    id: "unit-programming-solution-design",
+    type: "unit",
+    typeLabel: "Unit page",
+    kicker: "Unit 3 • BTEC Level 3 Computing",
+    title: "Programming and Solution Design",
+    summary:
+      "A unit hub for algorithms, logic, testing, development practice, and step-by-step solution planning.",
+    supportText: "From Pearson BTEC Level 3 National Extended Diploma in Computing.",
+    badges: ["Subject area: Programming", "Level 3"],
+    keywords: ["unit 3", "programming", "algorithms", "logic", "testing"],
+    actionLabel: "See all topics",
+    note: "The card stays short while the full topic sequence can live on the unit page itself.",
+  },
+  {
+    id: "topic-binary-hexadecimal",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "Data Representation",
+    title: "Binary and hexadecimal",
+    summary:
+      "A reusable lesson page that can explain place value, conversion steps, and why binary is used inside computer systems.",
+    supportText:
+      "This topic can be linked from multiple units without repeating the same core explanation.",
+    badges: ["Subject area: Data representation", "Shared topic page"],
+    keywords: ["binary", "hexadecimal", "number systems", "conversion"],
+    actionLabel: "Open topic page",
+    note: "Topic cards stay unit-agnostic so the same lesson can support more than one pathway.",
+  },
+  {
+    id: "topic-network-topologies",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "Networking",
+    title: "Network topologies",
+    summary:
+      "A focused topic page for star, bus, and mesh layouts, including where each design is useful and what trade-offs matter.",
+    supportText:
+      "Search intent is usually topic-first here, so this kind of page is likely to be a strong SEO target.",
+    badges: ["Subject area: Networking", "Shared topic page"],
+    keywords: ["network topologies", "star", "bus", "mesh", "networks"],
+    actionLabel: "Open topic page",
+    note: "This is the sort of page students may find organically when they need one concept explained fast.",
+  },
+  {
+    id: "topic-cpu-performance-factors",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "Computer Systems",
+    title: "CPU performance factors",
+    summary:
+      "A lesson page covering clock speed, cores, cache, and the practical reasons one processor may outperform another.",
+    supportText:
+      "The page can stay independent of any one unit while still serving several systems-based courses.",
+    badges: ["Subject area: Computer systems", "Shared topic page"],
+    keywords: ["cpu", "performance", "clock speed", "cache", "cores"],
+    actionLabel: "Open topic page",
+    note: "Keeping the explanation canonical avoids duplicate topic pages later.",
+  },
+  {
+    id: "topic-algorithms-flowcharts",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "Programming",
+    title: "Algorithms and flowcharts",
+    summary:
+      "A topic page for sequence, selection, iteration, and planning solutions before code is written.",
+    supportText:
+      "This kind of shared topic can support introductory and advanced programming units alike.",
+    badges: ["Subject area: Programming", "Shared topic page"],
+    keywords: ["algorithms", "flowcharts", "logic", "sequence", "iteration"],
+    actionLabel: "Open topic page",
+    note: "It helps the homepage showcase topic-first discovery instead of only spec-first browsing.",
   },
 ];

@@ -11,8 +11,7 @@ the browser with `localStorage` where useful.
 
 ## Core Product Goals
 
-- Make it easy to find a course, spec, unit, or topic from the home page.
-- Organise content by specification or course name first.
+- Make it easy to find a unit, topic, course, or spec from the home page.
 - Include a search bar on the main page.
 - Support topic pages with an easy sidebar for navigating within a unit or
   course area.
@@ -29,20 +28,51 @@ the browser with `localStorage` where useful.
 - Prefer no backend at all.
 - Use local browser storage for lightweight persistence.
 - Existing items in `donetools/` are temporary and will be unified later.
-- The visual direction should take inspiration from the existing unit
-  conversion tutorial, which is currently the preferred style reference.
+- The original visual reference came from the existing unit conversion
+  tutorial, but the current chosen direction is a scrapbook / notebook hybrid.
 
 ## Information Architecture Direction
 
 - Home page:
-  Searchable list of specs or courses.
-- Course/spec page:
-  Overview of units within that qualification.
-- Topic/unit page:
-  Sidebar navigation for lessons, sections, quizzes, and tool links.
+  Search-first discovery of units, topics, and courses, with spec pages
+  available but not dominant.
+- Spec page:
+  Short qualification overview with a route into all units in that spec.
+- Unit page:
+  Scheme-of-work hub for a unit, with ordered links to all related topics,
+  quizzes, and mini-tools.
+- Topic page:
+  Main teaching page for a concept, designed to be reusable across multiple
+  units where possible and likely to be the main SEO target.
 - Shared tool layer:
   Reusable JavaScript helpers for storage, filtering, scoring, and common UI
   patterns.
+
+## Current Product Decisions
+
+- Students are more likely to search by unit number, unit name, or specific
+  topic than by spec title alone.
+- The homepage should show unit cards first, then topic cards, and spec cards
+  last, while still letting spec pages appear in search.
+- Spec cards should stay short and link through with a button such as
+  `See all units` rather than listing every unit on the homepage.
+- Unit cards should show the unit name, the spec it belongs to, and a subject
+  area, with a CTA such as `See all topics`.
+- Topic cards should show a short description and subject area, but should not
+  mention a specific unit if the topic may belong to multiple units.
+- Topic pages should be canonical where possible to avoid duplicate content
+  across specs and improve SEO.
+
+## Current Homepage Direction
+
+- The hero should stay focused on learning and search.
+- On large screens, the search card can overlap the bottom of the hero.
+- On smaller screens, the search card should sit normally after the hero so it
+  does not cover content below.
+- The chosen homepage visual direction is currently a scrapbook / notebook
+  hybrid.
+- Keep ad space available, but prefer dedicated side or bottom placements over
+  interrupting the catalogue with ads.
 
 ## Content Sources
 
@@ -69,17 +99,20 @@ the browser with `localStorage` where useful.
 - `donetools/`
   Legacy experiments to fold into the main structure later.
 
-## First Build Milestone
+## Foundation Status
 
-- Create this requirements note.
-- Create a homepage with placeholder course selection.
-- Add a working search experience using local data.
-- Reserve layout space for future adverts or promos.
-- Scaffold folders and reusable scripts for future lessons and tools.
+- Requirements notes and agent startup notes are in place.
+- The homepage has a working search experience using local data.
+- The homepage currently uses mixed unit, topic, and spec placeholder cards to
+  test the information architecture.
+- Shared CSS, theme, and page-specific styling are split into reusable files.
+- Layout space is reserved for future adverts or promos.
 
 ## Next Likely Steps
 
-- Add a first real course page and unit page shell with sidebar navigation.
+- Add a first real unit page shell with sidebar navigation.
+- Define the topic page layout for reusable lesson content, quizzes, and tools.
+- Decide what a short spec page should include beyond description + unit links.
 - Move course data into a more structured content format if needed.
 - Decide how legacy `donetools/` pieces should be merged into the new shared
   design system.

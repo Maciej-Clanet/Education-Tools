@@ -1,21 +1,21 @@
-import { filterCourses, formatResultsCopy } from "./core/search.js";
+import { filterCatalogItems, formatResultsCopy } from "./core/search.js";
 import { readStorage, removeStorage, writeStorage } from "./core/storage.js";
-import { courseCatalog } from "./data/course-catalog.js";
+import { catalogItems } from "./data/course-catalog.js";
 
 const SEARCH_KEY = "home-search-query";
 
 const searchInput = document.querySelector("#search-input");
 const clearSearchButton = document.querySelector("#clear-search");
 const resultsCopy = document.querySelector("#results-copy");
-const courseGrid = document.querySelector("#course-grid");
-const cardTemplate = document.querySelector("#course-card-template");
+const catalogGrid = document.querySelector("#catalog-grid");
+const cardTemplate = document.querySelector("#catalog-card-template");
 const suggestionButtons = document.querySelectorAll("[data-suggestion]");
 
-function createTopicBadge(label) {
-  const badge = document.createElement("span");
-  badge.className = "topic-badge";
-  badge.textContent = label;
-  return badge;
+function createInfoPill(label) {
+  const pill = document.createElement("span");
+  pill.className = "info-pill";
+  pill.textContent = label;
+  return pill;
 }
 
 function createEmptyState(query) {
@@ -23,62 +23,56 @@ function createEmptyState(query) {
   wrapper.className = "empty-state";
 
   const heading = document.createElement("h3");
-  heading.textContent = "No placeholder matches yet";
+  heading.textContent = "No matches yet";
 
   const copy = document.createElement("p");
   copy.textContent = query
-    ? `Try a broader search term, or add more unit ideas to the course data file when you're ready.`
-    : "Add courses or topics to the local catalogue to fill out the home page.";
+    ? "Try a broader topic, unit number, or qualification name."
+    : "More lessons, units, and topic pages will appear here as the library grows.";
 
   wrapper.append(heading, copy);
   return wrapper;
 }
 
-function renderCourses(courses, query) {
-  courseGrid.replaceChildren();
+function renderCatalogItems(items, query) {
+  catalogGrid.replaceChildren();
   resultsCopy.textContent = formatResultsCopy(
-    courseCatalog.length,
-    courses.length,
+    catalogItems.length,
+    items.length,
     query,
   );
 
-  if (courses.length === 0) {
-    courseGrid.append(createEmptyState(query));
+  if (items.length === 0) {
+    catalogGrid.append(createEmptyState(query));
     return;
   }
 
-  courses.forEach((course) => {
+  items.forEach((item) => {
     const fragment = cardTemplate.content.cloneNode(true);
+    const card = fragment.querySelector(".catalog-card");
+    const typePill = fragment.querySelector(".type-pill");
+    const infoRow = fragment.querySelector(".info-row");
 
-    fragment.querySelector(".course-kicker").textContent = course.shortLabel;
-    fragment.querySelector(".course-title").textContent = course.title;
-    fragment.querySelector(".course-summary").textContent = course.summary;
-    fragment.querySelector(".course-level").textContent = course.level;
-    fragment.querySelector(".course-storage").textContent = course.storageMode;
+    card.classList.add(`catalog-card--${item.type}`);
+    typePill.classList.add(`type-pill--${item.type}`);
+    typePill.textContent = item.typeLabel;
 
-    const unitList = fragment.querySelector(".unit-list");
-    course.units.forEach((unit) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = unit.title;
-      unitList.append(listItem);
+    fragment.querySelector(".catalog-card-kicker").textContent = item.kicker;
+    fragment.querySelector(".catalog-card-title").textContent = item.title;
+    fragment.querySelector(".catalog-card-summary").textContent = item.summary;
+    fragment.querySelector(".card-button").textContent = item.actionLabel;
+
+    item.badges.forEach((badgeLabel) => {
+      infoRow.append(createInfoPill(badgeLabel));
     });
 
-    const topicList = fragment.querySelector(".topic-list");
-    const uniqueTopics = [...new Set(course.units.flatMap((unit) => unit.topics))];
-    uniqueTopics.forEach((topic) => {
-      topicList.append(createTopicBadge(topic));
-    });
-
-    const specLink = fragment.querySelector(".spec-link");
-    specLink.href = course.specUrl;
-
-    courseGrid.append(fragment);
+    catalogGrid.append(fragment);
   });
 }
 
 function applySearch(query) {
-  const filteredCourses = filterCourses(courseCatalog, query);
-  renderCourses(filteredCourses, query);
+  const filteredItems = filterCatalogItems(catalogItems, query);
+  renderCatalogItems(filteredItems, query);
   writeStorage(SEARCH_KEY, query);
 }
 

@@ -2,44 +2,51 @@ function normalizeText(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
-function buildCourseIndex(course) {
+const TYPE_PRIORITY = {
+  unit: 0,
+  topic: 1,
+  spec: 2,
+};
+
+function buildCatalogIndex(item) {
   const parts = [
-    course.title,
-    course.shortLabel,
-    course.level,
-    course.summary,
-    ...course.tags,
-    ...course.units.map((unit) => unit.title),
-    ...course.units.flatMap((unit) => unit.topics),
+    item.type,
+    item.typeLabel,
+    item.kicker,
+    item.title,
+    item.summary,
+    ...item.badges,
+    ...item.keywords,
   ];
 
   return normalizeText(parts.join(" "));
 }
 
-export function filterCourses(courses, query) {
+export function filterCatalogItems(items, query) {
   const normalizedQuery = normalizeText(query);
+  const filteredItems = normalizedQuery
+    ? items.filter((item) => buildCatalogIndex(item).includes(normalizedQuery))
+    : items;
 
-  if (!normalizedQuery) {
-    return courses;
-  }
-
-  return courses.filter((course) =>
-    buildCourseIndex(course).includes(normalizedQuery),
+  return [...filteredItems].sort(
+    (left, right) =>
+      (TYPE_PRIORITY[left.type] ?? Number.MAX_SAFE_INTEGER) -
+      (TYPE_PRIORITY[right.type] ?? Number.MAX_SAFE_INTEGER),
   );
 }
 
-export function formatResultsCopy(totalCourses, visibleCourses, query) {
+export function formatResultsCopy(totalItems, visibleItems, query) {
   if (!query.trim()) {
-    return `Showing all ${totalCourses} placeholder course specs.`;
+    return `Showing all ${totalItems} pages.`;
   }
 
-  if (visibleCourses === 0) {
-    return `No placeholder courses matched "${query.trim()}".`;
+  if (visibleItems === 0) {
+    return `No pages matched "${query.trim()}".`;
   }
 
-  if (visibleCourses === 1) {
-    return `1 placeholder course matched "${query.trim()}".`;
+  if (visibleItems === 1) {
+    return `1 page matched "${query.trim()}".`;
   }
 
-  return `${visibleCourses} placeholder courses matched "${query.trim()}".`;
+  return `${visibleItems} pages matched "${query.trim()}".`;
 }
