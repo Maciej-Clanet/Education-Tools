@@ -33,10 +33,6 @@ Before making major UI, content, or structure changes, read:
 ## Design Direction
 
 - Keep the UI simple, friendly, and calm.
-- The preferred visual reference so far is:
-  `donetools/unit conversion tutorial/`
-- The chosen visual direction for the main site is currently a scrapbook /
-  notebook hybrid.
 - Keep the hero focused on learning and search. Do not place prominent ad
   blocks above the catalogue on the home page.
 - Reuse shared patterns rather than building isolated one-off interfaces.
