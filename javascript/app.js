@@ -1,8 +1,5 @@
 import { filterCatalogItems, formatResultsCopy } from "./core/search.js";
-import { readStorage, removeStorage, writeStorage } from "./core/storage.js";
 import { catalogItems } from "./data/course-catalog.js";
-
-const SEARCH_KEY = "home-search-query";
 
 const searchInput = document.querySelector("#search-input");
 const clearSearchButton = document.querySelector("#clear-search");
@@ -36,11 +33,7 @@ function createEmptyState(query) {
 
 function renderCatalogItems(items, query) {
   catalogGrid.replaceChildren();
-  resultsCopy.textContent = formatResultsCopy(
-    catalogItems.length,
-    items.length,
-    query,
-  );
+  resultsCopy.textContent = formatResultsCopy(catalogItems, items.length, query);
 
   if (items.length === 0) {
     catalogGrid.append(createEmptyState(query));
@@ -51,28 +44,40 @@ function renderCatalogItems(items, query) {
     const fragment = cardTemplate.content.cloneNode(true);
     const card = fragment.querySelector(".catalog-card");
     const typePill = fragment.querySelector(".type-pill");
+    const titleElement = fragment.querySelector(".catalog-card-title");
     const infoRow = fragment.querySelector(".info-row");
-    const actionButton = fragment.querySelector(".card-button");
+    const actionRow = fragment.querySelector(".catalog-card-actions");
 
     card.classList.add(`catalog-card--${item.type}`);
     typePill.classList.add(`type-pill--${item.type}`);
     typePill.textContent = item.typeLabel;
 
     fragment.querySelector(".catalog-card-kicker").textContent = item.kicker;
-    fragment.querySelector(".catalog-card-title").textContent = item.title;
     fragment.querySelector(".catalog-card-summary").textContent = item.summary;
-    actionButton.textContent = item.actionLabel;
 
     item.badges.forEach((badgeLabel) => {
       infoRow.append(createInfoPill(badgeLabel));
     });
 
     if (item.href) {
-      actionButton.addEventListener("click", () => {
-        window.location.href = item.href;
-      });
+      const titleLink = document.createElement("a");
+      titleLink.className = "catalog-card-title-link";
+      titleLink.href = item.href;
+      titleLink.textContent = item.title;
+      titleElement.replaceChildren(titleLink);
+
+      const actionLink = document.createElement("a");
+      actionLink.className = "primary-link card-button";
+      actionLink.href = item.href;
+      actionLink.textContent = item.actionLabel;
+      actionRow.append(actionLink);
     } else {
-      actionButton.disabled = true;
+      titleElement.textContent = item.title;
+
+      const statusLabel = document.createElement("span");
+      statusLabel.className = "card-button card-button-muted";
+      statusLabel.textContent = item.actionLabel;
+      actionRow.append(statusLabel);
     }
 
     catalogGrid.append(fragment);
@@ -82,13 +87,6 @@ function renderCatalogItems(items, query) {
 function applySearch(query) {
   const filteredItems = filterCatalogItems(catalogItems, query);
   renderCatalogItems(filteredItems, query);
-  writeStorage(SEARCH_KEY, query);
-}
-
-function hydrateSearch() {
-  const savedQuery = readStorage(SEARCH_KEY, "");
-  searchInput.value = savedQuery;
-  applySearch(savedQuery);
 }
 
 searchInput.addEventListener("input", (event) => {
@@ -97,7 +95,6 @@ searchInput.addEventListener("input", (event) => {
 
 clearSearchButton.addEventListener("click", () => {
   searchInput.value = "";
-  removeStorage(SEARCH_KEY);
   applySearch("");
   searchInput.focus();
 });
@@ -110,4 +107,4 @@ suggestionButtons.forEach((button) => {
   });
 });
 
-hydrateSearch();
+applySearch("");

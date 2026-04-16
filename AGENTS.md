@@ -21,6 +21,9 @@ Before making major UI, content, or structure changes, read:
 - The home page should help users find a unit, topic, course, or spec quickly.
 - Home page browsing should prioritise unit pages first, then topic pages, with
   spec pages shown last unless directly searched for.
+- When the home page is not filtered by search, live pages should be shown by
+  default. Planned lesson topics can still appear in search, but should not be
+  presented as finished live pages in the default browse state.
 - Spec pages should stay brief and mainly route users into their unit pages.
 - Unit pages should act as scheme-of-work hubs with links to all topics in that
   unit.
@@ -58,6 +61,9 @@ Before making major UI, content, or structure changes, read:
   multiple lessons and mini-tools later.
 - When adding a new section or page, fit it into the shared structure instead
   of creating an isolated mini-project unless the user asks for that.
+- Keep visible page copy student-facing. Do not add text that reads like
+  developer notes, SEO reminders, roadmap status, or explanations of the site
+  itself unless the user explicitly wants that kind of meta copy on the page.
 - If you make a major product or IA decision, update `docs/project_requirements.md`
   and keep this file aligned with it so a new session can resume quickly.
 - Treat `docs/computing_unit_2.md` as the progress tracker for Unit 2 lessons.

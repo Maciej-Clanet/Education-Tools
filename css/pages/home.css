@@ -46,7 +46,17 @@
 .hero-text {
   text-wrap: balance;
   font-size: 1.02rem;
-  margin-bottom: 32px;
+  margin-bottom: 1rem;
+}
+
+.catalog-card-title-link {
+  color: var(--teal-deep);
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.18em;
+}
+
+.catalog-card-title-link:hover {
+  color: var(--teal);
 }
 
 .hero-search {
@@ -183,6 +193,10 @@
   margin-bottom: 0.45rem;
 }
 
+#results-copy {
+  min-height: 1.6em;
+}
+
 .catalog-controls h3 {
   margin-bottom: 0;
   font-size: 1.28rem;
@@ -212,7 +226,6 @@
   gap: 0.85rem;
   padding: 1.2rem;
   min-height: 100%;
-  animation: rise 0.5s ease both;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.98),
@@ -253,14 +266,6 @@
   background: rgba(139, 207, 136, 0.42);
 }
 
-.catalog-card:nth-child(2n) {
-  animation-delay: 0.04s;
-}
-
-.catalog-card:nth-child(3n) {
-  animation-delay: 0.08s;
-}
-
 .catalog-card-top {
   display: flex;
   justify-content: space-between;
@@ -281,6 +286,10 @@
   margin: 0;
   font-size: 1.45rem;
   line-height: 1.05;
+}
+
+.catalog-card-title-link {
+  text-decoration: none;
 }
 
 .catalog-card-summary {
@@ -349,6 +358,18 @@
 
 .card-button {
   align-self: start;
+}
+
+.card-button-muted {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.82rem 1rem;
+  border-radius: 16px;
+  background: rgba(36, 49, 59, 0.08);
+  color: var(--muted-ink);
+  font-weight: 700;
 }
 
 .secondary-note {

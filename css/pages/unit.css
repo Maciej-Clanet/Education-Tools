@@ -29,6 +29,26 @@
   font-size: 0.96rem;
 }
 
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.breadcrumb-list li + li::before {
+  content: "/";
+  color: rgba(89, 104, 118, 0.8);
+}
+
 .breadcrumb a {
   text-decoration: none;
 }
@@ -45,6 +65,7 @@
 }
 
 .unit-hero-text,
+.unit-hero-support,
 .unit-summary,
 .rail-note p,
 .unit-list li,
@@ -53,10 +74,16 @@
 }
 
 .unit-hero-text {
-  max-width: 68ch;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
   font-size: 1.05rem;
   text-wrap: balance;
+}
+
+.unit-hero-support {
+  max-width: 66ch;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
 }
 
 .unit-meta-grid,
@@ -122,7 +149,10 @@
 
 .unit-layout {
   display: grid;
-  grid-template-columns: minmax(220px, 250px) minmax(0, 1fr) minmax(250px, 280px);
+  grid-template-columns: minmax(220px, 250px) minmax(0, 1fr) minmax(
+      250px,
+      280px
+    );
   gap: 1rem;
   align-items: start;
 }

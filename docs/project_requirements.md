@@ -63,6 +63,9 @@ the browser with `localStorage` where useful.
 - Topic pages should be canonical where possible to avoid duplicate content
   across specs and improve SEO.
 - The current content focus is BTEC Level 3 Computing Unit 2.
+- When the homepage is not filtered by search, it should prioritise real live
+  pages. Planned lesson topics can still appear through search, but should not
+  be presented as if they are already finished live pages by default.
 - Unit pages should group lessons by specification headings such as `A1` and
   `B2`, but should usually expose the specific lesson targets directly instead
   of requiring an extra group-page click.
@@ -76,6 +79,9 @@ the browser with `localStorage` where useful.
 - On large screens, the search card can overlap the bottom of the hero.
 - On smaller screens, the search card should sit normally after the hero so it
   does not cover content below.
+- Visible page copy should stay learner-facing. Avoid adding copy that reads as
+  developer notes, SEO reminders, or explanations of the website itself unless
+  there is a real user-facing reason to show it.
 - The chosen homepage visual direction is currently a scrapbook / notebook
   hybrid.
 - Keep ad space available, but prefer dedicated side or bottom placements over
