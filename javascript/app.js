@@ -52,6 +52,7 @@ function renderCatalogItems(items, query) {
     const card = fragment.querySelector(".catalog-card");
     const typePill = fragment.querySelector(".type-pill");
     const infoRow = fragment.querySelector(".info-row");
+    const actionButton = fragment.querySelector(".card-button");
 
     card.classList.add(`catalog-card--${item.type}`);
     typePill.classList.add(`type-pill--${item.type}`);
@@ -60,11 +61,19 @@ function renderCatalogItems(items, query) {
     fragment.querySelector(".catalog-card-kicker").textContent = item.kicker;
     fragment.querySelector(".catalog-card-title").textContent = item.title;
     fragment.querySelector(".catalog-card-summary").textContent = item.summary;
-    fragment.querySelector(".card-button").textContent = item.actionLabel;
+    actionButton.textContent = item.actionLabel;
 
     item.badges.forEach((badgeLabel) => {
       infoRow.append(createInfoPill(badgeLabel));
     });
+
+    if (item.href) {
+      actionButton.addEventListener("click", () => {
+        window.location.href = item.href;
+      });
+    } else {
+      actionButton.disabled = true;
+    }
 
     catalogGrid.append(fragment);
   });

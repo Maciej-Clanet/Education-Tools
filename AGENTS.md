@@ -6,6 +6,7 @@ Before making major UI, content, or structure changes, read:
 
 - `docs/project_requirements.md`
 - `docs/course_specs.md`
+- `docs/computing_unit_2.md` when working on BTEC Level 3 Computing Unit 2
 
 ## Project Defaults
 
@@ -23,6 +24,9 @@ Before making major UI, content, or structure changes, read:
 - Spec pages should stay brief and mainly route users into their unit pages.
 - Unit pages should act as scheme-of-work hubs with links to all topics in that
   unit.
+- Unit pages should not force an extra "topic group page" click unless that
+  middle page has a real purpose. Group cards on the unit page should normally
+  contain direct lesson lists.
 - Topic pages should be the main learning/SEO pages and should stay
   unit-agnostic where possible so one topic can support multiple units or
   specs.
@@ -46,6 +50,7 @@ Before making major UI, content, or structure changes, read:
 - Future page shells belong in `pages/`.
 - Existing items in `donetools/` are legacy experiments and should not be
   treated as the final structure.
+- `pages/units/btec-level-3-unit-2.html` is the first live unit hub.
 
 ## Working Style
 
@@ -55,3 +60,8 @@ Before making major UI, content, or structure changes, read:
   of creating an isolated mini-project unless the user asks for that.
 - If you make a major product or IA decision, update `docs/project_requirements.md`
   and keep this file aligned with it so a new session can resume quickly.
+- Treat `docs/computing_unit_2.md` as the progress tracker for Unit 2 lessons.
+  As lesson pages are completed, their status should be reflected there.
+- When a new lesson page is added, also update the relevant unit page and
+  `javascript/data/course-catalog.js` so the lesson stays discoverable from the
+  homepage search.

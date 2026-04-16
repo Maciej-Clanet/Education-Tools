@@ -62,6 +62,13 @@ the browser with `localStorage` where useful.
   mention a specific unit if the topic may belong to multiple units.
 - Topic pages should be canonical where possible to avoid duplicate content
   across specs and improve SEO.
+- The current content focus is BTEC Level 3 Computing Unit 2.
+- Unit pages should group lessons by specification headings such as `A1` and
+  `B2`, but should usually expose the specific lesson targets directly instead
+  of requiring an extra group-page click.
+- When a new lesson page is created, its existence should also be reflected in
+  the relevant unit page and in `javascript/data/course-catalog.js` so it is
+  searchable from the homepage.
 
 ## Current Homepage Direction
 
@@ -77,7 +84,10 @@ the browser with `localStorage` where useful.
 ## Content Sources
 
 - Spec links are listed in [course_specs.md](./course_specs.md).
-- Course metadata can start as a local JavaScript or JSON catalogue.
+- Unit 2 content planning and completion tracking now lives in
+  [computing_unit_2.md](./computing_unit_2.md).
+- Course metadata and homepage search entries currently live in
+  `javascript/data/course-catalog.js`.
 - Lesson content can later move into `content/lessons/`.
 
 ## Project Structure Direction
@@ -103,16 +113,19 @@ the browser with `localStorage` where useful.
 
 - Requirements notes and agent startup notes are in place.
 - The homepage has a working search experience using local data.
-- The homepage currently uses mixed unit, topic, and spec placeholder cards to
-  test the information architecture.
+- The homepage now highlights the live Unit 2 hub plus the first planned Unit 2
+  lesson pages.
+- The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
 - Shared CSS, theme, and page-specific styling are split into reusable files.
 - Layout space is reserved for future adverts or promos.
 
 ## Next Likely Steps
 
-- Add a first real unit page shell with sidebar navigation.
-- Define the topic page layout for reusable lesson content, quizzes, and tools.
+- Build the first real lesson page from the Unit 2 lesson list.
+- Define the reusable lesson-page layout for content, quizzes, and tools.
 - Decide what a short spec page should include beyond description + unit links.
+- Add `sitemap.xml` and likely `robots.txt` once the canonical live domain is
+  known.
 - Move course data into a more structured content format if needed.
 - Decide how legacy `donetools/` pieces should be merged into the new shared
   design system.
