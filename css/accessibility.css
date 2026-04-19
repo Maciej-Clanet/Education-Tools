@@ -1,0 +1,505 @@
+:root {
+  --user-font-scale: 1;
+}
+
+html {
+  font-size: calc(16px * var(--user-font-scale));
+}
+
+.accessibility-backdrop,
+.accessibility-launcher,
+.accessibility-panel {
+  position: fixed;
+  z-index: 45;
+}
+
+.accessibility-backdrop[hidden],
+.accessibility-panel[hidden] {
+  display: none;
+}
+
+.accessibility-backdrop {
+  inset: 0;
+  background: rgba(23, 33, 40, 0.24);
+}
+
+.accessibility-launcher {
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.accessibility-launcher-button,
+.accessibility-close-button,
+.accessibility-action-button,
+.accessibility-reset-button {
+  border: 1.5px solid rgba(36, 49, 59, 0.16);
+  border-radius: 16px;
+  font: inherit;
+  font-weight: 700;
+}
+
+.accessibility-launcher-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--page-ink);
+  box-shadow: 0 18px 28px rgba(36, 49, 59, 0.16);
+}
+
+.accessibility-launcher-button:hover,
+.accessibility-close-button:hover,
+.accessibility-action-button:hover,
+.accessibility-reset-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 22px rgba(36, 49, 59, 0.12);
+}
+
+.accessibility-launcher-button:focus,
+.accessibility-close-button:focus,
+.accessibility-action-button:focus,
+.accessibility-reset-button:focus,
+.accessibility-panel input:focus,
+.accessibility-panel select:focus,
+.accessibility-panel textarea:focus {
+  outline: 3px solid rgba(11, 105, 255, 0.22);
+  outline-offset: 2px;
+}
+
+.accessibility-launcher-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(31, 135, 125, 0.18), rgba(232, 187, 98, 0.22));
+  color: var(--teal-deep);
+  font-weight: 800;
+}
+
+.accessibility-panel {
+  right: 1rem;
+  bottom: 5.75rem;
+  width: min(420px, calc(100vw - 1rem));
+  max-height: min(80vh, 760px);
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid rgba(36, 49, 59, 0.12);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--page-ink);
+  box-shadow: 0 24px 40px rgba(36, 49, 59, 0.18);
+}
+
+.accessibility-panel::before {
+  display: none;
+}
+
+.accessibility-panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.accessibility-panel-header h2 {
+  margin-bottom: 0.35rem;
+  font-size: 1.35rem;
+}
+
+.accessibility-panel-header p,
+.accessibility-panel-copy,
+.accessibility-control-copy,
+.accessibility-slider-value,
+.accessibility-note {
+  color: var(--muted-ink);
+}
+
+.accessibility-close-button,
+.accessibility-reset-button {
+  padding: 0.7rem 0.85rem;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--page-ink);
+}
+
+.accessibility-panel-groups {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.accessibility-group {
+  padding: 0.95rem;
+  border-radius: 20px;
+  border: 1px solid rgba(36, 49, 59, 0.1);
+  background: rgba(249, 251, 252, 0.96);
+}
+
+.accessibility-group legend {
+  padding: 0 0.2rem;
+  font-weight: 800;
+}
+
+.accessibility-group + .accessibility-group {
+  margin-top: 0;
+}
+
+.accessibility-control-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.accessibility-toggle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.accessibility-toggle input {
+  margin-top: 0.2rem;
+}
+
+.accessibility-toggle-label {
+  display: block;
+  font-weight: 700;
+}
+
+.accessibility-control-copy {
+  margin: 0.22rem 0 0;
+  font-size: 0.95rem;
+}
+
+.accessibility-slider-row {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.accessibility-slider-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.accessibility-slider-label {
+  font-weight: 700;
+}
+
+.accessibility-slider {
+  width: 100%;
+}
+
+.accessibility-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.accessibility-action-button {
+  padding: 0.82rem 1rem;
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  color: #fff;
+}
+
+.accessibility-action-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.accessibility-note {
+  margin-top: 0.8rem;
+  font-size: 0.94rem;
+}
+
+body.a11y-reading-mode p,
+body.a11y-reading-mode li,
+body.a11y-reading-mode dd,
+body.a11y-reading-mode td,
+body.a11y-reading-mode th,
+body.a11y-reading-mode label,
+body.a11y-reading-mode legend {
+  line-height: 1.82;
+}
+
+body.a11y-reading-mode .catalog-rail,
+body.a11y-reading-mode .ad-band,
+body.a11y-reading-mode .unit-rail,
+body.a11y-reading-mode .lesson-rail,
+body.a11y-reading-mode .ad-placeholder {
+  display: none !important;
+}
+
+body.a11y-reading-mode .catalog-layout {
+  grid-template-columns: 1fr !important;
+}
+
+body.a11y-reading-mode .unit-layout,
+body.a11y-reading-mode .lesson-layout {
+  grid-template-columns: minmax(190px, 220px) minmax(0, 1fr) !important;
+}
+
+body.a11y-reading-mode .unit-main,
+body.a11y-reading-mode .lesson-main {
+  max-width: 76ch;
+}
+
+body.a11y-focus-mode .catalog-rail,
+body.a11y-focus-mode .ad-band,
+body.a11y-focus-mode .unit-sidebar,
+body.a11y-focus-mode .unit-rail,
+body.a11y-focus-mode .lesson-sidebar,
+body.a11y-focus-mode .lesson-rail,
+body.a11y-focus-mode .lesson-sequence,
+body.a11y-focus-mode .ad-placeholder {
+  display: none !important;
+}
+
+body.a11y-focus-mode .catalog-layout,
+body.a11y-focus-mode .unit-layout,
+body.a11y-focus-mode .lesson-layout {
+  grid-template-columns: 1fr !important;
+}
+
+body.a11y-focus-mode .unit-main,
+body.a11y-focus-mode .lesson-main {
+  max-width: 78ch;
+}
+
+body.a11y-focus-mode .unit-meta-grid,
+body.a11y-focus-mode .lesson-meta-grid {
+  display: none;
+}
+
+body.a11y-simplify-visuals {
+  background: #f6f7f9 !important;
+}
+
+body.a11y-simplify-visuals::before,
+body.a11y-simplify-visuals::after,
+body.a11y-simplify-visuals .panel::before,
+body.a11y-simplify-visuals .panel-accent::after,
+body.a11y-simplify-visuals .panel-accent-soft::after {
+  display: none !important;
+}
+
+body.a11y-simplify-visuals .panel,
+body.a11y-simplify-visuals .topic-card,
+body.a11y-simplify-visuals .overview-card,
+body.a11y-simplify-visuals .unit-meta-card,
+body.a11y-simplify-visuals .lesson-meta-card,
+body.a11y-simplify-visuals .lesson-card,
+body.a11y-simplify-visuals .application-card,
+body.a11y-simplify-visuals .simulator-card,
+body.a11y-simplify-visuals .quiz-question,
+body.a11y-simplify-visuals .sequence-card,
+body.a11y-simplify-visuals .lesson-rail-card,
+body.a11y-simplify-visuals .exam-card,
+body.a11y-simplify-visuals .trap-card,
+body.a11y-simplify-visuals .term-card,
+body.a11y-simplify-visuals .quiz-answer,
+body.a11y-simplify-visuals .exam-guidance {
+  background: rgba(255, 255, 255, 0.99) !important;
+  box-shadow: none !important;
+}
+
+body.a11y-simplify-visuals .unit-hero,
+body.a11y-simplify-visuals .lesson-hero,
+body.a11y-simplify-visuals .hero,
+body.a11y-simplify-visuals .unit-section,
+body.a11y-simplify-visuals .lesson-section,
+body.a11y-simplify-visuals .rail-note {
+  background: rgba(255, 255, 255, 0.99) !important;
+}
+
+body.a11y-low-distraction {
+  --bg-top: #f4f6f7;
+  --bg-bottom: #edf1f3;
+  --teal: #44616e;
+  --teal-deep: #2a3c45;
+  --sand: #d8ccb3;
+  --sand-deep: #5f5645;
+}
+
+body.a11y-low-distraction .unit-hero,
+body.a11y-low-distraction .lesson-hero,
+body.a11y-low-distraction .unit-section,
+body.a11y-low-distraction .lesson-section {
+  border-top-color: #95a4ae !important;
+}
+
+body.a11y-low-distraction .section-nav a {
+  border-left-color: #95a4ae !important;
+}
+
+body.a11y-low-distraction .tag-chip,
+body.a11y-low-distraction .type-pill,
+body.a11y-low-distraction .info-pill,
+body.a11y-low-distraction .exam-pill,
+body.a11y-low-distraction .topic-status,
+body.a11y-low-distraction .sequence-status {
+  background: rgba(95, 108, 117, 0.12) !important;
+  color: #31444f !important;
+}
+
+body.a11y-high-contrast {
+  --bg-top: #ffffff;
+  --bg-bottom: #ffffff;
+  --page-ink: #111111;
+  --muted-ink: #222222;
+  --panel: #ffffff;
+  --panel-soft: #ffffff;
+  --panel-border: #111111;
+  --line: #111111;
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+body.a11y-high-contrast::before,
+body.a11y-high-contrast::after,
+body.a11y-high-contrast .panel::before,
+body.a11y-high-contrast .panel-accent::after,
+body.a11y-high-contrast .panel-accent-soft::after {
+  display: none !important;
+}
+
+body.a11y-high-contrast .panel,
+body.a11y-high-contrast .topic-card,
+body.a11y-high-contrast .overview-card,
+body.a11y-high-contrast .unit-meta-card,
+body.a11y-high-contrast .lesson-meta-card,
+body.a11y-high-contrast .lesson-card,
+body.a11y-high-contrast .application-card,
+body.a11y-high-contrast .simulator-card,
+body.a11y-high-contrast .quiz-question,
+body.a11y-high-contrast .sequence-card,
+body.a11y-high-contrast .lesson-rail-card,
+body.a11y-high-contrast .exam-card,
+body.a11y-high-contrast .trap-card,
+body.a11y-high-contrast .term-card,
+body.a11y-high-contrast .quiz-answer,
+body.a11y-high-contrast .exam-guidance,
+body.a11y-high-contrast .unit-hero,
+body.a11y-high-contrast .lesson-hero,
+body.a11y-high-contrast .hero,
+body.a11y-high-contrast .unit-section,
+body.a11y-high-contrast .lesson-section,
+body.a11y-high-contrast .rail-note,
+body.a11y-high-contrast .search-input,
+body.a11y-high-contrast .ghost-button,
+body.a11y-high-contrast .tag-chip,
+body.a11y-high-contrast .type-pill,
+body.a11y-high-contrast .info-pill,
+body.a11y-high-contrast .exam-response,
+body.a11y-high-contrast .structure-input,
+body.a11y-high-contrast .structure-button,
+body.a11y-high-contrast .lesson-secondary-action,
+body.a11y-high-contrast .teacher-toggle,
+body.a11y-high-contrast .slide-button,
+body.a11y-high-contrast .secondary-link,
+body.a11y-high-contrast .accessibility-launcher-button,
+body.a11y-high-contrast .accessibility-panel,
+body.a11y-high-contrast .accessibility-group,
+body.a11y-high-contrast .accessibility-close-button,
+body.a11y-high-contrast .accessibility-reset-button {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border-color: #111111 !important;
+  box-shadow: none !important;
+}
+
+body.a11y-high-contrast .primary-link,
+body.a11y-high-contrast .accessibility-action-button {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border-color: #111111 !important;
+}
+
+body.a11y-high-contrast a {
+  text-decoration-thickness: 2px;
+}
+
+body.a11y-dyslexia,
+body.a11y-dyslexia button,
+body.a11y-dyslexia input,
+body.a11y-dyslexia textarea,
+body.a11y-dyslexia select {
+  font-family: Verdana, Tahoma, Arial, sans-serif !important;
+}
+
+body.a11y-dyslexia h1,
+body.a11y-dyslexia h2,
+body.a11y-dyslexia h3,
+body.a11y-dyslexia h4 {
+  font-family: Verdana, Tahoma, Arial, sans-serif !important;
+  letter-spacing: 0.01em;
+}
+
+body.teacher-mode-active .accessibility-launcher {
+  left: 1rem;
+  right: auto;
+}
+
+body.teacher-mode-active .accessibility-panel {
+  left: 1rem;
+  right: auto;
+}
+
+@media (max-width: 900px) {
+  body.a11y-reading-mode .unit-layout,
+  body.a11y-reading-mode .lesson-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.a11y-reading-mode .unit-sidebar,
+  body.a11y-reading-mode .lesson-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .accessibility-launcher {
+    right: 0.75rem;
+    left: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .accessibility-launcher-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .accessibility-panel {
+    right: 0.5rem;
+    left: 0.5rem;
+    bottom: 4.85rem;
+    width: auto;
+    max-height: min(78vh, 760px);
+    border-radius: 24px;
+  }
+
+  .accessibility-panel-header,
+  .accessibility-slider-header,
+  .accessibility-actions {
+    align-items: stretch;
+  }
+
+  .accessibility-panel-header {
+    flex-direction: column;
+  }
+
+  .accessibility-actions {
+    flex-direction: column;
+  }
+
+  body.teacher-mode-active .accessibility-launcher,
+  body.teacher-mode-active .accessibility-panel {
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+}

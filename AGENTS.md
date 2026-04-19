@@ -46,6 +46,13 @@ Before making major UI, content, or structure changes, read:
 - Where both are present, a shorter quick quiz should usually come before the
   longer exam-style practice tasks, and exam practice should include on-page
   response areas so students can write inside the lesson itself.
+- Accessibility and display adjustments should normally live in one clear
+  shared launcher such as `Reading and Accessibility`, not as scattered page
+  toggles.
+- Site-wide accessibility preferences such as font, contrast, text size,
+  palette, and visual simplification should persist across pages. Temporary
+  reading or focus modes should behave like session-level states rather than
+  permanent saved preferences.
 - Lesson pages should support a teacher slide mode that reuses the same lesson
   sections and works well with swipe and tap navigation on touch displays.
 - Users should be able to get back to the full course or unit search easily.

@@ -74,6 +74,13 @@ the browser with `localStorage` where useful.
 - Where both are present, a shorter quick quiz should usually come before the
   longer exam-style practice tasks, and exam-style practice should include
   built-in response areas so learners can write inside the page.
+- The site should expose a clear shared `Reading and Accessibility` control
+  from a sticky launcher rather than scattering many separate toggles around
+  each page.
+- Accessibility preferences that describe how the whole site should look, such
+  as text size, visual simplification, contrast, palette, and font choices,
+  should persist site-wide. Temporary page-use modes such as reading mode and
+  focus mode should reset with the browser tab or session.
 - Teacher mode should reuse the same lesson sections as a swipe or tap-friendly
   slide view instead of requiring a separately maintained duplicate slide deck.
 - The current content focus is BTEC Level 3 Computing Unit 2.
@@ -141,6 +148,8 @@ the browser with `localStorage` where useful.
   navigation, teacher slide mode, and quiz persistence.
 - The current lesson template now includes glossary, exam trap, and exam-style
   practice patterns that future lessons should reuse where appropriate.
+- A shared accessibility launcher now provides reading, focus, visual, font,
+  contrast, and read-aloud controls across the live pages.
 - Shared CSS, theme, and page-specific styling are split into reusable files.
 - Layout space is reserved for future adverts or promos.
 
