@@ -2,19 +2,42 @@
   --user-font-scale: 1;
 }
 
+@font-face {
+  font-family: "AccessibleReadingSans";
+  src:
+    local("Atkinson Hyperlegible"),
+    local("Atkinson Hyperlegible Regular"),
+    local("OpenDyslexic"),
+    local("OpenDyslexic Regular"),
+    local("Lexend"),
+    local("Arial");
+  font-display: swap;
+}
+
 html {
   font-size: calc(16px * var(--user-font-scale));
 }
 
 .accessibility-backdrop,
 .accessibility-launcher,
-.accessibility-panel {
+.accessibility-panel,
+.accessibility-player {
   position: fixed;
+}
+
+.accessibility-backdrop,
+.accessibility-launcher,
+.accessibility-panel {
   z-index: 45;
 }
 
+.accessibility-player {
+  z-index: 44;
+}
+
 .accessibility-backdrop[hidden],
-.accessibility-panel[hidden] {
+.accessibility-panel[hidden],
+.accessibility-player[hidden] {
   display: none;
 }
 
@@ -28,10 +51,27 @@ html {
   bottom: 1rem;
 }
 
+.accessibility-player {
+  left: 1rem;
+  bottom: 1rem;
+  width: min(460px, calc(100vw - 2rem));
+  padding: 1rem;
+  border: 1px solid rgba(36, 49, 59, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--page-ink);
+  box-shadow: 0 24px 40px rgba(36, 49, 59, 0.18);
+}
+
+.accessibility-player::before {
+  display: none;
+}
+
 .accessibility-launcher-button,
 .accessibility-close-button,
 .accessibility-action-button,
-.accessibility-reset-button {
+.accessibility-reset-button,
+.accessibility-player-button {
   border: 1.5px solid rgba(36, 49, 59, 0.16);
   border-radius: 16px;
   font: inherit;
@@ -51,7 +91,8 @@ html {
 .accessibility-launcher-button:hover,
 .accessibility-close-button:hover,
 .accessibility-action-button:hover,
-.accessibility-reset-button:hover {
+.accessibility-reset-button:hover,
+.accessibility-player-button:hover {
   transform: translateY(-1px);
   box-shadow: 0 14px 22px rgba(36, 49, 59, 0.12);
 }
@@ -60,9 +101,12 @@ html {
 .accessibility-close-button:focus,
 .accessibility-action-button:focus,
 .accessibility-reset-button:focus,
+.accessibility-player-button:focus,
 .accessibility-panel input:focus,
 .accessibility-panel select:focus,
-.accessibility-panel textarea:focus {
+.accessibility-panel textarea:focus,
+.accessibility-player input:focus,
+.accessibility-player select:focus {
   outline: 3px solid rgba(11, 105, 255, 0.22);
   outline-offset: 2px;
 }
@@ -74,7 +118,11 @@ html {
   width: 2rem;
   height: 2rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(31, 135, 125, 0.18), rgba(232, 187, 98, 0.22));
+  background: linear-gradient(
+    135deg,
+    rgba(31, 135, 125, 0.18),
+    rgba(232, 187, 98, 0.22)
+  );
   color: var(--teal-deep);
   font-weight: 800;
 }
@@ -102,10 +150,28 @@ html {
   justify-content: space-between;
   gap: 0.75rem;
   align-items: start;
+}
+
+.accessibility-player-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.accessibility-player-header-actions {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: end;
+  align-content: start;
+}
+
+.accessibility-panel-header {
   margin-bottom: 1rem;
 }
 
-.accessibility-panel-header h2 {
+.accessibility-panel-header h2,
+.accessibility-player-header h2 {
   margin-bottom: 0.35rem;
   font-size: 1.35rem;
 }
@@ -114,15 +180,22 @@ html {
 .accessibility-panel-copy,
 .accessibility-control-copy,
 .accessibility-slider-value,
-.accessibility-note {
+.accessibility-note,
+.accessibility-player-status,
+.accessibility-player-copy {
   color: var(--muted-ink);
 }
 
 .accessibility-close-button,
-.accessibility-reset-button {
+.accessibility-reset-button,
+.accessibility-player-button {
   padding: 0.7rem 0.85rem;
   background: rgba(255, 255, 255, 0.92);
   color: var(--page-ink);
+}
+
+.accessibility-player-button--stop {
+  background: rgba(255, 240, 241, 0.94);
 }
 
 .accessibility-panel-groups {
@@ -172,6 +245,10 @@ html {
   font-size: 0.95rem;
 }
 
+.accessibility-read-target {
+  margin-top: 0;
+}
+
 .accessibility-slider-row {
   display: grid;
   gap: 0.55rem;
@@ -193,10 +270,15 @@ html {
 }
 
 .accessibility-actions {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.accessibility-action-stack {
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
 }
 
 .accessibility-action-button {
@@ -205,7 +287,8 @@ html {
   color: #fff;
 }
 
-.accessibility-action-button:disabled {
+.accessibility-action-button:disabled,
+.accessibility-player-button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
   transform: none;
@@ -215,6 +298,66 @@ html {
 .accessibility-note {
   margin-top: 0.8rem;
   font-size: 0.94rem;
+}
+
+.accessibility-player-status,
+.accessibility-player-copy {
+  margin: 0;
+}
+
+.accessibility-player-speed {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.accessibility-player-speed-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--muted-ink);
+}
+
+.accessibility-player-select {
+  min-width: 94px;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid rgba(36, 49, 59, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.accessibility-player-copy {
+  margin-top: 0.7rem;
+  line-height: 1.55;
+}
+
+.accessibility-player-progress {
+  margin-top: 0.85rem;
+}
+
+.accessibility-player-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.accessibility-player-controls .accessibility-player-button {
+  flex: 1 1 120px;
+  min-width: 0;
+}
+
+body.a11y-player-active .page-shell {
+  padding-bottom: 10rem;
+}
+
+body.a11y-player-active .a11y-read-active {
+  outline: 3px solid rgba(11, 105, 255, 0.22);
+  outline-offset: 0.2rem;
+  border-radius: 16px;
+  background: rgba(232, 246, 255, 0.72);
+  box-shadow: 0 0 0 1px rgba(31, 135, 125, 0.14);
+  scroll-margin-top: 1rem;
 }
 
 body.a11y-reading-mode p,
@@ -241,12 +384,16 @@ body.a11y-reading-mode .catalog-layout {
 
 body.a11y-reading-mode .unit-layout,
 body.a11y-reading-mode .lesson-layout {
-  grid-template-columns: minmax(190px, 220px) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(210px, 250px) minmax(0, 1fr) !important;
 }
 
+body.a11y-reading-mode .catalog-main,
 body.a11y-reading-mode .unit-main,
 body.a11y-reading-mode .lesson-main {
-  max-width: 76ch;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  justify-self: stretch;
 }
 
 body.a11y-focus-mode .catalog-rail,
@@ -266,9 +413,13 @@ body.a11y-focus-mode .lesson-layout {
   grid-template-columns: 1fr !important;
 }
 
+body.a11y-focus-mode .catalog-main,
 body.a11y-focus-mode .unit-main,
 body.a11y-focus-mode .lesson-main {
-  max-width: 78ch;
+  width: min(100%, 1100px);
+  max-width: none;
+  min-width: 0;
+  justify-self: center;
 }
 
 body.a11y-focus-mode .unit-meta-grid,
@@ -404,9 +555,11 @@ body.a11y-high-contrast .slide-button,
 body.a11y-high-contrast .secondary-link,
 body.a11y-high-contrast .accessibility-launcher-button,
 body.a11y-high-contrast .accessibility-panel,
+body.a11y-high-contrast .accessibility-player,
 body.a11y-high-contrast .accessibility-group,
 body.a11y-high-contrast .accessibility-close-button,
-body.a11y-high-contrast .accessibility-reset-button {
+body.a11y-high-contrast .accessibility-reset-button,
+body.a11y-high-contrast .accessibility-player-button {
   background: #ffffff !important;
   color: #111111 !important;
   border-color: #111111 !important;
@@ -429,15 +582,42 @@ body.a11y-dyslexia button,
 body.a11y-dyslexia input,
 body.a11y-dyslexia textarea,
 body.a11y-dyslexia select {
-  font-family: Verdana, Tahoma, Arial, sans-serif !important;
+  font-family:
+    "AccessibleReadingSans",
+    Arial,
+    Verdana,
+    Tahoma,
+    sans-serif !important;
+  letter-spacing: 0.02em;
 }
 
 body.a11y-dyslexia h1,
 body.a11y-dyslexia h2,
 body.a11y-dyslexia h3,
 body.a11y-dyslexia h4 {
-  font-family: Verdana, Tahoma, Arial, sans-serif !important;
-  letter-spacing: 0.01em;
+  font-family:
+    "AccessibleReadingSans",
+    Arial,
+    Verdana,
+    Tahoma,
+    sans-serif !important;
+  letter-spacing: 0.025em;
+  line-height: 1.14;
+}
+
+body.a11y-dyslexia p,
+body.a11y-dyslexia li,
+body.a11y-dyslexia dd,
+body.a11y-dyslexia td,
+body.a11y-dyslexia th,
+body.a11y-dyslexia label,
+body.a11y-dyslexia legend {
+  line-height: 1.88;
+  word-spacing: 0.08em;
+}
+
+body.a11y-dyslexia code {
+  font-family: Consolas, "Courier New", monospace !important;
 }
 
 body.teacher-mode-active .accessibility-launcher {
@@ -448,6 +628,11 @@ body.teacher-mode-active .accessibility-launcher {
 body.teacher-mode-active .accessibility-panel {
   left: 1rem;
   right: auto;
+}
+
+body.teacher-mode-active .accessibility-player {
+  left: auto;
+  right: 1rem;
 }
 
 @media (max-width: 900px) {
@@ -474,6 +659,13 @@ body.teacher-mode-active .accessibility-panel {
     justify-content: center;
   }
 
+  .accessibility-player {
+    right: 0.75rem;
+    left: 0.75rem;
+    bottom: 5.35rem;
+    width: auto;
+  }
+
   .accessibility-panel {
     right: 0.5rem;
     left: 0.5rem;
@@ -485,20 +677,33 @@ body.teacher-mode-active .accessibility-panel {
 
   .accessibility-panel-header,
   .accessibility-slider-header,
-  .accessibility-actions {
+  .accessibility-actions,
+  .accessibility-player-header,
+  .accessibility-player-header-actions,
+  .accessibility-player-controls {
     align-items: stretch;
   }
 
-  .accessibility-panel-header {
+  .accessibility-panel-header,
+  .accessibility-player-controls {
     flex-direction: column;
   }
 
-  .accessibility-actions {
-    flex-direction: column;
+  .accessibility-player-header {
+    grid-template-columns: 1fr;
+  }
+
+  .accessibility-player-header-actions {
+    justify-items: stretch;
+  }
+
+  .accessibility-player-select {
+    min-width: 0;
   }
 
   body.teacher-mode-active .accessibility-launcher,
-  body.teacher-mode-active .accessibility-panel {
+  body.teacher-mode-active .accessibility-panel,
+  body.teacher-mode-active .accessibility-player {
     left: 0.75rem;
     right: 0.75rem;
   }

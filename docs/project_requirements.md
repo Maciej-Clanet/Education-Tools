@@ -80,7 +80,11 @@ the browser with `localStorage` where useful.
 - Accessibility preferences that describe how the whole site should look, such
   as text size, visual simplification, contrast, palette, and font choices,
   should persist site-wide. Temporary page-use modes such as reading mode and
-  focus mode should reset with the browser tab or session.
+  focus mode should reset when the page reloads or the user leaves the page.
+- Read aloud should keep its key controls visible after the accessibility panel
+  is closed, including pause or resume, stop, visible progress, a clear
+  indicator of the current reading point, easy movement between sections, and
+  a simple speed control.
 - Teacher mode should reuse the same lesson sections as a swipe or tap-friendly
   slide view instead of requiring a separately maintained duplicate slide deck.
 - The current content focus is BTEC Level 3 Computing Unit 2.
@@ -150,6 +154,9 @@ the browser with `localStorage` where useful.
   practice patterns that future lessons should reuse where appropriate.
 - A shared accessibility launcher now provides reading, focus, visual, font,
   contrast, and read-aloud controls across the live pages.
+- Read aloud now uses a persistent mini player with pause or resume, stop,
+  progress tracking, current-block highlighting, and speed control while it is
+  active.
 - Shared CSS, theme, and page-specific styling are split into reusable files.
 - Layout space is reserved for future adverts or promos.
 

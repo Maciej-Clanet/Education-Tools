@@ -1,14 +1,6 @@
-import {
-  readSessionStorage,
-  readStorage,
-  removeSessionStorage,
-  removeStorage,
-  writeSessionStorage,
-  writeStorage,
-} from "./storage.js";
+import { readStorage, removeStorage, writeStorage } from "./storage.js";
 
 const PERSISTENT_KEY = "accessibility-preferences";
-const SESSION_KEY = "accessibility-session";
 
 const PERSISTENT_DEFAULTS = {
   simplifyVisuals: false,
@@ -16,6 +8,7 @@ const PERSISTENT_DEFAULTS = {
   highContrast: false,
   dyslexiaFont: false,
   textScale: 1,
+  readAloudRate: 1,
 };
 
 const SESSION_DEFAULTS = {
@@ -26,6 +19,55 @@ const SESSION_DEFAULTS = {
 const MIN_TEXT_SCALE = 0.95;
 const MAX_TEXT_SCALE = 1.25;
 const TEXT_SCALE_STEP = 0.05;
+const READ_ALOUD_RATE_OPTIONS = [
+  { value: 0.8, label: "0.8x" },
+  { value: 1, label: "1x" },
+  { value: 1.2, label: "1.2x" },
+  { value: 1.4, label: "1.4x" },
+  { value: 1.6, label: "1.6x" },
+  { value: 1.8, label: "1.8x" },
+  { value: 2, label: "2x" },
+  { value: 2.5, label: "2.5x" },
+  { value: 3, label: "3x" },
+];
+
+const READABLE_BLOCK_SELECTOR = [
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "p",
+  "li",
+  "dt",
+  "dd",
+  "legend",
+  "label",
+  "summary",
+  "th",
+  "td",
+  ".quiz-answer",
+].join(", ");
+
+const READ_ALOUD_IGNORE_SELECTOR = [
+  "script",
+  "style",
+  "nav",
+  "aside",
+  "template",
+  "noscript",
+  "[hidden]",
+  "[aria-hidden='true']",
+  ".ad-placeholder",
+  ".accessibility-launcher",
+  ".accessibility-panel",
+  ".accessibility-backdrop",
+  ".accessibility-player",
+  ".teacher-controls",
+  ".structure-controls",
+  ".quiz-actions",
+  ".lesson-sequence",
+  "[data-no-read-aloud]",
+].join(", ");
 
 let persistentPreferences = {
   ...PERSISTENT_DEFAULTS,
@@ -42,10 +84,53 @@ let noteElement;
 let textScaleInput;
 let textScaleValue;
 let readAloudButton;
+let readTargetPreviewElement;
+let playerElement;
+let playerTargetElement;
+let playerStatusElement;
+let playerCurrentElement;
+let playerProgressElement;
+let playerSeekInput;
+let playerPlaybackButton;
+let playerStopButton;
+let playerPrevSectionButton;
+let playerNextSectionButton;
+let playerRateInput;
 let activeUtterance = null;
+let activeReadSession = null;
+let highlightedReadElement = null;
+let previewUpdateFrame = null;
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
+}
+
+function normaliseReadAloudRate(value) {
+  const rate = Number(value);
+  const matchedOption = READ_ALOUD_RATE_OPTIONS.find(
+    (option) => option.value === rate
+  );
+
+  return matchedOption?.value ?? PERSISTENT_DEFAULTS.readAloudRate;
+}
+
+function formatReadAloudRate(value) {
+  return (
+    READ_ALOUD_RATE_OPTIONS.find((option) => option.value === value)?.label ??
+    `${value}x`
+  );
+}
+
+function truncateText(value, maxLength = 180) {
+  if (!value) {
+    return "";
+  }
+
+  if (value.length <= maxLength) {
+    return value;
+  }
+
+  return `${value.slice(0, maxLength - 3).trimEnd()}...`;
 }
 
 function normalisePersistentPreferences(value) {
@@ -61,13 +146,7 @@ function normalisePersistentPreferences(value) {
       MIN_TEXT_SCALE,
       MAX_TEXT_SCALE
     ),
-  };
-}
-
-function normaliseSessionModes(value) {
-  return {
-    readingMode: Boolean(value?.readingMode),
-    focusMode: Boolean(value?.focusMode),
+    readAloudRate: normaliseReadAloudRate(value?.readAloudRate),
   };
 }
 
@@ -113,20 +192,6 @@ function setNote(message) {
   }
 }
 
-function stopReading(clearNote = false) {
-  if (!isSpeechSupported()) {
-    return;
-  }
-
-  window.speechSynthesis.cancel();
-  activeUtterance = null;
-  updateReadAloudButton();
-
-  if (clearNote) {
-    setNote("");
-  }
-}
-
 function buildReadableText(target) {
   const clone = target.cloneNode(true);
 
@@ -149,6 +214,7 @@ function buildReadableText(target) {
         ".accessibility-launcher",
         ".accessibility-panel",
         ".accessibility-backdrop",
+        ".accessibility-player",
         ".teacher-controls",
       ].join(", ")
     )
@@ -161,6 +227,113 @@ function buildReadableText(target) {
   });
 
   return clone.textContent?.replace(/\s+/g, " ").trim() ?? "";
+}
+
+function splitTextForSpeech(text) {
+  const sentences =
+    text
+      .match(/[^.!?]+(?:[.!?]+|$)/g)
+      ?.map((chunk) => chunk.replace(/\s+/g, " ").trim())
+      .filter(Boolean) ?? [];
+
+  const chunks = sentences.length > 0 ? sentences : [text];
+
+  return chunks.flatMap((chunk) => {
+    if (chunk.length <= 260) {
+      return [chunk];
+    }
+
+    const smallerChunks = chunk
+      .split(/[,;:]\s+/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+    return smallerChunks.length > 0 ? smallerChunks : [chunk];
+  });
+}
+
+function isReadableElement(element) {
+  if (!element || !element.matches?.(READABLE_BLOCK_SELECTOR)) {
+    return false;
+  }
+
+  if (element.closest(READ_ALOUD_IGNORE_SELECTOR)) {
+    return false;
+  }
+
+  const style = window.getComputedStyle(element);
+
+  if (style.display === "none" || style.visibility === "hidden") {
+    return false;
+  }
+
+  return Boolean(buildReadableText(element));
+}
+
+function clearHighlightedReadElement() {
+  if (!highlightedReadElement) {
+    return;
+  }
+
+  highlightedReadElement.classList.remove("a11y-read-active");
+  highlightedReadElement = null;
+}
+
+function highlightReadElement(element) {
+  if (!element || highlightedReadElement === element) {
+    return;
+  }
+
+  clearHighlightedReadElement();
+  element.classList.add("a11y-read-active");
+  highlightedReadElement = element;
+}
+
+function ensureReadElementVisible(element) {
+  if (!element) {
+    return;
+  }
+
+  const rect = element.getBoundingClientRect();
+  const topBuffer = 120;
+  const bottomBuffer = 160;
+
+  if (
+    rect.top >= topBuffer &&
+    rect.bottom <= window.innerHeight - bottomBuffer
+  ) {
+    return;
+  }
+
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+    inline: "nearest",
+  });
+}
+
+function collectReadableSegments(target) {
+  const elements = [];
+
+  if (target.matches?.(READABLE_BLOCK_SELECTOR) && isReadableElement(target)) {
+    elements.push(target);
+  }
+
+  target.querySelectorAll(READABLE_BLOCK_SELECTOR).forEach((element) => {
+    if (isReadableElement(element)) {
+      elements.push(element);
+    }
+  });
+
+  return elements.flatMap((element) => {
+    const text = buildReadableText(element);
+    const chunks = splitTextForSpeech(text);
+
+    return chunks.map((chunk) => ({
+      element,
+      text: chunk,
+    }));
+  });
 }
 
 function getReadTarget() {
@@ -181,36 +354,473 @@ function getReadTarget() {
   }
 
   return (
+    document.querySelector(".lesson-main") ??
+    document.querySelector(".unit-main") ??
+    document.querySelector(".catalog-main") ??
     document.querySelector("main") ??
     document.querySelector(".page-shell") ??
     document.body
   );
 }
 
-function updateReadAloudButton() {
-  if (!readAloudButton) {
-    return;
+function getReadTargetLabel(target) {
+  if (!target) {
+    return "Current page";
   }
 
-  if (!isSpeechSupported()) {
-    readAloudButton.disabled = true;
-    readAloudButton.textContent = "Read aloud unavailable";
-    return;
+  if (target.id) {
+    const linkedSection = document.querySelector(
+      `[data-section-link][href="#${target.id}"]`
+    );
+
+    if (linkedSection?.textContent?.trim()) {
+      return linkedSection.textContent.trim();
+    }
   }
 
-  const isReading = Boolean(
-    activeUtterance || window.speechSynthesis.speaking
-  );
+  const heading =
+    target.querySelector("h1, h2, h3") ?? document.querySelector("h1, h2");
 
-  readAloudButton.disabled = false;
-  readAloudButton.textContent = isReading ? "Stop reading" : "Read aloud";
+  return heading?.textContent?.trim() || "Current page";
 }
 
-function startReading() {
-  const target = getReadTarget();
-  const text = buildReadableText(target);
+function getReadableSectionEntries() {
+  return Array.from(
+    document.querySelectorAll("[data-section-link][href^='#']")
+  )
+    .map((link) => {
+      const href = link.getAttribute("href") ?? "";
 
-  if (!text) {
+      if (!href.startsWith("#")) {
+        return null;
+      }
+
+      const target = document.querySelector(href);
+
+      if (!target || !buildReadableText(target)) {
+        return null;
+      }
+
+      return {
+        link,
+        target,
+        label: link.textContent?.trim() || getReadTargetLabel(target),
+      };
+    })
+    .filter(Boolean);
+}
+
+function getSectionIndexForTarget(target, sectionEntries) {
+  return sectionEntries.findIndex((entry) => entry.target === target);
+}
+
+function getReadTargetDetails(target = getReadTarget()) {
+  const sectionEntries = getReadableSectionEntries();
+  const sectionIndex = getSectionIndexForTarget(target, sectionEntries);
+
+  return {
+    target,
+    label: getReadTargetLabel(target),
+    sectionEntries,
+    sectionIndex,
+  };
+}
+
+function formatReadTargetPreview(details) {
+  if (details.sectionIndex >= 0) {
+    return `Current read target: ${details.label} (${details.sectionIndex + 1} of ${
+      details.sectionEntries.length
+    })`;
+  }
+
+  return `Current read target: ${details.label}`;
+}
+
+function createReadSession(target, options = {}) {
+  const segments = collectReadableSegments(target);
+
+  if (segments.length === 0) {
+    return null;
+  }
+
+  const sectionEntries = options.sectionEntries ?? getReadableSectionEntries();
+  const sectionIndex = Number.isInteger(options.sectionIndex)
+    ? options.sectionIndex
+    : getSectionIndexForTarget(target, sectionEntries);
+
+  let totalCharacters = 0;
+
+  const characterOffsets = segments.map((segment) => {
+    const offset = totalCharacters;
+    totalCharacters += segment.text.length;
+    return offset;
+  });
+
+  return {
+    target,
+    targetLabel: getReadTargetLabel(target),
+    segments,
+    characterOffsets,
+    totalCharacters: Math.max(totalCharacters, 1),
+    currentSegmentIndex: 0,
+    currentSegmentCharacterIndex: 0,
+    isPaused: false,
+    isComplete: false,
+    sectionEntries,
+    sectionIndex,
+  };
+}
+
+function getCurrentSegment() {
+  if (!activeReadSession) {
+    return null;
+  }
+
+  return (
+    activeReadSession.segments[activeReadSession.currentSegmentIndex] ?? null
+  );
+}
+
+function getReadProgress() {
+  if (!activeReadSession) {
+    return 0;
+  }
+
+  if (activeReadSession.currentSegmentIndex >= activeReadSession.segments.length) {
+    return 1;
+  }
+
+  const segment = getCurrentSegment();
+  const segmentLength = segment?.text.length ?? 0;
+  const currentCharacterIndex = clamp(
+    activeReadSession.currentSegmentCharacterIndex,
+    0,
+    segmentLength
+  );
+  const currentBase =
+    activeReadSession.characterOffsets[activeReadSession.currentSegmentIndex] ??
+    activeReadSession.totalCharacters;
+
+  return clamp(
+    (currentBase + currentCharacterIndex) / activeReadSession.totalCharacters,
+    0,
+    1
+  );
+}
+
+function updateReadAloudButton() {
+  const speechSupported = isSpeechSupported();
+  const hasReadSession = Boolean(activeReadSession?.segments?.length);
+  const previewTargetDetails = activeReadSession
+    ? {
+        target: activeReadSession.target,
+        label: activeReadSession.targetLabel,
+        sectionEntries: activeReadSession.sectionEntries,
+        sectionIndex: activeReadSession.sectionIndex,
+      }
+    : getReadTargetDetails();
+
+  document.body?.classList.toggle(
+    "a11y-player-active",
+    speechSupported && hasReadSession
+  );
+
+  if (readAloudButton) {
+    if (!speechSupported) {
+      readAloudButton.disabled = true;
+      readAloudButton.textContent = "Read aloud unavailable";
+    } else {
+      readAloudButton.disabled = false;
+      readAloudButton.textContent = hasReadSession
+        ? "Restart current section"
+        : "Read current section";
+      readAloudButton.setAttribute(
+        "aria-label",
+        hasReadSession
+          ? `Restart reading ${activeReadSession.targetLabel}.`
+          : `Read ${previewTargetDetails.label}.`
+      );
+    }
+  }
+
+  if (readTargetPreviewElement) {
+    readTargetPreviewElement.textContent = formatReadTargetPreview(
+      previewTargetDetails
+    );
+  }
+
+  if (!playerElement) {
+    return;
+  }
+
+  if (!speechSupported || !hasReadSession) {
+    playerElement.hidden = true;
+
+    if (playerSeekInput) {
+      playerSeekInput.disabled = true;
+      playerSeekInput.max = "0";
+      playerSeekInput.value = "0";
+    }
+
+    return;
+  }
+
+  const currentSegment = getCurrentSegment();
+  const currentIndex = clamp(
+    activeReadSession.currentSegmentIndex + 1,
+    1,
+    activeReadSession.segments.length
+  );
+  const progress = Math.round(getReadProgress() * 100);
+  const inSection =
+    activeReadSession.sectionIndex >= 0 &&
+    activeReadSession.sectionEntries.length > 0;
+  const isComplete = Boolean(activeReadSession.isComplete);
+
+  playerElement.hidden = false;
+  playerTargetElement.textContent = activeReadSession.targetLabel;
+  playerStatusElement.textContent = isComplete
+    ? inSection
+      ? `Finished section ${activeReadSession.sectionIndex + 1} of ${
+          activeReadSession.sectionEntries.length
+        }.`
+      : "Finished this section."
+    : activeReadSession.isPaused
+      ? inSection
+        ? `Paused in section ${activeReadSession.sectionIndex + 1} of ${
+            activeReadSession.sectionEntries.length
+          }, part ${currentIndex} of ${activeReadSession.segments.length}.`
+        : `Paused at part ${currentIndex} of ${activeReadSession.segments.length}.`
+      : inSection
+        ? `Reading section ${activeReadSession.sectionIndex + 1} of ${
+            activeReadSession.sectionEntries.length
+          }, part ${currentIndex} of ${activeReadSession.segments.length}.`
+        : `Reading part ${currentIndex} of ${activeReadSession.segments.length}.`;
+  playerCurrentElement.textContent = isComplete
+    ? "This section has finished. Replay it, choose another point, or move to a different section."
+    : currentSegment
+      ? `Now reading: ${truncateText(currentSegment.text, 180)}`
+      : "Ready to read.";
+  playerProgressElement.textContent = `${progress}% read`;
+
+  if (playerSeekInput) {
+    playerSeekInput.disabled = activeReadSession.segments.length <= 1;
+    playerSeekInput.max = String(
+      Math.max(activeReadSession.segments.length - 1, 0)
+    );
+    playerSeekInput.value = String(
+      clamp(
+        activeReadSession.currentSegmentIndex,
+        0,
+        Math.max(activeReadSession.segments.length - 1, 0)
+      )
+    );
+  }
+
+  if (playerPlaybackButton) {
+    playerPlaybackButton.disabled = false;
+    playerPlaybackButton.textContent = isComplete
+      ? "Replay"
+      : activeReadSession.isPaused
+      ? "Resume"
+      : "Pause";
+  }
+
+  if (playerStopButton) {
+    playerStopButton.disabled = false;
+  }
+
+  if (playerRateInput) {
+    playerRateInput.value = String(persistentPreferences.readAloudRate);
+  }
+
+  if (playerPrevSectionButton) {
+    playerPrevSectionButton.disabled =
+      !inSection || activeReadSession.sectionIndex <= 0;
+  }
+
+  if (playerNextSectionButton) {
+    playerNextSectionButton.disabled =
+      !inSection ||
+      activeReadSession.sectionIndex >=
+        activeReadSession.sectionEntries.length - 1;
+  }
+}
+
+function stopReading(clearNote = false) {
+  if (isSpeechSupported()) {
+    window.speechSynthesis.cancel();
+  }
+
+  activeUtterance = null;
+  activeReadSession = null;
+  clearHighlightedReadElement();
+  updateReadAloudButton();
+
+  if (clearNote) {
+    setNote("");
+  }
+}
+
+function finishReading() {
+  if (!activeReadSession) {
+    return;
+  }
+
+  activeUtterance = null;
+  activeReadSession.isPaused = true;
+  activeReadSession.isComplete = true;
+  activeReadSession.currentSegmentIndex = activeReadSession.segments.length;
+  activeReadSession.currentSegmentCharacterIndex = 0;
+  clearHighlightedReadElement();
+  updateReadAloudButton();
+  setNote("Finished reading this section.");
+}
+
+function speakCurrentSegment() {
+  if (!activeReadSession) {
+    return;
+  }
+
+  const segment = getCurrentSegment();
+
+  if (!segment) {
+    finishReading();
+    return;
+  }
+
+  const utterance = new window.SpeechSynthesisUtterance(segment.text);
+  utterance.lang = document.documentElement.lang || "en-GB";
+  utterance.rate = persistentPreferences.readAloudRate;
+
+  utterance.onstart = () => {
+    if (!activeReadSession || activeUtterance !== utterance) {
+      return;
+    }
+
+    activeReadSession.isPaused = false;
+    activeReadSession.currentSegmentCharacterIndex = 0;
+    highlightReadElement(segment.element);
+    ensureReadElementVisible(segment.element);
+    updateReadAloudButton();
+  };
+
+  utterance.onboundary = (event) => {
+    if (!activeReadSession || activeUtterance !== utterance) {
+      return;
+    }
+
+    if (typeof event.charIndex === "number") {
+      activeReadSession.currentSegmentCharacterIndex = clamp(
+        event.charIndex,
+        0,
+        segment.text.length
+      );
+      updateReadAloudButton();
+    }
+  };
+
+  utterance.onpause = () => {
+    if (!activeReadSession || activeUtterance !== utterance) {
+      return;
+    }
+
+    activeReadSession.isPaused = true;
+    updateReadAloudButton();
+  };
+
+  utterance.onresume = () => {
+    if (!activeReadSession || activeUtterance !== utterance) {
+      return;
+    }
+
+    activeReadSession.isPaused = false;
+    updateReadAloudButton();
+  };
+
+  utterance.onend = () => {
+    if (!activeReadSession || activeUtterance !== utterance) {
+      return;
+    }
+
+    activeReadSession.currentSegmentCharacterIndex = segment.text.length;
+    activeUtterance = null;
+    activeReadSession.currentSegmentIndex += 1;
+    updateReadAloudButton();
+    speakCurrentSegment();
+  };
+
+  utterance.onerror = () => {
+    if (!activeReadSession || activeUtterance !== utterance) {
+      return;
+    }
+
+    setNote("Read aloud could not continue on this device.");
+    stopReading(false);
+  };
+
+  activeUtterance = utterance;
+  window.speechSynthesis.speak(utterance);
+  updateReadAloudButton();
+}
+
+function setReadAloudRate(nextRate) {
+  const normalisedRate = normaliseReadAloudRate(nextRate);
+
+  persistentPreferences = {
+    ...persistentPreferences,
+    readAloudRate: normalisedRate,
+  };
+  savePersistentPreferences();
+
+  if (playerRateInput) {
+    playerRateInput.value = String(normalisedRate);
+  }
+
+  if (!activeReadSession) {
+    setNote(`Read aloud speed set to ${formatReadAloudRate(normalisedRate)}.`);
+    updateReadAloudButton();
+    return;
+  }
+
+  const shouldResume = !activeReadSession.isPaused && !window.speechSynthesis.paused;
+
+  activeUtterance = null;
+  window.speechSynthesis.cancel();
+
+  if (shouldResume) {
+    activeReadSession.isPaused = false;
+    setNote(
+      `Read aloud speed set to ${formatReadAloudRate(
+        normalisedRate
+      )}. Current part restarted at the new speed.`
+    );
+    speakCurrentSegment();
+    return;
+  }
+
+  activeReadSession.isPaused = true;
+  setNote(
+    `Read aloud speed set to ${formatReadAloudRate(
+      normalisedRate
+    )}. Resume to continue.`
+  );
+  updateReadAloudButton();
+}
+
+function startReading(startIndex = 0, targetDetails = getReadTargetDetails()) {
+  if (!isSpeechSupported()) {
+    setNote("Read aloud is not supported in this browser.");
+    updateReadAloudButton();
+    return;
+  }
+
+  const session = createReadSession(targetDetails.target, {
+    sectionEntries: targetDetails.sectionEntries,
+    sectionIndex: targetDetails.sectionIndex,
+  });
+
+  if (!session) {
     setNote("There is not enough readable text in this area yet.");
     updateReadAloudButton();
     return;
@@ -218,49 +828,183 @@ function startReading() {
 
   stopReading();
 
-  const utterance = new window.SpeechSynthesisUtterance(text);
-  utterance.lang = document.documentElement.lang || "en-GB";
-  utterance.rate = 1;
+  session.currentSegmentIndex = clamp(
+    startIndex,
+    0,
+    Math.max(session.segments.length - 1, 0)
+  );
+  session.currentSegmentCharacterIndex = 0;
+  session.isComplete = false;
+  activeReadSession = session;
 
-  utterance.onend = () => {
-    activeUtterance = null;
-    updateReadAloudButton();
-    setNote("");
-  };
+  const nextSegment = getCurrentSegment();
 
-  utterance.onerror = () => {
-    activeUtterance = null;
-    updateReadAloudButton();
-    setNote("Read aloud could not start on this device.");
-  };
+  if (nextSegment) {
+    highlightReadElement(nextSegment.element);
+    ensureReadElementVisible(nextSegment.element);
+  }
 
-  activeUtterance = utterance;
-  window.speechSynthesis.speak(utterance);
+  setNote(
+    `Reading ${session.targetLabel}. Use the mini player to pause, resume, or move between sections.`
+  );
   updateReadAloudButton();
-  setNote("Reading aloud is active. Use the same button to stop.");
+  speakCurrentSegment();
 }
 
 function toggleReadAloud() {
+  startReading(0, getReadTargetDetails());
+}
+
+function toggleReadAloudPlayback() {
   if (!isSpeechSupported()) {
     setNote("Read aloud is not supported in this browser.");
     updateReadAloudButton();
     return;
   }
 
-  if (activeUtterance || window.speechSynthesis.speaking) {
-    stopReading(true);
+  if (!activeReadSession) {
+    startReading();
     return;
   }
 
-  startReading();
+  if (activeReadSession.isComplete) {
+    activeReadSession.currentSegmentIndex = 0;
+    activeReadSession.currentSegmentCharacterIndex = 0;
+    activeReadSession.isPaused = false;
+    activeReadSession.isComplete = false;
+
+    const firstSegment = getCurrentSegment();
+
+    if (firstSegment) {
+      highlightReadElement(firstSegment.element);
+      ensureReadElementVisible(firstSegment.element);
+    }
+
+    setNote(`Replaying ${activeReadSession.targetLabel}.`);
+    speakCurrentSegment();
+    return;
+  }
+
+  if (activeReadSession.isPaused || window.speechSynthesis.paused) {
+    if (activeUtterance) {
+      window.speechSynthesis.resume();
+    } else {
+      speakCurrentSegment();
+    }
+
+    activeReadSession.isPaused = false;
+    setNote(`Resumed reading ${activeReadSession.targetLabel}.`);
+    updateReadAloudButton();
+    return;
+  }
+
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.pause();
+    activeReadSession.isPaused = true;
+    setNote("Read aloud paused. Use Resume to carry on.");
+    updateReadAloudButton();
+  }
+}
+
+function seekReadAloud(nextIndex) {
+  if (!activeReadSession) {
+    return;
+  }
+
+  const targetIndex = clamp(
+    Math.round(nextIndex),
+    0,
+    Math.max(activeReadSession.segments.length - 1, 0)
+  );
+  const shouldResume =
+    !activeReadSession.isPaused && !activeReadSession.isComplete;
+
+  activeReadSession.currentSegmentIndex = targetIndex;
+  activeReadSession.currentSegmentCharacterIndex = 0;
+  activeReadSession.isComplete = false;
+
+  const nextSegment = getCurrentSegment();
+
+  if (nextSegment) {
+    highlightReadElement(nextSegment.element);
+    ensureReadElementVisible(nextSegment.element);
+  }
+
+  activeUtterance = null;
+  window.speechSynthesis.cancel();
+
+  if (shouldResume) {
+    activeReadSession.isPaused = false;
+    speakCurrentSegment();
+  } else {
+    activeReadSession.isPaused = true;
+    updateReadAloudButton();
+  }
+
+  setNote("Read aloud moved to a new point in this section.");
+}
+
+function moveReadAloudSection(direction) {
+  const currentDetails = activeReadSession
+    ? {
+        target: activeReadSession.target,
+        label: activeReadSession.targetLabel,
+        sectionEntries: activeReadSession.sectionEntries,
+        sectionIndex: activeReadSession.sectionIndex,
+      }
+    : getReadTargetDetails();
+
+  if (
+    currentDetails.sectionIndex < 0 ||
+    currentDetails.sectionEntries.length <= 1
+  ) {
+    return;
+  }
+
+  const nextSectionIndex = clamp(
+    currentDetails.sectionIndex + direction,
+    0,
+    currentDetails.sectionEntries.length - 1
+  );
+
+  if (nextSectionIndex === currentDetails.sectionIndex) {
+    return;
+  }
+
+  const nextSection = currentDetails.sectionEntries[nextSectionIndex];
+
+  if (!nextSection) {
+    return;
+  }
+
+  startReading(0, {
+    target: nextSection.target,
+    label: nextSection.label,
+    sectionEntries: currentDetails.sectionEntries,
+    sectionIndex: nextSectionIndex,
+  });
+}
+
+function updateReadTargetPreview() {
+  updateReadAloudButton();
+}
+
+function scheduleReadTargetPreviewUpdate() {
+  if (previewUpdateFrame !== null) {
+    return;
+  }
+
+  previewUpdateFrame = window.requestAnimationFrame(() => {
+    previewUpdateFrame = null;
+
+    if (!activeReadSession) {
+      updateReadTargetPreview();
+    }
+  });
 }
 
 function savePersistentPreferences() {
   writeStorage(PERSISTENT_KEY, persistentPreferences);
-}
-
-function saveSessionModes() {
-  writeSessionStorage(SESSION_KEY, sessionModes);
 }
 
 function syncControls() {
@@ -291,6 +1035,10 @@ function syncControls() {
     )}%`;
   }
 
+  if (playerRateInput) {
+    playerRateInput.value = String(persistentPreferences.readAloudRate);
+  }
+
   updateReadAloudButton();
 }
 
@@ -315,7 +1063,6 @@ function resetAccessibilityState() {
   };
 
   removeStorage(PERSISTENT_KEY);
-  removeSessionStorage(SESSION_KEY);
   stopReading(true);
   applyAccessibilityState();
   syncControls();
@@ -330,6 +1077,88 @@ function buildAccessibilityUI() {
     "beforeend",
     `
       <div class="accessibility-backdrop" data-role="accessibility-backdrop" hidden></div>
+
+      <section
+        class="accessibility-player panel"
+        data-role="accessibility-player"
+        aria-label="Read aloud controls"
+        hidden
+      >
+        <div class="accessibility-player-header">
+          <div>
+            <p class="eyebrow">Read Aloud</p>
+            <h2 data-role="read-aloud-target">Current section</h2>
+            <p class="accessibility-player-status" data-role="read-aloud-status" aria-live="polite">
+              Ready to read.
+            </p>
+          </div>
+          <div class="accessibility-player-header-actions">
+            <label class="accessibility-player-speed" for="accessibility-read-aloud-rate">
+              <span class="accessibility-player-speed-label">Speed</span>
+              <select
+                id="accessibility-read-aloud-rate"
+                class="accessibility-player-select"
+                data-action="set-read-aloud-rate"
+              >
+                ${READ_ALOUD_RATE_OPTIONS.map(
+                  (option) =>
+                    `<option value="${option.value}">${option.label}</option>`
+                ).join("")}
+              </select>
+            </label>
+            <button
+              type="button"
+              class="accessibility-player-button accessibility-player-button--stop"
+              data-action="stop-read-aloud"
+            >
+              Stop
+            </button>
+          </div>
+        </div>
+
+        <p class="accessibility-player-copy" data-role="read-aloud-current"></p>
+
+        <label class="accessibility-slider-row accessibility-player-progress" for="accessibility-read-aloud-seek">
+          <div class="accessibility-slider-header">
+            <span class="accessibility-slider-label">Progress</span>
+            <span class="accessibility-slider-value" data-role="read-aloud-progress-text">0% read</span>
+          </div>
+          <input
+            id="accessibility-read-aloud-seek"
+            class="accessibility-slider accessibility-player-range"
+            type="range"
+            min="0"
+            max="0"
+            step="1"
+            value="0"
+            data-action="seek-read-aloud"
+          />
+        </label>
+
+        <div class="accessibility-player-controls">
+          <button
+            type="button"
+            class="accessibility-player-button"
+            data-action="read-prev-section"
+          >
+            Previous section
+          </button>
+          <button
+            type="button"
+            class="accessibility-player-button"
+            data-action="toggle-read-aloud-playback"
+          >
+            Pause
+          </button>
+          <button
+            type="button"
+            class="accessibility-player-button"
+            data-action="read-next-section"
+          >
+            Next section
+          </button>
+        </div>
+      </section>
 
       <div class="accessibility-launcher" data-role="accessibility-launcher">
         <button
@@ -357,7 +1186,7 @@ function buildAccessibilityUI() {
             <p class="eyebrow">Reading And Accessibility</p>
             <h2 id="accessibility-panel-title">Make the page easier to use</h2>
             <p class="accessibility-panel-copy">
-              Visual preferences stay saved across the site. Reading and focus modes stay active only in this tab.
+              Visual preferences stay saved across the site. Reading and focus modes reset when you reload or leave this page.
             </p>
           </div>
           <button type="button" class="accessibility-close-button" data-action="close-accessibility-panel">
@@ -439,7 +1268,7 @@ function buildAccessibilityUI() {
                 <input id="accessibility-dyslexia-font" type="checkbox" data-setting="dyslexiaFont" />
                 <span>
                   <span class="accessibility-toggle-label">Dyslexia-friendly font stack</span>
-                  <span class="accessibility-control-copy">Swap to a clearer sans-serif reading stack across headings, body copy, and inputs.</span>
+                  <span class="accessibility-control-copy">Try a more distinct local reading font when available, with wider spacing across headings, body copy, and inputs.</span>
                 </span>
               </label>
             </div>
@@ -448,9 +1277,14 @@ function buildAccessibilityUI() {
           <fieldset class="accessibility-group">
             <legend>Actions</legend>
             <div class="accessibility-actions">
-              <button type="button" class="accessibility-action-button" data-action="toggle-read-aloud">
-                Read aloud
-              </button>
+              <div class="accessibility-action-stack">
+                <button type="button" class="accessibility-action-button" data-action="toggle-read-aloud">
+                  Read current section
+                </button>
+                <p class="accessibility-control-copy accessibility-read-target" data-role="read-target-preview">
+                  Current read target: Current page
+                </p>
+              </div>
               <button type="button" class="accessibility-reset-button" data-action="reset-accessibility">
                 Reset to default
               </button>
@@ -471,6 +1305,28 @@ function buildAccessibilityUI() {
   textScaleInput = document.querySelector("#accessibility-text-scale");
   textScaleValue = document.querySelector("[data-role='text-scale-value']");
   readAloudButton = document.querySelector("[data-action='toggle-read-aloud']");
+  readTargetPreviewElement = document.querySelector(
+    "[data-role='read-target-preview']"
+  );
+  playerElement = document.querySelector("[data-role='accessibility-player']");
+  playerTargetElement = document.querySelector("[data-role='read-aloud-target']");
+  playerStatusElement = document.querySelector("[data-role='read-aloud-status']");
+  playerCurrentElement = document.querySelector("[data-role='read-aloud-current']");
+  playerProgressElement = document.querySelector(
+    "[data-role='read-aloud-progress-text']"
+  );
+  playerSeekInput = document.querySelector("[data-action='seek-read-aloud']");
+  playerPlaybackButton = document.querySelector(
+    "[data-action='toggle-read-aloud-playback']"
+  );
+  playerStopButton = document.querySelector("[data-action='stop-read-aloud']");
+  playerRateInput = document.querySelector("[data-action='set-read-aloud-rate']");
+  playerPrevSectionButton = document.querySelector(
+    "[data-action='read-prev-section']"
+  );
+  playerNextSectionButton = document.querySelector(
+    "[data-action='read-next-section']"
+  );
 
   launcherButton.addEventListener("click", () => {
     if (panel.hidden) {
@@ -516,7 +1372,6 @@ function buildAccessibilityUI() {
           ...sessionModes,
           [setting]: checked,
         };
-        saveSessionModes();
       } else {
         persistentPreferences = {
           ...persistentPreferences,
@@ -531,6 +1386,21 @@ function buildAccessibilityUI() {
   });
 
   readAloudButton.addEventListener("click", toggleReadAloud);
+  playerPlaybackButton.addEventListener("click", toggleReadAloudPlayback);
+  playerStopButton.addEventListener("click", () => stopReading(true));
+  playerRateInput.addEventListener("input", () => {
+    setReadAloudRate(playerRateInput.value);
+  });
+  playerPrevSectionButton.addEventListener("click", () =>
+    moveReadAloudSection(-1)
+  );
+  playerNextSectionButton.addEventListener("click", () =>
+    moveReadAloudSection(1)
+  );
+  playerSeekInput.addEventListener("change", () => {
+    seekReadAloud(Number(playerSeekInput.value));
+  });
+
   panel
     .querySelector("[data-action='reset-accessibility']")
     .addEventListener("click", resetAccessibilityState);
@@ -554,13 +1424,18 @@ export function initAccessibilityPanel() {
   persistentPreferences = normalisePersistentPreferences(
     readStorage(PERSISTENT_KEY, PERSISTENT_DEFAULTS)
   );
-  sessionModes = normaliseSessionModes(
-    readSessionStorage(SESSION_KEY, SESSION_DEFAULTS)
-  );
+  sessionModes = {
+    ...SESSION_DEFAULTS,
+  };
 
   applyAccessibilityState();
   buildAccessibilityUI();
   syncControls();
+  window.addEventListener("scroll", scheduleReadTargetPreviewUpdate, {
+    passive: true,
+  });
+  window.addEventListener("hashchange", scheduleReadTargetPreviewUpdate);
+  window.addEventListener("resize", scheduleReadTargetPreviewUpdate);
   setNote(
     isSpeechSupported()
       ? ""

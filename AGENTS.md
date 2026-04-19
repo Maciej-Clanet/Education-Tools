@@ -51,8 +51,13 @@ Before making major UI, content, or structure changes, read:
   toggles.
 - Site-wide accessibility preferences such as font, contrast, text size,
   palette, and visual simplification should persist across pages. Temporary
-  reading or focus modes should behave like session-level states rather than
-  permanent saved preferences.
+  reading or focus modes should reset when the page reloads or the user leaves
+  the page rather than behaving like saved preferences.
+- Read aloud should keep a small visible control surface while active so users
+  can pause or resume, stop, see progress, move between sections, adjust
+  speed, and
+  understand what part of the page is currently being read even after closing
+  the accessibility panel.
 - Lesson pages should support a teacher slide mode that reuses the same lesson
   sections and works well with swipe and tap navigation on touch displays.
 - Users should be able to get back to the full course or unit search easily.
