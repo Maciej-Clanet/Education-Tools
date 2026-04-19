@@ -62,6 +62,20 @@ the browser with `localStorage` where useful.
   mention a specific unit if the topic may belong to multiple units.
 - Topic pages should be canonical where possible to avoid duplicate content
   across specs and improve SEO.
+- Reusable topic pages should carry unit context through links or parameters so
+  the same page can show different back links and previous/next lesson links
+  without duplicating lesson content.
+- Lesson pages should share a core structure with a breadcrumb, section
+  sidebar, contextual back navigation, previous/next lesson links, optional
+  interactive tools, and an end quiz unless there is a strong reason not to.
+- Lesson pages should normally also include a glossary pattern, a common
+  mistakes or exam traps section, and at least one short exam-style practice
+  area with answer guidance where that format makes sense for the topic.
+- Where both are present, a shorter quick quiz should usually come before the
+  longer exam-style practice tasks, and exam-style practice should include
+  built-in response areas so learners can write inside the page.
+- Teacher mode should reuse the same lesson sections as a swipe or tap-friendly
+  slide view instead of requiring a separately maintained duplicate slide deck.
 - The current content focus is BTEC Level 3 Computing Unit 2.
 - When the homepage is not filtered by search, it should prioritise real live
   pages. Planned lesson topics can still appear through search, but should not
@@ -119,20 +133,26 @@ the browser with `localStorage` where useful.
 
 - Requirements notes and agent startup notes are in place.
 - The homepage has a working search experience using local data.
-- The homepage now highlights the live Unit 2 hub plus the first planned Unit 2
+- The homepage now highlights the live Unit 2 hub plus live and planned Unit 2
   lesson pages.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
+- The first live topic lesson now exists at `pages/topics/stacks-and-queues.html`.
+- A shared lesson shell now supports sidebar navigation, contextual unit
+  navigation, teacher slide mode, and quiz persistence.
+- The current lesson template now includes glossary, exam trap, and exam-style
+  practice patterns that future lessons should reuse where appropriate.
 - Shared CSS, theme, and page-specific styling are split into reusable files.
 - Layout space is reserved for future adverts or promos.
 
 ## Next Likely Steps
 
-- Build the first real lesson page from the Unit 2 lesson list.
-- Define the reusable lesson-page layout for content, quizzes, and tools.
+- Build more Unit 2 lessons on top of the shared lesson shell.
+- Decide when lesson content should move from page HTML into structured
+  `content/lessons/` data.
 - Decide what a short spec page should include beyond description + unit links.
 - Add `sitemap.xml` and likely `robots.txt` once the canonical live domain is
   known.
 - Move course data into a more structured content format if needed.
 - Decide how legacy `donetools/` pieces should be merged into the new shared
   design system.
-- Add common quiz components that use `localStorage`.
+- Add more lesson-specific mini-tools where the topic benefits from them.

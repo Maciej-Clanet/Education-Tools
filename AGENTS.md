@@ -33,7 +33,21 @@ Before making major UI, content, or structure changes, read:
 - Topic pages should be the main learning/SEO pages and should stay
   unit-agnostic where possible so one topic can support multiple units or
   specs.
+- Reusable topic pages should use unit context in their links or parameters so
+  the same page can show different back links and previous/next lesson links
+  without duplicating the lesson itself.
 - Topic or unit pages should support easy sidebar navigation.
+- Lesson pages should normally include a sidebar, contextual back navigation,
+  previous/next lesson links, and an end quiz unless there is a clear reason
+  not to.
+- Lesson pages should normally reuse a glossary pattern, a common mistakes or
+  exam traps section, and at least one exam-style practice area with answer
+  guidance where that fits the topic.
+- Where both are present, a shorter quick quiz should usually come before the
+  longer exam-style practice tasks, and exam practice should include on-page
+  response areas so students can write inside the lesson itself.
+- Lesson pages should support a teacher slide mode that reuses the same lesson
+  sections and works well with swipe and tap navigation on touch displays.
 - Users should be able to get back to the full course or unit search easily.
 - Keep room in layouts for future advertising or promoted resources.
 

@@ -8,7 +8,7 @@ export const catalogItems = [
     title: "Computer Systems",
     summary:
       "The live Unit 2 revision hub for BTEC Level 3 Computing, covering hardware, software, architecture, data representation, transmission, and logic.",
-    badges: ["Subject area: Computer systems", "Live now"],
+    badges: ["Subject area: Computer systems"],
     keywords: [
       "unit 2",
       "computer systems",
@@ -25,6 +25,29 @@ export const catalogItems = [
     href: "pages/units/btec-level-3-unit-2.html",
   },
   {
+    id: "topic-stacks-and-queues",
+    status: "live",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "D1 Data structures",
+    title: "Stacks and queues",
+    summary:
+      "A live revision lesson on LIFO and FIFO data structures with examples, an interactive visualiser, teacher slides, and a short quiz.",
+    badges: ["Subject area: Data organisation"],
+    keywords: [
+      "stacks",
+      "queues",
+      "lifo",
+      "fifo",
+      "data structures",
+      "stack and queue",
+      "btec unit 2 d1",
+      "computer systems",
+    ],
+    actionLabel: "Open lesson",
+    href: "pages/topics/stacks-and-queues.html?context=btec-level-3-unit-2",
+  },
+  {
     id: "topic-operating-system-types",
     status: "planned",
     type: "topic",
@@ -33,7 +56,7 @@ export const catalogItems = [
     title: "Operating system types",
     summary:
       "A planned revision lesson on real-time, single-user, multi-tasking, and multi-user operating systems, and when each is appropriate.",
-    badges: ["Subject area: Computer systems", "Planned lesson"],
+    badges: ["Subject area: Computer systems", "Coming soon"],
     keywords: [
       "operating systems",
       "os types",
@@ -41,7 +64,7 @@ export const catalogItems = [
       "multi user",
       "single user",
     ],
-    actionLabel: "Planned lesson",
+    actionLabel: "Coming soon",
   },
   {
     id: "topic-instruction-cycle",
@@ -52,14 +75,14 @@ export const catalogItems = [
     title: "The instruction cycle",
     summary:
       "A planned revision lesson on fetch-decode-execute, the registers involved in processing, and why the cycle matters for CPU behaviour.",
-    badges: ["Subject area: Architecture", "Planned lesson"],
+    badges: ["Subject area: Architecture", "Coming soon"],
     keywords: [
       "instruction cycle",
       "fetch decode execute",
       "cpu cycle",
       "registers",
     ],
-    actionLabel: "Planned lesson",
+    actionLabel: "Coming soon",
   },
   {
     id: "topic-binary-and-bcd",
@@ -70,14 +93,14 @@ export const catalogItems = [
     title: "Binary and BCD",
     summary:
       "A planned revision lesson on binary values, binary-coded decimal, and how different number systems are interpreted inside computers.",
-    badges: ["Subject area: Data representation", "Planned lesson"],
+    badges: ["Subject area: Data representation", "Coming soon"],
     keywords: [
       "binary",
       "bcd",
       "number systems",
       "data representation",
     ],
-    actionLabel: "Planned lesson",
+    actionLabel: "Coming soon",
   },
   {
     id: "topic-arrays-lists-and-data-types",
@@ -88,14 +111,14 @@ export const catalogItems = [
     title: "Arrays, lists, and data types",
     summary:
       "A planned revision lesson on common data structures, where they are used, and why their behaviour matters in hardware and software.",
-    badges: ["Subject area: Data organisation", "Planned lesson"],
+    badges: ["Subject area: Data organisation", "Coming soon"],
     keywords: [
       "arrays",
       "lists",
       "data types",
       "data structures",
     ],
-    actionLabel: "Planned lesson",
+    actionLabel: "Coming soon",
   },
   {
     id: "topic-error-detection-methods",
@@ -106,7 +129,7 @@ export const catalogItems = [
     title: "Error detection methods",
     summary:
       "A planned revision lesson covering parity, checksum, repetition schemes, and CRC for spotting problems in transmitted data.",
-    badges: ["Subject area: Data transmission", "Planned lesson"],
+    badges: ["Subject area: Data transmission", "Coming soon"],
     keywords: [
       "error detection",
       "parity",
@@ -114,7 +137,7 @@ export const catalogItems = [
       "crc",
       "repetition schemes",
     ],
-    actionLabel: "Planned lesson",
+    actionLabel: "Coming soon",
   },
   {
     id: "topic-boolean-logic",
@@ -125,13 +148,13 @@ export const catalogItems = [
     title: "Boolean logic",
     summary:
       "A planned revision lesson on Boolean expressions, logical reasoning, and using logic to represent data flow and solve problems.",
-    badges: ["Subject area: Logic and data flow", "Planned lesson"],
+    badges: ["Subject area: Logic and data flow", "Coming soon"],
     keywords: [
       "boolean logic",
       "logic",
       "truth tables",
       "data flow",
     ],
-    actionLabel: "Planned lesson",
+    actionLabel: "Coming soon",
   },
 ];

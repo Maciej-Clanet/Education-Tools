@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stacks and Queues Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Learn stacks and queues with clear LIFO and FIFO examples, an interactive visualiser, common exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="Stacks and Queues Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Learn stacks and queues with clear LIFO and FIFO examples, an interactive visualiser, common exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <script type="module" src="../../javascript/pages/stacks-and-queues.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Data Structures</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-d"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Stacks and queues</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Stacks and queues</h1>
+            <p class="lesson-hero-text">
+              Learn how two simple data structures control the order in which
+              data is stored and removed. This lesson focuses on the LIFO rule
+              used by stacks, the FIFO rule used by queues, and when each one
+              makes more sense in software and hardware.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>D1 Data structures</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main rule</strong>
+            <span>Stacks are LIFO, queues are FIFO</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, exam practice, visualiser, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a class="lesson-secondary-action" data-role="back-to-unit" href="../units/btec-level-3-unit-2.html#section-d">
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring, the simulator, and teacher slides need
+          JavaScript, but the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#stack" data-section-link>The stack rule</a>
+            <a href="#queue" data-section-link>The queue rule</a>
+            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#simulation" data-section-link>Try the visualiser</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Stacks and queues are both ordered collections of data, but they
+              remove items in different ways. Exam questions often test whether
+              you can name the rule, choose the right structure for a scenario,
+              and explain why that choice works.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define a stack and explain the LIFO rule.</li>
+                  <li>Define a queue and explain the FIFO rule.</li>
+                  <li>Name the common operations used with each structure.</li>
+                  <li>Choose the better structure for a given scenario.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Stack:</strong> add to the top, remove from the top.</li>
+                  <li><strong>Queue:</strong> join at the back, leave from the front.</li>
+                  <li><strong>LIFO:</strong> the newest item leaves first.</li>
+                  <li><strong>FIFO:</strong> the oldest item leaves first.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where they appear</h3>
+                <p>
+                  Stacks are common in function calls, undo features, and
+                  browser history. Queues are common in printer spooling, task
+                  scheduling, keyboard buffers, and packet handling.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="stack"
+            class="lesson-section lesson-section--stack panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Stack</p>
+            <h2>A stack stores data using the LIFO rule</h2>
+            <p class="lesson-section-copy">
+              LIFO means <strong>last in, first out</strong>. The most recently
+              added item is the first one to be removed. You can picture a
+              stack like a pile of trays: you add to the top, and you remove
+              from the top.
+            </p>
+
+            <div class="example-strip" aria-label="Stack examples">
+              <span class="example-chip"><strong>Push</strong> add an item to the top</span>
+              <span class="example-chip"><strong>Pop</strong> remove the top item</span>
+              <span class="example-chip"><strong>Peek</strong> read the top item without removing it</span>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Why it works</strong>
+                <span>
+                  A stack is useful when the newest thing must be handled first.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Typical software use</strong>
+                <span>
+                  Undo systems return through the most recent actions first.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Typical hardware use</strong>
+                <span>
+                  Function calls and interrupts often rely on stack-style memory.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Key implication</strong>
+                <span>
+                  You do not normally remove items from the middle of a stack.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked example</h3>
+              <p>
+                If a stack stores <code>Task A</code>, then <code>Task B</code>,
+                then <code>Task C</code>, the next pop returns
+                <code>Task C</code>. The newest value leaves first.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="queue"
+            class="lesson-section lesson-section--queue panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Queue</p>
+            <h2>A queue stores data using the FIFO rule</h2>
+            <p class="lesson-section-copy">
+              FIFO means <strong>first in, first out</strong>. The earliest
+              item added is the first one to leave. A queue works like people
+              lining up: new items join at the back, but service happens at the
+              front.
+            </p>
+
+            <div class="example-strip" aria-label="Queue examples">
+              <span class="example-chip"><strong>Enqueue</strong> add an item to the back</span>
+              <span class="example-chip"><strong>Dequeue</strong> remove the front item</span>
+              <span class="example-chip"><strong>Front</strong> inspect the next item to leave</span>
+            </div>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>Fair processing</h3>
+                <p>
+                  Queues are useful when items should be handled in the order
+                  they arrive.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Typical software use</h3>
+                <p>
+                  Print jobs are usually processed in the same order they were
+                  requested.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Typical hardware use</h3>
+                <p>
+                  Input buffers and packet buffers often keep arrival order
+                  rather than newest-first order.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked example</h3>
+              <p>
+                If a queue stores <code>Packet 1</code>, then
+                <code>Packet 2</code>, then <code>Packet 3</code>, the next
+                dequeue returns <code>Packet 1</code>. The oldest waiting item
+                leaves first.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section lesson-section--compare panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Comparison</p>
+            <h2>Choose the right structure for the job</h2>
+            <p class="lesson-section-copy">
+              The main difference is not what the structure stores. It is the
+              rule that controls removal. That rule affects fairness, speed of
+              access, and whether the newest or oldest item matters most.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Stack</th>
+                    <th>Queue</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Removal rule</td>
+                    <td>Last in, first out</td>
+                    <td>First in, first out</td>
+                  </tr>
+                  <tr>
+                    <td>Main operations</td>
+                    <td>Push, pop, peek</td>
+                    <td>Enqueue, dequeue, front</td>
+                  </tr>
+                  <tr>
+                    <td>Best when</td>
+                    <td>The newest item should be handled first</td>
+                    <td>Items should be handled in arrival order</td>
+                  </tr>
+                  <tr>
+                    <td>Common examples</td>
+                    <td>Undo, call stack, browser history</td>
+                    <td>Printer jobs, buffers, task scheduling</td>
+                  </tr>
+                  <tr>
+                    <td>Main caution</td>
+                    <td>Older items can stay buried for longer</td>
+                    <td>New urgent items may have to wait their turn</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Use a stack when...</h3>
+                <p>
+                  Reversal matters, nested actions occur, or the most recent
+                  step must be undone or completed first.
+                </p>
+              </article>
+              <article class="lesson-card">
+                <h3>Use a queue when...</h3>
+                <p>
+                  Fairness matters, arrival order should be preserved, or work
+                  should be handled one-by-one in the order it appears.
+                </p>
+              </article>
+              <article class="lesson-card">
+                <h3>Exam reminder</h3>
+                <p>
+                  If a question asks what comes out next, always focus on the
+                  order rule before naming the answer.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with stacks and queues</h2>
+            <p class="lesson-section-copy">
+              Many wrong answers happen because the names sound familiar but the
+              order rule gets lost. These are the mistakes exam questions often
+              try to expose.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Mixing up LIFO and FIFO</h3>
+                <p>
+                  Students sometimes remember that both structures are ordered,
+                  but forget which one removes the newest item and which one
+                  removes the oldest.
+                </p>
+                <ul class="trap-list">
+                  <li>A stack removes from the top.</li>
+                  <li>A queue removes from the front.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Ask yourself, "Does the newest item go
+                  first or does waiting order matter?"
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Using the wrong operation names</h3>
+                <p>
+                  A question may be testing vocabulary as well as understanding.
+                  Saying <code>pop</code> for a queue or <code>enqueue</code>
+                  for a stack can lose marks.
+                </p>
+                <ul class="trap-list">
+                  <li><strong>Stack:</strong> push, pop, peek</li>
+                  <li><strong>Queue:</strong> enqueue, dequeue, front</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Link the operation to the direction of
+                  movement, not just the data structure name.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Choosing by topic instead of behaviour</h3>
+                <p>
+                  Students sometimes say "printer means stack" or "browser means
+                  queue" because they remember the example, not the reason.
+                </p>
+                <ul class="trap-list">
+                  <li>Undo and nested calls favour the newest item first.</li>
+                  <li>Printing and buffering usually preserve arrival order.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> In every scenario, explain the order
+                  rule before naming the structure.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="simulation"
+            class="lesson-section lesson-section--simulation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Visualiser</p>
+            <h2>Try both structures and watch the order change</h2>
+            <p class="simulator-copy">
+              Add your own labels, then remove them to see which value leaves
+              next. This is a quick way to make the LIFO and FIFO rules feel
+              concrete instead of abstract.
+            </p>
+
+            <div class="simulator-grid">
+              <article class="simulator-card">
+                <div>
+                  <h3>Stack visualiser</h3>
+                  <p>
+                    Push adds to the top. Pop removes the top item first.
+                  </p>
+                </div>
+
+                <div class="structure-controls">
+                  <div class="structure-input-row">
+                    <input
+                      id="stack-input"
+                      class="structure-input"
+                      type="text"
+                      placeholder="Example: Undo file delete"
+                      data-structure="stack"
+                      data-structure-input
+                    />
+                    <button
+                      type="button"
+                      class="structure-button"
+                      data-structure="stack"
+                      data-structure-action="add"
+                    >
+                      Push
+                    </button>
+                    <button
+                      type="button"
+                      class="structure-button"
+                      data-structure="stack"
+                      data-structure-action="remove"
+                    >
+                      Pop
+                    </button>
+                    <button
+                      type="button"
+                      class="structure-button"
+                      data-structure="stack"
+                      data-structure-action="clear"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                  <p class="structure-status" data-role="stack-status" aria-live="polite"></p>
+                </div>
+
+                <ol
+                  class="structure-visual structure-visual--stack"
+                  data-role="stack-visual"
+                  aria-label="Stack visualiser"
+                ></ol>
+              </article>
+
+              <article class="simulator-card">
+                <div>
+                  <h3>Queue visualiser</h3>
+                  <p>
+                    Enqueue adds to the back. Dequeue removes the front item
+                    first.
+                  </p>
+                </div>
+
+                <div class="structure-controls">
+                  <div class="structure-input-row">
+                    <input
+                      id="queue-input"
+                      class="structure-input"
+                      type="text"
+                      placeholder="Example: Print revision sheet"
+                      data-structure="queue"
+                      data-structure-input
+                    />
+                    <button
+                      type="button"
+                      class="structure-button"
+                      data-structure="queue"
+                      data-structure-action="add"
+                    >
+                      Enqueue
+                    </button>
+                    <button
+                      type="button"
+                      class="structure-button"
+                      data-structure="queue"
+                      data-structure-action="remove"
+                    >
+                      Dequeue
+                    </button>
+                    <button
+                      type="button"
+                      class="structure-button"
+                      data-structure="queue"
+                      data-structure-action="clear"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                  <p class="structure-status" data-role="queue-status" aria-live="polite"></p>
+                </div>
+
+                <ol
+                  class="structure-visual structure-visual--queue"
+                  data-role="queue-visual"
+                  aria-label="Queue visualiser"
+                ></ol>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices and
+              best score save in this browser so you can come back to the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. A stack removes the newest item first."
+                data-feedback="A stack follows the LIFO rule, so the newest item leaves first."
+              >
+                <legend>1. Which rule describes a stack?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>First in, first out</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>Last in, first out</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>Random access removal</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="c"
+                data-success="Correct. Enqueue adds an item to the back of a queue."
+                data-feedback="Queues add new items with enqueue, usually at the back."
+              >
+                <legend>2. Which operation adds a new item to a queue?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>Pop</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>Peek</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>Enqueue</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="a"
+                data-success="Correct. Printer jobs are usually handled in the order they arrive."
+                data-feedback="A printer queue is normally fair, so it uses FIFO order."
+              >
+                <legend>3. Which structure best suits printer jobs?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>Queue</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>Stack</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>Matrix</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Function calls usually unwind in reverse order, so a stack fits."
+                data-feedback="Function calls return from the newest active call first, which matches stack behaviour."
+              >
+                <legend>4. Which structure is most closely linked to function calls?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>Queue</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>Stack</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>Array only</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="c"
+                data-success="Correct. If C is on top of the stack, pop removes C first."
+                data-feedback="Stacks remove from the top, so the newest top item leaves first."
+              >
+                <legend>
+                  5. A stack holds A at the bottom, B in the middle, and C on
+                  top. What does <code>pop</code> remove?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>A</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>B</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>C</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">3 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why a browser back history is usually modelled as a
+                  stack rather than a queue.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer makes the order rule explicit and then
+                      links it to the example.
+                    </p>
+                    <ul class="exam-points">
+                      <li>The most recent page visited is the first one the user wants to return to.</li>
+                      <li>A stack uses last in, first out, so the newest page is removed first.</li>
+                      <li>A queue would return the oldest page first, which does not match browser back behaviour.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Describe and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A school printer receives jobs from Mia, Sam, Priya, and Leo
+                  in that order. Describe how a queue would process the jobs and
+                  explain why a stack would be less suitable.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Describe the order clearly and justify the structure choice."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers describe the order clearly and compare it
+                      with the wrong structure.
+                    </p>
+                    <ul class="exam-points">
+                      <li>The queue stores jobs in arrival order.</li>
+                      <li>Mia's job would be processed first, then Sam's, then Priya's, then Leo's.</li>
+                      <li>A queue uses first in, first out, which is fair for waiting print jobs.</li>
+                      <li>A stack would process Leo first, which would ignore arrival order and be less fair.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>LIFO</dt>
+                <dd>Last in, first out. The newest item leaves first.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>FIFO</dt>
+                <dd>First in, first out. The oldest item leaves first.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Push and pop</dt>
+                <dd>Add to the top of a stack, then remove from the top.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Enqueue and dequeue</dt>
+                <dd>Add to the back of a queue, then remove from the front.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>One rule changes everything</h2>
+            <ul class="memory-list">
+              <li>Stacks care most about the newest item.</li>
+              <li>Queues care most about arrival order.</li>
+              <li>Exam scenarios usually reveal the answer through that rule.</li>
+            </ul>
+          </section>
+
+          <section class="lesson-rail-card panel">
+            <p class="eyebrow">Sponsored Space</p>
+            <h2>Sidebar ad slot</h2>
+            <p>
+              This rail still leaves room for a future advert or promoted
+              resource without cutting into the lesson flow.
+            </p>
+            <div
+              class="ad-placeholder ad-placeholder-vertical"
+              aria-label="Future vertical advertisement space"
+            >
+              <strong>Sidebar ad slot</strong>
+              <span>Reserved for a future desktop placement.</span>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

@@ -117,7 +117,7 @@ here as they are completed.
 ## D How data is organised on computer systems
 
 ### D1 Data structures
-- [ ] Stacks and queues
+- [x] Stacks and queues
 - [ ] Arrays, lists, and data types
 
 ### D2 Indices and matrices
