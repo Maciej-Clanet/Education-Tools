@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrices and Arrays Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise matrices and arrays with rows and columns, matrix operations, indexed storage, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="Matrices and Arrays Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise matrices and arrays with rows and columns, matrix operations, indexed storage, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/matrices-and-arrays.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Indices and Matrices</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-d"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Matrices and arrays</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Matrices and arrays</h1>
+            <p class="lesson-hero-text">
+              Learn how matrices organise values into rows and columns, how
+              software stores that structure with arrays, and how to explain
+              matrix operations clearly in Unit 2 exam answers.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>D2 Indices and matrices</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Rows, columns, matrix operations, and indexed storage</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, comparison, exam practice, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-d"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring and teacher slides need JavaScript, but the
+          lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#matrices" data-section-link>Matrices</a>
+            <a href="#arrays" data-section-link>Arrays</a>
+            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Matrices and arrays both help organise related values, but they
+              are not exactly the same idea. A matrix describes a grid of data
+              arranged in rows and columns, while arrays give programs an
+              indexed way to store and retrieve those values.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define a matrix using rows, columns, and elements.</li>
+                  <li>Explain the relationship between a matrix and an array.</li>
+                  <li>Describe simple matrix operations accurately.</li>
+                  <li>Link indexed access to how software stores the data.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Matrix:</strong> a grid of values in rows and columns.</li>
+                  <li><strong>Element:</strong> one value at a chosen position.</li>
+                  <li><strong>2D array:</strong> one common way to store a matrix.</li>
+                  <li><strong>Dimensions:</strong> the size of the matrix.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where they appear</h3>
+                <p>
+                  Matrices appear in seating plans, image pixels, score tables,
+                  and sensor grids. Arrays help programs keep those values in a
+                  structure that can be addressed by position.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="matrices"
+            class="lesson-section lesson-section--matrices panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Matrix</p>
+            <h2>A matrix stores values in rows and columns</h2>
+            <p class="lesson-section-copy">
+              A matrix is a rectangular arrangement of values. Each value is an
+              <strong>element</strong> and can be identified by its row and
+              column position. In exam questions, that structure matters because
+              it explains how values are grouped and which operations can be
+              performed on them.
+            </p>
+
+            <div class="example-strip" aria-label="Matrix features">
+              <span class="example-chip"><strong>Row</strong> a horizontal line of values</span>
+              <span class="example-chip"><strong>Column</strong> a vertical line of values</span>
+              <span class="example-chip"><strong>Element</strong> one value at a chosen position</span>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Why it works</strong>
+                <span>
+                  Two coordinates identify one exact value inside the grid.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Typical software use</strong>
+                <span>
+                  Pixel data, room layouts, score grids, and timetable blocks.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Common operations</strong>
+                <span>
+                  Addition, scalar multiplication, and sometimes matrix multiplication.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Key implication</strong>
+                <span>
+                  Dimensions matter, so not every pair of matrices can be combined.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked example</h3>
+              <p>
+                A seating grid for two rows and three columns can be written as
+                this matrix:
+              </p>
+              <pre><code>[ [A1, A2, A3],
+  [B1, B2, B3] ]</code></pre>
+              <p>
+                The element in row 2, column 3 is <code>B3</code>. In a program
+                using zero-based indexes, that same position would often be
+                accessed with <code>seats[1][2]</code>.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Matrix operations you should recognise</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Operation</th>
+                      <th>Rule</th>
+                      <th>Exam point</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Addition</td>
+                      <td>Both matrices must have the same dimensions.</td>
+                      <td>Combine matching positions element by element.</td>
+                    </tr>
+                    <tr>
+                      <td>Scalar multiplication</td>
+                      <td>Multiply every element by the same number.</td>
+                      <td>Shape stays the same, but values change.</td>
+                    </tr>
+                    <tr>
+                      <td>Matrix multiplication</td>
+                      <td>The number of columns in the first matrix must match the number of rows in the second.</td>
+                      <td>Do not treat this like simple position-by-position multiplication.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <section
+            id="arrays"
+            class="lesson-section lesson-section--arrays panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Array Storage</p>
+            <h2>Arrays let programs store matrix values with indexes</h2>
+            <p class="lesson-section-copy">
+              In computing, a matrix is often stored using arrays. A
+              one-dimensional array uses one index, while a two-dimensional
+              array uses a row index and a column index. That makes it easier
+              for software to retrieve a chosen element directly.
+            </p>
+
+            <div class="example-strip" aria-label="Array storage features">
+              <span class="example-chip"><strong>1D array</strong> one position number</span>
+              <span class="example-chip"><strong>2D array</strong> row index plus column index</span>
+              <span class="example-chip"><strong>Direct access</strong> jump to a chosen position quickly</span>
+            </div>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>Software view</h3>
+                <p>
+                  Programs can use syntax such as <code>scores[2][4]</code> to
+                  reach one exact value in a table.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Hardware link</h3>
+                <p>
+                  Indexed array access supports predictable addressing rather
+                  than scanning every value one by one.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Next step</h3>
+                <p>
+                  The deeper memory layout rules for multi-dimensional arrays
+                  come next when you study memory order.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked storage example</h3>
+              <p>
+                A program storing points from two teams across three rounds
+                could use this two-dimensional array:
+              </p>
+              <pre><code>points = [
+  [12, 9, 15],
+  [10, 14, 11]
+]</code></pre>
+              <p>
+                With zero-based indexing, <code>points[1][0]</code> means the
+                first score in the second row. That is why a good answer links
+                row and column positions to indexed storage.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Relationship in one sentence</h3>
+              <p>
+                A matrix is the logical grid of values, while a two-dimensional
+                array is one common way a program stores that grid so each
+                element can be accessed by index.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section lesson-section--compare panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Comparison</p>
+            <h2>Link matrix language to array storage</h2>
+            <p class="lesson-section-copy">
+              Strong Unit 2 answers often use both mathematical language and
+              computer systems language. You may need to describe the matrix as
+              a grid, then explain how software stores and accesses it.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Idea</th>
+                    <th>Matrix view</th>
+                    <th>Array view</th>
+                    <th>Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Position</td>
+                    <td>Row and column</td>
+                    <td>Indexes such as <code>[r][c]</code></td>
+                    <td>Lets the program identify one exact element.</td>
+                  </tr>
+                  <tr>
+                    <td>Shape</td>
+                    <td>Dimensions of the matrix</td>
+                    <td>Number of rows and values in each row</td>
+                    <td>Controls which operations are valid.</td>
+                  </tr>
+                  <tr>
+                    <td>Single value</td>
+                    <td>An element</td>
+                    <td>An indexed array entry</td>
+                    <td>Supports direct retrieval without checking every value.</td>
+                  </tr>
+                  <tr>
+                    <td>Combining data</td>
+                    <td>Addition or multiplication rules</td>
+                    <td>Loops or calculations over matching positions</td>
+                    <td>Wrong dimensions lead to incorrect results.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Use matrix language when...</h3>
+                <p>
+                  The question focuses on rows, columns, dimensions, or
+                  mathematical operations.
+                </p>
+              </article>
+              <article class="lesson-card">
+                <h3>Use array language when...</h3>
+                <p>
+                  The question focuses on storage, indexed access, or how the
+                  program retrieves a chosen value.
+                </p>
+              </article>
+              <article class="lesson-card">
+                <h3>Exam reminder</h3>
+                <p>
+                  The strongest answers connect both views instead of treating
+                  the topic as maths only or programming only.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with matrices and arrays</h2>
+            <p class="lesson-section-copy">
+              Most errors come from losing track of positions or using the
+              wrong rule for an operation. These are the traps written questions
+              often exploit.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Mixing up row and column positions</h3>
+                <p>
+                  Students sometimes name the correct value type but put it in
+                  the wrong place because they reverse the coordinates.
+                </p>
+                <ul class="trap-list">
+                  <li>Row is the horizontal line of values.</li>
+                  <li>Column is the vertical line of values.</li>
+                  <li>Programming indexes often start at 0, not 1.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> State clearly whether you are using
+                  matrix positions or zero-based array indexes.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Ignoring dimension rules</h3>
+                <p>
+                  Some answers try to add or compare matrices without checking
+                  whether they have matching dimensions.
+                </p>
+                <ul class="trap-list">
+                  <li>Addition needs the same number of rows and columns.</li>
+                  <li>Matching positions must represent equivalent data points.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention the shape of the matrix before
+                  explaining the operation.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Treating matrix multiplication like addition</h3>
+                <p>
+                  Addition works element by element, but matrix multiplication
+                  follows a different rule and depends on inner dimensions.
+                </p>
+                <ul class="trap-list">
+                  <li>Do not multiply only the matching positions.</li>
+                  <li>The first matrix columns must match the second matrix rows.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> If the question mentions multiplication,
+                  check the rule before describing the result.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="a"
+                data-success="Correct. A matrix is a grid of values arranged in rows and columns."
+                data-feedback="A matrix is usually defined by its rows, columns, and elements."
+              >
+                <legend>1. Which description best matches a matrix?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>A rectangular grid of values arranged in rows and columns</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>A structure that always removes the newest item first</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>A linked list of values that changes size automatically</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="b"
+                data-success="Correct. In zero-based indexing, [1][2] means second row, third column."
+                data-feedback="Array indexes usually start at 0, so [1][2] refers to the second row and third column."
+              >
+                <legend>
+                  2. In a zero-based two-dimensional array, what does
+                  <code>grid[1][2]</code> mean?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>First row, second column</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>Second row, third column</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>Third row, second column</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Matrix addition needs matrices with the same dimensions."
+                data-feedback="When adding matrices, each element must line up with a matching position in a matrix of the same size."
+              >
+                <legend>3. What rule must be true for matrix addition?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>Both matrices must contain the same values</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>Both matrices must have prime-number dimensions</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>Both matrices must have the same dimensions</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="a"
+                data-success="Correct. Arrays help programs reach a chosen matrix element directly by index."
+                data-feedback="The main software benefit is indexed access to a chosen row and column position."
+              >
+                <legend>4. Why are arrays useful for storing matrix data?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>They let software access a chosen position by index</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>They remove the need for rows and columns</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>They make every matrix multiplication valid</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="c"
+                data-success="Correct. The strongest explanation links the matrix layout to indexed software storage."
+                data-feedback="A strong Unit 2 answer connects rows and columns, indexed access, and why the structure suits the task."
+              >
+                <legend>5. Which exam explanation is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>A matrix is just lots of numbers in a box</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>An array stores data, so it is always the best choice</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>A matrix is a row-and-column grid, and a 2D array stores each element so software can reach a chosen position directly</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why a two-dimensional array is a suitable way to store
+                  seat occupancy for a theatre with 6 rows and 10 seats in each
+                  row.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer links the grid layout to indexed access in
+                      software.
+                    </p>
+                    <ul class="exam-points">
+                      <li>The seating plan has a natural row-and-column structure.</li>
+                      <li>Each seat can be stored as one element in a two-dimensional array.</li>
+                      <li>The program can access a chosen seat directly using row and column indexes.</li>
+                      <li>This keeps the data organised in the same layout as the real seating grid.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">5 marks</span>
+                  <span class="exam-pill">Explain and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A school records weekly points for two classes in matrices of
+                  the same size, with one row per student and one column per
+                  week. Explain how the program could combine the matrices and
+                  why the dimensions must match.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Explain the rule clearly and justify why matching dimensions matter."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers explain both the matrix rule and the data
+                      meaning behind it.
+                    </p>
+                    <ul class="exam-points">
+                      <li>The program can add the matrices element by element.</li>
+                      <li>Each position must represent the same student and the same week in both matrices.</li>
+                      <li>If the dimensions match, every value has a corresponding value to combine with.</li>
+                      <li>The result is another matrix with the same dimensions.</li>
+                      <li>If dimensions do not match, some positions will not line up correctly so direct addition is invalid.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Matrix</dt>
+                <dd>A grid of values arranged in rows and columns.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Element</dt>
+                <dd>One individual value inside a matrix.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Dimension</dt>
+                <dd>The size of a matrix, described by its rows and columns.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Two-dimensional array</dt>
+                <dd>A structure that stores data using a row index and a column index.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Think in positions</h2>
+            <ul class="memory-list">
+              <li>A matrix is the grid itself.</li>
+              <li>A two-dimensional array is one storage method for that grid.</li>
+              <li>Dimension rules decide whether an operation is valid.</li>
+            </ul>
+          </section>
+
+          <section class="lesson-rail-card panel">
+            <p class="eyebrow">Sponsored Space</p>
+            <h2>Sidebar ad slot</h2>
+            <p>
+              This rail still leaves room for a future advert or promoted
+              resource without cutting into the lesson flow.
+            </p>
+            <div
+              class="ad-placeholder ad-placeholder-vertical"
+              aria-label="Future vertical advertisement space"
+            >
+              <strong>Sidebar ad slot</strong>
+              <span>Reserved for a future desktop placement.</span>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

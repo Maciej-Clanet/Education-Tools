@@ -121,8 +121,8 @@ here as they are completed.
 - [x] Arrays, lists, and data types
 
 ### D2 Indices and matrices
-- [ ] Matrices and arrays
-- [ ] Multi-dimensional arrays and memory order
+- [x] Matrices and arrays
+- [x] Multi-dimensional arrays and memory order
 
 ## E How data is transmitted by computer systems
 

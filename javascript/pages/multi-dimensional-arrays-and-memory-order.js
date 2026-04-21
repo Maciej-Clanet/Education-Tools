@@ -1,7 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
 const lessonConfig = {
-  lessonId: "arrays-lists-and-data-types",
+  lessonId: "multi-dimensional-arrays-and-memory-order",
   defaultContext: "btec-level-3-unit-2",
   contexts: {
     "btec-level-3-unit-2": {
@@ -9,25 +9,24 @@ const lessonConfig = {
       backHref: "../units/btec-level-3-unit-2.html#section-d",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "Stacks and queues",
-        description: "Previous in D1 Data structures.",
-        status: "Live",
-        href: "../topics/stacks-and-queues.html",
-      },
-      next: {
         title: "Matrices and arrays",
-        description: "Next in D2 Indices and matrices.",
+        description: "Previous in D2 Indices and matrices.",
         status: "Live",
         href: "../topics/matrices-and-arrays.html",
+      },
+      next: {
+        title: "Communication channels and connection methods",
+        description: "Next in E1 Transmitting data. This lesson is still planned.",
+        status: "Planned",
       },
     },
   },
   quiz: {
-    storageKey: "lesson-arrays-lists-and-data-types-quiz",
+    storageKey: "lesson-multi-dimensional-arrays-and-memory-order-quiz",
     passScore: 4,
   },
   examPractice: {
-    storageKey: "lesson-arrays-lists-and-data-types-exam-practice",
+    storageKey: "lesson-multi-dimensional-arrays-and-memory-order-exam-practice",
   },
 }
 

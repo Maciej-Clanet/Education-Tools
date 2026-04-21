@@ -1,7 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
 const lessonConfig = {
-  lessonId: "arrays-lists-and-data-types",
+  lessonId: "matrices-and-arrays",
   defaultContext: "btec-level-3-unit-2",
   contexts: {
     "btec-level-3-unit-2": {
@@ -9,25 +9,25 @@ const lessonConfig = {
       backHref: "../units/btec-level-3-unit-2.html#section-d",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "Stacks and queues",
+        title: "Arrays, lists, and data types",
         description: "Previous in D1 Data structures.",
         status: "Live",
-        href: "../topics/stacks-and-queues.html",
+        href: "../topics/arrays-lists-and-data-types.html",
       },
       next: {
-        title: "Matrices and arrays",
+        title: "Multi-dimensional arrays and memory order",
         description: "Next in D2 Indices and matrices.",
         status: "Live",
-        href: "../topics/matrices-and-arrays.html",
+        href: "../topics/multi-dimensional-arrays-and-memory-order.html",
       },
     },
   },
   quiz: {
-    storageKey: "lesson-arrays-lists-and-data-types-quiz",
+    storageKey: "lesson-matrices-and-arrays-quiz",
     passScore: 4,
   },
   examPractice: {
-    storageKey: "lesson-arrays-lists-and-data-types-exam-practice",
+    storageKey: "lesson-matrices-and-arrays-exam-practice",
   },
 }
 

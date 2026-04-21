@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Multi-dimensional Arrays and Memory Order Revision Lesson | Education
+      Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise single, two-dimensional, and multi-dimensional arrays plus row-major and column-major memory order with examples, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="Multi-dimensional Arrays and Memory Order Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise single, two-dimensional, and multi-dimensional arrays plus row-major and column-major memory order with examples, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/multi-dimensional-arrays-and-memory-order.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Indices and Matrices</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-d"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">
+              Multi-dimensional arrays and memory order
+            </li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Multi-dimensional arrays and memory order</h1>
+            <p class="lesson-hero-text">
+              Learn how arrays extend from one dimension to many, how programs
+              index values inside larger structures, and why row-major and
+              column-major order change the way those values are laid out in
+              memory.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>D2 Indices and matrices</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>1D, 2D, and multi-dimensional arrays plus memory order</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, comparison, exam practice, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-d"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring and teacher slides need JavaScript, but the
+          lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#multi-dimensional" data-section-link>Multi-dimensional arrays</a>
+            <a href="#memory-order" data-section-link>Memory order</a>
+            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Arrays do not stop at a single line of values. They can organise
+              data in tables and larger structures too. Unit 2 also expects you
+              to understand that the logical shape of a multi-dimensional array
+              is not the same thing as the order used to place its values into
+              memory.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define one-dimensional, two-dimensional, and multi-dimensional arrays.</li>
+                  <li>Explain how multiple indexes locate one value.</li>
+                  <li>Describe row-major and column-major order accurately.</li>
+                  <li>Link memory order to how values are laid out in storage.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>1D:</strong> one index, one line of values.</li>
+                  <li><strong>2D:</strong> two indexes, rows and columns.</li>
+                  <li><strong>Multi-dimensional:</strong> more than two indexes.</li>
+                  <li><strong>Memory order:</strong> the sequence values follow in storage.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where they appear</h3>
+                <p>
+                  These structures appear in image data, room layouts, seating
+                  plans, timetables, game worlds, and any system that needs
+                  several categories of position at once.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="multi-dimensional"
+            class="lesson-section lesson-section--multi-dimensional panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Dimensions</p>
+            <h2>Multi-dimensional arrays extend the same indexed idea</h2>
+            <p class="lesson-section-copy">
+              A one-dimensional array uses one position number. A
+              two-dimensional array uses two indexes, usually treated as row
+              and column. A multi-dimensional array uses more than two indexes,
+              so each extra dimension gives the program another layer of
+              structure.
+            </p>
+
+            <div class="example-strip" aria-label="Dimensions of arrays">
+              <span class="example-chip"><strong>1D</strong> scores[4]</span>
+              <span class="example-chip"><strong>2D</strong> seats[2][5]</span>
+              <span class="example-chip"><strong>3D</strong> timetable[week][day][period]</span>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Why it works</strong>
+                <span>
+                  Each index narrows the search until one exact value is chosen.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Typical software use</strong>
+                <span>
+                  2D arrays suit tables and images, while 3D arrays can model
+                  layers such as time, depth, or locations.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Hardware link</strong>
+                <span>
+                  The program still needs a consistent rule to convert multiple
+                  indexes into stored addresses.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Key implication</strong>
+                <span>
+                  More dimensions make the structure richer, but access rules
+                  must still stay precise.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked example</h3>
+              <p>
+                A school timetable could be stored as
+                <code>timetable[week][day][period]</code>. That means one value
+                is chosen by giving three pieces of position information
+                instead of one.
+              </p>
+              <p>
+                If <code>timetable[1][3][2]</code> is <code>"Maths"</code>, the
+                program has reached one exact lesson by moving through week 2,
+                day 4, and period 3 in zero-based indexing.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Single, two-, and multi-dimensional arrays</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Array type</th>
+                      <th>Indexes used</th>
+                      <th>Best mental model</th>
+                      <th>Example use</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>One-dimensional</td>
+                      <td>1</td>
+                      <td>A line or list of values</td>
+                      <td>Exam scores for one class</td>
+                    </tr>
+                    <tr>
+                      <td>Two-dimensional</td>
+                      <td>2</td>
+                      <td>A grid with rows and columns</td>
+                      <td>Seat occupancy or image pixels</td>
+                    </tr>
+                    <tr>
+                      <td>Multi-dimensional</td>
+                      <td>3 or more</td>
+                      <td>A grid with extra layers of position</td>
+                      <td>Timetables, 3D game space, or sensor history</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <section
+            id="memory-order"
+            class="lesson-section lesson-section--memory-order panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Storage Order</p>
+            <h2>Memory order decides how the values are laid out in storage</h2>
+            <p class="lesson-section-copy">
+              A two-dimensional array may look like a neat grid on paper, but
+              memory is still organised as a sequence of locations. Row-major
+              and column-major order are two rules for deciding which values
+              are placed next to each other in that sequence.
+            </p>
+
+            <div class="example-strip" aria-label="Memory order definitions">
+              <span class="example-chip"><strong>Row-major</strong> store a full row, then the next row</span>
+              <span class="example-chip"><strong>Column-major</strong> store a full column, then the next column</span>
+              <span class="example-chip"><strong>Layout</strong> same grid, different storage sequence</span>
+            </div>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>Logical view</h3>
+                <p>
+                  The array still represents the same rows and columns either
+                  way.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Memory view</h3>
+                <p>
+                  The stored order changes which values sit next to each other
+                  in memory.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Why it matters</h3>
+                <p>
+                  Address calculation and access efficiency depend on the
+                  chosen order.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked layout example</h3>
+              <p>Take this 2 x 3 array:</p>
+              <pre><code>[ [11, 12, 13],
+  [21, 22, 23] ]</code></pre>
+              <p>
+                In <strong>row-major order</strong>, memory stores:
+                <code>11, 12, 13, 21, 22, 23</code>
+              </p>
+              <p>
+                In <strong>column-major order</strong>, memory stores:
+                <code>11, 21, 12, 22, 13, 23</code>
+              </p>
+              <p>
+                The logical array has not changed. Only the rule used to place
+                its values into memory has changed.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Row-major versus column-major</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Feature</th>
+                      <th>Row-major order</th>
+                      <th>Column-major order</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Main sequence</td>
+                      <td>Finish one row before starting the next</td>
+                      <td>Finish one column before starting the next</td>
+                    </tr>
+                    <tr>
+                      <td>Values stored together</td>
+                      <td>Horizontal neighbours</td>
+                      <td>Vertical neighbours</td>
+                    </tr>
+                    <tr>
+                      <td>Best exam wording</td>
+                      <td>Stored row by row</td>
+                      <td>Stored column by column</td>
+                    </tr>
+                    <tr>
+                      <td>Main caution</td>
+                      <td>Do not confuse with the on-page grid itself</td>
+                      <td>Do not assume it changes the meaning of the data</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section lesson-section--compare panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Comparison</p>
+            <h2>Separate the shape of the array from the order in memory</h2>
+            <p class="lesson-section-copy">
+              One of the most useful revision habits here is to split the topic
+              into two questions: how many indexes identify the value, and in
+              what order are those values stored in memory?
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Idea</th>
+                    <th>What it describes</th>
+                    <th>Example wording</th>
+                    <th>Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Dimensions</td>
+                    <td>The number of indexes needed</td>
+                    <td>1D, 2D, or 3D array</td>
+                    <td>Shows the structure of the data.</td>
+                  </tr>
+                  <tr>
+                    <td>Indexes</td>
+                    <td>The chosen position inside that structure</td>
+                    <td><code>grid[2][4]</code></td>
+                    <td>Lets the program retrieve one exact value.</td>
+                  </tr>
+                  <tr>
+                    <td>Memory order</td>
+                    <td>The sequence used in storage</td>
+                    <td>Row-major or column-major</td>
+                    <td>Changes adjacency in memory and address rules.</td>
+                  </tr>
+                  <tr>
+                    <td>Logical meaning</td>
+                    <td>What the data represents in the real problem</td>
+                    <td>Seat map, timetable, or image</td>
+                    <td>Keeps the explanation tied to the scenario.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Talk about dimensions when...</h3>
+                <p>
+                  The question asks how the data is organised or how many
+                  categories of position are needed.
+                </p>
+              </article>
+              <article class="lesson-card">
+                <h3>Talk about memory order when...</h3>
+                <p>
+                  The question asks how the values are laid out internally or
+                  which elements are stored next to each other.
+                </p>
+              </article>
+              <article class="lesson-card">
+                <h3>Exam reminder</h3>
+                <p>
+                  A 2D array can use either row-major or column-major order, so
+                  the number of dimensions and the memory order are not the same
+                  thing.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with multi-dimensional arrays</h2>
+            <p class="lesson-section-copy">
+              These questions often catch learners who know the vocabulary but
+              blur together structure, indexing, and storage order.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Confusing dimensions with memory order</h3>
+                <p>
+                  Some answers say that a 2D array is row-major by definition,
+                  which is not correct.
+                </p>
+                <ul class="trap-list">
+                  <li>Dimensions describe the shape of the array.</li>
+                  <li>Memory order describes how that shape is stored.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Explain the structure first, then the
+                  storage rule.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Losing track of zero-based indexing</h3>
+                <p>
+                  Students sometimes name the correct row or column but shift
+                  the answer by one because they forget index 0.
+                </p>
+                <ul class="trap-list">
+                  <li><code>[0][0]</code> is the first position, not the second.</li>
+                  <li>More dimensions mean more chances to slip by one.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> If the question uses programming
+                  notation, count from 0 unless told otherwise.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Assuming storage order changes the logical grid</h3>
+                <p>
+                  Row-major and column-major order change layout in memory, not
+                  what the array represents to the program.
+                </p>
+                <ul class="trap-list">
+                  <li>The same element still exists in the same logical position.</li>
+                  <li>The difference is which values sit next to it in memory.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use the phrase "stored in memory" when
+                  you explain row-major or column-major order.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. A multi-dimensional array uses more than two indexes."
+                data-feedback="A multi-dimensional array extends beyond one or two indexes."
+              >
+                <legend>1. What best describes a multi-dimensional array?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>An array that can only store text values</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>An array that uses more than two indexes</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>An array that must be stored column by column</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. A timetable with week, day, and period needs three indexes."
+                data-feedback="Week, day, and period describe three layers of position, so a 3D array fits."
+              >
+                <legend>
+                  2. Which structure best suits
+                  <code>timetable[week][day][period]</code>?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>A three-dimensional array</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>A queue</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>A one-dimensional array</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Row-major order stores values row by row."
+                data-feedback="Row-major order completes one row before moving to the next row."
+              >
+                <legend>3. What does row-major order mean?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>Values are always shown in alphabetical order</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>One full column is stored before the next column</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>One full row is stored before the next row</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Column-major order stores values column by column."
+                data-feedback="Column-major order means vertical neighbours are stored together first."
+              >
+                <legend>4. Which values sit next to each other first in column-major order?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>Values from the same row</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>Values from the same column</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>Only the diagonal values</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. Strong answers separate dimensions, indexes, and memory order."
+                data-feedback="The best explanation makes it clear that shape and memory layout are related but different."
+              >
+                <legend>5. Which explanation is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>A 2D array has two indexes, while row-major order describes how its values are stored row by row in memory</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>A 2D array is row-major because rows always come first</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Column-major order means the array becomes one-dimensional</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why a three-dimensional array would be suitable for
+                  storing room bookings for different weeks, days, and lesson
+                  periods in a college timetable system.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer links each dimension to a real category in
+                      the scenario.
+                    </p>
+                    <ul class="exam-points">
+                      <li>The booking system needs separate positions for week, day, and lesson period.</li>
+                      <li>A three-dimensional array provides three indexes to represent those categories.</li>
+                      <li>The program can retrieve one booking directly by supplying all three indexes.</li>
+                      <li>This keeps the structure organised and matches the timetable layout logically.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">5 marks</span>
+                  <span class="exam-pill">Describe and compare</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A 2 x 3 array stores values
+                  <code>[ [4, 5, 6], [7, 8, 9] ]</code>. Describe the order of
+                  values in row-major memory and in column-major memory, then
+                  explain why the logical grid is still the same in both cases.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Describe both storage orders clearly and compare them."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers give both sequences and then explain the
+                      difference between storage layout and logical meaning.
+                    </p>
+                    <ul class="exam-points">
+                      <li>Row-major order stores: 4, 5, 6, 7, 8, 9.</li>
+                      <li>Column-major order stores: 4, 7, 5, 8, 6, 9.</li>
+                      <li>Row-major stores one full row before the next row.</li>
+                      <li>Column-major stores one full column before the next column.</li>
+                      <li>The array still represents the same 2 x 3 grid logically, even though the memory sequence differs.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Multi-dimensional array</dt>
+                <dd>An array that uses more than two indexes to locate a value.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Row-major order</dt>
+                <dd>A storage rule that places values into memory row by row.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Column-major order</dt>
+                <dd>A storage rule that places values into memory column by column.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Index</dt>
+                <dd>The position number used to identify a value inside an array.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Ask two separate questions</h2>
+            <ul class="memory-list">
+              <li>How many indexes are needed to locate the value?</li>
+              <li>How are the values stored in memory?</li>
+              <li>Those two answers are related, but they are not identical.</li>
+            </ul>
+          </section>
+
+          <section class="lesson-rail-card panel">
+            <p class="eyebrow">Sponsored Space</p>
+            <h2>Sidebar ad slot</h2>
+            <p>
+              This rail still leaves room for a future advert or promoted
+              resource without cutting into the lesson flow.
+            </p>
+            <div
+              class="ad-placeholder ad-placeholder-vertical"
+              aria-label="Future vertical advertisement space"
+            >
+              <strong>Sidebar ad slot</strong>
+              <span>Reserved for a future desktop placement.</span>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>
