@@ -399,7 +399,7 @@ function initTeacherMode(config) {
   const nextButton = document.querySelector("[data-action='next-slide']")
   const exitButton = document.querySelector("[data-action='exit-teacher-mode']")
 
-  if (!main || sections.length === 0 || !toggleButton) {
+  if (!main || sections.length === 0 || !toggleButton || !controls) {
     return
   }
 
@@ -407,6 +407,674 @@ function initTeacherMode(config) {
   let isTeacherMode = Boolean(readStorage(storageKey, false))
   let activeSlideIndex = 0
   let pointerStart = null
+  let updateTeacherToolsUI = () => {}
+  let resetTeacherTools = () => {}
+
+  const teacherToolsState = {
+    shelfOpen: false,
+    activeMode: null,
+    highlightColor: "yellow",
+    highlightHistory: [],
+    blankScreen: false,
+    spotlightX: 50,
+    spotlightY: 34,
+    spotlightSize: 210,
+  }
+
+  function getTeacherIcon(name) {
+    const icons = {
+      tools: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <path d="M4 7h16" />
+          <path d="M8 12h12" />
+          <path d="M12 17h8" />
+          <circle cx="6" cy="7" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="10" cy="12" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="14" cy="17" r="1.5" fill="currentColor" stroke="none" />
+        </svg>
+      `,
+      highlight: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <path d="M6 18h6" />
+          <path d="M12 6l6 6" />
+          <path d="M8 16l8-8 2 2-8 8H8z" />
+        </svg>
+      `,
+      spotlight: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5" />
+          <path d="M12 3v3" />
+          <path d="M12 18v3" />
+          <path d="M3 12h3" />
+          <path d="M18 12h3" />
+        </svg>
+      `,
+      blank: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <rect x="4" y="6" width="16" height="12" rx="2" />
+          <path d="M8 16l8-8" />
+        </svg>
+      `,
+      shortcuts: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <rect x="3.5" y="6.5" width="17" height="11" rx="2.5" />
+          <path d="M7 11h1" />
+          <path d="M10 11h1" />
+          <path d="M13 11h1" />
+          <path d="M7 14h4" />
+          <path d="M13 14h4" />
+        </svg>
+      `,
+      undo: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <path d="M9 8l-4 4 4 4" />
+          <path d="M5 12h9a5 5 0 010 10h-2" />
+        </svg>
+      `,
+      clearSlide: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <rect x="6" y="6" width="12" height="12" rx="2" />
+          <path d="M9 9l6 6" />
+          <path d="M15 9l-6 6" />
+        </svg>
+      `,
+      clearAll: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <path d="M8 8h8a2 2 0 012 2v8" />
+          <rect x="4" y="4" width="12" height="12" rx="2" />
+          <path d="M7 7l6 6" />
+          <path d="M13 7l-6 6" />
+        </svg>
+      `,
+    }
+
+    return icons[name] ?? ""
+  }
+
+  const controlsBar = document.createElement("div")
+  controlsBar.className = "teacher-controls__bar"
+
+  while (controls.firstChild) {
+    controlsBar.append(controls.firstChild)
+  }
+
+  controls.append(controlsBar)
+
+  const toolsDock = document.createElement("div")
+  toolsDock.className = "teacher-tools-dock"
+  toolsDock.hidden = true
+  toolsDock.innerHTML = `
+    <section
+      class="teacher-tools-shelf"
+      data-role="teacher-tools-shelf"
+      aria-label="Presentation tools"
+      hidden
+    >
+      <div class="teacher-tool-item" data-tool="shortcuts">
+        <button
+          type="button"
+          class="teacher-tool-button teacher-tool-button--icon"
+          data-action="show-shortcuts"
+          aria-label="Keyboard shortcuts"
+          title="Keyboard shortcuts (?)"
+        >
+          ${getTeacherIcon("shortcuts")}
+          <span class="sr-only">Keyboard shortcuts</span>
+        </button>
+        <div class="teacher-tool-popover teacher-tool-popover--shortcuts" role="note">
+          <div class="teacher-shortcut-list">
+            <span class="teacher-shortcut"><kbd>&larr; &rarr;</kbd><span>Slides</span></span>
+            <span class="teacher-shortcut"><kbd>Esc</kbd><span>Exit slides</span></span>
+            <span class="teacher-shortcut"><kbd>H</kbd><span>Highlight</span></span>
+            <span class="teacher-shortcut"><kbd>S</kbd><span>Spotlight</span></span>
+            <span class="teacher-shortcut"><kbd>B</kbd><span>Blank screen</span></span>
+            <span class="teacher-shortcut"><kbd>T</kbd><span>Toggle tools</span></span>
+            <span class="teacher-shortcut"><kbd>U</kbd><span>Undo</span></span>
+            <span class="teacher-shortcut"><kbd>C</kbd><span>Clear slide</span></span>
+            <span class="teacher-shortcut"><kbd>1 2</kbd><span>Highlight colour</span></span>
+            <span class="teacher-shortcut"><kbd>[ ]</kbd><span>Spotlight size</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="teacher-tool-item" data-tool="blank">
+        <button
+          type="button"
+          class="teacher-tool-button teacher-tool-button--icon"
+          data-action="toggle-blank-screen"
+          aria-label="Blank screen"
+          title="Blank screen (B)"
+        >
+          ${getTeacherIcon("blank")}
+          <span class="sr-only">Blank screen</span>
+        </button>
+      </div>
+      <div class="teacher-tool-item" data-tool="spotlight">
+        <button
+          type="button"
+          class="teacher-tool-button teacher-tool-button--icon"
+          data-action="toggle-spotlight"
+          aria-label="Spotlight"
+          title="Spotlight (S)"
+        >
+          ${getTeacherIcon("spotlight")}
+          <span class="sr-only">Spotlight</span>
+        </button>
+        <div class="teacher-tool-popover teacher-tool-popover--spotlight">
+          <label class="teacher-tool-slider" for="teacher-spotlight-size">
+            <span class="sr-only">Spotlight size</span>
+            <input
+              id="teacher-spotlight-size"
+              type="range"
+              min="130"
+              max="320"
+              step="10"
+              value="210"
+              data-action="spotlight-size"
+              title="Spotlight size ([ and ])"
+            />
+            <span
+              class="teacher-tool-slider__value"
+              data-role="spotlight-size-value"
+            >
+              210
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="teacher-tool-item" data-tool="highlight">
+        <button
+          type="button"
+          class="teacher-tool-button teacher-tool-button--icon"
+          data-action="toggle-highlight"
+          aria-label="Highlight text"
+          title="Highlight text (H)"
+        >
+          ${getTeacherIcon("highlight")}
+          <span class="sr-only">Highlight text</span>
+        </button>
+        <div class="teacher-tool-popover teacher-tool-popover--highlight">
+          <div class="teacher-tool-popover-row">
+            <button
+              type="button"
+              class="teacher-tool-swatch"
+              data-action="set-highlight-color"
+              data-highlight-color="yellow"
+              aria-label="Yellow highlight"
+              title="Yellow highlight (1)"
+            >
+              <span class="teacher-tool-swatch__dot teacher-tool-swatch__dot--yellow"></span>
+            </button>
+            <button
+              type="button"
+              class="teacher-tool-swatch"
+              data-action="set-highlight-color"
+              data-highlight-color="mint"
+              aria-label="Mint highlight"
+              title="Mint highlight (2)"
+            >
+              <span class="teacher-tool-swatch__dot teacher-tool-swatch__dot--mint"></span>
+            </button>
+          </div>
+          <div class="teacher-tool-popover-row">
+            <button
+              type="button"
+              class="teacher-tool-mini"
+              data-action="undo-highlight"
+              aria-label="Undo highlight"
+              title="Undo highlight (U)"
+            >
+              ${getTeacherIcon("undo")}
+              <span class="sr-only">Undo highlight</span>
+            </button>
+            <button
+              type="button"
+              class="teacher-tool-mini"
+              data-action="clear-slide-highlights"
+              aria-label="Clear current slide highlights"
+              title="Clear current slide highlights (C)"
+            >
+              ${getTeacherIcon("clearSlide")}
+              <span class="sr-only">Clear current slide highlights</span>
+            </button>
+            <button
+              type="button"
+              class="teacher-tool-mini"
+              data-action="clear-all-highlights"
+              aria-label="Clear all highlights"
+              title="Clear all highlights (Shift+C)"
+            >
+              ${getTeacherIcon("clearAll")}
+              <span class="sr-only">Clear all highlights</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <button
+      type="button"
+      class="teacher-tool-toggle"
+      data-action="toggle-tools-dock"
+      aria-expanded="false"
+      aria-label="Toggle presentation tools"
+      title="Tools (T)"
+    >
+      ${getTeacherIcon("tools")}
+      <span class="sr-only">Toggle presentation tools</span>
+    </button>
+  `
+  document.body.append(toolsDock)
+
+  const shelf = toolsDock.querySelector("[data-role='teacher-tools-shelf']")
+  const toolsToggleButton = toolsDock.querySelector(
+    "[data-action='toggle-tools-dock']"
+  )
+  const shortcutsButton = toolsDock.querySelector(
+    "[data-action='show-shortcuts']"
+  )
+  const highlightItem = toolsDock.querySelector("[data-tool='highlight']")
+  const spotlightItem = toolsDock.querySelector("[data-tool='spotlight']")
+  const blankItem = toolsDock.querySelector("[data-tool='blank']")
+  const highlightToggleButton = toolsDock.querySelector(
+    "[data-action='toggle-highlight']"
+  )
+  const highlightColorButtons = Array.from(
+    toolsDock.querySelectorAll("[data-action='set-highlight-color']")
+  )
+  const undoHighlightButton = toolsDock.querySelector(
+    "[data-action='undo-highlight']"
+  )
+  const clearSlideHighlightsButton = toolsDock.querySelector(
+    "[data-action='clear-slide-highlights']"
+  )
+  const clearAllHighlightsButton = toolsDock.querySelector(
+    "[data-action='clear-all-highlights']"
+  )
+  const spotlightToggleButton = toolsDock.querySelector(
+    "[data-action='toggle-spotlight']"
+  )
+  const spotlightSizeInput = toolsDock.querySelector(
+    "[data-action='spotlight-size']"
+  )
+  const spotlightSizeValue = toolsDock.querySelector(
+    "[data-role='spotlight-size-value']"
+  )
+  const blankScreenButton = toolsDock.querySelector(
+    "[data-action='toggle-blank-screen']"
+  )
+
+  const overlay = document.createElement("div")
+  overlay.className = "teacher-presentation-overlay"
+  overlay.setAttribute("aria-hidden", "true")
+  overlay.hidden = true
+  document.body.append(overlay)
+
+  previousButton?.setAttribute("title", "Previous slide (Arrow Left or Page Up)")
+  nextButton?.setAttribute(
+    "title",
+    "Next slide (Arrow Right, Space, or Page Down)"
+  )
+  exitButton?.setAttribute("title", "Exit slides (Escape)")
+
+  function getActiveSlide() {
+    return sections[activeSlideIndex] ?? sections[0] ?? null
+  }
+
+  function clearTextSelection() {
+    const selection = window.getSelection()
+
+    selection?.removeAllRanges()
+  }
+
+  function getHighlightLayer(slide) {
+    if (!slide) {
+      return null
+    }
+
+    let layer = slide.querySelector("[data-role='teacher-highlight-layer']")
+
+    if (!layer) {
+      layer = document.createElement("div")
+      layer.className = "teacher-highlight-layer"
+      layer.dataset.role = "teacher-highlight-layer"
+      slide.append(layer)
+    }
+
+    layer.style.height = `${Math.ceil(slide.scrollHeight)}px`
+
+    return layer
+  }
+
+  function pruneEmptyHighlightLayers() {
+    sections.forEach((slide) => {
+      const layer = slide.querySelector("[data-role='teacher-highlight-layer']")
+
+      if (!layer) {
+        return
+      }
+
+      layer.style.height = `${Math.ceil(slide.scrollHeight)}px`
+
+      if (layer.childElementCount === 0) {
+        layer.remove()
+      }
+    })
+  }
+
+  function pruneHighlightHistory() {
+    teacherToolsState.highlightHistory = teacherToolsState.highlightHistory.filter(
+      (entry) => entry.elements.some((element) => element.isConnected)
+    )
+  }
+
+  function removeHighlightEntry(entry) {
+    entry?.elements?.forEach((element) => {
+      element.remove()
+    })
+  }
+
+  function slideHasHighlights(slide = getActiveSlide()) {
+    return Boolean(slide?.querySelector(".teacher-highlight"))
+  }
+
+  function applySelectionHighlight() {
+    if (!isTeacherMode || teacherToolsState.activeMode !== "highlight") {
+      return false
+    }
+
+    const selection = window.getSelection()
+
+    if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
+      return false
+    }
+
+    const range = selection.getRangeAt(0)
+    const activeSlide = getActiveSlide()
+
+    if (
+      !activeSlide ||
+      !activeSlide.contains(range.commonAncestorContainer) ||
+      !activeSlide.contains(selection.anchorNode) ||
+      !activeSlide.contains(selection.focusNode)
+    ) {
+      return false
+    }
+
+    const slideRect = activeSlide.getBoundingClientRect()
+    const layer = getHighlightLayer(activeSlide)
+    const highlightRects = Array.from(range.getClientRects()).filter(
+      (rect) => rect.width > 4 && rect.height > 6
+    )
+
+    if (!layer || highlightRects.length === 0) {
+      clearTextSelection()
+      pruneEmptyHighlightLayers()
+      return false
+    }
+
+    const elements = highlightRects.map((rect) => {
+      const element = document.createElement("div")
+      element.className = `teacher-highlight teacher-highlight--${teacherToolsState.highlightColor}`
+      element.style.left = `${Math.max(
+        rect.left - slideRect.left - 2,
+        0
+      )}px`
+      element.style.top = `${Math.max(
+        rect.top - slideRect.top + activeSlide.scrollTop - 1,
+        0
+      )}px`
+      element.style.width = `${rect.width + 4}px`
+      element.style.height = `${rect.height + 2}px`
+      layer.append(element)
+      return element
+    })
+
+    teacherToolsState.highlightHistory.push({
+      slide: activeSlide,
+      elements,
+    })
+
+    clearTextSelection()
+    updateTeacherToolsUI()
+
+    return true
+  }
+
+  function undoLastHighlight() {
+    pruneHighlightHistory()
+
+    const lastEntry = teacherToolsState.highlightHistory.pop()
+
+    if (!lastEntry) {
+      return
+    }
+
+    removeHighlightEntry(lastEntry)
+    pruneEmptyHighlightLayers()
+    updateTeacherToolsUI()
+  }
+
+  function clearSlideHighlights(slide = getActiveSlide()) {
+    if (!slide) {
+      return
+    }
+
+    teacherToolsState.highlightHistory.forEach((entry) => {
+      if (entry.slide === slide) {
+        removeHighlightEntry(entry)
+      }
+    })
+
+    teacherToolsState.highlightHistory = teacherToolsState.highlightHistory.filter(
+      (entry) => entry.slide !== slide
+    )
+
+    slide
+      .querySelectorAll(".teacher-highlight")
+      .forEach((element) => element.remove())
+
+    pruneEmptyHighlightLayers()
+    updateTeacherToolsUI()
+  }
+
+  function clearAllHighlights() {
+    teacherToolsState.highlightHistory.forEach(removeHighlightEntry)
+    teacherToolsState.highlightHistory = []
+
+    sections.forEach((slide) => {
+      slide
+        .querySelectorAll(".teacher-highlight, [data-role='teacher-highlight-layer']")
+        .forEach((element) => element.remove())
+    })
+
+    updateTeacherToolsUI()
+  }
+
+  function updatePresentationOverlay() {
+    const showOverlay =
+      isTeacherMode &&
+      (teacherToolsState.blankScreen ||
+        teacherToolsState.activeMode === "spotlight")
+
+    overlay.hidden = !showOverlay
+    overlay.classList.toggle("is-visible", showOverlay)
+    overlay.classList.toggle("is-blank", teacherToolsState.blankScreen)
+    overlay.classList.toggle(
+      "is-spotlight",
+      showOverlay &&
+        teacherToolsState.activeMode === "spotlight" &&
+        !teacherToolsState.blankScreen
+    )
+    overlay.style.setProperty(
+      "--teacher-spotlight-x",
+      `${teacherToolsState.spotlightX}%`
+    )
+    overlay.style.setProperty(
+      "--teacher-spotlight-y",
+      `${teacherToolsState.spotlightY}%`
+    )
+    overlay.style.setProperty(
+      "--teacher-spotlight-size",
+      `${teacherToolsState.spotlightSize}px`
+    )
+  }
+
+  function setTeacherToolsOpen(nextOpen) {
+    teacherToolsState.shelfOpen = Boolean(nextOpen) && isTeacherMode
+    toolsDock.classList.toggle("teacher-tools-dock--open", teacherToolsState.shelfOpen)
+    toolsToggleButton?.setAttribute(
+      "aria-expanded",
+      String(teacherToolsState.shelfOpen)
+    )
+    shelf.hidden = !teacherToolsState.shelfOpen
+  }
+
+  function setActiveTeacherTool(nextMode) {
+    teacherToolsState.activeMode =
+      teacherToolsState.activeMode === nextMode ? null : nextMode
+    updateTeacherToolsUI()
+    updatePresentationOverlay()
+  }
+
+  function setSpotlightPosition(clientX, clientY) {
+    teacherToolsState.spotlightX = clamp(
+      (clientX / Math.max(window.innerWidth, 1)) * 100,
+      8,
+      92
+    )
+    teacherToolsState.spotlightY = clamp(
+      (clientY / Math.max(window.innerHeight, 1)) * 100,
+      10,
+      90
+    )
+
+    updatePresentationOverlay()
+  }
+
+  function setSpotlightSize(nextSize) {
+    teacherToolsState.spotlightSize = clamp(nextSize, 130, 320)
+    updateTeacherToolsUI()
+    updatePresentationOverlay()
+  }
+
+  updateTeacherToolsUI = () => {
+    pruneHighlightHistory()
+    pruneEmptyHighlightLayers()
+
+    const hasHighlights = teacherToolsState.highlightHistory.length > 0
+    const hasActiveTool =
+      teacherToolsState.blankScreen ||
+      teacherToolsState.activeMode !== null ||
+      hasHighlights
+
+    toolsToggleButton?.classList.toggle("has-active-tool", hasActiveTool)
+    highlightItem?.classList.toggle(
+      "is-active",
+      teacherToolsState.activeMode === "highlight"
+    )
+    spotlightItem?.classList.toggle(
+      "is-active",
+      teacherToolsState.activeMode === "spotlight"
+    )
+    blankItem?.classList.toggle("is-active", teacherToolsState.blankScreen)
+    highlightToggleButton?.classList.toggle(
+      "is-active",
+      teacherToolsState.activeMode === "highlight"
+    )
+    highlightToggleButton?.setAttribute(
+      "aria-pressed",
+      String(teacherToolsState.activeMode === "highlight")
+    )
+    spotlightToggleButton?.classList.toggle(
+      "is-active",
+      teacherToolsState.activeMode === "spotlight"
+    )
+    spotlightToggleButton?.setAttribute(
+      "aria-pressed",
+      String(teacherToolsState.activeMode === "spotlight")
+    )
+    blankScreenButton?.classList.toggle("is-active", teacherToolsState.blankScreen)
+    blankScreenButton?.setAttribute(
+      "aria-pressed",
+      String(teacherToolsState.blankScreen)
+    )
+    spotlightSizeInput.value = String(teacherToolsState.spotlightSize)
+
+    if (spotlightSizeValue) {
+      spotlightSizeValue.textContent = `${teacherToolsState.spotlightSize}`
+    }
+
+    highlightColorButtons.forEach((button) => {
+      const isActive =
+        button.dataset.highlightColor === teacherToolsState.highlightColor
+      button.classList.toggle("is-active", isActive)
+      button.setAttribute("aria-pressed", String(isActive))
+    })
+
+    undoHighlightButton.disabled = !hasHighlights
+    clearAllHighlightsButton.disabled = !hasHighlights
+    clearSlideHighlightsButton.disabled = !slideHasHighlights()
+  }
+
+  resetTeacherTools = () => {
+    clearAllHighlights()
+    clearTextSelection()
+    teacherToolsState.shelfOpen = false
+    teacherToolsState.activeMode = null
+    teacherToolsState.blankScreen = false
+    updatePresentationOverlay()
+    setTeacherToolsOpen(false)
+    updateTeacherToolsUI()
+  }
+
+  toolsToggleButton?.addEventListener("click", () => {
+    setTeacherToolsOpen(!teacherToolsState.shelfOpen)
+  })
+
+  shortcutsButton?.addEventListener("click", () => {
+    setTeacherToolsOpen(true)
+  })
+
+  highlightToggleButton?.addEventListener("click", () => {
+    setActiveTeacherTool("highlight")
+  })
+
+  highlightColorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      teacherToolsState.highlightColor =
+        button.dataset.highlightColor ?? teacherToolsState.highlightColor
+      teacherToolsState.activeMode = "highlight"
+      updateTeacherToolsUI()
+      updatePresentationOverlay()
+    })
+  })
+
+  undoHighlightButton?.addEventListener("click", () => {
+    undoLastHighlight()
+  })
+
+  clearSlideHighlightsButton?.addEventListener("click", () => {
+    clearSlideHighlights()
+  })
+
+  clearAllHighlightsButton?.addEventListener("click", () => {
+    clearAllHighlights()
+  })
+
+  spotlightToggleButton?.addEventListener("click", () => {
+    setActiveTeacherTool("spotlight")
+  })
+
+  spotlightSizeInput?.addEventListener("input", () => {
+    setSpotlightSize(
+      Number(spotlightSizeInput.value) || teacherToolsState.spotlightSize
+    )
+  })
+
+  blankScreenButton?.addEventListener("click", () => {
+    teacherToolsState.blankScreen = !teacherToolsState.blankScreen
+    updateTeacherToolsUI()
+    updatePresentationOverlay()
+  })
 
   function findNearestSectionIndex() {
     let nearestIndex = 0
@@ -434,6 +1102,10 @@ function initTeacherMode(config) {
       controls.hidden = !isTeacherMode
     }
 
+    if (toolsDock) {
+      toolsDock.hidden = !isTeacherMode
+    }
+
     if (status) {
       status.textContent = `Slide ${activeSlideIndex + 1} of ${sections.length}`
     }
@@ -445,6 +1117,8 @@ function initTeacherMode(config) {
     if (nextButton) {
       nextButton.disabled = activeSlideIndex === sections.length - 1
     }
+
+    updateTeacherToolsUI()
   }
 
   function syncHash() {
@@ -457,6 +1131,8 @@ function initTeacherMode(config) {
 
   function goToSlide(index, behavior = "smooth") {
     activeSlideIndex = clamp(index, 0, sections.length - 1)
+    clearTextSelection()
+    pruneEmptyHighlightLayers()
 
     sections[activeSlideIndex].scrollIntoView({
       behavior,
@@ -470,9 +1146,15 @@ function initTeacherMode(config) {
 
   function setTeacherMode(nextMode) {
     isTeacherMode = nextMode
+
+    if (!isTeacherMode) {
+      resetTeacherTools()
+    }
+
     document.body.classList.toggle("teacher-mode-active", isTeacherMode)
     writeStorage(storageKey, isTeacherMode)
     updateControls()
+    updatePresentationOverlay()
 
     requestAnimationFrame(() => {
       goToSlide(activeSlideIndex, "auto")
@@ -496,6 +1178,8 @@ function initTeacherMode(config) {
       goToSlide(activeSlideIndex, "auto")
     })
   }
+
+  updatePresentationOverlay()
 
   toggleButton.addEventListener("click", () => {
     if (!isTeacherMode) {
@@ -540,11 +1224,37 @@ function initTeacherMode(config) {
       return
     }
 
+    const startedOnInteractive = Boolean(event.target.closest(INTERACTIVE_SELECTOR))
+
+    if (
+      teacherToolsState.activeMode === "spotlight" &&
+      !startedOnInteractive
+    ) {
+      setSpotlightPosition(event.clientX, event.clientY)
+    }
+
     pointerStart = {
       x: event.clientX,
       y: event.clientY,
-      interactive: Boolean(event.target.closest(INTERACTIVE_SELECTOR)),
+      interactive: startedOnInteractive,
+      toolLocked:
+        teacherToolsState.blankScreen ||
+        teacherToolsState.activeMode === "highlight" ||
+        teacherToolsState.activeMode === "spotlight",
     }
+  })
+
+  main.addEventListener("pointermove", (event) => {
+    if (
+      !isTeacherMode ||
+      !pointerStart ||
+      pointerStart.interactive ||
+      teacherToolsState.activeMode !== "spotlight"
+    ) {
+      return
+    }
+
+    setSpotlightPosition(event.clientX, event.clientY)
   })
 
   main.addEventListener("pointerup", (event) => {
@@ -555,9 +1265,24 @@ function initTeacherMode(config) {
     const deltaX = event.clientX - pointerStart.x
     const deltaY = event.clientY - pointerStart.y
     const startedOnInteractive = pointerStart.interactive
+    const toolLocked = pointerStart.toolLocked
     pointerStart = null
 
     if (startedOnInteractive || event.target.closest(INTERACTIVE_SELECTOR)) {
+      return
+    }
+
+    if (teacherToolsState.activeMode === "highlight") {
+      applySelectionHighlight()
+      return
+    }
+
+    if (teacherToolsState.activeMode === "spotlight") {
+      setSpotlightPosition(event.clientX, event.clientY)
+      return
+    }
+
+    if (teacherToolsState.blankScreen || toolLocked) {
       return
     }
 
@@ -575,8 +1300,29 @@ function initTeacherMode(config) {
     pointerStart = null
   })
 
+  window.addEventListener("resize", () => {
+    pruneEmptyHighlightLayers()
+    updatePresentationOverlay()
+  })
+
+  document.addEventListener("pointerdown", (event) => {
+    if (
+      !isTeacherMode ||
+      !teacherToolsState.shelfOpen ||
+      toolsDock.contains(event.target)
+    ) {
+      return
+    }
+
+    setTeacherToolsOpen(false)
+  })
+
   window.addEventListener("keydown", (event) => {
     if (!isTeacherMode) {
+      return
+    }
+
+    if (event.metaKey || event.ctrlKey || event.altKey) {
       return
     }
 
@@ -585,6 +1331,93 @@ function initTeacherMode(config) {
         document.activeElement?.tagName ?? ""
       )
     ) {
+      return
+    }
+
+    const lowerKey = event.key.toLowerCase()
+
+    if (lowerKey === "t") {
+      event.preventDefault()
+      setTeacherToolsOpen(!teacherToolsState.shelfOpen)
+      return
+    }
+
+    if (lowerKey === "h") {
+      event.preventDefault()
+      setTeacherToolsOpen(true)
+      setActiveTeacherTool("highlight")
+      return
+    }
+
+    if (lowerKey === "s") {
+      event.preventDefault()
+      setTeacherToolsOpen(true)
+      setActiveTeacherTool("spotlight")
+      return
+    }
+
+    if (lowerKey === "b") {
+      event.preventDefault()
+      teacherToolsState.blankScreen = !teacherToolsState.blankScreen
+      updateTeacherToolsUI()
+      updatePresentationOverlay()
+      return
+    }
+
+    if (lowerKey === "u") {
+      event.preventDefault()
+      undoLastHighlight()
+      return
+    }
+
+    if (lowerKey === "c") {
+      event.preventDefault()
+
+      if (event.shiftKey) {
+        clearAllHighlights()
+      } else {
+        clearSlideHighlights()
+      }
+
+      return
+    }
+
+    if (event.key === "1") {
+      event.preventDefault()
+      teacherToolsState.highlightColor = "yellow"
+      updateTeacherToolsUI()
+      return
+    }
+
+    if (event.key === "2") {
+      event.preventDefault()
+      teacherToolsState.highlightColor = "mint"
+      updateTeacherToolsUI()
+      return
+    }
+
+    if (
+      teacherToolsState.activeMode === "spotlight" &&
+      ["[", "-", "_"].includes(event.key)
+    ) {
+      event.preventDefault()
+      setSpotlightSize(teacherToolsState.spotlightSize - 10)
+      return
+    }
+
+    if (
+      teacherToolsState.activeMode === "spotlight" &&
+      ["]", "=", "+"].includes(event.key)
+    ) {
+      event.preventDefault()
+      setSpotlightSize(teacherToolsState.spotlightSize + 10)
+      return
+    }
+
+    if (event.key === "?" || (event.key === "/" && event.shiftKey)) {
+      event.preventDefault()
+      setTeacherToolsOpen(true)
+      shortcutsButton?.focus()
       return
     }
 

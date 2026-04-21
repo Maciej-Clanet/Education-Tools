@@ -87,6 +87,10 @@ the browser with `localStorage` where useful.
   a simple speed control.
 - Teacher mode should reuse the same lesson sections as a swipe or tap-friendly
   slide view instead of requiring a separately maintained duplicate slide deck.
+- Teacher slide mode can include a collapsible presentation tools shelf for
+  temporary in-session teaching aids such as highlighting, spotlighting, and
+  blanking the screen, but it should stay compact when those tools are not in
+  use.
 - The current content focus is BTEC Level 3 Computing Unit 2.
 - When the homepage is not filtered by search, it should prioritise real live
   pages. Planned lesson topics can still appear through search, but should not

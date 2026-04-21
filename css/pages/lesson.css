@@ -680,6 +680,10 @@
 .lesson-secondary-action:focus,
 .teacher-toggle:focus,
 .slide-button:focus,
+.teacher-tool-toggle:focus,
+.teacher-tool-button:focus,
+.teacher-tool-mini:focus,
+.teacher-tool-swatch:focus,
 .structure-button:focus,
 .exam-response:focus {
   outline: 3px solid rgba(11, 105, 255, 0.22);
@@ -903,18 +907,257 @@
   position: fixed;
   left: 50%;
   bottom: 1rem;
-  z-index: 20;
+  z-index: 30;
   display: none;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
+  width: auto;
+  max-width: calc(100vw - 10rem);
+  padding: 0.65rem 0.8rem;
   transform: translateX(-50%);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 22px 40px rgba(36, 49, 59, 0.18);
 }
 
 .teacher-controls::before {
   display: none;
+}
+
+.teacher-controls__bar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  white-space: nowrap;
+}
+
+.teacher-tools-dock {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 32;
+  display: grid;
+  justify-items: end;
+  gap: 0.75rem;
+}
+
+.teacher-tools-shelf[hidden] {
+  display: none !important;
+}
+
+.teacher-tools-shelf {
+  display: grid;
+  justify-items: end;
+  gap: 0.65rem;
+}
+
+.teacher-tool-item {
+  position: relative;
+  display: grid;
+  justify-items: end;
+}
+
+.teacher-tool-toggle,
+.teacher-tool-button,
+.teacher-tool-mini,
+.teacher-tool-swatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--page-ink);
+  font: inherit;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.teacher-tool-toggle,
+.teacher-tool-button {
+  width: 3.55rem;
+  height: 3.55rem;
+  padding: 0;
+  border-radius: 999px;
+  box-shadow: 0 16px 28px rgba(36, 49, 59, 0.18);
+}
+
+.teacher-tool-toggle {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(232, 246, 255, 0.94)
+  );
+}
+
+.teacher-tool-mini,
+.teacher-tool-swatch {
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.teacher-tool-toggle:hover,
+.teacher-tool-button:hover,
+.teacher-tool-mini:hover,
+.teacher-tool-swatch:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(36, 49, 59, 0.08);
+}
+
+.teacher-tool-toggle.has-active-tool,
+.teacher-tool-toggle[aria-expanded="true"],
+.teacher-tool-item.is-active > .teacher-tool-button,
+.teacher-tool-button.is-active,
+.teacher-tool-swatch.is-active {
+  background: rgba(232, 246, 255, 0.9);
+  border-color: rgba(31, 135, 125, 0.24);
+}
+
+.teacher-tool-item[data-tool="blank"].is-active > .teacher-tool-button {
+  background: rgba(255, 240, 241, 0.96);
+  border-color: rgba(223, 107, 111, 0.28);
+}
+
+.teacher-tool-button:disabled,
+.teacher-tool-mini:disabled,
+.teacher-tool-swatch:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+  box-shadow: none;
+}
+
+.teacher-tool-icon {
+  width: 1.32rem;
+  height: 1.32rem;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.teacher-tool-toggle .teacher-tool-icon {
+  width: 1.46rem;
+  height: 1.46rem;
+}
+
+.teacher-tool-popover {
+  position: absolute;
+  right: calc(100% + 0.75rem);
+  top: 50%;
+  min-width: 170px;
+  padding: 0.6rem;
+  border: 1px solid rgba(36, 49, 59, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 18px 28px rgba(36, 49, 59, 0.16);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.98);
+  transform-origin: right center;
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.teacher-tool-item:hover .teacher-tool-popover,
+.teacher-tool-item:focus-within .teacher-tool-popover,
+.teacher-tool-item.is-active .teacher-tool-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.teacher-tool-popover--spotlight {
+  min-width: 180px;
+}
+
+.teacher-tool-popover--highlight {
+  min-width: 176px;
+}
+
+.teacher-tool-popover--shortcuts {
+  min-width: 196px;
+}
+
+.teacher-tool-popover-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+.teacher-tool-popover-row + .teacher-tool-popover-row {
+  margin-top: 0.45rem;
+}
+
+.teacher-tool-swatch__dot {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 1px rgba(36, 49, 59, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.62);
+}
+
+.teacher-tool-swatch__dot--yellow {
+  background: rgba(255, 211, 0, 0.98);
+}
+
+.teacher-tool-swatch__dot--mint {
+  background: rgba(48, 231, 183, 0.98);
+}
+
+.teacher-tool-slider {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.teacher-tool-slider input {
+  width: 100%;
+  accent-color: #1f877d;
+}
+
+.teacher-tool-slider__value {
+  justify-self: end;
+  min-width: 2.4rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--muted-ink);
+  text-align: right;
+}
+
+.teacher-shortcut-list {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.teacher-shortcut {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.55rem;
+  align-items: center;
+  color: var(--page-ink);
+  font-size: 0.82rem;
+}
+
+.teacher-shortcut kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  padding: 0.24rem 0.4rem;
+  border: 1px solid rgba(36, 49, 59, 0.12);
+  border-radius: 10px;
+  background: rgba(249, 251, 252, 0.92);
+  font: inherit;
+  font-weight: 800;
+  color: var(--teal-deep);
 }
 
 .slide-status {
@@ -933,6 +1176,59 @@
 
 .slide-button--exit {
   background: rgba(255, 240, 241, 0.94);
+}
+
+.teacher-highlight-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.teacher-highlight {
+  position: absolute;
+  border-radius: 0.45rem;
+  opacity: 1;
+  box-shadow:
+    inset 0 0 0 1px rgba(36, 49, 59, 0.12),
+    0 6px 16px rgba(36, 49, 59, 0.08);
+}
+
+.teacher-highlight--yellow {
+  background: rgba(255, 221, 37, 0.96);
+}
+
+.teacher-highlight--mint {
+  background: rgba(77, 236, 191, 0.94);
+}
+
+.teacher-presentation-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 24;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.teacher-presentation-overlay.is-visible {
+  opacity: 1;
+}
+
+.teacher-presentation-overlay.is-blank {
+  background: rgba(16, 21, 27, 0.95);
+}
+
+.teacher-presentation-overlay.is-spotlight {
+  background: radial-gradient(
+    circle var(--teacher-spotlight-size, 210px) at var(--teacher-spotlight-x, 50%)
+      var(--teacher-spotlight-y, 34%),
+    transparent 0,
+    transparent calc(var(--teacher-spotlight-size, 210px) - 24px),
+    rgba(18, 23, 28, 0.74) calc(var(--teacher-spotlight-size, 210px) + 70px)
+  );
 }
 
 body.teacher-mode-active {
@@ -982,6 +1278,7 @@ body.teacher-mode-active .lesson-section {
   border-radius: 0;
   box-shadow: none;
   scroll-snap-align: start;
+  isolation: isolate;
 }
 
 body.teacher-mode-active .lesson-section::before {
@@ -990,8 +1287,17 @@ body.teacher-mode-active .lesson-section::before {
   right: 2rem;
 }
 
+body.teacher-mode-active .lesson-section > :not(.teacher-highlight-layer) {
+  position: relative;
+  z-index: 1;
+}
+
 body.teacher-mode-active .teacher-controls {
-  display: inline-flex;
+  display: block;
+}
+
+body.teacher-mode-active .teacher-tools-dock {
+  display: grid;
 }
 
 @media (max-width: 1180px) {
@@ -1029,8 +1335,7 @@ body.teacher-mode-active .teacher-controls {
   }
 
   .lesson-hero-actions,
-  .quiz-actions,
-  .teacher-controls {
+  .quiz-actions {
     flex-direction: column;
   }
 
@@ -1040,8 +1345,32 @@ body.teacher-mode-active .teacher-controls {
   }
 
   .teacher-controls {
-    width: calc(100% - 1rem);
-    border-radius: 28px;
+    max-width: calc(100vw - 1rem);
+    padding: 0.65rem;
+  }
+
+  .teacher-controls__bar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .teacher-tools-dock {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .teacher-tool-popover {
+    right: 0;
+    top: auto;
+    bottom: calc(100% + 0.55rem);
+    transform: translateY(0) scale(0.98);
+    transform-origin: right bottom;
+  }
+
+  .teacher-tool-item:hover .teacher-tool-popover,
+  .teacher-tool-item:focus-within .teacher-tool-popover,
+  .teacher-tool-item.is-active .teacher-tool-popover {
+    transform: translateY(0) scale(1);
   }
 
   body.teacher-mode-active .lesson-section {

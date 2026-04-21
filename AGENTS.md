@@ -60,6 +60,10 @@ Before making major UI, content, or structure changes, read:
   the accessibility panel.
 - Lesson pages should support a teacher slide mode that reuses the same lesson
   sections and works well with swipe and tap navigation on touch displays.
+- Teacher slide mode can include a collapsible presentation tools shelf for
+  temporary slide-only teaching aids such as highlighting, spotlighting, or
+  blanking the screen, but it should stay unobtrusive when those tools are not
+  open.
 - Users should be able to get back to the full course or unit search easily.
 - Keep room in layouts for future advertising or promoted resources.
 
