@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
-    <script type="module" src="../../javascript/pages/stacks-and-queues.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/stacks-and-queues.js"
+    ></script>
   </head>
   <body>
     <div class="page-shell">
@@ -57,7 +60,9 @@
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
-              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
             </p>
           </div>
         </div>
@@ -71,19 +76,17 @@
             <strong>Main rule</strong>
             <span>Stacks are LIFO, queues are FIFO</span>
           </article>
-          <article class="lesson-meta-card">
-            <strong>Lesson style</strong>
-            <span>Explanation, exam practice, visualiser, and quiz</span>
-          </article>
-          <article class="lesson-meta-card">
-            <strong>Teacher mode</strong>
-            <span>Swipe or tap through full-screen slides</span>
-          </article>
         </div>
 
         <div class="lesson-hero-actions">
-          <a class="primary-link" href="../../index.html">Back to home search</a>
-          <a class="lesson-secondary-action" data-role="back-to-unit" href="../units/btec-level-3-unit-2.html#section-d">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-d"
+          >
             Back to Unit 2 content
           </a>
           <button
@@ -135,7 +138,7 @@
             </p>
 
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="lesson-card lesson-fullrow">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Define a stack and explain the LIFO rule.</li>
@@ -145,17 +148,22 @@
                 </ul>
               </article>
 
-              <article class="lesson-card">
+              <article class="lesson-card lesson-fullrow">
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
-                  <li><strong>Stack:</strong> add to the top, remove from the top.</li>
-                  <li><strong>Queue:</strong> join at the back, leave from the front.</li>
+                  <li>
+                    <strong>Stack:</strong> add to the top, remove from the top.
+                  </li>
+                  <li>
+                    <strong>Queue:</strong> join at the back, leave from the
+                    front.
+                  </li>
                   <li><strong>LIFO:</strong> the newest item leaves first.</li>
                   <li><strong>FIFO:</strong> the oldest item leaves first.</li>
                 </ul>
               </article>
 
-              <article class="lesson-card">
+              <article class="lesson-card lesson-fullrow">
                 <h3>Where they appear</h3>
                 <p>
                   Stacks are common in function calls, undo features, and
@@ -175,15 +183,22 @@
             <h2>A stack stores data using the LIFO rule</h2>
             <p class="lesson-section-copy">
               LIFO means <strong>last in, first out</strong>. The most recently
-              added item is the first one to be removed. You can picture a
-              stack like a pile of trays: you add to the top, and you remove
-              from the top.
+              added item is the first one to be removed. You can picture a stack
+              like a pile of trays: you add to the top, and you remove from the
+              top.
             </p>
 
             <div class="example-strip" aria-label="Stack examples">
-              <span class="example-chip"><strong>Push</strong> add an item to the top</span>
-              <span class="example-chip"><strong>Pop</strong> remove the top item</span>
-              <span class="example-chip"><strong>Peek</strong> read the top item without removing it</span>
+              <span class="example-chip"
+                ><strong>Push</strong> add an item to the top</span
+              >
+              <span class="example-chip"
+                ><strong>Pop</strong> remove the top item</span
+              >
+              <span class="example-chip"
+                ><strong>Peek</strong> read the top item without removing
+                it</span
+              >
             </div>
 
             <div class="term-grid">
@@ -202,7 +217,8 @@
               <article class="term-card">
                 <strong>Typical hardware use</strong>
                 <span>
-                  Function calls and interrupts often rely on stack-style memory.
+                  Function calls and interrupts often rely on stack-style
+                  memory.
                 </span>
               </article>
               <article class="term-card">
@@ -212,6 +228,64 @@
                 </span>
               </article>
             </div>
+
+            <article class="lesson-card fullrow flow-diagram-card">
+              <h3>Stack diagram</h3>
+              <p>
+                Both actions happen at the same end. New items are pushed onto
+                the top, and the same top item is the first one popped off.
+              </p>
+              <div
+                class="flow-diagram stack-flow"
+                aria-label="Diagram of a stack showing push and pop at the top"
+              >
+                <div class="stack-flow__notes">
+                  <div class="stack-flow__note">
+                    <strong>Push -> top</strong>
+                    <span>The newest item joins the top of the stack.</span>
+                  </div>
+                  <div class="stack-flow__note">
+                    <strong>Pop <- top</strong>
+                    <span>The same top item is the first one removed.</span>
+                  </div>
+                  <p class="memory-visual-note">
+                    Only the top is active, so older items stay underneath until
+                    the newer ones have gone.
+                  </p>
+                </div>
+
+                <div class="stack-flow__tower">
+                  <div class="stack-flow__actions" aria-hidden="true">
+                    <span class="stack-flow__action stack-flow__action--push">
+                      Push Task D -> top
+                    </span>
+                    <span class="stack-flow__action stack-flow__action--pop">
+                      Pop Task C <- top
+                    </span>
+                  </div>
+                  <div class="stack-flow__shaft">
+                    <span class="stack-flow__top-label">Top</span>
+                    <div class="stack-flow__items">
+                      <div class="stack-flow__item stack-flow__item--top">
+                        <strong>Task C</strong>
+                        <span>Leaves first</span>
+                      </div>
+                      <div class="stack-flow__item">
+                        <strong>Task B</strong>
+                        <span>Waits below</span>
+                      </div>
+                      <div class="stack-flow__item">
+                        <strong>Task A</strong>
+                        <span>Oldest item</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="stack-flow__caption">
+                    The newest item sits closest to leaving.
+                  </p>
+                </div>
+              </div>
+            </article>
 
             <article class="lesson-card">
               <h3>Worked example</h3>
@@ -231,16 +305,21 @@
             <p class="eyebrow">Queue</p>
             <h2>A queue stores data using the FIFO rule</h2>
             <p class="lesson-section-copy">
-              FIFO means <strong>first in, first out</strong>. The earliest
-              item added is the first one to leave. A queue works like people
-              lining up: new items join at the back, but service happens at the
-              front.
+              FIFO means <strong>first in, first out</strong>. The earliest item
+              added is the first one to leave. A queue works like people lining
+              up: new items join at the back, but service happens at the front.
             </p>
 
             <div class="example-strip" aria-label="Queue examples">
-              <span class="example-chip"><strong>Enqueue</strong> add an item to the back</span>
-              <span class="example-chip"><strong>Dequeue</strong> remove the front item</span>
-              <span class="example-chip"><strong>Front</strong> inspect the next item to leave</span>
+              <span class="example-chip"
+                ><strong>Enqueue</strong> add an item to the back</span
+              >
+              <span class="example-chip"
+                ><strong>Dequeue</strong> remove the front item</span
+              >
+              <span class="example-chip"
+                ><strong>Front</strong> inspect the next item to leave</span
+              >
             </div>
 
             <div class="application-grid">
@@ -266,6 +345,58 @@
                 </p>
               </article>
             </div>
+
+            <article class="lesson-card fullrow flow-diagram-card">
+              <h3>Queue diagram</h3>
+              <p>
+                A queue uses opposite ends. The front item leaves first while a
+                new item joins at the back, so arrival order stays intact.
+              </p>
+              <div
+                class="flow-diagram queue-flow"
+                aria-label="Diagram of a queue showing dequeue from the front and enqueue at the back"
+              >
+                <div class="queue-flow__labels">
+                  <span class="queue-flow__label queue-flow__label--front">
+                    Front: dequeue here
+                  </span>
+                  <span class="queue-flow__label queue-flow__label--back">
+                    Back: enqueue here
+                  </span>
+                </div>
+
+                <div class="queue-flow__lane">
+                  <div class="queue-flow__item queue-flow__item--front">
+                    <strong>Packet 1</strong>
+                    <span>Next out</span>
+                  </div>
+                  <div class="queue-flow__item">
+                    <strong>Packet 2</strong>
+                    <span>Waiting</span>
+                  </div>
+                  <div class="queue-flow__item">
+                    <strong>Packet 3</strong>
+                    <span>Waiting</span>
+                  </div>
+                  <div class="queue-flow__item queue-flow__item--back">
+                    <strong>Packet 4</strong>
+                    <span>Newest in line</span>
+                  </div>
+                </div>
+                <div class="queue-flow__cycle" aria-hidden="true">
+                  <span class="queue-flow__motion queue-flow__motion--leave">
+                    Packet 1 leaves
+                  </span>
+                  <span class="queue-flow__motion queue-flow__motion--join">
+                    Packet 5 joins
+                  </span>
+                </div>
+                <p class="memory-visual-note">
+                  The loop above shows the pattern repeating: oldest item out at
+                  the front, new item in at the back.
+                </p>
+              </div>
+            </article>
 
             <article class="lesson-card">
               <h3>Worked example</h3>
@@ -345,7 +476,7 @@
                   should be handled one-by-one in the order it appears.
                 </p>
               </article>
-              <article class="lesson-card">
+              <article class="lesson-card lesson-wide">
                 <h3>Exam reminder</h3>
                 <p>
                   If a question asks what comes out next, always focus on the
@@ -403,7 +534,7 @@
                 </p>
               </article>
 
-              <article class="trap-card">
+              <article class="trap-card lesson-fullrow">
                 <h3>Choosing by topic instead of behaviour</h3>
                 <p>
                   Students sometimes say "printer means stack" or "browser means
@@ -411,7 +542,9 @@
                 </p>
                 <ul class="trap-list">
                   <li>Undo and nested calls favour the newest item first.</li>
-                  <li>Printing and buffering usually preserve arrival order.</li>
+                  <li>
+                    Printing and buffering usually preserve arrival order.
+                  </li>
                 </ul>
                 <p class="trap-fix">
                   <strong>Fix:</strong> In every scenario, explain the order
@@ -435,12 +568,10 @@
             </p>
 
             <div class="simulator-grid">
-              <article class="simulator-card">
+              <article class="simulator-card lesson-fullrow">
                 <div>
                   <h3>Stack visualiser</h3>
-                  <p>
-                    Push adds to the top. Pop removes the top item first.
-                  </p>
+                  <p>Push adds to the top. Pop removes the top item first.</p>
                 </div>
 
                 <div class="structure-controls">
@@ -478,7 +609,11 @@
                       Clear
                     </button>
                   </div>
-                  <p class="structure-status" data-role="stack-status" aria-live="polite"></p>
+                  <p
+                    class="structure-status"
+                    data-role="stack-status"
+                    aria-live="polite"
+                  ></p>
                 </div>
 
                 <ol
@@ -488,7 +623,7 @@
                 ></ol>
               </article>
 
-              <article class="simulator-card">
+              <article class="simulator-card lesson-fullrow">
                 <div>
                   <h3>Queue visualiser</h3>
                   <p>
@@ -532,7 +667,11 @@
                       Clear
                     </button>
                   </div>
-                  <p class="structure-status" data-role="queue-status" aria-live="polite"></p>
+                  <p
+                    class="structure-status"
+                    data-role="queue-status"
+                    aria-live="polite"
+                  ></p>
                 </div>
 
                 <ol
@@ -658,7 +797,9 @@
                 data-success="Correct. Function calls usually unwind in reverse order, so a stack fits."
                 data-feedback="Function calls return from the newest active call first, which matches stack behaviour."
               >
-                <legend>4. Which structure is most closely linked to function calls?</legend>
+                <legend>
+                  4. Which structure is most closely linked to function calls?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -779,9 +920,18 @@
                       links it to the example.
                     </p>
                     <ul class="exam-points">
-                      <li>The most recent page visited is the first one the user wants to return to.</li>
-                      <li>A stack uses last in, first out, so the newest page is removed first.</li>
-                      <li>A queue would return the oldest page first, which does not match browser back behaviour.</li>
+                      <li>
+                        The most recent page visited is the first one the user
+                        wants to return to.
+                      </li>
+                      <li>
+                        A stack uses last in, first out, so the newest page is
+                        removed first.
+                      </li>
+                      <li>
+                        A queue would return the oldest page first, which does
+                        not match browser back behaviour.
+                      </li>
                     </ul>
                   </div>
                 </details>
@@ -818,9 +968,18 @@
                     </p>
                     <ul class="exam-points">
                       <li>The queue stores jobs in arrival order.</li>
-                      <li>Mia's job would be processed first, then Sam's, then Priya's, then Leo's.</li>
-                      <li>A queue uses first in, first out, which is fair for waiting print jobs.</li>
-                      <li>A stack would process Leo first, which would ignore arrival order and be less fair.</li>
+                      <li>
+                        Mia's job would be processed first, then Sam's, then
+                        Priya's, then Leo's.
+                      </li>
+                      <li>
+                        A queue uses first in, first out, which is fair for
+                        waiting print jobs.
+                      </li>
+                      <li>
+                        A stack would process Leo first, which would ignore
+                        arrival order and be less fair.
+                      </li>
                     </ul>
                   </div>
                 </details>
@@ -859,7 +1018,9 @@
             <ul class="memory-list">
               <li>Stacks care most about the newest item.</li>
               <li>Queues care most about arrival order.</li>
-              <li>Exam scenarios usually reveal the answer through that rule.</li>
+              <li>
+                Exam scenarios usually reveal the answer through that rule.
+              </li>
             </ul>
           </section>
 
@@ -881,7 +1042,10 @@
         </aside>
       </div>
 
-      <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
         <p class="eyebrow">Keep Going</p>
         <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
         <div class="sequence-grid" data-role="lesson-sequence"></div>
