@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays, Lists, and Data Types Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise arrays, lists, and data types with clear comparisons, hardware implications, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="Arrays, Lists, and Data Types Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise arrays, lists, and data types with clear comparisons, hardware implications, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/arrays-lists-and-data-types.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Data Structures</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-d"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Arrays, lists, and data types</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Arrays, lists, and data types</h1>
+            <p class="lesson-hero-text">
+              Learn how arrays and lists organise related values, why their
+              storage model affects performance, and how exam answers should
+              link software behaviour to hardware implications.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>D1 Data structures</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Indexed arrays, linked lists, and storage implications</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, comparison, exam practice, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-d"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring and teacher slides need JavaScript, but the
+          lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#arrays" data-section-link>Arrays</a>
+            <a href="#lists" data-section-link>Lists</a>
+            <a href="#data-types" data-section-link>Data types</a>
+            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Arrays and lists both store collections of related items, but
+              they do not organise memory or access data in the same way. Exam
+              questions often reward answers that explain not just what the
+              structure is called, but why its behaviour suits a task.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define arrays and lists accurately.</li>
+                  <li>Explain indexed access and linked traversal.</li>
+                  <li>Compare software use with hardware implications.</li>
+                  <li>Choose the better structure for a given scenario.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Array:</strong> same-type items, ordered by index.</li>
+                  <li><strong>List:</strong> linked items, easy to grow or shrink.</li>
+                  <li><strong>Index:</strong> the position number of an item.</li>
+                  <li><strong>Pointer:</strong> a stored reference to another item.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where they appear</h3>
+                <p>
+                  Arrays suit timetables, monthly sales figures, and image
+                  pixels. Lists suit playlists, task collections, and data that
+                  changes size frequently while a program is running.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="arrays"
+            class="lesson-section lesson-section--arrays panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Array</p>
+            <h2>An array stores similar items in indexed positions</h2>
+            <p class="lesson-section-copy">
+              An array is an ordered collection where each item has an
+              <strong>index</strong>. In many exam contexts, arrays are treated
+              as storing items of the same data type in a predictable sequence,
+              which makes direct access by position straightforward.
+            </p>
+
+            <div class="example-strip" aria-label="Array features">
+              <span class="example-chip"><strong>Indexed</strong> each position has a number</span>
+              <span class="example-chip"><strong>Ordered</strong> values keep a fixed sequence</span>
+              <span class="example-chip"><strong>Direct access</strong> read item 4 without scanning first</span>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Why it works</strong>
+                <span>
+                  The program can calculate where an indexed value should be.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Typical software use</strong>
+                <span>
+                  Test scores, timetables, pixels, and any fixed-position data.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Typical hardware link</strong>
+                <span>
+                  Contiguous storage helps predictable addressing and efficient
+                  reads.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Key implication</strong>
+                <span>
+                  Inserting into the middle can mean shifting later values.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked example</h3>
+              <p>
+                If an array stores exam scores at indexes 0 to 4, the program
+                can jump straight to index 3 when it needs the fourth score.
+                That is why arrays are strong when position matters.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="lists"
+            class="lesson-section lesson-section--lists panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">List</p>
+            <h2>A list can grow and shrink more easily as values change</h2>
+            <p class="lesson-section-copy">
+              A list is also an ordered collection, but exam answers often
+              focus on the idea that items can be linked together rather than
+              stored in one continuous block. That makes lists useful when
+              values are added or removed regularly.
+            </p>
+
+            <div class="example-strip" aria-label="List features">
+              <span class="example-chip"><strong>Linked</strong> each item can point to the next</span>
+              <span class="example-chip"><strong>Dynamic</strong> size can change during use</span>
+              <span class="example-chip"><strong>Traversal</strong> reach later items by moving through the chain</span>
+            </div>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>Flexible size</h3>
+                <p>
+                  A list is useful when the number of items is hard to predict
+                  in advance.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Typical software use</h3>
+                <p>
+                  Playlists, active tasks, or collections that change during a
+                  session.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Typical hardware link</h3>
+                <p>
+                  Lists may need extra memory for pointers and may not sit next
+                  to each other in RAM.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked example</h3>
+              <p>
+                If a music app keeps a linked list of queued songs, adding a
+                new song between two existing songs can be done by changing the
+                links. The app does not need to shift every later song into a
+                new indexed slot first.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="data-types"
+            class="lesson-section lesson-section--data-types panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Data Types</p>
+            <h2>Data types define what is stored and how it can be handled</h2>
+            <p class="lesson-section-copy">
+              In this part of Unit 2, arrays and lists are treated as
+              <strong>data types used to organise collections of data</strong>.
+              Good answers explain their features, how software uses them, and
+              why their storage model matters to the hardware underneath.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>In software</h3>
+                <p>
+                  Developers choose a data type because of the operations the
+                  program needs most often, such as direct indexed access or
+                  frequent insertion and deletion.
+                </p>
+              </article>
+
+              <article class="lesson-card">
+                <h3>In hardware</h3>
+                <p>
+                  Arrays suit predictable memory addressing. Lists can reduce
+                  shifting but need extra references and may involve more memory
+                  jumps during traversal.
+                </p>
+              </article>
+
+              <article class="lesson-card">
+                <h3>In exam answers</h3>
+                <p>
+                  Do not stop at naming the structure. Link the task, the
+                  access pattern, and the implication for storage or
+                  performance.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Mini summary</h3>
+              <p>
+                A data type is not just a label. It shapes the valid structure
+                of the data, the operations that make sense, and the cost of
+                common actions such as reading, inserting, or removing values.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section lesson-section--compare panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Comparison</p>
+            <h2>Choose the right structure for the job</h2>
+            <p class="lesson-section-copy">
+              Arrays and lists can both store ordered values, but they reward
+              different priorities. The best choice depends on whether fast
+              indexed access or flexible updates matters more.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Array</th>
+                    <th>List</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Main organisation</td>
+                    <td>Indexed positions in order</td>
+                    <td>Linked items in sequence</td>
+                  </tr>
+                  <tr>
+                    <td>Best for</td>
+                    <td>Direct access to a known position</td>
+                    <td>Collections that change size often</td>
+                  </tr>
+                  <tr>
+                    <td>Memory pattern</td>
+                    <td>Usually contiguous and predictable</td>
+                    <td>Often non-contiguous with extra pointer storage</td>
+                  </tr>
+                  <tr>
+                    <td>Adding in the middle</td>
+                    <td>Can require shifting later items</td>
+                    <td>Can be easier if the correct links are known</td>
+                  </tr>
+                  <tr>
+                    <td>Main caution</td>
+                    <td>Less flexible when size changes a lot</td>
+                    <td>Slower to reach a later item directly</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Choose an array when...</h3>
+                <p>
+                  Position matters, size is reasonably stable, or fast direct
+                  lookup by index is the main goal.
+                </p>
+              </article>
+              <article class="lesson-card">
+                <h3>Choose a list when...</h3>
+                <p>
+                  The collection changes often and the program benefits from
+                  easier insertion or removal.
+                </p>
+              </article>
+              <article class="lesson-card">
+                <h3>Exam reminder</h3>
+                <p>
+                  Make the trade-off explicit. Structure choice is usually about
+                  access speed versus update flexibility.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with arrays and lists</h2>
+            <p class="lesson-section-copy">
+              Many weaker answers name a structure without explaining the
+              behaviour that makes it suitable. These traps come up often in
+              written questions.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Treating a list like just "a list of things"</h3>
+                <p>
+                  Students sometimes use the everyday meaning of list and forget
+                  the computer science idea of linked items and dynamic size.
+                </p>
+                <ul class="trap-list">
+                  <li>An exam list answer should mention links or flexible size.</li>
+                  <li>An everyday shopping list is not enough explanation by itself.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Explain how the items are organised, not
+                  just that there are several of them.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Forgetting that arrays are indexed</h3>
+                <p>
+                  Some answers describe arrays only as "storing lots of data"
+                  and miss the reason they are useful.
+                </p>
+                <ul class="trap-list">
+                  <li>Each value has a position number.</li>
+                  <li>Programs can reach a chosen position directly.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use the word <code>index</code> when you
+                  explain why an array fits the scenario.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Ignoring hardware implications</h3>
+                <p>
+                  Stronger Unit 2 answers often connect the data structure to
+                  memory layout or storage overhead.
+                </p>
+                <ul class="trap-list">
+                  <li>Arrays usually rely on predictable neighbouring storage.</li>
+                  <li>Lists often need pointers and extra traversal steps.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Add one sentence about memory,
+                  addressing, or pointer overhead when the question invites it.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. Arrays are mainly identified by indexed positions."
+                data-feedback="Arrays are usually described as ordered collections with numbered positions for direct access."
+              >
+                <legend>1. Which feature is most closely linked to an array?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Each item must leave in FIFO order</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>Each item can be accessed by index</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>Each item must be removed from the top</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="c"
+                data-success="Correct. Lists are often preferred when the collection changes size often."
+                data-feedback="Lists are commonly chosen when insertion and deletion happen regularly."
+              >
+                <legend>2. Which situation most strongly suggests using a list?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>The program needs fast access to score 24 by position</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>The collection size never changes once created</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>Items are added and removed frequently during use</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="a"
+                data-success="Correct. Arrays are usually associated with contiguous, predictable storage."
+                data-feedback="Array answers often mention predictable neighbouring memory locations and direct addressing."
+              >
+                <legend>3. Which hardware implication best matches an array?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>Predictable memory layout can support direct addressing</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>Every item must store a pointer to the previous one</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>The newest item is always removed first</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. A linked list may need traversal to reach a later item."
+                data-feedback="Lists do not usually provide instant random access to a later item without following links."
+              >
+                <legend>4. What is a common limitation of a linked list?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>It cannot change size while the program runs</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>Later items may take longer to reach directly</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>It cannot store ordered values</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="c"
+                data-success="Correct. Strong answers connect the task, the structure, and the storage implication."
+                data-feedback="The best Unit 2 answers explain why the behaviour and memory implications suit the scenario."
+              >
+                <legend>5. What makes an exam explanation stronger?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>Naming the structure without justification</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>Giving only a real-world example</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Linking the access pattern to the storage behaviour</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why an array is a suitable way to store the daily
+                  temperature for each day of one week.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer explains both the software benefit and the
+                      storage implication.
+                    </p>
+                    <ul class="exam-points">
+                      <li>There are a fixed number of values because the week has seven days.</li>
+                      <li>Each temperature can be stored at a known index, such as day 0 to day 6.</li>
+                      <li>The program can access a chosen day directly by index.</li>
+                      <li>Arrays suit ordered, predictable storage where direct access matters.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">5 marks</span>
+                  <span class="exam-pill">Compare and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A music app lets users keep inserting and removing songs in
+                  the middle of a current queue. Explain why a list may be more
+                  suitable than an array.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Compare the two structures and justify the better choice."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers compare both structures instead of only
+                      describing the chosen one.
+                    </p>
+                    <ul class="exam-points">
+                      <li>A list can grow and shrink more flexibly while the app is running.</li>
+                      <li>When songs are inserted or removed often, a list can avoid shifting many later items.</li>
+                      <li>Linked items can be updated by changing references between nodes.</li>
+                      <li>An array is stronger for direct indexed access, but that is less important here.</li>
+                      <li>A list may need extra pointer storage, but its update behaviour better matches this scenario.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Array</dt>
+                <dd>An ordered collection of items stored by index.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>List</dt>
+                <dd>A collection of linked items that can grow or shrink.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Index</dt>
+                <dd>The numbered position of an item in an array.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Pointer</dt>
+                <dd>A stored reference that links one item to another.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Think about access and updates</h2>
+            <ul class="memory-list">
+              <li>Arrays are strong when indexed access matters most.</li>
+              <li>Lists are strong when the collection changes often.</li>
+              <li>Hardware implications can strengthen a written answer.</li>
+            </ul>
+          </section>
+
+          <section class="lesson-rail-card panel">
+            <p class="eyebrow">Sponsored Space</p>
+            <h2>Sidebar ad slot</h2>
+            <p>
+              This rail still leaves room for a future advert or promoted
+              resource without cutting into the lesson flow.
+            </p>
+            <div
+              class="ad-placeholder ad-placeholder-vertical"
+              aria-label="Future vertical advertisement space"
+            >
+              <strong>Sidebar ad slot</strong>
+              <span>Reserved for a future desktop placement.</span>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

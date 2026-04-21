@@ -147,7 +147,8 @@ the browser with `localStorage` where useful.
 - The homepage now highlights the live Unit 2 hub plus live and planned Unit 2
   lesson pages.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
-- The first live topic lesson now exists at `pages/topics/stacks-and-queues.html`.
+- Live topic lessons now exist at `pages/topics/stacks-and-queues.html` and
+  `pages/topics/arrays-lists-and-data-types.html`.
 - A shared lesson shell now supports sidebar navigation, contextual unit
   navigation, teacher slide mode, and quiz persistence.
 - The current lesson template now includes glossary, exam trap, and exam-style

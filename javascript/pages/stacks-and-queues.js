@@ -16,8 +16,9 @@ const lessonConfig = {
       },
       next: {
         title: "Arrays, lists, and data types",
-        description: "Next in D1 Data structures. This lesson is still planned.",
-        status: "Planned",
+        description: "Next in D1 Data structures.",
+        status: "Live",
+        href: "../topics/arrays-lists-and-data-types.html",
       },
     },
   },

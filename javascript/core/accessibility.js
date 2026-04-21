@@ -69,6 +69,14 @@ const READ_ALOUD_IGNORE_SELECTOR = [
   "[data-no-read-aloud]",
 ].join(", ");
 
+const EDITABLE_TARGET_SELECTOR = [
+  "input",
+  "textarea",
+  "select",
+  "[contenteditable='true']",
+  "[role='textbox']",
+].join(", ");
+
 let persistentPreferences = {
   ...PERSISTENT_DEFAULTS,
 };
@@ -190,6 +198,32 @@ function setNote(message) {
   if (noteElement) {
     noteElement.textContent = message;
   }
+}
+
+function isEditableTarget(target) {
+  return Boolean(target?.closest?.(EDITABLE_TARGET_SELECTOR));
+}
+
+function setSessionMode(setting, value) {
+  if (!(setting in sessionModes)) {
+    return;
+  }
+
+  sessionModes = {
+    ...sessionModes,
+    [setting]: Boolean(value),
+  };
+
+  applyAccessibilityState();
+  syncControls();
+}
+
+function toggleSessionMode(setting) {
+  if (!(setting in sessionModes)) {
+    return;
+  }
+
+  setSessionMode(setting, !sessionModes[setting]);
 }
 
 function buildReadableText(target) {
@@ -428,9 +462,8 @@ function getReadTargetDetails(target = getReadTarget()) {
 
 function formatReadTargetPreview(details) {
   if (details.sectionIndex >= 0) {
-    return `Current read target: ${details.label} (${details.sectionIndex + 1} of ${
-      details.sectionEntries.length
-    })`;
+    return `Current read target: ${details.label} (${details.sectionIndex + 1} of ${details.sectionEntries.length
+      })`;
   }
 
   return `Current read target: ${details.label}`;
@@ -513,11 +546,11 @@ function updateReadAloudButton() {
   const hasReadSession = Boolean(activeReadSession?.segments?.length);
   const previewTargetDetails = activeReadSession
     ? {
-        target: activeReadSession.target,
-        label: activeReadSession.targetLabel,
-        sectionEntries: activeReadSession.sectionEntries,
-        sectionIndex: activeReadSession.sectionIndex,
-      }
+      target: activeReadSession.target,
+      label: activeReadSession.targetLabel,
+      sectionEntries: activeReadSession.sectionEntries,
+      sectionIndex: activeReadSession.sectionIndex,
+    }
     : getReadTargetDetails();
 
   document.body?.classList.toggle(
@@ -581,20 +614,17 @@ function updateReadAloudButton() {
   playerTargetElement.textContent = activeReadSession.targetLabel;
   playerStatusElement.textContent = isComplete
     ? inSection
-      ? `Finished section ${activeReadSession.sectionIndex + 1} of ${
-          activeReadSession.sectionEntries.length
-        }.`
+      ? `Finished section ${activeReadSession.sectionIndex + 1} of ${activeReadSession.sectionEntries.length
+      }.`
       : "Finished this section."
     : activeReadSession.isPaused
       ? inSection
-        ? `Paused in section ${activeReadSession.sectionIndex + 1} of ${
-            activeReadSession.sectionEntries.length
-          }, part ${currentIndex} of ${activeReadSession.segments.length}.`
+        ? `Paused in section ${activeReadSession.sectionIndex + 1} of ${activeReadSession.sectionEntries.length
+        }, part ${currentIndex} of ${activeReadSession.segments.length}.`
         : `Paused at part ${currentIndex} of ${activeReadSession.segments.length}.`
       : inSection
-        ? `Reading section ${activeReadSession.sectionIndex + 1} of ${
-            activeReadSession.sectionEntries.length
-          }, part ${currentIndex} of ${activeReadSession.segments.length}.`
+        ? `Reading section ${activeReadSession.sectionIndex + 1} of ${activeReadSession.sectionEntries.length
+        }, part ${currentIndex} of ${activeReadSession.segments.length}.`
         : `Reading part ${currentIndex} of ${activeReadSession.segments.length}.`;
   playerCurrentElement.textContent = isComplete
     ? "This section has finished. Replay it, choose another point, or move to a different section."
@@ -622,8 +652,8 @@ function updateReadAloudButton() {
     playerPlaybackButton.textContent = isComplete
       ? "Replay"
       : activeReadSession.isPaused
-      ? "Resume"
-      : "Pause";
+        ? "Resume"
+        : "Pause";
   }
 
   if (playerStopButton) {
@@ -643,7 +673,7 @@ function updateReadAloudButton() {
     playerNextSectionButton.disabled =
       !inSection ||
       activeReadSession.sectionIndex >=
-        activeReadSession.sectionEntries.length - 1;
+      activeReadSession.sectionEntries.length - 1;
   }
 }
 
@@ -947,11 +977,11 @@ function seekReadAloud(nextIndex) {
 function moveReadAloudSection(direction) {
   const currentDetails = activeReadSession
     ? {
-        target: activeReadSession.target,
-        label: activeReadSession.targetLabel,
-        sectionEntries: activeReadSession.sectionEntries,
-        sectionIndex: activeReadSession.sectionIndex,
-      }
+      target: activeReadSession.target,
+      label: activeReadSession.targetLabel,
+      sectionEntries: activeReadSession.sectionEntries,
+      sectionIndex: activeReadSession.sectionIndex,
+    }
     : getReadTargetDetails();
 
   if (
@@ -1101,9 +1131,9 @@ function buildAccessibilityUI() {
                 data-action="set-read-aloud-rate"
               >
                 ${READ_ALOUD_RATE_OPTIONS.map(
-                  (option) =>
-                    `<option value="${option.value}">${option.label}</option>`
-                ).join("")}
+      (option) =>
+        `<option value="${option.value}">${option.label}</option>`
+    ).join("")}
               </select>
             </label>
             <button
@@ -1202,7 +1232,7 @@ function buildAccessibilityUI() {
                 <input id="accessibility-reading-mode" type="checkbox" data-setting="readingMode" />
                 <span>
                   <span class="accessibility-toggle-label">Reading mode</span>
-                  <span class="accessibility-control-copy">Increase reading comfort and remove extra clutter around content.</span>
+                  <span class="accessibility-control-copy">Increase reading comfort and remove extra clutter around content. Shortcut: R</span>
                 </span>
               </label>
 
@@ -1210,7 +1240,7 @@ function buildAccessibilityUI() {
                 <input id="accessibility-focus-mode" type="checkbox" data-setting="focusMode" />
                 <span>
                   <span class="accessibility-toggle-label">Focus mode</span>
-                  <span class="accessibility-control-copy">Hide more secondary interface elements so the main content is easier to follow.</span>
+                  <span class="accessibility-control-copy">Hide more secondary interface elements so the main content is easier to follow. Shortcut: F</span>
                 </span>
               </label>
 
@@ -1368,18 +1398,15 @@ function buildAccessibilityUI() {
       const checked = Boolean(control.checked);
 
       if (setting in sessionModes) {
-        sessionModes = {
-          ...sessionModes,
-          [setting]: checked,
-        };
-      } else {
-        persistentPreferences = {
-          ...persistentPreferences,
-          [setting]: checked,
-        };
-        savePersistentPreferences();
+        setSessionMode(setting, checked);
+        return;
       }
 
+      persistentPreferences = {
+        ...persistentPreferences,
+        [setting]: checked,
+      };
+      savePersistentPreferences();
       applyAccessibilityState();
       syncControls();
     });
@@ -1408,6 +1435,32 @@ function buildAccessibilityUI() {
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) {
       closePanel();
+      return;
+    }
+
+    if (
+      event.defaultPrevented ||
+      event.repeat ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.altKey ||
+      event.shiftKey ||
+      isEditableTarget(event.target)
+    ) {
+      return;
+    }
+
+    const pressedKey = event.key.toLowerCase();
+
+    if (pressedKey === "r") {
+      event.preventDefault();
+      toggleSessionMode("readingMode");
+      return;
+    }
+
+    if (pressedKey === "f") {
+      event.preventDefault();
+      toggleSessionMode("focusMode");
     }
   });
 

@@ -118,7 +118,7 @@ here as they are completed.
 
 ### D1 Data structures
 - [x] Stacks and queues
-- [ ] Arrays, lists, and data types
+- [x] Arrays, lists, and data types
 
 ### D2 Indices and matrices
 - [ ] Matrices and arrays
