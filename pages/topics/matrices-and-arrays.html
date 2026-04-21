@@ -101,8 +101,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Interactive quiz scoring and teacher slides need JavaScript, but the
-          lesson notes still work without it.
+          Interactive matrix practice, quiz scoring, and teacher slides need
+          JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -112,6 +112,13 @@
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
             <a href="#matrices" data-section-link>Matrices</a>
+            <a href="#addition" data-section-link>Addition</a>
+            <a href="#scalar-multiplication" data-section-link
+              >Scalar multiplication</a
+            >
+            <a href="#matrix-multiplication" data-section-link
+              >Matrix multiplication</a
+            >
             <a href="#arrays" data-section-link>Arrays</a>
             <a href="#compare" data-section-link>Compare and choose</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
@@ -136,7 +143,7 @@
             </p>
 
             <div class="lesson-intro-grid">
-              <article class="lesson-card lesson-fullrow">
+              <article class="lesson-card wide">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Define a matrix using rows, columns, and elements.</li>
@@ -148,7 +155,7 @@
                 </ul>
               </article>
 
-              <article class="lesson-card lesson-fullrow">
+              <article class="lesson-card slide-wide">
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
                   <li>
@@ -165,7 +172,7 @@
                 </ul>
               </article>
 
-              <article class="lesson-card">
+              <article class="lesson-card fullrow">
                 <h3>Where they appear</h3>
                 <p>
                   Matrices appear in seating plans, image pixels, score tables,
@@ -283,6 +290,427 @@
                   </tbody>
                 </table>
               </div>
+            </article>
+          </section>
+
+          <section
+            id="addition"
+            class="lesson-section lesson-section--addition panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Addition</p>
+            <h2>Add matrices by combining matching positions</h2>
+            <p class="lesson-section-copy">
+              Matrix addition works only when both matrices have the same
+              dimensions. You add each element to the element in the same row
+              and column, so the answer keeps the same shape as the originals.
+            </p>
+
+            <div class="example-strip" aria-label="Matrix addition rules">
+              <span class="example-chip"
+                ><strong>Same dimensions</strong> rows and columns must
+                match</span
+              >
+              <span class="example-chip"
+                ><strong>Match positions</strong> add like-for-like
+                elements</span
+              >
+              <span class="example-chip"
+                ><strong>Same shape</strong> the result keeps the same
+                layout</span
+              >
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked visual example</h3>
+              <p>
+                Add the two matrices by pairing each position with the matching
+                position in the other matrix.
+              </p>
+              <div class="matrix-equation" aria-label="Example of matrix addition">
+                <div class="matrix-display" style="--matrix-columns: 2">
+                  <span class="matrix-display__label">Matrix A</span>
+                  <div class="matrix-display__body">
+                    <div class="matrix-grid">
+                      <span class="matrix-grid__cell matrix-grid__cell--warm">2</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--warm">1</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--warm">4</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--warm">3</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="matrix-equation__operator">+</span>
+                <div class="matrix-display" style="--matrix-columns: 2">
+                  <span class="matrix-display__label">Matrix B</span>
+                  <div class="matrix-display__body">
+                    <div class="matrix-grid">
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">5</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">2</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">1</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">6</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="matrix-equation__operator">=</span>
+                <div class="matrix-display" style="--matrix-columns: 2">
+                  <span class="matrix-display__label">Result</span>
+                  <div class="matrix-display__body">
+                    <div class="matrix-grid">
+                      <span class="matrix-grid__cell matrix-grid__cell--result">7</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">3</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">5</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">9</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="matrix-note-grid">
+                <article class="matrix-note-card">
+                  <strong>Top left element</strong>
+                  <span>Row 1, column 1 becomes <code>2 + 5 = 7</code>.</span>
+                </article>
+                <article class="matrix-note-card">
+                  <strong>Bottom right element</strong>
+                  <span>Row 2, column 2 becomes <code>3 + 6 = 9</code>.</span>
+                </article>
+                <article class="matrix-note-card">
+                  <strong>Why dimensions matter</strong>
+                  <span>
+                    Every position needs a matching partner, so the grids must
+                    be the same size.
+                  </span>
+                </article>
+              </div>
+            </article>
+
+            <article class="lesson-card matrix-practice-card" data-matrix-practice="addition">
+              <div>
+                <h3>Addition quick check</h3>
+                <p class="matrix-practice-copy">
+                  Fill in the result matrix. The current question, your answers,
+                  and your latest check save in this browser.
+                </p>
+              </div>
+              <div class="matrix-practice-workspace" data-role="matrix-practice-workspace">
+                <p class="matrix-practice-placeholder">
+                  A generated addition question will appear here when
+                  JavaScript is available.
+                </p>
+              </div>
+              <div class="matrix-practice-actions">
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="check"
+                >
+                  Quick check
+                </button>
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="clear"
+                >
+                  Clear section
+                </button>
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="new"
+                >
+                  New question
+                </button>
+              </div>
+              <p
+                class="matrix-practice-status"
+                data-role="matrix-practice-status"
+                aria-live="polite"
+              >
+                Fill every result cell, then run a quick check.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="scalar-multiplication"
+            class="lesson-section lesson-section--scalar-multiplication panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Scalar Multiplication</p>
+            <h2>Multiply every element by the same scalar</h2>
+            <p class="lesson-section-copy">
+              A scalar is just one number. In scalar multiplication, that number
+              multiplies every element in the matrix, so the values change but
+              the rows and columns stay in the same arrangement.
+            </p>
+
+            <div class="example-strip" aria-label="Scalar multiplication rules">
+              <span class="example-chip"
+                ><strong>One number</strong> the scalar multiplies every
+                element</span
+              >
+              <span class="example-chip"
+                ><strong>Same shape</strong> the matrix keeps its
+                dimensions</span
+              >
+              <span class="example-chip"
+                ><strong>Every cell changes</strong> multiply one by one</span
+              >
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked visual example</h3>
+              <p>
+                Start with the scalar, then apply it to every value in the
+                matrix.
+              </p>
+              <div
+                class="matrix-equation"
+                aria-label="Example of scalar multiplication on a matrix"
+              >
+                <span class="matrix-equation__token">3</span>
+                <span class="matrix-equation__operator">x</span>
+                <div class="matrix-display" style="--matrix-columns: 3">
+                  <span class="matrix-display__label">Matrix</span>
+                  <div class="matrix-display__body">
+                    <div class="matrix-grid">
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">2</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">0</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">4</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">1</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">5</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">2</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="matrix-equation__operator">=</span>
+                <div class="matrix-display" style="--matrix-columns: 3">
+                  <span class="matrix-display__label">Result</span>
+                  <div class="matrix-display__body">
+                    <div class="matrix-grid">
+                      <span class="matrix-grid__cell matrix-grid__cell--result">6</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">0</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">12</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">3</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">15</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">6</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="matrix-note-grid">
+                <article class="matrix-note-card">
+                  <strong>Apply the scalar to each element</strong>
+                  <span><code>3 x 2 = 6</code> and <code>3 x 4 = 12</code>.</span>
+                </article>
+                <article class="matrix-note-card">
+                  <strong>Zero still follows the same rule</strong>
+                  <span><code>3 x 0 = 0</code>, so the middle top value stays zero.</span>
+                </article>
+                <article class="matrix-note-card">
+                  <strong>The shape does not change</strong>
+                  <span>
+                    The result is still a 2 x 3 matrix because only the values
+                    change, not the layout.
+                  </span>
+                </article>
+              </div>
+            </article>
+
+            <article
+              class="lesson-card matrix-practice-card"
+              data-matrix-practice="scalar"
+            >
+              <div>
+                <h3>Scalar multiplication quick check</h3>
+                <p class="matrix-practice-copy">
+                  Multiply every element by the scalar shown in the question,
+                  then check your answer when you are ready.
+                </p>
+              </div>
+              <div class="matrix-practice-workspace" data-role="matrix-practice-workspace">
+                <p class="matrix-practice-placeholder">
+                  A generated scalar multiplication question will appear here
+                  when JavaScript is available.
+                </p>
+              </div>
+              <div class="matrix-practice-actions">
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="check"
+                >
+                  Quick check
+                </button>
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="clear"
+                >
+                  Clear section
+                </button>
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="new"
+                >
+                  New question
+                </button>
+              </div>
+              <p
+                class="matrix-practice-status"
+                data-role="matrix-practice-status"
+                aria-live="polite"
+              >
+                Fill every result cell, then run a quick check.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="matrix-multiplication"
+            class="lesson-section lesson-section--matrix-multiplication panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Matrix Multiplication</p>
+            <h2>Multiply a row by a column, not just matching positions</h2>
+            <p class="lesson-section-copy">
+              Matrix multiplication follows a different rule from addition. The
+              number of columns in the first matrix must match the number of
+              rows in the second. Each result cell comes from multiplying along
+              a row and down a column, then adding those products together.
+            </p>
+
+            <div class="example-strip" aria-label="Matrix multiplication rules">
+              <span class="example-chip"
+                ><strong>Inner dimensions</strong> must match to make the
+                multiplication valid</span
+              >
+              <span class="example-chip"
+                ><strong>Row x column</strong> one row combines with one
+                column</span
+              >
+              <span class="example-chip"
+                ><strong>Outer dimensions</strong> decide the answer
+                size</span
+              >
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked visual example</h3>
+              <p>
+                This example uses a 2 x 2 matrix multiplied by another 2 x 2
+                matrix, so the result is also 2 x 2.
+              </p>
+              <div
+                class="matrix-equation"
+                aria-label="Example of matrix multiplication"
+              >
+                <div class="matrix-display" style="--matrix-columns: 2">
+                  <span class="matrix-display__label">Matrix A</span>
+                  <div class="matrix-display__body">
+                    <div class="matrix-grid">
+                      <span class="matrix-grid__cell matrix-grid__cell--warm">1</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--warm">2</span>
+                      <span class="matrix-grid__cell">3</span>
+                      <span class="matrix-grid__cell">4</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="matrix-equation__operator">x</span>
+                <div class="matrix-display" style="--matrix-columns: 2">
+                  <span class="matrix-display__label">Matrix B</span>
+                  <div class="matrix-display__body">
+                    <div class="matrix-grid">
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">2</span>
+                      <span class="matrix-grid__cell">0</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--cool">1</span>
+                      <span class="matrix-grid__cell">5</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="matrix-equation__operator">=</span>
+                <div class="matrix-display" style="--matrix-columns: 2">
+                  <span class="matrix-display__label">Result</span>
+                  <div class="matrix-display__body">
+                    <div class="matrix-grid">
+                      <span class="matrix-grid__cell matrix-grid__cell--result">4</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">10</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">10</span>
+                      <span class="matrix-grid__cell matrix-grid__cell--result">20</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="matrix-note-grid">
+                <article class="matrix-note-card">
+                  <strong>First result cell</strong>
+                  <span><code>(1 x 2) + (2 x 1) = 4</code></span>
+                </article>
+                <article class="matrix-note-card">
+                  <strong>Second result cell</strong>
+                  <span><code>(1 x 0) + (2 x 5) = 10</code></span>
+                </article>
+                <article class="matrix-note-card">
+                  <strong>Answer size</strong>
+                  <span>
+                    The outer dimensions are 2 rows by 2 columns, so the result
+                    is a 2 x 2 matrix.
+                  </span>
+                </article>
+              </div>
+            </article>
+
+            <article
+              class="lesson-card matrix-practice-card"
+              data-matrix-practice="multiplication"
+            >
+              <div>
+                <h3>Matrix multiplication quick check</h3>
+                <p class="matrix-practice-copy">
+                  Build each answer cell from one row of the first matrix and
+                  one column of the second matrix. Your current question saves
+                  automatically.
+                </p>
+              </div>
+              <div class="matrix-practice-workspace" data-role="matrix-practice-workspace">
+                <p class="matrix-practice-placeholder">
+                  A generated matrix multiplication question will appear here
+                  when JavaScript is available.
+                </p>
+              </div>
+              <div class="matrix-practice-actions">
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="check"
+                >
+                  Quick check
+                </button>
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="clear"
+                >
+                  Clear section
+                </button>
+                <button
+                  type="button"
+                  class="structure-button"
+                  data-matrix-practice-action="new"
+                >
+                  New question
+                </button>
+              </div>
+              <p
+                class="matrix-practice-status"
+                data-role="matrix-practice-status"
+                aria-live="polite"
+              >
+                Fill every result cell, then run a quick check.
+              </p>
             </article>
           </section>
 
