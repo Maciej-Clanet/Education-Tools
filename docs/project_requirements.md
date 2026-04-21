@@ -153,6 +153,7 @@ the browser with `localStorage` where useful.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
 - Live topic lessons now exist at `pages/topics/stacks-and-queues.html` and
   `pages/topics/registers-and-their-functions.html`, and
+  `pages/topics/interrupts-and-register-handling.html`, and
   `pages/topics/arrays-lists-and-data-types.html`, and
   `pages/topics/matrices-and-arrays.html`, and
   `pages/topics/multi-dimensional-arrays-and-memory-order.html`.

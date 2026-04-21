@@ -15,9 +15,9 @@ const lessonConfig = {
       },
       next: {
         title: "Interrupts and register handling",
-        description:
-          "Next in B3 Registers and register handling. This lesson is still planned.",
-        status: "Planned",
+        description: "Next in B3 Registers and register handling.",
+        status: "Live",
+        href: "../topics/interrupts-and-register-handling.html",
       },
     },
   },

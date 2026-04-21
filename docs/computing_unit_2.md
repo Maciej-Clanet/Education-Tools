@@ -97,7 +97,7 @@ here as they are completed.
 
 ### B3 Registers and register handling
 - [x] Registers and their functions
-- [ ] Interrupts and register handling
+- [x] Interrupts and register handling
 
 ## C How data is represented by computer systems
 
