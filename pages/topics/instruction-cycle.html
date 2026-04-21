@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Instruction Cycle Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise the instruction cycle with clear explanations of fetch, decode, and execute, the registers involved, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="The Instruction Cycle Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise the instruction cycle with clear explanations of fetch, decode, and execute, the registers involved, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/instruction-cycle.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">B2 The Concepts of Microarchitecture</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-b"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">The instruction cycle</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>The instruction cycle</h1>
+            <p class="lesson-hero-text">
+              Revise how the CPU repeatedly fetches, decodes, and executes
+              instructions, and how the program counter, MAR, MDR, and
+              instruction register help that cycle run.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>B2 The concepts of microarchitecture</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Fetch, decode, execute, and the key CPU registers involved</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, worked sequence, exam practice, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-b"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring and teacher slides need JavaScript, but the
+          lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#cycle" data-section-link>The cycle</a>
+            <a href="#fetch" data-section-link>Fetch stage</a>
+            <a href="#decode-execute" data-section-link>Decode and execute</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              The instruction cycle is the repeated process the CPU uses to run
+              a program. In Unit 2, strong answers explain the stages in order
+              and name what the main registers hold while the cycle is happening.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define the instruction cycle clearly.</li>
+                  <li>Explain what happens during fetch, decode, and execute.</li>
+                  <li>Name the key registers linked to the cycle.</li>
+                  <li>Apply the sequence to short exam scenarios.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>PC:</strong> address of the next instruction.</li>
+                  <li><strong>MAR:</strong> address that memory will be accessed at.</li>
+                  <li><strong>MDR:</strong> instruction or data moving to or from memory.</li>
+                  <li><strong>IR:</strong> current instruction being decoded or executed.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where it appears</h3>
+                <p>
+                  Every stored-program CPU depends on the instruction cycle.
+                  When you explain any processor action, you are usually
+                  describing one part of this repeated loop.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="cycle"
+            class="lesson-section lesson-section--cycle panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">The Cycle</p>
+            <h2>Fetch, decode, and execute happen again and again</h2>
+            <p class="lesson-section-copy">
+              Programs are stored as instructions in memory. The CPU works
+              through them one at a time, repeating the same broad sequence so
+              each instruction can be located, understood, and carried out.
+            </p>
+
+            <div class="example-strip" aria-label="Instruction cycle stages">
+              <span class="example-chip"><strong>Fetch</strong> get the next instruction from memory</span>
+              <span class="example-chip"><strong>Decode</strong> work out what the instruction means</span>
+              <span class="example-chip"><strong>Execute</strong> carry out the required action</span>
+            </div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Stage</th>
+                    <th>What the CPU is doing</th>
+                    <th>Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Fetch</td>
+                    <td>The CPU gets the next instruction from main memory.</td>
+                    <td>No instruction can run until it has been brought into the CPU.</td>
+                  </tr>
+                  <tr>
+                    <td>Decode</td>
+                    <td>The control unit interprets the opcode and required action.</td>
+                    <td>The CPU must know whether to add, compare, jump, store, or do something else.</td>
+                  </tr>
+                  <tr>
+                    <td>Execute</td>
+                    <td>The processor carries out the instruction, often using the ALU or memory access.</td>
+                    <td>This is where the actual work of the program happens.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why exam questions like this topic</h3>
+              <p>
+                The instruction cycle links together registers, memory access,
+                control signals, and processor performance. It is a good test
+                of whether you understand how separate CPU concepts fit
+                together.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="fetch"
+            class="lesson-section lesson-section--fetch panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Fetch Stage</p>
+            <h2>The fetch stage moves the next instruction into the CPU</h2>
+            <p class="lesson-section-copy">
+              Fetch questions are often about register roles. The key is to say
+              what each register holds at that moment rather than listing names
+              without explanation.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Step</th>
+                    <th>Register action</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>The program counter holds the address of the next instruction.</td>
+                    <td>The CPU knows which memory location it needs next.</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>That address is copied into the MAR.</td>
+                    <td>Main memory can be accessed at the correct location.</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>The instruction is fetched from memory through the MDR.</td>
+                    <td>The instruction enters the CPU.</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>The instruction is placed in the instruction register.</td>
+                    <td>The control unit can decode it.</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>The program counter is increased unless a branch changes it.</td>
+                    <td>The CPU is ready to fetch the next instruction later.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>PC</h3>
+                <p>
+                  Stores the next instruction address, not the full instruction itself.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>MAR and MDR</h3>
+                <p>
+                  MAR points to the memory location. MDR carries the value or instruction.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Instruction register</h3>
+                <p>
+                  Holds the current instruction once it has been fetched into the CPU.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked fetch example</h3>
+              <p>
+                If the next instruction is stored at memory address 205, the
+                <strong>program counter</strong> may hold 205. That value is
+                copied into the <strong>MAR</strong>, memory is read, and the
+                instruction returns through the <strong>MDR</strong>. It is then
+                loaded into the <strong>instruction register</strong> so the CPU
+                can decode it.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="decode-execute"
+            class="lesson-section lesson-section--decode-execute panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Decode and Execute</p>
+            <h2>After fetch, the CPU works out the meaning and performs the action</h2>
+            <p class="lesson-section-copy">
+              The control unit decodes the instruction so the processor knows
+              which action is required. Execution may mean an arithmetic
+              calculation, a comparison, a store to memory, or a jump to a new
+              instruction address.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Decode</strong>
+                <span>
+                  The control unit interprets the opcode and prepares the control signals needed.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Execute</strong>
+                <span>
+                  The CPU carries out the required action, often using the ALU, registers, or memory access.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Accumulator link</strong>
+                <span>
+                  Arithmetic or logic work may place an intermediate result in the accumulator.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Branch link</strong>
+                <span>
+                  Some instructions change the usual sequence by loading a new value into the program counter.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why decode is separate from execute</h3>
+              <p>
+                The CPU must first understand what the instruction means before
+                it can carry it out. Saying "the CPU fetches and does it" skips
+                an important exam mark because decoding is its own stage.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with the instruction cycle</h2>
+            <p class="lesson-section-copy">
+              Instruction-cycle questions often look simple, but weak answers
+              usually lose marks on register detail or the order of the stages.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Mixing up MAR and MDR</h3>
+                <p>
+                  Students often describe both as if they do the same job.
+                </p>
+                <ul class="trap-list">
+                  <li>MAR holds the address to access.</li>
+                  <li>MDR holds the data or instruction being transferred.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use the exact words
+                  <code>address</code> and <code>data</code>.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Forgetting decode</h3>
+                <p>
+                  Some answers jump straight from fetch to execution.
+                </p>
+                <ul class="trap-list">
+                  <li>The CPU must interpret the opcode first.</li>
+                  <li>Decode is a separate part of the cycle.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Always state the full sequence as
+                  <code>fetch, decode, execute</code>.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Confusing the PC with the current instruction</h3>
+                <p>
+                  The program counter does not store the current instruction.
+                </p>
+                <ul class="trap-list">
+                  <li>PC stores the next instruction address.</li>
+                  <li>Instruction register stores the current instruction.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Link the PC to the word
+                  <code>next</code> in your answer.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. The instruction cycle is the repeated fetch-decode-execute process used by the CPU."
+                data-feedback="The instruction cycle is the repeated process used to fetch, decode, and execute instructions."
+              >
+                <legend>1. What is the instruction cycle?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>A one-time startup routine that only runs when the computer is switched on</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>The repeated fetch, decode, and execute process used by the CPU</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>A method of storing files on a hard disk</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. The program counter holds the address of the next instruction."
+                data-feedback="The program counter stores the address of the next instruction to fetch."
+              >
+                <legend>2. Which register holds the address of the next instruction?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>Program counter</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>Instruction register</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>Accumulator</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. The MAR stores the memory address being accessed."
+                data-feedback="The MAR holds the address to read from or write to, not the data itself."
+              >
+                <legend>3. During fetch, what does the MAR store?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>The current instruction being decoded</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>The data value being transferred</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>The memory address that needs to be accessed</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Decode means the control unit works out what the instruction means."
+                data-feedback="In the decode stage, the control unit interprets the opcode so the instruction can be carried out."
+              >
+                <legend>4. What happens during the decode stage?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>The instruction is permanently saved to secondary storage</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>The control unit interprets the instruction and prepares the required action</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>The CPU automatically restarts the whole program</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. The strongest answer separates next instruction address, address in use, transferred data, and current instruction."
+                data-feedback="A full answer should distinguish the roles of the PC, MAR, MDR, and instruction register."
+              >
+                <legend>5. Which explanation is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>The PC stores the next instruction address, the MAR stores the address being accessed, the MDR carries the transferred value, and the instruction register stores the current instruction</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>All registers do roughly the same job, but at different speeds</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>The MAR stores the data and the MDR stores the address because both are related to memory</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain the role of the program counter, MAR, MDR, and
+                  instruction register during the fetch stage.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="instruction-cycle-exam-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="instruction-cycle-exam-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer explains what each register holds.
+                    </p>
+                    <ul class="exam-points">
+                      <li>The program counter stores the address of the next instruction.</li>
+                      <li>That address is copied into the MAR so memory can be accessed.</li>
+                      <li>The instruction is fetched from memory through the MDR.</li>
+                      <li>The instruction is then placed in the instruction register ready for decoding.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Explain and apply</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A CPU is executing an addition instruction. Explain how the
+                  instruction cycle allows that instruction to be fetched,
+                  decoded, and executed, and include at least one implication if
+                  the next instruction address were not updated correctly.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="instruction-cycle-exam-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="instruction-cycle-exam-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Explain the full cycle clearly and link it to correct program flow."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers follow the sequence and then explain the consequence.
+                    </p>
+                    <ul class="exam-points">
+                      <li>The CPU fetches the instruction using the PC, MAR, MDR, and instruction register.</li>
+                      <li>The control unit decodes the opcode to identify that an addition is required.</li>
+                      <li>The execute stage carries out the addition, often using the ALU and registers such as the accumulator.</li>
+                      <li>The program counter is then ready to point to the next instruction unless a jump changes it.</li>
+                      <li>If the next address were wrong, the CPU could fetch the wrong instruction or repeat the same one.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Instruction cycle</dt>
+                <dd>The repeated fetch, decode, and execute process used by the CPU.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Fetch</dt>
+                <dd>The stage where the next instruction is brought from memory into the CPU.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Decode</dt>
+                <dd>The stage where the control unit interprets the instruction.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Execute</dt>
+                <dd>The stage where the instruction is carried out.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Fetch needs the right register story</h2>
+            <ul class="memory-list">
+              <li>PC means next instruction address.</li>
+              <li>MAR means address to access now.</li>
+              <li>MDR means data or instruction in transit.</li>
+            </ul>
+          </section>
+
+          <section class="lesson-rail-card panel">
+            <p class="eyebrow">Sponsored Space</p>
+            <h2>Sidebar ad slot</h2>
+            <p>
+              This rail still leaves room for a future advert or promoted
+              resource without cutting into the lesson flow.
+            </p>
+            <div
+              class="ad-placeholder ad-placeholder-vertical"
+              aria-label="Future vertical advertisement space"
+            >
+              <strong>Sidebar ad slot</strong>
+              <span>Reserved for a future desktop placement.</span>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

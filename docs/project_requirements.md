@@ -151,10 +151,14 @@ the browser with `localStorage` where useful.
 - The homepage now highlights the live Unit 2 hub plus live and planned Unit 2
   lesson pages.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
-- Live topic lessons now exist at `pages/topics/stacks-and-queues.html` and
-  `pages/topics/registers-and-their-functions.html`, and
-  `pages/topics/interrupts-and-register-handling.html`, and
-  `pages/topics/arrays-lists-and-data-types.html`, and
+- Live topic lessons now exist at `pages/topics/instruction-cycle.html`,
+  `pages/topics/cpu-performance-instruction-sets-and-cache.html`,
+  `pages/topics/pipelining-multi-processing-and-multi-threading.html`,
+  `pages/topics/cpu-architecture-for-different-systems.html`,
+  `pages/topics/registers-and-their-functions.html`,
+  `pages/topics/interrupts-and-register-handling.html`,
+  `pages/topics/stacks-and-queues.html`,
+  `pages/topics/arrays-lists-and-data-types.html`,
   `pages/topics/matrices-and-arrays.html`, and
   `pages/topics/multi-dimensional-arrays-and-memory-order.html`.
 - A shared lesson shell now supports sidebar navigation, contextual unit

@@ -90,10 +90,10 @@ here as they are completed.
 - [ ] Cluster computing, UMA, NUMA, and emulation
 
 ### B2 The concepts of microarchitecture
-- [ ] The instruction cycle
-- [ ] CPU performance, instruction sets, and cache
-- [ ] Pipelining, multi-processing, and multi-threading
-- [ ] CPU architecture for different systems
+- [x] The instruction cycle
+- [x] CPU performance, instruction sets, and cache
+- [x] Pipelining, multi-processing, and multi-threading
+- [x] CPU architecture for different systems
 
 ### B3 Registers and register handling
 - [x] Registers and their functions

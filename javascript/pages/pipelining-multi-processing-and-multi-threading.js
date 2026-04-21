@@ -1,7 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
 const lessonConfig = {
-  lessonId: "registers-and-their-functions",
+  lessonId: "pipelining-multi-processing-and-multi-threading",
   defaultContext: "btec-level-3-unit-2",
   contexts: {
     "btec-level-3-unit-2": {
@@ -9,25 +9,25 @@ const lessonConfig = {
       backHref: "../units/btec-level-3-unit-2.html#section-b",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "CPU architecture for different systems",
+        title: "CPU performance, instruction sets, and cache",
         description: "Previous in B2 The concepts of microarchitecture.",
         status: "Live",
-        href: "../topics/cpu-architecture-for-different-systems.html",
+        href: "../topics/cpu-performance-instruction-sets-and-cache.html",
       },
       next: {
-        title: "Interrupts and register handling",
-        description: "Next in B3 Registers and register handling.",
+        title: "CPU architecture for different systems",
+        description: "Next in B2 The concepts of microarchitecture.",
         status: "Live",
-        href: "../topics/interrupts-and-register-handling.html",
+        href: "../topics/cpu-architecture-for-different-systems.html",
       },
     },
   },
   quiz: {
-    storageKey: "lesson-registers-and-their-functions-quiz",
+    storageKey: "lesson-pipelining-multi-processing-and-multi-threading-quiz",
     passScore: 4,
   },
   examPractice: {
-    storageKey: "lesson-registers-and-their-functions-exam-practice",
+    storageKey: "lesson-pipelining-multi-processing-and-multi-threading-exam-practice",
   },
 }
 

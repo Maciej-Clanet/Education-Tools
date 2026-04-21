@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPU Performance, Instruction Sets, and Cache Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise CPU performance, instruction sets, and cache with clear explanations of execution speed factors, trade-offs, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="CPU Performance, Instruction Sets, and Cache Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise CPU performance, instruction sets, and cache with clear explanations of execution speed factors, trade-offs, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/cpu-performance-instruction-sets-and-cache.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">B2 The Concepts of Microarchitecture</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-b"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">CPU performance, instruction sets, and cache</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>CPU performance, instruction sets, and cache</h1>
+            <p class="lesson-hero-text">
+              Revise the main factors that affect CPU execution speed, how
+              instruction sets shape processor behaviour, and why cache helps
+              keep frequently used instructions and data close to the CPU.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>B2 The concepts of microarchitecture</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Execution speed, instruction-set choice, and cache performance</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, comparison, exam practice, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-b"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring and teacher slides need JavaScript, but the
+          lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#performance" data-section-link>Performance</a>
+            <a href="#instruction-sets" data-section-link>Instruction sets</a>
+            <a href="#cache" data-section-link>Cache</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              CPU performance is more than just clock speed. In Unit 2, you need
+              to explain what affects execution speed, how instruction-set design
+              changes CPU behaviour, and why cache helps reduce delays caused by
+              slower main memory.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Describe factors that affect CPU execution speed.</li>
+                  <li>Explain what an instruction set is and why it matters.</li>
+                  <li>Explain how cache improves performance.</li>
+                  <li>Discuss trade-offs such as cost, heat, and power use.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Execution speed:</strong> how quickly the CPU completes work.</li>
+                  <li><strong>Instruction set:</strong> the collection of operations the CPU can understand.</li>
+                  <li><strong>Cache:</strong> small, fast memory close to the CPU.</li>
+                  <li><strong>Implication:</strong> more speed often means more cost, heat, or power use.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where it appears</h3>
+                <p>
+                  These ideas matter whenever you compare processor choices,
+                  explain why one system feels faster than another, or justify
+                  design decisions in exam scenarios.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="performance"
+            class="lesson-section lesson-section--performance panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Performance</p>
+            <h2>Execution speed depends on several linked factors</h2>
+            <p class="lesson-section-copy">
+              Clock speed matters, but it is not the whole story. Real CPU
+              performance is affected by how quickly instructions can be
+              processed, how often the CPU waits for memory, and how efficient
+              the overall design is for the task being run.
+            </p>
+
+            <div class="example-strip" aria-label="Performance themes">
+              <span class="example-chip"><strong>Clock speed</strong> more cycles each second</span>
+              <span class="example-chip"><strong>Cache</strong> fewer waits for RAM</span>
+              <span class="example-chip"><strong>Efficiency</strong> useful work done per cycle also matters</span>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Clock speed</strong>
+                <span>
+                  A higher clock can let the CPU complete more cycles each second, but only within thermal and power limits.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Cache size and design</strong>
+                <span>
+                  Better cache reduces the need to wait for slower main memory when data is reused often.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Processor design</strong>
+                <span>
+                  An efficient microarchitecture can complete more useful work per cycle.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Implications</strong>
+                <span>
+                  Higher performance can increase cost, heat output, and power consumption.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why a faster number is not always a faster CPU</h3>
+              <p>
+                Two processors with similar clock speeds can behave differently
+                if one spends less time waiting for memory, has a better cache,
+                or needs fewer cycles to complete the same task.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="instruction-sets"
+            class="lesson-section lesson-section--instruction-sets panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Instruction Sets</p>
+            <h2>The instruction set affects what the CPU can do and how it does it</h2>
+            <p class="lesson-section-copy">
+              An instruction set is the collection of machine-level operations
+              the processor understands. Choosing an instruction-set style has
+              implications for compatibility, complexity, power use, and how
+              efficiently software runs on the processor.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Choice</th>
+                    <th>Typical features</th>
+                    <th>Possible implication</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Larger or more complex instruction set</td>
+                    <td>More built-in operations and sometimes more powerful single instructions.</td>
+                    <td>Can reduce program length, but may increase decoder complexity and power use.</td>
+                  </tr>
+                  <tr>
+                    <td>Smaller or simpler instruction set</td>
+                    <td>Fewer instruction types with a more regular design.</td>
+                    <td>Can improve efficiency and energy use, but may need more instructions to complete a task.</td>
+                  </tr>
+                  <tr>
+                    <td>Compatibility focus</td>
+                    <td>Supports a particular family of software and operating systems.</td>
+                    <td>Changing instruction-set family can affect whether existing software will run directly.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>What to say in an exam answer</h3>
+              <p>
+                Do not just say that the instruction set is "instructions."
+                Stronger answers explain that it defines the operations the CPU
+                can understand and affects efficiency, compatibility, and
+                design choices.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="cache"
+            class="lesson-section lesson-section--cache panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Cache</p>
+            <h2>Cache helps the CPU avoid repeated delays when data is reused</h2>
+            <p class="lesson-section-copy">
+              Cache is a small amount of very fast memory located close to the
+              CPU. It stores frequently used instructions or data so the
+              processor does not always have to wait for slower RAM.
+            </p>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>Cache hit</h3>
+                <p>
+                  The needed instruction or data is already in cache, so the CPU can continue quickly.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Cache miss</h3>
+                <p>
+                  The CPU must fetch from slower main memory, causing a delay before work can continue.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Why it works</h3>
+                <p>
+                  Programs often reuse nearby instructions and data, so keeping popular items close to the CPU saves time.
+                </p>
+              </article>
+            </div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Memory type</th>
+                    <th>Speed</th>
+                    <th>Typical role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Cache</td>
+                    <td>Very fast</td>
+                    <td>Holds frequently used instructions or data close to the CPU.</td>
+                  </tr>
+                  <tr>
+                    <td>Main memory (RAM)</td>
+                    <td>Slower than cache</td>
+                    <td>Stores programs and data currently in use by the system.</td>
+                  </tr>
+                  <tr>
+                    <td>Secondary storage</td>
+                    <td>Much slower</td>
+                    <td>Stores files and programs long term.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with performance and cache</h2>
+            <p class="lesson-section-copy">
+              These topics often lose marks when answers become too vague or
+              focus on one single factor without explaining the trade-offs.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Assuming clock speed is everything</h3>
+                <p>
+                  A higher GHz figure does not automatically make a CPU better
+                  in every situation.
+                </p>
+                <ul class="trap-list">
+                  <li>Cache design also affects performance.</li>
+                  <li>Instruction efficiency and processor design matter too.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention at least one other factor besides
+                  clock speed.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Treating cache like permanent storage</h3>
+                <p>
+                  Cache is not a place for saving files long term.
+                </p>
+                <ul class="trap-list">
+                  <li>Cache is small, fast memory used during active processing.</li>
+                  <li>It helps the CPU access reused data more quickly.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Link cache to speed and short-term access,
+                  not file storage.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Defining an instruction set too loosely</h3>
+                <p>
+                  Saying "it is the instructions in a program" is not precise enough.
+                </p>
+                <ul class="trap-list">
+                  <li>It is the set of operations the CPU can understand.</li>
+                  <li>It affects compatibility and processor design choices.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use the phrase
+                  <code>operations the CPU can understand</code>.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. CPU performance depends on several linked factors, not just one number."
+                data-feedback="Execution speed is affected by more than one factor, including cache and processor efficiency."
+              >
+                <legend>1. Which statement is most accurate?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Clock speed is the only thing that determines CPU performance</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>CPU performance depends on factors such as clock speed, cache, and design efficiency</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>CPU performance depends only on the size of the hard disk</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. An instruction set is the collection of operations the CPU can understand."
+                data-feedback="The instruction set defines the machine-level operations the processor is able to execute."
+              >
+                <legend>2. What is an instruction set?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>The collection of operations the CPU can understand and execute</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>A list of programs saved on a hard drive</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>A method of cooling the processor</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Cache stores frequently used instructions or data close to the CPU."
+                data-feedback="Cache helps performance by keeping reused items in faster memory near the processor."
+              >
+                <legend>3. What is the main purpose of cache?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>To replace the need for RAM completely</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>To store files permanently for the operating system</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>To keep frequently used instructions or data close to the CPU for faster access</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. A cache miss means the CPU has to wait for slower main memory."
+                data-feedback="When the needed item is not in cache, the CPU must fetch it from slower memory."
+              >
+                <legend>4. What happens during a cache miss?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>The CPU permanently deletes the instruction</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>The CPU must fetch the needed item from slower main memory</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>The processor automatically doubles its clock speed</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. Higher performance often brings trade-offs such as cost, heat, or power use."
+                data-feedback="A strong answer includes performance benefits as well as implications like power, heat, and cost."
+              >
+                <legend>5. Which implication is most sensible?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>A faster CPU design may improve performance but can also increase heat output and power use</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>Adding cache means the CPU no longer needs any main memory</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Instruction sets only matter to the keyboard and monitor</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain how cache improves CPU performance.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="cpu-performance-exam-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="cpu-performance-exam-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer links cache to reduced waiting.
+                    </p>
+                    <ul class="exam-points">
+                      <li>Cache is small, fast memory close to the CPU.</li>
+                      <li>It stores frequently used instructions or data.</li>
+                      <li>If the CPU finds the needed item in cache, it avoids a slower RAM access.</li>
+                      <li>This reduces delays and improves overall execution speed.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Discuss</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A device maker is comparing two CPU designs: one aims for low
+                  power use with a simpler instruction-set approach, and the
+                  other aims for maximum speed with a larger cache and higher
+                  performance target. Discuss the advantages and implications of
+                  each choice.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="cpu-performance-exam-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="cpu-performance-exam-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Compare performance benefits with power, cost, or compatibility implications."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers compare benefits and trade-offs on both sides.
+                    </p>
+                    <ul class="exam-points">
+                      <li>A simpler, lower-power design may improve energy efficiency and battery life.</li>
+                      <li>It may suit devices where heat and power limits matter more than raw speed.</li>
+                      <li>A higher-performance design with more cache can reduce waiting for memory and improve speed.</li>
+                      <li>That may be better for demanding workloads.</li>
+                      <li>However, higher performance often increases cost, heat output, and power consumption.</li>
+                      <li>The final choice depends on the purpose of the system being built.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Execution speed</dt>
+                <dd>How quickly a CPU can complete useful processing work.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Instruction set</dt>
+                <dd>The collection of operations the CPU can understand and execute.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Cache</dt>
+                <dd>Small, fast memory close to the CPU used for frequently needed data or instructions.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Cache miss</dt>
+                <dd>A situation where the needed item is not in cache, so slower memory must be used.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Performance is a trade-off topic</h2>
+            <ul class="memory-list">
+              <li>Clock speed matters, but it is not the whole story.</li>
+              <li>Cache cuts down waiting for slower memory.</li>
+              <li>More speed can mean more heat, cost, or power use.</li>
+            </ul>
+          </section>
+
+          <section class="lesson-rail-card panel">
+            <p class="eyebrow">Sponsored Space</p>
+            <h2>Sidebar ad slot</h2>
+            <p>
+              This rail still leaves room for a future advert or promoted
+              resource without cutting into the lesson flow.
+            </p>
+            <div
+              class="ad-placeholder ad-placeholder-vertical"
+              aria-label="Future vertical advertisement space"
+            >
+              <strong>Sidebar ad slot</strong>
+              <span>Reserved for a future desktop placement.</span>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

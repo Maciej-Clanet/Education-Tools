@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPU Architecture for Different Systems Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise CPU architecture for embedded, mobile, microcomputer, and server systems with clear comparisons, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="CPU Architecture for Different Systems Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise CPU architecture for embedded, mobile, microcomputer, and server systems with clear comparisons, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/cpu-architecture-for-different-systems.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">B2 The Concepts of Microarchitecture</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-b"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">CPU architecture for different systems</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>CPU architecture for different systems</h1>
+            <p class="lesson-hero-text">
+              Revise how CPU design changes across embedded and mobile devices,
+              microcomputers, and servers, and how each architecture reflects
+              different priorities such as power use, heat, throughput, and
+              reliability.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>B2 The concepts of microarchitecture</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Architecture choices for embedded, mobile, desktop, and server systems</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, comparison, exam practice, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-b"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring and teacher slides need JavaScript, but the
+          lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#embedded-mobile" data-section-link>Embedded and mobile</a>
+            <a href="#microcomputer" data-section-link>Microcomputer</a>
+            <a href="#server" data-section-link>Server</a>
+            <a href="#compare" data-section-link>Compare choices</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Different systems need different CPU priorities. Mobile and
+              embedded devices often focus on power efficiency, microcomputers
+              aim for balanced general-purpose performance, and servers focus on
+              throughput, many users, and reliability.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Describe the features of embedded and mobile CPU design.</li>
+                  <li>Explain the priorities of microcomputer CPU architecture.</li>
+                  <li>Explain the priorities of server CPU architecture.</li>
+                  <li>Choose the most suitable architecture for a scenario.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Embedded and mobile:</strong> low power, low heat, compact design.</li>
+                  <li><strong>Microcomputer:</strong> balanced cost and general-purpose performance.</li>
+                  <li><strong>Server:</strong> many users, high throughput, large memory support, reliability.</li>
+                  <li><strong>Implication:</strong> the "best" CPU depends on the job.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where it appears</h3>
+                <p>
+                  These ideas are useful whenever you justify hardware choice in
+                  an exam scenario, especially when the question mentions
+                  battery life, a classroom desktop, or a busy shared server.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="embedded-mobile"
+            class="lesson-section lesson-section--embedded-mobile panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Embedded and Mobile</p>
+            <h2>Embedded and mobile CPUs focus heavily on efficiency</h2>
+            <p class="lesson-section-copy">
+              Phones, tablets, sensors, and embedded systems often have tight
+              power and thermal limits. Their CPU architecture is designed to do
+              useful work while using as little energy and generating as little
+              heat as practical.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Low power use</strong>
+                <span>
+                  Important for battery life and systems that cannot support large power supplies.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Low heat output</strong>
+                <span>
+                  Helps compact devices avoid overheating and reduces the need for large cooling systems.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Integrated design</strong>
+                <span>
+                  Many mobile chips combine CPU, graphics, and controller functions into one package.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Implication</strong>
+                <span>
+                  Peak performance may be lower than a large desktop or server processor, but efficiency is much better.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why this matters</h3>
+              <p>
+                A mobile device is judged on battery life, size, and
+                responsiveness. A CPU that is too power-hungry or too hot may
+                be unsuitable even if it is very fast.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="microcomputer"
+            class="lesson-section lesson-section--microcomputer panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Microcomputer</p>
+            <h2>Microcomputer CPU design aims for balanced general-purpose use</h2>
+            <p class="lesson-section-copy">
+              Desktop and laptop microcomputers are expected to run a wide range
+              of applications such as web browsers, office tools, programming
+              environments, and media software. Their CPU architecture usually
+              balances performance, cost, and practical cooling.
+            </p>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>General-purpose strength</h3>
+                <p>
+                  These systems are built to handle many different kinds of workload rather than one narrow task.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Balanced cost</h3>
+                <p>
+                  Price matters because microcomputers are bought in large numbers by homes, schools, and offices.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Performance target</h3>
+                <p>
+                  They aim to feel responsive for everyday software while staying within practical power and heat limits.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Typical implication</h3>
+              <p>
+                A microcomputer CPU is often more powerful than a tiny embedded
+                chip, but it may still be less specialised for constant heavy
+                server workloads.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="server"
+            class="lesson-section lesson-section--server panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Server</p>
+            <h2>Server CPUs are designed for throughput, large workloads, and reliability</h2>
+            <p class="lesson-section-copy">
+              Servers often handle many users, many requests, or large virtual
+              workloads at once. Their CPU architecture is designed to support
+              high throughput, multiple cores, large memory capacities, and
+              dependable operation over long periods.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Server priority</th>
+                    <th>Why it matters</th>
+                    <th>Possible implication</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Many cores or strong parallel handling</td>
+                    <td>Helps process many tasks, users, or services at once.</td>
+                    <td>Improves throughput for shared workloads.</td>
+                  </tr>
+                  <tr>
+                    <td>Large memory support</td>
+                    <td>Servers often run many services or large datasets.</td>
+                    <td>Supports databases, virtual machines, and heavy multitasking.</td>
+                  </tr>
+                  <tr>
+                    <td>Reliability features</td>
+                    <td>Downtime is costly in business and network environments.</td>
+                    <td>Design may favour stability and continuous operation.</td>
+                  </tr>
+                  <tr>
+                    <td>Higher power and cost tolerance</td>
+                    <td>Servers are usually mains powered and performance is business-critical.</td>
+                    <td>They can be more expensive and use more energy than home systems.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section lesson-section--compare panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Comparison</p>
+            <h2>Match the CPU architecture to the system need</h2>
+            <p class="lesson-section-copy">
+              Good exam answers do not just list features. They explain why a
+              particular architecture fits the scenario better than the others.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Scenario</th>
+                    <th>Best fit</th>
+                    <th>Why it fits</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Battery-powered sensor or phone</td>
+                    <td>Embedded or mobile CPU architecture</td>
+                    <td>Efficiency, compact design, and low heat are more important than maximum throughput.</td>
+                  </tr>
+                  <tr>
+                    <td>School or home desktop</td>
+                    <td>Microcomputer CPU architecture</td>
+                    <td>It balances general-purpose performance, cost, and practical power use.</td>
+                  </tr>
+                  <tr>
+                    <td>Busy company database or web server</td>
+                    <td>Server CPU architecture</td>
+                    <td>It is better suited to many users, large memory, and long-running workloads.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Exam reminder</h3>
+              <p>
+                Avoid saying one architecture is simply "best." Instead,
+                explain which one is most suitable for the intended use.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with architecture choices</h2>
+            <p class="lesson-section-copy">
+              These questions often lose marks when answers chase raw speed
+              instead of linking architecture to the real needs of the system.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Assuming the fastest CPU is always the best choice</h3>
+                <p>
+                  A small mobile device may care more about battery life and heat
+                  than maximum performance.
+                </p>
+                <ul class="trap-list">
+                  <li>Suitability depends on the purpose of the system.</li>
+                  <li>Efficiency and reliability can matter more than raw speed.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Link the choice to the scenario.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Treating mobile CPUs as just weaker desktop CPUs</h3>
+                <p>
+                  Mobile processors are purpose-built for a different set of priorities.
+                </p>
+                <ul class="trap-list">
+                  <li>They emphasise low power use and compact integration.</li>
+                  <li>Those features are strengths, not just compromises.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Describe the design goal, not just the performance level.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Forgetting why servers need different CPU features</h3>
+                <p>
+                  Server questions usually expect you to mention multiple users,
+                  heavy workloads, or reliability.
+                </p>
+                <ul class="trap-list">
+                  <li>Servers often need many cores and large memory support.</li>
+                  <li>They are designed for sustained shared workloads.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention throughput, many users, or
+                  continuous operation.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. Embedded and mobile CPU design strongly prioritises energy efficiency and low heat."
+                data-feedback="Embedded and mobile processors are designed with power and thermal limits in mind."
+              >
+                <legend>1. What is a key priority of embedded and mobile CPU architecture?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Using the largest cooling system possible</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>Keeping power use and heat low while staying responsive</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>Maximising hard-disk storage capacity</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. Microcomputer CPUs usually aim for balanced general-purpose performance."
+                data-feedback="Microcomputer CPU design typically balances cost, power, and performance for varied everyday tasks."
+              >
+                <legend>2. Which description best fits a microcomputer CPU?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>A balanced general-purpose design for desktops or laptops</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>A CPU built only for tiny battery-powered sensors</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>A processor used only when no operating system is installed</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Server CPUs are designed for heavy shared workloads and large throughput."
+                data-feedback="Server CPU architecture focuses on sustained workloads, many users, and strong overall throughput."
+              >
+                <legend>3. Why might a server CPU use many cores and support large memory?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>To reduce the size of the monitor needed by the system</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>To make the system easier to fit inside a phone</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>To handle many users, services, or virtual workloads efficiently</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. A battery-powered sensor is best matched to an embedded or mobile style of CPU design."
+                data-feedback="Systems with strict power and heat limits usually need an embedded or mobile focused CPU architecture."
+              >
+                <legend>4. Which architecture is most suitable for a battery-powered sensor device?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>Server CPU architecture</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>Embedded or mobile CPU architecture</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>Any architecture is equally suitable</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. The strongest answer links the CPU choice to the real needs of the system."
+                data-feedback="Architecture questions are about suitability, so the best answer explains why a specific design matches the task."
+              >
+                <legend>5. Which explanation is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>A server CPU may be best for heavy multi-user workloads, while a mobile CPU may be best when power efficiency is critical</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>The most expensive CPU is always the best for every type of computer system</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Mobile and server CPU architectures are effectively identical except for screen size</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why mobile CPU architecture usually prioritises energy
+                  efficiency.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="architecture-exam-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="architecture-exam-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer focuses on power, heat, and battery life.
+                    </p>
+                    <ul class="exam-points">
+                      <li>Mobile devices often run from batteries, so power use must be low.</li>
+                      <li>Low power use also helps extend battery life.</li>
+                      <li>Compact devices cannot usually support large cooling systems, so low heat output matters.</li>
+                      <li>The CPU architecture is therefore designed for efficient performance rather than maximum power draw.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Recommend and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  Recommend a suitable CPU architecture for a school classroom
+                  desktop and for a busy company file server. Justify both
+                  choices.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="architecture-exam-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="architecture-exam-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Explain why each system has different priorities."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers justify both recommendations.
+                    </p>
+                    <ul class="exam-points">
+                      <li>A classroom desktop is usually best matched to microcomputer CPU architecture.</li>
+                      <li>That is because it balances cost, general-purpose performance, and practical power use.</li>
+                      <li>A busy company file server is better matched to server CPU architecture.</li>
+                      <li>That is because servers need to support many users, larger workloads, and reliable continuous operation.</li>
+                      <li>Server CPUs may also benefit from many cores and larger memory support.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Embedded system</dt>
+                <dd>A computer built into a device to perform a dedicated task.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Mobile CPU architecture</dt>
+                <dd>CPU design focused on energy efficiency, compact integration, and low heat.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Microcomputer</dt>
+                <dd>A general-purpose desktop or laptop style system for everyday use.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Server CPU architecture</dt>
+                <dd>CPU design aimed at heavy shared workloads, high throughput, and reliability.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Architecture choice depends on the job</h2>
+            <ul class="memory-list">
+              <li>Mobile and embedded systems prioritise efficiency.</li>
+              <li>Microcomputers aim for balanced general-purpose use.</li>
+              <li>Servers prioritise throughput and reliability.</li>
+            </ul>
+          </section>
+
+          <section class="lesson-rail-card panel">
+            <p class="eyebrow">Sponsored Space</p>
+            <h2>Sidebar ad slot</h2>
+            <p>
+              This rail still leaves room for a future advert or promoted
+              resource without cutting into the lesson flow.
+            </p>
+            <div
+              class="ad-placeholder ad-placeholder-vertical"
+              aria-label="Future vertical advertisement space"
+            >
+              <strong>Sidebar ad slot</strong>
+              <span>Reserved for a future desktop placement.</span>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>
