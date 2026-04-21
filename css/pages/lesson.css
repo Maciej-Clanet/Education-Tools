@@ -732,6 +732,116 @@ body.teacher-mode-active .slide-fullrow {
   color: var(--teal-deep);
 }
 
+.memory-visual-card {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.memory-visual {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: 20px;
+  border: 1.5px dashed rgba(37, 52, 66, 0.16);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.86),
+    rgba(247, 251, 253, 0.82)
+  );
+}
+
+.memory-lane {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.memory-lane--array {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.memory-cell,
+.memory-node {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.memory-cell {
+  padding: 0.8rem;
+  border-radius: 18px;
+  border: 1.5px solid rgba(31, 135, 125, 0.16);
+  background: rgba(232, 246, 255, 0.86);
+}
+
+.memory-cell__address,
+.memory-node__address {
+  width: fit-content;
+  padding: 0.24rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(36, 49, 59, 0.08);
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.memory-cell__value,
+.memory-node__data {
+  color: var(--page-ink);
+  font-size: 1.15rem;
+}
+
+.memory-cell__meta,
+.memory-node__pointer,
+.memory-node__type,
+.memory-visual-note {
+  color: var(--muted-ink);
+  font-size: 0.92rem;
+}
+
+.memory-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.memory-node {
+  min-width: 180px;
+  padding: 0.85rem;
+  border-radius: 18px;
+  border: 1.5px solid rgba(223, 107, 111, 0.16);
+  background: rgba(255, 240, 241, 0.88);
+}
+
+.memory-node__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.memory-node__type {
+  width: fit-content;
+  padding: 0.24rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  font-weight: 700;
+}
+
+.memory-node__arrow {
+  color: var(--teal-deep);
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.memory-visual-note {
+  margin: 0;
+}
+
 .compare-table-wrap {
   overflow-x: auto;
   margin: 1rem 0;
