@@ -61,7 +61,9 @@
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
-              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
             </p>
           </div>
         </div>
@@ -73,7 +75,9 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Interrupts, context saving, and restoring register state</span>
+            <span
+              >Interrupts, context saving, and restoring register state</span
+            >
           </article>
           <article class="lesson-meta-card">
             <strong>Lesson style</strong>
@@ -86,7 +90,9 @@
         </div>
 
         <div class="lesson-hero-actions">
-          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
           <a
             class="lesson-secondary-action"
             data-role="back-to-unit"
@@ -135,11 +141,10 @@
             <p class="eyebrow">Overview</p>
             <h2>What you should know by the end of this lesson</h2>
             <p class="lesson-section-copy">
-              An interrupt is a signal that makes the CPU pause its current
-              work so something important can be dealt with. Strong Unit 2
-              answers explain not just that the CPU pauses, but how register
-              values are protected so the interrupted task can continue
-              properly afterward.
+              An interrupt is a signal that makes the CPU pause its current work
+              so something important can be dealt with. Strong Unit 2 answers
+              explain not just that the CPU pauses, but how register values are
+              protected so the interrupted task can continue properly afterward.
             </p>
 
             <div class="lesson-intro-grid">
@@ -147,8 +152,12 @@
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Define an interrupt clearly.</li>
-                  <li>Explain why interrupts are useful in computer systems.</li>
-                  <li>Describe how register contents are saved and restored.</li>
+                  <li>
+                    Explain why interrupts are useful in computer systems.
+                  </li>
+                  <li>
+                    Describe how register contents are saved and restored.
+                  </li>
                   <li>Link interrupt handling to correct program execution.</li>
                 </ul>
               </article>
@@ -156,10 +165,22 @@
               <article class="lesson-card">
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
-                  <li><strong>Interrupt:</strong> a request for immediate CPU attention.</li>
-                  <li><strong>Save state:</strong> keep the current register values safe.</li>
-                  <li><strong>Service routine:</strong> code that handles the interrupt.</li>
-                  <li><strong>Restore state:</strong> put the old register values back.</li>
+                  <li>
+                    <strong>Interrupt:</strong> a request for immediate CPU
+                    attention.
+                  </li>
+                  <li>
+                    <strong>Save state:</strong> keep the current register
+                    values safe.
+                  </li>
+                  <li>
+                    <strong>Service routine:</strong> code that handles the
+                    interrupt.
+                  </li>
+                  <li>
+                    <strong>Restore state:</strong> put the old register values
+                    back.
+                  </li>
                 </ul>
               </article>
 
@@ -180,7 +201,9 @@
             data-lesson-section
           >
             <p class="eyebrow">Interrupts</p>
-            <h2>An interrupt tells the CPU that something needs attention now</h2>
+            <h2>
+              An interrupt tells the CPU that something needs attention now
+            </h2>
             <p class="lesson-section-copy">
               Instead of constantly checking every device in turn, the CPU can
               respond when an interrupt signal arrives. That makes the system
@@ -189,9 +212,17 @@
             </p>
 
             <div class="example-strip" aria-label="Interrupt features">
-              <span class="example-chip"><strong>Pause</strong> current work is temporarily suspended</span>
-              <span class="example-chip"><strong>Respond</strong> the CPU handles the urgent event</span>
-              <span class="example-chip"><strong>Resume</strong> the original task continues afterward</span>
+              <span class="example-chip"
+                ><strong>Pause</strong> current work is temporarily
+                suspended</span
+              >
+              <span class="example-chip"
+                ><strong>Respond</strong> the CPU handles the urgent event</span
+              >
+              <span class="example-chip"
+                ><strong>Resume</strong> the original task continues
+                afterward</span
+              >
             </div>
 
             <div class="term-grid">
@@ -246,7 +277,10 @@
             data-lesson-section
           >
             <p class="eyebrow">Register Handling</p>
-            <h2>Registers must be saved and restored so work can continue correctly</h2>
+            <h2>
+              Registers must be saved and restored so work can continue
+              correctly
+            </h2>
             <p class="lesson-section-copy">
               When an interrupt happens, the CPU may already have important
               values stored in its registers. If those values were overwritten
@@ -267,23 +301,32 @@
                 <tbody>
                   <tr>
                     <td>1. Save register state</td>
-                    <td>The current values in relevant registers are stored safely.</td>
+                    <td>
+                      The current values in relevant registers are stored
+                      safely.
+                    </td>
                     <td>The interrupted task can be resumed exactly.</td>
                   </tr>
                   <tr>
                     <td>2. Handle the interrupt</td>
-                    <td>The CPU runs code that deals with the interrupt request.</td>
+                    <td>
+                      The CPU runs code that deals with the interrupt request.
+                    </td>
                     <td>The urgent event is processed promptly.</td>
                   </tr>
                   <tr>
                     <td>3. Restore register state</td>
                     <td>The saved register values are put back.</td>
-                    <td>The original program continues with the correct context.</td>
+                    <td>
+                      The original program continues with the correct context.
+                    </td>
                   </tr>
                   <tr>
                     <td>4. Resume execution</td>
                     <td>The CPU returns to the interrupted task.</td>
-                    <td>Normal processing carries on rather than starting over.</td>
+                    <td>
+                      Normal processing carries on rather than starting over.
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -353,22 +396,36 @@
                 <tbody>
                   <tr>
                     <td>Why interrupts exist</td>
-                    <td>They let the CPU react to events when attention is needed.</td>
-                    <td>This shows the efficiency and responsiveness benefit.</td>
+                    <td>
+                      They let the CPU react to events when attention is needed.
+                    </td>
+                    <td>
+                      This shows the efficiency and responsiveness benefit.
+                    </td>
                   </tr>
                   <tr>
                     <td>What happens to current work</td>
-                    <td>The current state is saved before the interrupt is handled.</td>
+                    <td>
+                      The current state is saved before the interrupt is
+                      handled.
+                    </td>
                     <td>This explains how the original task is protected.</td>
                   </tr>
                   <tr>
                     <td>Why registers matter here</td>
-                    <td>Registers may contain active values that must be restored.</td>
-                    <td>This connects interrupts to register handling directly.</td>
+                    <td>
+                      Registers may contain active values that must be restored.
+                    </td>
+                    <td>
+                      This connects interrupts to register handling directly.
+                    </td>
                   </tr>
                   <tr>
                     <td>How execution continues</td>
-                    <td>The CPU restores the old state and resumes the interrupted program.</td>
+                    <td>
+                      The CPU restores the old state and resumes the interrupted
+                      program.
+                    </td>
                     <td>This shows why the task can continue accurately.</td>
                   </tr>
                 </tbody>
@@ -437,23 +494,29 @@
                 </p>
                 <ul class="trap-list">
                   <li>Active register values may still be needed later.</li>
-                  <li>Those values must be restored before normal work continues.</li>
+                  <li>
+                    Those values must be restored before normal work continues.
+                  </li>
                 </ul>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Include the words
-                  <code>save</code>, <code>restore</code>, or
-                  <code>state</code> when the question asks about handling.
+                  <strong>Fix:</strong> Include the words <code>save</code>,
+                  <code>restore</code>, or <code>state</code> when the question
+                  asks about handling.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Assuming the CPU restarts the program from the beginning</h3>
+                <h3>
+                  Assuming the CPU restarts the program from the beginning
+                </h3>
                 <p>
                   Good interrupt handling resumes from the correct point rather
                   than starting the whole task again.
                 </p>
                 <ul class="trap-list">
-                  <li>The original location in the program must be remembered.</li>
+                  <li>
+                    The original location in the program must be remembered.
+                  </li>
                   <li>The old register context must be restored first.</li>
                 </ul>
                 <p class="trap-fix">
@@ -472,8 +535,8 @@
             <p class="eyebrow">Quiz</p>
             <h2>Check your understanding</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
+              Answer all five questions, then check your score. Your choices and
+              best score save in this browser so you can revisit the lesson
               later.
             </p>
 
@@ -496,13 +559,18 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="b" />
-                      <span>A signal that tells the CPU something needs attention</span>
+                      <span
+                        >A signal that tells the CPU something needs
+                        attention</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="c" />
-                      <span>A method of storing files on secondary storage</span>
+                      <span
+                        >A method of storing files on secondary storage</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -521,7 +589,10 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="a" />
-                      <span>They let the CPU respond to events without constantly polling every device</span>
+                      <span
+                        >They let the CPU respond to events without constantly
+                        polling every device</span
+                      >
                     </label>
                   </li>
                   <li>
@@ -533,7 +604,10 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="c" />
-                      <span>They stop the CPU from running more than one program</span>
+                      <span
+                        >They stop the CPU from running more than one
+                        program</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -547,7 +621,10 @@
                 data-success="Correct. Register values are saved so the interrupted task can continue accurately afterward."
                 data-feedback="Saving register state protects the current context while the interrupt is handled."
               >
-                <legend>3. Why does the CPU save register values before handling an interrupt?</legend>
+                <legend>
+                  3. Why does the CPU save register values before handling an
+                  interrupt?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -564,7 +641,10 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="c" />
-                      <span>To preserve the current processing state so work can resume correctly</span>
+                      <span
+                        >To preserve the current processing state so work can
+                        resume correctly</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -578,24 +658,35 @@
                 data-success="Correct. After the interrupt is handled, the saved state is restored and execution resumes."
                 data-feedback="The CPU should restore the saved context and continue the interrupted task."
               >
-                <legend>4. What should happen after the interrupt service routine finishes?</legend>
+                <legend>
+                  4. What should happen after the interrupt service routine
+                  finishes?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="a" />
-                      <span>The whole program must restart from the beginning</span>
+                      <span
+                        >The whole program must restart from the beginning</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="b" />
-                      <span>The CPU restores the saved state and resumes the interrupted task</span>
+                      <span
+                        >The CPU restores the saved state and resumes the
+                        interrupted task</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="c" />
-                      <span>The CPU shuts down the device that caused the interrupt</span>
+                      <span
+                        >The CPU shuts down the device that caused the
+                        interrupt</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -614,19 +705,29 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="a" />
-                      <span>An interrupt makes the CPU pause, save the current register state, handle the event, restore the saved values, and continue the original task</span>
+                      <span
+                        >An interrupt makes the CPU pause, save the current
+                        register state, handle the event, restore the saved
+                        values, and continue the original task</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>An interrupt always means something has gone wrong in the CPU</span>
+                      <span
+                        >An interrupt always means something has gone wrong in
+                        the CPU</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
-                      <span>Interrupt handling means deleting the old register values before new ones are used</span>
+                      <span
+                        >Interrupt handling means deleting the old register
+                        values before new ones are used</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -696,10 +797,21 @@
                       A strong answer focuses on efficiency and timely response.
                     </p>
                     <ul class="exam-points">
-                      <li>The CPU does not need to waste time checking the keyboard constantly.</li>
-                      <li>The interrupt only requests attention when a key is actually pressed.</li>
-                      <li>This lets the CPU keep doing other useful work in the meantime.</li>
-                      <li>The system still responds quickly when input is needed.</li>
+                      <li>
+                        The CPU does not need to waste time checking the
+                        keyboard constantly.
+                      </li>
+                      <li>
+                        The interrupt only requests attention when a key is
+                        actually pressed.
+                      </li>
+                      <li>
+                        This lets the CPU keep doing other useful work in the
+                        meantime.
+                      </li>
+                      <li>
+                        The system still responds quickly when input is needed.
+                      </li>
                     </ul>
                   </div>
                 </details>
@@ -735,11 +847,27 @@
                       context and correct resumption.
                     </p>
                     <ul class="exam-points">
-                      <li>The CPU may already be using registers to store active values and the current execution context.</li>
-                      <li>Those values must be saved before the interrupt routine changes them.</li>
-                      <li>After the interrupt is handled, the saved register values are restored.</li>
-                      <li>This allows the interrupted program to continue from the correct point with the correct data.</li>
-                      <li>If the state were not restored, the program could resume with the wrong values or wrong position and behave incorrectly.</li>
+                      <li>
+                        The CPU may already be using registers to store active
+                        values and the current execution context.
+                      </li>
+                      <li>
+                        Those values must be saved before the interrupt routine
+                        changes them.
+                      </li>
+                      <li>
+                        After the interrupt is handled, the saved register
+                        values are restored.
+                      </li>
+                      <li>
+                        This allows the interrupted program to continue from the
+                        correct point with the correct data.
+                      </li>
+                      <li>
+                        If the state were not restored, the program could resume
+                        with the wrong values or wrong position and behave
+                        incorrectly.
+                      </li>
                     </ul>
                   </div>
                 </details>
@@ -755,11 +883,16 @@
             <dl class="glossary-list">
               <div class="glossary-item">
                 <dt>Interrupt</dt>
-                <dd>A signal that asks the CPU to deal with something important.</dd>
+                <dd>
+                  A signal that asks the CPU to deal with something important.
+                </dd>
               </div>
               <div class="glossary-item">
                 <dt>Register state</dt>
-                <dd>The current values stored in registers while processing is happening.</dd>
+                <dd>
+                  The current values stored in registers while processing is
+                  happening.
+                </dd>
               </div>
               <div class="glossary-item">
                 <dt>Interrupt service routine</dt>
@@ -767,7 +900,10 @@
               </div>
               <div class="glossary-item">
                 <dt>Restore</dt>
-                <dd>Put the saved register values back so the original task can continue.</dd>
+                <dd>
+                  Put the saved register values back so the original task can
+                  continue.
+                </dd>
               </div>
             </dl>
           </section>
@@ -778,11 +914,13 @@
             <ul class="memory-list">
               <li>An interrupt pauses the current work.</li>
               <li>The current register state must be protected.</li>
-              <li>The CPU should resume the original task correctly afterwards.</li>
+              <li>
+                The CPU should resume the original task correctly afterwards.
+              </li>
             </ul>
           </section>
 
-          <section class="lesson-rail-card panel">
+          <!-- <section class="lesson-rail-card panel">
             <p class="eyebrow">Sponsored Space</p>
             <h2>Sidebar ad slot</h2>
             <p>
@@ -796,7 +934,7 @@
               <strong>Sidebar ad slot</strong>
               <span>Reserved for a future desktop placement.</span>
             </div>
-          </section>
+          </section> -->
         </aside>
       </div>
 
