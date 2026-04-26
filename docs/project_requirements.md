@@ -151,7 +151,11 @@ the browser with `localStorage` where useful.
 - The homepage now highlights the live Unit 2 hub plus live and planned Unit 2
   lesson pages.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
-- Live topic lessons now exist at `pages/topics/instruction-cycle.html`,
+- Live topic lessons now exist at
+  `pages/topics/stored-program-architecture-von-neumann-and-harvard.html`,
+  `pages/topics/cluster-computing-uma-and-numa.html`,
+  `pages/topics/emulation-in-computer-systems.html`,
+  `pages/topics/instruction-cycle.html`,
   `pages/topics/cpu-performance-instruction-sets-and-cache.html`,
   `pages/topics/pipelining-multi-processing-and-multi-threading.html`,
   `pages/topics/cpu-architecture-for-different-systems.html`,

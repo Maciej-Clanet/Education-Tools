@@ -86,8 +86,9 @@ here as they are completed.
 ## B Computer architecture
 
 ### B1 Approaches to computer architecture
-- [ ] Stored program architecture: Von Neumann and Harvard
-- [ ] Cluster computing, UMA, NUMA, and emulation
+- [x] Stored program architecture: Von Neumann and Harvard
+- [x] Cluster computing, UMA, and NUMA
+- [x] Emulation
 
 ### B2 The concepts of microarchitecture
 - [x] The instruction cycle

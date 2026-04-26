@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emulation in Computer Systems Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise emulation in computer systems with clear explanations of how one system imitates another, when emulation is useful, its trade-offs, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="Emulation in Computer Systems Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise emulation in computer systems with clear explanations of how one system imitates another, when emulation is useful, its trade-offs, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/emulation-in-computer-systems.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">B1 Approaches to Computer Architecture</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-b"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Emulation</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Emulation</h1>
+            <p class="lesson-hero-text">
+              Revise how emulation lets one system imitate another, why it is
+              used for compatibility and preservation, and what trade-offs
+              appear when software or hardware behaviour is recreated instead of
+              run natively.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>B1 Approaches to computer architecture</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Compatibility, use cases, and trade-offs of emulation</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, comparison, exam practice, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-b"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring and teacher slides need JavaScript, but the
+          lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#what-is-emulation" data-section-link>What emulation is</a>
+            <a href="#uses" data-section-link>Why it is used</a>
+            <a href="#impact" data-section-link>Impact and limits</a>
+            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Emulation is about recreating the behaviour of one computer system
+              on another. In Unit 2, strong answers explain what is being
+              imitated, why emulation can be useful, and why emulated systems
+              may not perform the same as native ones.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define emulation clearly.</li>
+                  <li>Explain common uses of emulation.</li>
+                  <li>
+                    Describe the main benefits and drawbacks of emulation.
+                  </li>
+                  <li>
+                    Recommend when emulation is a suitable choice for a
+                    scenario.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li>
+                    <strong>Emulation:</strong> one system imitates another
+                    system's behaviour.
+                  </li>
+                  <li>
+                    <strong>Use:</strong> compatibility, legacy software, and
+                    preservation.
+                  </li>
+                  <li>
+                    <strong>Benefit:</strong> old or different software can run
+                    without the original hardware.
+                  </li>
+                  <li>
+                    <strong>Trade-off:</strong> emulation can be slower or less
+                    exact than native operation.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where it appears</h3>
+                <p>
+                  This topic appears when the exam asks about legacy systems,
+                  compatibility between platforms, testing, training, or the
+                  impact of choosing one architecture approach over another.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="what-is-emulation"
+            class="lesson-section lesson-section--what-is-emulation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Definition</p>
+            <h2>Emulation recreates the behaviour of another system</h2>
+            <p class="lesson-section-copy">
+              An emulator is designed to imitate how another computer system,
+              processor, console, or platform behaves. That lets software built
+              for the original system run on different hardware or in a new
+              environment.
+            </p>
+
+            <div class="example-strip" aria-label="Emulation summary">
+              <span class="example-chip"
+                ><strong>Original system</strong> has its own hardware or
+                architecture</span
+              >
+              <span class="example-chip"
+                ><strong>Emulator</strong> reproduces that behaviour</span
+              >
+              <span class="example-chip"
+                ><strong>Host system</strong> runs the emulated environment</span
+              >
+            </div>
+
+            <article class="lesson-card">
+              <h3>Simple example</h3>
+              <p>
+                A modern computer may run an emulator so that a program written
+                for an older or different platform can still work. The host
+                machine is not magically becoming the original hardware. It is
+                imitating enough of its behaviour for the software to run.
+              </p>
+            </article>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Host system</strong>
+                <span>
+                  The real machine that is running the emulator.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Target system</strong>
+                <span>
+                  The original machine or platform being imitated.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Compatibility</strong>
+                <span>
+                  Software can keep working even when the original hardware is
+                  unavailable.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Overhead</strong>
+                <span>
+                  Recreating another system's behaviour takes extra work.
+                </span>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="uses"
+            class="lesson-section lesson-section--uses panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Uses</p>
+            <h2>Emulation is useful when the original platform is unavailable or impractical</h2>
+            <p class="lesson-section-copy">
+              Emulation is often chosen when software, training material, or
+              system behaviour still matters but the original hardware is
+              unavailable, expensive, outdated, or difficult to maintain.
+            </p>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>Legacy software</h3>
+                <p>
+                  Organisations may still need old software that was built for a
+                  previous platform or operating environment.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Preservation</h3>
+                <p>
+                  Emulation can help preserve older systems, games, or
+                  specialist applications after original hardware becomes rare.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Testing and education</h3>
+                <p>
+                  Students or developers can explore how a system behaves
+                  without needing the real target hardware.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why this matters in exams</h3>
+              <p>
+                Exam questions usually want more than "to run old software".
+                Strong answers explain the reason the original platform is a
+                problem and why imitation is a practical solution.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="impact"
+            class="lesson-section lesson-section--impact panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Impact</p>
+            <h2>Emulation improves access and compatibility, but it can reduce performance</h2>
+            <p class="lesson-section-copy">
+              Emulation has real benefits, but it also adds overhead because the
+              host system must reproduce another platform's behaviour. That can
+              affect speed, precision, or the range of features that work
+              perfectly.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Impact area</th>
+                    <th>Positive effect</th>
+                    <th>Possible limitation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Compatibility</td>
+                    <td>
+                      Old or different software can run on newer hardware.
+                    </td>
+                    <td>
+                      Not every feature or hardware behaviour may be recreated
+                      perfectly.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cost and access</td>
+                    <td>
+                      A user may avoid buying or maintaining the original
+                      system.
+                    </td>
+                    <td>
+                      Setup can still be complex, especially for specialist
+                      platforms.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Performance</td>
+                    <td>
+                      Software becomes available where it otherwise could not
+                      run.
+                    </td>
+                    <td>
+                      Emulation can be slower than native execution because the
+                      host is translating or reproducing behaviour.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Key exam phrase</h3>
+              <p>
+                If a question asks about the impact of emulation, useful phrases
+                include <code>compatibility</code>, <code>legacy support</code>,
+                <code>performance overhead</code>, and
+                <code>recreating behaviour</code>.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section lesson-section--compare panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Comparison</p>
+            <h2>Choose emulation when imitation is more important than native speed</h2>
+            <p class="lesson-section-copy">
+              Good answers explain when emulation is worth it and when it is not.
+              The strongest justification matches the need for compatibility to
+              the cost of extra overhead.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Situation</th>
+                    <th>Why emulation may suit it</th>
+                    <th>Why it may not</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Running legacy software</td>
+                    <td>
+                      The original platform may no longer be practical to keep.
+                    </td>
+                    <td>
+                      Performance or hardware-specific features may not match
+                      the original perfectly.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Training or demonstration</td>
+                    <td>
+                      Learners can access the system behaviour without physical
+                      target hardware.
+                    </td>
+                    <td>
+                      It may not fully represent every real-world detail of the
+                      original setup.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Maximum performance production work</td>
+                    <td>
+                      Only suitable if compatibility matters more than speed.
+                    </td>
+                    <td>
+                      Native execution is often better if the right platform is
+                      available.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Scenario thinking</h3>
+              <p>
+                If the exam scenario focuses on keeping older software usable,
+                preserving a system, or accessing another platform without the
+                original hardware, emulation is often a strong answer. If the
+                scenario focuses on speed alone, emulation may be a weaker
+                choice.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with emulation</h2>
+            <p class="lesson-section-copy">
+              Emulation questions often lose marks when answers say it is just
+              "making software work" without explaining what is being imitated
+              or what trade-off comes with that choice.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Defining emulation too loosely</h3>
+                <p>
+                  Saying only that it "runs old programs" misses the main idea.
+                </p>
+                <ul class="trap-list">
+                  <li>Emulation imitates another system's behaviour.</li>
+                  <li>
+                    The host system is recreating what the target system would
+                    do.
+                  </li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use the phrase
+                  <code>imitates another system</code>.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Assuming emulation is always as fast as native use</h3>
+                <p>
+                  Recreating another platform usually adds overhead.
+                </p>
+                <ul class="trap-list">
+                  <li>Compatibility can improve.</li>
+                  <li>Performance can still fall.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention the trade-off between access and
+                  speed.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Ignoring why the original platform is unavailable</h3>
+                <p>
+                  The best scenario answers explain why emulation is needed in
+                  the first place.
+                </p>
+                <ul class="trap-list">
+                  <li>Old hardware may be rare or costly to maintain.</li>
+                  <li>
+                    A different architecture may be the only system currently
+                    available.
+                  </li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Link emulation to compatibility or
+                  preservation.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices and
+              best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. Emulation means one system imitates the behaviour of another."
+                data-feedback="Emulation is about recreating how another system behaves so its software or environment can be used."
+              >
+                <legend>1. What best describes emulation?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Deleting the original hardware permanently</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span
+                        >One system imitating the behaviour of another
+                        system</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>A method of compressing files into archives</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. Emulation is often used so legacy software can still run when the original platform is unavailable or impractical."
+                data-feedback="Legacy compatibility is one of the most common reasons to use emulation."
+              >
+                <legend>2. Why is emulation often useful?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span
+                        >It can let old or platform-specific software keep
+                        working</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span
+                        >It guarantees the emulated system will always be faster
+                        than native execution</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>It removes the need for any operating system</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Emulation often brings performance overhead because the host is recreating another system's behaviour."
+                data-feedback="A common drawback of emulation is that it can be slower than using the native target platform directly."
+              >
+                <legend>3. What is a common drawback of emulation?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>It makes memory disappear from the host system</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span
+                        >It means software can never be compatible across
+                        platforms</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span
+                        >It can be slower because the host must recreate another
+                        system's behaviour</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Emulation is often a strong fit when legacy or platform-specific behaviour needs to be preserved or accessed."
+                data-feedback="Preservation and compatibility are strong reasons to choose emulation."
+              >
+                <legend>
+                  4. Which scenario most strongly suggests emulation?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>A new system where only raw speed matters</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span
+                        >An organisation still needing software built for an old
+                        platform that is hard to maintain physically</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>A keyboard layout choice for a classroom</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. The strongest answer links compatibility benefits to the overhead trade-off."
+                data-feedback="Strong answers explain both why emulation is useful and what its cost can be."
+              >
+                <legend>5. Which explanation is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span
+                        >Emulation can let software for one system run on
+                        another by imitating the original behaviour, but it may
+                        be slower than native use</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span
+                        >Emulation always improves speed because the host system
+                        is newer</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span
+                        >Emulation and native execution are exactly the same
+                        thing</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain what emulation is and give one reason why a business
+                  or college might use it.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="emulation-exam-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="emulation-exam-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer defines the imitation clearly and then
+                      links it to a realistic use case.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        Emulation means one system imitates the behaviour of
+                        another system or platform.
+                      </li>
+                      <li>
+                        This allows software written for the original platform
+                        to run on the host system.
+                      </li>
+                      <li>
+                        One reason to use it is to keep legacy software usable
+                        when the original hardware is old, expensive, or
+                        unavailable.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Discuss and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A college needs access to an old specialist application that
+                  was written for a platform it no longer owns. Discuss whether
+                  emulation is a suitable solution and justify your answer.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="emulation-exam-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="emulation-exam-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Balance compatibility benefits against possible drawbacks."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers weigh the benefit of access against the
+                      cost of overhead or imperfect recreation.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        Emulation may be suitable because it can recreate the
+                        original platform on newer hardware.
+                      </li>
+                      <li>
+                        That means the old software may still be usable without
+                        buying and maintaining the original system.
+                      </li>
+                      <li>
+                        This can support compatibility, preservation, and
+                        training.
+                      </li>
+                      <li>
+                        However, emulation may be slower than native use or may
+                        not reproduce every feature perfectly.
+                      </li>
+                      <li>
+                        A strong conclusion states that emulation is suitable if
+                        access to the old software matters more than maximum
+                        performance.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Emulation</dt>
+                <dd>
+                  The imitation of one computer system's behaviour by another
+                  system.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Host system</dt>
+                <dd>
+                  The real machine running the emulator.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Target system</dt>
+                <dd>
+                  The original machine or platform being imitated.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Legacy software</dt>
+                <dd>
+                  Older software that may still be needed even though its
+                  original platform is outdated.
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Compatibility is the usual reason</h2>
+            <ul class="memory-list">
+              <li>Emulation imitates another platform.</li>
+              <li>It is often used for legacy access or preservation.</li>
+              <li>Useful does not mean identical to native performance.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

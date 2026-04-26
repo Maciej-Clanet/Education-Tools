@@ -1,7 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
 const lessonConfig = {
-  lessonId: "instruction-cycle",
+  lessonId: "cluster-computing-uma-and-numa",
   defaultContext: "btec-level-3-unit-2",
   contexts: {
     "btec-level-3-unit-2": {
@@ -9,25 +9,25 @@ const lessonConfig = {
       backHref: "../units/btec-level-3-unit-2.html#section-b",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "Emulation",
+        title: "Stored program architecture: Von Neumann and Harvard",
         description: "Previous in B1 Approaches to computer architecture.",
         status: "Live",
-        href: "../topics/emulation-in-computer-systems.html",
+        href: "../topics/stored-program-architecture-von-neumann-and-harvard.html",
       },
       next: {
-        title: "CPU performance, instruction sets, and cache",
-        description: "Next in B2 The concepts of microarchitecture.",
+        title: "Emulation",
+        description: "Next in B1 Approaches to computer architecture.",
         status: "Live",
-        href: "../topics/cpu-performance-instruction-sets-and-cache.html",
+        href: "../topics/emulation-in-computer-systems.html",
       },
     },
   },
   quiz: {
-    storageKey: "lesson-instruction-cycle-quiz",
+    storageKey: "lesson-cluster-computing-uma-and-numa-quiz",
     passScore: 4,
   },
   examPractice: {
-    storageKey: "lesson-instruction-cycle-exam-practice",
+    storageKey: "lesson-cluster-computing-uma-and-numa-exam-practice",
   },
 }
 

@@ -1,7 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
 const lessonConfig = {
-  lessonId: "instruction-cycle",
+  lessonId: "emulation-in-computer-systems",
   defaultContext: "btec-level-3-unit-2",
   contexts: {
     "btec-level-3-unit-2": {
@@ -9,25 +9,25 @@ const lessonConfig = {
       backHref: "../units/btec-level-3-unit-2.html#section-b",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "Emulation",
+        title: "Cluster computing, UMA, and NUMA",
         description: "Previous in B1 Approaches to computer architecture.",
         status: "Live",
-        href: "../topics/emulation-in-computer-systems.html",
+        href: "../topics/cluster-computing-uma-and-numa.html",
       },
       next: {
-        title: "CPU performance, instruction sets, and cache",
+        title: "The instruction cycle",
         description: "Next in B2 The concepts of microarchitecture.",
         status: "Live",
-        href: "../topics/cpu-performance-instruction-sets-and-cache.html",
+        href: "../topics/instruction-cycle.html",
       },
     },
   },
   quiz: {
-    storageKey: "lesson-instruction-cycle-quiz",
+    storageKey: "lesson-emulation-in-computer-systems-quiz",
     passScore: 4,
   },
   examPractice: {
-    storageKey: "lesson-instruction-cycle-exam-practice",
+    storageKey: "lesson-emulation-in-computer-systems-exam-practice",
   },
 }
 

@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Stored Program Architecture: Von Neumann and Harvard Revision Lesson |
+      Education Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise stored program architecture with clear explanations of Von Neumann and Harvard models, the Von Neumann bottleneck, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta
+      property="og:title"
+      content="Stored Program Architecture: Von Neumann and Harvard Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise stored program architecture with clear explanations of Von Neumann and Harvard models, the Von Neumann bottleneck, exam traps, exam-style practice, and a short end-of-lesson quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/stored-program-architecture-von-neumann-and-harvard.css"
+    />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/stored-program-architecture-von-neumann-and-harvard.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">B1 Approaches to Computer Architecture</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-b"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">
+              Stored program architecture: Von Neumann and Harvard
+            </li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Stored program architecture: Von Neumann and Harvard</h1>
+            <p class="lesson-hero-text">
+              Revise how stored-program computers keep instructions in memory,
+              why Von Neumann systems use shared access for instructions and
+              data, and how Harvard architecture separates those paths to reduce
+              the bottleneck.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>B1 Approaches to computer architecture</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span
+              >Stored-program models, shared vs separate memory access, and
+              architecture choice</span
+            >
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Lesson style</strong>
+            <span>Explanation, comparison, exam practice, and quiz</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Teacher mode</strong>
+            <span>Swipe or tap through full-screen slides</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-b"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Interactive quiz scoring and teacher slides need JavaScript, but the
+          lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#stored-program" data-section-link>Stored program model</a>
+            <a href="#von-neumann" data-section-link>Von Neumann</a>
+            <a href="#harvard" data-section-link>Harvard</a>
+            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Stored-program architecture explains how a computer can keep a
+              program in memory and run it one instruction at a time. In Unit 2
+              you need to compare the Von Neumann and Harvard models clearly,
+              including how their memory arrangement affects performance and
+              suitability.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define stored-program architecture clearly.</li>
+                  <li>
+                    Describe the features of Von Neumann architecture.
+                  </li>
+                  <li>Describe the features of Harvard architecture.</li>
+                  <li>
+                    Explain the Von Neumann bottleneck and choose a suitable
+                    architecture for a scenario.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li>
+                    <strong>Stored program:</strong> instructions are kept in
+                    memory, not fixed by wiring alone.
+                  </li>
+                  <li>
+                    <strong>Von Neumann:</strong> instructions and data share
+                    the same main memory and pathway.
+                  </li>
+                  <li>
+                    <strong>Harvard:</strong> instructions and data use
+                    separate memory paths.
+                  </li>
+                  <li>
+                    <strong>Trade-off:</strong> simplicity vs reduced
+                    contention.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Where it appears</h3>
+                <p>
+                  These ideas appear in architecture comparisons, processor
+                  performance questions, and scenario answers where you must
+                  justify why one computer design is more suitable than another.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="stored-program"
+            class="lesson-section lesson-section--stored-program panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Stored Program Model</p>
+            <h2>Programs are stored in memory so one machine can run many jobs</h2>
+            <p class="lesson-section-copy">
+              A stored-program computer keeps instructions in memory in a form
+              the CPU can fetch, decode, and execute. That means the same
+              hardware can behave very differently depending on which program
+              has been loaded.
+            </p>
+
+            <div class="example-strip" aria-label="Stored program summary">
+              <span class="example-chip"
+                ><strong>Store</strong> the instructions in memory</span
+              >
+              <span class="example-chip"
+                ><strong>Fetch</strong> the next instruction into the CPU</span
+              >
+              <span class="example-chip"
+                ><strong>Run</strong> the program without rewiring the
+                machine</span
+              >
+            </div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Idea</th>
+                    <th>Meaning</th>
+                    <th>Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Instructions are stored</td>
+                    <td>
+                      The program sits in memory as binary machine-code
+                      instructions.
+                    </td>
+                    <td>
+                      The CPU can fetch the next instruction during the
+                      instruction cycle.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Same hardware, different software</td>
+                    <td>
+                      The processor does not need to be rewired for each new
+                      task.
+                    </td>
+                    <td>
+                      A general-purpose computer can run a word processor, game,
+                      or browser on the same system.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Memory access becomes important</td>
+                    <td>
+                      The CPU must keep reaching memory for instructions and
+                      often for data as well.
+                    </td>
+                    <td>
+                      This is where the difference between Von Neumann and
+                      Harvard architecture becomes important.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why the stored-program idea was powerful</h3>
+              <p>
+                Earlier machines could be much more awkward to change because
+                the task was closely tied to the hardware setup. Stored-program
+                architecture made computers flexible because loading a new
+                program changed the behaviour of the machine.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="von-neumann"
+            class="lesson-section lesson-section--von-neumann panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Von Neumann</p>
+            <h2>Von Neumann architecture uses shared access for instructions and data</h2>
+            <p class="lesson-section-copy">
+              In the Von Neumann model, program instructions and data share the
+              same main memory. They also use the same pathway or bus between
+              the CPU and memory, so instruction fetches and data transfers must
+              take turns.
+            </p>
+
+            <div class="architecture-layout-grid">
+              <article class="architecture-layout">
+                <div class="architecture-layout__heading">
+                  <span class="architecture-pill">Shared design</span>
+                  <h3>Von Neumann layout</h3>
+                </div>
+                <div class="architecture-layout__diagram">
+                  <div class="architecture-node architecture-node--cpu">
+                    <strong>CPU</strong>
+                    <span>Fetches instructions and works on data</span>
+                  </div>
+                  <div class="architecture-link">One shared bus or pathway</div>
+                  <div class="architecture-node">
+                    <strong>Main memory</strong>
+                    <span>Stores instructions and data together</span>
+                  </div>
+                </div>
+                <p class="architecture-note">
+                  The same route is used when the CPU fetches the next
+                  instruction and when it reads or writes data.
+                </p>
+              </article>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>One memory space</strong>
+                <span>
+                  Instructions and data are held in the same main memory.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Shared pathway</strong>
+                <span>
+                  The CPU and memory communicate over the same route.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Simpler organisation</strong>
+                <span>
+                  This model is straightforward and flexible for general-purpose
+                  computing.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Von Neumann bottleneck</strong>
+                <span>
+                  Instructions and data compete for the same access path, which
+                  can slow the CPU.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why the bottleneck happens</h3>
+              <p>
+                Imagine the CPU needs to fetch an instruction and then read a
+                value from memory to carry it out. In a Von Neumann system, both
+                actions use the same route, so they cannot happen over that path
+                at exactly the same moment. That contention is the Von Neumann
+                bottleneck.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="harvard"
+            class="lesson-section lesson-section--harvard panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Harvard</p>
+            <h2>Harvard architecture separates instruction access from data access</h2>
+            <p class="lesson-section-copy">
+              In the Harvard model, instructions and data use separate memories
+              or separate pathways. This means the CPU can fetch an instruction
+              while also working with data, which helps reduce contention.
+            </p>
+
+            <div class="architecture-layout-grid">
+              <article class="architecture-layout architecture-layout--harvard">
+                <div class="architecture-layout__heading">
+                  <span class="architecture-pill">Separate design</span>
+                  <h3>Harvard layout</h3>
+                </div>
+                <div class="architecture-layout__diagram">
+                  <div class="architecture-node architecture-node--cpu">
+                    <strong>CPU</strong>
+                    <span>Can fetch instructions while accessing data</span>
+                  </div>
+                  <div class="architecture-split">
+                    <div class="architecture-branch">
+                      <div class="architecture-link architecture-link--instruction">
+                        Instruction bus
+                      </div>
+                      <div class="architecture-node">
+                        <strong>Instruction memory</strong>
+                        <span>Program code</span>
+                      </div>
+                    </div>
+                    <div class="architecture-branch">
+                      <div class="architecture-link architecture-link--data">
+                        Data bus
+                      </div>
+                      <div class="architecture-node">
+                        <strong>Data memory</strong>
+                        <span>Values being processed</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p class="architecture-note">
+                  Because the routes are separate, instruction fetch and data
+                  access can happen without competing for the same path.
+                </p>
+              </article>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Separate memories or paths</strong>
+                <span>
+                  Instructions and data are not forced through one shared route.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Reduced bottleneck</strong>
+                <span>
+                  The CPU can fetch instructions and access data more
+                  efficiently.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Good for dedicated systems</strong>
+                <span>
+                  This model often suits embedded controllers, microcontrollers,
+                  and signal-processing tasks.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Extra complexity</strong>
+                <span>
+                  Separate organisation can increase design complexity and may
+                  not be the simplest choice for every system.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Where Harvard-style ideas are useful</h3>
+              <p>
+                A controller that repeatedly checks sensors and updates outputs
+                benefits when it can keep pulling the next instruction while
+                also reading data values. That is why Harvard-style ideas are
+                often linked to embedded and specialist systems.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section lesson-section--compare panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Comparison</p>
+            <h2>Choose the architecture that best fits the job</h2>
+            <p class="lesson-section-copy">
+              Strong exam answers do not just name the model. They connect the
+              structure of the architecture to a real benefit or limitation in
+              the scenario.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Von Neumann</th>
+                    <th>Harvard</th>
+                    <th>What it means in practice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Memory arrangement</td>
+                    <td>Instructions and data share memory.</td>
+                    <td>Instructions and data are separated.</td>
+                    <td>
+                      Harvard reduces contention, while Von Neumann keeps the
+                      design simpler.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Pathway or bus use</td>
+                    <td>One shared route</td>
+                    <td>Separate routes</td>
+                    <td>
+                      Harvard can fetch instructions and access data without
+                      competing for one path.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Typical strength</td>
+                    <td>Flexible, simple stored-program organisation</td>
+                    <td>Higher efficiency for repeated dedicated workloads</td>
+                    <td>The better choice depends on the purpose of the system.</td>
+                  </tr>
+                  <tr>
+                    <td>Common drawback</td>
+                    <td>Von Neumann bottleneck</td>
+                    <td>Greater complexity</td>
+                    <td>
+                      Questions often ask you to trade simplicity against
+                      throughput.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="application-grid">
+              <article class="application-card">
+                <h3>General-purpose computer</h3>
+                <p>
+                  In exam terms, a general-purpose desktop or laptop is usually
+                  matched to the Von Neumann model because one stored-program
+                  memory arrangement is simple and flexible.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Embedded controller</h3>
+                <p>
+                  A dedicated controller may fit Harvard architecture better if
+                  it benefits from fast repeated instruction fetches alongside
+                  data access.
+                </p>
+              </article>
+              <article class="application-card">
+                <h3>Real-world reminder</h3>
+                <p>
+                  Many modern processors borrow ideas from both models, but exam
+                  questions usually want a clear comparison of the textbook Von
+                  Neumann and Harvard designs.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes students make with stored-program models</h2>
+            <p class="lesson-section-copy">
+              These questions usually lose marks when answers remember the
+              names but forget the layout, the bottleneck, or the reason one
+              model suits a scenario better.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Explaining stored program too vaguely</h3>
+                <p>
+                  Some answers say only that the computer stores things in
+                  memory, which is too broad.
+                </p>
+                <ul class="trap-list">
+                  <li>Say that program instructions are stored in memory.</li>
+                  <li>
+                    Link that to the CPU fetching and executing those
+                    instructions.
+                  </li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use the phrase
+                  <code>instructions stored in memory</code>.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Forgetting why the Von Neumann bottleneck happens</h3>
+                <p>
+                  Students often name the bottleneck without describing the
+                  cause.
+                </p>
+                <ul class="trap-list">
+                  <li>
+                    The problem is shared access to one memory route for both
+                    instructions and data.
+                  </li>
+                  <li>
+                    The CPU may need both, so they compete for the same path.
+                  </li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Always mention the shared pathway or
+                  shared bus.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Saying Harvard is always better</h3>
+                <p>
+                  Harvard reduces contention, but the exam still expects you to
+                  think about complexity and suitability.
+                </p>
+                <ul class="trap-list">
+                  <li>
+                    A dedicated controller may benefit more than a simple
+                    general-purpose system.
+                  </li>
+                  <li>
+                    Strong answers justify the choice instead of treating it as
+                    universally best.
+                  </li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Compare the model to the scenario, not
+                  to an imaginary perfect system.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices and
+              best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. Stored-program architecture means the program instructions are stored in memory so the CPU can fetch and run them."
+                data-feedback="Stored-program architecture is about instructions being stored in memory for the CPU to fetch, decode, and execute."
+              >
+                <legend>
+                  1. What best describes stored-program architecture?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span
+                        >A system where the CPU can only run one fixed task for
+                        its whole lifetime</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span
+                        >A system where program instructions are stored in
+                        memory so the CPU can fetch and execute them</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span
+                        >A system where programs are always saved on secondary
+                        storage only</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. Von Neumann architecture uses shared memory and a shared route for instructions and data."
+                data-feedback="Von Neumann architecture is identified by shared memory and shared access for instructions and data."
+              >
+                <legend>
+                  2. Which feature best matches Von Neumann architecture?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span
+                        >Instructions and data share the same memory and
+                        pathway</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span
+                        >Instructions and data must be stored on separate disk
+                        drives</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span
+                        >The CPU can never access memory during program
+                        execution</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. The Von Neumann bottleneck happens because instructions and data compete for the same memory route."
+                data-feedback="The bottleneck is caused by shared access to one pathway for both instructions and data."
+              >
+                <legend>
+                  3. Why can Von Neumann architecture suffer a bottleneck?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span
+                        >Because the CPU has no instruction cycle at all</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span
+                        >Because the CPU is forced to use secondary storage for
+                        data values</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span
+                        >Because instructions and data compete for the same
+                        memory path</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Harvard architecture is often a strong fit for dedicated embedded systems that benefit from separate instruction and data access."
+                data-feedback="Harvard architecture is commonly linked to dedicated systems where separate paths help efficiency."
+              >
+                <legend>
+                  4. Which situation most strongly suggests Harvard
+                  architecture?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span
+                        >A simple answer that only says the system needs a
+                        keyboard and mouse</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span
+                        >A dedicated controller that repeatedly fetches
+                        instructions while processing live sensor data</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span
+                        >A question that says architecture never affects
+                        performance</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. The strongest answer compares the memory layout and links it to suitability."
+                data-feedback="A strong answer needs both the architecture feature and the reason that feature fits the scenario."
+              >
+                <legend>5. Which explanation is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span
+                        >Harvard architecture separates instruction and data
+                        access, so it can suit dedicated systems that need to
+                        reduce contention, while Von Neumann keeps a simpler
+                        shared design</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span
+                        >Von Neumann and Harvard mean exactly the same thing but
+                        use different names in textbooks</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span
+                        >Harvard architecture is always best because it sounds
+                        more advanced</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why Von Neumann architecture is described as a
+                  stored-program architecture and include one effect of its
+                  shared memory access.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="stored-program-exam-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="stored-program-exam-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer explains both the stored-program idea and
+                      the shared-access implication.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        The program instructions are stored in memory in a form
+                        the CPU can fetch and execute.
+                      </li>
+                      <li>
+                        This means the same hardware can run different programs
+                        without being rewired.
+                      </li>
+                      <li>
+                        In Von Neumann architecture, instructions and data share
+                        the same memory route.
+                      </li>
+                      <li>
+                        That can create a bottleneck because instruction fetches
+                        and data access compete for the same path.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Recommend and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  Recommend a suitable architecture model for a school computer
+                  room desktop and for a traffic-light controller. Justify both
+                  choices using the memory and data-access design of each model.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="stored-program-exam-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="stored-program-exam-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Compare both systems and link the architecture choice to the job."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>The best answers justify both recommendations.</p>
+                    <ul class="exam-points">
+                      <li>
+                        A school desktop is usually described with the Von
+                        Neumann model in Unit 2 because it is a simple,
+                        flexible, general-purpose stored-program design.
+                      </li>
+                      <li>
+                        Its instructions and data share memory, which is a
+                        reasonable trade-off for a general-purpose computer.
+                      </li>
+                      <li>
+                        A traffic-light controller is a strong fit for Harvard
+                        architecture because it is a dedicated embedded system.
+                      </li>
+                      <li>
+                        Separate instruction and data access can reduce
+                        contention while the controller repeatedly checks sensor
+                        inputs and updates outputs.
+                      </li>
+                      <li>
+                        The answer should make it clear that the choice depends
+                        on the purpose of the system, not just which model
+                        sounds more advanced.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Stored-program architecture</dt>
+                <dd>
+                  A design where program instructions are stored in memory so
+                  the CPU can fetch and execute them.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Von Neumann architecture</dt>
+                <dd>
+                  A stored-program model where instructions and data share the
+                  same memory and access path.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Harvard architecture</dt>
+                <dd>
+                  A model that separates instruction access from data access.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Von Neumann bottleneck</dt>
+                <dd>
+                  The slowdown caused when instructions and data compete for the
+                  same memory route.
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Ask two comparison questions</h2>
+            <ul class="memory-list">
+              <li>Do instructions and data share memory access?</li>
+              <li>Does the system need simplicity or reduced contention?</li>
+              <li>Which model best fits the purpose of the device?</li>
+            </ul>
+          </section>
+
+          <!-- <section class="lesson-rail-card panel">
+            <p class="eyebrow">Sponsored Space</p>
+            <h2>Sidebar ad slot</h2>
+            <p>
+              This rail still leaves room for a future advert or promoted
+              resource without cutting into the lesson flow.
+            </p>
+            <div
+              class="ad-placeholder ad-placeholder-vertical"
+              aria-label="Future vertical advertisement space"
+            >
+              <strong>Sidebar ad slot</strong>
+              <span>Reserved for a future desktop placement.</span>
+            </div>
+          </section> -->
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

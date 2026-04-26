@@ -1,0 +1,123 @@
+.architecture-layout-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.architecture-layout {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 22px;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.88),
+    rgba(247, 251, 253, 0.82)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.architecture-layout__heading {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.architecture-layout__heading h3 {
+  margin: 0;
+  color: var(--page-ink);
+  font-size: 1.08rem;
+}
+
+.architecture-pill {
+  width: fit-content;
+  padding: 0.28rem 0.62rem;
+  border-radius: 999px;
+  background: rgba(232, 246, 255, 0.94);
+  border: 1px solid rgba(31, 135, 125, 0.16);
+  color: var(--page-ink);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.architecture-layout__diagram {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: center;
+}
+
+.architecture-node {
+  width: min(100%, 15rem);
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.architecture-node strong {
+  color: var(--page-ink);
+  font-size: 1rem;
+}
+
+.architecture-node span {
+  color: var(--muted-ink);
+  font-size: 0.84rem;
+}
+
+.architecture-node--cpu {
+  background: rgba(255, 249, 227, 0.94);
+  border-color: rgba(242, 207, 106, 0.3);
+}
+
+.architecture-link {
+  width: min(100%, 15rem);
+  padding: 0.62rem 0.9rem;
+  border-radius: 999px;
+  border: 1px dashed rgba(37, 52, 66, 0.18);
+  background: rgba(232, 246, 255, 0.9);
+  color: var(--page-ink);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.architecture-link--instruction {
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.architecture-link--data {
+  background: rgba(255, 240, 241, 0.92);
+}
+
+.architecture-split {
+  width: 100%;
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.architecture-branch {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+}
+
+.architecture-note {
+  margin: 0;
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--page-ink);
+}
+
+@media (max-width: 720px) {
+  .architecture-split {
+    grid-template-columns: 1fr;
+  }
+}
