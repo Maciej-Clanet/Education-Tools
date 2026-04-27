@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Encryption and Data Compression Revision Lesson | Education Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise Caesar and Vigenere ciphers, symmetric and public key encryption, plus lossy and lossless data compression."
+    />
+    <meta
+      property="og:title"
+      content="Encryption and Data Compression Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise Caesar and Vigenere ciphers, symmetric and public key encryption, plus lossy and lossless data compression."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/encryption-and-data-compression.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Transmitting Data</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-e"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Encryption and data compression</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Encryption and data compression</h1>
+            <p class="lesson-hero-text">
+              Learn how simple and modern encryption protect transmitted data,
+              how symmetric and public key methods differ, and why compression
+              changes file size, speed, and sometimes quality.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>E1 Transmitting data</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Encryption methods, compression types, and implications</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-e"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#ciphers" data-section-link>Encryption basics</a>
+            <a href="#system-encryption" data-section-link>System encryption</a>
+            <a href="#compression" data-section-link>Compression</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Transmission is not only about moving bits. The data may also
+              need protection from unauthorised reading and may need to be made
+              smaller so it can be stored or sent more efficiently.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Explain simple ciphers such as Caesar and Vigenere.</li>
+                  <li>Compare symmetric and public key encryption.</li>
+                  <li>Explain lossy and lossless compression.</li>
+                  <li>Judge the impact of security and compression choices.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Encryption:</strong> makes data unreadable without the right key.</li>
+                  <li><strong>Symmetric:</strong> same key to encrypt and decrypt.</li>
+                  <li><strong>Public key:</strong> paired public and private keys.</li>
+                  <li><strong>Compression:</strong> reduces file size.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card fullrow">
+                <h3>Why this matters</h3>
+                <p>
+                  Security protects privacy, identity, and business data.
+                  Compression can reduce bandwidth use and storage needs, but
+                  some compression methods permanently remove detail.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="ciphers"
+            class="lesson-section lesson-section--ciphers panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Encryption Basics</p>
+            <h2>Simple ciphers show the basic idea of scrambling data</h2>
+            <p class="lesson-section-copy">
+              Simple ciphers are not strong enough for modern secure systems,
+              but they help explain the central idea of encryption: plain text
+              is transformed into cipher text using a rule or key.
+            </p>
+
+            <div class="example-strip" aria-label="Simple encryption methods">
+              <span class="example-chip"><strong>Caesar cipher</strong> fixed shift</span>
+              <span class="example-chip"><strong>Vigenere cipher</strong> repeating keyword shift</span>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Caesar cipher</h3>
+              <p>
+                A Caesar cipher shifts each letter by the same number of places
+                in the alphabet. For example, a shift of 3 changes
+                <code>A</code> to <code>D</code> and <code>CAT</code> to
+                <code>FDW</code>.
+              </p>
+              <p>
+                This is easy to understand, but it is also easy to break
+                because there are only a small number of possible shifts.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Vigenere cipher</h3>
+              <p>
+                A Vigenere cipher uses a keyword so the shift changes from one
+                letter to the next. That makes patterns less obvious than in a
+                simple fixed-shift cipher.
+              </p>
+              <p>
+                It is stronger than a Caesar cipher, but it is still not secure
+                enough for modern sensitive data.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="system-encryption"
+            class="lesson-section lesson-section--system-encryption panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">System Encryption</p>
+            <h2>Computer systems use key-based encryption to protect real traffic</h2>
+            <p class="lesson-section-copy">
+              Real systems need methods that scale beyond classroom ciphers.
+              Unit 2 expects you to recognise the difference between symmetric
+              key encryption and public key encryption, and the implications of
+              using each.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Symmetric key encryption</strong>
+                <span>
+                  The same secret key is used to encrypt and decrypt the data.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Main strength</strong>
+                <span>
+                  It is efficient once both parties already have the key.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Main challenge</strong>
+                <span>
+                  The shared key itself has to be exchanged securely.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Public key encryption</strong>
+                <span>
+                  One key is public for encryption and a different private key
+                  is kept secret for decryption.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Main strength</strong>
+                <span>
+                  It helps solve the key-sharing problem because the public key
+                  can be distributed openly.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Main implication</strong>
+                <span>
+                  It is powerful for secure exchange, but usually more complex
+                  than simple symmetric use.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why encryption matters in transmission</h3>
+              <p>
+                If intercepted traffic is encrypted, an attacker cannot easily
+                read the original message without the necessary key. That is
+                especially important when data crosses public or shared
+                networks.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="compression"
+            class="lesson-section lesson-section--compression panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Compression</p>
+            <h2>Compression reduces file size, but not always in the same way</h2>
+            <p class="lesson-section-copy">
+              Compression can make transmission faster and storage more
+              efficient by reducing the number of bits needed to represent the
+              data. The key exam difference is whether the original data can be
+              rebuilt exactly.
+            </p>
+
+            <div class="example-strip" aria-label="Compression types">
+              <span class="example-chip"><strong>Lossless</strong> no information lost</span>
+              <span class="example-chip"><strong>Lossy</strong> some detail removed</span>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Lossless versus lossy</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>What happens to the data</th>
+                      <th>Typical use</th>
+                      <th>Implication</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Lossless</td>
+                      <td>The original data can be rebuilt exactly.</td>
+                      <td>Text files, documents, program files</td>
+                      <td>Safer when accuracy matters</td>
+                    </tr>
+                    <tr>
+                      <td>Lossy</td>
+                      <td>Some information is removed permanently.</td>
+                      <td>Images, audio, video where small loss is acceptable</td>
+                      <td>Smaller files, but reduced quality</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Why organisations compress data</h3>
+              <p>
+                Smaller files usually take less storage space and can often be
+                sent more quickly. The trade-off is that lossy compression may
+                remove detail which cannot be recovered later, so it is a poor
+                choice for data that must stay exact.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with encryption and compression</h2>
+            <p class="lesson-section-copy">
+              These questions often combine technical definitions with wider
+              implications, so accuracy matters.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Assuming encryption compresses data</h3>
+                <p>
+                  Encryption protects confidentiality. Compression reduces file
+                  size. They solve different problems.
+                </p>
+                <ul class="trap-list">
+                  <li>Encryption is about privacy and security.</li>
+                  <li>Compression is about efficiency and size.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> State the purpose before naming the
+                  method.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Mixing up symmetric and public key encryption</h3>
+                <p>
+                  Students often remember that keys are involved, but not
+                  whether the same key or a pair of keys is used.
+                </p>
+                <ul class="trap-list">
+                  <li>Symmetric uses one shared secret key.</li>
+                  <li>Public key uses a public and a private key.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Say
+                  <em>"same key"</em> or <em>"key pair"</em> explicitly.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Using lossy compression for exact data</h3>
+                <p>
+                  Some files can tolerate lost detail, but documents, code, and
+                  many data files cannot.
+                </p>
+                <ul class="trap-list">
+                  <li>Lossless suits files where every bit matters.</li>
+                  <li>Lossy suits media where some reduction is acceptable.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Match the compression type to the data
+                  purpose.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="c"
+                data-success="Correct. A Caesar cipher shifts letters by a fixed amount."
+                data-feedback="The Caesar method uses the same shift for each letter."
+              >
+                <legend>1. What defines a Caesar cipher?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>It uses a public and private key pair</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>It removes repeated bytes to shrink a file</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>It shifts each letter by the same amount</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. Symmetric encryption uses the same shared key."
+                data-feedback="Symmetric encryption means one shared key is used both ways."
+              >
+                <legend>2. What is true of symmetric key encryption?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>The same key is used to encrypt and decrypt</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>It can never be used for transmitted data</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>It always removes some of the original data</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="b"
+                data-success="Correct. Public key encryption uses a paired public and private key."
+                data-feedback="Public key systems rely on different keys for encryption and decryption."
+              >
+                <legend>3. What best describes public key encryption?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>One fixed alphabet shift for every message</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>A public key is paired with a private key</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>All data becomes smaller after encryption</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="c"
+                data-success="Correct. Lossless compression preserves all original data."
+                data-feedback="Lossless means the original file can be reconstructed exactly."
+              >
+                <legend>4. Which statement matches lossless compression?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>Some detail is permanently removed</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>It only works on image files</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>The original data can be rebuilt exactly</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. The strongest answer links the media type to acceptable quality loss."
+                data-feedback="The best answer explains why lossy compression may be acceptable in that scenario."
+              >
+                <legend>5. Which explanation is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span
+                        >Lossy compression can suit a streamed video because a
+                        smaller file reduces bandwidth demand and a small drop
+                        in quality may be acceptable</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>Lossy compression is best for every school database</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Encryption and compression are exactly the same process</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz.
+              Type your answers straight into the page, then compare your ideas
+              with the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why public key encryption is useful when two users
+                  need to exchange data securely but do not already share a
+                  secret key.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The key idea is how the method helps with secure key
+                      exchange.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        Public key encryption uses a public key and a private
+                        key.
+                      </li>
+                      <li>
+                        The sender can use the public key without already
+                        sharing a secret key.
+                      </li>
+                      <li>
+                        Only the matching private key can decrypt the data.
+                      </li>
+                      <li>
+                        This helps protect data sent across shared or public
+                        networks.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">5 marks</span>
+                  <span class="exam-pill">Compare and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A school needs to store text documents, photos, and training
+                  videos on a website. Compare lossless and lossy compression
+                  and justify which type is suitable for each kind of file.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Compare both types and match them to the three file types."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers match the compression type to the
+                      importance of keeping every detail.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        Text documents usually need lossless compression because
+                        exact data must be preserved.
+                      </li>
+                      <li>
+                        Photos may use lossy compression if a small quality loss
+                        is acceptable in exchange for smaller file size.
+                      </li>
+                      <li>
+                        Training videos also often use lossy compression because
+                        they are large and bandwidth matters.
+                      </li>
+                      <li>
+                        Lossless preserves the original data exactly.
+                      </li>
+                      <li>
+                        Lossy produces smaller files, but removed detail cannot
+                        be recovered.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Caesar cipher</dt>
+                <dd>A simple cipher that shifts letters by a fixed amount.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Symmetric key encryption</dt>
+                <dd>Encryption that uses the same key both ways.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Public key encryption</dt>
+                <dd>Encryption that uses a public and a private key.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Lossless compression</dt>
+                <dd>Compression that preserves the original data exactly.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Protect or reduce</h2>
+            <ul class="memory-list">
+              <li>Encryption protects confidentiality.</li>
+              <li>Compression reduces size.</li>
+              <li>Lossy compression saves space by sacrificing some detail.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

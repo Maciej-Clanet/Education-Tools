@@ -1,0 +1,1397 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operating System Types Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise operating system types for BTEC Level 3 Computing Unit 2, including real-time, single-user single-task, single-user multitasking, multi-user systems, and how modern operating systems can overlap."
+    />
+    <meta
+      property="og:title"
+      content="Operating System Types Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise operating system types for BTEC Level 3 Computing Unit 2, including real-time, single-user single-task, single-user multitasking, multi-user systems, and how modern operating systems can overlap."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/pages/operating-system-types.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/operating-system-types.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Computer Software</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-a"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Operating system types</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Operating system types</h1>
+            <p class="lesson-hero-text">
+              Learn how operating systems are classified by their main job:
+              strict timing, number of users, number of tasks, and shared
+              resource control.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>A2 Computer software in a computer system</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>OS type labels, examples, and modern overlap</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-a"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#type-map" data-section-link>Type map</a>
+            <a href="#real-time" data-section-link>Real-time OS</a>
+            <a href="#single-user" data-section-link>Single-user OS</a>
+            <a href="#multi-user" data-section-link>Multi-user OS</a>
+            <a href="#modern-overlap" data-section-link>Modern overlap</a>
+            <a href="#choice" data-section-link>Choosing the type</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>OS types are labels for the system's main operating need</h2>
+            <p class="lesson-section-copy">
+              In exam questions, operating system types are usually not meant to
+              describe every feature of a modern OS. They describe the strongest
+              requirement in the scenario: timing, users, tasks, or shared
+              resources.
+            </p>
+
+            <div
+              class="os-decision-flow"
+              aria-label="Operating system type decision flow"
+            >
+              <article class="os-flow-step">
+                <span
+                  class="os-flow-icon os-flow-icon--timing"
+                  aria-hidden="true"
+                ></span>
+                <strong>Timing first?</strong>
+                <span
+                  >Use real-time if missing a deadline could cause
+                  failure.</span
+                >
+              </article>
+              <span class="os-flow-arrow" aria-hidden="true">then</span>
+              <article class="os-flow-step">
+                <span
+                  class="os-flow-icon os-flow-icon--users"
+                  aria-hidden="true"
+                ></span>
+                <strong>How many users?</strong>
+                <span>Many simultaneous users points towards multi-user.</span>
+              </article>
+              <span class="os-flow-arrow" aria-hidden="true">then</span>
+              <article class="os-flow-step">
+                <span
+                  class="os-flow-icon os-flow-icon--tasks"
+                  aria-hidden="true"
+                ></span>
+                <strong>How many tasks?</strong>
+                <span
+                  >One person with many apps is single-user multitasking.</span
+                >
+              </article>
+              <span class="os-flow-arrow" aria-hidden="true">then</span>
+              <article class="os-flow-step">
+                <span
+                  class="os-flow-icon os-flow-icon--label"
+                  aria-hidden="true"
+                ></span>
+                <strong>Choose the label</strong>
+                <span>Give the type and justify it using the scenario.</span>
+              </article>
+            </div>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card lesson-wide">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define the four OS types used in the specification.</li>
+                  <li>Use specific examples rather than vague device names.</li>
+                  <li>
+                    Explain why modern operating systems can fit more than one
+                    description.
+                  </li>
+                  <li>Pick the best exam label for a given scenario.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Real-time:</strong> must respond on time.</li>
+                  <li>
+                    <strong>Single-user single-task:</strong> one user, one main
+                    job.
+                  </li>
+                  <li>
+                    <strong>Single-user multitasking:</strong> one user, many
+                    tasks.
+                  </li>
+                  <li>
+                    <strong>Multi-user:</strong> many users share resources.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="lesson-card fullrow">
+                <h3>The useful classroom rule</h3>
+                <p>
+                  Treat the type as the dominant role, not a sealed box. A
+                  server multitasks, but in a server scenario the exam label is
+                  often multi-user because user access and shared resources are
+                  the point.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="type-map"
+            class="lesson-section lesson-section--type-map panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Type Map</p>
+            <h2>The four types can be compared by users, tasks, and timing</h2>
+            <p class="lesson-section-copy">
+              The specification names four operating system types. A good answer
+              defines the type, gives a realistic use, and links the type to the
+              scenario's requirements.
+            </p>
+
+            <div class="os-type-map">
+              <article class="os-type-card os-type-card--realtime">
+                <span
+                  class="os-type-icon os-type-icon--pulse"
+                  aria-hidden="true"
+                ></span>
+                <h3>Real-time</h3>
+                <p>
+                  Deadline-driven control where late responses are unacceptable.
+                </p>
+                <strong>Examples</strong>
+                <span
+                  >Airbag controller, anti-lock braking, industrial robot</span
+                >
+              </article>
+
+              <article class="os-type-card os-type-card--single-task">
+                <span
+                  class="os-type-icon os-type-icon--single"
+                  aria-hidden="true"
+                ></span>
+                <h3>Single-user single-task</h3>
+                <p>One user or operator focuses the system on one main job.</p>
+                <strong>Examples</strong>
+                <span
+                  >Basic embedded controller, simple appliance, old handheld
+                  device</span
+                >
+              </article>
+
+              <article class="os-type-card os-type-card--multitask">
+                <span
+                  class="os-type-icon os-type-icon--stack"
+                  aria-hidden="true"
+                ></span>
+                <h3>Single-user multitasking</h3>
+                <p>
+                  One main user runs several programs or services during a
+                  session.
+                </p>
+                <strong>Examples</strong>
+                <span
+                  >Windows laptop, macOS desktop, smartphone, gaming PC</span
+                >
+              </article>
+
+              <article class="os-type-card os-type-card--multi-user">
+                <span
+                  class="os-type-icon os-type-icon--network"
+                  aria-hidden="true"
+                ></span>
+                <h3>Multi-user</h3>
+                <p>
+                  Many users access the same system, often at the same time.
+                </p>
+                <strong>Examples</strong>
+                <span
+                  >Linux server, Windows Server, school file server, cloud
+                  host</span
+                >
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Best clue in a scenario</th>
+                    <th>Advantages</th>
+                    <th>Limitations or trade-offs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Real-time</td>
+                    <td>
+                      Strict timing, sensors, actuators, safety-critical control
+                    </td>
+                    <td>
+                      Predictable response, task prioritisation, reliability
+                    </td>
+                    <td>Less flexible than a general-purpose OS</td>
+                  </tr>
+                  <tr>
+                    <td>Single-user single-task</td>
+                    <td>A dedicated device with one main function</td>
+                    <td>Simple, low resource use, easier to test</td>
+                    <td>Cannot conveniently run several user tasks at once</td>
+                  </tr>
+                  <tr>
+                    <td>Single-user multitasking</td>
+                    <td>One person running many apps or background services</td>
+                    <td>Flexible, familiar, productive for personal use</td>
+                    <td>More resource-hungry and less deterministic</td>
+                  </tr>
+                  <tr>
+                    <td>Multi-user</td>
+                    <td>
+                      Many accounts, remote sessions, permissions, shared
+                      storage
+                    </td>
+                    <td>Central control, resource sharing, user isolation</td>
+                    <td>
+                      Needs stronger administration and security management
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="real-time"
+            class="lesson-section lesson-section--real-time panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Timing</p>
+            <h2>Real-time operating systems prioritise deadlines</h2>
+            <p class="lesson-section-copy">
+              A real-time operating system is designed to respond to inputs
+              within a known time limit. The key word is predictable. It does
+              not simply mean the OS is fast, powerful, or modern.
+            </p>
+
+            <div
+              class="rtos-visual"
+              aria-label="Real-time operating system control loop"
+            >
+              <article class="rtos-stage">
+                <span
+                  class="rtos-dot rtos-dot--sensor"
+                  aria-hidden="true"
+                ></span>
+                <strong>Sensor input</strong>
+                <span>Brake pressure, temperature, position, heart rate</span>
+              </article>
+              <article class="rtos-stage rtos-stage--deadline">
+                <span class="rtos-deadline" aria-hidden="true">10 ms</span>
+                <strong>Deadline</strong>
+                <span
+                  >The response must happen within a guaranteed window.</span
+                >
+              </article>
+              <article class="rtos-stage">
+                <span
+                  class="rtos-dot rtos-dot--output"
+                  aria-hidden="true"
+                ></span>
+                <strong>Control output</strong>
+                <span>Apply brake pulse, adjust motor, trigger alarm</span>
+              </article>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Deterministic response</strong>
+                <span
+                  >The system is designed so important responses happen within
+                  known limits.</span
+                >
+              </article>
+              <article class="term-card">
+                <strong>Priority scheduling</strong>
+                <span
+                  >Critical control tasks get priority over less important
+                  tasks.</span
+                >
+              </article>
+              <article class="term-card">
+                <strong>Embedded control</strong>
+                <span
+                  >RTOSs often run inside devices that monitor or control the
+                  physical world.</span
+                >
+              </article>
+              <article class="term-card">
+                <strong>Safety link</strong>
+                <span
+                  >A late response can cause damage, inaccurate control, or
+                  danger.</span
+                >
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="scenario-match-grid">
+              <article class="scenario-match-card">
+                <h3>Car anti-lock braking</h3>
+                <p>
+                  Wheel sensors must be checked and brake pressure adjusted
+                  quickly enough to prevent locking.
+                </p>
+              </article>
+              <article class="scenario-match-card">
+                <h3>Industrial robot</h3>
+                <p>
+                  Motor control and safety stops must happen within strict
+                  timing limits.
+                </p>
+              </article>
+              <article class="scenario-match-card">
+                <h3>Patient monitor</h3>
+                <p>
+                  Sensor readings and alarms must be processed reliably so staff
+                  can respond in time.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="single-user"
+            class="lesson-section lesson-section--single-user panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Single User</p>
+            <h2>
+              Single-user systems are classified by how many tasks the user
+              needs
+            </h2>
+            <p class="lesson-section-copy">
+              Single-user does not mean the device only has one account forever.
+              It means the normal operating model is built around one active
+              user controlling the system at a time.
+            </p>
+
+            <div class="single-user-compare">
+              <article class="single-user-card">
+                <span
+                  class="single-user-visual single-user-visual--one"
+                  aria-hidden="true"
+                ></span>
+                <h3>Single-user single-task</h3>
+                <p>
+                  One user or operator carries out one main function. The OS can
+                  be small and simple because it does not need to switch between
+                  several user applications.
+                </p>
+                <ul class="lesson-list">
+                  <li>Useful for dedicated devices and simple controllers.</li>
+                  <li>Lower processing and memory requirements.</li>
+                  <li>Limited flexibility for general-purpose work.</li>
+                </ul>
+              </article>
+
+              <article class="single-user-card">
+                <span
+                  class="single-user-visual single-user-visual--many"
+                  aria-hidden="true"
+                ></span>
+                <h3>Single-user multitasking</h3>
+                <p>
+                  One main user runs several applications or processes during
+                  the same session. The OS shares CPU time, memory, storage, and
+                  input/output between those tasks.
+                </p>
+                <ul class="lesson-list">
+                  <li>Useful for desktops, laptops, tablets, and phones.</li>
+                  <li>
+                    Supports productivity because apps can stay open together.
+                  </li>
+                  <li>
+                    Needs more RAM, CPU scheduling, and process management.
+                  </li>
+                </ul>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <article class="lesson-card">
+              <h3>Smartphone example</h3>
+              <p>
+                A smartphone OS is usually best described as single-user
+                multitasking. One person controls the device, while music,
+                messaging, maps, downloads, notifications, and the current app
+                may all need CPU time. The OS may suspend background apps to
+                save battery, but it is still managing multiple tasks.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="multi-user"
+            class="lesson-section lesson-section--multi-user panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Multi-User</p>
+            <h2>Multi-user operating systems manage shared access</h2>
+            <p class="lesson-section-copy">
+              A multi-user operating system allows multiple users to access the
+              same system resources. It normally needs strong account
+              management, permissions, scheduling, logging, and security.
+            </p>
+
+            <div
+              class="multi-user-visual"
+              aria-label="Many users sharing server resources"
+            >
+              <article class="user-node">
+                <span aria-hidden="true"></span>
+                <strong>Student</strong>
+                <small>Files</small>
+              </article>
+              <article class="user-node">
+                <span aria-hidden="true"></span>
+                <strong>Teacher</strong>
+                <small>Class folders</small>
+              </article>
+              <article class="server-node">
+                <div class="server-rack" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <strong>Server OS</strong>
+                <p>Accounts, permissions, CPU time, storage, services</p>
+              </article>
+              <article class="user-node">
+                <span aria-hidden="true"></span>
+                <strong>Admin</strong>
+                <small>Management</small>
+              </article>
+              <article class="user-node">
+                <span aria-hidden="true"></span>
+                <strong>Remote user</strong>
+                <small>Login session</small>
+              </article>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>User isolation</strong>
+                <span
+                  >One user's files and processes should not interfere with
+                  another user's work.</span
+                >
+              </article>
+              <article class="term-card">
+                <strong>Permissions</strong>
+                <span
+                  >Access rights decide who can read, change, or delete
+                  resources.</span
+                >
+              </article>
+              <article class="term-card">
+                <strong>Resource scheduling</strong>
+                <span
+                  >The OS shares CPU time, memory, storage, and network access
+                  fairly.</span
+                >
+              </article>
+              <article class="term-card">
+                <strong>Central administration</strong>
+                <span
+                  >Staff can manage users, updates, policies, and security from
+                  one place.</span
+                >
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="modern-overlap"
+            class="lesson-section lesson-section--modern-overlap panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Modern Overlap</p>
+            <h2>
+              Modern operating systems often fit more than one description
+            </h2>
+            <p class="lesson-section-copy">
+              Students often get stuck because modern operating systems borrow
+              features from several categories. That is normal. In an exam,
+              choose the label that best matches the scenario's main purpose.
+            </p>
+
+            <div class="overlap-board">
+              <article class="overlap-card">
+                <h3>Windows or macOS laptop</h3>
+                <div class="overlap-tags">
+                  <span>Single-user multitasking</span>
+                  <span>Multiple accounts possible</span>
+                </div>
+                <p>
+                  Best exam label for a personal laptop is usually single-user
+                  multitasking because one person runs many apps at once.
+                </p>
+              </article>
+
+              <article class="overlap-card">
+                <h3>Linux server</h3>
+                <div class="overlap-tags">
+                  <span>Multi-user</span>
+                  <span>Also multitasks</span>
+                </div>
+                <p>
+                  Best exam label is multi-user when the scenario focuses on
+                  many users, remote sessions, permissions, and shared services.
+                </p>
+              </article>
+
+              <article class="overlap-card">
+                <h3>Smartphone OS</h3>
+                <div class="overlap-tags">
+                  <span>Single-user multitasking</span>
+                  <span>Background limits</span>
+                </div>
+                <p>
+                  It runs many processes, but the OS often freezes or limits
+                  background apps to save battery and protect performance.
+                </p>
+              </article>
+
+              <article class="overlap-card">
+                <h3>Vehicle control unit</h3>
+                <div class="overlap-tags">
+                  <span>Real-time</span>
+                  <span>May schedule many tasks</span>
+                </div>
+                <p>
+                  It may handle several control routines, but strict response
+                  times are the defining feature.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <article class="lesson-card">
+              <h3>How to phrase overlap in an answer</h3>
+              <p>
+                A modern desktop OS may support several accounts and many
+                background services, but if the scenario is one person using a
+                personal computer, classify it as single-user multitasking. If
+                the scenario is many people accessing the same central system,
+                classify it as multi-user.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="choice"
+            class="lesson-section lesson-section--choice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Choice</p>
+            <h2>Use the strongest clue to choose the OS type</h2>
+            <p class="lesson-section-copy">
+              A strong answer names the type and explains why the type matches
+              the requirements. Do not just say the newest or most powerful OS
+              is best.
+            </p>
+
+            <div class="choice-path-grid">
+              <article class="choice-path-card">
+                <span class="choice-number">1</span>
+                <h3>Is timing critical?</h3>
+                <p>
+                  If the system must respond within strict limits, choose
+                  real-time and explain the deadline.
+                </p>
+              </article>
+              <article class="choice-path-card">
+                <span class="choice-number">2</span>
+                <h3>Are many users sharing it?</h3>
+                <p>
+                  If the scenario mentions accounts, remote users, permissions,
+                  or central services, choose multi-user.
+                </p>
+              </article>
+              <article class="choice-path-card">
+                <span class="choice-number">3</span>
+                <h3>Is one user running many apps?</h3>
+                <p>
+                  If one person needs email, browser, documents, media, or
+                  background services, choose single-user multitasking.
+                </p>
+              </article>
+              <article class="choice-path-card">
+                <span class="choice-number">4</span>
+                <h3>Is it a dedicated single job?</h3>
+                <p>
+                  If the device has one main controlled function and little user
+                  flexibility, choose single-user single-task.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="scenario-match-grid">
+              <article class="scenario-match-card">
+                <h3>Exam clue: shared college file store</h3>
+                <p>
+                  Choose multi-user because many users need authenticated access
+                  to shared files and permissions.
+                </p>
+              </article>
+              <article class="scenario-match-card">
+                <h3>Exam clue: home video editing PC</h3>
+                <p>
+                  Choose single-user multitasking because one user may run
+                  editing, browser, file manager, and background services.
+                </p>
+              </article>
+              <article class="scenario-match-card">
+                <h3>Exam clue: emergency stop system</h3>
+                <p>
+                  Choose real-time because the system must process the input and
+                  trigger an output within a strict deadline.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with operating system types</h2>
+            <p class="lesson-section-copy">
+              Most mistakes happen when students treat the categories as pure
+              boxes or write the type without explaining the scenario link.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Thinking real-time means fast graphics</h3>
+                <p>
+                  Real-time is about deadlines and predictable timing, not
+                  smooth animation or high performance for users.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention sensors, control outputs, and
+                  timing guarantees.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Calling every desktop multi-user</h3>
+                <p>
+                  A desktop OS can have several accounts, but the normal use may
+                  still be one active user running many tasks.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use the dominant role in the scenario.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Forgetting resource sharing</h3>
+                <p>
+                  Multi-user answers should explain how users share resources
+                  safely, not just say "many people use it".
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Add accounts, permissions, scheduling,
+                  security, or central storage.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Only naming the type</h3>
+                <p>
+                  A bare label rarely earns full marks because it does not show
+                  why that OS type fits the situation.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Name the type, define it, then connect
+                  it to one scenario requirement.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all eight questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="c"
+                data-success="Correct. A real-time operating system is defined by predictable response within timing constraints."
+                data-feedback="The key feature of a real-time OS is reliable, deadline-based response."
+              >
+                <legend>
+                  1. What most clearly defines a real-time operating system?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>It always has the newest interface</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>It runs the largest number of apps</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>It responds within strict timing limits</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="b"
+                data-success="Correct. A personal laptop is normally treated as single-user multitasking."
+                data-feedback="General-purpose personal computers normally run single-user multitasking operating systems."
+              >
+                <legend>
+                  2. Which OS type best fits a typical home laptop?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>Single-user single-task</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>Single-user multitasking</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>Real-time only</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="a"
+                data-success="Correct. A multi-user OS is built to share resources among many users."
+                data-feedback="Multi-user systems focus on shared access, accounts, permissions, and central control."
+              >
+                <legend>
+                  3. Which type is most appropriate for a school file server?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>Multi-user</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>Single-user single-task</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>Real-time embedded</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Single-user single-task systems suit simple dedicated devices with one main job."
+                data-feedback="They suit systems that only need to focus on one main job at a time."
+              >
+                <legend>
+                  4. Which situation best suits a single-user single-task
+                  operating system?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>A university server handling many accounts</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span
+                        >A simple appliance controller with one main
+                        function</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span
+                        >A designer's laptop running many apps together</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="c"
+                data-success="Correct. The best exam label depends on the scenario's main requirement."
+                data-feedback="Modern OSs overlap, so classify by the dominant requirement in the scenario."
+              >
+                <legend>
+                  5. A desktop OS supports several accounts. Why might it still
+                  be classified as single-user multitasking in a laptop
+                  scenario?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>Because account support never matters</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>Because it cannot run background processes</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span
+                        >Because one main user is running many tasks during
+                        normal use</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="a"
+                data-success="Correct. Multi-user operating systems manage accounts, permissions, and shared resources."
+                data-feedback="A strong multi-user answer should mention shared access and control, not just the word users."
+              >
+                <legend>
+                  6. Which feature is especially important in a multi-user
+                  operating system?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="a" />
+                      <span>Permissions to control shared resources</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="b" />
+                      <span>A single fixed task with no accounts</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="c" />
+                      <span
+                        >A guarantee that no background process can run</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="b"
+                data-success="Correct. A smartphone is usually best classified as single-user multitasking."
+                data-feedback="A phone OS supports many processes for one main user, even if it limits some background apps."
+              >
+                <legend>
+                  7. Which label usually best fits a smartphone OS?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="a" />
+                      <span
+                        >Multi-user, because several apps are installed</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="b" />
+                      <span
+                        >Single-user multitasking, because one user can run many
+                        processes</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="c" />
+                      <span
+                        >Single-user single-task, because the screen shows one
+                        app at a time</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="a"
+                data-success="Correct. The strongest justification links the OS type to the system's real need."
+                data-feedback="You should explain why the type fits the users, tasks, timing, or resource-sharing requirements."
+              >
+                <legend>
+                  8. What makes an operating system choice well justified?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="a" />
+                      <span
+                        >It explains how the type matches the system needs</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="b" />
+                      <span
+                        >It always picks the newest operating system
+                        available</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="c" />
+                      <span>It avoids mentioning users, tasks, or timing</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why an anti-lock braking system is more likely to use
+                  a real-time operating system than a general-purpose desktop
+                  operating system.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Focus on timing, sensors, and control outputs."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        The braking system must respond within strict time
+                        limits.
+                      </li>
+                      <li>
+                        Wheel sensor data needs to be processed predictably.
+                      </li>
+                      <li>
+                        Late responses could cause unsafe or incorrect braking.
+                      </li>
+                      <li>
+                        A real-time OS prioritises critical control tasks over
+                        general convenience.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Discuss</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A college wants a central system where staff and students can
+                  log in, store work, and access shared folders. Discuss the
+                  most suitable operating system type.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Think about users, permissions, and shared resources."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        A multi-user operating system would be most suitable.
+                      </li>
+                      <li>
+                        Many users need accounts and authenticated access.
+                      </li>
+                      <li>
+                        Permissions can control who can view or edit shared
+                        folders.
+                      </li>
+                      <li>
+                        The OS can manage shared storage, CPU time, and network
+                        services.
+                      </li>
+                      <li>
+                        Central administration helps with security and
+                        maintenance.
+                      </li>
+                      <li>
+                        A single-user OS would be less suitable because the
+                        system is meant for shared access.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Analyse</span>
+                </div>
+                <h3>Question 3</h3>
+                <p>
+                  A learner says: "Windows has several user accounts, so it is
+                  always a multi-user operating system." Analyse why this
+                  statement is only partly correct.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-3">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-3"
+                    class="exam-response"
+                    data-exam-response="question-3"
+                    placeholder="Explain the overlap, then classify by scenario."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        Modern desktop OSs can support several accounts and
+                        permissions.
+                      </li>
+                      <li>
+                        That does not always make multi-user the best exam
+                        label.
+                      </li>
+                      <li>
+                        In a personal laptop scenario, one active user running
+                        many apps points to single-user multitasking.
+                      </li>
+                      <li>
+                        In a server scenario with many simultaneous users,
+                        multi-user would be a stronger classification.
+                      </li>
+                      <li>
+                        The best answer should use the dominant requirement in
+                        the scenario.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Operating system</dt>
+                <dd>
+                  Core software that manages hardware and software resources.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Real-time OS</dt>
+                <dd>An OS designed to respond within strict timing limits.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Deterministic</dt>
+                <dd>Predictable in timing or behaviour.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Multitasking</dt>
+                <dd>
+                  Managing more than one task during the same period of use.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Multi-user OS</dt>
+                <dd>
+                  An OS that supports multiple users sharing system resources.
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Pick the dominant clue</h2>
+            <ul class="memory-list">
+              <li>Strict deadline: real-time.</li>
+              <li>Many users sharing one system: multi-user.</li>
+              <li>One person using many apps: single-user multitasking.</li>
+              <li>One dedicated job: single-user single-task.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 15</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

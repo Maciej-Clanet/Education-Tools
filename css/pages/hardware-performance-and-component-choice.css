@@ -1,0 +1,335 @@
+.performance-decision-flow,
+.component-metric-visual,
+.memory-capacity-visual,
+.storage-choice-grid,
+.graphics-visual-grid,
+.choice-factor-map,
+.scenario-match-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.performance-decision-flow {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  margin: 1rem 0;
+}
+
+.performance-flow-step,
+.metric-tile,
+.memory-bank,
+.storage-choice-card,
+.graphics-card,
+.choice-factor-card,
+.scenario-match-card,
+.printer-visual,
+.display-visual {
+  padding: 1rem;
+  border-radius: 18px;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.82)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.performance-flow-step,
+.metric-tile,
+.storage-choice-card,
+.graphics-card,
+.choice-factor-card,
+.scenario-match-card {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.performance-flow-step {
+  justify-items: center;
+  text-align: center;
+}
+
+.performance-flow-step strong,
+.metric-tile strong,
+.memory-bank h3,
+.storage-choice-card h3,
+.graphics-card h3,
+.choice-factor-card strong,
+.scenario-match-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.performance-flow-step span:not(.performance-flow-icon),
+.metric-tile small,
+.memory-bank p,
+.storage-choice-card p,
+.graphics-card p,
+.choice-factor-card span,
+.scenario-match-card p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.performance-flow-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-weight: 900;
+}
+
+.performance-flow-icon,
+.storage-choice-icon,
+.graphics-card__icon {
+  position: relative;
+  display: inline-block;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.performance-flow-icon--task {
+  background:
+    linear-gradient(90deg, transparent 0.8rem, rgba(139, 72, 49, 0.35) 0.8rem 0.98rem, transparent 0.98rem),
+    linear-gradient(180deg, rgba(255, 240, 241, 0.96), rgba(255, 255, 255, 0.9));
+}
+
+.performance-flow-icon--metric {
+  background:
+    repeating-linear-gradient(90deg, rgba(21, 91, 117, 0.22) 0 0.28rem, transparent 0.28rem 0.62rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.performance-flow-icon--constraint {
+  background:
+    radial-gradient(circle at 50% 50%, #785e16 0 0.24rem, transparent 0.26rem),
+    rgba(255, 249, 227, 0.96);
+}
+
+.performance-flow-icon--choice {
+  background:
+    linear-gradient(135deg, transparent 38%, #29523b 39% 46%, transparent 47%),
+    linear-gradient(45deg, transparent 48%, #29523b 49% 56%, transparent 57%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.component-metric-visual {
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  margin: 1rem 0;
+}
+
+.metric-tile span {
+  width: fit-content;
+  padding: 0.3rem 0.62rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--lesson-accent-heading);
+  font-weight: 900;
+}
+
+.memory-capacity-visual,
+.storage-choice-grid,
+.graphics-visual-grid,
+.choice-factor-map,
+.scenario-match-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 1rem 0;
+}
+
+.memory-bank {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.memory-bank__slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.memory-bank__slots span {
+  min-height: 3rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(139, 207, 136, 0.68);
+}
+
+.memory-bank__slots .is-overflow {
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(190, 91, 91, 0.22) 0 0.28rem,
+    rgba(255, 255, 255, 0.72) 0.28rem 0.56rem
+  );
+}
+
+.storage-choice-icon--ssd {
+  background:
+    repeating-linear-gradient(90deg, rgba(21, 91, 117, 0.2) 0 0.32rem, transparent 0.32rem 0.66rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.storage-choice-icon--hdd {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #785e16 0 0.18rem, transparent 0.2rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.58rem, rgba(120, 94, 22, 0.3) 0.6rem 0.68rem),
+    rgba(255, 249, 227, 0.96);
+}
+
+.storage-choice-icon--external {
+  background:
+    linear-gradient(180deg, transparent 18%, #8b4831 18% 34%, transparent 34%),
+    rgba(255, 240, 241, 0.96);
+}
+
+.graphics-card__icon--integrated {
+  background:
+    linear-gradient(90deg, transparent 0.9rem, rgba(41, 82, 59, 0.28) 0.9rem 1.05rem, transparent 1.05rem),
+    linear-gradient(180deg, transparent 0.9rem, rgba(41, 82, 59, 0.28) 0.9rem 1.05rem, transparent 1.05rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.graphics-card__icon--dedicated {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(21, 91, 117, 0.22) 0 0.72rem, transparent 0.76rem),
+    repeating-linear-gradient(90deg, rgba(21, 91, 117, 0.18) 0 0.24rem, transparent 0.24rem 0.52rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.display-visual {
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.display-visual__screen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  border: 2px solid #155b75;
+  background:
+    linear-gradient(135deg, rgba(105, 200, 232, 0.18), rgba(139, 207, 136, 0.14)),
+    rgba(232, 246, 255, 0.96);
+  overflow: hidden;
+}
+
+.display-visual__scanline {
+  position: absolute;
+  inset: 35% 0 auto;
+  height: 0.24rem;
+  background: rgba(21, 91, 117, 0.22);
+}
+
+.display-visual__pixel-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(21, 91, 117, 0.12) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(180deg, rgba(21, 91, 117, 0.12) 0 1px, transparent 1px 18px);
+}
+
+.display-visual__metrics,
+.printer-metric-row {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.display-visual__metrics span,
+.printer-metric-row span {
+  display: block;
+  padding: 0.72rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--muted-ink);
+}
+
+.display-visual__metrics strong,
+.printer-metric-row strong {
+  color: var(--page-ink);
+}
+
+.printer-visual {
+  display: grid;
+  grid-template-columns: minmax(170px, 240px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.printer-visual__body {
+  position: relative;
+  min-height: 9rem;
+  border-radius: 20px;
+  border: 2px solid #8b4831;
+  background:
+    linear-gradient(180deg, transparent 22%, rgba(139, 72, 49, 0.22) 22% 36%, transparent 36%),
+    rgba(255, 240, 241, 0.96);
+}
+
+.printer-visual__paper {
+  position: absolute;
+  left: 50%;
+  bottom: 0.8rem;
+  width: 55%;
+  height: 4.8rem;
+  border-radius: 0.28rem;
+  border: 1px solid rgba(37, 52, 66, 0.14);
+  background:
+    repeating-linear-gradient(180deg, transparent 0 0.6rem, rgba(37, 52, 66, 0.12) 0.6rem 0.68rem),
+    rgba(255, 255, 255, 0.96);
+  transform: translateX(-50%);
+}
+
+.choice-factor-card {
+  border-left: 5px solid var(--lesson-accent);
+}
+
+body.teacher-mode-active .performance-decision-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .performance-flow-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .component-metric-visual {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .display-visual,
+body.teacher-mode-active .printer-visual {
+  grid-template-columns: minmax(170px, 240px) minmax(0, 1fr);
+}
+
+@media (max-width: 900px) {
+  .performance-decision-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .performance-flow-arrow {
+    display: none;
+  }
+
+  .display-visual,
+  .printer-visual {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  body.teacher-mode-active .performance-decision-flow,
+  body.teacher-mode-active .component-metric-visual,
+  body.teacher-mode-active .display-visual,
+  body.teacher-mode-active .printer-visual {
+    grid-template-columns: 1fr;
+  }
+}

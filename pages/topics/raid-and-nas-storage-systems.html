@@ -1,0 +1,1295 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      RAID and NAS Storage Systems Revision Lesson | Education Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise RAID and NAS storage systems for BTEC Level 3 Computing Unit 2, including striping, mirroring, parity, Hamming code error correction, fault tolerance, RAID levels, shared network storage, and backup planning."
+    />
+    <meta
+      property="og:title"
+      content="RAID and NAS Storage Systems Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise RAID and NAS storage systems for BTEC Level 3 Computing Unit 2, including striping, mirroring, parity, Hamming code error correction, fault tolerance, RAID levels, shared network storage, and backup planning."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/raid-and-nas-storage-systems.css"
+    />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/raid-and-nas-storage-systems.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Computer Hardware</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-a"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">RAID and NAS storage systems</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>RAID and NAS storage systems</h1>
+            <p class="lesson-hero-text">
+              Learn how RAID arranges data across multiple drives, how NAS
+              provides shared network storage, and how to judge storage choices
+              using performance, fault tolerance, access, and recovery needs.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>A1 Computer hardware in a computer system</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>RAID levels, NAS, fault tolerance, and storage recovery</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-a"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#raid-mechanisms" data-section-link>RAID mechanisms</a>
+            <a href="#raid-levels" data-section-link>RAID levels</a>
+            <a href="#error-correction" data-section-link>Error correction</a>
+            <a href="#nas-basics" data-section-link>NAS basics</a>
+            <a href="#choice-and-recovery" data-section-link
+              >Choice and recovery</a
+            >
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              RAID and NAS appear in questions about storage resilience,
+              availability, shared access, performance, and recovery. The exam
+              often tests whether you can separate disk arrangement from network
+              storage and backup planning.
+            </p>
+
+            <div
+              class="raid-overview-visual"
+              aria-label="RAID and NAS overview"
+            >
+              <article class="raid-overview-card">
+                <span
+                  class="raid-overview-icon raid-overview-icon--raid"
+                  aria-hidden="true"
+                ></span>
+                <h3>RAID</h3>
+                <p>Multiple drives arranged as one storage system.</p>
+              </article>
+              <span class="raid-overview-arrow" aria-hidden="true">&rarr;</span>
+              <article class="raid-overview-card">
+                <span
+                  class="raid-overview-icon raid-overview-icon--nas"
+                  aria-hidden="true"
+                ></span>
+                <h3>NAS</h3>
+                <p>Storage shared to users and devices over a network.</p>
+              </article>
+              <span class="raid-overview-arrow" aria-hidden="true">&rarr;</span>
+              <article class="raid-overview-card">
+                <span
+                  class="raid-overview-icon raid-overview-icon--backup"
+                  aria-hidden="true"
+                ></span>
+                <h3>Backups</h3>
+                <p>Separate copies used for wider recovery.</p>
+              </article>
+            </div>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card lesson-wide slide-wide">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>
+                    Explain striping, mirroring, parity, and fault tolerance.
+                  </li>
+                  <li>
+                    Compare common RAID standards and minimum drive counts.
+                  </li>
+                  <li>Explain where Hamming code error correction fits.</li>
+                  <li>Describe how NAS supports shared network storage.</li>
+                  <li>Judge when RAID, NAS, or both are suitable.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card slide-wide">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>RAID:</strong> drive arrangement.</li>
+                  <li><strong>NAS:</strong> shared network storage.</li>
+                  <li><strong>Striping:</strong> split data for speed.</li>
+                  <li><strong>Mirroring:</strong> copy data for resilience.</li>
+                  <li><strong>Parity:</strong> recovery information.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card fullrow">
+                <h3>Key exam warning</h3>
+                <p>
+                  RAID can improve fault tolerance, but it does not replace a
+                  proper backup strategy. RAID may keep a system available after
+                  a drive failure; backups protect against wider data-loss
+                  events such as deletion, corruption, ransomware, or site loss.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="raid-mechanisms"
+            class="lesson-section lesson-section--raid-mechanisms panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">RAID Mechanisms</p>
+            <h2>
+              RAID levels combine striping, mirroring, and recovery data in
+              different ways
+            </h2>
+            <p class="lesson-section-copy">
+              RAID stands for Redundant Array of Independent Disks. The
+              important idea is how data blocks and recovery information are
+              placed across the available drives.
+            </p>
+
+            <div
+              class="raid-pattern-grid"
+              aria-label="RAID mechanism visual examples"
+            >
+              <article class="raid-pattern-card">
+                <h3>Block-level striping</h3>
+                <div class="raid-disks raid-disks--striped" aria-hidden="true">
+                  <div class="raid-disk">
+                    <span>A1</span><span>A4</span><span>A7</span>
+                  </div>
+                  <div class="raid-disk">
+                    <span>A2</span><span>A5</span><span>A8</span>
+                  </div>
+                  <div class="raid-disk">
+                    <span>A3</span><span>A6</span><span>A9</span>
+                  </div>
+                </div>
+                <p>
+                  Data blocks are split across drives. This can increase speed
+                  because several drives can work at once.
+                </p>
+              </article>
+
+              <article class="raid-pattern-card">
+                <h3>Mirroring</h3>
+                <div class="raid-disks raid-disks--mirrored" aria-hidden="true">
+                  <div class="raid-disk">
+                    <span>A1</span><span>A2</span><span>A3</span>
+                  </div>
+                  <div class="raid-disk">
+                    <span>A1</span><span>A2</span><span>A3</span>
+                  </div>
+                </div>
+                <p>
+                  The same data is copied to another drive. If one drive fails,
+                  the mirrored copy can still be used.
+                </p>
+              </article>
+
+              <article class="raid-pattern-card">
+                <h3>Parity</h3>
+                <div class="raid-disks raid-disks--parity" aria-hidden="true">
+                  <div class="raid-disk">
+                    <span>A1</span><span>B1</span><span>P</span>
+                  </div>
+                  <div class="raid-disk">
+                    <span>A2</span><span>P</span><span>C1</span>
+                  </div>
+                  <div class="raid-disk">
+                    <span>P</span><span>B2</span><span>C2</span>
+                  </div>
+                </div>
+                <p>
+                  Extra parity information is stored so missing data can be
+                  rebuilt if a supported drive failure occurs.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Fault tolerance</strong>
+                <span>
+                  The ability to keep working after a component fails. RAID 0
+                  has no fault tolerance, while mirrored or parity-based RAID
+                  can tolerate some drive failures.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Rebuild</strong>
+                <span>
+                  The process of recreating missing data on a replacement drive
+                  using mirrored data or parity information.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Capacity trade-off</strong>
+                <span>
+                  Some drives or parts of drives are used for copies or parity,
+                  so usable capacity is lower than the raw total capacity.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Performance trade-off</strong>
+                <span>
+                  Striping can improve speed, but parity calculations and
+                  rebuilds can add overhead.
+                </span>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="raid-levels"
+            class="lesson-section lesson-section--raid-levels panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">RAID Standards</p>
+            <h2>The main RAID levels make different trade-offs</h2>
+            <p class="lesson-section-copy">
+              RAID standards describe common ways of arranging drives. For most
+              Unit 2 answers, focus on the main practical levels and know that
+              some older levels exist mainly to explain error-correction ideas.
+            </p>
+
+            <div class="raid-level-card-grid">
+              <article class="raid-level-card">
+                <span class="raid-level-pill">RAID 0</span>
+                <h3>Striping only</h3>
+                <p>Minimum drives: 2+. Fast, but no fault tolerance.</p>
+              </article>
+              <article class="raid-level-card">
+                <span class="raid-level-pill">RAID 1</span>
+                <h3>Mirroring</h3>
+                <p>
+                  Minimum drives: 2. Can tolerate one drive failure in a mirror
+                  pair.
+                </p>
+              </article>
+              <article class="raid-level-card">
+                <span class="raid-level-pill">RAID 5</span>
+                <h3>Block striping with distributed parity</h3>
+                <p>Minimum drives: 3+. Can tolerate one drive failure.</p>
+              </article>
+              <article class="raid-level-card">
+                <span class="raid-level-pill">RAID 6</span>
+                <h3>Block striping with double distributed parity</h3>
+                <p>Minimum drives: 4+. Can tolerate two drive failures.</p>
+              </article>
+              <article class="raid-level-card">
+                <span class="raid-level-pill">RAID 10</span>
+                <h3>Mirrored pairs plus striping</h3>
+                <p>
+                  Minimum drives: 4+. Fast and resilient, but uses more
+                  capacity.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Level</th>
+                    <th>Main method</th>
+                    <th>Minimum drives</th>
+                    <th>Fault tolerance</th>
+                    <th>Best fit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>RAID 0</td>
+                    <td>Block-level striping</td>
+                    <td>2+</td>
+                    <td>None</td>
+                    <td>
+                      Speed where data loss risk is acceptable or data is
+                      temporary.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>RAID 1</td>
+                    <td>Mirroring</td>
+                    <td>2</td>
+                    <td>Usually one drive in a mirror pair</td>
+                    <td>Simple resilience for important systems.</td>
+                  </tr>
+                  <tr>
+                    <td>RAID 5</td>
+                    <td>Block-level striping with distributed parity</td>
+                    <td>3+</td>
+                    <td>One drive</td>
+                    <td>
+                      Balance of capacity and resilience for shared storage.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>RAID 6</td>
+                    <td>Block-level striping with double distributed parity</td>
+                    <td>4+</td>
+                    <td>Two drives</td>
+                    <td>
+                      Larger arrays where rebuild time and second failures are a
+                      risk.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>RAID 10</td>
+                    <td>Striping across mirrored pairs</td>
+                    <td>4+</td>
+                    <td>One drive per mirror pair</td>
+                    <td>
+                      High performance and resilience when capacity cost is
+                      acceptable.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>What about RAID 2, 3, and 4?</h3>
+              <p>
+                These are less common in modern systems, but they help explain
+                the ideas behind error correction. RAID 2 used bit-level
+                striping with Hamming code error correction. RAID 3 and RAID 4
+                used parity on a dedicated parity disk, with RAID 3 working at
+                byte level and RAID 4 working at block level.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="error-correction"
+            class="lesson-section lesson-section--error-correction panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Error Correction</p>
+            <h2>
+              RAID can use extra information to detect or rebuild missing data
+            </h2>
+            <p class="lesson-section-copy">
+              Error correction in RAID is about storing enough extra information
+              to recover from certain failures. The method depends on the RAID
+              level.
+            </p>
+
+            <div class="error-method-grid">
+              <article class="error-method-card">
+                <h3>Hamming code error correction</h3>
+                <div class="ecc-blocks" aria-hidden="true">
+                  <span>D1</span><span>D2</span><span>D3</span><span>H1</span
+                  ><span>H2</span>
+                </div>
+                <p>
+                  RAID 2 used Hamming code error correction with data striped at
+                  bit level. It needed extra check disks and is now mostly a
+                  historical example rather than a common practical choice.
+                </p>
+              </article>
+
+              <article class="error-method-card">
+                <h3>Parity error correction</h3>
+                <div class="ecc-blocks ecc-blocks--parity" aria-hidden="true">
+                  <span>A</span><span>B</span><span>P</span><span>C</span
+                  ><span>P</span>
+                </div>
+                <p>
+                  Parity stores calculated recovery information. If one disk in
+                  a supported parity array fails, the missing blocks can be
+                  reconstructed from the remaining data and parity.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Used by</th>
+                    <th>Purpose</th>
+                    <th>Exam point</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Hamming code</td>
+                    <td>RAID 2</td>
+                    <td>Detect and correct errors using check bits.</td>
+                    <td>
+                      Rare/legacy, but useful to know as an error-correction
+                      approach.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Dedicated parity</td>
+                    <td>RAID 3 and RAID 4</td>
+                    <td>Store parity on a specific parity disk.</td>
+                    <td>The parity disk can become a bottleneck.</td>
+                  </tr>
+                  <tr>
+                    <td>Distributed parity</td>
+                    <td>RAID 5</td>
+                    <td>Spread parity across drives.</td>
+                    <td>Needs 3+ drives and tolerates one drive failure.</td>
+                  </tr>
+                  <tr>
+                    <td>Double distributed parity</td>
+                    <td>RAID 6</td>
+                    <td>Store enough parity for two drive failures.</td>
+                    <td>Needs 4+ drives and gives stronger fault tolerance.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="nas-basics"
+            class="lesson-section lesson-section--nas-basics panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">NAS</p>
+            <h2>
+              NAS provides shared storage to users and devices over a network
+            </h2>
+            <p class="lesson-section-copy">
+              NAS stands for Network Attached Storage. It is a storage device or
+              appliance connected to a network so users can access shared files
+              without storing everything on their own machines.
+            </p>
+
+            <div
+              class="nas-network-visual"
+              aria-label="NAS shared network storage diagram"
+            >
+              <article class="nas-client">
+                <span aria-hidden="true"></span>
+                <strong>Student PC</strong>
+              </article>
+              <article class="nas-client">
+                <span aria-hidden="true"></span>
+                <strong>Teacher laptop</strong>
+              </article>
+              <article class="nas-node">
+                <div class="nas-node__drives" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <strong>NAS</strong>
+                <p>Shared files, permissions, and storage management</p>
+              </article>
+              <article class="nas-client">
+                <span aria-hidden="true"></span>
+                <strong>Media workstation</strong>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Central storage</strong>
+                <span>
+                  Files can be stored in one place instead of being scattered
+                  across many separate computers.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Shared access</strong>
+                <span>
+                  Several users or departments can work from the same file
+                  space, depending on permissions.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Management</strong>
+                <span>
+                  Administrators can manage storage, user access, quotas, and
+                  sometimes backups from one system.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Network dependence</strong>
+                <span>
+                  If the network is down or congested, access to NAS files may
+                  be affected.
+                </span>
+              </article>
+            </div>
+            <br />
+            <article class="lesson-card">
+              <h3>RAID and NAS can appear together</h3>
+              <p>
+                A NAS device may use RAID internally. NAS describes how storage
+                is shared across the network, while RAID describes how the
+                drives inside the storage system are arranged.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="choice-and-recovery"
+            class="lesson-section lesson-section--choice-and-recovery panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Choice</p>
+            <h2>
+              Storage decisions should consider availability, recovery, access,
+              and backups
+            </h2>
+            <p class="lesson-section-copy">
+              The best solution depends on how much downtime is acceptable, how
+              many users need access, how important fast recovery is after a
+              failure, and what kind of data-loss risks must be covered.
+            </p>
+
+            <div class="choice-path-grid">
+              <article class="choice-path-card">
+                <h3>Need speed only?</h3>
+                <p>
+                  RAID 0 can improve performance, but it has no fault tolerance.
+                </p>
+              </article>
+              <article class="choice-path-card">
+                <h3>Need drive failure protection?</h3>
+                <p>
+                  RAID 1, 5, 6, or 10 can keep data available after supported
+                  failures.
+                </p>
+              </article>
+              <article class="choice-path-card">
+                <h3>Need shared access?</h3>
+                <p>NAS gives network users a central storage location.</p>
+              </article>
+              <article class="choice-path-card">
+                <h3>Need wider recovery?</h3>
+                <p>
+                  Backups are still needed for deletion, corruption, attack, or
+                  disaster.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked judgement</h3>
+              <p>
+                A small design studio may use a NAS with RAID 5 or RAID 6 so
+                staff can share project files and keep working if a drive fails.
+                However, the studio still needs a separate backup plan because
+                RAID will not protect against accidental deletion, ransomware,
+                or the NAS being physically damaged.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with RAID and NAS</h2>
+            <p class="lesson-section-copy">
+              Most confusion comes from mixing up storage sharing, disk
+              arrangement, and backup.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Thinking RAID means backup</h3>
+                <p>
+                  RAID can protect against some drive failures, but not every
+                  data-loss situation.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Say that backup is still needed for
+                  deletion, corruption, ransomware, and site loss.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Treating NAS as a RAID level</h3>
+                <p>NAS is not a RAID type. It is a network storage approach.</p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Separate shared network access from the
+                  drive arrangement inside the storage system.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Claiming RAID 0 is resilient</h3>
+                <p>RAID 0 stripes data for speed but has no redundancy.</p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> State that one disk failure can break
+                  the whole RAID 0 array.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Ignoring rebuild risk</h3>
+                <p>Parity arrays may be vulnerable or slower during rebuild.</p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention downtime, rebuild time, and
+                  whether one or two drive failures can be tolerated.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all eight questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. RAID combines multiple disks into one arrangement."
+                data-feedback="RAID is about how several drives work together for speed, redundancy, or both."
+              >
+                <legend>1. What does RAID involve?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Connecting one printer to a network</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>Using multiple storage disks together</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>Replacing RAM with solid-state storage</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. NAS provides storage across a network."
+                data-feedback="NAS is designed to let users or systems access shared storage over the network."
+              >
+                <legend>2. What is the main role of NAS?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>To provide shared storage over a network</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>To cool the CPU during heavy processing</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>To act as a graphics accelerator</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Mirroring keeps a duplicate copy of data on another drive."
+                data-feedback="Mirroring means the same data is written to more than one drive to improve resilience."
+              >
+                <legend>3. What does mirroring in RAID do?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>Compresses files automatically</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>Connects more monitors to the system</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>Stores duplicate data on another drive</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. RAID is not the same as a backup strategy."
+                data-feedback="RAID can help with drive failure, but backups are still needed for deletion, corruption, or larger incidents."
+              >
+                <legend>
+                  4. Why is RAID not the same as a full backup strategy?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>Because RAID only works with laptops</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span
+                        >Because it does not protect against every kind of data
+                        loss</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span
+                        >Because it always reduces storage speed to zero</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. RAID 5 uses distributed parity and needs at least three drives."
+                data-feedback="RAID 5 uses block-level striping with distributed parity, so it needs 3 or more drives."
+              >
+                <legend>
+                  5. Which RAID level uses block-level striping with distributed
+                  parity and needs at least three drives?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>RAID 5</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>RAID 0</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>NAS</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="c"
+                data-success="Correct. RAID 0 has no fault tolerance."
+                data-feedback="RAID 0 stripes data for performance, but if one drive fails the array can fail."
+              >
+                <legend>6. Which RAID level offers no fault tolerance?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="a" />
+                      <span>RAID 1</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="b" />
+                      <span>RAID 6</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="c" />
+                      <span>RAID 0</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="b"
+                data-success="Correct. RAID 2 is associated with Hamming code error correction."
+                data-feedback="RAID 2 used bit-level striping with Hamming code error correction, but it is rarely used in modern storage systems."
+              >
+                <legend>
+                  7. Which RAID level is associated with Hamming code error
+                  correction?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="a" />
+                      <span>RAID 0</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="b" />
+                      <span>RAID 2</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="c" />
+                      <span>RAID 10</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="a"
+                data-success="Correct. A NAS is useful when several users need central shared access."
+                data-feedback="NAS is especially useful where shared files and central management are important."
+              >
+                <legend>8. Which scenario most clearly suits NAS?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="a" />
+                      <span
+                        >A team needs access to shared files from different
+                        PCs</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="b" />
+                      <span>A student wants brighter screen colours</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="c" />
+                      <span>A phone needs a quieter vibration motor</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card slide-fullrow">
+                <div class="exam-meta">
+                  <span class="exam-pill">5 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain how RAID 1 and RAID 5 use different methods to improve
+                  fault tolerance.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Compare mirroring and parity."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>RAID 1 uses mirroring.</li>
+                      <li>The same data is stored on another drive.</li>
+                      <li>
+                        If one drive fails, the mirrored copy can be used.
+                      </li>
+                      <li>
+                        RAID 5 uses block-level striping with distributed
+                        parity.
+                      </li>
+                      <li>
+                        If one drive fails, missing data can be rebuilt using
+                        remaining data and parity.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card slide-fullrow">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Discuss</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A small design studio wants central file access for staff and
+                  reduced disruption if a drive fails. Discuss whether NAS,
+                  RAID, or a combination of both would be most suitable.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Think about shared access, redundancy, RAID level, and backups."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        NAS would help because staff need shared central file
+                        access across the network.
+                      </li>
+                      <li>
+                        RAID would help because the studio wants reduced
+                        disruption if a drive fails.
+                      </li>
+                      <li>
+                        A NAS device using RAID internally may meet both needs.
+                      </li>
+                      <li>
+                        RAID 5 or RAID 6 could balance capacity and fault
+                        tolerance, depending on the number of drives and risk.
+                      </li>
+                      <li>
+                        However, backups are still needed because RAID is not a
+                        full backup solution.
+                      </li>
+                      <li>
+                        The strongest judgement is usually that a combination
+                        with separate backups is most suitable.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card fullrow">
+                <div class="exam-meta">
+                  <span class="exam-pill">8 marks</span>
+                  <span class="exam-pill">Analyse</span>
+                </div>
+                <h3>Question 3</h3>
+                <p>
+                  A school is choosing between RAID 0, RAID 1, RAID 5, and RAID
+                  6 for a shared file system. Analyse which RAID level would be
+                  most suitable and justify your answer.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-3">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-3"
+                    class="exam-response"
+                    data-exam-response="question-3"
+                    placeholder="Compare speed, mirroring, parity, drive count, fault tolerance, capacity, and rebuild risk."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        RAID 0 should not be chosen for important shared files
+                        because it has no fault tolerance.
+                      </li>
+                      <li>
+                        RAID 1 is simple and resilient but uses half the raw
+                        capacity for mirrored copies.
+                      </li>
+                      <li>
+                        RAID 5 needs at least three drives and can tolerate one
+                        drive failure using distributed parity.
+                      </li>
+                      <li>
+                        RAID 6 needs at least four drives and can tolerate two
+                        drive failures using double distributed parity.
+                      </li>
+                      <li>
+                        RAID 5 or RAID 6 is likely more suitable for shared file
+                        storage than RAID 0 because availability matters.
+                      </li>
+                      <li>
+                        RAID 6 may be better for larger arrays where rebuild
+                        time and a second drive failure are realistic risks.
+                      </li>
+                      <li>
+                        Backups are still needed because RAID does not protect
+                        against all data-loss events.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>RAID</dt>
+                <dd>
+                  A way of arranging multiple disks to improve resilience,
+                  speed, or both.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>NAS</dt>
+                <dd>
+                  Network attached storage that provides shared file access.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Striping</dt>
+                <dd>Splitting data blocks across multiple drives.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Mirroring</dt>
+                <dd>
+                  Keeping duplicate copies of data on more than one drive.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Parity</dt>
+                <dd>
+                  Recovery information used to rebuild missing data after
+                  supported failures.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Fault tolerance</dt>
+                <dd>The ability to keep working after a component fails.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Hamming code</dt>
+                <dd>Error-correction code associated with RAID 2.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Separate the ideas</h2>
+            <ul class="memory-list">
+              <li>RAID is about disk arrangement.</li>
+              <li>NAS is about network-based shared storage.</li>
+              <li>RAID 0 improves speed but has no fault tolerance.</li>
+              <li>Parity can rebuild missing data after supported failures.</li>
+              <li>RAID and NAS do not remove the need for backups.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 13</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

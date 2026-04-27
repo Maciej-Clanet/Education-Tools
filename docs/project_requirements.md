@@ -151,7 +151,22 @@ the browser with `localStorage` where useful.
 - The homepage now highlights the live Unit 2 hub plus live and planned Unit 2
   lesson pages.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
-- Live topic lessons now exist at `pages/topics/instruction-cycle.html`,
+- Live topic lessons now exist at
+  `pages/topics/computer-system-types-and-internal-components.html`,
+  `pages/topics/input-output-and-storage-devices.html`,
+  `pages/topics/hardware-performance-and-component-choice.html`,
+  `pages/topics/raid-and-nas-storage-systems.html`,
+  `pages/topics/operating-system-types.html`,
+  `pages/topics/kernel-functions-and-system-management.html`,
+  `pages/topics/user-interfaces-and-software-choice.html`,
+  `pages/topics/utility-application-and-open-source-software.html`,
+  `pages/topics/collecting-and-processing-data.html`,
+  `pages/topics/data-across-multiple-systems.html`,
+  `pages/topics/backup-and-data-recovery.html`,
+  `pages/topics/stored-program-architecture-von-neumann-and-harvard.html`,
+  `pages/topics/cluster-computing-uma-and-numa.html`,
+  `pages/topics/emulation-in-computer-systems.html`,
+  `pages/topics/instruction-cycle.html`,
   `pages/topics/cpu-performance-instruction-sets-and-cache.html`,
   `pages/topics/pipelining-multi-processing-and-multi-threading.html`,
   `pages/topics/cpu-architecture-for-different-systems.html`,
@@ -160,7 +175,13 @@ the browser with `localStorage` where useful.
   `pages/topics/stacks-and-queues.html`,
   `pages/topics/arrays-lists-and-data-types.html`,
   `pages/topics/matrices-and-arrays.html`, and
-  `pages/topics/multi-dimensional-arrays-and-memory-order.html`.
+  `pages/topics/multi-dimensional-arrays-and-memory-order.html`,
+  `pages/topics/communication-channels-and-connection-methods.html`,
+  `pages/topics/transmission-methods-synchronous-asynchronous-serial-and-parallel.html`,
+  `pages/topics/packet-data-packet-switching-and-protocols.html`, and
+  `pages/topics/encryption-and-data-compression.html`,
+  `pages/topics/error-detection-methods.html`, and
+  `pages/topics/error-correction-with-arq-and-fec.html`.
 - A shared lesson shell now supports sidebar navigation, contextual unit
   navigation, teacher slide mode, and quiz persistence.
 - The current lesson template now includes glossary, exam trap, and exam-style

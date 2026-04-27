@@ -1,0 +1,447 @@
+.device-role-flow,
+.device-gallery,
+.output-channel-grid,
+.storage-family-grid,
+.storage-tech-compare,
+.fragmentation-visual-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.device-role-flow {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  margin: 1rem 0;
+}
+
+.device-role-step,
+.device-gallery-card,
+.output-channel-card,
+.storage-family-card,
+.storage-tech-card,
+.hdd-anatomy-card,
+.fragmentation-card {
+  padding: 1rem;
+  border-radius: 18px;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.82)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.device-role-step {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.device-role-step strong,
+.device-gallery-card h3,
+.output-channel-card h3,
+.storage-family-card h3,
+.storage-tech-card h3,
+.fragmentation-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.device-role-step span:not(.device-role-icon),
+.device-gallery-card p,
+.output-channel-card p,
+.storage-family-card p,
+.storage-family-card span,
+.storage-tech-card p,
+.fragmentation-card p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.device-role-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-weight: 900;
+}
+
+.device-role-icon,
+.device-mini-icon,
+.output-channel-icon,
+.storage-family-icon {
+  position: relative;
+  display: inline-block;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.device-role-step--input .device-role-icon {
+  background:
+    linear-gradient(90deg, transparent 0.55rem, #8b4831 0.55rem 0.72rem, transparent 0.72rem),
+    linear-gradient(180deg, rgba(255, 240, 241, 0.96), rgba(255, 255, 255, 0.9));
+}
+
+.device-role-step--process .device-role-icon {
+  background:
+    linear-gradient(90deg, transparent 0.8rem, rgba(41, 82, 59, 0.28) 0.8rem 0.95rem, transparent 0.95rem),
+    linear-gradient(180deg, transparent 0.8rem, rgba(41, 82, 59, 0.28) 0.8rem 0.95rem, transparent 0.95rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.device-role-step--output .device-role-icon {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(21, 91, 117, 0.16) 0 0.86rem, transparent 0.9rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.device-role-step--storage .device-role-icon {
+  background:
+    radial-gradient(circle at 50% 50%, #785e16 0 0.2rem, transparent 0.22rem),
+    radial-gradient(circle at 50% 50%, transparent 0 0.9rem, #785e16 0.92rem 1.02rem, transparent 1.04rem),
+    rgba(255, 249, 227, 0.96);
+}
+
+.device-gallery,
+.output-channel-grid,
+.storage-family-grid,
+.storage-tech-compare,
+.fragmentation-visual-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  margin: 1rem 0;
+}
+
+.device-gallery-card,
+.output-channel-card,
+.storage-family-card,
+.storage-tech-card,
+.fragmentation-card {
+  display: grid;
+  gap: 0.65rem;
+  align-content: start;
+}
+
+.device-mini-icon--keyboard {
+  background:
+    repeating-linear-gradient(90deg, #29523b 0 0.22rem, transparent 0.22rem 0.58rem),
+    repeating-linear-gradient(180deg, rgba(41, 82, 59, 0.2) 0 0.2rem, transparent 0.2rem 0.58rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.device-mini-icon--touch {
+  border-radius: 0.72rem;
+  background:
+    radial-gradient(circle at 65% 72%, #155b75 0 0.16rem, transparent 0.18rem),
+    linear-gradient(135deg, transparent 48%, rgba(21, 91, 117, 0.26) 49%, transparent 52%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.device-mini-icon--sensor {
+  background:
+    radial-gradient(circle at 50% 50%, #8b4831 0 0.28rem, transparent 0.3rem),
+    radial-gradient(circle at 50% 50%, transparent 0 0.8rem, rgba(139, 72, 49, 0.38) 0.84rem 0.95rem, transparent 0.99rem),
+    rgba(255, 240, 241, 0.96);
+}
+
+.output-channel-icon--screen {
+  background:
+    linear-gradient(180deg, transparent 72%, #155b75 73% 80%, transparent 81%),
+    linear-gradient(180deg, rgba(232, 246, 255, 0.96), rgba(255, 255, 255, 0.9));
+}
+
+.output-channel-icon--audio {
+  background:
+    radial-gradient(circle at 33% 50%, #785e16 0 0.32rem, transparent 0.34rem),
+    radial-gradient(circle at 66% 50%, transparent 0 0.48rem, rgba(120, 94, 22, 0.28) 0.52rem 0.62rem, transparent 0.66rem),
+    rgba(255, 249, 227, 0.96);
+}
+
+.output-channel-icon--physical {
+  background:
+    linear-gradient(180deg, transparent 22%, #8b4831 22% 36%, transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 240, 241, 0.96));
+}
+
+.storage-family-card strong {
+  color: var(--page-ink);
+}
+
+.storage-family-card--magnetic .storage-family-icon,
+.storage-family-card--optical .storage-family-icon {
+  border-radius: 50%;
+}
+
+.storage-family-card--magnetic .storage-family-icon {
+  background:
+    radial-gradient(circle at 50% 50%, #785e16 0 0.18rem, transparent 0.2rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.58rem, rgba(120, 94, 22, 0.28) 0.6rem 0.68rem),
+    rgba(255, 249, 227, 0.96);
+}
+
+.storage-family-card--flash .storage-family-icon {
+  background:
+    repeating-linear-gradient(90deg, rgba(21, 91, 117, 0.18) 0 0.32rem, transparent 0.32rem 0.66rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.storage-family-card--optical .storage-family-icon {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.9) 0 0.34rem, transparent 0.36rem),
+    conic-gradient(from 0deg, rgba(139, 207, 136, 0.35), rgba(105, 200, 232, 0.35), rgba(255, 154, 123, 0.32), rgba(242, 207, 106, 0.38), rgba(139, 207, 136, 0.35));
+}
+
+.hdd-visual,
+.flash-visual {
+  width: min(100%, 12rem);
+  min-height: 9rem;
+  display: grid;
+  place-items: center;
+  margin-inline: auto;
+}
+
+.hdd-visual {
+  position: relative;
+}
+
+.hdd-visual__platter,
+.hdd-visual__track {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.hdd-visual__platter {
+  width: 8.4rem;
+  height: 8.4rem;
+  border: 2px solid #785e16;
+  background:
+    radial-gradient(circle at 50% 50%, #785e16 0 0.2rem, transparent 0.23rem),
+    rgba(255, 249, 227, 0.96);
+}
+
+.hdd-visual__track {
+  width: 5.7rem;
+  height: 5.7rem;
+  border: 2px dashed rgba(120, 94, 22, 0.36);
+}
+
+.hdd-visual__arm {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.45rem;
+  width: 0.42rem;
+  height: 5.2rem;
+  border-radius: 999px;
+  background: #8b4831;
+  transform: rotate(38deg);
+  transform-origin: top center;
+}
+
+.hdd-visual__head {
+  position: absolute;
+  right: 4.2rem;
+  top: 4.8rem;
+  width: 0.9rem;
+  height: 0.52rem;
+  border-radius: 0.2rem;
+  background: #8b4831;
+  transform: rotate(38deg);
+}
+
+.flash-visual {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+  padding: 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(21, 91, 117, 0.16);
+  background: rgba(232, 246, 255, 0.82);
+}
+
+.flash-visual span {
+  min-height: 2rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(21, 91, 117, 0.18);
+  background:
+    radial-gradient(circle at 50% 50%, #155b75 0 0.11rem, transparent 0.13rem),
+    rgba(255, 255, 255, 0.9);
+}
+
+.hdd-anatomy-card {
+  margin-top: 1rem;
+}
+
+.hdd-anatomy {
+  display: grid;
+  grid-template-columns: minmax(180px, 250px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.hdd-anatomy__disk {
+  position: relative;
+  width: min(100%, 14rem);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  border-radius: 50%;
+  border: 2px solid #785e16;
+  background:
+    radial-gradient(circle at 50% 50%, #785e16 0 0.22rem, transparent 0.24rem),
+    rgba(255, 249, 227, 0.96);
+}
+
+.hdd-anatomy__disk::before {
+  content: "";
+  position: absolute;
+  right: 1.1rem;
+  top: 1.15rem;
+  width: 0.42rem;
+  height: 6.5rem;
+  border-radius: 999px;
+  background: #8b4831;
+  transform: rotate(38deg);
+  transform-origin: top center;
+}
+
+.hdd-anatomy__disk::after {
+  content: "";
+  position: absolute;
+  right: 4.45rem;
+  top: 6.15rem;
+  width: 0.9rem;
+  height: 0.52rem;
+  border-radius: 0.2rem;
+  background: #8b4831;
+  transform: rotate(38deg);
+}
+
+.hdd-anatomy__track,
+.hdd-anatomy__sector {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.hdd-anatomy__track--outer {
+  inset: 1.25rem;
+  border: 2px dashed rgba(120, 94, 22, 0.28);
+}
+
+.hdd-anatomy__track--inner {
+  inset: 3.05rem;
+  border: 2px dashed rgba(120, 94, 22, 0.28);
+}
+
+.hdd-anatomy__sector {
+  inset: 1.25rem 1.25rem auto auto;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 0 100% 0 0;
+  background: rgba(255, 154, 123, 0.28);
+}
+
+.hdd-anatomy__arm {
+  display: none;
+}
+
+.hdd-anatomy__labels {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.hdd-anatomy__labels span {
+  display: block;
+  padding: 0.72rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--muted-ink);
+}
+
+.hdd-anatomy__labels strong {
+  color: var(--page-ink);
+}
+
+.block-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(1.9rem, 1fr));
+  gap: 0.35rem;
+}
+
+.block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.4rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  font-weight: 900;
+}
+
+.block--file-a {
+  background: rgba(139, 207, 136, 0.7);
+  color: #29523b;
+}
+
+.block--other {
+  background: rgba(232, 246, 255, 0.9);
+  color: #155b75;
+}
+
+.block--free {
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(37, 52, 66, 0.08) 0 0.25rem,
+    rgba(255, 255, 255, 0.66) 0.25rem 0.5rem
+  );
+}
+
+body.teacher-mode-active .device-role-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .device-role-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .storage-tech-compare,
+body.teacher-mode-active .fragmentation-visual-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .hdd-visual,
+body.teacher-mode-active .flash-visual {
+  min-height: 7.4rem;
+}
+
+body.teacher-mode-active .hdd-anatomy {
+  grid-template-columns: minmax(160px, 210px) minmax(0, 1fr);
+}
+
+@media (max-width: 900px) {
+  .device-role-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .device-role-arrow {
+    display: none;
+  }
+
+  .hdd-anatomy {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  body.teacher-mode-active .device-role-flow,
+  body.teacher-mode-active .storage-tech-compare,
+  body.teacher-mode-active .fragmentation-visual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .block-strip {
+    grid-template-columns: repeat(4, minmax(1.9rem, 1fr));
+  }
+}

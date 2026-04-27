@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Error Correction with ARQ and FEC Revision Lesson | Education Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise automatic repeat request and forward error correction, and compare when retransmission or built-in redundancy is the better choice."
+    />
+    <meta
+      property="og:title"
+      content="Error Correction with ARQ and FEC Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise automatic repeat request and forward error correction, and compare when retransmission or built-in redundancy is the better choice."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/error-correction-with-arq-and-fec.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Error Correction</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-e"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Error correction with ARQ and FEC</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Error correction with ARQ and FEC</h1>
+            <p class="lesson-hero-text">
+              Learn how systems recover from damaged transmissions using
+              retransmission or added redundancy, and when ARQ or FEC is the
+              smarter choice.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>E3 Error correction</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>ARQ, FEC, retransmission, and redundancy</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-e"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#detection-vs-correction" data-section-link
+              >Detection vs correction</a
+            >
+            <a href="#arq" data-section-link>ARQ</a>
+            <a href="#fec" data-section-link>FEC</a>
+            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Once a system knows an error occurred, it still needs a strategy
+              for getting usable data. Error correction methods either ask for
+              the data again or carry enough extra information to recover
+              without a retransmission.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Explain the difference between detection and correction.</li>
+                  <li>Describe how automatic repeat request works.</li>
+                  <li>Describe how forward error correction works.</li>
+                  <li>Choose the right method for a scenario.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>ARQ:</strong> ask for the data again.</li>
+                  <li><strong>ACK:</strong> data received correctly.</li>
+                  <li><strong>NAK:</strong> data damaged or missing.</li>
+                  <li><strong>FEC:</strong> correct using added redundancy.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card fullrow">
+                <h3>Why this matters</h3>
+                <p>
+                  Some systems can afford to resend data, but others cannot.
+                  Live broadcasting, space communication, and one-way
+                  transmission often need correction to happen without waiting
+                  for another copy.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="detection-vs-correction"
+            class="lesson-section lesson-section--detection-vs-correction panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Core Idea</p>
+            <h2>Error correction goes further than error detection</h2>
+            <p class="lesson-section-copy">
+              Detection tells the system that a problem exists. Correction aims
+              to recover the correct data or replace the bad copy with a valid
+              one.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Concept</th>
+                    <th>Main goal</th>
+                    <th>Typical response</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Error detection</td>
+                    <td>Spot that the data changed</td>
+                    <td>Reject, warn, or request action</td>
+                  </tr>
+                  <tr>
+                    <td>Error correction</td>
+                    <td>Recover usable correct data</td>
+                    <td>Retransmit or reconstruct</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="arq"
+            class="lesson-section lesson-section--arq panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">ARQ</p>
+            <h2>Automatic repeat request fixes errors by retransmitting the data</h2>
+            <p class="lesson-section-copy">
+              ARQ relies on feedback. The receiver checks the data and then
+              sends a message back. If the data is correct, it sends an
+              acknowledgement. If the data is damaged or does not arrive
+              properly, it requests another copy.
+            </p>
+
+            <div class="example-strip" aria-label="ARQ summary">
+              <span class="example-chip"><strong>ACK</strong> data accepted</span>
+              <span class="example-chip"><strong>NAK</strong> send it again</span>
+              <span class="example-chip"><strong>Timeout</strong> no reply means retry</span>
+            </div>
+
+            <article class="lesson-card">
+              <h3>How the cycle works</h3>
+              <ol class="lesson-list">
+                <li>The sender transmits the data.</li>
+                <li>The receiver checks it for errors.</li>
+                <li>If the data is correct, the receiver sends an ACK.</li>
+                <li>
+                  If the data is wrong, or if no reply arrives in time, the
+                  sender retransmits.
+                </li>
+              </ol>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Where ARQ works well</h3>
+              <p>
+                ARQ is effective when two-way communication is available and
+                there is enough time to request another copy, such as in many
+                data networks and file transfers.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="fec"
+            class="lesson-section lesson-section--fec panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">FEC</p>
+            <h2>Forward error correction adds enough redundancy to recover without asking again</h2>
+            <p class="lesson-section-copy">
+              FEC sends extra check information along with the original data.
+              That redundancy allows the receiver to correct certain errors
+              immediately without needing a retransmission.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Main advantage</strong>
+                <span>
+                  No return message is needed, so correction can happen even on
+                  one-way or high-delay links.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Main trade-off</strong>
+                <span>
+                  Extra redundancy increases the amount of data sent and the
+                  processing needed.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Good fit</strong>
+                <span>
+                  Broadcast systems, satellites, and live media where
+                  retransmission would be slow or impossible.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Key idea</strong>
+                <span>
+                  The receiver can rebuild the correct value from the redundant
+                  information already provided.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why FEC is useful for live or distant links</h3>
+              <p>
+                If you are streaming live media or sending data across a link
+                with huge delay, waiting for a resend can be too slow. FEC
+                trades extra data overhead for faster recovery at the receiving
+                end.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section lesson-section--compare panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Compare</p>
+            <h2>Choose ARQ or FEC by asking whether retransmission is practical</h2>
+            <p class="lesson-section-copy">
+              The key scenario question is usually not "Which is better in
+              general?" but "Which is better for this job?"
+            </p>
+
+            <article class="lesson-card">
+              <h3>ARQ versus FEC</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>Best point</th>
+                      <th>Main weakness</th>
+                      <th>Typical fit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>ARQ</td>
+                      <td>Can recover by resending the correct data</td>
+                      <td>Needs time and a return path</td>
+                      <td>Two-way file transfer or normal networking</td>
+                    </tr>
+                    <tr>
+                      <td>FEC</td>
+                      <td>Corrects without waiting for a resend</td>
+                      <td>Needs extra redundant data</td>
+                      <td>Broadcast, live streams, long-delay links</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Model answer shape</h3>
+              <p>
+                A stronger response sounds like this:
+                <em
+                  >"FEC is suitable because the receiver must correct errors
+                  immediately during a live one-way broadcast, so there is no
+                  practical opportunity to request the data again."</em
+                >
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with ARQ and FEC</h2>
+            <p class="lesson-section-copy">
+              These answers often lose marks when the timing or communication
+              direction is ignored.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Thinking ARQ works without a return path</h3>
+                <p>
+                  ARQ depends on acknowledgements, negative acknowledgements, or
+                  timeouts, so some form of feedback is essential.
+                </p>
+                <ul class="trap-list">
+                  <li>ARQ needs two-way communication.</li>
+                  <li>Without feedback, the sender cannot know to resend.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention ACK, NAK, or timeout when you
+                  describe ARQ.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Assuming FEC has no cost</h3>
+                <p>
+                  FEC avoids retransmission delays, but it does so by sending
+                  extra redundant information.
+                </p>
+                <ul class="trap-list">
+                  <li>More redundancy means more overhead.</li>
+                  <li>That overhead can be worth it in the right scenario.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Explain both the benefit and the extra
+                  data cost.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Choosing ARQ for live one-way delivery by default</h3>
+                <p>
+                  If retransmission would be too slow or impossible, ARQ is not
+                  the strongest answer.
+                </p>
+                <ul class="trap-list">
+                  <li>Live broadcast often suits FEC better.</li>
+                  <li>File transfer often suits ARQ better.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Match the method to the scenario rather
+                  than memorising one "best" choice.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="c"
+                data-success="Correct. Error correction aims to recover usable correct data."
+                data-feedback="Correction goes beyond detection by restoring or replacing the damaged data."
+              >
+                <legend>1. What is the goal of error correction?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>To encrypt all traffic before it moves</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>To make the file smaller than the original</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>To recover correct usable data after an error</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. ARQ uses feedback such as ACK or NAK."
+                data-feedback="Automatic repeat request depends on the receiver responding to what arrived."
+              >
+                <legend>2. What does ARQ rely on?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>Feedback such as ACK, NAK, or timeout handling</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>Only one-way transmission with no reply</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>Deleting the damaged packet permanently</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="b"
+                data-success="Correct. FEC sends extra redundant information so errors can be corrected without a resend."
+                data-feedback="Forward error correction works by including enough extra data for recovery at the receiving end."
+              >
+                <legend>3. What is the key idea behind FEC?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>All data must be resent three times</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>Extra redundancy allows correction without retransmission</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>The sender never checks whether data arrived</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="c"
+                data-success="Correct. Live one-way broadcasting often suits FEC better."
+                data-feedback="If retransmission is impractical or impossible, FEC is usually the stronger answer."
+              >
+                <legend>4. Which situation most strongly suits FEC?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>A normal file upload where delay is acceptable</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>A two-way system that can easily request resends</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>A live one-way broadcast where resend is impractical</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. The strongest justification matches the retransmission option to the scenario."
+                data-feedback="The best answer explains why waiting for a resend is acceptable in that case."
+              >
+                <legend>5. Which justification is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span
+                        >ARQ is suitable for file transfer because the system
+                        can wait for acknowledgements and resend any damaged
+                        blocks</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>FEC is best because redundancy has no overhead</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>ARQ works without any receiver response at all</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz.
+              Type your answers straight into the page, then compare your ideas
+              with the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain how automatic repeat request can correct a damaged
+                  transmitted block, and why this method depends on a reply from
+                  the receiving system.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer explains both the resend cycle and the
+                      need for feedback.
+                    </p>
+                    <ul class="exam-points">
+                      <li>The sender transmits the data block.</li>
+                      <li>The receiver checks whether it arrived correctly.</li>
+                      <li>
+                        If it is correct, the receiver sends an acknowledgement.
+                      </li>
+                      <li>
+                        If it is damaged, missing, or not acknowledged in time,
+                        the sender retransmits the block.
+                      </li>
+                      <li>
+                        This depends on a reply path because the sender must be
+                        told whether a resend is needed.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">5 marks</span>
+                  <span class="exam-pill">Compare and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A live sports stream is sent to many viewers at once. Compare
+                  ARQ and FEC, then justify which method is more suitable for
+                  this situation.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Compare both approaches and justify the best fit for live streaming."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers focus on timing and retransmission
+                      practicality.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        ARQ corrects by asking for another copy, which takes
+                        time and needs feedback.
+                      </li>
+                      <li>
+                        FEC sends extra redundant information so the receiver can
+                        correct errors immediately.
+                      </li>
+                      <li>
+                        Live streaming is sensitive to delay because viewers
+                        need the content straight away.
+                      </li>
+                      <li>
+                        Requesting a resend for every viewer would be
+                        impractical and could interrupt the live stream.
+                      </li>
+                      <li>
+                        FEC is therefore the stronger choice because it supports
+                        immediate recovery without waiting for retransmission.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>ARQ</dt>
+                <dd>Automatic repeat request, which relies on retransmission.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>ACK</dt>
+                <dd>An acknowledgement that data arrived correctly.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>NAK</dt>
+                <dd>A negative acknowledgement requesting another copy.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>FEC</dt>
+                <dd>Forward error correction using added redundancy.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Resend or rebuild</h2>
+            <ul class="memory-list">
+              <li>ARQ corrects by asking again.</li>
+              <li>FEC corrects using extra information already sent.</li>
+              <li>The better choice depends on delay and feedback options.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

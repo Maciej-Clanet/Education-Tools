@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Resolution, Bit Depth, and Image Compression Revision Lesson | Education
+      Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise image resolution, bit depth, and compression trade-offs for bitmap storage in BTEC Level 3 Computing Unit 2."
+    />
+    <meta
+      property="og:title"
+      content="Resolution, Bit Depth, and Image Compression Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise image resolution, bit depth, and compression trade-offs for bitmap storage in BTEC Level 3 Computing Unit 2."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/resolution-bit-depth-and-image-compression.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Image Representation</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-c"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">
+              Resolution, bit depth, and image compression
+            </li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Resolution, bit depth, and image compression</h1>
+            <p class="lesson-hero-text">
+              Learn how image clarity and colour quality depend on stored data,
+              and how compression changes the balance between file size and
+              quality.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>C3 Image representation</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Image quality, colour precision, and compression trade-offs</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-c"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#resolution" data-section-link>Resolution</a>
+            <a href="#bit-depth" data-section-link>Bit depth</a>
+            <a href="#compression" data-section-link>Compression</a>
+            <a href="#trade-offs" data-section-link>Compare and choose</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Image quality is not determined by one feature alone. Resolution,
+              bit depth, and compression each affect how an image looks, how
+              much data it needs, and how suitable it is for a task.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Explain how resolution affects image detail.</li>
+                  <li>Explain how bit depth affects colour range.</li>
+                  <li>Compare lossy and lossless compression.</li>
+                  <li>Choose suitable settings for different uses.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Resolution:</strong> how many pixels.</li>
+                  <li><strong>Bit depth:</strong> how much colour per pixel.</li>
+                  <li><strong>Compression:</strong> reduce stored data.</li>
+                  <li><strong>Trade-off:</strong> quality versus size.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="resolution"
+            class="lesson-section lesson-section--resolution panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Resolution</p>
+            <h2>Resolution affects how much image detail can be stored</h2>
+            <p class="lesson-section-copy">
+              Resolution describes the number of pixels used to build the image.
+              More pixels usually mean more detail, but they also increase the
+              amount of data stored.
+            </p>
+
+            <div class="example-strip" aria-label="Resolution summary">
+              <span class="example-chip"><strong>More pixels</strong> more detail</span>
+              <span class="example-chip"><strong>Fewer pixels</strong> less detail</span>
+              <span class="example-chip"><strong>Trade-off</strong> higher storage use</span>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why resolution matters</h3>
+              <p>
+                A small web thumbnail can use lower resolution than a printed
+                poster because it is displayed at a smaller size. The larger the
+                final display area, the more detail may be needed.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="bit-depth"
+            class="lesson-section lesson-section--bit-depth panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Bit Depth</p>
+            <h2>Bit depth controls how many possible colours each pixel can store</h2>
+            <p class="lesson-section-copy">
+              Bit depth is the number of bits used for one pixel's colour
+              information. Increasing bit depth allows more colours or shades to
+              be represented, which can improve realism and smooth gradients.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Low bit depth</strong>
+                <span>
+                  Fewer possible colours, smaller storage requirements.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>High bit depth</strong>
+                <span>
+                  More colours and smoother transitions, but more data needed.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Visual effect</strong>
+                <span>
+                  Greater colour range can reduce banding in detailed images.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Storage effect</strong>
+                <span>
+                  Each pixel takes more bits, so the whole file grows.
+                </span>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="compression"
+            class="lesson-section lesson-section--compression panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Compression</p>
+            <h2>Compression reduces file size by removing or reorganising stored data</h2>
+            <p class="lesson-section-copy">
+              Compression makes files smaller, which helps storage and transfer.
+              The important distinction is whether the original image can be
+              recovered exactly.
+            </p>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>What it does</th>
+                    <th>Main implication</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Lossless</td>
+                    <td>Reduces size without losing original image data</td>
+                    <td>Image can be restored exactly</td>
+                  </tr>
+                  <tr>
+                    <td>Lossy</td>
+                    <td>Removes some data to shrink the file further</td>
+                    <td>Quality may decrease</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Choosing the right compression</h3>
+              <p>
+                If perfect image fidelity matters, lossless compression is
+                safer. If a much smaller file is more important than exact
+                preservation, lossy compression may be chosen.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="trade-offs"
+            class="lesson-section lesson-section--trade-offs panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Trade-Offs</p>
+            <h2>Image choices should match the purpose of the file</h2>
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Need</th>
+                    <th>Likely choice</th>
+                    <th>Reason</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Small web image</td>
+                    <td>Lower resolution or stronger compression</td>
+                    <td>Faster loading and smaller storage use</td>
+                  </tr>
+                  <tr>
+                    <td>Detailed print work</td>
+                    <td>Higher resolution and suitable bit depth</td>
+                    <td>Better visual quality</td>
+                  </tr>
+                  <tr>
+                    <td>Exact archive</td>
+                    <td>Lossless compression</td>
+                    <td>Preserves the original data</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with image quality and compression</h2>
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Mixing up resolution and bit depth</h3>
+                <p>
+                  Resolution is about pixel count. Bit depth is about colour per
+                  pixel.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Ask whether the question is about image
+                  detail or colour range.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Assuming all compression is lossless</h3>
+                <p>
+                  Some compression methods permanently remove data.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> State whether the original image can be
+                  recovered exactly.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Ignoring the trade-off</h3>
+                <p>
+                  Better quality usually needs more data unless some quality is
+                  sacrificed.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Link image quality decisions to file
+                  size and intended use.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="a"
+                data-success="Correct. Resolution is about the number of pixels in the image."
+                data-feedback="Resolution refers to how many pixels are used to build the picture."
+              >
+                <legend>1. What does image resolution mainly describe?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>The number of pixels in the image</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>The keyboard layout used to name the file</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>The number of network packets sent</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="c"
+                data-success="Correct. Higher bit depth means more possible colours."
+                data-feedback="Bit depth controls the range of colour values each pixel can hold."
+              >
+                <legend>2. What is a likely effect of increasing bit depth?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>Fewer pixels automatically</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>All compression becomes lossless</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>More possible colours per pixel</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="b"
+                data-success="Correct. Lossless compression preserves the original image data."
+                data-feedback="Lossless compression reduces size without losing the original information."
+              >
+                <legend>3. Which statement matches lossless compression?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>It always removes image detail permanently</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>The original image can be restored exactly</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>It only works with text files</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="a"
+                data-success="Correct. Lossy compression can reduce quality to save more space."
+                data-feedback="Lossy methods remove some data, so image quality may be affected."
+              >
+                <legend>4. What is a likely result of lossy compression?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>The file becomes smaller but some quality may be lost</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>The image gains more pixels automatically</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>The bit depth doubles every time</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="b"
+                data-success="Correct. Higher resolution tends to increase image detail."
+                data-feedback="More pixels can store more detail, though they also use more space."
+              >
+                <legend>5. What is a common benefit of higher resolution?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>Guaranteed lossless compression</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>More image detail can be stored</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Fewer colour options per pixel</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz.
+              Type your answers straight into the page, then compare your ideas
+              with the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain how both resolution and bit depth can increase the
+                  storage needed for one bitmap image.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Link more pixels and more bits per pixel to larger files."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        Higher resolution means more pixels must be stored.
+                      </li>
+                      <li>
+                        Higher bit depth means each pixel uses more bits.
+                      </li>
+                      <li>
+                        Both changes increase the total amount of image data.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Evaluate</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  Evaluate whether lossy or lossless compression is more
+                  suitable for storing an important logo archive and a set of
+                  quickly loading website images.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Compare exact preservation against smaller file size."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        Lossless compression preserves the original data exactly.
+                      </li>
+                      <li>
+                        That is useful for an important archive where quality
+                        must be preserved.
+                      </li>
+                      <li>
+                        Lossy compression can make website images smaller and
+                        faster to load.
+                      </li>
+                      <li>
+                        The trade-off is that some image quality may be lost.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Resolution</dt>
+                <dd>The number of pixels used to store the image.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Bit depth</dt>
+                <dd>The number of bits used to store each pixel's colour.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Lossless compression</dt>
+                <dd>Compression that preserves the original data exactly.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Lossy compression</dt>
+                <dd>Compression that removes some data to shrink the file.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Three linked decisions</h2>
+            <ul class="memory-list">
+              <li>Resolution controls image detail.</li>
+              <li>Bit depth controls colour precision.</li>
+              <li>Compression controls how size is reduced and at what cost.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

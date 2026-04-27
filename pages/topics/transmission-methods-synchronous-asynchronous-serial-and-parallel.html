@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Transmission Methods: Synchronous, Asynchronous, Serial, and Parallel
+      Revision Lesson | Education Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise synchronous and asynchronous transmission plus serial and parallel data transfer for BTEC Level 3 Computing Unit 2."
+    />
+    <meta
+      property="og:title"
+      content="Transmission Methods: Synchronous, Asynchronous, Serial, and Parallel Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise synchronous and asynchronous transmission plus serial and parallel data transfer for BTEC Level 3 Computing Unit 2."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/transmission-methods-synchronous-asynchronous-serial-and-parallel.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Transmitting Data</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-e"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">
+              Transmission methods: synchronous, asynchronous, serial, and
+              parallel
+            </li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>
+              Transmission methods: synchronous, asynchronous, serial, and
+              parallel
+            </h1>
+            <p class="lesson-hero-text">
+              Learn how devices coordinate timing during transmission, how data
+              can travel one bit at a time or across several lines together,
+              and how to choose the right method for speed, distance, and
+              reliability.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>E1 Transmitting data</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Timing methods, data paths, and transmission trade-offs</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-e"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#timing" data-section-link>Timing methods</a>
+            <a href="#pathways" data-section-link>Serial and parallel</a>
+            <a href="#selection" data-section-link>Choosing the method</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Unit 2 treats transmission methods as more than definitions. You
+              need to explain how timing is kept, how data lines are used, and
+              why some methods suit short, fast local links while others suit
+              longer or simpler connections.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Explain synchronous and asynchronous timing.</li>
+                  <li>Compare serial and parallel transmission accurately.</li>
+                  <li>Link each method to real situations.</li>
+                  <li>Justify a suitable choice in exam scenarios.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Synchronous:</strong> shared timing.</li>
+                  <li><strong>Asynchronous:</strong> start and stop control.</li>
+                  <li><strong>Serial:</strong> one bit path.</li>
+                  <li><strong>Parallel:</strong> multiple bit paths together.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card fullrow">
+                <h3>Why these matter</h3>
+                <p>
+                  These methods affect throughput, complexity, distance, and
+                  reliability. A method that looks faster on paper may become
+                  less effective if it is harder to coordinate or more prone to
+                  interference.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="timing"
+            class="lesson-section lesson-section--timing panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Timing Methods</p>
+            <h2>Synchronous and asynchronous transmission keep data in step differently</h2>
+            <p class="lesson-section-copy">
+              The main difference is how sender and receiver stay coordinated.
+              Synchronous transmission keeps both sides aligned with shared
+              timing, while asynchronous transmission marks separate chunks of
+              data so the receiver can identify where each one starts and ends.
+            </p>
+
+            <div class="example-strip" aria-label="Timing methods at a glance">
+              <span class="example-chip"><strong>Synchronous</strong> shared clock or timing</span>
+              <span class="example-chip"
+                ><strong>Asynchronous</strong> start and stop bits guide each
+                character</span
+              >
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Synchronous</strong>
+                <span>
+                  Data is sent as a timed stream, so sender and receiver stay
+                  aligned during the transfer.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Why it is useful</strong>
+                <span>
+                  Overheads are lower once the transmission is in progress, so
+                  it suits larger or continuous transfers.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Asynchronous</strong>
+                <span>
+                  Each character or small block can be framed individually,
+                  often with start and stop bits.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Why it is useful</strong>
+                <span>
+                  It is simpler when data arrives at irregular intervals rather
+                  than as one long stream.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked comparison</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>How coordination happens</th>
+                      <th>Typical strength</th>
+                      <th>Typical trade-off</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Synchronous</td>
+                      <td>Shared timing keeps the stream aligned.</td>
+                      <td>Efficient for large continuous transfers</td>
+                      <td>Needs tighter coordination</td>
+                    </tr>
+                    <tr>
+                      <td>Asynchronous</td>
+                      <td>Each unit is marked with control bits.</td>
+                      <td>Works well for irregular data</td>
+                      <td>Extra overhead on each unit sent</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <section
+            id="pathways"
+            class="lesson-section lesson-section--pathways panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Data Paths</p>
+            <h2>Serial and parallel transmission differ in how many lines carry the bits</h2>
+            <p class="lesson-section-copy">
+              Serial transmission sends bits one after another along one
+              channel. Parallel transmission sends several bits at the same
+              time across multiple lines. That sounds simple, but distance and
+              timing problems can change which method is actually more
+              effective.
+            </p>
+
+            <div class="example-strip" aria-label="Serial and parallel summary">
+              <span class="example-chip"><strong>Serial</strong> one bit after another</span>
+              <span class="example-chip"><strong>Parallel</strong> several bits at once</span>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Compare the two methods</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>How data moves</th>
+                      <th>Best situation</th>
+                      <th>Key implication</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Serial</td>
+                      <td>One bit follows the next on one line.</td>
+                      <td>Longer distances or modern external links</td>
+                      <td>Simpler cabling and fewer timing mismatch issues</td>
+                    </tr>
+                    <tr>
+                      <td>Parallel</td>
+                      <td>Multiple bits travel together on separate lines.</td>
+                      <td>Short internal paths or older local links</td>
+                      <td>
+                        Can move more bits per moment, but coordination between
+                        lines matters
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Why parallel is not always the winner</h3>
+              <p>
+                Parallel transmission can carry more bits at once, but if the
+                lines do not stay perfectly aligned, the receiver may read the
+                bits at slightly different times. Over longer distances, that
+                timing skew becomes more of a problem, so serial links are
+                often preferred despite sending one bit path at a time.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="selection"
+            class="lesson-section lesson-section--selection panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Selection</p>
+            <h2>Choose a method by thinking about timing, distance, and complexity</h2>
+            <p class="lesson-section-copy">
+              In a scenario question, there is usually a trade-off rather than
+              one universally best method.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Continuous or irregular data</strong>
+                <span>
+                  Continuous streams often suit synchronous timing, while
+                  irregular character transfers may suit asynchronous methods.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Distance</strong>
+                <span>
+                  Longer links often favour serial transmission because one data
+                  path is easier to keep aligned.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Speed need</strong>
+                <span>
+                  Short high-speed local transfers may justify parallel methods
+                  if the complexity is manageable.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Hardware cost</strong>
+                <span>
+                  More lines and stricter timing can increase design and
+                  implementation cost.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Model answer shape</h3>
+              <p>
+                A strong answer might say:
+                <em
+                  >"Serial transmission is suitable because the link spans a
+                  longer distance and one data path is easier to keep reliable
+                  than several parallel lines that could fall out of step."</em
+                >
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with transmission methods</h2>
+            <p class="lesson-section-copy">
+              These terms are easy to memorise loosely, but the exam rewards
+              precise differences.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Calling asynchronous "slower" without explaining why</h3>
+                <p>
+                  The issue is not just speed. It is the extra framing and the
+                  way data is sent in separate pieces.
+                </p>
+                <ul class="trap-list">
+                  <li>Asynchronous commonly uses start and stop control.</li>
+                  <li>That creates extra overhead for each unit sent.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention the extra control bits or
+                  separate framing.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Assuming parallel always means better performance</h3>
+                <p>
+                  Parallel can move several bits together, but timing skew and
+                  interference can weaken it over distance.
+                </p>
+                <ul class="trap-list">
+                  <li>More lines mean more coordination work.</li>
+                  <li>Distance can make those lines arrive unevenly.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Compare raw bit width with reliability.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Mixing timing methods with line methods</h3>
+                <p>
+                  Synchronous versus asynchronous and serial versus parallel are
+                  two different comparisons.
+                </p>
+                <ul class="trap-list">
+                  <li>One pair is about coordination.</li>
+                  <li>The other pair is about how the bits travel.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Ask yourself whether the question is
+                  about timing or data paths.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. Synchronous transmission keeps sender and receiver in step with shared timing."
+                data-feedback="Synchronous means the transfer stays aligned through shared timing."
+              >
+                <legend>1. What best describes synchronous transmission?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Each character must always be encrypted</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>Sender and receiver stay coordinated by timing</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>Only one bit may be sent every second</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. Asynchronous transmission often frames each unit separately with control bits."
+                data-feedback="Asynchronous transmission commonly uses start and stop control around each unit."
+              >
+                <legend>2. What is typical of asynchronous transmission?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>Separate units can be marked individually</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>It always uses more physical wires than parallel</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>It cannot be used for text data</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Serial transmission sends bits one after another on one path."
+                data-feedback="Serial means one bit stream rather than several parallel lines."
+              >
+                <legend>3. What defines serial transmission?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>All bits are sent across eight lines at once</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>Data is always sent without timing control</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>Bits travel one after another on one line</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Parallel links can suffer when several lines do not stay perfectly aligned."
+                data-feedback="Parallel transmission becomes harder to coordinate over distance."
+              >
+                <legend>
+                  4. Why can parallel transmission become less suitable over
+                  longer distances?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>It can never send more than one bit</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>Different lines can fall out of step</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>It must always use start and stop bits</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. The strongest answer links long distance to the reliability of serial transmission."
+                data-feedback="The best answer explains why the method matches the job."
+              >
+                <legend>5. Which justification is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span
+                        >Use serial transmission because the longer link is
+                        easier to keep reliable with one path than with several
+                        parallel lines</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>Use parallel because more wires always means better</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Use asynchronous because it never needs timing</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz.
+              Type your answers straight into the page, then compare your ideas
+              with the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why synchronous transmission is often more suitable
+                  than asynchronous transmission for a long continuous stream of
+                  video data.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer focuses on the timed stream and lower
+                      overhead.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        Synchronous transmission keeps sender and receiver in
+                        step during the stream.
+                      </li>
+                      <li>
+                        That suits data which flows continuously rather than in
+                        separate irregular bursts.
+                      </li>
+                      <li>
+                        It avoids adding start and stop framing around each
+                        small unit.
+                      </li>
+                      <li>
+                        This can make the transfer more efficient for large
+                        amounts of continuous data.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">5 marks</span>
+                  <span class="exam-pill">Compare and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A manufacturer needs to send data between two components
+                  inside the same machine over a very short distance at high
+                  speed. Compare serial and parallel transmission and justify
+                  which method could be suitable.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Compare both methods and justify the stronger choice."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers recognise the short distance in the
+                      scenario.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        Parallel transmission can move several bits at the same
+                        time.
+                      </li>
+                      <li>
+                        That can be suitable over a very short internal path.
+                      </li>
+                      <li>
+                        Serial transmission uses simpler cabling and is easier
+                        to keep aligned over distance.
+                      </li>
+                      <li>
+                        For a short high-speed internal connection, parallel may
+                        be justified if the extra complexity is acceptable.
+                      </li>
+                      <li>
+                        A well-argued answer may still choose serial if it
+                        prioritises simpler design and reliability.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Synchronous transmission</dt>
+                <dd>
+                  A transmission method that keeps sender and receiver aligned
+                  by timing.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Asynchronous transmission</dt>
+                <dd>
+                  A method that sends separate units with control information.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Serial transmission</dt>
+                <dd>Bits are sent one after another on one path.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Parallel transmission</dt>
+                <dd>Several bits travel at the same time on multiple lines.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Two different comparisons</h2>
+            <ul class="memory-list">
+              <li>Synchronous versus asynchronous is about timing.</li>
+              <li>Serial versus parallel is about the data path.</li>
+              <li>Good answers explain the trade-off, not just the label.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

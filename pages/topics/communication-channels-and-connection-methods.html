@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Communication Channels and Connection Methods Revision Lesson |
+      Education Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise simplex, half-duplex, full-duplex, point-to-point, multi-drop, and connection methods for transmitting data in computer systems."
+    />
+    <meta
+      property="og:title"
+      content="Communication Channels and Connection Methods Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise simplex, half-duplex, full-duplex, point-to-point, multi-drop, and connection methods for transmitting data in computer systems."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/communication-channels-and-connection-methods.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Transmitting Data</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-e"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">
+              Communication channels and connection methods
+            </li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Communication channels and connection methods</h1>
+            <p class="lesson-hero-text">
+              Learn how devices exchange data using different channel types,
+              how common wired and wireless links behave, and how to justify
+              the right connection method for a given task.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>E1 Transmitting data</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Channel types, connection methods, and choosing links</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-e"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#channels" data-section-link>Channel types</a>
+            <a href="#connections" data-section-link>Connection methods</a>
+            <a href="#selection" data-section-link>Choosing the link</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Data transmission questions often expect you to do more than name
+              a cable or network. You usually need to explain how the channel
+              behaves, what the connection method allows, and why that choice
+              fits the scenario better than another option.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define simplex, half-duplex, and full-duplex clearly.</li>
+                  <li>Explain point-to-point and multi-drop links.</li>
+                  <li>Compare common wired and wireless connection methods.</li>
+                  <li>
+                    Justify a suitable connection choice for a real task.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Simplex:</strong> one direction only.</li>
+                  <li><strong>Half-duplex:</strong> both ways, not at once.</li>
+                  <li><strong>Full-duplex:</strong> both ways at once.</li>
+                  <li><strong>Multi-drop:</strong> several devices share one link.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card fullrow">
+                <h3>Where this matters</h3>
+                <p>
+                  These ideas appear in printer links, sensor networks, office
+                  Ethernet, fibre backbones, Wi-Fi devices, Bluetooth
+                  peripherals, and industrial control systems.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="channels"
+            class="lesson-section lesson-section--channels panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Channel Types</p>
+            <h2>Communication channels describe how data moves</h2>
+            <p class="lesson-section-copy">
+              A communication channel is the path or behaviour used for data
+              transfer. Some channel types describe direction, while others
+              describe how devices are arranged on the link.
+            </p>
+
+            <div class="example-strip" aria-label="Channel types at a glance">
+              <span class="example-chip"><strong>Simplex</strong> one-way only</span>
+              <span class="example-chip"
+                ><strong>Half-duplex</strong> turns are shared</span
+              >
+              <span class="example-chip"
+                ><strong>Full-duplex</strong> both directions together</span
+              >
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Simplex</strong>
+                <span>
+                  Data travels in one direction only, such as a keyboard signal
+                  sent to a device or a one-way broadcast.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Half-duplex</strong>
+                <span>
+                  Both devices can transmit, but only one may send at a time,
+                  like a walkie-talkie conversation.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Full-duplex</strong>
+                <span>
+                  Both directions work at the same time, so sending and
+                  receiving can happen together.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Point-to-point</strong>
+                <span>
+                  One dedicated link joins exactly two devices, which can make
+                  control and fault isolation simpler.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Multi-drop</strong>
+                <span>
+                  Several devices share the same connection path, so access has
+                  to be managed carefully.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Worked comparison</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>What it means</th>
+                      <th>Typical example</th>
+                      <th>Key implication</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Simplex</td>
+                      <td>Only one device sends on the channel.</td>
+                      <td>Broadcast radio or a basic sensor output</td>
+                      <td>No return path for acknowledgement.</td>
+                    </tr>
+                    <tr>
+                      <td>Half-duplex</td>
+                      <td>Both ends send, but only one at a time.</td>
+                      <td>Walkie-talkies</td>
+                      <td>Sharing the line reduces clashes but slows dialogue.</td>
+                    </tr>
+                    <tr>
+                      <td>Full-duplex</td>
+                      <td>Both ends send and receive simultaneously.</td>
+                      <td>Phone calls or switched Ethernet</td>
+                      <td>Faster interaction and fewer turn-taking delays.</td>
+                    </tr>
+                    <tr>
+                      <td>Point-to-point</td>
+                      <td>Exactly two devices use the link.</td>
+                      <td>PC connected directly to a router port</td>
+                      <td>Performance is more predictable.</td>
+                    </tr>
+                    <tr>
+                      <td>Multi-drop</td>
+                      <td>Many devices share one path.</td>
+                      <td>Several sensors on one bus</td>
+                      <td>Traffic control is needed to avoid conflicts.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <section
+            id="connections"
+            class="lesson-section lesson-section--connections panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Connection Methods</p>
+            <h2>Different links suit different distances, speeds, and settings</h2>
+            <p class="lesson-section-copy">
+              A connection method is the practical way devices are joined. In a
+              Unit 2 answer, it is usually stronger to explain the benefit of a
+              method than to just name it.
+            </p>
+
+            <div class="example-strip" aria-label="Common connection methods">
+              <span class="example-chip"><strong>Ethernet</strong> reliable wired LAN</span>
+              <span class="example-chip"><strong>Fibre</strong> fast and long-distance</span>
+              <span class="example-chip"><strong>Wi-Fi</strong> mobile and flexible</span>
+              <span class="example-chip"><strong>Bluetooth</strong> short-range pairing</span>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Methods you should recognise</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>Best for</th>
+                      <th>Strength</th>
+                      <th>Trade-off</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Ethernet copper cable</td>
+                      <td>Offices, classrooms, fixed desktops</td>
+                      <td>Stable and usually lower latency</td>
+                      <td>Less mobility than wireless</td>
+                    </tr>
+                    <tr>
+                      <td>Fibre optic</td>
+                      <td>Backbone links and long runs</td>
+                      <td>Very high bandwidth and low interference</td>
+                      <td>Higher installation cost</td>
+                    </tr>
+                    <tr>
+                      <td>Wi-Fi</td>
+                      <td>Laptops, tablets, shared spaces</td>
+                      <td>No physical cable needed</td>
+                      <td>Signal strength and interference can vary</td>
+                    </tr>
+                    <tr>
+                      <td>Bluetooth</td>
+                      <td>Peripherals and short-range pairing</td>
+                      <td>Convenient and low power</td>
+                      <td>Short range and lower throughput</td>
+                    </tr>
+                    <tr>
+                      <td>Cellular mobile data</td>
+                      <td>Remote access away from local networks</td>
+                      <td>Wide coverage</td>
+                      <td>Data cost and variable signal quality</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Why connection choice changes by scenario</h3>
+              <p>
+                A desktop in a computer room often suits Ethernet because the
+                device stays in one place and benefits from a steady link. A
+                warehouse tablet may need Wi-Fi because staff move around. A
+                building-to-building backbone may justify fibre because it must
+                carry a large amount of traffic over a longer distance.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="selection"
+            class="lesson-section lesson-section--selection panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Selection</p>
+            <h2>Choose the link by matching the method to the task</h2>
+            <p class="lesson-section-copy">
+              Strong exam answers usually compare what the job needs against
+              what the connection method can deliver.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Speed and bandwidth</strong>
+                <span>
+                  Video streams and large backups need a stronger link than a
+                  low-rate sensor reading.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Distance</strong>
+                <span>
+                  Some methods work only over short ranges, while others are
+                  better for long cable runs or whole-site coverage.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Mobility</strong>
+                <span>
+                  Wireless is often chosen when devices move around the space.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Interference and reliability</strong>
+                <span>
+                  Critical systems may need a more stable link with less
+                  susceptibility to disruption.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Security</strong>
+                <span>
+                  Open wireless access may need extra protection compared with
+                  a physically controlled cable path.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Cost and scale</strong>
+                <span>
+                  The best technical choice still has to be practical for the
+                  organisation to install and maintain.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Model answer shape</h3>
+              <p>
+                A stronger response sounds like this:
+                <em
+                  >"Wi-Fi is suitable because staff need to move between rooms,
+                  while the transmitted data volume is moderate and the network
+                  can cover the whole floor without new cable installation."</em
+                >
+              </p>
+              <p>
+                That is better than simply saying
+                <em>"Use Wi-Fi because it is wireless."</em>
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with communication channels and links</h2>
+            <p class="lesson-section-copy">
+              These questions often reward precise terminology, so small slips
+              can weaken an otherwise good answer.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Mixing up half-duplex and full-duplex</h3>
+                <p>
+                  Students sometimes say both types allow two-way
+                  communication, but forget the timing difference.
+                </p>
+                <ul class="trap-list">
+                  <li>Half-duplex means two-way, but not simultaneously.</li>
+                  <li>Full-duplex means both directions at the same time.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use the phrase
+                  <em>"at the same time"</em> when describing full-duplex.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Confusing point-to-point with one-way transmission</h3>
+                <p>
+                  Point-to-point tells you how many devices share the link, not
+                  whether the data only goes one way.
+                </p>
+                <ul class="trap-list">
+                  <li>Point-to-point can still be full-duplex.</li>
+                  <li>Simplex is the one-way term.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Separate device arrangement from data
+                  direction.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Naming a method without justifying it</h3>
+                <p>
+                  A bare label such as <em>"use fibre"</em> usually does not
+                  earn as much credit as a reasoned choice.
+                </p>
+                <ul class="trap-list">
+                  <li>Explain the task need first.</li>
+                  <li>Then link that need to the method's benefit.</li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Include a because-clause in your answer.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="a"
+                data-success="Correct. Simplex communication sends data in one direction only."
+                data-feedback="Simplex means there is no return path on that channel."
+              >
+                <legend>1. What best describes a simplex channel?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Data travels in one direction only</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>Both devices transmit at the same time</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>Many devices share the same channel</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="c"
+                data-success="Correct. Half-duplex allows both directions, but not at once."
+                data-feedback="Half-duplex systems take turns transmitting."
+              >
+                <legend>2. Which statement matches half-duplex?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>Only one device can ever send</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>Both ends always send and receive together</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>Both ends can send, but must take turns</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="b"
+                data-success="Correct. Multi-drop means several devices share one path."
+                data-feedback="A multi-drop link is shared by multiple connected devices."
+              >
+                <legend>3. What is a multi-drop connection?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>A dedicated link between exactly two devices</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>One shared connection used by several devices</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>A cable that only carries analogue signals</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="a"
+                data-success="Correct. Fibre is often chosen for high-speed, long-distance backbone links."
+                data-feedback="Fibre is strong when the organisation needs high bandwidth over longer runs."
+              >
+                <legend>
+                  4. Which method is usually strongest for a high-speed
+                  building-to-building backbone?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>Fibre optic</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>Bluetooth</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>Simplex radio</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="b"
+                data-success="Correct. The strongest answer links mobility to the choice of wireless."
+                data-feedback="The best answer explains why the connection method fits the task."
+              >
+                <legend>5. Which justification is strongest?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>Use Wi-Fi because it is popular</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span
+                        >Use Wi-Fi because staff need to move with tablets and
+                        the devices do not stay fixed in one place</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Use Ethernet because all networks need cables</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz.
+              Type your answers straight into the page, then compare your ideas
+              with the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why a full-duplex point-to-point link would be more
+                  suitable than a half-duplex shared link for a manager taking
+                  live video calls from a fixed office PC.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Write a short exam-style explanation here."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      A strong answer compares the behaviour of both link types.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        Full-duplex allows sending and receiving at the same
+                        time.
+                      </li>
+                      <li>
+                        That suits live conversation because audio and video
+                        move in both directions together.
+                      </li>
+                      <li>
+                        Point-to-point gives a dedicated path between the two
+                        communication devices.
+                      </li>
+                      <li>
+                        A half-duplex shared link would create turn-taking or
+                        competition for the channel, which would reduce call
+                        quality.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">5 marks</span>
+                  <span class="exam-pill">Explain and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A college wants to connect handheld barcode scanners used by
+                  staff walking around a warehouse. Explain which connection
+                  method would be suitable and justify your choice against at
+                  least two alternatives.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Choose a method and justify it using the needs of the task."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <p>
+                      The best answers match the device behaviour to the chosen
+                      link.
+                    </p>
+                    <ul class="exam-points">
+                      <li>
+                        Wi-Fi is usually suitable because staff need mobility.
+                      </li>
+                      <li>
+                        It allows scanners to stay connected while moving around
+                        the warehouse.
+                      </li>
+                      <li>
+                        Ethernet would be more reliable but is impractical for a
+                        handheld moving device.
+                      </li>
+                      <li>
+                        Bluetooth may be too short-range for a large warehouse.
+                      </li>
+                      <li>
+                        A strong answer may also mention coverage, interference,
+                        security, and installation cost.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Simplex</dt>
+                <dd>A one-way communication channel.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Full-duplex</dt>
+                <dd>Communication in both directions at the same time.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Point-to-point</dt>
+                <dd>A direct link between exactly two devices.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Multi-drop</dt>
+                <dd>A shared link used by several devices.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Name it, then justify it</h2>
+            <ul class="memory-list">
+              <li>Channel type explains how the communication behaves.</li>
+              <li>Connection method explains how devices are joined.</li>
+              <li>Strong answers link the method to the scenario.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>
