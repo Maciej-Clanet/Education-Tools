@@ -1,7 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
 const lessonConfig = {
-  lessonId: "utility-application-and-open-source-software",
+  lessonId: "collecting-and-processing-data",
   defaultContext: "btec-level-3-unit-2",
   contexts: {
     "btec-level-3-unit-2": {
@@ -9,26 +9,25 @@ const lessonConfig = {
       backHref: "../units/btec-level-3-unit-2.html#section-a",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "User interfaces and software choice",
+        title: "Utility, application, and open source software",
         description: "Previous in A2 Computer software in a computer system.",
         status: "Live",
-        href: "../topics/user-interfaces-and-software-choice.html",
+        href: "../topics/utility-application-and-open-source-software.html",
       },
       next: {
-        title: "Collecting and processing data",
+        title: "Data across multiple systems",
         description: "Next in A3 Data processing.",
         status: "Live",
-        href: "../topics/collecting-and-processing-data.html",
+        href: "../topics/data-across-multiple-systems.html",
       },
     },
   },
   quiz: {
-    storageKey: "lesson-utility-application-and-open-source-software-quiz",
+    storageKey: "lesson-collecting-and-processing-data-quiz",
     passScore: 4,
   },
   examPractice: {
-    storageKey:
-      "lesson-utility-application-and-open-source-software-exam-practice",
+    storageKey: "lesson-collecting-and-processing-data-exam-practice",
   },
 }
 

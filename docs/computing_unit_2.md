@@ -79,9 +79,9 @@ here as they are completed.
 - [x] Utility, application, and open source software
 
 ### A3 Data processing
-- [ ] Collecting and processing data
-- [ ] Data across multiple systems
-- [ ] Backup and data recovery
+- [x] Collecting and processing data
+- [x] Data across multiple systems
+- [x] Backup and data recovery
 
 ## B Computer architecture
 

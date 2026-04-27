@@ -1,34 +1,33 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
 const lessonConfig = {
-  lessonId: "stored-program-architecture-von-neumann-and-harvard",
+  lessonId: "backup-and-data-recovery",
   defaultContext: "btec-level-3-unit-2",
   contexts: {
     "btec-level-3-unit-2": {
       label: "BTEC Level 3 Computing Unit 2",
-      backHref: "../units/btec-level-3-unit-2.html#section-b",
+      backHref: "../units/btec-level-3-unit-2.html#section-a",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "Backup and data recovery",
+        title: "Data across multiple systems",
         description: "Previous in A3 Data processing.",
         status: "Live",
-        href: "../topics/backup-and-data-recovery.html",
+        href: "../topics/data-across-multiple-systems.html",
       },
       next: {
-        title: "Cluster computing, UMA, and NUMA",
+        title: "Stored program architecture: Von Neumann and Harvard",
         description: "Next in B1 Approaches to computer architecture.",
         status: "Live",
-        href: "../topics/cluster-computing-uma-and-numa.html",
+        href: "../topics/stored-program-architecture-von-neumann-and-harvard.html",
       },
     },
   },
   quiz: {
-    storageKey: "lesson-stored-program-architecture-von-neumann-and-harvard-quiz",
+    storageKey: "lesson-backup-and-data-recovery-quiz",
     passScore: 4,
   },
   examPractice: {
-    storageKey:
-      "lesson-stored-program-architecture-von-neumann-and-harvard-exam-practice",
+    storageKey: "lesson-backup-and-data-recovery-exam-practice",
   },
 }
 
