@@ -103,17 +103,17 @@ here as they are completed.
 ## C How data is represented by computer systems
 
 ### C1 Number systems
-- [ ] Units of digital data
-- [ ] Binary and BCD
-- [ ] Binary arithmetic
-- [ ] Negative and floating point representation
+- [x] Units of digital data
+- [x] Binary and BCD
+- [x] Binary arithmetic
+- [x] Negative and floating point representation
 
 ### C2 Text representation
-- [ ] Character sets, ASCII, and Unicode
+- [x] Character sets, ASCII, and Unicode
 
 ### C3 Image representation
-- [ ] Bitmap image storage
-- [ ] Resolution, bit depth, and image compression
+- [x] Bitmap image storage
+- [x] Resolution, bit depth, and image compression
 
 ## D How data is organised on computer systems
 

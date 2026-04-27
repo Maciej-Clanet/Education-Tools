@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Character Sets, ASCII, and Unicode Revision Lesson | Education Tools
+    </title>
+    <meta
+      name="description"
+      content="Revise character sets, ASCII, Unicode, and the implications of text encoding for BTEC Level 3 Computing Unit 2."
+    />
+    <meta
+      property="og:title"
+      content="Character Sets, ASCII, and Unicode Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise character sets, ASCII, Unicode, and the implications of text encoding for BTEC Level 3 Computing Unit 2."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/character-sets-ascii-and-unicode.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Text Representation</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-c"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Character sets, ASCII, and Unicode</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Character sets, ASCII, and Unicode</h1>
+            <p class="lesson-hero-text">
+              Learn why computers need agreed character codes, how ASCII works,
+              and why Unicode is essential for modern multilingual text.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>C2 Text representation</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Character encoding, ASCII, Unicode, and compatibility</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-c"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#character-sets" data-section-link>Character sets</a>
+            <a href="#ascii" data-section-link>ASCII</a>
+            <a href="#unicode" data-section-link>Unicode</a>
+            <a href="#implications" data-section-link>Implications</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              Computers do not store letters as visible shapes. They store
+              numeric codes that software interprets as characters, symbols, and
+              control instructions.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Explain why character sets are needed.</li>
+                  <li>Describe the basic features of ASCII.</li>
+                  <li>Explain why Unicode is widely used.</li>
+                  <li>Link encoding choices to compatibility and storage.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>Character set:</strong> agreed code mapping.</li>
+                  <li><strong>ASCII:</strong> smaller, older standard.</li>
+                  <li><strong>Unicode:</strong> much wider character coverage.</li>
+                  <li><strong>Encoding:</strong> how text becomes stored data.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="character-sets"
+            class="lesson-section lesson-section--character-sets panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Foundations</p>
+            <h2>Character sets let systems agree what each code means</h2>
+            <p class="lesson-section-copy">
+              A character set is a standard list that matches numeric codes to
+              letters, digits, punctuation, symbols, and control characters. If
+              two systems use different mappings, the same stored value can be
+              displayed as the wrong character.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Text is data</strong>
+                <span>
+                  Characters must be converted into binary before a computer can
+                  store or transmit them.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Agreed meaning</strong>
+                <span>
+                  The standard makes sure code 65, for example, means the same
+                  thing to both sender and receiver.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Control codes</strong>
+                <span>
+                  Some values are not visible letters at all. They may mean line
+                  break, tab, or another command.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Compatibility issue</strong>
+                <span>
+                  Mismatched encodings can create garbled text or missing
+                  symbols.
+                </span>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="ascii"
+            class="lesson-section lesson-section--ascii panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">ASCII</p>
+            <h2>ASCII is a small, widely recognised character standard</h2>
+            <p class="lesson-section-copy">
+              ASCII uses a limited number of codes to represent common English
+              letters, digits, punctuation, and control characters. It is often
+              described as a 7-bit standard, giving 128 possible codes.
+            </p>
+
+            <div class="example-strip" aria-label="ASCII summary">
+              <span class="example-chip"><strong>7-bit standard</strong> 128 codes</span>
+              <span class="example-chip"><strong>Good for</strong> basic Latin text</span>
+              <span class="example-chip"><strong>Limitation</strong> small character range</span>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Why ASCII still matters</h3>
+              <p>
+                ASCII appears in many exam questions because it is simple and
+                historically important. It helps explain how text encoding works
+                before moving to larger standards.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="unicode"
+            class="lesson-section lesson-section--unicode panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Unicode</p>
+            <h2>Unicode supports a far wider range of languages and symbols</h2>
+            <p class="lesson-section-copy">
+              Unicode was designed so modern systems can represent characters
+              from many languages, plus mathematical symbols, currency signs,
+              and more. It solves the problem of ASCII being too limited for
+              global computing.
+            </p>
+
+            <article class="lesson-card">
+              <h3>Why Unicode is important</h3>
+              <p>
+                A multilingual website, messaging app, or document system needs
+                more than the small ASCII set. Unicode allows text from
+                different writing systems to be handled more consistently across
+                software and devices.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Main trade-off</h3>
+              <p>
+                Supporting a much wider range of characters can increase storage
+                and processing demands compared with a smaller encoding, but the
+                compatibility benefits are usually worth it.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="implications"
+            class="lesson-section lesson-section--implications panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Implications</p>
+            <h2>Encoding choices affect compatibility, storage, and user experience</h2>
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Question</th>
+                    <th>ASCII</th>
+                    <th>Unicode</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Character range</td>
+                    <td>Small and basic</td>
+                    <td>Very wide</td>
+                  </tr>
+                  <tr>
+                    <td>Good for</td>
+                    <td>Simple English text</td>
+                    <td>Global text and varied symbols</td>
+                  </tr>
+                  <tr>
+                    <td>Main issue</td>
+                    <td>Cannot cover many languages</td>
+                    <td>Can require more storage</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with text representation</h2>
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Calling ASCII a language</h3>
+                <p>
+                  ASCII is a coding standard, not a spoken or written language.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Describe it as a character set or
+                  encoding standard.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Assuming Unicode means one language</h3>
+                <p>
+                  Unicode exists to support many languages and symbol sets, not
+                  a single one.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Link Unicode to international or
+                  multilingual text.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Ignoring compatibility</h3>
+                <p>
+                  Encoding is not just about storage. It affects whether systems
+                  can exchange and display text correctly.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention mismatched codes causing garbled
+                  characters.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. A character set maps codes to characters."
+                data-feedback="A character set is an agreed mapping between stored values and characters."
+              >
+                <legend>1. What is the purpose of a character set?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>To increase CPU clock speed</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>To map numeric codes to characters</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>To compress image files</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. ASCII is commonly described as a 7-bit standard."
+                data-feedback="ASCII uses 7 bits in its standard form, giving 128 codes."
+              >
+                <legend>2. How many bits are used in standard ASCII?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>7</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>8</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>16</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Unicode supports a much wider character range."
+                data-feedback="Unicode is used so systems can handle many languages and symbols."
+              >
+                <legend>3. Why is Unicode widely used?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>It only supports uppercase English letters</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>It removes the need for binary storage</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>It supports a much wider range of characters</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Control characters are non-printing instructions."
+                data-feedback="Control codes tell the system to do something like move to a new line."
+              >
+                <legend>4. What is a control character?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>A brighter pixel value</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>A non-printing code such as a line break</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>A CPU instruction format</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. Different encodings can make the same data display incorrectly."
+                data-feedback="If systems use different mappings, the text may become garbled."
+              >
+                <legend>5. What can happen if two systems use different text encodings?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>Text may display as incorrect characters</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>The keyboard stops sending input</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>All files are encrypted automatically</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz.
+              Type your answers straight into the page, then compare your ideas
+              with the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why computers need character sets instead of storing
+                  letters directly as visible symbols.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Link storage to binary codes and interpretation."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>Computers store data as binary values.</li>
+                      <li>
+                        Characters need a standard code so their binary value
+                        has an agreed meaning.
+                      </li>
+                      <li>
+                        Software uses the code to display the correct letter or
+                        symbol.
+                      </li>
+                      <li>
+                        Without a shared character set, text could be interpreted
+                        incorrectly.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Compare and justify</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  Compare ASCII and Unicode for an international messaging app,
+                  then justify which standard is more suitable.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Compare character range with storage cost."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>ASCII has a small character range.</li>
+                      <li>
+                        Unicode supports far more languages and symbols.
+                      </li>
+                      <li>
+                        Unicode may use more storage than a smaller encoding.
+                      </li>
+                      <li>
+                        An international messaging app needs broad language
+                        support, so Unicode is the stronger justified choice.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Character set</dt>
+                <dd>An agreed mapping between codes and characters.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>ASCII</dt>
+                <dd>A smaller character standard often described as 7-bit.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Unicode</dt>
+                <dd>A much wider standard for characters and symbols.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Control character</dt>
+                <dd>A code that gives an instruction rather than visible text.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Same code, same meaning</h2>
+            <ul class="memory-list">
+              <li>Character sets let systems interpret stored text consistently.</li>
+              <li>ASCII is simple but limited.</li>
+              <li>Unicode is stronger for global modern computing.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>
