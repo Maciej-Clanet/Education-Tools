@@ -5,6 +5,9 @@ First certification from 2018
 Issue 8
 https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/computing/2016/specification-and-sample-assessments/btec-nat-l3-ext-dip-in-computing-spec.pdf
 
+Pearson revision book
+in docs/Unit 2 - Fundamentals of computing revision book-1.pdf
+
 # Unit in brief
 Learners study the fundamental principles of how computer systems work, including the role of
 hardware and software, the way components of a system work together and how data in a system
@@ -64,88 +67,89 @@ Marks: ranges from 6 to 12 marks
 Each item below is intended to become a specific lesson page. Tick lessons off
 here as they are completed.
 
+All the initial versions of the lessons have been added, the below checklist is now for ticking off lessons that have been manually looked over and improved.
 ## A Hardware and software
 
 ### A1 Computer hardware in a computer system
-- [x] Computer system types and internal components
-- [x] Input, output, and storage devices
-- [x] Hardware performance and component choice
-- [x] RAID and NAS storage systems
+- [ ] Computer system types and internal components
+- [ ] Input, output, and storage devices
+- [ ] Hardware performance and component choice
+- [ ] RAID and NAS storage systems
 
 ### A2 Computer software in a computer system
-- [x] Operating system types
-- [x] Kernel functions and system management
-- [x] User interfaces and software choice
-- [x] Utility, application, and open source software
+- [ ] Operating system types
+- [ ] Kernel functions and system management
+- [ ] User interfaces and software choice
+- [ ] Utility, application, and open source software
 
 ### A3 Data processing
-- [x] Collecting and processing data
-- [x] Data across multiple systems
-- [x] Backup and data recovery
+- [ ] Collecting and processing data
+- [ ] Data across multiple systems
+- [ ] Backup and data recovery
 
 ## B Computer architecture
 
 ### B1 Approaches to computer architecture
-- [x] Stored program architecture: Von Neumann and Harvard
-- [x] Cluster computing, UMA, and NUMA
-- [x] Emulation
+- [ ] Stored program architecture: Von Neumann and Harvard
+- [ ] Cluster computing, UMA, and NUMA
+- [ ] Emulation
 
 ### B2 The concepts of microarchitecture
-- [x] The instruction cycle
-- [x] CPU performance, instruction sets, and cache
-- [x] Pipelining, multi-processing, and multi-threading
-- [x] CPU architecture for different systems
+- [ ] The instruction cycle
+- [ ] CPU performance, instruction sets, and cache
+- [ ] Pipelining, multi-processing, and multi-threading
+- [ ] CPU architecture for different systems
 
 ### B3 Registers and register handling
-- [x] Registers and their functions
-- [x] Interrupts and register handling
+- [ ] Registers and their functions
+- [ ] Interrupts and register handling
 
 ## C How data is represented by computer systems
 
 ### C1 Number systems
-- [x] Units of digital data
-- [x] Binary and BCD
-- [x] Binary arithmetic
-- [x] Negative and floating point representation
+- [ ] Units of digital data
+- [ ] Binary and BCD
+- [ ] Binary arithmetic
+- [ ] Negative and floating point representation
 
 ### C2 Text representation
-- [x] Character sets, ASCII, and Unicode
+- [ ] Character sets, ASCII, and Unicode
 
 ### C3 Image representation
-- [x] Bitmap image storage
-- [x] Resolution, bit depth, and image compression
+- [ ] Bitmap image storage
+- [ ] Resolution, bit depth, and image compression
 
 ## D How data is organised on computer systems
 
 ### D1 Data structures
-- [x] Stacks and queues
-- [x] Arrays, lists, and data types
+- [ ] Stacks and queues
+- [ ] Arrays, lists, and data types
 
 ### D2 Indices and matrices
-- [x] Matrices and arrays
-- [x] Multi-dimensional arrays and memory order
+- [ ] Matrices and arrays
+- [ ] Multi-dimensional arrays and memory order
 
 ## E How data is transmitted by computer systems
 
 ### E1 Transmitting data
-- [x] Communication channels and connection methods
-- [x] Transmission methods: synchronous, asynchronous, serial, and parallel
-- [x] Packet data, packet switching, and protocols
-- [x] Encryption and data compression
+- [ ] Communication channels and connection methods
+- [ ] Transmission methods: synchronous, asynchronous, serial, and parallel
+- [ ] Packet data, packet switching, and protocols
+- [ ] Encryption and data compression
 
 ### E2 Error detection
-- [x] Error detection methods
+- [ ] Error detection methods
 
 ### E3 Error correction
-- [x] Error correction with ARQ and FEC
+- [ ] Error correction with ARQ and FEC
 
 ## F The use of logic and data flow in computer systems
 
 ### F1 Boolean logic
-- [x] Boolean logic
+- [ ] Boolean logic
 
 ### F2 Flow charts and system diagrams
-- [x] Flow charts and system diagrams
+- [ ] Flow charts and system diagrams
 
 # Essential content
 The essential content is set out under content areas. Learners must cover all specified content

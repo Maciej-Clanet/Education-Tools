@@ -27,9 +27,6 @@ Before making major UI, content, or structure changes, read:
 - Spec pages should stay brief and mainly route users into their unit pages.
 - Unit pages should act as scheme-of-work hubs with links to all topics in that
   unit.
-- Unit pages should not force an extra "topic group page" click unless that
-  middle page has a real purpose. Group cards on the unit page should normally
-  contain direct lesson lists.
 - Topic pages should be the main learning/SEO pages and should stay
   unit-agnostic where possible so one topic can support multiple units or
   specs.
