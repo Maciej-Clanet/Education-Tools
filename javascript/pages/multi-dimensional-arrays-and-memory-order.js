@@ -16,8 +16,9 @@ const lessonConfig = {
       },
       next: {
         title: "Communication channels and connection methods",
-        description: "Next in E1 Transmitting data. This lesson is still planned.",
-        status: "Planned",
+        description: "Next in E1 Transmitting data.",
+        status: "Live",
+        href: "../topics/communication-channels-and-connection-methods.html",
       },
     },
   },

@@ -164,7 +164,13 @@ the browser with `localStorage` where useful.
   `pages/topics/stacks-and-queues.html`,
   `pages/topics/arrays-lists-and-data-types.html`,
   `pages/topics/matrices-and-arrays.html`, and
-  `pages/topics/multi-dimensional-arrays-and-memory-order.html`.
+  `pages/topics/multi-dimensional-arrays-and-memory-order.html`,
+  `pages/topics/communication-channels-and-connection-methods.html`,
+  `pages/topics/transmission-methods-synchronous-asynchronous-serial-and-parallel.html`,
+  `pages/topics/packet-data-packet-switching-and-protocols.html`, and
+  `pages/topics/encryption-and-data-compression.html`,
+  `pages/topics/error-detection-methods.html`, and
+  `pages/topics/error-correction-with-arq-and-fec.html`.
 - A shared lesson shell now supports sidebar navigation, contextual unit
   navigation, teacher slide mode, and quiz persistence.
 - The current lesson template now includes glossary, exam trap, and exam-style
