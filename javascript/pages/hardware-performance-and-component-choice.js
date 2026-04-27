@@ -24,7 +24,7 @@ const lessonConfig = {
   },
   quiz: {
     storageKey: "lesson-hardware-performance-and-component-choice-quiz",
-    passScore: 4,
+    passScore: 7,
   },
   examPractice: {
     storageKey: "lesson-hardware-performance-and-component-choice-exam-practice",

@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Hardware Performance and Component Choice Revision Lesson |
-      Education Tools
+      Hardware Performance and Component Choice Revision Lesson | Education
+      Tools
     </title>
     <meta
       name="description"
-      content="Revise how hardware features affect performance and how cost, compatibility, efficiency, accessibility, implementation, and security influence component choice in BTEC Level 3 Computing Unit 2."
+      content="Revise how hardware features affect performance and component choice in BTEC Level 3 Computing Unit 2, including CPU, RAM, storage, graphics, display, printer, network, compatibility, cost, implementation, and security factors."
     />
     <meta
       property="og:title"
@@ -17,7 +17,7 @@
     />
     <meta
       property="og:description"
-      content="Revise how hardware features affect performance and how cost, compatibility, efficiency, accessibility, implementation, and security influence component choice in BTEC Level 3 Computing Unit 2."
+      content="Revise how hardware features affect performance and component choice in BTEC Level 3 Computing Unit 2, including CPU, RAM, storage, graphics, display, printer, network, compatibility, cost, implementation, and security factors."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/hardware-performance-and-component-choice.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -58,9 +62,10 @@
           <div>
             <h1>Hardware performance and component choice</h1>
             <p class="lesson-hero-text">
-              Learn how hardware features affect computer performance and how
-              to justify component choices using user needs, compatibility,
-              cost, efficiency, implementation, productivity, and security.
+              Learn how hardware features affect computer performance and how to
+              justify component choices using specifications, user needs,
+              compatibility, cost, efficiency, implementation, productivity, and
+              security.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -116,8 +121,24 @@
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
-            <a href="#performance-factors" data-section-link
-              >Performance factors</a
+            <a href="#cpu-performance" data-section-link>CPU performance</a>
+            <a href="#memory-performance" data-section-link
+              >Memory performance</a
+            >
+            <a href="#storage-performance" data-section-link
+              >Storage performance</a
+            >
+            <a href="#graphics-performance" data-section-link
+              >Graphics performance</a
+            >
+            <a href="#display-performance" data-section-link
+              >Display performance</a
+            >
+            <a href="#printer-performance" data-section-link
+              >Printer performance</a
+            >
+            <a href="#network-io-performance" data-section-link
+              >Network and I/O</a
             >
             <a href="#choice-factors" data-section-link>Choice factors</a>
             <a href="#scenario-judgements" data-section-link
@@ -143,8 +164,55 @@
               incompatible, power hungry, or difficult to implement.
             </p>
 
+            <div
+              class="performance-decision-flow"
+              aria-label="Hardware choice reasoning flow"
+            >
+              <article class="performance-flow-step">
+                <span
+                  class="performance-flow-icon performance-flow-icon--task"
+                  aria-hidden="true"
+                ></span>
+                <strong>Task</strong>
+                <span>What must the user do?</span>
+              </article>
+              <span class="performance-flow-arrow" aria-hidden="true"
+                >&rarr;</span
+              >
+              <article class="performance-flow-step">
+                <span
+                  class="performance-flow-icon performance-flow-icon--metric"
+                  aria-hidden="true"
+                ></span>
+                <strong>Performance factors</strong>
+                <span>Which component features matter?</span>
+              </article>
+              <span class="performance-flow-arrow" aria-hidden="true"
+                >&rarr;</span
+              >
+              <article class="performance-flow-step">
+                <span
+                  class="performance-flow-icon performance-flow-icon--constraint"
+                  aria-hidden="true"
+                ></span>
+                <strong>Constraints</strong>
+                <span>Cost, compatibility, security, rollout</span>
+              </article>
+              <span class="performance-flow-arrow" aria-hidden="true"
+                >&rarr;</span
+              >
+              <article class="performance-flow-step">
+                <span
+                  class="performance-flow-icon performance-flow-icon--choice"
+                  aria-hidden="true"
+                ></span>
+                <strong>Choice</strong>
+                <span>Recommend and justify</span>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="lesson-card lesson-wide slide-wide">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Explain how hardware features affect performance.</li>
@@ -156,12 +224,16 @@
                 </ul>
               </article>
 
-              <article class="lesson-card">
+              <article class="lesson-card slide-wide">
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
                   <li><strong>Performance:</strong> how well it runs.</li>
-                  <li><strong>Compatibility:</strong> will it work together?</li>
-                  <li><strong>Efficiency:</strong> useful output per resource.</li>
+                  <li>
+                    <strong>Compatibility:</strong> will it work together?
+                  </li>
+                  <li>
+                    <strong>Efficiency:</strong> useful output per resource.
+                  </li>
                   <li><strong>Justify:</strong> give a reason, not a label.</li>
                 </ul>
               </article>
@@ -178,58 +250,563 @@
           </section>
 
           <section
-            id="performance-factors"
-            class="lesson-section lesson-section--performance-factors panel"
+            id="cpu-performance"
+            class="lesson-section lesson-section--cpu-performance panel"
             data-lesson-section
           >
-            <p class="eyebrow">Performance</p>
-            <h2>Hardware features change how responsive and capable a system feels</h2>
+            <p class="eyebrow">CPU</p>
+            <h2>
+              CPU performance affects how quickly instructions can be processed
+            </h2>
             <p class="lesson-section-copy">
-              Performance is about more than one headline number. Different
-              hardware parts improve different aspects of system behaviour.
+              CPU choice matters when the system runs demanding software,
+              supports many tasks at once, or needs fast response to user
+              actions. In this A1 lesson, focus on visible component choice
+              rather than the deeper instruction-cycle detail covered later in
+              B2.
+            </p>
+
+            <div
+              class="component-metric-visual component-metric-visual--cpu"
+              aria-label="CPU performance factors"
+            >
+              <article class="metric-tile">
+                <strong>Clock speed</strong>
+                <span>GHz</span>
+                <small>Higher can help single-threaded tasks.</small>
+              </article>
+              <article class="metric-tile">
+                <strong>Cores and threads</strong>
+                <span>count</span>
+                <small>More can help multitasking and parallel work.</small>
+              </article>
+              <article class="metric-tile">
+                <strong>Cache</strong>
+                <span>MB</span>
+                <small>Fast on-chip memory reduces repeated RAM access.</small>
+              </article>
+              <article class="metric-tile">
+                <strong>Power and heat</strong>
+                <span>W</span>
+                <small>Thermal limits affect sustained speed.</small>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>CPU factor</th>
+                    <th>What it means</th>
+                    <th>Best performance usually means</th>
+                    <th>Scenario link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Clock speed</td>
+                    <td>Cycles per second, commonly measured in GHz.</td>
+                    <td>Higher speed for tasks that rely on fewer cores.</td>
+                    <td>Useful for responsive office apps or some games.</td>
+                  </tr>
+                  <tr>
+                    <td>Core count</td>
+                    <td>Number of processing cores available.</td>
+                    <td>More cores where software can split work.</td>
+                    <td>
+                      Useful for rendering, virtual machines, and heavy
+                      multitasking.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cache</td>
+                    <td>Small fast memory close to the CPU.</td>
+                    <td>Enough cache to reduce slower memory access.</td>
+                    <td>
+                      Helps repeated access to active instructions and data.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Thermal design</td>
+                    <td>How much heat and power the CPU must manage.</td>
+                    <td>
+                      A suitable balance of speed, cooling, and efficiency.
+                    </td>
+                    <td>Important in laptops, mobiles, and compact PCs.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="memory-performance"
+            class="lesson-section lesson-section--memory-performance panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Memory</p>
+            <h2>
+              RAM affects how much active work a system can handle smoothly
+            </h2>
+            <p class="lesson-section-copy">
+              RAM is working memory. If there is not enough, the system may rely
+              on slower storage, causing applications to lag or switch slowly.
+            </p>
+
+            <div
+              class="memory-capacity-visual"
+              aria-label="RAM capacity and active workload"
+            >
+              <article class="memory-bank memory-bank--limited">
+                <h3>Limited RAM</h3>
+                <div class="memory-bank__slots" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span class="is-overflow"></span>
+                  <span class="is-overflow"></span>
+                </div>
+                <p>Active programs spill into slower storage.</p>
+              </article>
+              <article class="memory-bank memory-bank--comfortable">
+                <h3>Enough RAM</h3>
+                <div class="memory-bank__slots" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <p>More active work stays in fast memory.</p>
+              </article>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Capacity</strong>
+                <span>
+                  Measured in GB. More capacity helps with multitasking, large
+                  files, browser tabs, virtual machines, and creative software.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Speed and bandwidth</strong>
+                <span>
+                  Faster RAM can move more data per second, but the benefit
+                  depends on CPU, motherboard, and workload.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Compatibility</strong>
+                <span>
+                  RAM must match the motherboard type, supported capacity, and
+                  speed limits.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Upgrade value</strong>
+                <span>
+                  Extra RAM is useful only if the current system is actually
+                  running short during normal use.
+                </span>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="storage-performance"
+            class="lesson-section lesson-section--storage-performance panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Storage</p>
+            <h2>
+              Storage performance affects loading, saving, transfer, and
+              capacity
+            </h2>
+            <p class="lesson-section-copy">
+              Storage choice should match how data is used. A system drive,
+              media editing drive, backup drive, and archive drive can have
+              different priorities.
+            </p>
+
+            <div class="storage-choice-grid">
+              <article class="storage-choice-card">
+                <span
+                  class="storage-choice-icon storage-choice-icon--ssd"
+                  aria-hidden="true"
+                ></span>
+                <h3>SSD</h3>
+                <p>
+                  Best when responsiveness, access time, shock resistance, and
+                  quiet operation matter.
+                </p>
+              </article>
+              <article class="storage-choice-card">
+                <span
+                  class="storage-choice-icon storage-choice-icon--hdd"
+                  aria-hidden="true"
+                ></span>
+                <h3>HDD</h3>
+                <p>
+                  Best when very large capacity and lower cost per GB matter
+                  more than speed.
+                </p>
+              </article>
+              <article class="storage-choice-card">
+                <span
+                  class="storage-choice-icon storage-choice-icon--external"
+                  aria-hidden="true"
+                ></span>
+                <h3>External storage</h3>
+                <p>
+                  Best for transfer, backup, or portable working when the
+                  connection is fast enough.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Storage factor</th>
+                    <th>Common unit</th>
+                    <th>Best performance usually means</th>
+                    <th>Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Capacity</td>
+                    <td>GB or TB</td>
+                    <td>Enough space for OS, apps, files, and growth.</td>
+                    <td>
+                      Prevents constant clearing, archiving, or external
+                      transfers.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Read/write speed</td>
+                    <td>MB/s or GB/s</td>
+                    <td>Higher speeds for large file loading and saving.</td>
+                    <td>
+                      Important for video, games, datasets, and system drives.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Access time</td>
+                    <td>ms</td>
+                    <td>Lower delay before data starts transferring.</td>
+                    <td>Improves booting, opening apps, and random access.</td>
+                  </tr>
+                  <tr>
+                    <td>Reliability and endurance</td>
+                    <td>TBW, hours, or rating</td>
+                    <td>Suitable lifespan for the workload.</td>
+                    <td>
+                      Important for systems with heavy writes or critical data.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="graphics-performance"
+            class="lesson-section lesson-section--graphics-performance panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Graphics</p>
+            <h2>
+              Graphics hardware affects visual, creative, gaming, and parallel
+              workloads
+            </h2>
+            <p class="lesson-section-copy">
+              Not every user needs a dedicated GPU. The right choice depends on
+              whether the workload needs advanced rendering, video editing,
+              simulation, 3D design, multiple displays, or GPU acceleration.
+            </p>
+
+            <div
+              class="graphics-visual-grid"
+              aria-label="Graphics workload comparison"
+            >
+              <article class="graphics-card">
+                <span
+                  class="graphics-card__icon graphics-card__icon--integrated"
+                  aria-hidden="true"
+                ></span>
+                <h3>Integrated graphics</h3>
+                <p>
+                  Lower cost and power use. Suitable for office work, browsing,
+                  and basic media.
+                </p>
+              </article>
+              <article class="graphics-card">
+                <span
+                  class="graphics-card__icon graphics-card__icon--dedicated"
+                  aria-hidden="true"
+                ></span>
+                <h3>Dedicated GPU</h3>
+                <p>
+                  More visual processing power and often dedicated VRAM.
+                  Suitable for creative or 3D work.
+                </p>
+              </article>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>GPU capability</strong>
+                <span>
+                  Affects rendering, visual effects, 3D modelling, games, and
+                  software that can use GPU acceleration.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>VRAM</strong>
+                <span>
+                  Graphics memory, measured in GB. More VRAM helps with high
+                  resolutions, large textures, and complex scenes.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Display support</strong>
+                <span>
+                  The GPU and ports must support the required number of screens,
+                  resolution, and refresh rate.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Power and cooling</strong>
+                <span>
+                  High-performance GPUs may need more power, larger cases, and
+                  better cooling.
+                </span>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="display-performance"
+            class="lesson-section lesson-section--display-performance panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Display</p>
+            <h2>
+              Display performance affects clarity, smoothness, and readability
+            </h2>
+            <p class="lesson-section-copy">
+              Display choice is part of hardware performance because the screen
+              controls how clearly, smoothly, and comfortably users see output.
+            </p>
+
+            <div
+              class="display-visual"
+              aria-label="Display performance factors"
+            >
+              <div class="display-visual__screen" aria-hidden="true">
+                <span class="display-visual__scanline"></span>
+                <span class="display-visual__pixel-grid"></span>
+              </div>
+              <div class="display-visual__metrics">
+                <span><strong>Refresh rate</strong> smoother motion</span>
+                <span
+                  ><strong>Response time</strong> less blur or ghosting</span
+                >
+                <span
+                  ><strong>Brightness</strong> readable in bright spaces</span
+                >
+                <span
+                  ><strong>Contrast</strong> clearer dark and light detail</span
+                >
+              </div>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Display factor</th>
+                    <th>Description</th>
+                    <th>Common unit</th>
+                    <th>Best performance usually means</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Refresh rate</td>
+                    <td>How many times the display updates each second.</td>
+                    <td>Hz</td>
+                    <td>Higher refresh rate for smoother motion.</td>
+                  </tr>
+                  <tr>
+                    <td>Response time</td>
+                    <td>
+                      How quickly pixels change from one state to another.
+                    </td>
+                    <td>ms</td>
+                    <td>Lower response time to reduce blur or ghosting.</td>
+                  </tr>
+                  <tr>
+                    <td>Brightness</td>
+                    <td>How much light the display can emit.</td>
+                    <td>cd/m2</td>
+                    <td>
+                      Higher brightness for bright rooms or visibility needs.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Contrast ratio</td>
+                    <td>
+                      Difference between the darkest black and brightest white.
+                    </td>
+                    <td>ratio, such as 1000:1</td>
+                    <td>Higher contrast for clearer image detail.</td>
+                  </tr>
+                  <tr>
+                    <td>Resolution</td>
+                    <td>Number of pixels shown on the screen.</td>
+                    <td>pixels, such as 1920 x 1080</td>
+                    <td>
+                      Higher resolution for sharper detail, if the system can
+                      drive it.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="printer-performance"
+            class="lesson-section lesson-section--printer-performance panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Printer</p>
+            <h2>
+              Printer performance depends on speed, first-page time, resolution,
+              and workload
+            </h2>
+            <p class="lesson-section-copy">
+              Printer choice depends on what is printed, how often it is
+              printed, how quickly users need output, and how much detail is
+              required.
+            </p>
+
+            <div
+              class="printer-visual"
+              aria-label="Printer performance factors"
+            >
+              <div class="printer-visual__body" aria-hidden="true">
+                <span class="printer-visual__paper"></span>
+              </div>
+              <div class="printer-metric-row">
+                <span><strong>Print speed</strong> ppm or ipm</span>
+                <span><strong>First-page-out time</strong> seconds</span>
+                <span><strong>Resolution</strong> dpi</span>
+                <span><strong>Duty cycle</strong> pages/month</span>
+              </div>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Printer factor</th>
+                    <th>Description</th>
+                    <th>Common unit</th>
+                    <th>Best performance usually means</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Printing speed</td>
+                    <td>
+                      How many pages or images can be printed in a given time.
+                    </td>
+                    <td>ppm or ipm</td>
+                    <td>Higher speed for busy offices or batch printing.</td>
+                  </tr>
+                  <tr>
+                    <td>First-page-out time</td>
+                    <td>
+                      How long the first page takes after a print job starts.
+                    </td>
+                    <td>seconds</td>
+                    <td>Lower time for users who print short jobs often.</td>
+                  </tr>
+                  <tr>
+                    <td>Maximum printing resolution</td>
+                    <td>How much detail the printer can place on the page.</td>
+                    <td>dpi</td>
+                    <td>
+                      Higher resolution for detailed images or design proofs.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Monthly duty cycle</td>
+                    <td>
+                      The volume a printer is designed to handle per month.
+                    </td>
+                    <td>pages/month</td>
+                    <td>Higher duty cycle for heavy, shared office use.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="network-io-performance"
+            class="lesson-section lesson-section--network-io-performance panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Network And I/O</p>
+            <h2>
+              Network and connection choices affect shared work and peripheral
+              speed
+            </h2>
+            <p class="lesson-section-copy">
+              A fast computer can still feel slow if its network connection,
+              wireless signal, or external ports cannot move data quickly enough
+              for the task.
             </p>
 
             <div class="term-grid">
               <article class="term-card">
-                <strong>CPU capability</strong>
+                <strong>Bandwidth</strong>
                 <span>
-                  Clock speed, core count, and processor design affect how
-                  quickly instructions can be handled.
+                  Measured in Mbps or Gbps. Higher bandwidth helps when moving
+                  large files, backing up, or streaming high-quality media.
                 </span>
               </article>
               <article class="term-card">
-                <strong>RAM size</strong>
+                <strong>Latency</strong>
                 <span>
-                  More RAM helps when many applications, users, or large data
-                  sets are active at the same time.
+                  Measured in ms. Lower latency improves interactive tasks such
+                  as video calls, cloud desktops, and online applications.
                 </span>
               </article>
               <article class="term-card">
-                <strong>Storage type</strong>
+                <strong>Connection type</strong>
                 <span>
-                  SSDs reduce loading delays and improve responsiveness when
-                  compared with slower mechanical storage.
+                  Ethernet, Wi-Fi, USB, HDMI, DisplayPort, and other interfaces
+                  must support the required speed and features.
                 </span>
               </article>
               <article class="term-card">
-                <strong>Graphics hardware</strong>
+                <strong>Reliability and availability</strong>
                 <span>
-                  Matters in gaming, design, simulation, and any workload that
-                  depends on visual or parallel processing.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Network hardware</strong>
-                <span>
-                  Important where systems depend on shared files, cloud
-                  services, or many simultaneous connections.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Thermal limits</strong>
-                <span>
-                  Heat can reduce sustained performance because some systems
-                  slow down to protect the hardware.
+                  Shared systems may need dependable connections, spare ports,
+                  or fallback options to reduce downtime.
                 </span>
               </article>
             </div>
@@ -241,11 +818,36 @@
             data-lesson-section
           >
             <p class="eyebrow">Choice Factors</p>
-            <h2>Choosing hardware means balancing technical performance with practical constraints</h2>
+            <h2>
+              Choosing hardware means balancing technical performance with
+              practical constraints
+            </h2>
             <p class="lesson-section-copy">
               In Unit 2, strong answers often compare several decision factors
               before making a recommendation.
             </p>
+
+            <div
+              class="choice-factor-map"
+              aria-label="Hardware choice factor groups"
+            >
+              <article class="choice-factor-card">
+                <strong>User experience</strong>
+                <span
+                  >Ease of use, performance, availability, accessibility</span
+                >
+              </article>
+              <article class="choice-factor-card">
+                <strong>Technical fit</strong>
+                <span>Specifications, compatibility, security</span>
+              </article>
+              <article class="choice-factor-card">
+                <strong>Practical fit</strong>
+                <span>Cost, efficiency, implementation, productivity</span>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -258,39 +860,83 @@
                 </thead>
                 <tbody>
                   <tr>
+                    <td>User experience</td>
+                    <td>
+                      Will it be easy, fast, available, and accessible for the
+                      user?
+                    </td>
+                    <td>
+                      A larger high-contrast display may help a user work more
+                      comfortably.
+                    </td>
+                  </tr>
+                  <tr>
                     <td>User needs</td>
                     <td>What must the system actually do?</td>
-                    <td>A school office PC does not need the same GPU as a 3D workstation.</td>
+                    <td>
+                      A school office PC does not need the same GPU as a 3D
+                      workstation.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Specifications</td>
+                    <td>Do the measurable features meet the task?</td>
+                    <td>
+                      A design monitor may need high resolution and good
+                      contrast, not only a large screen.
+                    </td>
                   </tr>
                   <tr>
                     <td>Compatibility</td>
                     <td>Will the part work with the existing system?</td>
-                    <td>A motherboard may not support a newer processor socket.</td>
+                    <td>
+                      A motherboard may not support a newer processor socket.
+                    </td>
                   </tr>
                   <tr>
                     <td>Cost</td>
                     <td>Is the improvement worth the extra money?</td>
-                    <td>A premium component may not give enough benefit for basic tasks.</td>
+                    <td>
+                      A premium component may not give enough benefit for basic
+                      tasks.
+                    </td>
                   </tr>
                   <tr>
                     <td>Efficiency</td>
                     <td>How much energy or heat does the system use?</td>
-                    <td>A low-power device may be better for battery life or running costs.</td>
+                    <td>
+                      A low-power device may be better for battery life or
+                      running costs.
+                    </td>
                   </tr>
                   <tr>
                     <td>Implementation</td>
-                    <td>How difficult is the change to install and migrate?</td>
-                    <td>New storage may require testing, data transfer, and downtime.</td>
+                    <td>
+                      How difficult is the change to install, test, migrate, and
+                      roll out?
+                    </td>
+                    <td>
+                      New hardware may need timescales, testing, user training,
+                      and data migration.
+                    </td>
                   </tr>
                   <tr>
-                    <td>Accessibility and productivity</td>
-                    <td>Does it help people work effectively?</td>
-                    <td>A larger screen or ergonomic input device may improve daily use.</td>
+                    <td>Productivity</td>
+                    <td>
+                      Will users complete work faster or with fewer errors?
+                    </td>
+                    <td>
+                      More RAM may reduce delays when staff keep several
+                      applications open.
+                    </td>
                   </tr>
                   <tr>
                     <td>Security</td>
                     <td>Does the choice protect data and system access?</td>
-                    <td>Encrypted storage or controlled ports may reduce risk.</td>
+                    <td>
+                      Encrypted storage, TPM support, locks, or controlled ports
+                      may reduce risk.
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -303,13 +949,18 @@
             data-lesson-section
           >
             <p class="eyebrow">Judgement</p>
-            <h2>Good recommendations explain both the benefit and the trade-off</h2>
+            <h2>
+              Good recommendations explain both the benefit and the trade-off
+            </h2>
             <p class="lesson-section-copy">
               A recommendation is strongest when it recognises what the user
               gains and what they may give up.
             </p>
 
-            <div class="example-strip" aria-label="Typical recommendation patterns">
+            <div
+              class="example-strip"
+              aria-label="Typical recommendation patterns"
+            >
               <span class="example-chip"
                 ><strong>SSD</strong> faster, but costs more per GB</span
               >
@@ -321,23 +972,48 @@
               >
             </div>
 
+            <div class="scenario-match-grid">
+              <article class="scenario-match-card">
+                <h3>Reception desk</h3>
+                <p>
+                  Prioritise reliability, quick startup, dual display support,
+                  and accessibility over gaming-level graphics.
+                </p>
+              </article>
+              <article class="scenario-match-card">
+                <h3>Design studio</h3>
+                <p>
+                  Prioritise RAM, fast storage, GPU capability, colour/detail
+                  display quality, and suitable printer resolution.
+                </p>
+              </article>
+              <article class="scenario-match-card">
+                <h3>Shared print room</h3>
+                <p>
+                  Prioritise print speed, low first-page-out time, duty cycle,
+                  running costs, security, and network compatibility.
+                </p>
+              </article>
+            </div>
+
             <article class="lesson-card">
               <h3>Worked comparison</h3>
               <p>
-                If a business replaces old HDDs with SSDs, staff may gain
-                faster boot times and quicker file access, improving
-                productivity. However, the upgrade increases cost and may need
-                time for imaging, migration, and testing before rollout.
+                If a business replaces old HDDs with SSDs, staff may gain faster
+                boot times and quicker file access, improving productivity.
+                However, the upgrade increases cost and may need time for
+                imaging, migration, and testing before rollout.
               </p>
             </article>
 
+            <br />
             <article class="lesson-card">
               <h3>What balanced judgement sounds like</h3>
               <p>
                 Try writing: "Although the component is more expensive, it is
                 justified because the improvement in performance saves staff
-                time every day." That is usually stronger than simply saying
-                "It is better."
+                time every day." That is usually stronger than simply saying "It
+                is better."
               </p>
             </article>
           </section>
@@ -357,9 +1033,7 @@
             <div class="trap-grid">
               <article class="trap-card">
                 <h3>Assuming the most powerful part is always best</h3>
-                <p>
-                  That ignores cost, efficiency, and real user need.
-                </p>
+                <p>That ignores cost, efficiency, and real user need.</p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Match the component level to the actual
                   workload.
@@ -368,9 +1042,7 @@
 
               <article class="trap-card">
                 <h3>Forgetting compatibility</h3>
-                <p>
-                  A new part may not fit or work with the current system.
-                </p>
+                <p>A new part may not fit or work with the current system.</p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Mention whether the system can support
                   the upgrade.
@@ -379,12 +1051,34 @@
 
               <article class="trap-card">
                 <h3>Giving an unsupported judgement</h3>
-                <p>
-                  "Use an SSD" is not enough without a reason.
-                </p>
+                <p>"Use an SSD" is not enough without a reason.</p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Say what improves and why that matters
                   in the scenario.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Quoting a number without its unit</h3>
+                <p>
+                  "A high brightness screen" is weaker than naming brightness in
+                  cd/m2 or print resolution in dpi.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use units such as Hz, ms, cd/m2, dpi,
+                  ppm, and pages/month where the factor needs a measurement.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Ignoring rollout work</h3>
+                <p>
+                  Hardware changes may need testing, migration, training, and
+                  downtime.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention implementation when a choice
+                  affects many users or existing systems.
                 </p>
               </article>
             </div>
@@ -398,8 +1092,8 @@
             <p class="eyebrow">Quiz</p>
             <h2>Check your understanding</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
+              Answer all nine questions, then check your score. Your choices and
+              best score save in this browser so you can revisit the lesson
               later.
             </p>
 
@@ -411,7 +1105,10 @@
                 data-success="Correct. More RAM helps when many active tasks need fast access to working data."
                 data-feedback="RAM mainly affects how well a system copes with active programs and multitasking."
               >
-                <legend>1. Which upgrade most directly helps a system handle more active programs at once?</legend>
+                <legend>
+                  1. Which upgrade most directly helps a system handle more
+                  active programs at once?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -442,18 +1139,25 @@
                 data-success="Correct. Compatibility asks whether components and systems will work together."
                 data-feedback="Compatibility is about whether the chosen hardware can operate with the rest of the system."
               >
-                <legend>2. What does compatibility mean when choosing hardware?</legend>
+                <legend>
+                  2. What does compatibility mean when choosing hardware?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="a" />
-                      <span>Whether the new part works with the existing system</span>
+                      <span
+                        >Whether the new part works with the existing
+                        system</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="b" />
-                      <span>Whether the case is the same colour as the desk</span>
+                      <span
+                        >Whether the case is the same colour as the desk</span
+                      >
                     </label>
                   </li>
                   <li>
@@ -473,7 +1177,10 @@
                 data-success="Correct. SSDs usually improve loading and responsiveness."
                 data-feedback="SSDs commonly reduce waiting time for booting and opening files or programs."
               >
-                <legend>3. Which storage choice usually improves system responsiveness the most?</legend>
+                <legend>
+                  3. Which storage choice usually improves system responsiveness
+                  the most?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -504,7 +1211,10 @@
                 data-success="Correct. Implementation includes installing, migrating, testing, and managing change."
                 data-feedback="Implementation is about how practical the change is to roll out, not just how fast the part is."
               >
-                <legend>4. Which point belongs most clearly to implementation planning?</legend>
+                <legend>
+                  4. Which point belongs most clearly to implementation
+                  planning?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -515,13 +1225,19 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="b" />
-                      <span>Time needed to migrate data and test the new setup</span>
+                      <span
+                        >Time needed to migrate data and test the new
+                        setup</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="c" />
-                      <span>Whether the speakers are loud enough for music class</span>
+                      <span
+                        >Whether the speakers are loud enough for music
+                        class</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -535,24 +1251,169 @@
                 data-success="Correct. A balanced judgement weighs benefit against trade-offs."
                 data-feedback="A justified choice should explain both the gain and any limitation or cost."
               >
-                <legend>5. What makes a hardware recommendation well justified?</legend>
+                <legend>
+                  5. What makes a hardware recommendation well justified?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="a" />
-                      <span>It explains the benefit and recognises trade-offs</span>
+                      <span
+                        >It explains the benefit and recognises trade-offs</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>It chooses the most expensive option every time</span>
+                      <span
+                        >It chooses the most expensive option every time</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
                       <span>It avoids mentioning cost or user needs</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="c"
+                data-success="Correct. Refresh rate is measured in hertz and higher values usually make motion smoother."
+                data-feedback="Refresh rate is measured in Hz and describes how many times the display updates per second."
+              >
+                <legend>6. Which display factor is measured in hertz?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="a" />
+                      <span>Brightness</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="b" />
+                      <span>Monthly duty cycle</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="c" />
+                      <span>Refresh rate</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="a"
+                data-success="Correct. Response time is measured in milliseconds and lower values reduce blur or ghosting."
+                data-feedback="Response time describes how quickly pixels change, so lower is usually better."
+              >
+                <legend>
+                  7. Which display factor is usually best when the value is
+                  lower?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="a" />
+                      <span>Response time</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="b" />
+                      <span>Brightness</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="c" />
+                      <span>Resolution</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="b"
+                data-success="Correct. Monthly duty cycle describes the amount of printing a printer is designed to handle."
+                data-feedback="Duty cycle is about workload volume, usually measured in pages per month."
+              >
+                <legend>
+                  8. What does a printer's monthly duty cycle describe?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="a" />
+                      <span>The number of CPU cores in the printer</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="b" />
+                      <span
+                        >The print volume it is designed to handle per
+                        month</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="c" />
+                      <span>The brightness of the printer display</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q9"
+                data-answer="a"
+                data-success="Correct. Security can affect hardware choice when data or access needs protection."
+                data-feedback="Security factors can include encrypted storage, controlled ports, physical locks, or supported security features."
+              >
+                <legend>
+                  9. Which option is a hardware-choice security factor?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q9" value="a" />
+                      <span
+                        >Whether storage supports encryption or secure
+                        access</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q9" value="b" />
+                      <span>Whether the screen is the largest available</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q9" value="c" />
+                      <span
+                        >Whether the printer has the brightest paper tray</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -584,9 +1445,9 @@
             <p class="eyebrow">Exam-Style Practice</p>
             <h2>Try longer answers like the ones used in written papers</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -684,6 +1545,65 @@
                 </details>
               </article>
             </div>
+
+            <div data-slide-break></div>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">8 marks</span>
+                  <span class="exam-pill">Analyse</span>
+                </div>
+                <h3>Question 3</h3>
+                <p>
+                  A college design room needs new monitors and a shared printer
+                  for graphics students. Analyse which display and printer
+                  performance factors should affect the hardware choice.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-3">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-3"
+                    class="exam-response"
+                    data-exam-response="question-3"
+                    placeholder="Mention display refresh rate, response time, brightness, contrast, printer speed, first-page-out time, resolution, and duty cycle."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        Monitor resolution and contrast affect how clearly
+                        students can see detail in design work.
+                      </li>
+                      <li>
+                        Brightness, measured in cd/m2, matters if the room is
+                        bright or users need high visibility.
+                      </li>
+                      <li>
+                        Refresh rate and response time matter more for motion,
+                        animation, or video work than for simple documents.
+                      </li>
+                      <li>
+                        Printer resolution, measured in dpi, affects detail and
+                        print quality for design proofs.
+                      </li>
+                      <li>
+                        Print speed and first-page-out time affect how long
+                        students wait for work.
+                      </li>
+                      <li>
+                        Monthly duty cycle should match shared classroom use so
+                        the printer is not overloaded.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
           </section>
         </main>
 
@@ -697,12 +1617,43 @@
                 <dd>Whether hardware parts or systems work together.</dd>
               </div>
               <div class="glossary-item">
+                <dt>Specification</dt>
+                <dd>
+                  A measurable hardware feature such as GHz, GB, Hz, dpi, or
+                  ppm.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Refresh rate</dt>
+                <dd>
+                  How often a display updates each second, measured in Hz.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Response time</dt>
+                <dd>
+                  How quickly display pixels change, usually measured in ms.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Brightness</dt>
+                <dd>Display light output, often measured in cd/m2.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Duty cycle</dt>
+                <dd>
+                  The print volume a printer is designed to handle each month.
+                </dd>
+              </div>
+              <div class="glossary-item">
                 <dt>Efficiency</dt>
                 <dd>How effectively a system uses power or resources.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Implementation</dt>
-                <dd>The practical process of installing and rolling out change.</dd>
+                <dd>
+                  The practical process of installing and rolling out change.
+                </dd>
               </div>
               <div class="glossary-item">
                 <dt>Productivity</dt>
@@ -717,7 +1668,8 @@
             <ul class="memory-list">
               <li>Faster is not automatically better.</li>
               <li>Link the hardware improvement to a real user benefit.</li>
-              <li>Strong recommendations mention trade-offs.</li>
+              <li>Use units when comparing measurable specifications.</li>
+              <li>Strong recommendations mention trade-offs and rollout.</li>
             </ul>
           </section>
         </aside>
@@ -742,7 +1694,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 19</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>
