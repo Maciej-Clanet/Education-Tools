@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/input-output-and-storage-devices.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -116,6 +120,11 @@
             <a href="#input-devices" data-section-link>Input devices</a>
             <a href="#output-devices" data-section-link>Output devices</a>
             <a href="#storage-devices" data-section-link>Storage devices</a>
+            <a href="#storage-technology" data-section-link
+              >Magnetic and flash storage</a
+            >
+            <a href="#hdd-performance" data-section-link>HDD performance</a>
+            <a href="#fragmentation" data-section-link>Fragmentation</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
             <a href="#exam-practice" data-section-link>Exam-style practice</a>
@@ -137,6 +146,35 @@
               user and task.
             </p>
 
+            <div
+              class="device-role-flow"
+              aria-label="Input, processing, output, and storage roles"
+            >
+              <article class="device-role-step device-role-step--input">
+                <span class="device-role-icon" aria-hidden="true"></span>
+                <strong>Input</strong>
+                <span>Data enters the system</span>
+              </article>
+              <span class="device-role-arrow" aria-hidden="true">&rarr;</span>
+              <article class="device-role-step device-role-step--process">
+                <span class="device-role-icon" aria-hidden="true"></span>
+                <strong>Processing</strong>
+                <span>CPU and software work on it</span>
+              </article>
+              <span class="device-role-arrow" aria-hidden="true">&rarr;</span>
+              <article class="device-role-step device-role-step--output">
+                <span class="device-role-icon" aria-hidden="true"></span>
+                <strong>Output</strong>
+                <span>Results are presented</span>
+              </article>
+              <span class="device-role-arrow" aria-hidden="true">&rarr;</span>
+              <article class="device-role-step device-role-step--storage">
+                <span class="device-role-icon" aria-hidden="true"></span>
+                <strong>Storage</strong>
+                <span>Data is kept for later</span>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
@@ -154,7 +192,9 @@
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
                   <li><strong>Input:</strong> data goes into the system.</li>
-                  <li><strong>Output:</strong> data comes out of the system.</li>
+                  <li>
+                    <strong>Output:</strong> data comes out of the system.
+                  </li>
                   <li><strong>Storage:</strong> data is kept for later.</li>
                   <li><strong>Suitability:</strong> depends on the task.</li>
                 </ul>
@@ -185,6 +225,39 @@
               be.
             </p>
 
+            <div
+              class="device-gallery"
+              aria-label="Input device examples and captured data"
+            >
+              <article class="device-gallery-card">
+                <span
+                  class="device-mini-icon device-mini-icon--keyboard"
+                  aria-hidden="true"
+                ></span>
+                <h3>Text and commands</h3>
+                <p>Keyboard, keypad, barcode reader, or card reader.</p>
+              </article>
+              <article class="device-gallery-card">
+                <span
+                  class="device-mini-icon device-mini-icon--touch"
+                  aria-hidden="true"
+                ></span>
+                <h3>Position and selection</h3>
+                <p>Mouse, trackpad, touchscreen, stylus, or game controller.</p>
+              </article>
+              <article class="device-gallery-card">
+                <span
+                  class="device-mini-icon device-mini-icon--sensor"
+                  aria-hidden="true"
+                ></span>
+                <h3>Real-world signals</h3>
+                <p>
+                  Microphone, camera, scanner, thermometer, light sensor, or
+                  motion sensor.
+                </p>
+              </article>
+            </div>
+
             <div class="term-grid">
               <article class="term-card">
                 <strong>Keyboard</strong>
@@ -203,8 +276,8 @@
               <article class="term-card">
                 <strong>Touchscreen</strong>
                 <span>
-                  Lets users interact directly with the display, which is
-                  useful in mobile devices and kiosks.
+                  Lets users interact directly with the display, which is useful
+                  in mobile devices and kiosks.
                 </span>
               </article>
               <article class="term-card">
@@ -235,12 +308,46 @@
             data-lesson-section
           >
             <p class="eyebrow">Output</p>
-            <h2>Output devices present results, feedback, or media to the user</h2>
+            <h2>
+              Output devices present results, feedback, or media to the user
+            </h2>
             <p class="lesson-section-copy">
               Output devices matter because they shape the user experience.
               Clarity, speed, accessibility, and quality are often the key
               decision points.
             </p>
+
+            <div class="output-channel-grid" aria-label="Output channels">
+              <article class="output-channel-card">
+                <span
+                  class="output-channel-icon output-channel-icon--screen"
+                  aria-hidden="true"
+                ></span>
+                <h3>Visual output</h3>
+                <p>
+                  Monitors, projectors, status displays, and printer output.
+                </p>
+              </article>
+              <article class="output-channel-card">
+                <span
+                  class="output-channel-icon output-channel-icon--audio"
+                  aria-hidden="true"
+                ></span>
+                <h3>Audio output</h3>
+                <p>Speakers, headphones, alarms, and screen-reader speech.</p>
+              </article>
+              <article class="output-channel-card">
+                <span
+                  class="output-channel-icon output-channel-icon--physical"
+                  aria-hidden="true"
+                ></span>
+                <h3>Physical feedback</h3>
+                <p>
+                  Printed pages, haptic vibration, and control signals to
+                  actuators.
+                </p>
+              </article>
+            </div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -305,14 +412,59 @@
               storage feature directly with the scenario need.
             </p>
 
+            <div
+              class="storage-family-grid"
+              aria-label="Storage device families"
+            >
+              <article
+                class="storage-family-card storage-family-card--magnetic"
+              >
+                <span class="storage-family-icon" aria-hidden="true"></span>
+                <h3>Magnetic storage</h3>
+                <p>
+                  Hard disk drives use spinning platters and moving read/write
+                  heads.
+                </p>
+                <strong>Best fit:</strong>
+                <span>High capacity at lower cost per gigabyte.</span>
+              </article>
+              <article class="storage-family-card storage-family-card--flash">
+                <span class="storage-family-icon" aria-hidden="true"></span>
+                <h3>Flash storage</h3>
+                <p>
+                  SSDs and USB drives store charge in memory cells with no
+                  moving parts.
+                </p>
+                <strong>Best fit:</strong>
+                <span>Fast access, portability, and shock resistance.</span>
+              </article>
+              <article class="storage-family-card storage-family-card--optical">
+                <span class="storage-family-icon" aria-hidden="true"></span>
+                <h3>Optical storage</h3>
+                <p>Discs use marks on a reflective layer read by a laser.</p>
+                <strong>Best fit:</strong>
+                <span
+                  >Some media distribution or low-cost archiving cases.</span
+                >
+              </article>
+            </div>
+
             <div class="example-strip" aria-label="Storage device examples">
-              <span class="example-chip"><strong>SSD</strong> fast and durable</span>
-              <span class="example-chip"><strong>HDD</strong> high capacity</span>
+              <span class="example-chip"
+                ><strong>SSD</strong> fast and durable</span
+              >
+              <span class="example-chip"
+                ><strong>HDD</strong> high capacity</span
+              >
               <span class="example-chip"
                 ><strong>Optical</strong> removable media</span
               >
-              <span class="example-chip"><strong>Flash drive</strong> portable</span>
+              <span class="example-chip"
+                ><strong>Flash drive</strong> portable</span
+              >
             </div>
+
+            <div data-slide-break></div>
 
             <div class="term-grid">
               <article class="term-card">
@@ -345,7 +497,7 @@
                 </span>
               </article>
             </div>
-
+            <br />
             <article class="lesson-card">
               <h3>Worked judgement</h3>
               <p>
@@ -355,6 +507,302 @@
                 speed.
               </p>
             </article>
+          </section>
+
+          <section
+            id="storage-technology"
+            class="lesson-section lesson-section--storage-technology panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Storage Technology</p>
+            <h2>
+              Magnetic storage and flash memory store bits in different ways
+            </h2>
+            <p class="lesson-section-copy">
+              The technology inside a storage device affects speed, reliability,
+              cost, noise, power use, and how suitable it is for a given system.
+            </p>
+
+            <div
+              class="storage-tech-compare"
+              aria-label="Magnetic storage and flash memory comparison"
+            >
+              <article class="storage-tech-card storage-tech-card--magnetic">
+                <div class="hdd-visual" aria-hidden="true">
+                  <span class="hdd-visual__platter"></span>
+                  <span class="hdd-visual__track"></span>
+                  <span class="hdd-visual__arm"></span>
+                  <span class="hdd-visual__head"></span>
+                </div>
+                <h3>Magnetic hard disk</h3>
+                <p>
+                  A hard disk drive stores data on circular platters coated in
+                  magnetic material. The platters spin while a read/write head
+                  moves to the correct track and changes or detects magnetic
+                  patterns that represent bits.
+                </p>
+              </article>
+
+              <article class="storage-tech-card storage-tech-card--flash">
+                <div class="flash-visual" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <h3>Flash memory</h3>
+                <p>
+                  Flash storage keeps data by trapping electrical charge in
+                  memory cells. Because there are no spinning platters or moving
+                  heads, an SSD can access data quickly and is less vulnerable
+                  to knocks while in use.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Magnetic HDD</th>
+                    <th>Flash SSD or USB storage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Moving parts</td>
+                    <td>Yes, spinning platters and moving heads.</td>
+                    <td>No moving mechanical parts.</td>
+                  </tr>
+                  <tr>
+                    <td>Access time</td>
+                    <td>Limited by seek time and rotational delay.</td>
+                    <td>
+                      Very low because cells can be addressed electronically.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Capacity and cost</td>
+                    <td>Often strong for very large, lower-cost storage.</td>
+                    <td>Usually faster, but often higher cost per gigabyte.</td>
+                  </tr>
+                  <tr>
+                    <td>Durability in portable use</td>
+                    <td>More vulnerable to shock while spinning.</td>
+                    <td>
+                      Better for movement because there are no moving parts.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Exam wording to use</h3>
+              <p>
+                Avoid saying only "SSD is faster". Explain why: an SSD has no
+                moving read/write head, so it does not wait for a platter to
+                spin to the right position before accessing data.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="hdd-performance"
+            class="lesson-section lesson-section--hdd-performance panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">HDD Performance</p>
+            <h2>
+              Hard drive performance depends on movement, rotation, transfer,
+              and cache
+            </h2>
+            <p class="lesson-section-copy">
+              HDDs are mechanical devices, so their speed is affected by how
+              quickly the drive can reach the data and how fast it can transfer
+              the data once it is found.
+            </p>
+
+            <article class="hdd-anatomy-card">
+              <div
+                class="hdd-anatomy"
+                aria-label="Hard disk drive performance factors"
+              >
+                <div class="hdd-anatomy__disk" aria-hidden="true">
+                  <span
+                    class="hdd-anatomy__track hdd-anatomy__track--outer"
+                  ></span>
+                  <span
+                    class="hdd-anatomy__track hdd-anatomy__track--inner"
+                  ></span>
+                  <span class="hdd-anatomy__sector"></span>
+                </div>
+                <div class="hdd-anatomy__arm" aria-hidden="true"></div>
+                <div class="hdd-anatomy__labels">
+                  <span
+                    ><strong>Seek time</strong> head moves to the track</span
+                  >
+                  <span><strong>Spindle speed</strong> platters rotate</span>
+                  <span><strong>DTR</strong> data moves once found</span>
+                  <span
+                    ><strong>Cache</strong> recently used data is buffered</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <div data-slide-break></div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Seek time</strong>
+                <span>
+                  The time taken for the read/write head to move to the track
+                  where the data is stored. Lower seek time means less waiting.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Rotational latency and spindle speed</strong>
+                <span>
+                  The wait for the right sector to rotate under the head. Faster
+                  RPM can reduce this delay, though it can increase heat, noise,
+                  and power use.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Data transfer rate</strong>
+                <span>
+                  How quickly data can be read from or written to the drive once
+                  the drive has reached it, often measured in MB/s.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Cache</strong>
+                <span>
+                  Small fast memory inside the drive that stores recently used
+                  or predicted data to reduce repeated slow disk access.
+                </span>
+              </article>
+            </div>
+            <br />
+            <article class="lesson-card">
+              <h3>Why this matters in a scenario</h3>
+              <p>
+                An HDD may be suitable for a large archive because capacity and
+                cost matter most. It may be less suitable as a main editing
+                drive because seek time and transfer limits can slow loading,
+                saving, and working with large files.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="fragmentation"
+            class="lesson-section lesson-section--fragmentation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Fragmentation</p>
+            <h2>
+              Fragmentation can slow hard disks because file parts are spread
+              out
+            </h2>
+            <p class="lesson-section-copy">
+              When files are created, edited, deleted, and saved over time, a
+              file may be stored in separate pieces rather than one continuous
+              run of space.
+            </p>
+
+            <div
+              class="fragmentation-visual-grid"
+              aria-label="Fragmented and defragmented storage blocks"
+            >
+              <article class="fragmentation-card">
+                <h3>Fragmented file</h3>
+                <div
+                  class="block-strip block-strip--fragmented"
+                  aria-hidden="true"
+                >
+                  <span class="block block--file-a">A</span>
+                  <span class="block block--other">B</span>
+                  <span class="block block--file-a">A</span>
+                  <span class="block block--free"></span>
+                  <span class="block block--other">C</span>
+                  <span class="block block--file-a">A</span>
+                  <span class="block block--other">D</span>
+                </div>
+                <p>
+                  The HDD head may need to move between different areas of the
+                  platter to read all parts of file A.
+                </p>
+              </article>
+              <article class="fragmentation-card">
+                <h3>After defragmentation</h3>
+                <div
+                  class="block-strip block-strip--defragged"
+                  aria-hidden="true"
+                >
+                  <span class="block block--file-a">A</span>
+                  <span class="block block--file-a">A</span>
+                  <span class="block block--file-a">A</span>
+                  <span class="block block--other">B</span>
+                  <span class="block block--other">C</span>
+                  <span class="block block--other">D</span>
+                  <span class="block block--free"></span>
+                </div>
+                <p>
+                  Defragmentation rearranges file parts so related blocks sit
+                  closer together, reducing mechanical movement on an HDD.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Idea</th>
+                    <th>Meaning</th>
+                    <th>Exam point</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Fragmentation</td>
+                    <td>
+                      One file is stored in separate non-contiguous blocks.
+                    </td>
+                    <td>Can increase seek time on HDDs.</td>
+                  </tr>
+                  <tr>
+                    <td>Defragmentation</td>
+                    <td>
+                      Reorganises file blocks to make access more sequential.
+                    </td>
+                    <td>
+                      Can improve HDD performance after heavy file changes.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SSD difference</td>
+                    <td>
+                      Flash cells are accessed electronically, not by a moving
+                      head.
+                    </td>
+                    <td>
+                      Defragmenting an SSD is usually unnecessary and can add
+                      writes.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section
@@ -372,9 +820,7 @@
             <div class="trap-grid">
               <article class="trap-card">
                 <h3>Confusing input and output</h3>
-                <p>
-                  Touchscreens are often treated as only output devices.
-                </p>
+                <p>Touchscreens are often treated as only output devices.</p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Remember that some hardware performs
                   more than one role.
@@ -383,9 +829,7 @@
 
               <article class="trap-card">
                 <h3>Choosing by popularity</h3>
-                <p>
-                  "Everyone uses it" is not a technical justification.
-                </p>
+                <p>"Everyone uses it" is not a technical justification.</p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Mention speed, quality, portability,
                   accessibility, capacity, or cost.
@@ -403,6 +847,30 @@
                   convenience.
                 </p>
               </article>
+
+              <article class="trap-card">
+                <h3>Only saying "faster"</h3>
+                <p>
+                  Storage answers often lose marks when they do not explain why
+                  one technology performs differently.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention moving parts, seek time,
+                  transfer rate, cache, or flash memory where relevant.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Defragmenting the wrong device</h3>
+                <p>
+                  Defragmentation is mainly useful for HDDs because they have a
+                  moving head.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Do not recommend defragmenting an SSD as
+                  a normal performance improvement.
+                </p>
+              </article>
             </div>
           </section>
 
@@ -414,7 +882,7 @@
             <p class="eyebrow">Quiz</p>
             <h2>Check your understanding</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
+              Answer all eight questions, then check your score. Your choices
               and best score save in this browser so you can revisit the lesson
               later.
             </p>
@@ -458,7 +926,9 @@
                 data-success="Correct. A touchscreen can both display output and receive touch input."
                 data-feedback="Touchscreens are both input and output devices because they show information and detect touch."
               >
-                <legend>2. Which device can act as both input and output?</legend>
+                <legend>
+                  2. Which device can act as both input and output?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -489,7 +959,10 @@
                 data-success="Correct. An SSD usually gives faster access times than an HDD."
                 data-feedback="SSDs are commonly chosen for faster access and no moving parts."
               >
-                <legend>3. Which storage device is usually chosen for faster access speed?</legend>
+                <legend>
+                  3. Which storage device is usually chosen for faster access
+                  speed?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -520,7 +993,10 @@
                 data-success="Correct. A microphone captures sound for the computer to process."
                 data-feedback="A microphone is an audio input device, not an output device."
               >
-                <legend>4. Which device is most suitable for capturing spoken commands?</legend>
+                <legend>
+                  4. Which device is most suitable for capturing spoken
+                  commands?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -551,7 +1027,10 @@
                 data-success="Correct. A printer is chosen when a physical copy is needed."
                 data-feedback="Hard copy means the output needs to exist on paper or another physical medium."
               >
-                <legend>5. Why might a printer be chosen over a monitor for some outputs?</legend>
+                <legend>
+                  5. Why might a printer be chosen over a monitor for some
+                  outputs?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -569,6 +1048,107 @@
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
                       <span>Because a permanent physical copy is needed</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="a"
+                data-success="Correct. HDDs store data as magnetic patterns on spinning platters."
+                data-feedback="A hard disk drive uses magnetic platters and moving read/write heads."
+              >
+                <legend>6. How does a hard disk drive store data?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="a" />
+                      <span>As magnetic patterns on spinning platters</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="b" />
+                      <span>Only as light projected onto a screen</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="c" />
+                      <span>Only as sound waves in a speaker</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="b"
+                data-success="Correct. Seek time is the time taken for the HDD head to move to the correct track."
+                data-feedback="Seek time is about the mechanical movement of the read/write head."
+              >
+                <legend>
+                  7. Which HDD factor describes the time taken for the head to
+                  move to the correct track?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="a" />
+                      <span>Screen resolution</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="b" />
+                      <span>Seek time</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="c" />
+                      <span>Print speed</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="c"
+                data-success="Correct. Fragmentation can make the HDD head move to several places to read one file."
+                data-feedback="Fragmentation spreads file parts around the disk, which can increase mechanical movement on an HDD."
+              >
+                <legend>
+                  8. Why can fragmentation slow down a hard disk drive?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="a" />
+                      <span>It makes the monitor display fewer colours</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="b" />
+                      <span>It removes every file from storage</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="c" />
+                      <span
+                        >It spreads file parts so the head may need to move
+                        more</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -600,9 +1180,9 @@
             <p class="eyebrow">Exam-Style Practice</p>
             <h2>Try longer answers like the ones used in written papers</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -616,8 +1196,8 @@
                 </div>
                 <h3>Question 1</h3>
                 <p>
-                  Explain why a touchscreen may be more suitable than a
-                  keyboard and mouse in a public information kiosk.
+                  Explain why a touchscreen may be more suitable than a keyboard
+                  and mouse in a public information kiosk.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-1">
@@ -641,9 +1221,7 @@
                       <li>
                         It is quicker and easier for short tasks than typing.
                       </li>
-                      <li>
-                        It reduces the number of separate devices needed.
-                      </li>
+                      <li>It reduces the number of separate devices needed.</li>
                       <li>
                         It may feel more intuitive for casual users in public
                         spaces.
@@ -707,6 +1285,67 @@
                 </details>
               </article>
             </div>
+
+            <div data-slide-break></div>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">8 marks</span>
+                  <span class="exam-pill">Analyse</span>
+                </div>
+                <h3>Question 3</h3>
+                <p>
+                  A small design studio stores large project files on an older
+                  HDD. Staff say that files take longer to open after months of
+                  saving, deleting, and editing projects. Analyse possible HDD
+                  performance reasons and suggest suitable improvements.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-3">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-3"
+                    class="exam-response"
+                    data-exam-response="question-3"
+                    placeholder="Mention seek time, data transfer rate, spindle speed, cache, fragmentation, and storage choice."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        Large project files can be slow on an HDD because the
+                        drive has mechanical seek time and rotational delay.
+                      </li>
+                      <li>
+                        Data transfer rate affects how quickly large files are
+                        read once the drive reaches the data.
+                      </li>
+                      <li>
+                        Cache can help repeated access, but it cannot remove the
+                        limits of moving parts.
+                      </li>
+                      <li>
+                        Frequent saving, deleting, and editing can cause
+                        fragmentation, making the head move to several places.
+                      </li>
+                      <li>
+                        Defragmenting may improve HDD access if fragmentation is
+                        a problem.
+                      </li>
+                      <li>
+                        Moving active project files to an SSD could improve
+                        access time and responsiveness because SSDs use flash
+                        memory with no moving parts.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
           </section>
         </main>
 
@@ -731,6 +1370,36 @@
                 <dt>SSD</dt>
                 <dd>Fast solid-state storage with no moving parts.</dd>
               </div>
+              <div class="glossary-item">
+                <dt>HDD</dt>
+                <dd>
+                  Magnetic storage that uses spinning platters and moving heads.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Flash memory</dt>
+                <dd>
+                  Storage that keeps data using electrical charge in memory
+                  cells.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Seek time</dt>
+                <dd>
+                  Time taken for an HDD read/write head to reach the required
+                  track.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Data transfer rate</dt>
+                <dd>
+                  How quickly data can be read from or written to storage.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Fragmentation</dt>
+                <dd>When a file is stored in separate pieces across a disk.</dd>
+              </div>
             </dl>
           </section>
 
@@ -740,7 +1409,12 @@
             <ul class="memory-list">
               <li>Say what the device does, not just what it is called.</li>
               <li>Suitability depends on the user and the task.</li>
-              <li>Speed, capacity, quality, and accessibility all matter.</li>
+              <li>
+                For storage, explain how the technology affects performance.
+              </li>
+              <li>
+                HDDs are affected by movement, rotation, transfer, and cache.
+              </li>
             </ul>
           </section>
         </aside>
@@ -765,7 +1439,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 15</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

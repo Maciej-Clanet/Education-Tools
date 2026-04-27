@@ -72,7 +72,7 @@ All the initial versions of the lessons have been added, the below checklist is 
 
 ### A1 Computer hardware in a computer system
 - [x] Computer system types and internal components
-- [ ] Input, output, and storage devices
+- [x] Input, output, and storage devices
 - [ ] Hardware performance and component choice
 - [ ] RAID and NAS storage systems
 

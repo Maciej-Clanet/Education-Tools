@@ -24,7 +24,7 @@ const lessonConfig = {
   },
   quiz: {
     storageKey: "lesson-input-output-and-storage-devices-quiz",
-    passScore: 4,
+    passScore: 6,
   },
   examPractice: {
     storageKey: "lesson-input-output-and-storage-devices-exam-practice",
