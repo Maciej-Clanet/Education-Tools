@@ -1862,6 +1862,10 @@ body.teacher-mode-active .slide-fullrow {
   min-width: 196px;
 }
 
+.teacher-tool-popover--text-size {
+  min-width: 190px;
+}
+
 .teacher-tool-popover-row {
   display: flex;
   flex-wrap: wrap;
@@ -1893,6 +1897,12 @@ body.teacher-mode-active .slide-fullrow {
 .teacher-tool-slider {
   display: grid;
   gap: 0.45rem;
+}
+
+.teacher-tool-slider__label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--page-ink);
 }
 
 .teacher-tool-slider input {
@@ -2051,11 +2061,23 @@ body.teacher-mode-active .lesson-section {
   height: 100vh;
   margin: 0;
   padding: clamp(1.2rem, 3vw, 2.6rem) clamp(1rem, 5vw, 4.5rem) 5.8rem;
+  font-size: var(--teacher-slide-body-size, 1.2rem);
+  line-height: 1.6;
   overflow-y: auto;
   border-radius: 0;
   box-shadow: none;
   scroll-snap-align: start;
   isolation: isolate;
+}
+
+body.teacher-mode-active .lesson-section .eyebrow {
+  font-size: var(--teacher-slide-eyebrow-size, 0.94rem);
+}
+
+body.teacher-mode-active .lesson-section h2 {
+  font-size: var(--teacher-slide-section-heading-size, 2.48rem);
+  line-height: 1.08;
+  text-wrap: balance;
 }
 
 body.teacher-mode-active .lesson-section::before {
@@ -2071,6 +2093,48 @@ body.teacher-mode-active .lesson-section > :not(.teacher-highlight-layer) {
 
 body.teacher-mode-active .teacher-slide-chunk-hidden {
   display: none !important;
+}
+
+body.teacher-mode-active .lesson-card h3,
+body.teacher-mode-active .application-card h3,
+body.teacher-mode-active .simulator-card h3,
+body.teacher-mode-active .glossary-card h2,
+body.teacher-mode-active .revision-card h2,
+body.teacher-mode-active .context-card h2,
+body.teacher-mode-active .trap-card h3,
+body.teacher-mode-active .exam-card h3 {
+  font-size: var(--teacher-slide-card-heading-size, 1.28rem);
+}
+
+body.teacher-mode-active .example-chip {
+  font-size: var(--teacher-slide-chip-size, 1.08rem);
+}
+
+body.teacher-mode-active .matrix-display__label {
+  font-size: var(--teacher-slide-label-size, 0.94rem);
+}
+
+body.teacher-mode-active .matrix-equation__operator,
+body.teacher-mode-active .matrix-equation__token {
+  font-size: var(--teacher-slide-operator-size, 2.24rem);
+}
+
+body.teacher-mode-active .matrix-grid {
+  grid-template-columns: repeat(
+    var(--matrix-columns, 2),
+    minmax(var(--teacher-slide-matrix-cell-size, 3.2rem), 1fr)
+  );
+}
+
+body.teacher-mode-active .matrix-grid__cell,
+body.teacher-mode-active .matrix-answer-cell {
+  min-width: var(--teacher-slide-matrix-cell-size, 3.2rem);
+  min-height: var(--teacher-slide-matrix-cell-size, 3.2rem);
+}
+
+body.teacher-mode-active .structure-status,
+body.teacher-mode-active .slide-status {
+  font-size: var(--teacher-slide-status-size, 1.12rem);
 }
 
 body.teacher-mode-active .teacher-controls {

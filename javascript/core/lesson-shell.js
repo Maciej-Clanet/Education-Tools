@@ -14,6 +14,9 @@ const INTERACTIVE_SELECTOR = [
 ].join(", ")
 
 const TEACHER_CHUNK_HIDDEN_CLASS = "teacher-slide-chunk-hidden"
+const DEFAULT_TEACHER_TEXT_SCALE = 1.2
+const MIN_TEACHER_TEXT_SCALE = 1
+const MAX_TEACHER_TEXT_SCALE = 1.6
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
@@ -500,6 +503,7 @@ function initTeacherMode(config) {
     spotlightX: 50,
     spotlightY: 34,
     spotlightSize: 210,
+    textScale: DEFAULT_TEACHER_TEXT_SCALE,
   }
 
   function getTeacherIcon(name) {
@@ -567,6 +571,14 @@ function initTeacherMode(config) {
           <path d="M13 7l-6 6" />
         </svg>
       `,
+      textSize: `
+        <svg viewBox="0 0 24 24" class="teacher-tool-icon" aria-hidden="true">
+          <path d="M4 7h9" />
+          <path d="M8.5 7v10" />
+          <path d="M13.5 11h6.5" />
+          <path d="M16.75 11v6" />
+        </svg>
+      `,
     }
 
     return icons[name] ?? ""
@@ -628,6 +640,39 @@ function initTeacherMode(config) {
           ${getTeacherIcon("blank")}
           <span class="sr-only">Blank screen</span>
         </button>
+      </div>
+      <div class="teacher-tool-item" data-tool="text-size">
+        <button
+          type="button"
+          class="teacher-tool-button teacher-tool-button--icon"
+          data-action="show-text-size"
+          aria-label="Slide text size"
+          title="Slide text size"
+        >
+          ${getTeacherIcon("textSize")}
+          <span class="sr-only">Slide text size</span>
+        </button>
+        <div class="teacher-tool-popover teacher-tool-popover--text-size">
+          <label class="teacher-tool-slider" for="teacher-text-size">
+            <span class="teacher-tool-slider__label">Slide text size</span>
+            <input
+              id="teacher-text-size"
+              type="range"
+              min="100"
+              max="160"
+              step="5"
+              value="120"
+              data-action="text-size"
+              title="Slide text size"
+            />
+            <span
+              class="teacher-tool-slider__value"
+              data-role="teacher-text-size-value"
+            >
+              120%
+            </span>
+          </label>
+        </div>
       </div>
       <div class="teacher-tool-item" data-tool="spotlight">
         <button
@@ -752,6 +797,10 @@ function initTeacherMode(config) {
   const shortcutsButton = toolsDock.querySelector(
     "[data-action='show-shortcuts']"
   )
+  const textSizeInput = toolsDock.querySelector("[data-action='text-size']")
+  const textSizeValue = toolsDock.querySelector(
+    "[data-role='teacher-text-size-value']"
+  )
   const highlightItem = toolsDock.querySelector("[data-tool='highlight']")
   const spotlightItem = toolsDock.querySelector("[data-tool='spotlight']")
   const blankItem = toolsDock.querySelector("[data-tool='blank']")
@@ -795,6 +844,66 @@ function initTeacherMode(config) {
     "Next slide (Arrow Right, Space, or Page Down)"
   )
   exitButton?.setAttribute("title", "Exit slides (Escape)")
+
+  function formatTeacherTextScale(scale) {
+    return `${Math.round(scale * 100)}%`
+  }
+
+  function applyTeacherTextScale() {
+    const textScale = clamp(
+      teacherToolsState.textScale,
+      MIN_TEACHER_TEXT_SCALE,
+      MAX_TEACHER_TEXT_SCALE
+    )
+
+    teacherToolsState.textScale = textScale
+    document.body.style.setProperty(
+      "--teacher-slide-body-size",
+      `${textScale.toFixed(3)}rem`
+    )
+    document.body.style.setProperty(
+      "--teacher-slide-eyebrow-size",
+      `${(0.78 * textScale).toFixed(3)}rem`
+    )
+    document.body.style.setProperty(
+      "--teacher-slide-section-heading-size",
+      `${(2.1 * textScale).toFixed(3)}rem`
+    )
+    document.body.style.setProperty(
+      "--teacher-slide-card-heading-size",
+      `${(1.08 * textScale).toFixed(3)}rem`
+    )
+    document.body.style.setProperty(
+      "--teacher-slide-chip-size",
+      `${(0.92 * textScale).toFixed(3)}rem`
+    )
+    document.body.style.setProperty(
+      "--teacher-slide-label-size",
+      `${(0.8 * textScale).toFixed(3)}rem`
+    )
+    document.body.style.setProperty(
+      "--teacher-slide-operator-size",
+      `${(1.9 * textScale).toFixed(3)}rem`
+    )
+    document.body.style.setProperty(
+      "--teacher-slide-status-size",
+      `${(0.95 * textScale).toFixed(3)}rem`
+    )
+    document.body.style.setProperty(
+      "--teacher-slide-matrix-cell-size",
+      `${(3 * Math.min(textScale, 1.3)).toFixed(3)}rem`
+    )
+  }
+
+  function setTeacherTextScale(nextScale) {
+    teacherToolsState.textScale = clamp(
+      nextScale,
+      MIN_TEACHER_TEXT_SCALE,
+      MAX_TEACHER_TEXT_SCALE
+    )
+    applyTeacherTextScale()
+    updateTeacherToolsUI()
+  }
 
   function getSlide(index = activeSlideIndex) {
     return slides[index] ?? slides[0] ?? null
@@ -1068,6 +1177,8 @@ function initTeacherMode(config) {
     updatePresentationOverlay()
   }
 
+  applyTeacherTextScale()
+
   updateTeacherToolsUI = () => {
     pruneHighlightHistory()
     pruneEmptyHighlightLayers()
@@ -1115,6 +1226,14 @@ function initTeacherMode(config) {
       spotlightSizeValue.textContent = `${teacherToolsState.spotlightSize}`
     }
 
+    if (textSizeInput) {
+      textSizeInput.value = String(Math.round(teacherToolsState.textScale * 100))
+    }
+
+    if (textSizeValue) {
+      textSizeValue.textContent = formatTeacherTextScale(teacherToolsState.textScale)
+    }
+
     highlightColorButtons.forEach((button) => {
       const isActive =
         button.dataset.highlightColor === teacherToolsState.highlightColor
@@ -1133,6 +1252,8 @@ function initTeacherMode(config) {
     teacherToolsState.shelfOpen = false
     teacherToolsState.activeMode = null
     teacherToolsState.blankScreen = false
+    teacherToolsState.textScale = DEFAULT_TEACHER_TEXT_SCALE
+    applyTeacherTextScale()
     updatePresentationOverlay()
     setTeacherToolsOpen(false)
     updateTeacherToolsUI()
@@ -1144,6 +1265,12 @@ function initTeacherMode(config) {
 
   shortcutsButton?.addEventListener("click", () => {
     setTeacherToolsOpen(true)
+  })
+
+  textSizeInput?.addEventListener("input", () => {
+    setTeacherTextScale(
+      (Number(textSizeInput.value) || DEFAULT_TEACHER_TEXT_SCALE * 100) / 100
+    )
   })
 
   highlightToggleButton?.addEventListener("click", () => {
