@@ -67,16 +67,16 @@ here as they are completed.
 ## A Hardware and software
 
 ### A1 Computer hardware in a computer system
-- [ ] Computer system types and internal components
-- [ ] Input, output, and storage devices
-- [ ] Hardware performance and component choice
-- [ ] RAID and NAS storage systems
+- [x] Computer system types and internal components
+- [x] Input, output, and storage devices
+- [x] Hardware performance and component choice
+- [x] RAID and NAS storage systems
 
 ### A2 Computer software in a computer system
-- [ ] Operating system types
-- [ ] Kernel functions and system management
-- [ ] User interfaces and software choice
-- [ ] Utility, application, and open source software
+- [x] Operating system types
+- [x] Kernel functions and system management
+- [x] User interfaces and software choice
+- [x] Utility, application, and open source software
 
 ### A3 Data processing
 - [ ] Collecting and processing data

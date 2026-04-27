@@ -152,6 +152,14 @@ the browser with `localStorage` where useful.
   lesson pages.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
 - Live topic lessons now exist at
+  `pages/topics/computer-system-types-and-internal-components.html`,
+  `pages/topics/input-output-and-storage-devices.html`,
+  `pages/topics/hardware-performance-and-component-choice.html`,
+  `pages/topics/raid-and-nas-storage-systems.html`,
+  `pages/topics/operating-system-types.html`,
+  `pages/topics/kernel-functions-and-system-management.html`,
+  `pages/topics/user-interfaces-and-software-choice.html`,
+  `pages/topics/utility-application-and-open-source-software.html`,
   `pages/topics/stored-program-architecture-von-neumann-and-harvard.html`,
   `pages/topics/cluster-computing-uma-and-numa.html`,
   `pages/topics/emulation-in-computer-systems.html`,

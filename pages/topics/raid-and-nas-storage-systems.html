@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RAID and NAS Storage Systems Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise RAID and NAS storage systems for BTEC Level 3 Computing Unit 2, including redundancy, shared storage, availability, recovery, and when each approach is suitable."
+    />
+    <meta
+      property="og:title"
+      content="RAID and NAS Storage Systems Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise RAID and NAS storage systems for BTEC Level 3 Computing Unit 2, including redundancy, shared storage, availability, recovery, and when each approach is suitable."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/raid-and-nas-storage-systems.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Computer Hardware</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-a"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">RAID and NAS storage systems</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>RAID and NAS storage systems</h1>
+            <p class="lesson-hero-text">
+              Learn how RAID improves resilience or performance across multiple
+              drives, how NAS provides shared network storage, and how to judge
+              which approach best supports availability and recovery.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>A1 Computer hardware in a computer system</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Redundancy, shared storage, and recovery planning</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-a"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, answer saving, and teacher slides need JavaScript, but
+          the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#raid-basics" data-section-link>RAID basics</a>
+            <a href="#nas-basics" data-section-link>NAS basics</a>
+            <a href="#choice-and-recovery" data-section-link
+              >Choice and recovery</a
+            >
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>What you should know by the end of this lesson</h2>
+            <p class="lesson-section-copy">
+              RAID and NAS appear in questions about storage resilience,
+              availability, shared access, and recovery. The important skill is
+              not just naming them, but explaining what problem each one helps
+              solve.
+            </p>
+
+            <div class="lesson-intro-grid">
+              <article class="lesson-card">
+                <h3>Learning goals</h3>
+                <ul class="lesson-list">
+                  <li>Define RAID and NAS accurately.</li>
+                  <li>Explain why redundancy matters in storage systems.</li>
+                  <li>Describe how NAS supports shared access over a network.</li>
+                  <li>
+                    Judge when RAID, NAS, or both are useful in a scenario.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="lesson-card">
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li><strong>RAID:</strong> multiple disks working together.</li>
+                  <li><strong>NAS:</strong> storage shared across a network.</li>
+                  <li><strong>Redundancy:</strong> backup capacity inside the system.</li>
+                  <li><strong>Availability:</strong> keeping access going.</li>
+                </ul>
+              </article>
+
+              <article class="lesson-card fullrow">
+                <h3>Key exam warning</h3>
+                <p>
+                  RAID can improve fault tolerance, but it does not replace a
+                  proper backup strategy. That distinction is a common exam
+                  test.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="raid-basics"
+            class="lesson-section lesson-section--raid-basics panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">RAID</p>
+            <h2>RAID uses multiple disks to improve performance, resilience, or both</h2>
+            <p class="lesson-section-copy">
+              RAID stands for Redundant Array of Independent Disks. It combines
+              several drives into one storage arrangement so the system can gain
+              speed, fault tolerance, or a balance of both.
+            </p>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Striping</strong>
+                <span>
+                  Data is split across more than one drive, which can improve
+                  read and write speed.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Mirroring</strong>
+                <span>
+                  Data is duplicated to another drive, helping availability if
+                  one drive fails.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Parity</strong>
+                <span>
+                  Extra information is stored so missing data can be rebuilt
+                  after a failure in some RAID setups.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Fault tolerance</strong>
+                <span>
+                  The ability to keep working even when a component fails.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Simple comparison</h3>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Approach</th>
+                      <th>Main idea</th>
+                      <th>Benefit</th>
+                      <th>Limitation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Striping-focused RAID</td>
+                      <td>Spread data across drives</td>
+                      <td>Higher performance</td>
+                      <td>Little or no protection if a disk fails</td>
+                    </tr>
+                    <tr>
+                      <td>Mirroring-focused RAID</td>
+                      <td>Keep duplicate copies</td>
+                      <td>Better availability after failure</td>
+                      <td>Uses more storage capacity</td>
+                    </tr>
+                    <tr>
+                      <td>Parity-based RAID</td>
+                      <td>Store extra recovery information</td>
+                      <td>Balances capacity and fault tolerance</td>
+                      <td>Rebuilds can be slower or more complex</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </section>
+
+          <section
+            id="nas-basics"
+            class="lesson-section lesson-section--nas-basics panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">NAS</p>
+            <h2>NAS provides storage to users and devices over a network</h2>
+            <p class="lesson-section-copy">
+              NAS stands for Network Attached Storage. It is a storage device
+              or appliance connected to a network so users can access shared
+              files without storing everything on their own machine.
+            </p>
+
+            <div class="example-strip" aria-label="NAS features">
+              <span class="example-chip"><strong>Shared files</strong> one central store</span>
+              <span class="example-chip"><strong>Network access</strong> many users</span>
+              <span class="example-chip"><strong>Central management</strong> easier control</span>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Central storage</strong>
+                <span>
+                  Files can be stored in one place instead of being scattered
+                  across many separate computers.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Shared access</strong>
+                <span>
+                  Several users or departments can work from the same file
+                  space, depending on permissions.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Management</strong>
+                <span>
+                  Administrators can manage storage, user access, and sometimes
+                  backups from one system.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Network dependence</strong>
+                <span>
+                  If the network is down or congested, access to NAS files may
+                  be affected.
+                </span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>RAID and NAS can appear together</h3>
+              <p>
+                A NAS device may itself use RAID internally. That means NAS
+                describes how storage is shared across the network, while RAID
+                describes how the drives inside the storage system are arranged.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="choice-and-recovery"
+            class="lesson-section lesson-section--choice-and-recovery panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Choice</p>
+            <h2>Storage decisions should consider availability, recovery, and access</h2>
+            <p class="lesson-section-copy">
+              The best solution depends on how much downtime is acceptable, how
+              many users need access, and how important fast recovery is after a
+              failure.
+            </p>
+
+            <article class="lesson-card">
+              <h3>When RAID helps</h3>
+              <p>
+                RAID is useful when a system cannot easily stop working after a
+                single drive failure. It can keep data available or improve
+                speed, depending on the arrangement.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>When NAS helps</h3>
+              <p>
+                NAS is useful when multiple users need shared storage, central
+                management, and easier file access across a network.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>The backup warning</h3>
+              <p>
+                RAID and NAS support resilience and access, but neither should
+                be treated as the only data protection strategy. Backups are
+                still needed for deletion, corruption, ransomware, or site
+                loss.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with RAID and NAS</h2>
+            <p class="lesson-section-copy">
+              Most confusion comes from mixing up what RAID does with what NAS
+              does.
+            </p>
+
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Thinking RAID means backup</h3>
+                <p>
+                  RAID can protect against some drive failures, but not every
+                  data-loss situation.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Say that backup is still needed.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Treating NAS as a RAID level</h3>
+                <p>
+                  NAS is not a RAID type. It is a network storage approach.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Separate the idea of shared access from
+                  the idea of disk arrangement.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Ignoring recovery needs</h3>
+                <p>
+                  Some answers focus only on capacity or speed.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention downtime, availability, and how
+                  quickly the organisation needs to recover.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all five questions, then check your score. Your choices
+              and best score save in this browser so you can revisit the lesson
+              later.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. RAID combines multiple disks into one arrangement."
+                data-feedback="RAID is about how several drives work together for speed, redundancy, or both."
+              >
+                <legend>1. What does RAID involve?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Connecting one printer to a network</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>Using multiple storage disks together</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>Replacing RAM with solid-state storage</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. NAS provides storage across a network."
+                data-feedback="NAS is designed to let users or systems access shared storage over the network."
+              >
+                <legend>2. What is the main role of NAS?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>To provide shared storage over a network</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>To cool the CPU during heavy processing</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>To act as a graphics accelerator</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. Mirroring keeps a duplicate copy of data on another drive."
+                data-feedback="Mirroring means the same data is written to more than one drive to improve resilience."
+              >
+                <legend>3. What does mirroring in RAID do?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>Compresses files automatically</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>Connects more monitors to the system</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>Stores duplicate data on another drive</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. RAID is not the same as a backup strategy."
+                data-feedback="RAID can help with drive failure, but backups are still needed for deletion, corruption, or larger incidents."
+              >
+                <legend>4. Why is RAID not the same as a full backup strategy?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>Because RAID only works with laptops</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>Because it does not protect against every kind of data loss</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>Because it always reduces storage speed to zero</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. A NAS is useful when several users need central shared access."
+                data-feedback="NAS is especially useful where shared files and central management are important."
+              >
+                <legend>5. Which scenario most clearly suits NAS?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>A team needs access to shared files from different PCs</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>A student wants brighter screen colours</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>A phone needs a quieter vibration motor</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="lesson-section-copy">
+              These questions need fuller explanations than the quick quiz.
+              Type your answers straight into the page, then compare your ideas
+              with the answer guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain how RAID can improve availability after a disk
+                  failure.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Focus on redundancy or rebuild capability."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>Some RAID arrangements store duplicate or recovery data.</li>
+                      <li>
+                        If one drive fails, the system may still access the data
+                        from the remaining drives.
+                      </li>
+                      <li>
+                        This reduces downtime compared with a single-drive
+                        system.
+                      </li>
+                      <li>
+                        Availability improves because the service may continue
+                        while the failed drive is replaced.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Discuss</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  A small design studio wants central file access for staff and
+                  reduced disruption if a drive fails. Discuss whether NAS,
+                  RAID, or a combination of both would be most suitable.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Think about shared access, redundancy, and the final recommendation."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        NAS would help because staff need shared central file
+                        access across the network.
+                      </li>
+                      <li>
+                        RAID would help because the studio wants reduced
+                        disruption if a drive fails.
+                      </li>
+                      <li>
+                        A NAS device using RAID internally may meet both needs.
+                      </li>
+                      <li>
+                        This would support access, management, and better
+                        availability.
+                      </li>
+                      <li>
+                        However, backups are still needed because RAID is not a
+                        full backup solution.
+                      </li>
+                      <li>
+                        The strongest judgement is usually that a combination is
+                        most suitable.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>RAID</dt>
+                <dd>A way of arranging multiple disks to improve resilience or speed.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>NAS</dt>
+                <dd>Network attached storage that provides shared file access.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Mirroring</dt>
+                <dd>Keeping duplicate copies of data on more than one drive.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Redundancy</dt>
+                <dd>Extra capacity or duplication that protects availability.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Separate the ideas</h2>
+            <ul class="memory-list">
+              <li>RAID is about disk arrangement.</li>
+              <li>NAS is about network-based shared storage.</li>
+              <li>Neither removes the need for proper backups.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>
