@@ -13,6 +13,8 @@ const INTERACTIVE_SELECTOR = [
   "[data-no-slide-advance]",
 ].join(", ")
 
+const TEACHER_CHUNK_HIDDEN_CLASS = "teacher-slide-chunk-hidden"
+
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
 }
@@ -387,9 +389,87 @@ function initExamPractice(config) {
   })
 }
 
+function buildTeacherSlideDeck(sections) {
+  const sectionSlides = []
+  const slides = []
+  const firstSlideIndexBySection = new Map()
+
+  sections.forEach((section) => {
+    const children = Array.from(section.children)
+    const persistentNodes = []
+    const eyebrow = children.find((child) => child.classList.contains("eyebrow"))
+    const heading = children.find((child) => /^H[1-6]$/.test(child.tagName))
+
+    if (eyebrow) {
+      persistentNodes.push(eyebrow)
+    }
+
+    if (heading && !persistentNodes.includes(heading)) {
+      persistentNodes.push(heading)
+    }
+
+    const markers = children.filter((child) =>
+      child.hasAttribute("data-slide-break")
+    )
+    const chunks = []
+    let currentChunk = []
+
+    // Empty `data-slide-break` markers let a section become multiple teacher slides
+    // without changing the default lesson layout.
+    children.forEach((child) => {
+      if (persistentNodes.includes(child)) {
+        return
+      }
+
+      if (child.hasAttribute("data-slide-break")) {
+        child.hidden = true
+
+        if (currentChunk.length > 0) {
+          chunks.push(currentChunk)
+          currentChunk = []
+        }
+
+        return
+      }
+
+      currentChunk.push(child)
+    })
+
+    if (currentChunk.length > 0) {
+      chunks.push(currentChunk)
+    }
+
+    if (chunks.length === 0) {
+      chunks.push([])
+    }
+
+    const sectionSlide = {
+      section,
+      markers,
+      chunks,
+    }
+
+    sectionSlides.push(sectionSlide)
+    firstSlideIndexBySection.set(section, slides.length)
+
+    chunks.forEach((chunk, chunkIndex) => {
+      slides.push({
+        section,
+        chunk,
+        chunkIndex,
+        chunkCount: chunks.length,
+      })
+    })
+  })
+
+  return { sectionSlides, slides, firstSlideIndexBySection }
+}
+
 function initTeacherMode(config) {
   const main = document.querySelector("[data-role='lesson-main']")
   const sections = Array.from(document.querySelectorAll("[data-lesson-section]"))
+  const { sectionSlides, slides, firstSlideIndexBySection } =
+    buildTeacherSlideDeck(sections)
   const toggleButton = document.querySelector(
     "[data-action='toggle-teacher-mode']"
   )
@@ -407,6 +487,7 @@ function initTeacherMode(config) {
   let isTeacherMode = Boolean(readStorage(storageKey, false))
   let activeSlideIndex = 0
   let pointerStart = null
+  let slideScrollTargetSection = null
   let updateTeacherToolsUI = () => {}
   let resetTeacherTools = () => {}
 
@@ -715,8 +796,39 @@ function initTeacherMode(config) {
   )
   exitButton?.setAttribute("title", "Exit slides (Escape)")
 
+  function getSlide(index = activeSlideIndex) {
+    return slides[index] ?? slides[0] ?? null
+  }
+
   function getActiveSlide() {
-    return sections[activeSlideIndex] ?? sections[0] ?? null
+    return getSlide()?.section ?? sections[0] ?? null
+  }
+
+  function syncSectionChunkVisibility() {
+    const activeSlide = getSlide()
+
+    sectionSlides.forEach((sectionSlide) => {
+      const activeChunkIndex =
+        isTeacherMode && activeSlide?.section === sectionSlide.section
+          ? activeSlide.chunkIndex
+          : 0
+      const shouldSplitSection =
+        isTeacherMode && sectionSlide.chunks.length > 1
+
+      sectionSlide.markers.forEach((marker) => {
+        marker.hidden = true
+      })
+
+      sectionSlide.chunks.forEach((chunk, chunkIndex) => {
+        const shouldHideChunk =
+          shouldSplitSection && chunkIndex !== activeChunkIndex
+
+        chunk.forEach((element) => {
+          element.hidden = false
+          element.classList.toggle(TEACHER_CHUNK_HIDDEN_CLASS, shouldHideChunk)
+        })
+      })
+    })
   }
 
   function clearTextSelection() {
@@ -1077,19 +1189,19 @@ function initTeacherMode(config) {
   })
 
   function findNearestSectionIndex() {
-    let nearestIndex = 0
+    let nearestSection = sections[0] ?? null
     let nearestDistance = Number.MAX_SAFE_INTEGER
 
-    sections.forEach((section, index) => {
+    sections.forEach((section) => {
       const distance = Math.abs(section.getBoundingClientRect().top - 150)
 
       if (distance < nearestDistance) {
         nearestDistance = distance
-        nearestIndex = index
+        nearestSection = section
       }
     })
 
-    return nearestIndex
+    return firstSlideIndexBySection.get(nearestSection) ?? 0
   }
 
   function updateControls() {
@@ -1107,7 +1219,7 @@ function initTeacherMode(config) {
     }
 
     if (status) {
-      status.textContent = `Slide ${activeSlideIndex + 1} of ${sections.length}`
+      status.textContent = `Slide ${activeSlideIndex + 1} of ${slides.length}`
     }
 
     if (previousButton) {
@@ -1115,14 +1227,14 @@ function initTeacherMode(config) {
     }
 
     if (nextButton) {
-      nextButton.disabled = activeSlideIndex === sections.length - 1
+      nextButton.disabled = activeSlideIndex === slides.length - 1
     }
 
     updateTeacherToolsUI()
   }
 
   function syncHash() {
-    const activeSectionId = sections[activeSlideIndex]?.id
+    const activeSectionId = getSlide()?.section?.id
 
     if (activeSectionId) {
       history.replaceState(null, "", `#${activeSectionId}`)
@@ -1130,15 +1242,34 @@ function initTeacherMode(config) {
   }
 
   function goToSlide(index, behavior = "smooth") {
-    activeSlideIndex = clamp(index, 0, sections.length - 1)
+    const previousSlide = getSlide()
+
+    activeSlideIndex = clamp(index, 0, slides.length - 1)
     clearTextSelection()
+    syncSectionChunkVisibility()
     pruneEmptyHighlightLayers()
 
-    sections[activeSlideIndex].scrollIntoView({
-      behavior,
-      block: isTeacherMode ? "nearest" : "start",
-      inline: "start",
-    })
+    const activeSlide = getSlide()
+
+    if (activeSlide?.section) {
+      activeSlide.section.scrollTop = 0
+    }
+
+    if (
+      activeSlide?.section &&
+      (!previousSlide ||
+        previousSlide.section !== activeSlide.section ||
+        !isTeacherMode)
+    ) {
+      slideScrollTargetSection = isTeacherMode ? activeSlide.section : null
+      activeSlide.section.scrollIntoView({
+        behavior,
+        block: isTeacherMode ? "nearest" : "start",
+        inline: "start",
+      })
+    } else {
+      slideScrollTargetSection = null
+    }
 
     syncHash()
     updateControls()
@@ -1152,6 +1283,7 @@ function initTeacherMode(config) {
     }
 
     document.body.classList.toggle("teacher-mode-active", isTeacherMode)
+    syncSectionChunkVisibility()
     writeStorage(storageKey, isTeacherMode)
     updateControls()
     updatePresentationOverlay()
@@ -1161,14 +1293,15 @@ function initTeacherMode(config) {
     })
   }
 
-  const initialHashIndex = sections.findIndex(
+  const initialHashSection = sections.find(
     (section) => `#${section.id}` === window.location.hash
   )
 
-  if (initialHashIndex >= 0) {
-    activeSlideIndex = initialHashIndex
+  if (initialHashSection) {
+    activeSlideIndex = firstSlideIndexBySection.get(initialHashSection) ?? 0
   }
 
+  syncSectionChunkVisibility()
   updateControls()
 
   if (isTeacherMode) {
@@ -1206,14 +1339,30 @@ function initTeacherMode(config) {
       return
     }
 
-    const nextIndex = clamp(
+    const nextSectionIndex = clamp(
       Math.round(main.scrollLeft / Math.max(main.clientWidth, 1)),
       0,
       sections.length - 1
     )
+    const visibleSection = sections[nextSectionIndex]
 
-    if (nextIndex !== activeSlideIndex) {
-      activeSlideIndex = nextIndex
+    if (slideScrollTargetSection) {
+      if (visibleSection === slideScrollTargetSection) {
+        slideScrollTargetSection = null
+      } else {
+        return
+      }
+    }
+
+    const currentSlide = getSlide()
+    const nextSlideIndex =
+      currentSlide?.section === visibleSection
+        ? activeSlideIndex
+        : firstSlideIndexBySection.get(visibleSection) ?? activeSlideIndex
+
+    if (nextSlideIndex !== activeSlideIndex) {
+      activeSlideIndex = nextSlideIndex
+      syncSectionChunkVisibility()
       syncHash()
       updateControls()
     }
