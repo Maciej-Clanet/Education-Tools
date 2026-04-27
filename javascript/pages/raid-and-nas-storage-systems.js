@@ -24,7 +24,7 @@ const lessonConfig = {
   },
   quiz: {
     storageKey: "lesson-raid-and-nas-storage-systems-quiz",
-    passScore: 4,
+    passScore: 6,
   },
   examPractice: {
     storageKey: "lesson-raid-and-nas-storage-systems-exam-practice",

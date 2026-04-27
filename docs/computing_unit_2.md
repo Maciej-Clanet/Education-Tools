@@ -74,7 +74,7 @@ All the initial versions of the lessons have been added, the below checklist is 
 - [x] Computer system types and internal components
 - [x] Input, output, and storage devices
 - [x] Hardware performance and component choice
-- [ ] RAID and NAS storage systems
+- [x] RAID and NAS storage systems
 
 ### A2 Computer software in a computer system
 - [ ] Operating system types
