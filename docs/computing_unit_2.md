@@ -142,10 +142,10 @@ here as they are completed.
 ## F The use of logic and data flow in computer systems
 
 ### F1 Boolean logic
-- [ ] Boolean logic
+- [x] Boolean logic
 
 ### F2 Flow charts and system diagrams
-- [ ] Flow charts and system diagrams
+- [x] Flow charts and system diagrams
 
 # Essential content
 The essential content is set out under content areas. Learners must cover all specified content

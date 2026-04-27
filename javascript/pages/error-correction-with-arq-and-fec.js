@@ -16,8 +16,9 @@ const lessonConfig = {
       },
       next: {
         title: "Boolean logic",
-        description: "Next in F1 Boolean logic. This lesson is still planned.",
-        status: "Planned",
+        description: "Next in F1 Boolean logic.",
+        status: "Live",
+        href: "../topics/boolean-logic.html",
       },
     },
   },
