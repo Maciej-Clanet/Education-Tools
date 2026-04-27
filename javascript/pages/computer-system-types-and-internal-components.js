@@ -24,7 +24,7 @@ const lessonConfig = {
   },
   quiz: {
     storageKey: "lesson-computer-system-types-and-internal-components-quiz",
-    passScore: 4,
+    passScore: 5,
   },
   examPractice: {
     storageKey:
