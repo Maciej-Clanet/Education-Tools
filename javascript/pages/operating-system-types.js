@@ -24,7 +24,7 @@ const lessonConfig = {
   },
   quiz: {
     storageKey: "lesson-operating-system-types-quiz",
-    passScore: 4,
+    passScore: 6,
   },
   examPractice: {
     storageKey: "lesson-operating-system-types-exam-practice",

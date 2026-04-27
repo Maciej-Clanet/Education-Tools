@@ -77,7 +77,7 @@ All the initial versions of the lessons have been added, the below checklist is 
 - [x] RAID and NAS storage systems
 
 ### A2 Computer software in a computer system
-- [ ] Operating system types
+- [x] Operating system types
 - [ ] Kernel functions and system management
 - [ ] User interfaces and software choice
 - [ ] Utility, application, and open source software
