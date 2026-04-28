@@ -1,11 +1,30 @@
+.stored-program-flow,
+.stored-program-stage,
+.bottleneck-visual,
+.bottleneck-lane,
+.bottleneck-path,
+.harvard-parallel-visual,
+.parallel-card,
+.architecture-choice-board,
+.choice-column,
+.architecture-layout,
 .architecture-layout-grid {
   display: grid;
   gap: 1rem;
 }
 
+.stored-program-flow {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  margin: 1.15rem 0 1.35rem;
+}
+
+.stored-program-stage,
+.bottleneck-lane,
+.bottleneck-path,
+.parallel-card,
+.choice-column,
 .architecture-layout {
-  display: grid;
-  gap: 1rem;
   padding: 1rem;
   border-radius: 22px;
   border: 1.5px solid rgba(37, 52, 66, 0.12);
@@ -15,6 +34,86 @@
     rgba(247, 251, 253, 0.82)
   );
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.stored-program-stage,
+.bottleneck-lane,
+.parallel-card {
+  justify-items: center;
+  align-content: start;
+  min-height: 13rem;
+  text-align: center;
+}
+
+.stored-program-stage strong,
+.bottleneck-lane strong,
+.bottleneck-path strong,
+.parallel-card strong,
+.choice-column h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.stored-program-stage span:not(.stored-program-icon),
+.bottleneck-lane span,
+.bottleneck-path span,
+.parallel-card span:not(.parallel-icon),
+.choice-column li {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.stored-program-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.stored-program-icon,
+.parallel-icon,
+.choice-icon {
+  display: inline-block;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.stored-program-stage--program {
+  border-left: 5px solid #785e16;
+}
+
+.stored-program-stage--memory {
+  border-left: 5px solid #155b75;
+}
+
+.stored-program-stage--cpu {
+  border-left: 5px solid #29523b;
+}
+
+.stored-program-icon--program {
+  background:
+    linear-gradient(180deg, rgba(120, 94, 22, 0.24) 18%, transparent 18% 30%, rgba(120, 94, 22, 0.24) 30% 46%, transparent 46% 58%, rgba(120, 94, 22, 0.24) 58% 74%, transparent 74%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.stored-program-icon--memory {
+  background:
+    linear-gradient(90deg, transparent 16%, rgba(21, 91, 117, 0.24) 17% 30%, transparent 31% 40%, rgba(21, 91, 117, 0.24) 41% 54%, transparent 55% 64%, rgba(21, 91, 117, 0.24) 65% 78%, transparent 79%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.stored-program-icon--cpu {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #29523b 0 0.24rem, transparent 0.26rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.55rem, rgba(41, 82, 59, 0.24) 0.57rem 0.66rem),
+    rgba(238, 248, 231, 0.96);
 }
 
 .architecture-layout__heading {
@@ -116,8 +215,192 @@
   color: var(--page-ink);
 }
 
+.bottleneck-visual {
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 1.1fr) minmax(0, 1fr);
+  align-items: stretch;
+  margin: 1rem 0;
+}
+
+.bottleneck-lane--instruction {
+  border-left: 5px solid #155b75;
+}
+
+.bottleneck-lane--data {
+  border-left: 5px solid #8b4831;
+}
+
+.bottleneck-path {
+  align-content: center;
+  justify-items: center;
+  min-height: 13rem;
+  border-left: 7px solid #785e16;
+}
+
+.bottleneck-path strong,
+.bottleneck-path span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.3rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  font-weight: 800;
+}
+
+.bottleneck-path strong {
+  color: #785e16;
+  text-transform: uppercase;
+}
+
+.harvard-parallel-visual {
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.9fr) minmax(0, 1fr);
+  align-items: stretch;
+  margin: 1rem 0;
+}
+
+.parallel-card--instruction {
+  border-left: 5px solid #155b75;
+}
+
+.parallel-card--cpu {
+  border-left: 5px solid #785e16;
+}
+
+.parallel-card--data {
+  border-left: 5px solid #8b4831;
+}
+
+.parallel-icon--instruction {
+  background:
+    linear-gradient(180deg, rgba(21, 91, 117, 0.24) 18%, transparent 18% 30%, rgba(21, 91, 117, 0.24) 30% 46%, transparent 46% 58%, rgba(21, 91, 117, 0.24) 58% 74%, transparent 74%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.parallel-icon--cpu {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #785e16 0 0.24rem, transparent 0.26rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.55rem, rgba(120, 94, 22, 0.24) 0.57rem 0.66rem),
+    rgba(255, 249, 227, 0.96);
+}
+
+.parallel-icon--data {
+  background:
+    radial-gradient(circle at 32% 50%, #8b4831 0 0.2rem, transparent 0.22rem),
+    radial-gradient(circle at 70% 50%, #8b4831 0 0.2rem, transparent 0.22rem),
+    linear-gradient(90deg, transparent 38%, rgba(139, 72, 49, 0.24) 39% 61%, transparent 62%),
+    rgba(255, 240, 241, 0.96);
+}
+
+.architecture-choice-board {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1rem 0;
+}
+
+.choice-column {
+  align-content: start;
+  border-left: 7px solid var(--choice-accent, var(--lesson-accent));
+}
+
+.choice-column--von-neumann {
+  --choice-accent: #155b75;
+}
+
+.choice-column--harvard {
+  --choice-accent: #8b4831;
+}
+
+.choice-column h3 {
+  font-size: 1.22rem;
+}
+
+.choice-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.choice-icon--shared {
+  background:
+    linear-gradient(90deg, transparent 16%, rgba(21, 91, 117, 0.24) 17% 30%, transparent 31% 40%, rgba(21, 91, 117, 0.24) 41% 54%, transparent 55% 64%, rgba(21, 91, 117, 0.24) 65% 78%, transparent 79%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.choice-icon--separate {
+  background:
+    linear-gradient(90deg, transparent 16%, rgba(139, 72, 49, 0.24) 17% 31%, transparent 32% 56%, rgba(139, 72, 49, 0.24) 57% 71%, transparent 72%),
+    rgba(255, 240, 241, 0.96);
+}
+
+body.teacher-mode-active .stored-program-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .stored-program-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .stored-program-stage,
+body.teacher-mode-active .bottleneck-lane,
+body.teacher-mode-active .bottleneck-path,
+body.teacher-mode-active .parallel-card {
+  min-height: 16rem;
+}
+
 @media (max-width: 720px) {
+  .stored-program-flow,
+  .bottleneck-visual,
+  .harvard-parallel-visual,
+  .architecture-choice-board {
+    grid-template-columns: 1fr;
+  }
+
+  .stored-program-arrow {
+    display: none;
+  }
+
+  .stored-program-stage,
+  .bottleneck-lane,
+  .bottleneck-path,
+  .parallel-card {
+    min-height: 0;
+  }
+
   .architecture-split {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: calc(100vw - 1rem);
+    max-width: calc(100vw - 1rem);
+  }
+
+  .lesson-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-hero,
+  .lesson-layout,
+  .lesson-main,
+  .lesson-section,
+  .lesson-sidebar,
+  .lesson-rail {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .lesson-hero-text,
+  .lesson-hero-support,
+  .lesson-meta-card span,
+  .stored-program-stage span,
+  .bottleneck-lane span,
+  .parallel-card span,
+  .choice-column li {
+    overflow-wrap: anywhere;
   }
 }

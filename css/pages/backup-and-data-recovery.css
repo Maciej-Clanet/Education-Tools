@@ -1,0 +1,451 @@
+.threat-recovery-map,
+.threat-node,
+.recovery-flow-map,
+.recovery-flow-card,
+.recovery-decision-card,
+.recovery-decision-header,
+.recovery-visual,
+.backup-resilience-visual {
+  display: grid;
+  gap: 1rem;
+}
+
+.threat-recovery-map {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: 1.15rem 0;
+}
+
+.threat-node,
+.recovery-flow-card,
+.recovery-decision-card,
+.backup-resilience-visual article {
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.threat-node,
+.recovery-flow-card,
+.backup-resilience-visual article {
+  justify-items: center;
+  align-content: start;
+  min-height: 12.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.threat-node strong,
+.recovery-flow-card strong,
+.recovery-decision-card h3,
+.recovery-visual strong,
+.backup-resilience-visual h3,
+.backup-resilience-visual strong {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.threat-node span:not(.threat-icon),
+.recovery-flow-card span:not(.recovery-flow-icon),
+.recovery-decision-card p,
+.recovery-visual span,
+.backup-resilience-visual p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.threat-icon,
+.recovery-flow-icon,
+.recovery-decision-icon,
+.backup-resilience-icon {
+  display: inline-block;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.threat-node--mistake {
+  border-left: 5px solid #8b4831;
+}
+
+.threat-node--failure {
+  border-left: 5px solid #155b75;
+}
+
+.threat-node--attack {
+  border-left: 5px solid #785e16;
+}
+
+.threat-node--disaster {
+  border-left: 5px solid #29523b;
+}
+
+.threat-icon--mistake {
+  background:
+    linear-gradient(135deg, transparent 45%, #8b4831 46% 54%, transparent 55%),
+    linear-gradient(45deg, transparent 46%, #8b4831 47% 55%, transparent 56%),
+    rgba(255, 240, 241, 0.96);
+}
+
+.threat-icon--failure {
+  background:
+    radial-gradient(circle at 50% 50%, #155b75 0 0.2rem, transparent 0.22rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.55rem, rgba(21, 91, 117, 0.24) 0.57rem 0.66rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.threat-icon--attack {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #785e16 0 0.26rem, transparent 0.28rem),
+    repeating-conic-gradient(from 0deg, rgba(120, 94, 22, 0.26) 0 10deg, transparent 10deg 28deg),
+    rgba(255, 249, 227, 0.96);
+}
+
+.threat-icon--disaster {
+  background:
+    linear-gradient(180deg, transparent 45%, rgba(41, 82, 59, 0.3) 46% 58%, transparent 59%),
+    radial-gradient(circle at 30% 34%, #29523b 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 55% 30%, #29523b 0 0.22rem, transparent 0.24rem),
+    radial-gradient(circle at 72% 42%, #29523b 0 0.16rem, transparent 0.18rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.recovery-flow-map {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  margin: 1.15rem 0 1.35rem;
+}
+
+.recovery-flow-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.recovery-flow-card {
+  min-height: 13.4rem;
+}
+
+.recovery-flow-card--data {
+  border-left: 5px solid #155b75;
+}
+
+.recovery-flow-card--copy {
+  border-left: 5px solid #785e16;
+}
+
+.recovery-flow-card--store {
+  border-left: 5px solid #29523b;
+}
+
+.recovery-flow-card--restore {
+  border-left: 5px solid #8b4831;
+}
+
+.recovery-flow-icon--data {
+  background:
+    linear-gradient(180deg, rgba(21, 91, 117, 0.24) 18%, transparent 18% 30%, rgba(21, 91, 117, 0.24) 30% 46%, transparent 46% 58%, rgba(21, 91, 117, 0.24) 58% 74%, transparent 74%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.recovery-flow-icon--copy {
+  background:
+    linear-gradient(90deg, transparent 22%, rgba(120, 94, 22, 0.28) 23% 43%, transparent 44% 52%, rgba(120, 94, 22, 0.28) 53% 73%, transparent 74%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.recovery-flow-icon--store {
+  background:
+    linear-gradient(180deg, transparent 24%, rgba(41, 82, 59, 0.26) 24% 78%, transparent 78%),
+    radial-gradient(circle at 50% 34%, #29523b 0 0.18rem, transparent 0.2rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.recovery-flow-icon--restore {
+  background:
+    linear-gradient(135deg, transparent 45%, #8b4831 46% 53%, transparent 54%),
+    linear-gradient(45deg, transparent 45%, #8b4831 46% 53%, transparent 54%),
+    rgba(255, 240, 241, 0.96);
+}
+
+.recovery-decision-card {
+  grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+  grid-template-areas:
+    "header header"
+    "copy visual"
+    "exam visual";
+  align-items: stretch;
+  margin-top: 1rem;
+  padding: 1.1rem;
+  border-left: 7px solid var(--backup-accent, var(--lesson-accent));
+}
+
+.recovery-decision-header {
+  grid-area: header;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.recovery-decision-card > p:not(.recovery-exam-line) {
+  grid-area: copy;
+}
+
+.recovery-visual {
+  grid-area: visual;
+}
+
+.recovery-exam-line {
+  grid-area: exam;
+  align-self: end;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.74);
+  font-weight: 700;
+}
+
+.recovery-decision-kicker {
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.recovery-decision-card h3 {
+  font-size: 1.3rem;
+}
+
+.recovery-decision-card--frequency,
+.recovery-decision-card--priority {
+  --backup-accent: #155b75;
+}
+
+.recovery-decision-card--location {
+  --backup-accent: #29523b;
+}
+
+.recovery-decision-card--restore-time {
+  --backup-accent: #785e16;
+}
+
+.recovery-decision-card--testing {
+  --backup-accent: #8b4831;
+}
+
+.recovery-decision-icon--frequency {
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg, rgba(21, 91, 117, 0.28) 0 100deg, transparent 100deg 360deg),
+    radial-gradient(circle at 50% 50%, #155b75 0 0.18rem, transparent 0.2rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.recovery-decision-icon--location {
+  background:
+    radial-gradient(circle at 32% 50%, #29523b 0 0.2rem, transparent 0.22rem),
+    radial-gradient(circle at 70% 50%, #29523b 0 0.2rem, transparent 0.22rem),
+    linear-gradient(90deg, transparent 38%, rgba(41, 82, 59, 0.28) 39% 61%, transparent 62%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.recovery-decision-icon--restore-time {
+  background:
+    linear-gradient(90deg, transparent 16%, rgba(120, 94, 22, 0.28) 17% 30%, transparent 31% 40%, rgba(120, 94, 22, 0.28) 41% 54%, transparent 55% 64%, rgba(120, 94, 22, 0.28) 65% 78%, transparent 79%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.recovery-decision-icon--testing {
+  background:
+    linear-gradient(135deg, transparent 45%, #8b4831 46% 54%, transparent 55%),
+    linear-gradient(45deg, transparent 45%, #8b4831 46% 54%, transparent 55%),
+    rgba(255, 240, 241, 0.96);
+}
+
+.recovery-decision-icon--priority {
+  background:
+    linear-gradient(180deg, rgba(21, 91, 117, 0.24) 18%, transparent 18% 30%, rgba(21, 91, 117, 0.24) 30% 44%, transparent 44% 56%, rgba(21, 91, 117, 0.24) 56% 70%, transparent 70%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.recovery-visual {
+  align-content: center;
+  justify-items: center;
+  min-height: 12rem;
+  padding: 1rem;
+  border: 1.5px dashed rgba(37, 52, 66, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.recovery-visual span,
+.recovery-visual strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.3rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  font-weight: 800;
+}
+
+.recovery-visual strong {
+  color: var(--backup-accent);
+  text-transform: uppercase;
+}
+
+.recovery-visual--frequency,
+.recovery-visual--restore-time,
+.recovery-visual--testing {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.recovery-visual--frequency strong,
+.recovery-visual--restore-time strong,
+.recovery-visual--testing strong {
+  grid-column: 1 / -1;
+}
+
+.recovery-visual--location {
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.recovery-visual--priority {
+  grid-template-columns: 1fr;
+}
+
+.backup-resilience-visual {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1rem 0;
+}
+
+.backup-resilience-visual article {
+  min-height: 14rem;
+}
+
+.backup-resilience-visual strong {
+  padding: 0.72rem 0.85rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--lesson-accent-heading);
+}
+
+.backup-resilience-icon--resilience {
+  background:
+    radial-gradient(circle at 50% 50%, #155b75 0 0.24rem, transparent 0.26rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.55rem, rgba(21, 91, 117, 0.24) 0.57rem 0.66rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.backup-resilience-icon--backup {
+  background:
+    linear-gradient(90deg, transparent 22%, rgba(41, 82, 59, 0.28) 23% 43%, transparent 44% 52%, rgba(41, 82, 59, 0.28) 53% 73%, transparent 74%),
+    rgba(238, 248, 231, 0.96);
+}
+
+body.teacher-mode-active .recovery-flow-map {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .recovery-flow-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .threat-node,
+body.teacher-mode-active .recovery-flow-card {
+  min-height: 15rem;
+}
+
+body.teacher-mode-active .recovery-decision-card {
+  min-height: 64vh;
+}
+
+body.teacher-mode-active .recovery-visual {
+  min-height: 18rem;
+}
+
+@media (max-width: 980px) {
+  .recovery-flow-map {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recovery-flow-arrow {
+    display: none;
+  }
+
+  .recovery-decision-card {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "copy"
+      "visual"
+      "exam";
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: calc(100vw - 1rem);
+    max-width: calc(100vw - 1rem);
+  }
+
+  .lesson-meta-grid,
+  .recovery-flow-map,
+  .recovery-visual,
+  .recovery-visual--frequency,
+  .recovery-visual--restore-time,
+  .recovery-visual--testing,
+  .recovery-visual--location,
+  .backup-resilience-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-hero,
+  .lesson-layout,
+  .lesson-main,
+  .lesson-section,
+  .lesson-sidebar,
+  .lesson-rail {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .lesson-hero-text,
+  .lesson-hero-support,
+  .lesson-meta-card span,
+  .threat-node span,
+  .recovery-flow-card span,
+  .recovery-decision-card p,
+  .recovery-visual span {
+    overflow-wrap: anywhere;
+  }
+
+  .threat-node,
+  .recovery-flow-card {
+    min-height: 0;
+  }
+
+  .recovery-decision-header {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .recovery-visual--frequency strong,
+  .recovery-visual--restore-time strong,
+  .recovery-visual--testing strong {
+    grid-column: auto;
+  }
+}

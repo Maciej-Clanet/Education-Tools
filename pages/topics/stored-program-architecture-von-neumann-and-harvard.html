@@ -234,6 +234,31 @@
               >
             </div>
 
+            <div
+              class="stored-program-flow"
+              aria-label="Stored program architecture flow"
+            >
+              <article class="stored-program-stage stored-program-stage--program">
+                <span class="stored-program-icon stored-program-icon--program" aria-hidden="true"></span>
+                <strong>Program loaded</strong>
+                <span>Machine-code instructions are placed in memory.</span>
+              </article>
+              <span class="stored-program-arrow" aria-hidden="true">fetch</span>
+              <article class="stored-program-stage stored-program-stage--memory">
+                <span class="stored-program-icon stored-program-icon--memory" aria-hidden="true"></span>
+                <strong>Memory stores instructions</strong>
+                <span>The CPU can read the next instruction when needed.</span>
+              </article>
+              <span class="stored-program-arrow" aria-hidden="true">run</span>
+              <article class="stored-program-stage stored-program-stage--cpu">
+                <span class="stored-program-icon stored-program-icon--cpu" aria-hidden="true"></span>
+                <strong>CPU executes</strong>
+                <span>Fetch, decode, execute repeats for the loaded program.</span>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
             <div class="compare-table-wrap">
               <table class="compare-table">
                 <thead>
@@ -330,6 +355,24 @@
               </article>
             </div>
 
+            <div data-slide-break></div>
+
+            <div class="bottleneck-visual" aria-label="Von Neumann bottleneck">
+              <article class="bottleneck-lane bottleneck-lane--instruction">
+                <strong>Instruction fetch</strong>
+                <span>CPU asks memory for the next instruction.</span>
+              </article>
+              <div class="bottleneck-path">
+                <span>shared bus</span>
+                <strong>one route</strong>
+                <span>takes turns</span>
+              </div>
+              <article class="bottleneck-lane bottleneck-lane--data">
+                <strong>Data access</strong>
+                <span>CPU also needs values from memory.</span>
+              </article>
+            </div>
+
             <div class="term-grid">
               <article class="term-card">
                 <strong>One memory space</strong>
@@ -423,6 +466,29 @@
               </article>
             </div>
 
+            <div data-slide-break></div>
+
+            <div
+              class="harvard-parallel-visual"
+              aria-label="Harvard architecture separate instruction and data paths"
+            >
+              <article class="parallel-card parallel-card--instruction">
+                <span class="parallel-icon parallel-icon--instruction" aria-hidden="true"></span>
+                <strong>Instruction path</strong>
+                <span>Fetch program code from instruction memory.</span>
+              </article>
+              <article class="parallel-card parallel-card--cpu">
+                <span class="parallel-icon parallel-icon--cpu" aria-hidden="true"></span>
+                <strong>CPU</strong>
+                <span>Can use both paths in the same processing window.</span>
+              </article>
+              <article class="parallel-card parallel-card--data">
+                <span class="parallel-icon parallel-icon--data" aria-hidden="true"></span>
+                <strong>Data path</strong>
+                <span>Read or write values in data memory.</span>
+              </article>
+            </div>
+
             <div class="term-grid">
               <article class="term-card">
                 <strong>Separate memories or paths</strong>
@@ -476,6 +542,32 @@
               structure of the architecture to a real benefit or limitation in
               the scenario.
             </p>
+
+            <div
+              class="architecture-choice-board"
+              aria-label="Choosing between Von Neumann and Harvard architecture"
+            >
+              <article class="choice-column choice-column--von-neumann">
+                <span class="choice-icon choice-icon--shared" aria-hidden="true"></span>
+                <h3>Choose Von Neumann when simplicity and flexibility matter</h3>
+                <ul class="choice-list">
+                  <li>Shared memory for instructions and data</li>
+                  <li>Simple stored-program model</li>
+                  <li>Good fit for many general-purpose systems</li>
+                </ul>
+              </article>
+              <article class="choice-column choice-column--harvard">
+                <span class="choice-icon choice-icon--separate" aria-hidden="true"></span>
+                <h3>Choose Harvard when separate access improves throughput</h3>
+                <ul class="choice-list">
+                  <li>Separate instruction and data paths</li>
+                  <li>Reduced contention during repeated processing</li>
+                  <li>Good fit for specialist or embedded systems</li>
+                </ul>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -1080,7 +1172,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 12</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>
