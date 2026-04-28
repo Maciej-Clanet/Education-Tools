@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/cluster-computing-uma-and-numa.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -52,21 +56,19 @@
         </nav>
 
         <div class="lesson-header-row">
-          <div>
-            <h1>Cluster computing, UMA, and NUMA</h1>
-            <p class="lesson-hero-text">
-              Revise how multiple processors or multiple machines can work
-              together, why uniform and non-uniform memory access matter, and
-              how architecture choice affects scaling, latency, and system
-              suitability.
-            </p>
-            <p class="lesson-hero-support">
-              In the current lesson context, this sits inside
-              <span data-role="context-label"
-                >BTEC Level 3 Computing Unit 2</span
-              >.
-            </p>
-          </div>
+          <h1>Cluster computing, UMA, and NUMA</h1>
+          <p class="lesson-hero-text">
+            Revise how multiple processors or multiple machines can work
+            together, why uniform and non-uniform memory access matter, and how
+            architecture choice affects scaling, latency, and system
+            suitability.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside
+            <span data-role="context-label"
+              >BTEC Level 3 Computing Unit 2</span
+            >.
+          </p>
         </div>
 
         <div class="lesson-meta-grid">
@@ -151,6 +153,87 @@
               design affects performance, scaling, and suitability.
             </p>
 
+            <div
+              class="architecture-lens"
+              aria-label="Three questions to separate cluster, UMA, and NUMA"
+            >
+              <article class="architecture-lens-card">
+                <span class="architecture-lens-step">1</span>
+                <strong>How many machines?</strong>
+                <span>
+                  Cluster questions are about several separate computers or
+                  nodes working together.
+                </span>
+              </article>
+              <article class="architecture-lens-card">
+                <span class="architecture-lens-step">2</span>
+                <strong>Is memory shared equally?</strong>
+                <span>
+                  UMA questions focus on one shared memory space with the same
+                  access time.
+                </span>
+              </article>
+              <article class="architecture-lens-card">
+                <span class="architecture-lens-step">3</span>
+                <strong>Does locality change speed?</strong>
+                <span>
+                  NUMA questions focus on local memory being faster than remote
+                  memory.
+                </span>
+              </article>
+            </div>
+
+            <div
+              class="architecture-example-grid"
+              aria-label="Practical examples for cluster, UMA, and NUMA"
+            >
+              <article
+                class="architecture-example-card architecture-example-card--cluster"
+              >
+                <span class="architecture-example-label">Cluster example</span>
+                <h3>College VLE on results day</h3>
+                <p>
+                  Many students refresh pages at once. Several web nodes can
+                  share those requests, and traffic can move away from a failed
+                  node.
+                </p>
+                <p class="architecture-example-link">
+                  Exam link: scalability and resilience across separate
+                  machines.
+                </p>
+              </article>
+
+              <article
+                class="architecture-example-card architecture-example-card--uma"
+              >
+                <span class="architecture-example-label">UMA example</span>
+                <h3>Small shared-memory workstation</h3>
+                <p>
+                  A workstation with a few processors can use one shared memory
+                  pool. Each processor gets the same route to the data, so the
+                  model is predictable.
+                </p>
+                <p class="architecture-example-link">
+                  Exam link: equal access time, simpler memory behaviour.
+                </p>
+              </article>
+
+              <article
+                class="architecture-example-card architecture-example-card--numa"
+              >
+                <span class="architecture-example-label">NUMA example</span>
+                <h3>Large virtualisation host</h3>
+                <p>
+                  A server may have several processor sockets, each with nearby
+                  memory. Keeping a virtual machine close to its local memory
+                  can reduce latency.
+                </p>
+                <p class="architecture-example-link">
+                  Exam link: local memory is faster than remote memory.
+                </p>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
@@ -205,7 +288,9 @@
             data-lesson-section
           >
             <p class="eyebrow">Cluster Computing</p>
-            <h2>Cluster computing uses several separate machines to share work</h2>
+            <h2>
+              Cluster computing uses several separate machines to share work
+            </h2>
             <p class="lesson-section-copy">
               A cluster is a group of computers, often called nodes, linked
               together so they can act as one larger system for a task or
@@ -223,6 +308,38 @@
               <span class="example-chip"
                 ><strong>Useful for</strong> scaling and resilience</span
               >
+            </div>
+
+            <div
+              class="cluster-map"
+              aria-label="Cluster computing diagram showing work shared across separate nodes"
+            >
+              <div class="cluster-map-entry">
+                <span>Requests or jobs</span>
+                <strong>Work queue</strong>
+              </div>
+              <div class="cluster-map-spine" aria-hidden="true"></div>
+              <div class="cluster-node-grid">
+                <article class="cluster-node cluster-node--web">
+                  <span class="cluster-node-icon" aria-hidden="true"></span>
+                  <strong>Node 1</strong>
+                  <span>Separate computer</span>
+                </article>
+                <article class="cluster-node cluster-node--data">
+                  <span class="cluster-node-icon" aria-hidden="true"></span>
+                  <strong>Node 2</strong>
+                  <span>Separate computer</span>
+                </article>
+                <article class="cluster-node cluster-node--worker">
+                  <span class="cluster-node-icon" aria-hidden="true"></span>
+                  <strong>Node 3</strong>
+                  <span>Separate computer</span>
+                </article>
+              </div>
+              <p class="architecture-note">
+                The cluster behaves like one service to the user, but the work
+                is coordinated between multiple machines.
+              </p>
             </div>
 
             <div class="term-grid">
@@ -257,12 +374,13 @@
             </div>
 
             <article class="lesson-card">
-              <h3>Where clusters are useful</h3>
+              <h3>Practical context: busy online services</h3>
               <p>
-                Cluster computing suits situations such as web hosting, research
-                workloads, or services that need to stay available even if one
-                machine fails. Instead of depending on a single large computer,
-                the system spreads work and risk across multiple nodes.
+                Imagine an online enrolment system during a deadline. One
+                server may not handle every request on its own, and an outage
+                would stop students from submitting forms. A cluster lets
+                several nodes share the workload, while redundancy helps the
+                service continue if one node fails.
               </p>
             </article>
           </section>
@@ -273,13 +391,33 @@
             data-lesson-section
           >
             <p class="eyebrow">UMA</p>
-            <h2>Uniform memory access means each processor sees memory equally</h2>
+            <h2>
+              Uniform memory access means each processor sees memory equally
+            </h2>
             <p class="lesson-section-copy">
               In a UMA system, processors share the same main memory and the
               access time to that memory is treated as uniform. One processor
               does not have a faster route to one part of memory than another
               processor.
             </p>
+
+            <div
+              class="memory-access-visual memory-access-visual--uma"
+              aria-label="UMA diagram showing processors with equal access to one shared memory pool"
+            >
+              <div class="processor-row">
+                <span class="processor-tile">Processor 1</span>
+                <span class="processor-tile">Processor 2</span>
+                <span class="processor-tile">Processor 3</span>
+              </div>
+              <div class="shared-bus">
+                <span>Same access time for each processor</span>
+              </div>
+              <div class="memory-pool memory-pool--shared">
+                <strong>Shared main memory</strong>
+                <span>One memory pool, equal route length</span>
+              </div>
+            </div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -324,6 +462,17 @@
             </div>
 
             <article class="lesson-card">
+              <h3>Practical context: smaller shared-memory systems</h3>
+              <p>
+                UMA can suit a smaller multiprocessor server or workstation
+                where programs need shared memory but the processor count is not
+                huge. For example, a media-editing workstation may benefit from
+                several processors sharing the same memory pool without the
+                software needing to place data near a particular socket.
+              </p>
+            </article>
+
+            <article class="lesson-card">
               <h3>Typical trade-off</h3>
               <p>
                 UMA is simpler to describe and often simpler to manage, but as
@@ -339,13 +488,40 @@
             data-lesson-section
           >
             <p class="eyebrow">NUMA</p>
-            <h2>NUMA keeps shared access but memory is not equally close to every processor</h2>
+            <h2>
+              NUMA keeps shared access but memory is not equally close to every
+              processor
+            </h2>
             <p class="lesson-section-copy">
               In a NUMA system, processors still work in one overall system, but
               some memory is local to a processor or socket and some is remote.
               Accessing nearby memory is faster than accessing memory attached
               elsewhere, so memory access is non-uniform.
             </p>
+
+            <div
+              class="memory-access-visual memory-access-visual--numa"
+              aria-label="NUMA diagram showing local memory and slower remote memory access"
+            >
+              <div class="numa-domain numa-domain--left">
+                <span class="processor-tile">Processor A</span>
+                <div class="memory-pool memory-pool--local">
+                  <strong>Local memory A</strong>
+                  <span>Fast for Processor A</span>
+                </div>
+              </div>
+              <div class="numa-link">
+                <strong>Remote access</strong>
+                <span>Still possible, but slower</span>
+              </div>
+              <div class="numa-domain numa-domain--right">
+                <span class="processor-tile">Processor B</span>
+                <div class="memory-pool memory-pool--local">
+                  <strong>Local memory B</strong>
+                  <span>Fast for Processor B</span>
+                </div>
+              </div>
+            </div>
 
             <div class="application-grid">
               <article class="application-card">
@@ -372,6 +548,16 @@
             </div>
 
             <article class="lesson-card">
+              <h3>Practical context: large database or virtualisation servers</h3>
+              <p>
+                NUMA often appears in larger servers with multiple processor
+                sockets. A database process or virtual machine will usually run
+                better when its most-used data stays in memory attached to the
+                same socket, because remote memory takes longer to reach.
+              </p>
+            </article>
+
+            <article class="lesson-card">
               <h3>Why NUMA can be harder to explain</h3>
               <p>
                 NUMA is not just "faster UMA". The important difference is that
@@ -393,6 +579,36 @@
               workload. The exam usually rewards the explanation of why the
               choice fits, not just the correct label.
             </p>
+
+            <div
+              class="architecture-choice-flow"
+              aria-label="Architecture choice guide for cluster, UMA, and NUMA"
+            >
+              <article class="choice-flow-card choice-flow-card--cluster">
+                <span class="choice-flow-kicker">Online shop sale</span>
+                <h3>Cluster</h3>
+                <p>
+                  Use several nodes behind the service so requests can be shared
+                  and the shop can keep running if one node fails.
+                </p>
+              </article>
+              <article class="choice-flow-card choice-flow-card--uma">
+                <span class="choice-flow-kicker">Small workstation</span>
+                <h3>UMA</h3>
+                <p>
+                  Use a shared memory pool when equal access time and simpler
+                  programming are more important than very large scaling.
+                </p>
+              </article>
+              <article class="choice-flow-card choice-flow-card--numa">
+                <span class="choice-flow-kicker">Large host server</span>
+                <h3>NUMA</h3>
+                <p>
+                  Use local memory near each processor socket so bigger
+                  shared-memory systems can scale with less contention.
+                </p>
+              </article>
+            </div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -453,10 +669,12 @@
             data-lesson-section
           >
             <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes students make with these architecture models</h2>
+            <h2>
+              Common mistakes students make with these architecture models
+            </h2>
             <p class="lesson-section-copy">
-              These topics often lose marks when answers blur together
-              "multiple computers", "multiple processors", and "shared memory".
+              These topics often lose marks when answers blur together "multiple
+              computers", "multiple processors", and "shared memory".
             </p>
 
             <div class="trap-grid">
@@ -500,7 +718,9 @@
                 </p>
                 <ul class="trap-list">
                   <li>UMA can be the better fit for a smaller system.</li>
-                  <li>Clusters are useful only when the workload suits them.</li>
+                  <li>
+                    Clusters are useful only when the workload suits them.
+                  </li>
                 </ul>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Link the model to the job the system
@@ -543,7 +763,8 @@
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="b" />
                       <span
-                        >Several separate computers or nodes working together</span
+                        >Several separate computers or nodes working
+                        together</span
                       >
                     </label>
                   </li>
@@ -748,7 +969,10 @@
                   access and state one implication of that difference.
                 </p>
                 <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="cluster-architecture-exam-1">
+                  <label
+                    class="exam-response-label"
+                    for="cluster-architecture-exam-1"
+                  >
                     Your answer
                   </label>
                   <textarea
@@ -774,9 +998,7 @@
                         In NUMA, some memory is local and faster while remote
                         memory is slower to access.
                       </li>
-                      <li>
-                        This means NUMA is non-uniform in latency.
-                      </li>
+                      <li>This means NUMA is non-uniform in latency.</li>
                       <li>
                         One implication is that NUMA can scale better for larger
                         systems, but memory placement matters more.
@@ -788,31 +1010,34 @@
 
               <article class="exam-card">
                 <div class="exam-meta">
-                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">8 marks</span>
                   <span class="exam-pill">Recommend and justify</span>
                 </div>
                 <h3>Question 2</h3>
                 <p>
                   Recommend a suitable architecture approach for a busy online
-                  service that must stay available across several machines and
-                  for a smaller shared-memory multiprocessor server. Justify
-                  both choices.
+                  service that must stay available, a smaller shared-memory
+                  workstation, and a large virtualisation server with several
+                  processor sockets. Justify each choice.
                 </p>
                 <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="cluster-architecture-exam-2">
+                  <label
+                    class="exam-response-label"
+                    for="cluster-architecture-exam-2"
+                  >
                     Your answer
                   </label>
                   <textarea
                     id="cluster-architecture-exam-2"
                     class="exam-response"
                     data-exam-response="question-2"
-                    placeholder="Link the choice to scaling, memory access, and suitability."
+                    placeholder="Link each choice to scaling, memory access, and suitability."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
-                    <p>The best answers justify both choices clearly.</p>
+                    <p>The best answers justify each choice clearly.</p>
                     <ul class="exam-points">
                       <li>
                         A busy service spread across several machines is a good
@@ -831,9 +1056,17 @@
                         for each processor.
                       </li>
                       <li>
-                        The justification should explain why equal access or
-                        distributed nodes fit the scenario better than the other
-                        options.
+                        A large virtualisation server with several processor
+                        sockets may be well suited to NUMA.
+                      </li>
+                      <li>
+                        NUMA allows each processor to use local memory more
+                        quickly, while still allowing remote memory access when
+                        needed.
+                      </li>
+                      <li>
+                        The justification should explain why distributed nodes,
+                        equal access, or memory locality fit each scenario.
                       </li>
                     </ul>
                   </div>
@@ -871,9 +1104,7 @@
               </div>
               <div class="glossary-item">
                 <dt>Node</dt>
-                <dd>
-                  One individual computer within a cluster.
-                </dd>
+                <dd>One individual computer within a cluster.</dd>
               </div>
             </dl>
           </section>

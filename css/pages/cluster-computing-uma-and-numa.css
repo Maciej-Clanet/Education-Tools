@@ -1,0 +1,403 @@
+.architecture-lens,
+.architecture-example-grid,
+.cluster-map,
+.cluster-node-grid,
+.memory-access-visual,
+.architecture-choice-flow {
+  display: grid;
+  gap: 1rem;
+}
+
+.architecture-lens,
+.architecture-example-grid,
+.architecture-choice-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1.1rem 0 1.3rem;
+}
+
+.architecture-lens-card,
+.architecture-example-card,
+.cluster-map,
+.cluster-map-entry,
+.cluster-node,
+.memory-access-visual,
+.memory-pool,
+.choice-flow-card {
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.architecture-lens-card,
+.architecture-example-card,
+.choice-flow-card {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  min-height: 12rem;
+  padding: 1rem;
+  border-radius: 18px;
+  border-left: 6px solid var(--choice-accent, var(--lesson-accent));
+}
+
+.architecture-lens-card:nth-child(1),
+.architecture-example-card--cluster,
+.choice-flow-card--cluster {
+  --choice-accent: #155b75;
+}
+
+.architecture-lens-card:nth-child(2),
+.architecture-example-card--uma,
+.choice-flow-card--uma {
+  --choice-accent: #29523b;
+}
+
+.architecture-lens-card:nth-child(3),
+.architecture-example-card--numa,
+.choice-flow-card--numa {
+  --choice-accent: #8b4831;
+}
+
+.architecture-lens-step,
+.architecture-example-label,
+.choice-flow-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 2rem;
+  padding: 0.32rem 0.62rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  color: var(--choice-accent);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.architecture-lens-step {
+  width: 2rem;
+}
+
+.architecture-lens-card strong,
+.architecture-example-card h3,
+.cluster-map-entry strong,
+.cluster-node strong,
+.memory-pool strong,
+.numa-link strong,
+.choice-flow-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.architecture-lens-card span:not(.architecture-lens-step),
+.architecture-example-card p,
+.cluster-map-entry span,
+.cluster-node span:not(.cluster-node-icon),
+.memory-pool span,
+.shared-bus span,
+.numa-link span,
+.architecture-note,
+.choice-flow-card p {
+  color: var(--muted-ink);
+}
+
+.architecture-example-card h3,
+.architecture-example-card p,
+.choice-flow-card h3,
+.choice-flow-card p {
+  margin: 0;
+}
+
+.architecture-example-link {
+  padding: 0.75rem 0.85rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  font-weight: 700;
+}
+
+.cluster-map {
+  grid-template-columns: minmax(160px, 0.75fr) auto minmax(0, 1.4fr);
+  align-items: center;
+  margin: 1rem 0 1.2rem;
+  padding: 1rem;
+  border-radius: 22px;
+  border-style: dashed;
+}
+
+.cluster-map-entry,
+.cluster-node,
+.memory-pool,
+.numa-link {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.42rem;
+  min-height: 8.5rem;
+  padding: 0.9rem;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.cluster-map-entry {
+  background: rgba(255, 249, 227, 0.92);
+}
+
+.cluster-map-spine {
+  width: 3.5rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(21, 91, 117, 0.18),
+    rgba(21, 91, 117, 0.64)
+  );
+}
+
+.cluster-node-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cluster-node {
+  min-height: 10.5rem;
+}
+
+.cluster-node--web {
+  border-left: 5px solid #155b75;
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.cluster-node--data {
+  border-left: 5px solid #29523b;
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.cluster-node--worker {
+  border-left: 5px solid #8b4831;
+  background: rgba(255, 240, 241, 0.92);
+}
+
+.cluster-node-icon {
+  display: inline-block;
+  width: 3.2rem;
+  height: 2.7rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, transparent 68%, rgba(37, 52, 66, 0.18) 68% 75%, transparent 75%),
+    linear-gradient(90deg, transparent 18%, rgba(37, 52, 66, 0.18) 18% 30%, transparent 30% 42%, rgba(37, 52, 66, 0.18) 42% 54%, transparent 54% 66%, rgba(37, 52, 66, 0.18) 66% 78%, transparent 78%),
+    rgba(255, 255, 255, 0.88);
+}
+
+.architecture-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  font-weight: 700;
+}
+
+.memory-access-visual {
+  margin: 1rem 0 1.2rem;
+  padding: 1rem;
+  border-radius: 22px;
+  border-style: dashed;
+}
+
+.processor-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.processor-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.7rem;
+  padding: 0.75rem 0.85rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 249, 227, 0.94);
+  color: var(--page-ink);
+  font-weight: 800;
+  text-align: center;
+}
+
+.shared-bus {
+  display: grid;
+  place-items: center;
+  min-height: 3rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(41, 82, 59, 0.16), rgba(41, 82, 59, 0.42), rgba(41, 82, 59, 0.16)),
+    rgba(238, 248, 231, 0.74);
+  border: 1px dashed rgba(41, 82, 59, 0.26);
+  font-weight: 800;
+  text-align: center;
+}
+
+.memory-pool {
+  min-height: 6.5rem;
+}
+
+.memory-pool--shared {
+  background: rgba(238, 248, 231, 0.94);
+  border-color: rgba(55, 129, 53, 0.18);
+}
+
+.memory-access-visual--numa {
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 0.65fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.numa-domain {
+  display: grid;
+  align-content: stretch;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.numa-domain--left {
+  border-left: 6px solid #8b4831;
+}
+
+.numa-domain--right {
+  border-left: 6px solid #155b75;
+}
+
+.memory-pool--local {
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.numa-domain--left .memory-pool--local {
+  background: rgba(255, 240, 241, 0.92);
+  border-color: rgba(190, 91, 91, 0.18);
+}
+
+.numa-link {
+  border: 1.5px dashed rgba(37, 52, 66, 0.16);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+body.teacher-mode-active .architecture-lens,
+body.teacher-mode-active .architecture-example-grid,
+body.teacher-mode-active .architecture-choice-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .cluster-map,
+body.teacher-mode-active .memory-access-visual {
+  min-height: 34vh;
+}
+
+body.teacher-mode-active .architecture-lens-card,
+body.teacher-mode-active .architecture-example-card,
+body.teacher-mode-active .choice-flow-card {
+  min-height: 15rem;
+}
+
+body.a11y-simplify-visuals .architecture-lens-card,
+body.a11y-simplify-visuals .architecture-example-card,
+body.a11y-simplify-visuals .cluster-map,
+body.a11y-simplify-visuals .cluster-map-entry,
+body.a11y-simplify-visuals .cluster-node,
+body.a11y-simplify-visuals .memory-access-visual,
+body.a11y-simplify-visuals .memory-pool,
+body.a11y-simplify-visuals .numa-domain,
+body.a11y-simplify-visuals .numa-link,
+body.a11y-simplify-visuals .choice-flow-card {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+body.a11y-high-contrast .architecture-lens-card,
+body.a11y-high-contrast .architecture-example-card,
+body.a11y-high-contrast .cluster-map,
+body.a11y-high-contrast .cluster-map-entry,
+body.a11y-high-contrast .cluster-node,
+body.a11y-high-contrast .memory-access-visual,
+body.a11y-high-contrast .memory-pool,
+body.a11y-high-contrast .numa-domain,
+body.a11y-high-contrast .numa-link,
+body.a11y-high-contrast .choice-flow-card,
+body.a11y-high-contrast .processor-tile,
+body.a11y-high-contrast .shared-bus,
+body.a11y-high-contrast .architecture-note,
+body.a11y-high-contrast .architecture-example-link {
+  background: #ffffff;
+  border-color: currentColor;
+  box-shadow: none;
+}
+
+@media (max-width: 980px) {
+  .cluster-map,
+  .memory-access-visual--numa {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-lens,
+  .architecture-example-grid,
+  .architecture-choice-flow {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  }
+
+  .cluster-map-spine {
+    width: 100%;
+    height: 0.28rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .cluster-node-grid,
+  .processor-row {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-lens-card,
+  .architecture-example-card,
+  .cluster-node,
+  .choice-flow-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: calc(100vw - 1rem);
+    max-width: calc(100vw - 1rem);
+  }
+
+  .lesson-hero,
+  .lesson-layout,
+  .lesson-main,
+  .lesson-section,
+  .lesson-sidebar,
+  .lesson-rail {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .architecture-lens-card,
+  .architecture-example-card,
+  .cluster-map-entry,
+  .cluster-node,
+  .processor-tile,
+  .memory-pool,
+  .shared-bus,
+  .numa-link,
+  .choice-flow-card {
+    overflow-wrap: anywhere;
+  }
+}
