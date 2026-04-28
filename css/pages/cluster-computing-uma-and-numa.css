@@ -1,0 +1,379 @@
+.cluster-model-map,
+.cluster-node-visual,
+.context-example-grid,
+.memory-access-visual,
+.scenario-choice-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.cluster-model-map,
+.context-example-grid,
+.scenario-choice-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.cluster-map-card,
+.cluster-source-card,
+.cluster-node-card,
+.cluster-result-card,
+.context-example-card,
+.processor-box,
+.shared-memory-pool,
+.numa-socket,
+.numa-hop,
+.scenario-choice-card {
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.cluster-map-card,
+.context-example-card,
+.scenario-choice-card {
+  display: grid;
+  gap: 0.65rem;
+  align-content: start;
+}
+
+.cluster-map-card h3,
+.context-example-card h3,
+.scenario-choice-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+  font-size: 1.08rem;
+}
+
+.cluster-map-card p,
+.context-example-card p,
+.scenario-choice-card p,
+.cluster-source-card span,
+.cluster-node-card span,
+.cluster-result-card span,
+.processor-box span,
+.shared-memory-pool span,
+.numa-hop span {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.cluster-map-badge,
+.context-example-label,
+.scenario-choice-label,
+.latency-tag {
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cluster-map-card--cluster {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 240, 241, 0.88)
+  );
+}
+
+.cluster-map-card--uma {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(232, 246, 255, 0.88)
+  );
+}
+
+.cluster-map-card--numa {
+  border-color: rgba(185, 140, 25, 0.22);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 249, 227, 0.92)
+  );
+}
+
+.cluster-map-icon {
+  display: grid;
+  gap: 0.5rem;
+  min-height: 7rem;
+  padding: 0.75rem;
+  border: 1.5px dashed rgba(37, 52, 66, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.cluster-map-icon span {
+  display: grid;
+  place-items: center;
+  min-height: 2rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--page-ink);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.cluster-map-icon--cluster {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+}
+
+.cluster-map-icon--cluster span {
+  background: rgba(255, 240, 241, 0.92);
+}
+
+.cluster-map-icon--uma {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+}
+
+.cluster-map-icon--uma span:nth-child(2) {
+  min-height: 5rem;
+  background: rgba(232, 246, 255, 0.94);
+}
+
+.cluster-map-icon--numa {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.cluster-map-icon--numa span:nth-child(2) {
+  min-width: 4.4rem;
+  background: rgba(255, 249, 227, 0.94);
+  color: #785e16;
+}
+
+.cluster-node-visual {
+  grid-template-columns:
+    minmax(180px, 0.72fr)
+    auto
+    minmax(260px, 1.35fr)
+    minmax(170px, 0.72fr);
+  align-items: stretch;
+}
+
+.cluster-source-card,
+.cluster-node-card,
+.cluster-result-card,
+.processor-box,
+.shared-memory-pool,
+.numa-socket,
+.numa-hop {
+  display: grid;
+  gap: 0.45rem;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.cluster-source-card {
+  background: rgba(255, 249, 227, 0.92);
+  border-color: rgba(185, 140, 25, 0.22);
+}
+
+.cluster-result-card {
+  background: rgba(238, 248, 231, 0.92);
+  border-color: rgba(55, 129, 53, 0.18);
+}
+
+.cluster-route-label,
+.memory-bus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cluster-node-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cluster-node-card {
+  min-height: 9rem;
+  background: rgba(232, 246, 255, 0.9);
+  border-color: rgba(31, 135, 125, 0.18);
+}
+
+.cluster-node-card--standby {
+  background: rgba(238, 248, 231, 0.9);
+  border-color: rgba(55, 129, 53, 0.18);
+}
+
+.context-example-card {
+  border-left: 5px solid var(--lesson-accent);
+}
+
+.context-example-card--wide {
+  margin-top: 1rem;
+}
+
+.memory-access-visual {
+  padding: 1rem;
+  border-radius: 20px;
+  border: 1.5px dashed rgba(37, 52, 66, 0.16);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.86),
+    rgba(247, 251, 253, 0.82)
+  );
+}
+
+.processor-row {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.processor-box {
+  min-height: 6rem;
+  background: rgba(232, 246, 255, 0.92);
+  border-color: rgba(31, 135, 125, 0.18);
+}
+
+.memory-bus {
+  min-height: 2.4rem;
+  border-radius: 999px;
+  border: 1px dashed rgba(31, 135, 125, 0.28);
+  background: rgba(232, 246, 255, 0.7);
+}
+
+.shared-memory-pool {
+  min-height: 6rem;
+  background: rgba(255, 249, 227, 0.92);
+  border-color: rgba(185, 140, 25, 0.22);
+}
+
+.numa-socket-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.numa-socket {
+  min-height: 12rem;
+  background: rgba(255, 249, 227, 0.92);
+  border-color: rgba(185, 140, 25, 0.22);
+}
+
+.numa-chip,
+.numa-memory {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 12rem);
+  padding: 0.7rem 0.8rem;
+  border-radius: 15px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  color: var(--page-ink);
+  font-weight: 800;
+}
+
+.numa-chip {
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.numa-memory {
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.numa-hop {
+  min-height: 8rem;
+  align-self: center;
+  border-style: dashed;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.latency-tag--fast {
+  background: rgba(238, 248, 231, 0.92);
+  color: #29523b;
+}
+
+.latency-tag--slow {
+  background: rgba(255, 240, 241, 0.92);
+  color: #8b4831;
+}
+
+.scenario-choice-card {
+  border-top: 6px solid var(--lesson-accent);
+}
+
+body.teacher-mode-active .cluster-model-map,
+body.teacher-mode-active .context-example-grid,
+body.teacher-mode-active .scenario-choice-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .cluster-node-visual {
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.35fr) minmax(0, 0.75fr);
+}
+
+body.teacher-mode-active .cluster-route-label {
+  display: none;
+}
+
+body.teacher-mode-active .processor-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .numa-socket-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(0, 1fr);
+}
+
+@media (max-width: 1080px) {
+  .cluster-node-visual,
+  body.teacher-mode-active .cluster-node-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .cluster-route-label {
+    min-height: 2rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .cluster-map-icon--cluster,
+  .cluster-map-icon--uma,
+  .cluster-map-icon--numa,
+  .cluster-node-grid,
+  .processor-row,
+  .numa-socket-grid,
+  body.teacher-mode-active .cluster-model-map,
+  body.teacher-mode-active .context-example-grid,
+  body.teacher-mode-active .scenario-choice-grid,
+  body.teacher-mode-active .processor-row,
+  body.teacher-mode-active .numa-socket-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cluster-node-card,
+  .processor-box,
+  .numa-socket,
+  .numa-hop {
+    min-height: 0;
+  }
+}
