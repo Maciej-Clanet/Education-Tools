@@ -1,0 +1,510 @@
+.kernel-stack-visual,
+.kernel-role-map,
+.execution-flow,
+.interrupt-flow,
+.mode-visual,
+.resource-dashboard,
+.storage-driver-grid,
+.management-board {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.kernel-stack-visual {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.kernel-layer,
+.kernel-role-card,
+.execution-step,
+.interrupt-stage,
+.mode-panel,
+.mode-gate,
+.resource-card,
+.storage-visual,
+.driver-visual,
+.management-card {
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.kernel-layer,
+.kernel-role-card,
+.execution-step,
+.interrupt-stage,
+.mode-gate,
+.resource-card,
+.storage-visual,
+.driver-visual,
+.management-card {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+}
+
+.kernel-layer,
+.execution-step,
+.interrupt-stage,
+.mode-gate {
+  justify-items: center;
+  text-align: center;
+}
+
+.kernel-layer strong,
+.kernel-role-card h3,
+.execution-step strong,
+.interrupt-stage strong,
+.mode-panel h3,
+.resource-card h3,
+.storage-visual h3,
+.driver-visual h3,
+.management-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.kernel-layer span,
+.kernel-role-card p,
+.execution-step span:not(.execution-number),
+.interrupt-stage span,
+.mode-gate span,
+.resource-card p,
+.storage-visual p,
+.driver-visual p,
+.management-card p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.kernel-stack-gate,
+.flow-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.kernel-layer--apps {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(232, 246, 255, 0.86)
+  );
+}
+
+.kernel-layer--kernel {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 240, 241, 0.88)
+  );
+}
+
+.kernel-layer--hardware {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(238, 248, 231, 0.88)
+  );
+}
+
+.kernel-role-map {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.kernel-role-card {
+  border-left: 5px solid var(--lesson-accent);
+}
+
+.kernel-role-card--centre {
+  border-left-color: #8b4831;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(255, 240, 241, 0.9)
+  );
+}
+
+.kernel-icon,
+.management-icon {
+  display: inline-block;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.kernel-icon--core {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #8b4831 0 0.8rem, transparent 0.82rem),
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(139, 72, 49, 0.3) 0 12deg,
+      transparent 12deg 30deg
+    ),
+    rgba(255, 240, 241, 0.96);
+}
+
+.kernel-icon--program {
+  background:
+    linear-gradient(180deg, transparent 18%, rgba(21, 91, 117, 0.22) 18% 34%, transparent 34% 48%, rgba(21, 91, 117, 0.22) 48% 64%, transparent 64%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.kernel-icon--interrupt {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #8b4831 0 0.22rem, transparent 0.24rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.48rem, rgba(139, 72, 49, 0.28) 0.5rem 0.58rem),
+    rgba(255, 240, 241, 0.96);
+}
+
+.kernel-icon--modes {
+  background:
+    linear-gradient(90deg, rgba(120, 94, 22, 0.24) 0 48%, transparent 48% 52%, rgba(120, 94, 22, 0.36) 52% 100%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.kernel-icon--memory {
+  background:
+    linear-gradient(90deg, rgba(41, 82, 59, 0.28) 0 24%, transparent 24% 28%, rgba(41, 82, 59, 0.22) 28% 52%, transparent 52% 56%, rgba(41, 82, 59, 0.18) 56% 80%, transparent 80%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.kernel-icon--tasks {
+  background:
+    linear-gradient(180deg, transparent 16%, rgba(21, 91, 117, 0.24) 16% 30%, transparent 30% 40%, rgba(41, 82, 59, 0.24) 40% 54%, transparent 54% 64%, rgba(120, 94, 22, 0.24) 64% 78%, transparent 78%),
+    rgba(255, 255, 255, 0.96);
+}
+
+.kernel-icon--disk {
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 28%, rgba(21, 91, 117, 0.24) 0 42%, transparent 43%),
+    radial-gradient(ellipse at 50% 70%, rgba(21, 91, 117, 0.28) 0 44%, transparent 45%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.kernel-icon--files {
+  background:
+    linear-gradient(180deg, rgba(242, 207, 106, 0.54) 0 32%, rgba(255, 249, 227, 0.96) 32%),
+    linear-gradient(90deg, rgba(120, 94, 22, 0.28) 0 34%, transparent 34%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.kernel-icon--driver {
+  background:
+    radial-gradient(circle at 28% 50%, #155b75 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 72% 50%, #155b75 0 0.18rem, transparent 0.2rem),
+    linear-gradient(90deg, transparent 22%, rgba(21, 91, 117, 0.28) 22% 78%, transparent 78%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.execution-flow,
+.interrupt-flow {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.execution-step,
+.interrupt-stage {
+  min-height: 10rem;
+}
+
+.execution-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: rgba(232, 246, 255, 0.9);
+  color: #155b75;
+  font-weight: 900;
+}
+
+.interrupt-stage--signal {
+  border-color: rgba(190, 91, 91, 0.2);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 240, 241, 0.88)
+  );
+}
+
+.mode-visual {
+  grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.mode-label {
+  width: fit-content;
+  margin: 0 0 0.55rem;
+  padding: 0.3rem 0.62rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mode-panel--user {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(232, 246, 255, 0.86)
+  );
+}
+
+.mode-panel--kernel {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 240, 241, 0.88)
+  );
+}
+
+.mode-gate {
+  align-self: center;
+  min-height: 6rem;
+  border-color: rgba(185, 140, 25, 0.22);
+  background: rgba(255, 249, 227, 0.92);
+}
+
+.mode-gate strong {
+  color: #785e16;
+}
+
+.resource-dashboard,
+.storage-driver-grid,
+.management-board {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.resource-card {
+  min-height: 16rem;
+}
+
+.cpu-slices,
+.ram-map,
+.device-queue,
+.file-system-stack,
+.driver-chain {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.cpu-slices {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cpu-slices span,
+.device-queue span,
+.file-system-stack span,
+.driver-chain span {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--page-ink);
+  font-weight: 700;
+}
+
+.cpu-slices span:nth-child(1),
+.device-queue span:nth-child(1) {
+  background: rgba(232, 246, 255, 0.88);
+}
+
+.cpu-slices span:nth-child(2),
+.device-queue span:nth-child(2) {
+  background: rgba(238, 248, 231, 0.88);
+}
+
+.cpu-slices span:nth-child(3),
+.device-queue span:nth-child(3) {
+  background: rgba(255, 249, 227, 0.92);
+}
+
+.cpu-slices span:nth-child(4) {
+  background: rgba(255, 240, 241, 0.9);
+}
+
+.ram-map {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  min-height: 7rem;
+  padding: 0.7rem;
+  border: 1.5px dashed rgba(37, 52, 66, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.ram-block {
+  display: grid;
+  place-items: center;
+  min-height: 5.4rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 12px;
+  color: var(--page-ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.ram-block--kernel {
+  background: rgba(255, 240, 241, 0.92);
+}
+
+.ram-block--app {
+  background: rgba(232, 246, 255, 0.88);
+}
+
+.ram-block--free {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--muted-ink);
+}
+
+.ram-block--reuse {
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.file-system-stack span + span,
+.driver-chain span + span {
+  position: relative;
+}
+
+.file-system-stack span + span::before,
+.driver-chain span + span::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  width: 2px;
+  height: 0.5rem;
+  background: rgba(37, 52, 66, 0.22);
+}
+
+.file-system-stack span {
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.driver-chain span {
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.management-icon--network {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 24%, #155b75 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 24% 72%, #155b75 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 76% 72%, #155b75 0 0.18rem, transparent 0.2rem),
+    linear-gradient(135deg, transparent 44%, rgba(21, 91, 117, 0.24) 45% 51%, transparent 52%),
+    linear-gradient(45deg, transparent 49%, rgba(21, 91, 117, 0.24) 50% 56%, transparent 57%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.management-icon--security {
+  background:
+    linear-gradient(180deg, transparent 18%, rgba(139, 72, 49, 0.26) 18% 72%, transparent 72%),
+    radial-gradient(circle at 50% 40%, #8b4831 0 0.18rem, transparent 0.2rem),
+    rgba(255, 240, 241, 0.96);
+}
+
+.management-icon--rights {
+  background:
+    linear-gradient(90deg, rgba(120, 94, 22, 0.22) 0 46%, transparent 46% 54%, rgba(120, 94, 22, 0.34) 54% 100%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.management-icon--stability {
+  border-radius: 50%;
+  background:
+    conic-gradient(from 0deg, rgba(41, 82, 59, 0.28), rgba(41, 82, 59, 0.08), rgba(41, 82, 59, 0.28)),
+    radial-gradient(circle at 50% 50%, rgba(238, 248, 231, 0.98) 0 44%, transparent 45%),
+    rgba(238, 248, 231, 0.96);
+}
+
+body.teacher-mode-active .kernel-stack-visual {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .kernel-stack-gate {
+  display: none;
+}
+
+body.teacher-mode-active .execution-flow,
+body.teacher-mode-active .interrupt-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .flow-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .mode-visual {
+  grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(0, 1fr);
+}
+
+@media (max-width: 1080px) {
+  .kernel-stack-visual,
+  body.teacher-mode-active .kernel-stack-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .kernel-stack-gate {
+    min-height: 2rem;
+  }
+
+  .execution-flow,
+  .interrupt-flow,
+  body.teacher-mode-active .execution-flow,
+  body.teacher-mode-active .interrupt-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flow-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .execution-flow,
+  .interrupt-flow,
+  .mode-visual,
+  body.teacher-mode-active .execution-flow,
+  body.teacher-mode-active .interrupt-flow,
+  body.teacher-mode-active .mode-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .execution-step,
+  .interrupt-stage,
+  .resource-card {
+    min-height: 0;
+  }
+
+  .ram-map {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

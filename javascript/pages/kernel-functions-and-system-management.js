@@ -24,7 +24,7 @@ const lessonConfig = {
   },
   quiz: {
     storageKey: "lesson-kernel-functions-and-system-management-quiz",
-    passScore: 4,
+    passScore: 6,
   },
   examPractice: {
     storageKey: "lesson-kernel-functions-and-system-management-exam-practice",

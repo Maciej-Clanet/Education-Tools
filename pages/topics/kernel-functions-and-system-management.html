@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Kernel Functions and System Management Revision Lesson |
-      Education Tools
+      Kernel Functions and System Management Revision Lesson | Education Tools
     </title>
     <meta
       name="description"
-      content="Revise kernel functions and system management for BTEC Level 3 Computing Unit 2, including program execution, interrupts, modes, memory management, multitasking, disk access, file systems, drivers, networking, and security."
+      content="Revise kernel functions and system management for BTEC Level 3 Computing Unit 2, including program execution, interrupts, modes, memory management, multitasking, disk access, FAT32 and NTFS file systems, and device drivers."
     />
     <meta
       property="og:title"
@@ -17,7 +16,7 @@
     />
     <meta
       property="og:description"
-      content="Revise kernel functions and system management for BTEC Level 3 Computing Unit 2, including program execution, interrupts, modes, memory management, multitasking, disk access, file systems, drivers, networking, and security."
+      content="Revise kernel functions and system management for BTEC Level 3 Computing Unit 2, including program execution, interrupts, modes, memory management, multitasking, disk access, FAT32 and NTFS file systems, and device drivers."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -27,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/kernel-functions-and-system-management.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -48,9 +51,7 @@
                 >Unit 2: Computer Systems</a
               >
             </li>
-            <li aria-current="page">
-              Kernel functions and system management
-            </li>
+            <li aria-current="page">Kernel functions and system management</li>
           </ol>
         </nav>
 
@@ -58,9 +59,9 @@
           <div>
             <h1>Kernel functions and system management</h1>
             <p class="lesson-hero-text">
-              Learn what the kernel does behind the scenes to run programs,
-              handle interrupts, manage memory, control devices, and keep the
-              system secure and connected.
+              See how the kernel sits at the centre of the operating system,
+              controlling program execution, interrupts, modes, memory,
+              multitasking, storage, file systems, and device drivers.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -78,7 +79,9 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Kernel responsibilities and operating system control</span>
+            <span
+              >How the kernel controls resources and protected operations</span
+            >
           </article>
         </div>
 
@@ -116,9 +119,16 @@
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
-            <a href="#kernel-role" data-section-link>Kernel role</a>
-            <a href="#resource-management" data-section-link>Resource management</a>
-            <a href="#networking-security" data-section-link>Networking and security</a>
+            <a href="#kernel-map" data-section-link>Kernel map</a>
+            <a href="#program-execution" data-section-link>Program execution</a>
+            <a href="#interrupts-modes" data-section-link
+              >Interrupts and modes</a
+            >
+            <a href="#memory-multitasking" data-section-link
+              >Memory and multitasking</a
+            >
+            <a href="#storage-drivers" data-section-link>Storage and drivers</a>
+            <a href="#system-management" data-section-link>System management</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
             <a href="#exam-practice" data-section-link>Exam-style practice</a>
@@ -132,133 +142,443 @@
             data-lesson-section
           >
             <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
+            <h2>The kernel is the operating system control centre</h2>
             <p class="lesson-section-copy">
-              The kernel is the core of the operating system. It coordinates
-              hardware access and system tasks so programs can run safely and
-              efficiently.
+              The kernel is the central part of an operating system. Programs
+              ask for services, but the kernel decides how CPU time, memory,
+              backing storage, and hardware access are actually handled.
             </p>
 
+            <div
+              class="kernel-stack-visual"
+              aria-label="Relationship between applications, system calls, the kernel, and hardware"
+            >
+              <article class="kernel-layer kernel-layer--apps">
+                <strong>Applications</strong>
+                <span>Browser, game, editor, media player</span>
+              </article>
+              <span class="kernel-stack-gate">system calls</span>
+              <article class="kernel-layer kernel-layer--kernel">
+                <strong>Kernel</strong>
+                <span>Controls protected work and shares resources</span>
+              </article>
+              <span class="kernel-stack-gate">controlled access</span>
+              <article class="kernel-layer kernel-layer--hardware">
+                <strong>Hardware</strong>
+                <span>CPU, RAM, disk, network card, graphics card</span>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="lesson-card lesson-wide fullrow">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
-                  <li>Explain the kernel’s role in an operating system.</li>
-                  <li>Describe major kernel tasks such as memory and device management.</li>
-                  <li>Understand the link between the kernel, networking, and security.</li>
-                  <li>Use accurate examples in exam-style explanations.</li>
-                </ul>
-              </article>
-
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>Kernel:</strong> core controller of the OS.</li>
-                  <li><strong>Memory management:</strong> decides what stays in RAM.</li>
-                  <li><strong>Drivers:</strong> let the OS communicate with devices.</li>
-                  <li><strong>Interrupts:</strong> demand the CPU’s attention.</li>
+                  <li>
+                    Define the kernel as the core part of the operating system.
+                  </li>
+                  <li>
+                    Explain how the kernel controls program execution,
+                    interrupts, modes, memory, multitasking, disk access, file
+                    systems, and drivers.
+                  </li>
+                  <li>
+                    Compare simple file systems such as FAT32 with more
+                    sophisticated systems such as NTFS.
+                  </li>
+                  <li>
+                    Use applied examples instead of vague phrases such as "the
+                    OS runs everything".
+                  </li>
                 </ul>
               </article>
 
               <article class="lesson-card fullrow">
-                <h3>Why this matters</h3>
+                <h3>Quick memory hooks</h3>
+                <ul class="memory-list">
+                  <li>
+                    <strong>Load:</strong> start software and allocate
+                    resources.
+                  </li>
+                  <li>
+                    <strong>Protect:</strong> separate user mode and kernel
+                    mode.
+                  </li>
+                  <li>
+                    <strong>Share:</strong> divide CPU time and RAM between
+                    tasks.
+                  </li>
+                  <li>
+                    <strong>Connect:</strong> use drivers and file systems to
+                    reach hardware.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="lesson-card fullrow">
+                <h3>Why this topic feels dry</h3>
                 <p>
-                  When software runs smoothly, files open correctly, devices
-                  respond, and users log in securely, the kernel is doing a lot
-                  of unseen work. This topic often appears in applied questions
-                  about how operating systems manage resources.
+                  Most kernel work is invisible when a computer is working well.
+                  A useful way to revise it is to picture the kernel as a
+                  traffic controller: programs request work, hardware sends
+                  signals, and the kernel decides what is allowed to happen
+                  next.
                 </p>
               </article>
             </div>
           </section>
 
           <section
-            id="kernel-role"
-            class="lesson-section lesson-section--kernel-role panel"
+            id="kernel-map"
+            class="lesson-section lesson-section--kernel-map panel"
             data-lesson-section
           >
             <p class="eyebrow">Core Role</p>
-            <h2>The kernel manages the link between software requests and hardware action</h2>
+            <h2>Most kernel jobs are about control, sharing, and protection</h2>
+
+            <div class="kernel-role-map" aria-label="Main kernel functions">
+              <article class="kernel-role-card kernel-role-card--centre">
+                <span
+                  class="kernel-icon kernel-icon--core"
+                  aria-hidden="true"
+                ></span>
+                <h3>Kernel</h3>
+                <p>Core operating system control</p>
+              </article>
+
+              <article class="kernel-role-card">
+                <span
+                  class="kernel-icon kernel-icon--program"
+                  aria-hidden="true"
+                ></span>
+                <h3>Program execution</h3>
+                <p>Loads, runs, and ends software safely.</p>
+              </article>
+              <article class="kernel-role-card">
+                <span
+                  class="kernel-icon kernel-icon--interrupt"
+                  aria-hidden="true"
+                ></span>
+                <h3>Interrupts</h3>
+                <p>Responds when hardware or software needs CPU attention.</p>
+              </article>
+              <article class="kernel-role-card">
+                <span
+                  class="kernel-icon kernel-icon--modes"
+                  aria-hidden="true"
+                ></span>
+                <h3>Modes</h3>
+                <p>Switches between user mode and privileged kernel mode.</p>
+              </article>
+              <article class="kernel-role-card">
+                <span
+                  class="kernel-icon kernel-icon--memory"
+                  aria-hidden="true"
+                ></span>
+                <h3>Memory management</h3>
+                <p>Allocates RAM and reuses it when programs finish.</p>
+              </article>
+              <article class="kernel-role-card">
+                <span
+                  class="kernel-icon kernel-icon--tasks"
+                  aria-hidden="true"
+                ></span>
+                <h3>Multitasking</h3>
+                <p>Shares CPU and peripheral time between running programs.</p>
+              </article>
+              <article class="kernel-role-card">
+                <span
+                  class="kernel-icon kernel-icon--disk"
+                  aria-hidden="true"
+                ></span>
+                <h3>Disk access</h3>
+                <p>Controls reads from and writes to backing storage.</p>
+              </article>
+              <article class="kernel-role-card">
+                <span
+                  class="kernel-icon kernel-icon--files"
+                  aria-hidden="true"
+                ></span>
+                <h3>File systems</h3>
+                <p>Organises how stored data is addressed and retrieved.</p>
+              </article>
+              <article class="kernel-role-card">
+                <span
+                  class="kernel-icon kernel-icon--driver"
+                  aria-hidden="true"
+                ></span>
+                <h3>Device drivers</h3>
+                <p>Lets the OS communicate with hardware components.</p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>The exam sentence pattern</h3>
+              <p>
+                Use: "The kernel manages [resource or task] by [action], so that
+                [benefit]." For example, "The kernel manages RAM by allocating
+                memory to running programs and reclaiming it when they close, so
+                programs do not overwrite each other and memory can be reused."
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="program-execution"
+            class="lesson-section lesson-section--program-execution panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Program Execution</p>
+            <h2>Starting a program is a managed life cycle</h2>
             <p class="lesson-section-copy">
-              Programs do not usually control hardware directly. The kernel
-              manages access so that tasks happen safely, in the right order,
-              and without one program damaging another.
+              Program execution is not just "open the app". The kernel helps
+              load the software, allocate resources, run it, and terminate it
+              cleanly when it is finished.
             </p>
+
+            <div
+              class="execution-flow"
+              aria-label="Program execution life cycle"
+            >
+              <article class="execution-step">
+                <span class="execution-number">1</span>
+                <strong>Load</strong>
+                <span>Program code is brought from storage into memory.</span>
+              </article>
+              <span class="flow-arrow">then</span>
+              <article class="execution-step">
+                <span class="execution-number">2</span>
+                <strong>Allocate</strong>
+                <span>RAM, CPU time, files, and devices are assigned.</span>
+              </article>
+              <span class="flow-arrow">then</span>
+              <article class="execution-step">
+                <span class="execution-number">3</span>
+                <strong>Run</strong>
+                <span
+                  >The process receives processor time and OS services.</span
+                >
+              </article>
+              <span class="flow-arrow">then</span>
+              <article class="execution-step">
+                <span class="execution-number">4</span>
+                <strong>Terminate</strong>
+                <span>The process ends and its resources are released.</span>
+              </article>
+            </div>
 
             <div class="term-grid">
               <article class="term-card">
-                <strong>Program execution</strong>
+                <strong>Process</strong>
                 <span>
-                  The kernel loads and runs programs, allocating processor time
-                  and the resources they need.
+                  A running instance of a program that the OS can manage.
                 </span>
               </article>
               <article class="term-card">
-                <strong>Interrupt handling</strong>
+                <strong>Resource allocation</strong>
                 <span>
-                  The kernel responds when hardware or software interrupts need
-                  urgent attention.
+                  Deciding which RAM, CPU time, files, and devices a program can
+                  use.
                 </span>
               </article>
               <article class="term-card">
-                <strong>Modes</strong>
+                <strong>Termination</strong>
                 <span>
-                  Different processor modes help protect the system by
-                  separating ordinary user actions from privileged operations.
+                  Ending a process and returning its resources to the system.
+                </span>
+              </article>
+            </div>
+            <br />
+            <article class="lesson-card">
+              <h3>Example</h3>
+              <p>
+                When a student opens image-editing software, the kernel helps
+                load the program, gives it memory for the image and editing
+                tools, schedules CPU time while filters run, and releases the
+                memory and file handles when the program closes.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="interrupts-modes"
+            class="lesson-section lesson-section--interrupts-modes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Interrupts And Modes</p>
+            <h2>Interrupts get attention; modes protect powerful operations</h2>
+            <p class="lesson-section-copy">
+              Interrupts let components request servicing by the CPU. Modes
+              decide whether code is running as an ordinary application or as
+              trusted low-level operating system code.
+            </p>
+
+            <div class="interrupt-flow" aria-label="Interrupt handling flow">
+              <article class="interrupt-stage">
+                <strong>Current task</strong>
+                <span>CPU is running a program.</span>
+              </article>
+              <span class="flow-arrow">interrupt</span>
+              <article class="interrupt-stage interrupt-stage--signal">
+                <strong>Request</strong>
+                <span
+                  >A mouse, keyboard, timer, disk, or network card needs
+                  service.</span
+                >
+              </article>
+              <span class="flow-arrow">handle</span>
+              <article class="interrupt-stage">
+                <strong>Service routine</strong>
+                <span>The OS runs code to deal with the event.</span>
+              </article>
+              <span class="flow-arrow">return</span>
+              <article class="interrupt-stage">
+                <strong>Resume</strong>
+                <span>The CPU continues with the interrupted task.</span>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="mode-visual" aria-label="User mode and kernel mode">
+              <article class="mode-panel mode-panel--user">
+                <p class="mode-label">User mode</p>
+                <h3>Applications</h3>
+                <ul class="lesson-list">
+                  <li>Run normal app code.</li>
+                  <li>Have limited direct access to hardware and memory.</li>
+                  <li>Ask the OS for protected services.</li>
+                </ul>
+              </article>
+
+              <div class="mode-gate">
+                <strong>System call</strong>
+                <span>Controlled switch</span>
+              </div>
+
+              <article class="mode-panel mode-panel--kernel">
+                <p class="mode-label">Kernel mode</p>
+                <h3>Low-level OS code</h3>
+                <ul class="lesson-list">
+                  <li>Can perform privileged operations.</li>
+                  <li>Can control memory, files, and devices.</li>
+                  <li>
+                    Must be protected because errors can affect the whole
+                    system.
+                  </li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="term-grid">
+              <article class="term-card">
+                <strong>Interrupt</strong>
+                <span> A signal that tells the CPU attention is needed. </span>
+              </article>
+              <article class="term-card">
+                <strong>User mode</strong>
+                <span>
+                  A restricted mode used for ordinary application code.
                 </span>
               </article>
               <article class="term-card">
-                <strong>Device drivers</strong>
+                <strong>Kernel mode</strong>
                 <span>
-                  Drivers allow the operating system to communicate with
-                  printers, storage, screens, and other hardware.
+                  A privileged mode used for low-level OS operations such as
+                  accessing memory or devices.
                 </span>
               </article>
             </div>
           </section>
 
           <section
-            id="resource-management"
-            class="lesson-section lesson-section--resource-management panel"
+            id="memory-multitasking"
+            class="lesson-section lesson-section--memory-multitasking panel"
             data-lesson-section
           >
             <p class="eyebrow">Resources</p>
-            <h2>The kernel keeps memory, processing time, and storage organised</h2>
+            <h2>
+              Memory management and multitasking make concurrent work possible
+            </h2>
             <p class="lesson-section-copy">
-              Many kernel functions are really resource-management decisions.
-              The operating system must decide what gets access, when, and for
-              how long.
+              The kernel allocates RAM to running programs and reuses RAM when
+              programs end. It also shares CPU time and peripheral time so
+              several programs can appear to work at the same time.
             </p>
+
+            <div
+              class="resource-dashboard"
+              aria-label="CPU, RAM, and peripheral management"
+            >
+              <article class="resource-card resource-card--cpu">
+                <h3>CPU scheduling</h3>
+                <div class="cpu-slices" aria-hidden="true">
+                  <span>Browser</span>
+                  <span>Music</span>
+                  <span>Editor</span>
+                  <span>System</span>
+                </div>
+                <p>
+                  The kernel gives tasks short turns, helping the system stay
+                  responsive.
+                </p>
+              </article>
+
+              <article class="resource-card resource-card--ram">
+                <h3>RAM allocation</h3>
+                <div class="ram-map" aria-hidden="true">
+                  <span class="ram-block ram-block--kernel">Kernel</span>
+                  <span class="ram-block ram-block--app">Browser</span>
+                  <span class="ram-block ram-block--app">Editor</span>
+                  <span class="ram-block ram-block--free">Free</span>
+                  <span class="ram-block ram-block--reuse">Reused</span>
+                </div>
+                <p>
+                  Programs receive memory while they run, then memory is made
+                  available again.
+                </p>
+              </article>
+
+              <article class="resource-card resource-card--devices">
+                <h3>Peripheral time</h3>
+                <div class="device-queue" aria-hidden="true">
+                  <span>Print job</span>
+                  <span>USB read</span>
+                  <span>Network packet</span>
+                </div>
+                <p>
+                  Device access is queued and controlled so requests do not
+                  clash.
+                </p>
+              </article>
+            </div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
                 <thead>
                   <tr>
                     <th>Function</th>
-                    <th>What the kernel does</th>
+                    <th>What the kernel controls</th>
                     <th>Why it matters</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Memory management</td>
-                    <td>Allocates and frees RAM, and manages which data stays active</td>
-                    <td>Prevents clashes and supports multitasking</td>
+                    <td>Allocating RAM to programs and reclaiming it later</td>
+                    <td>
+                      Prevents programs from overwriting each other and reduces
+                      wasted memory
+                    </td>
                   </tr>
                   <tr>
                     <td>Multitasking</td>
-                    <td>Switches processor time between tasks</td>
-                    <td>Makes the system feel responsive to the user</td>
+                    <td>CPU time and peripheral time for active programs</td>
+                    <td>Lets users run several programs concurrently</td>
                   </tr>
                   <tr>
-                    <td>Disk access</td>
-                    <td>Controls how files are read from and written to storage</td>
-                    <td>Protects data and coordinates access</td>
-                  </tr>
-                  <tr>
-                    <td>File systems</td>
-                    <td>Organises data into folders, names, and structures</td>
-                    <td>Makes storage usable and manageable</td>
+                    <td>Scheduling</td>
+                    <td>Which task gets processor time next</td>
+                    <td>Improves responsiveness and balances competing work</td>
                   </tr>
                 </tbody>
               </table>
@@ -267,55 +587,192 @@
             <article class="lesson-card">
               <h3>Example</h3>
               <p>
-                If a user opens a browser, music player, and document editor at
-                once, the kernel manages which task gets CPU time, how much RAM
-                each can use, and when their files are read from storage.
+                A learner can stream music, download a file, and type notes at
+                the same time because the kernel keeps switching CPU time,
+                allocating RAM, and controlling peripheral requests in the
+                background.
               </p>
             </article>
           </section>
 
           <section
-            id="networking-security"
-            class="lesson-section lesson-section--networking-security panel"
+            id="storage-drivers"
+            class="lesson-section lesson-section--storage-drivers panel"
             data-lesson-section
           >
-            <p class="eyebrow">Control</p>
-            <h2>The operating system also manages networking and security</h2>
+            <p class="eyebrow">Storage And Devices</p>
+            <h2>Disk access, file systems, and drivers make hardware usable</h2>
             <p class="lesson-section-copy">
-              Beyond resource management, the operating system helps control how
-              devices communicate and who is allowed to do what.
+              The kernel controls how data is read from and written to backing
+              storage. File systems organise the stored data, while device
+              drivers let the operating system communicate with hardware.
             </p>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Networking</strong>
-                <span>
-                  The operating system manages network settings, connections,
-                  and the software support needed for communication.
-                </span>
+            <div class="storage-driver-grid">
+              <article
+                class="storage-visual"
+                aria-label="File system storage flow"
+              >
+                <h3>Saving a file</h3>
+                <div class="file-system-stack">
+                  <span>User clicks Save</span>
+                  <span>OS checks permissions</span>
+                  <span>File system chooses addresses</span>
+                  <span>Disk write is controlled</span>
+                </div>
               </article>
-              <article class="term-card">
-                <strong>Security</strong>
-                <span>
-                  User accounts, permissions, and protected modes help stop
-                  unauthorised access or damaging actions.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Access control</strong>
-                <span>
-                  Users or programs may have different permission levels for
-                  files, devices, and settings.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>System stability</strong>
-                <span>
-                  By controlling access carefully, the operating system reduces
-                  the risk of one task crashing the whole system.
-                </span>
+
+              <article
+                class="driver-visual"
+                aria-label="Device driver communication flow"
+              >
+                <h3>Using a device</h3>
+                <div class="driver-chain">
+                  <span>Operating system</span>
+                  <span>Device driver</span>
+                  <span>Graphics card or printer</span>
+                </div>
               </article>
             </div>
+
+            <div data-slide-break></div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Area</th>
+                    <th>Revision point</th>
+                    <th>Good example detail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Disk access</td>
+                    <td>
+                      Controls reading from and writing to backing storage
+                    </td>
+                    <td>
+                      Coordinates file reads and writes so data is not corrupted
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>File systems</td>
+                    <td>
+                      Control how data is stored, addressed, organised, saved,
+                      and retrieved
+                    </td>
+                    <td>
+                      Different file systems use different addressing methods
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>FAT32</td>
+                    <td>
+                      A simple file system often used on lower-capacity
+                      removable devices
+                    </td>
+                    <td>
+                      Useful on USB flash drives where strong security is not
+                      needed
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NTFS</td>
+                    <td>
+                      A more sophisticated file system for larger devices and
+                      stronger management
+                    </td>
+                    <td>
+                      Can support user access rights, recovery from disk errors,
+                      and encryption
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Device drivers</td>
+                    <td>
+                      Allow the OS to communicate with hardware components
+                    </td>
+                    <td>
+                      A graphics driver helps use a graphics card's features and
+                      performance
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section
+            id="system-management"
+            class="lesson-section lesson-section--system-management panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">System Management</p>
+            <h2>The same control ideas support networking and security</h2>
+            <p class="lesson-section-copy">
+              The kernel is the core controller, but operating system management
+              also includes network communication, access control, permissions,
+              and protecting shared resources from unauthorised or unsafe
+              actions.
+            </p>
+
+            <div class="management-board">
+              <article class="management-card">
+                <span
+                  class="management-icon management-icon--network"
+                  aria-hidden="true"
+                ></span>
+                <h3>Networking</h3>
+                <p>
+                  The OS manages network interfaces, connections, and the
+                  software support needed to send and receive data.
+                </p>
+              </article>
+              <article class="management-card">
+                <span
+                  class="management-icon management-icon--security"
+                  aria-hidden="true"
+                ></span>
+                <h3>Security</h3>
+                <p>
+                  Accounts, permissions, and protected modes help prevent
+                  unauthorised access or damaging actions.
+                </p>
+              </article>
+              <article class="management-card">
+                <span
+                  class="management-icon management-icon--rights"
+                  aria-hidden="true"
+                ></span>
+                <h3>Access rights</h3>
+                <p>
+                  Users and programs can be given different levels of access to
+                  files, devices, and settings.
+                </p>
+              </article>
+              <article class="management-card">
+                <span
+                  class="management-icon management-icon--stability"
+                  aria-hidden="true"
+                ></span>
+                <h3>Stability</h3>
+                <p>
+                  Controlled access reduces the chance of one program crashing
+                  or damaging the whole system.
+                </p>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Scenario link</h3>
+              <p>
+                On a shared college computer, the operating system must let a
+                student log in, connect to the network, save work to the right
+                location, use devices through drivers, and block changes to
+                protected system files.
+              </p>
+            </article>
           </section>
 
           <section
@@ -326,43 +783,55 @@
             <p class="eyebrow">Exam Traps</p>
             <h2>Common mistakes with kernel functions</h2>
             <p class="lesson-section-copy">
-              These questions often lose marks when answers become too vague or
-              describe the application instead of the operating system.
+              Kernel questions usually reward precise control language. Avoid
+              answers that only describe what the user sees on screen.
             </p>
 
             <div class="trap-grid">
               <article class="trap-card">
-                <h3>Saying the kernel “opens files”</h3>
+                <h3>Calling the kernel the whole operating system</h3>
                 <p>
-                  Applications request file actions, but the OS manages the
-                  access underneath.
+                  The kernel is central, but it is not every part of the OS.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Explain that the kernel controls access
-                  and resources, not the user-facing task itself.
+                  <strong>Fix:</strong> Describe it as the core part that
+                  controls resources and protected tasks.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Mixing up RAM and storage</h3>
+                <h3>Explaining the app instead of the OS</h3>
                 <p>
-                  Memory management and file-system management are related but
-                  different.
+                  "The browser opens the web page" does not explain kernel
+                  management.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Keep temporary working memory separate
-                  from long-term file storage in your explanation.
+                  <strong>Fix:</strong> Mention loading, RAM allocation, CPU
+                  scheduling, file access, or device communication.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Ignoring protection and security</h3>
+                <h3>Thinking interrupts are only errors</h3>
                 <p>
-                  The kernel is not only about speed.
+                  Interrupts can be normal requests, such as a mouse click or a
+                  timer event.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Mention permissions, modes, or safe
-                  device access where relevant.
+                  <strong>Fix:</strong> Say that an interrupt requests CPU
+                  servicing, then give a hardware example.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Forgetting FAT32 and NTFS detail</h3>
+                <p>
+                  File system questions often need more than "stores files".
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Link FAT32 to simple removable storage
+                  and NTFS to larger devices, access rights, recovery, or
+                  encryption.
                 </p>
               </article>
             </div>
@@ -376,7 +845,7 @@
             <p class="eyebrow">Quiz</p>
             <h2>Check your understanding</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
+              Answer all eight questions, then check your score. Your choices
               and best score save in this browser so you can revisit the lesson
               later.
             </p>
@@ -386,27 +855,27 @@
                 class="quiz-question"
                 data-question="q1"
                 data-answer="a"
-                data-success="Correct. The kernel is the core part of the operating system."
-                data-feedback="The kernel is the central controller that manages hardware access and system resources."
+                data-success="Correct. The kernel is the central core of the operating system."
+                data-feedback="The kernel is the core OS component that controls resources and protected tasks."
               >
                 <legend>1. What is the kernel?</legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="a" />
-                      <span>The core part of the operating system</span>
+                      <span>The central core part of the operating system</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="b" />
-                      <span>A type of monitor</span>
+                      <span>A type of removable storage device</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="c" />
-                      <span>A removable storage format</span>
+                      <span>The graphical desktop wallpaper</span>
                     </label>
                   </li>
                 </ul>
@@ -417,27 +886,32 @@
                 class="quiz-question"
                 data-question="q2"
                 data-answer="c"
-                data-success="Correct. Memory management decides how RAM is allocated and used."
-                data-feedback="Memory management is the kernel function that organises working memory."
+                data-success="Correct. Program execution includes loading, resource allocation, running, and termination."
+                data-feedback="Program execution is the kernel's managed life cycle for running software."
               >
-                <legend>2. Which kernel function is most directly concerned with RAM use?</legend>
+                <legend>
+                  2. Which answer best describes program execution?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="a" />
-                      <span>Paper output management</span>
+                      <span>Only changing a program's icon</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="b" />
-                      <span>Speaker volume control</span>
+                      <span>Formatting a USB drive</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="c" />
-                      <span>Memory management</span>
+                      <span
+                        >Loading software, allocating resources, running it, and
+                        ending it</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -448,27 +922,29 @@
                 class="quiz-question"
                 data-question="q3"
                 data-answer="b"
-                data-success="Correct. Drivers help the operating system communicate with hardware devices."
-                data-feedback="Device drivers are the software layer that supports communication between the OS and hardware."
+                data-success="Correct. Interrupts let components request attention from the CPU."
+                data-feedback="An interrupt is a signal that requests servicing, for example from a mouse, timer, or storage device."
               >
-                <legend>3. Why are device drivers important?</legend>
+                <legend>3. What is the purpose of an interrupt?</legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="a" />
-                      <span>They replace the need for RAM</span>
+                      <span>To permanently stop all programs</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="b" />
-                      <span>They allow the OS to communicate with hardware</span>
+                      <span
+                        >To request CPU attention for hardware or software</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="c" />
-                      <span>They turn a desktop into a server automatically</span>
+                      <span>To increase the physical size of RAM</span>
                     </label>
                   </li>
                 </ul>
@@ -479,27 +955,32 @@
                 class="quiz-question"
                 data-question="q4"
                 data-answer="a"
-                data-success="Correct. Interrupts tell the system that attention is needed."
-                data-feedback="Interrupt handling is about responding to urgent requests or events from hardware or software."
+                data-success="Correct. Modes separate ordinary application code from privileged kernel operations."
+                data-feedback="User mode is restricted. Kernel mode is privileged for low-level OS operations."
               >
-                <legend>4. What is the main purpose of interrupt handling?</legend>
+                <legend>
+                  4. Why does an OS use user mode and kernel mode?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="a" />
-                      <span>To respond when hardware or software needs attention</span>
+                      <span
+                        >To protect low-level operations from ordinary
+                        application code</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="b" />
-                      <span>To add more storage space to the disk</span>
+                      <span>To choose a brighter screen theme</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="c" />
-                      <span>To improve monitor resolution</span>
+                      <span>To remove the need for device drivers</span>
                     </label>
                   </li>
                 </ul>
@@ -509,28 +990,136 @@
               <fieldset
                 class="quiz-question"
                 data-question="q5"
-                data-answer="b"
-                data-success="Correct. User accounts and permissions are part of system security management."
-                data-feedback="The OS uses accounts, permissions, and protected access to help secure the system."
+                data-answer="c"
+                data-success="Correct. Memory management allocates and reuses RAM."
+                data-feedback="Memory management is about assigning RAM to running programs and making it available again."
               >
-                <legend>5. Which feature most clearly relates to OS security management?</legend>
+                <legend>
+                  5. Which kernel function is most directly linked to RAM?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="a" />
-                      <span>Changing monitor colour settings</span>
+                      <span>Keyboard layout selection</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>User accounts and permissions</span>
+                      <span>Monitor brightness</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
-                      <span>Increasing paper size in a printer tray</span>
+                      <span>Memory management</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="b"
+                data-success="Correct. Multitasking shares processor and peripheral time between running programs."
+                data-feedback="Multitasking is about allocating enough CPU and peripheral time so tasks can work concurrently."
+              >
+                <legend>6. What does multitasking involve?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="a" />
+                      <span>Running only one program forever</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="b" />
+                      <span
+                        >Sharing CPU and peripheral time between programs</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="c" />
+                      <span>Deleting all files after each session</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="a"
+                data-success="Correct. NTFS supports features such as access rights, recovery, and encryption."
+                data-feedback="FAT32 is simpler. NTFS is more sophisticated and can provide extra management and security features."
+              >
+                <legend>
+                  7. Which statement about file systems is most accurate?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="a" />
+                      <span
+                        >NTFS can support access rights, recovery features, and
+                        encryption</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="b" />
+                      <span
+                        >FAT32 is mainly chosen because it has stronger user
+                        permissions than NTFS</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="c" />
+                      <span>File systems only affect screen resolution</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="c"
+                data-success="Correct. Device drivers allow the OS to communicate with hardware and use its features."
+                data-feedback="Drivers are the software layer that helps the OS communicate with hardware components."
+              >
+                <legend>8. Why are device drivers needed?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="a" />
+                      <span>They replace the operating system completely</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="b" />
+                      <span>They turn RAM into long-term storage</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q8" value="c" />
+                      <span
+                        >They let the OS communicate with hardware
+                        components</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -562,9 +1151,9 @@
             <p class="eyebrow">Exam-Style Practice</p>
             <h2>Try longer answers like the ones used in written papers</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -573,13 +1162,13 @@
             <div class="exam-grid">
               <article class="exam-card">
                 <div class="exam-meta">
-                  <span class="exam-pill">5 marks</span>
-                  <span class="exam-pill">Explain</span>
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Describe</span>
                 </div>
                 <h3>Question 1</h3>
                 <p>
-                  Explain how memory management and multitasking together help a
-                  user run several applications at once.
+                  Describe two ways the kernel is involved when a user opens and
+                  then closes an application.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-1">
@@ -589,7 +1178,7 @@
                     id="exam-response-1"
                     class="exam-response"
                     data-exam-response="question-1"
-                    placeholder="Link CPU time, RAM, and responsiveness."
+                    placeholder="Think about loading, RAM, CPU time, and releasing resources."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
@@ -597,22 +1186,19 @@
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
                       <li>
-                        Memory management allocates RAM to active programs and
-                        their data.
+                        The kernel helps load the program from storage into
+                        memory.
                       </li>
                       <li>
-                        Multitasking shares processor time between those tasks.
+                        It allocates resources such as RAM and processor time.
                       </li>
                       <li>
-                        Together they allow several applications to remain open
-                        and usable.
+                        It manages the running process while the application is
+                        active.
                       </li>
                       <li>
-                        This helps the system feel responsive to the user.
-                      </li>
-                      <li>
-                        The answer may also mention protection so one program
-                        does not overwrite another.
+                        When the application closes, the kernel terminates the
+                        process and releases resources for reuse.
                       </li>
                     </ul>
                   </div>
@@ -622,12 +1208,12 @@
               <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">6 marks</span>
-                  <span class="exam-pill">Discuss</span>
+                  <span class="exam-pill">Explain</span>
                 </div>
                 <h3>Question 2</h3>
                 <p>
-                  Discuss why device drivers, file systems, and security
-                  features are all important parts of system management.
+                  Explain how interrupts and modes help an operating system
+                  respond to hardware while protecting the computer system.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-2">
@@ -637,7 +1223,7 @@
                     id="exam-response-2"
                     class="exam-response"
                     data-exam-response="question-2"
-                    placeholder="Think about communication, organisation, and protection."
+                    placeholder="Link hardware requests, CPU servicing, user mode, and kernel mode."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
@@ -645,28 +1231,90 @@
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
                       <li>
-                        Drivers let the operating system communicate with
-                        hardware correctly.
+                        Hardware such as a mouse, keyboard, disk, or network
+                        card can send an interrupt when it needs attention.
                       </li>
                       <li>
-                        File systems organise stored data into usable structures
-                        such as files and folders.
+                        The CPU can pause or switch from the current task so the
+                        operating system can service the request.
                       </li>
                       <li>
-                        Security features control access and protect data or
-                        settings from unauthorised use.
+                        User mode restricts ordinary application code so it
+                        cannot directly perform dangerous low-level actions.
                       </li>
                       <li>
-                        Together these functions help the system stay usable,
-                        stable, and safe.
+                        Kernel mode lets trusted OS code carry out privileged
+                        operations such as accessing memory or devices.
                       </li>
                       <li>
-                        The answer should link each function to a real effect on
-                        system operation.
+                        This helps the system respond to events while reducing
+                        the risk of an application damaging the system.
                       </li>
                       <li>
-                        A balanced discussion can mention that weak management
-                        in any one area can affect the whole system.
+                        A strong answer uses a specific example, such as a mouse
+                        click or disk read.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">8 marks</span>
+                  <span class="exam-pill">Discuss</span>
+                </div>
+                <h3>Question 3</h3>
+                <p>
+                  A college is setting up shared computers and removable USB
+                  drives for students. Discuss why file systems and device
+                  drivers are important in this scenario.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-3">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-3"
+                    class="exam-response"
+                    data-exam-response="question-3"
+                    placeholder="Compare FAT32 and NTFS, then link drivers to hardware use."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        File systems control how data is stored, addressed,
+                        organised, saved, and retrieved.
+                      </li>
+                      <li>
+                        FAT32 may be suitable for simple removable USB flash
+                        drives where security is not required.
+                      </li>
+                      <li>
+                        NTFS may be better for internal shared computer drives
+                        because it can support access rights, recovery from disk
+                        errors, and encryption.
+                      </li>
+                      <li>
+                        Access rights can help stop students viewing or changing
+                        files they should not access.
+                      </li>
+                      <li>
+                        Device drivers let the OS communicate with hardware such
+                        as graphics cards, printers, network adapters, or USB
+                        controllers.
+                      </li>
+                      <li>
+                        Correct drivers help devices use their features and
+                        performance properly.
+                      </li>
+                      <li>
+                        A balanced answer links storage organisation, security,
+                        compatibility, and hardware communication to the college
+                        scenario.
                       </li>
                     </ul>
                   </div>
@@ -683,30 +1331,47 @@
             <dl class="glossary-list">
               <div class="glossary-item">
                 <dt>Kernel</dt>
-                <dd>The core part of the operating system that manages resources.</dd>
+                <dd>
+                  The core part of the operating system that controls resources
+                  and system tasks.
+                </dd>
               </div>
               <div class="glossary-item">
                 <dt>Interrupt</dt>
-                <dd>A signal that tells the processor or OS something needs attention.</dd>
+                <dd>A signal that requests attention from the CPU.</dd>
               </div>
               <div class="glossary-item">
-                <dt>Device driver</dt>
-                <dd>Software that helps the OS communicate with hardware.</dd>
+                <dt>User mode</dt>
+                <dd>A restricted mode used by ordinary applications.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Kernel mode</dt>
+                <dd>A privileged mode used for low-level OS operations.</dd>
               </div>
               <div class="glossary-item">
                 <dt>File system</dt>
-                <dd>The structure used to organise and access stored files.</dd>
+                <dd>
+                  The method used to organise, address, save, and retrieve files
+                  on storage.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Device driver</dt>
+                <dd>
+                  Software that allows the OS to communicate with hardware.
+                </dd>
               </div>
             </dl>
           </section>
 
           <section class="lesson-rail-card panel revision-card">
             <p class="eyebrow">Remember</p>
-            <h2>Think like the OS</h2>
+            <h2>Name the control</h2>
             <ul class="memory-list">
-              <li>The kernel manages hardware access and system resources.</li>
-              <li>Memory, multitasking, storage, and drivers all connect.</li>
-              <li>Security and networking are part of OS management too.</li>
+              <li>Programs request work; the kernel controls access.</li>
+              <li>Interrupts ask for CPU attention.</li>
+              <li>User mode is restricted; kernel mode is privileged.</li>
+              <li>FAT32 is simple; NTFS has stronger management features.</li>
             </ul>
           </section>
         </aside>
@@ -731,7 +1396,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 12</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>
