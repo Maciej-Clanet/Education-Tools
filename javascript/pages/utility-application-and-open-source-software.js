@@ -24,7 +24,7 @@ const lessonConfig = {
   },
   quiz: {
     storageKey: "lesson-utility-application-and-open-source-software-quiz",
-    passScore: 4,
+    passScore: 6,
   },
   examPractice: {
     storageKey:

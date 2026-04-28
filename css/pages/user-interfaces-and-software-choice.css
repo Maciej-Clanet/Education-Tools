@@ -1,0 +1,493 @@
+.interface-choice-compass,
+.interface-showcase,
+.cli-context-grid,
+.cli-judgement-strip,
+.menu-context-board,
+.menu-flow,
+.software-decision-path,
+.performance-balance {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.interface-choice-compass {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.choice-compass-card,
+.interface-demo,
+.cli-context-card,
+.cli-judgement-strip article,
+.menu-context-card,
+.menu-flow-step,
+.decision-step,
+.balance-card {
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.choice-compass-card,
+.interface-demo,
+.cli-context-card,
+.menu-context-card,
+.menu-flow-step,
+.decision-step,
+.balance-card {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+}
+
+.choice-compass-card,
+.menu-flow-step {
+  justify-items: center;
+  text-align: center;
+}
+
+.choice-compass-card strong,
+.interface-demo h3,
+.cli-context-card h3,
+.menu-context-card h3,
+.menu-flow-step strong,
+.decision-step h3,
+.balance-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.choice-compass-card span:not(.choice-compass-icon),
+.interface-demo p,
+.interface-demo span,
+.cli-context-card p,
+.menu-context-card p,
+.menu-flow-step span:not(.menu-flow-number),
+.decision-step p,
+.balance-card p,
+.cli-judgement-strip span {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.choice-compass-icon,
+.cli-context-icon {
+  display: inline-block;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.choice-compass-icon--user {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 30%, #155b75 0 0.22rem, transparent 0.24rem),
+    radial-gradient(ellipse at 50% 76%, rgba(21, 91, 117, 0.28) 0 40%, transparent 41%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.choice-compass-icon--task {
+  background:
+    linear-gradient(180deg, transparent 18%, rgba(41, 82, 59, 0.22) 18% 32%, transparent 32% 42%, rgba(41, 82, 59, 0.22) 42% 56%, transparent 56% 66%, rgba(41, 82, 59, 0.22) 66% 80%, transparent 80%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.choice-compass-icon--device {
+  background:
+    linear-gradient(180deg, rgba(120, 94, 22, 0.28) 0 68%, transparent 68%),
+    linear-gradient(90deg, transparent 35%, rgba(120, 94, 22, 0.32) 35% 65%, transparent 65%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.choice-compass-icon--setting {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #8b4831 0 0.28rem, transparent 0.3rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.5rem, rgba(139, 72, 49, 0.24) 0.52rem 0.62rem),
+    rgba(255, 240, 241, 0.96);
+}
+
+.interface-showcase {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.interface-demo {
+  min-height: 29rem;
+}
+
+.interface-demo strong {
+  color: var(--lesson-accent-heading);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.interface-demo--gui {
+  border-left: 5px solid #155b75;
+}
+
+.interface-demo--cli {
+  border-left: 5px solid #29523b;
+}
+
+.interface-demo--menu {
+  border-left: 5px solid #785e16;
+}
+
+.mock-window,
+.terminal-mock,
+.menu-mock,
+.atm-mock,
+.ticket-mock,
+.device-menu-mock {
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.mock-window {
+  overflow: hidden;
+}
+
+.mock-window-bar {
+  display: flex;
+  gap: 0.32rem;
+  padding: 0.62rem;
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.mock-window-bar span {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: #155b75;
+}
+
+.mock-desktop {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  padding: 0.85rem;
+}
+
+.desktop-icon {
+  display: grid;
+  place-items: center;
+  min-height: 3.1rem;
+  border-radius: 14px;
+  background: rgba(232, 246, 255, 0.88);
+  color: #155b75;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.mock-app-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.42rem;
+  padding: 0.65rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.mock-app-panel span {
+  min-height: 0.7rem;
+  border-radius: 999px;
+  background: rgba(21, 91, 117, 0.16);
+}
+
+.terminal-mock {
+  display: grid;
+  gap: 0.28rem;
+  min-height: 11rem;
+  padding: 0.9rem;
+  background: #1f2930;
+  color: #f4fbff;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.terminal-line {
+  color: #d9f3df;
+}
+
+.terminal-output {
+  color: #9fd0e2;
+}
+
+.menu-mock {
+  padding: 0.8rem;
+  background: rgba(255, 249, 227, 0.82);
+}
+
+.menu-screen {
+  display: grid;
+  gap: 0.48rem;
+  padding: 0.85rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.menu-screen button {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(120, 94, 22, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 249, 227, 0.94);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.menu-progress {
+  justify-self: end;
+  width: fit-content;
+  padding: 0.26rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(36, 49, 59, 0.08);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.cli-context-grid,
+.menu-context-board,
+.software-decision-path,
+.performance-balance {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.cli-context-card code {
+  display: block;
+  width: 100%;
+  padding: 0.72rem 0.78rem;
+  border-radius: 14px;
+  background: #1f2930;
+  color: #d9f3df;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.86rem;
+  overflow-wrap: anywhere;
+}
+
+.cli-context-icon--server {
+  background:
+    linear-gradient(180deg, rgba(21, 91, 117, 0.22) 0 24%, transparent 24% 34%, rgba(21, 91, 117, 0.22) 34% 58%, transparent 58% 68%, rgba(21, 91, 117, 0.22) 68% 92%, transparent 92%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.cli-context-icon--script {
+  background:
+    linear-gradient(135deg, transparent 42%, #29523b 43% 49%, transparent 50%),
+    linear-gradient(45deg, transparent 51%, #29523b 52% 58%, transparent 59%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.cli-context-icon--diagnostic {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #8b4831 0 0.24rem, transparent 0.26rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.5rem, rgba(139, 72, 49, 0.24) 0.52rem 0.62rem),
+    rgba(255, 240, 241, 0.96);
+}
+
+.cli-context-icon--developer {
+  background:
+    radial-gradient(circle at 22% 50%, #155b75 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 50% 22%, #155b75 0 0.18rem, transparent 0.2rem),
+    radial-gradient(circle at 76% 72%, #155b75 0 0.18rem, transparent 0.2rem),
+    linear-gradient(135deg, transparent 43%, rgba(21, 91, 117, 0.24) 44% 51%, transparent 52%),
+    linear-gradient(45deg, transparent 50%, rgba(21, 91, 117, 0.24) 51% 58%, transparent 59%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.cli-judgement-strip {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cli-judgement-strip article {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.cli-judgement-strip strong {
+  color: var(--page-ink);
+}
+
+.atm-mock,
+.ticket-mock,
+.device-menu-mock {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.8rem;
+}
+
+.atm-mock {
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.ticket-mock {
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.device-menu-mock {
+  background: rgba(255, 249, 227, 0.92);
+}
+
+.atm-mock span,
+.ticket-mock span,
+.device-menu-mock span {
+  padding: 0.58rem 0.68rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--page-ink);
+  font-weight: 800;
+}
+
+.atm-screen-title,
+.ticket-route {
+  background: rgba(36, 49, 59, 0.08) !important;
+  color: var(--muted-ink) !important;
+}
+
+.menu-flow {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.menu-flow-number,
+.decision-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: rgba(255, 249, 227, 0.92);
+  color: #785e16;
+  font-weight: 900;
+}
+
+.flow-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.decision-step {
+  border-left: 5px solid var(--lesson-accent);
+}
+
+.balance-meter {
+  display: grid;
+  gap: 0.52rem;
+}
+
+.balance-meter span {
+  position: relative;
+  min-height: 2.25rem;
+  padding: 0.48rem 0.62rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--page-ink);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.balance-meter span::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--value);
+  background: rgba(105, 200, 232, 0.24);
+  z-index: 0;
+}
+
+.balance-meter span {
+  isolation: isolate;
+}
+
+.balance-meter span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.balance-card--cli .balance-meter span::before {
+  background: rgba(139, 207, 136, 0.28);
+}
+
+.balance-card--menu .balance-meter span::before {
+  background: rgba(242, 207, 106, 0.3);
+}
+
+body.teacher-mode-active .interface-choice-compass,
+body.teacher-mode-active .interface-showcase,
+body.teacher-mode-active .menu-context-board,
+body.teacher-mode-active .software-decision-path,
+body.teacher-mode-active .performance-balance {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .cli-context-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .menu-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .flow-arrow {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .menu-flow,
+  body.teacher-mode-active .menu-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flow-arrow {
+    display: none;
+  }
+
+  body.teacher-mode-active .interface-choice-compass,
+  body.teacher-mode-active .interface-showcase,
+  body.teacher-mode-active .menu-context-board,
+  body.teacher-mode-active .software-decision-path,
+  body.teacher-mode-active .performance-balance,
+  body.teacher-mode-active .cli-context-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .cli-judgement-strip,
+  .menu-flow,
+  body.teacher-mode-active .interface-choice-compass,
+  body.teacher-mode-active .interface-showcase,
+  body.teacher-mode-active .menu-context-board,
+  body.teacher-mode-active .software-decision-path,
+  body.teacher-mode-active .performance-balance,
+  body.teacher-mode-active .cli-context-grid,
+  body.teacher-mode-active .menu-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .interface-demo {
+    min-height: 0;
+  }
+}

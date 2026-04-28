@@ -24,7 +24,7 @@ const lessonConfig = {
   },
   quiz: {
     storageKey: "lesson-user-interfaces-and-software-choice-quiz",
-    passScore: 4,
+    passScore: 5,
   },
   examPractice: {
     storageKey: "lesson-user-interfaces-and-software-choice-exam-practice",

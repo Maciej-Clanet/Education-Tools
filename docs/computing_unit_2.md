@@ -79,8 +79,8 @@ All the initial versions of the lessons have been added, the below checklist is 
 ### A2 Computer software in a computer system
 - [x] Operating system types
 - [x] Kernel functions and system management
-- [ ] User interfaces and software choice
-- [ ] Utility, application, and open source software
+- [x] User interfaces and software choice
+- [x] Utility, application, and open source software
 
 ### A3 Data processing
 - [ ] Collecting and processing data

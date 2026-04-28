@@ -1,0 +1,323 @@
+.software-purpose-strip,
+.software-map-grid,
+.utility-dashboard,
+.application-workbench,
+.source-comparison,
+.open-source-balance,
+.selection-wheel,
+.scenario-choice-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.software-purpose-strip,
+.software-map-grid,
+.utility-dashboard,
+.application-workbench,
+.source-comparison,
+.selection-wheel,
+.scenario-choice-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.purpose-card,
+.software-map-card,
+.utility-tool-card,
+.application-demo,
+.source-card,
+.open-source-balance article,
+.selection-factor,
+.scenario-choice-card {
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.purpose-card,
+.software-map-card,
+.utility-tool-card,
+.application-demo,
+.source-card,
+.open-source-balance article,
+.selection-factor,
+.scenario-choice-card {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+}
+
+.purpose-card {
+  justify-items: center;
+  text-align: center;
+}
+
+.purpose-card strong,
+.software-map-card h3,
+.utility-tool-card h3,
+.application-demo h3,
+.source-card h3,
+.selection-factor h3,
+.scenario-choice-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.purpose-card span:not(.purpose-icon),
+.software-map-card p,
+.utility-tool-card p,
+.utility-tool-card span:not(.utility-icon),
+.application-demo p,
+.open-source-balance span,
+.selection-factor p,
+.scenario-choice-card p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.purpose-icon,
+.utility-icon,
+.source-icon {
+  display: inline-block;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.purpose-icon--utility,
+.utility-icon--disk {
+  background:
+    radial-gradient(circle at 50% 50%, #155b75 0 0.24rem, transparent 0.26rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.55rem, rgba(21, 91, 117, 0.24) 0.57rem 0.66rem),
+    rgba(232, 246, 255, 0.96);
+}
+
+.purpose-icon--application {
+  background:
+    linear-gradient(180deg, transparent 16%, rgba(41, 82, 59, 0.24) 16% 30%, transparent 30% 42%, rgba(41, 82, 59, 0.24) 42% 56%, transparent 56% 68%, rgba(41, 82, 59, 0.24) 68% 82%, transparent 82%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.purpose-icon--open,
+.source-icon--open {
+  border-radius: 50%;
+  background:
+    linear-gradient(135deg, transparent 42%, #29523b 43% 49%, transparent 50%),
+    linear-gradient(45deg, transparent 51%, #29523b 52% 58%, transparent 59%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.purpose-card--utility,
+.software-map-card--utility {
+  border-left: 5px solid #155b75;
+}
+
+.purpose-card--application,
+.software-map-card--application {
+  border-left: 5px solid #29523b;
+}
+
+.purpose-card--open,
+.software-map-card--open {
+  border-left: 5px solid #785e16;
+}
+
+.software-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.software-chip-list li {
+  padding: 0.34rem 0.58rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--lesson-accent-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.utility-tool-card strong {
+  margin-top: 0.2rem;
+  color: var(--lesson-accent-heading);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.utility-icon--malware {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #8b4831 0 0.26rem, transparent 0.28rem),
+    repeating-conic-gradient(from 0deg, rgba(139, 72, 49, 0.28) 0 10deg, transparent 10deg 28deg),
+    rgba(255, 240, 241, 0.96);
+}
+
+.utility-icon--backup {
+  background:
+    linear-gradient(180deg, rgba(41, 82, 59, 0.22) 0 24%, transparent 24% 36%, rgba(41, 82, 59, 0.22) 36% 60%, transparent 60% 72%, rgba(41, 82, 59, 0.22) 72% 94%, transparent 94%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.utility-icon--compress {
+  background:
+    linear-gradient(90deg, transparent 18%, rgba(120, 94, 22, 0.26) 18% 36%, transparent 36% 46%, rgba(120, 94, 22, 0.26) 46% 64%, transparent 64% 74%, rgba(120, 94, 22, 0.26) 74% 92%, transparent 92%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.application-demo {
+  min-height: 18rem;
+}
+
+.app-mock {
+  display: grid;
+  gap: 0.45rem;
+  min-height: 8.4rem;
+  padding: 0.8rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.app-mock span {
+  border-radius: 12px;
+  background: rgba(105, 200, 232, 0.22);
+}
+
+.app-mock--document span:nth-child(1) {
+  width: 60%;
+  min-height: 0.9rem;
+}
+
+.app-mock--document span {
+  min-height: 0.7rem;
+}
+
+.app-mock--media {
+  grid-template-columns: 1.4fr 1fr;
+}
+
+.app-mock--media span:first-child {
+  grid-row: span 2;
+  background: rgba(255, 240, 241, 0.92);
+}
+
+.app-mock--media span:nth-child(2),
+.app-mock--media span:nth-child(3) {
+  background: rgba(255, 249, 227, 0.92);
+}
+
+.app-mock--data {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.app-mock--data span {
+  min-height: 2.1rem;
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.source-comparison {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.source-card--open {
+  border-left: 5px solid #29523b;
+}
+
+.source-card--proprietary {
+  border-left: 5px solid #8b4831;
+}
+
+.source-icon--locked {
+  background:
+    linear-gradient(180deg, transparent 18%, rgba(139, 72, 49, 0.24) 18% 74%, transparent 74%),
+    radial-gradient(circle at 50% 44%, #8b4831 0 0.18rem, transparent 0.2rem),
+    rgba(255, 240, 241, 0.96);
+}
+
+.open-source-balance {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.open-source-balance strong {
+  color: var(--page-ink);
+}
+
+.selection-wheel {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.selection-factor {
+  border-top: 5px solid var(--lesson-accent);
+}
+
+.selection-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: rgba(232, 246, 255, 0.9);
+  color: #155b75;
+  font-weight: 900;
+}
+
+.scenario-choice-card {
+  border-left: 5px solid var(--lesson-accent);
+}
+
+body.teacher-mode-active .software-purpose-strip,
+body.teacher-mode-active .software-map-grid,
+body.teacher-mode-active .utility-dashboard,
+body.teacher-mode-active .application-workbench,
+body.teacher-mode-active .selection-wheel,
+body.teacher-mode-active .scenario-choice-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .source-comparison,
+body.teacher-mode-active .open-source-balance {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 1080px) {
+  body.teacher-mode-active .software-purpose-strip,
+  body.teacher-mode-active .software-map-grid,
+  body.teacher-mode-active .utility-dashboard,
+  body.teacher-mode-active .application-workbench,
+  body.teacher-mode-active .selection-wheel,
+  body.teacher-mode-active .scenario-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .source-comparison,
+  .open-source-balance,
+  body.teacher-mode-active .software-purpose-strip,
+  body.teacher-mode-active .software-map-grid,
+  body.teacher-mode-active .utility-dashboard,
+  body.teacher-mode-active .application-workbench,
+  body.teacher-mode-active .selection-wheel,
+  body.teacher-mode-active .scenario-choice-grid,
+  body.teacher-mode-active .source-comparison,
+  body.teacher-mode-active .open-source-balance {
+    grid-template-columns: 1fr;
+  }
+
+  .application-demo {
+    min-height: 0;
+  }
+}

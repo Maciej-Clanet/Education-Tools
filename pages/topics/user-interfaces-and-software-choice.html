@@ -8,7 +8,7 @@
     </title>
     <meta
       name="description"
-      content="Revise user interfaces and software choice for BTEC Level 3 Computing Unit 2, including graphical, command line, and menu-based interfaces and the factors that affect operating system selection."
+      content="Revise user interfaces and software choice for BTEC Level 3 Computing Unit 2, including graphical, command line, and menu-based interfaces with real examples such as desktops, terminals, ATMs, ticket machines, server administration, and software selection factors."
     />
     <meta
       property="og:title"
@@ -16,7 +16,7 @@
     />
     <meta
       property="og:description"
-      content="Revise user interfaces and software choice for BTEC Level 3 Computing Unit 2, including graphical, command line, and menu-based interfaces and the factors that affect operating system selection."
+      content="Revise user interfaces and software choice for BTEC Level 3 Computing Unit 2, including graphical, command line, and menu-based interfaces with real examples such as desktops, terminals, ATMs, ticket machines, server administration, and software selection factors."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/user-interfaces-and-software-choice.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -55,9 +59,9 @@
           <div>
             <h1>User interfaces and software choice</h1>
             <p class="lesson-hero-text">
-              Learn how graphical, command line, and menu-based interfaces
-              differ, and how user needs, performance, training, and usability
-              affect software choice.
+              Compare graphical, command line, and menu-based interfaces using
+              real contexts, then practise choosing suitable software by
+              matching it to users, tasks, devices, performance, and risk.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -75,7 +79,7 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Interface types and choosing suitable software</span>
+            <span>Interface suitability and justified software choices</span>
           </article>
         </div>
 
@@ -113,7 +117,9 @@
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
-            <a href="#interface-types" data-section-link>Interface types</a>
+            <a href="#interface-types" data-section-link>Interface comparison</a>
+            <a href="#command-line" data-section-link>Command line examples</a>
+            <a href="#menu-based" data-section-link>Menu-based examples</a>
             <a href="#software-choice" data-section-link>Software choice</a>
             <a href="#performance-use" data-section-link>Use and performance</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
@@ -129,40 +135,79 @@
             data-lesson-section
           >
             <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
+            <h2>Good interface choices fit the user, not just the software</h2>
             <p class="lesson-section-copy">
-              Interface and software-choice questions expect you to think about
-              people as well as technology. The best choice depends on the
-              user, the task, the device, and the environment.
+              Interface questions ask you to match people, tasks, devices, and
+              environments. A GUI may be best for broad everyday use, a command
+              line may be best for expert control, and a menu-based interface
+              may be best where users need a short guided path.
             </p>
 
+            <div
+              class="interface-choice-compass"
+              aria-label="Four clues for choosing an interface"
+            >
+              <article class="choice-compass-card">
+                <span class="choice-compass-icon choice-compass-icon--user" aria-hidden="true"></span>
+                <strong>User</strong>
+                <span>Beginner, expert, public user, administrator</span>
+              </article>
+              <article class="choice-compass-card">
+                <span class="choice-compass-icon choice-compass-icon--task" aria-hidden="true"></span>
+                <strong>Task</strong>
+                <span>Routine choices, creative work, automation, repair</span>
+              </article>
+              <article class="choice-compass-card">
+                <span class="choice-compass-icon choice-compass-icon--device" aria-hidden="true"></span>
+                <strong>Device</strong>
+                <span>Touch screen, desktop, server, embedded system</span>
+              </article>
+              <article class="choice-compass-card">
+                <span class="choice-compass-icon choice-compass-icon--setting" aria-hidden="true"></span>
+                <strong>Setting</strong>
+                <span>Public, remote, time-limited, secure, low resource</span>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="lesson-card lesson-wide">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
-                  <li>Compare graphical, command line, and menu-based interfaces.</li>
-                  <li>Explain how different users benefit from different interfaces.</li>
-                  <li>Evaluate factors that affect software choice.</li>
-                  <li>Link interface choice to usability and performance.</li>
+                  <li>
+                    Compare graphical, command line, and menu-based
+                    interfaces.
+                  </li>
+                  <li>
+                    Explain where command line interfaces are used, such as
+                    server administration, scripting, Git, and diagnostics.
+                  </li>
+                  <li>
+                    Explain where menu-based interfaces are used, such as ATMs,
+                    ticket machines, tills, printers, and setup screens.
+                  </li>
+                  <li>
+                    Justify software choices using user needs, compatibility,
+                    cost, training, accessibility, security, and performance.
+                  </li>
                 </ul>
               </article>
 
               <article class="lesson-card">
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
-                  <li><strong>GUI:</strong> visual and user-friendly.</li>
-                  <li><strong>CLI:</strong> text commands and precision.</li>
-                  <li><strong>Menu-based:</strong> guided fixed choices.</li>
-                  <li><strong>Choice:</strong> fit the user and the job.</li>
+                  <li><strong>GUI:</strong> visual discovery and ease of use.</li>
+                  <li><strong>CLI:</strong> precise commands and automation.</li>
+                  <li><strong>Menu:</strong> guided fixed choices.</li>
+                  <li><strong>Choice:</strong> suit the scenario, not personal preference.</li>
                 </ul>
               </article>
 
               <article class="lesson-card fullrow">
-                <h3>Why this matters</h3>
+                <h3>The exam habit</h3>
                 <p>
-                  A suitable interface can reduce training needs, speed up work,
-                  improve accessibility, and lower errors. A poor choice can
-                  frustrate users or waste system resources.
+                  Do not say "GUI is easier" and stop. Say who it is easier for,
+                  what task they are doing, and what trade-off follows. That is
+                  where the marks usually live.
                 </p>
               </article>
             </div>
@@ -174,11 +219,79 @@
             data-lesson-section
           >
             <p class="eyebrow">Interfaces</p>
-            <h2>Different interface styles suit different users and tasks</h2>
+            <h2>Graphical, command line, and menu-based interfaces solve different problems</h2>
             <p class="lesson-section-copy">
-              No interface is automatically best. Each one supports a different
-              balance of speed, guidance, flexibility, and training demand.
+              These interface types can overlap in real systems, but the labels
+              help you explain the main interaction style. The examples below
+              show what a learner should picture when they see each term.
             </p>
+
+            <div class="interface-showcase">
+              <article class="interface-demo interface-demo--gui">
+                <div class="mock-window" aria-hidden="true">
+                  <div class="mock-window-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="mock-desktop">
+                    <span class="desktop-icon">Docs</span>
+                    <span class="desktop-icon">Web</span>
+                    <span class="desktop-icon">Files</span>
+                    <div class="mock-app-panel">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <h3>Graphical user interface</h3>
+                <p>
+                  Uses windows, icons, menus, buttons, and pointer or touch
+                  input. Common on laptops, desktops, tablets, and phones.
+                </p>
+                <strong>Good for</strong>
+                <span>General users, visual editing, browsing, office work</span>
+              </article>
+
+              <article class="interface-demo interface-demo--cli">
+                <div class="terminal-mock" aria-label="Command line example">
+                  <span class="terminal-line">admin@server:~$ cd sites</span>
+                  <span class="terminal-line">admin@server:~/sites$ ls</span>
+                  <span class="terminal-line terminal-output">app  logs  public</span>
+                  <span class="terminal-line">admin@server:~/sites$ systemctl status web</span>
+                  <span class="terminal-line terminal-output">active and running</span>
+                </div>
+                <h3>Command line interface</h3>
+                <p>
+                  Uses typed commands. It is often chosen by skilled users who
+                  need speed, precision, scripting, or remote control.
+                </p>
+                <strong>Good for</strong>
+                <span>Servers, automation, diagnostics, developer tools</span>
+              </article>
+
+              <article class="interface-demo interface-demo--menu">
+                <div class="menu-mock" aria-label="Menu-based ticket machine example">
+                  <div class="menu-screen">
+                    <strong>Buy Ticket</strong>
+                    <button type="button" tabindex="-1">Single</button>
+                    <button type="button" tabindex="-1">Return</button>
+                    <button type="button" tabindex="-1">Travelcard</button>
+                    <span class="menu-progress">Step 1 of 4</span>
+                  </div>
+                </div>
+                <h3>Menu-based interface</h3>
+                <p>
+                  Presents fixed choices. It guides the user through a limited
+                  workflow and reduces the need to remember commands.
+                </p>
+                <strong>Good for</strong>
+                <span>ATMs, ticket machines, tills, kiosks, device settings</span>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -193,33 +306,208 @@
                 <tbody>
                   <tr>
                     <td>Graphical user interface</td>
-                    <td>Icons, windows, menus, pointer control</td>
-                    <td>Easy for many users to learn</td>
-                    <td>Can use more system resources</td>
+                    <td>Icons, windows, menus, pointer or touch control</td>
+                    <td>Easy for many users to learn and explore</td>
+                    <td>Can use more memory, storage, and processing power</td>
                   </tr>
                   <tr>
                     <td>Command line interface</td>
                     <td>Text commands typed directly</td>
-                    <td>Fast and precise for skilled users</td>
-                    <td>Requires memorising commands</td>
+                    <td>Fast, precise, scriptable, and efficient for experts</td>
+                    <td>Requires command knowledge and can be unforgiving</td>
                   </tr>
                   <tr>
                     <td>Menu-based interface</td>
                     <td>Users choose from fixed options</td>
-                    <td>Simple and consistent</td>
-                    <td>Less flexible for unusual tasks</td>
+                    <td>Simple, consistent, and useful for public or routine tasks</td>
+                    <td>Less flexible when the user needs an unusual action</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <article class="lesson-card">
-              <h3>Typical examples</h3>
+              <h3>A useful distinction</h3>
               <p>
-                A kiosk or cash machine often uses a menu-based interface. A
-                home laptop usually uses a GUI. A system administrator may use
-                a command line for scripting, remote management, or precise
-                server control.
+                A GUI helps users discover actions by seeing them. A command
+                line helps expert users express exact actions quickly. A
+                menu-based interface narrows the available actions so occasional
+                users can complete a safe, predictable workflow.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="command-line"
+            class="lesson-section lesson-section--command-line panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Command Line</p>
+            <h2>Command line interfaces are common where control and automation matter</h2>
+            <p class="lesson-section-copy">
+              A command line interface is not just an old-fashioned screen. It
+              is still widely used because typed commands can be repeated,
+              scripted, copied, logged, and run over a remote connection.
+            </p>
+
+            <div class="cli-context-grid">
+              <article class="cli-context-card">
+                <span class="cli-context-icon cli-context-icon--server" aria-hidden="true"></span>
+                <h3>Server administration</h3>
+                <p>
+                  Technicians often connect to Linux servers through SSH and run
+                  commands to update software, inspect logs, restart services,
+                  or check storage use.
+                </p>
+                <code>ssh admin@web-server</code>
+              </article>
+
+              <article class="cli-context-card">
+                <span class="cli-context-icon cli-context-icon--script" aria-hidden="true"></span>
+                <h3>Automation and scripts</h3>
+                <p>
+                  Repeated jobs can be scripted, such as copying backup files,
+                  renaming many files, or deploying an application.
+                </p>
+                <code>robocopy work backup /MIR</code>
+              </article>
+
+              <article class="cli-context-card">
+                <span class="cli-context-icon cli-context-icon--diagnostic" aria-hidden="true"></span>
+                <h3>Diagnostics</h3>
+                <p>
+                  Support staff use commands to test networks, display
+                  configuration, and find faults quickly.
+                </p>
+                <code>ping 8.8.8.8</code>
+              </article>
+
+              <article class="cli-context-card">
+                <span class="cli-context-icon cli-context-icon--developer" aria-hidden="true"></span>
+                <h3>Developer tools</h3>
+                <p>
+                  Programmers often use command line tools for Git, package
+                  managers, tests, builds, and cloud deployment.
+                </p>
+                <code>git status</code>
+              </article>
+            </div>
+
+            <div class="cli-judgement-strip">
+              <article>
+                <strong>Why choose it?</strong>
+                <span>Efficient for skilled users, remote access, automation, low overhead, exact control.</span>
+              </article>
+              <article>
+                <strong>Why avoid it?</strong>
+                <span>High learning curve, easy to mistype, less friendly for occasional or public users.</span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Scenario sentence</h3>
+              <p>
+                A network administrator maintaining remote servers may prefer a
+                command line because it works well over low-bandwidth
+                connections, can automate repeated tasks, and gives precise
+                control once the user knows the commands.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="menu-based"
+            class="lesson-section lesson-section--menu-based panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Menu-Based</p>
+            <h2>Menu-based interfaces are common where the task path is limited</h2>
+            <p class="lesson-section-copy">
+              A menu-based interface gives users a set of choices instead of an
+              open input area. This is useful when the system must guide many
+              different users through the same safe sequence.
+            </p>
+
+            <div class="menu-context-board">
+              <article class="menu-context-card">
+                <div class="atm-mock" aria-hidden="true">
+                  <span class="atm-screen-title">Cash Machine</span>
+                  <span>Withdraw cash</span>
+                  <span>Check balance</span>
+                  <span>Change PIN</span>
+                </div>
+                <h3>ATMs</h3>
+                <p>
+                  Customers need clear secure choices and should not need to
+                  type commands to access banking functions.
+                </p>
+              </article>
+
+              <article class="menu-context-card">
+                <div class="ticket-mock" aria-hidden="true">
+                  <span class="ticket-route">Station A to Station B</span>
+                  <span>Adult</span>
+                  <span>Child</span>
+                  <span>Railcard</span>
+                </div>
+                <h3>Ticket machines</h3>
+                <p>
+                  Travellers are guided through destination, ticket type,
+                  payment, and receipt choices.
+                </p>
+              </article>
+
+              <article class="menu-context-card">
+                <div class="device-menu-mock" aria-hidden="true">
+                  <span>Printer setup</span>
+                  <span>Wi-Fi</span>
+                  <span>Paper size</span>
+                  <span>Maintenance</span>
+                </div>
+                <h3>Device settings</h3>
+                <p>
+                  Printers, routers, microwaves, cameras, and BIOS or UEFI
+                  setup screens often use menus because the options are known in
+                  advance.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div class="menu-flow" aria-label="Menu-based checkout flow">
+              <article class="menu-flow-step">
+                <span class="menu-flow-number">1</span>
+                <strong>Choose</strong>
+                <span>The system offers valid options.</span>
+              </article>
+              <span class="flow-arrow">then</span>
+              <article class="menu-flow-step">
+                <span class="menu-flow-number">2</span>
+                <strong>Confirm</strong>
+                <span>The user checks the selected option.</span>
+              </article>
+              <span class="flow-arrow">then</span>
+              <article class="menu-flow-step">
+                <span class="menu-flow-number">3</span>
+                <strong>Continue</strong>
+                <span>The next screen only shows relevant choices.</span>
+              </article>
+              <span class="flow-arrow">then</span>
+              <article class="menu-flow-step">
+                <span class="menu-flow-number">4</span>
+                <strong>Finish</strong>
+                <span>The task completes with fewer invalid inputs.</span>
+              </article>
+            </div>
+
+            <article class="lesson-card">
+              <h3>Scenario sentence</h3>
+              <p>
+                A public ticket machine suits a menu-based interface because
+                users may be unfamiliar with the system, only need a small set
+                of fixed actions, and benefit from a step-by-step flow that
+                reduces input errors.
               </p>
             </article>
           </section>
@@ -230,55 +518,69 @@
             data-lesson-section
           >
             <p class="eyebrow">Selection</p>
-            <h2>Software choice depends on users, compatibility, and purpose</h2>
+            <h2>Software choice depends on purpose, users, and constraints</h2>
             <p class="lesson-section-copy">
-              Choosing software means more than checking features. You should
-              think about who will use it, whether it works with existing
-              systems, and what it costs to support over time.
+              Choosing an operating system or application means more than
+              checking features. Strong answers balance user needs,
+              compatibility, cost, accessibility, implementation, security, and
+              performance.
             </p>
+
+            <div class="software-decision-path">
+              <article class="decision-step">
+                <span class="decision-number">1</span>
+                <h3>Task fit</h3>
+                <p>Does it do the work the user actually needs?</p>
+              </article>
+              <article class="decision-step">
+                <span class="decision-number">2</span>
+                <h3>User fit</h3>
+                <p>Can the intended users learn and use it effectively?</p>
+              </article>
+              <article class="decision-step">
+                <span class="decision-number">3</span>
+                <h3>System fit</h3>
+                <p>Is it compatible with hardware, OS, files, and other tools?</p>
+              </article>
+              <article class="decision-step">
+                <span class="decision-number">4</span>
+                <h3>Organisation fit</h3>
+                <p>Can the organisation afford, secure, support, and migrate to it?</p>
+              </article>
+            </div>
 
             <div class="term-grid">
               <article class="term-card">
                 <strong>User needs</strong>
-                <span>
-                  The software must help users complete their actual tasks
-                  effectively.
-                </span>
+                <span>The software must help users complete their actual tasks effectively.</span>
               </article>
               <article class="term-card">
                 <strong>Compatibility</strong>
-                <span>
-                  It should work with the operating system, file formats, and
-                  other tools already in use.
-                </span>
+                <span>It should work with current hardware, operating systems, file formats, and other tools.</span>
               </article>
               <article class="term-card">
                 <strong>Training</strong>
-                <span>
-                  Some interfaces take longer to learn, which affects time and
-                  support needs.
-                </span>
+                <span>Some interfaces take longer to learn, which affects time, support, and productivity.</span>
               </article>
               <article class="term-card">
                 <strong>Accessibility</strong>
-                <span>
-                  The software should be usable by the intended audience,
-                  including users with additional needs.
-                </span>
+                <span>The interface should be usable by the intended audience, including users with additional needs.</span>
               </article>
               <article class="term-card">
                 <strong>Cost</strong>
-                <span>
-                  Cost includes licences, maintenance, upgrades, and support,
-                  not just the purchase price.
-                </span>
+                <span>Cost includes licences, maintenance, upgrades, support, and migration time.</span>
               </article>
               <article class="term-card">
                 <strong>Security</strong>
-                <span>
-                  The software should not create unnecessary risk for the
-                  system or data.
-                </span>
+                <span>The software should protect data and avoid creating unnecessary system risk.</span>
+              </article>
+              <article class="term-card">
+                <strong>Implementation</strong>
+                <span>Testing, migration, installation time, and disruption affect whether the choice is practical.</span>
+              </article>
+              <article class="term-card">
+                <strong>Productivity</strong>
+                <span>A good choice helps users work faster or with fewer errors once it is in place.</span>
               </article>
             </div>
           </section>
@@ -289,17 +591,53 @@
             data-lesson-section
           >
             <p class="eyebrow">Impact</p>
-            <h2>Interface and software choices can affect performance as well as ease of use</h2>
+            <h2>Interface and software choices affect performance, errors, and productivity</h2>
             <p class="lesson-section-copy">
-              A simple interface may run well on limited hardware, while a
-              richer interface may offer better usability at the cost of more
-              memory or processing demand.
+              A richer interface can be easier to use but may need more memory
+              or processing power. A simpler interface may be faster or more
+              reliable on limited hardware, but it may require more skill or
+              give users less flexibility.
             </p>
 
-            <div class="example-strip" aria-label="Interface trade-offs">
-              <span class="example-chip"><strong>GUI</strong> easier for general users</span>
-              <span class="example-chip"><strong>CLI</strong> efficient for experts</span>
-              <span class="example-chip"><strong>Menu</strong> low-error guided flow</span>
+            <div class="performance-balance" aria-label="Interface trade-offs">
+              <article class="balance-card balance-card--gui">
+                <h3>GUI-heavy software</h3>
+                <div class="balance-meter" aria-hidden="true">
+                  <span style="--value: 78%">Ease of use</span>
+                  <span style="--value: 66%">Resource use</span>
+                  <span style="--value: 38%">Automation</span>
+                </div>
+                <p>
+                  Good for general productivity, visual work, and lower
+                  training, but can need stronger hardware.
+                </p>
+              </article>
+
+              <article class="balance-card balance-card--cli">
+                <h3>CLI-heavy workflow</h3>
+                <div class="balance-meter" aria-hidden="true">
+                  <span style="--value: 46%">Ease of use</span>
+                  <span style="--value: 28%">Resource use</span>
+                  <span style="--value: 84%">Automation</span>
+                </div>
+                <p>
+                  Good for experts, remote work, scripts, and repeatable
+                  processes, but training demand is higher.
+                </p>
+              </article>
+
+              <article class="balance-card balance-card--menu">
+                <h3>Menu-driven workflow</h3>
+                <div class="balance-meter" aria-hidden="true">
+                  <span style="--value: 72%">Ease of use</span>
+                  <span style="--value: 40%">Resource use</span>
+                  <span style="--value: 30%">Flexibility</span>
+                </div>
+                <p>
+                  Good for routine public tasks because it guides users and
+                  limits mistakes, but unusual tasks may not be available.
+                </p>
+              </article>
             </div>
 
             <article class="lesson-card">
@@ -308,8 +646,8 @@
                 A library self-service station may be better with a menu-based
                 or touch-friendly graphical interface because most users need a
                 clear guided flow. A network administrator maintaining remote
-                servers may prefer a command line because it is fast, scriptable,
-                and efficient over remote connections.
+                servers may prefer a command line because it is fast,
+                scriptable, and efficient over remote connections.
               </p>
             </article>
           </section>
@@ -322,39 +660,52 @@
             <p class="eyebrow">Exam Traps</p>
             <h2>Common mistakes with interfaces and software choice</h2>
             <p class="lesson-section-copy">
-              These questions often go wrong when answers focus on preference
-              instead of suitability.
+              These questions often go wrong when answers focus on personal
+              preference instead of suitability for a scenario.
             </p>
 
             <div class="trap-grid">
               <article class="trap-card">
                 <h3>Saying GUI is always best</h3>
                 <p>
-                  GUIs are often easier to learn, but not always the best
-                  choice for specialists or simple public systems.
+                  GUIs are often easier to learn, but specialists, servers, and
+                  low-resource systems may benefit from a command line.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Match the interface to the user and the
-                  task.
+                  <strong>Fix:</strong> Match the interface to the user, task,
+                  and hardware.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Ignoring training and accessibility</h3>
+                <h3>Treating command line as outdated</h3>
                 <p>
-                  A technically powerful tool may still be a poor fit.
+                  CLIs are still used heavily in server administration,
+                  diagnostics, software development, and automation.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Consider how easy the software is to
-                  learn and use.
+                  <strong>Fix:</strong> Give a real expert-use context such as
+                  SSH, Git, scripts, or network troubleshooting.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Forgetting why menus help public users</h3>
+                <p>
+                  A menu is not just "easy"; it restricts choices to valid
+                  actions.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Mention guidance, fixed options,
+                  reduced training, and fewer invalid inputs.
                 </p>
               </article>
 
               <article class="trap-card">
                 <h3>Only talking about price</h3>
                 <p>
-                  Cheap software may cost more later if it is hard to support
-                  or incompatible.
+                  Cheap software may cost more later if it is hard to support,
+                  incompatible, insecure, or slow.
                 </p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Consider total suitability, not just
@@ -372,7 +723,7 @@
             <p class="eyebrow">Quiz</p>
             <h2>Check your understanding</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
+              Answer all seven questions, then check your score. Your choices
               and best score save in this browser so you can revisit the lesson
               later.
             </p>
@@ -402,7 +753,7 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="c" />
-                      <span>Only spoken commands</span>
+                      <span>Only spoken commands with no visual controls</span>
                     </label>
                   </li>
                 </ul>
@@ -533,6 +884,68 @@
                 <p class="quiz-feedback-note" data-question-feedback></p>
               </fieldset>
 
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="c"
+                data-success="Correct. SSH server work is a realistic command line use."
+                data-feedback="A command line is commonly used for remote server administration, diagnostics, scripting, and development tools."
+              >
+                <legend>6. Which is the strongest real example of command line use?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="a" />
+                      <span>A tourist choosing a ticket type from three large buttons</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="b" />
+                      <span>A home user dragging a file icon into a folder</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q6" value="c" />
+                      <span>An administrator using SSH commands to maintain a web server</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="b"
+                data-success="Correct. Menu-based interfaces restrict users to valid choices."
+                data-feedback="Menu-based interfaces are strong when users need fixed, guided, low-error choices."
+              >
+                <legend>7. Why can a menu-based interface reduce errors?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="a" />
+                      <span>It lets users type any command they can remember</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="b" />
+                      <span>It limits users to clear valid options</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q7" value="c" />
+                      <span>It removes the need for any input or decision</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
               <div class="quiz-actions">
                 <button class="primary-link" type="submit">Check score</button>
                 <button
@@ -594,6 +1007,10 @@
                     <ul class="exam-points">
                       <li>A public user should not need to memorise commands.</li>
                       <li>A menu-based interface offers clear guided choices.</li>
+                      <li>
+                        The interface can restrict users to valid destinations,
+                        ticket types, and payment options.
+                      </li>
                       <li>It reduces input errors and training needs.</li>
                       <li>
                         It is more suitable for quick occasional use by many
@@ -639,8 +1056,8 @@
                         productivity.
                       </li>
                       <li>
-                        Cost includes licensing, updates, and support, not just
-                        the initial price.
+                        Cost includes licensing, updates, support, and possible
+                        migration time.
                       </li>
                       <li>
                         Security and access control may be important for
@@ -649,6 +1066,61 @@
                       <li>
                         The best answer reaches a balanced judgement instead of
                         focusing on only one factor.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">8 marks</span>
+                  <span class="exam-pill">Evaluate</span>
+                </div>
+                <h3>Question 3</h3>
+                <p>
+                  A college has a public library kiosk and a server maintained
+                  by technicians. Evaluate which interface type is most suitable
+                  for each system.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-3">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-3"
+                    class="exam-response"
+                    data-exam-response="question-3"
+                    placeholder="Compare public users with technicians, then justify each interface."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>
+                        The public kiosk would suit a menu-based or simple
+                        touch-friendly graphical interface.
+                      </li>
+                      <li>
+                        Public users may be unfamiliar with the system and need
+                        clear fixed choices.
+                      </li>
+                      <li>
+                        Menus reduce invalid inputs and guide users through
+                        tasks such as searching, borrowing, or printing.
+                      </li>
+                      <li>
+                        The server may suit a command line interface for
+                        technicians.
+                      </li>
+                      <li>
+                        A CLI allows remote administration, scripting,
+                        diagnostics, and precise control with low overhead.
+                      </li>
+                      <li>
+                        The answer should recognise that the best interface is
+                        different because the users and tasks are different.
                       </li>
                     </ul>
                   </div>
@@ -669,7 +1141,10 @@
               </div>
               <div class="glossary-item">
                 <dt>CLI</dt>
-                <dd>A command line interface based on typed commands.</dd>
+                <dd>
+                  A command line interface based on typed commands, often used
+                  by skilled users.
+                </dd>
               </div>
               <div class="glossary-item">
                 <dt>Menu-based interface</dt>
@@ -679,16 +1154,24 @@
                 <dt>Compatibility</dt>
                 <dd>Whether software works with the current system.</dd>
               </div>
+              <div class="glossary-item">
+                <dt>Implementation</dt>
+                <dd>
+                  The work needed to introduce software, including testing,
+                  migration, setup, and support.
+                </dd>
+              </div>
             </dl>
           </section>
 
           <section class="lesson-rail-card panel revision-card">
             <p class="eyebrow">Remember</p>
-            <h2>Think about the user</h2>
+            <h2>Match the context</h2>
             <ul class="memory-list">
-              <li>Different users benefit from different interfaces.</li>
-              <li>Ease of use and training matter alongside technical features.</li>
-              <li>Good software choice balances purpose, cost, and compatibility.</li>
+              <li>Public fixed task: menu-based.</li>
+              <li>General everyday work: GUI.</li>
+              <li>Expert remote control or automation: CLI.</li>
+              <li>Software choice must balance cost, fit, risk, and performance.</li>
             </ul>
           </section>
         </aside>
@@ -713,7 +1196,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 11</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>
