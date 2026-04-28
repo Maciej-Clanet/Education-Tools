@@ -163,9 +163,7 @@
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Define stored-program architecture clearly.</li>
-                  <li>
-                    Describe the features of Von Neumann architecture.
-                  </li>
+                  <li>Describe the features of Von Neumann architecture.</li>
                   <li>Describe the features of Harvard architecture.</li>
                   <li>
                     Explain the Von Neumann bottleneck and choose a suitable
@@ -186,8 +184,8 @@
                     the same main memory and pathway.
                   </li>
                   <li>
-                    <strong>Harvard:</strong> instructions and data use
-                    separate memory paths.
+                    <strong>Harvard:</strong> instructions and data use separate
+                    memory paths.
                   </li>
                   <li>
                     <strong>Trade-off:</strong> simplicity vs reduced
@@ -213,7 +211,9 @@
             data-lesson-section
           >
             <p class="eyebrow">Stored Program Model</p>
-            <h2>Programs are stored in memory so one machine can run many jobs</h2>
+            <h2>
+              Programs are stored in memory so one machine can run many jobs
+            </h2>
             <p class="lesson-section-copy">
               A stored-program computer keeps instructions in memory in a form
               the CPU can fetch, decode, and execute. That means the same
@@ -238,22 +238,37 @@
               class="stored-program-flow"
               aria-label="Stored program architecture flow"
             >
-              <article class="stored-program-stage stored-program-stage--program">
-                <span class="stored-program-icon stored-program-icon--program" aria-hidden="true"></span>
+              <article
+                class="stored-program-stage stored-program-stage--program"
+              >
+                <span
+                  class="stored-program-icon stored-program-icon--program"
+                  aria-hidden="true"
+                ></span>
                 <strong>Program loaded</strong>
                 <span>Machine-code instructions are placed in memory.</span>
               </article>
               <span class="stored-program-arrow" aria-hidden="true">fetch</span>
-              <article class="stored-program-stage stored-program-stage--memory">
-                <span class="stored-program-icon stored-program-icon--memory" aria-hidden="true"></span>
+              <article
+                class="stored-program-stage stored-program-stage--memory"
+              >
+                <span
+                  class="stored-program-icon stored-program-icon--memory"
+                  aria-hidden="true"
+                ></span>
                 <strong>Memory stores instructions</strong>
                 <span>The CPU can read the next instruction when needed.</span>
               </article>
               <span class="stored-program-arrow" aria-hidden="true">run</span>
               <article class="stored-program-stage stored-program-stage--cpu">
-                <span class="stored-program-icon stored-program-icon--cpu" aria-hidden="true"></span>
+                <span
+                  class="stored-program-icon stored-program-icon--cpu"
+                  aria-hidden="true"
+                ></span>
                 <strong>CPU executes</strong>
-                <span>Fetch, decode, execute repeats for the loaded program.</span>
+                <span
+                  >Fetch, decode, execute repeats for the loaded program.</span
+                >
               </article>
             </div>
 
@@ -323,7 +338,10 @@
             data-lesson-section
           >
             <p class="eyebrow">Von Neumann</p>
-            <h2>Von Neumann architecture uses shared access for instructions and data</h2>
+            <h2>
+              Von Neumann architecture uses shared access for instructions and
+              data
+            </h2>
             <p class="lesson-section-copy">
               In the Von Neumann model, program instructions and data share the
               same main memory. They also use the same pathway or bus between
@@ -401,7 +419,7 @@
                 </span>
               </article>
             </div>
-
+            <br />
             <article class="lesson-card">
               <h3>Why the bottleneck happens</h3>
               <p>
@@ -420,7 +438,9 @@
             data-lesson-section
           >
             <p class="eyebrow">Harvard</p>
-            <h2>Harvard architecture separates instruction access from data access</h2>
+            <h2>
+              Harvard architecture separates instruction access from data access
+            </h2>
             <p class="lesson-section-copy">
               In the Harvard model, instructions and data use separate memories
               or separate pathways. This means the CPU can fetch an instruction
@@ -440,7 +460,9 @@
                   </div>
                   <div class="architecture-split">
                     <div class="architecture-branch">
-                      <div class="architecture-link architecture-link--instruction">
+                      <div
+                        class="architecture-link architecture-link--instruction"
+                      >
                         Instruction bus
                       </div>
                       <div class="architecture-node">
@@ -473,17 +495,26 @@
               aria-label="Harvard architecture separate instruction and data paths"
             >
               <article class="parallel-card parallel-card--instruction">
-                <span class="parallel-icon parallel-icon--instruction" aria-hidden="true"></span>
+                <span
+                  class="parallel-icon parallel-icon--instruction"
+                  aria-hidden="true"
+                ></span>
                 <strong>Instruction path</strong>
                 <span>Fetch program code from instruction memory.</span>
               </article>
               <article class="parallel-card parallel-card--cpu">
-                <span class="parallel-icon parallel-icon--cpu" aria-hidden="true"></span>
+                <span
+                  class="parallel-icon parallel-icon--cpu"
+                  aria-hidden="true"
+                ></span>
                 <strong>CPU</strong>
                 <span>Can use both paths in the same processing window.</span>
               </article>
               <article class="parallel-card parallel-card--data">
-                <span class="parallel-icon parallel-icon--data" aria-hidden="true"></span>
+                <span
+                  class="parallel-icon parallel-icon--data"
+                  aria-hidden="true"
+                ></span>
                 <strong>Data path</strong>
                 <span>Read or write values in data memory.</span>
               </article>
@@ -518,7 +549,7 @@
                 </span>
               </article>
             </div>
-
+            <br />
             <article class="lesson-card">
               <h3>Where Harvard-style ideas are useful</h3>
               <p>
@@ -548,8 +579,13 @@
               aria-label="Choosing between Von Neumann and Harvard architecture"
             >
               <article class="choice-column choice-column--von-neumann">
-                <span class="choice-icon choice-icon--shared" aria-hidden="true"></span>
-                <h3>Choose Von Neumann when simplicity and flexibility matter</h3>
+                <span
+                  class="choice-icon choice-icon--shared"
+                  aria-hidden="true"
+                ></span>
+                <h3>
+                  Choose Von Neumann when simplicity and flexibility matter
+                </h3>
                 <ul class="choice-list">
                   <li>Shared memory for instructions and data</li>
                   <li>Simple stored-program model</li>
@@ -557,7 +593,10 @@
                 </ul>
               </article>
               <article class="choice-column choice-column--harvard">
-                <span class="choice-icon choice-icon--separate" aria-hidden="true"></span>
+                <span
+                  class="choice-icon choice-icon--separate"
+                  aria-hidden="true"
+                ></span>
                 <h3>Choose Harvard when separate access improves throughput</h3>
                 <ul class="choice-list">
                   <li>Separate instruction and data paths</li>
@@ -602,7 +641,9 @@
                     <td>Typical strength</td>
                     <td>Flexible, simple stored-program organisation</td>
                     <td>Higher efficiency for repeated dedicated workloads</td>
-                    <td>The better choice depends on the purpose of the system.</td>
+                    <td>
+                      The better choice depends on the purpose of the system.
+                    </td>
                   </tr>
                   <tr>
                     <td>Common drawback</td>
@@ -653,9 +694,9 @@
             <p class="eyebrow">Exam Traps</p>
             <h2>Common mistakes students make with stored-program models</h2>
             <p class="lesson-section-copy">
-              These questions usually lose marks when answers remember the
-              names but forget the layout, the bottleneck, or the reason one
-              model suits a scenario better.
+              These questions usually lose marks when answers remember the names
+              but forget the layout, the bottleneck, or the reason one model
+              suits a scenario better.
             </p>
 
             <div class="trap-grid">
@@ -993,7 +1034,10 @@
                   shared memory access.
                 </p>
                 <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="stored-program-exam-1">
+                  <label
+                    class="exam-response-label"
+                    for="stored-program-exam-1"
+                  >
                     Your answer
                   </label>
                   <textarea
@@ -1044,7 +1088,10 @@
                   choices using the memory and data-access design of each model.
                 </p>
                 <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="stored-program-exam-2">
+                  <label
+                    class="exam-response-label"
+                    for="stored-program-exam-2"
+                  >
                     Your answer
                   </label>
                   <textarea
