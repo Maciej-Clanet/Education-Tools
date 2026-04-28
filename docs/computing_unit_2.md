@@ -90,7 +90,7 @@ All the initial versions of the lessons have been added, the below checklist is 
 ## B Computer architecture
 
 ### B1 Approaches to computer architecture
-- [ ] Stored program architecture: Von Neumann and Harvard
+- [x] Stored program architecture: Von Neumann and Harvard
 - [ ] Cluster computing, UMA, and NUMA
 - [ ] Emulation
 
