@@ -27,6 +27,8 @@ Before making major UI, content, or structure changes, read:
 - Spec pages should stay brief and mainly route users into their unit pages.
 - Unit pages should act as scheme-of-work hubs with links to all topics in that
   unit.
+- Unit pages should use shared quiz progress data where available so each
+  specification bucket can show aggregate quiz progress from lesson quizzes.
 - Topic pages should be the main learning/SEO pages and should stay
   unit-agnostic where possible so one topic can support multiple units or
   specs.
@@ -81,6 +83,8 @@ Before making major UI, content, or structure changes, read:
 - Existing items in `donetools/` are legacy experiments and should not be
   treated as the final structure.
 - `pages/units/btec-level-3-unit-2.html` is the first live unit hub.
+- Unit quiz progress metadata lives in `javascript/data/unit-progress-data.js`
+  and shared rendering logic lives in `javascript/core/unit-progress.js`.
 
 ## Working Style
 
@@ -97,4 +101,11 @@ Before making major UI, content, or structure changes, read:
   As lesson pages are completed, their status should be reflected there.
 - When a new lesson page is added, also update the relevant unit page and
   `javascript/data/course-catalog.js` so the lesson stays discoverable from the
-  homepage search.
+  homepage search. If the lesson has a quiz, also update
+  `javascript/data/unit-progress-data.js` with its quiz total, pass score, and
+  version.
+- If lesson quiz questions, correct answers, totals, or pass scores change,
+  update `javascript/data/unit-progress-data.js` and the lesson's
+  `lessonConfig.quiz` metadata; bump the quiz version when old saved progress
+  should be treated as stale. Reused lessons should normally share quiz progress
+  across units unless a different quiz ID is explicitly needed.

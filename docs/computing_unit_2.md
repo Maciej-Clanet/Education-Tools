@@ -68,6 +68,22 @@ Each item below is intended to become a specific lesson page. Tick lessons off
 here as they are completed.
 
 All the initial versions of the lessons have been added, the below checklist is now for ticking off lessons that have been manually looked over and improved.
+
+# Unit 2 quiz progress data
+Unit 2 quiz aggregation for the unit hub is configured in
+`javascript/data/unit-progress-data.js`. When adding a Unit 2 lesson or changing
+a lesson quiz, update that file as well as the unit page and homepage catalogue.
+
+Each lesson entry should keep its lesson `id`, title, unit-context `href`, quiz
+`totalQuestions`, quiz `passScore`, and quiz `version` accurate. The lesson's
+own `lessonConfig.quiz` metadata should use the same quiz ID and version so new
+attempts write progress that the unit hub treats as current. Progress is shared
+across units for the same lesson quiz by default, so only use a different quiz ID
+if a reused lesson needs a different quiz in another unit.
+
+Bump the quiz `version` when questions or correct answers change enough that old
+saved progress should be shown as needing a fresh attempt.
+
 ## A Hardware and software
 
 ### A1 Computer hardware in a computer system

@@ -98,9 +98,21 @@ the browser with `localStorage` where useful.
 - Unit pages should group lessons by specification headings such as `A1` and
   `B2`, but should usually expose the specific lesson targets directly instead
   of requiring an extra group-page click.
+- Unit pages should show quiz progress for each specification bucket where
+  quiz metadata is available. The progress should aggregate lesson quiz
+  summaries from `localStorage`, using green for correct checked answers, red
+  for checked incorrect answers, and empty space for questions not yet checked.
+- Quiz progress is shared by lesson/quiz ID across units when a reusable lesson
+  appears in more than one unit. Only create a separate quiz ID when a unit
+  needs genuinely different quiz questions or marking.
 - When a new lesson page is created, its existence should also be reflected in
-  the relevant unit page and in `javascript/data/course-catalog.js` so it is
-  searchable from the homepage.
+  the relevant unit page, `javascript/data/course-catalog.js`, and
+  `javascript/data/unit-progress-data.js` so it is searchable from the homepage
+  and included in unit quiz progress.
+- When lesson quiz questions, answers, pass scores, or totals change, update the
+  matching quiz metadata in `javascript/data/unit-progress-data.js` and the
+  lesson page's `lessonConfig.quiz` metadata. Bump the quiz `version` if saved
+  progress should be treated as stale because the quiz has changed meaningfully.
 
 ## Current Homepage Direction
 
@@ -183,7 +195,11 @@ the browser with `localStorage` where useful.
   `pages/topics/error-detection-methods.html`, and
   `pages/topics/error-correction-with-arq-and-fec.html`.
 - A shared lesson shell now supports sidebar navigation, contextual unit
-  navigation, teacher slide mode, and quiz persistence.
+  navigation, teacher slide mode, quiz persistence, and shared quiz progress
+  summaries for unit pages.
+- The Unit 2 hub now shows per-bucket quiz progress bars and lesson status
+  indicators using `javascript/core/unit-progress.js` and
+  `javascript/data/unit-progress-data.js`.
 - The current lesson template now includes glossary, exam trap, and exam-style
   practice patterns that future lessons should reuse where appropriate.
 - A shared accessibility launcher now provides reading, focus, visual, font,

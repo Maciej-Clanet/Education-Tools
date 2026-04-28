@@ -1,4 +1,9 @@
 import { readStorage, removeStorage, writeStorage } from "./storage.js"
+import {
+  getQuizId,
+  removeLessonQuizProgress,
+  writeLessonQuizProgress,
+} from "./quiz-progress.js"
 
 const INTERACTIVE_SELECTOR = [
   "a",
@@ -240,6 +245,10 @@ function updateQuizResult(element, score, totalQuestions, passScore, bestScore) 
     : `You scored ${score}/${totalQuestions}. Aim for at least ${passScore}/${totalQuestions}.${progressText}`
 }
 
+function countAnsweredAnswers(answers) {
+  return Object.values(answers).filter(Boolean).length
+}
+
 function initQuiz(config) {
   const quizConfig = config.quiz ?? {}
   const form = document.querySelector(quizConfig.formSelector ?? "#lesson-quiz")
@@ -255,11 +264,45 @@ function initQuiz(config) {
   const resetButton = form.querySelector("[data-action='reset-quiz']")
   const storageKey = quizConfig.storageKey ?? `${config.lessonId}-quiz`
   const passScore = quizConfig.passScore ?? questions.length
+  const quizId = getQuizId(config.lessonId, quizConfig.quizId)
+  const quizVersion = quizConfig.quizVersion ?? quizConfig.version ?? 1
   const storedState = readStorage(storageKey, {
     answers: {},
     lastScore: null,
     bestScore: null,
   })
+
+  function writeQuizProgressSummary(answers, checked) {
+    const answered = countAnsweredAnswers(answers)
+    let correct = 0
+
+    if (checked) {
+      questions.forEach((question) => {
+        const selectedValue = answers[question.dataset.question] ?? ""
+
+        if (selectedValue === question.dataset.answer) {
+          correct += 1
+        }
+      })
+    }
+
+    const incorrect = checked ? Math.max(answered - correct, 0) : 0
+
+    writeLessonQuizProgress({
+      lessonId: config.lessonId,
+      quizId,
+      quizVersion,
+      totalQuestions: questions.length,
+      answered,
+      correct,
+      incorrect,
+      checked,
+      passed: checked && correct >= passScore,
+      completed: checked && correct === questions.length,
+      passScore,
+      bestScore: storedState.bestScore,
+    })
+  }
 
   restoreQuizAnswers(questions, storedState.answers)
 
@@ -278,15 +321,21 @@ function initQuiz(config) {
       passScore,
       storedState.bestScore
     )
+
+    writeQuizProgressSummary(storedState.answers, true)
   }
 
   form.addEventListener("change", () => {
+    const answers = collectQuizAnswers(questions)
+    storedState.answers = answers
+    storedState.lastScore = null
+
     writeStorage(storageKey, {
       ...storedState,
-      answers: collectQuizAnswers(questions),
-      lastScore: storedState.lastScore,
-      bestScore: storedState.bestScore,
+      answers,
+      lastScore: null,
     })
+    writeQuizProgressSummary(answers, false)
   })
 
   form.addEventListener("submit", (event) => {
@@ -315,6 +364,7 @@ function initQuiz(config) {
         : Math.max(storedState.bestScore, score)
 
     writeStorage(storageKey, storedState)
+    writeQuizProgressSummary(answers, true)
     updateQuizResult(
       feedback,
       score,
@@ -330,6 +380,7 @@ function initQuiz(config) {
     storedState.lastScore = null
     storedState.bestScore = null
     removeStorage(storageKey)
+    removeLessonQuizProgress(quizId)
 
     questions.forEach((question) => {
       question.classList.remove("is-correct", "is-incorrect", "is-unanswered")
