@@ -3,16 +3,12 @@
   padding: clamp(1.35rem, 3vw, 2.3rem);
   border-top: 10px solid #8bcf88;
   background:
-    radial-gradient(
-      circle at right top,
+    radial-gradient(circle at right top,
       rgba(105, 200, 232, 0.18),
-      transparent 24%
-    ),
-    linear-gradient(
-      180deg,
+      transparent 24%),
+    linear-gradient(180deg,
       rgba(255, 253, 247, 0.98),
-      rgba(248, 252, 246, 0.94)
-    );
+      rgba(248, 252, 246, 0.94));
 }
 
 .lesson-hero::before {
@@ -44,7 +40,7 @@
   gap: 0.45rem;
 }
 
-.breadcrumb-list li + li::before {
+.breadcrumb-list li+li::before {
   content: "/";
   color: rgba(89, 104, 118, 0.8);
 }
@@ -213,19 +209,15 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .teacher-toggle[aria-pressed="true"] {
-  background: linear-gradient(
-    135deg,
-    rgba(139, 207, 136, 0.2),
-    rgba(105, 200, 232, 0.2)
-  );
+  background: linear-gradient(135deg,
+      rgba(139, 207, 136, 0.2),
+      rgba(105, 200, 232, 0.2));
 }
 
 .lesson-layout {
   display: grid;
-  grid-template-columns: minmax(220px, 250px) minmax(0, 1fr) minmax(
-      250px,
-      280px
-    );
+  grid-template-columns: minmax(220px, 250px) minmax(0, 1fr) minmax(250px,
+      280px);
   gap: 1rem;
   align-items: start;
 }
@@ -269,7 +261,7 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .section-nav a:nth-child(4n + 1),
-.lesson-main > .lesson-section:nth-of-type(4n + 1) {
+.lesson-main>.lesson-section:nth-of-type(4n + 1) {
   --lesson-accent: #8bcf88;
   --lesson-accent-soft: rgba(139, 207, 136, 0.42);
   --lesson-accent-border: rgba(55, 129, 53, 0.18);
@@ -279,7 +271,7 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .section-nav a:nth-child(4n + 2),
-.lesson-main > .lesson-section:nth-of-type(4n + 2) {
+.lesson-main>.lesson-section:nth-of-type(4n + 2) {
   --lesson-accent: #ff9a7b;
   --lesson-accent-soft: rgba(255, 154, 123, 0.38);
   --lesson-accent-border: rgba(190, 91, 91, 0.18);
@@ -289,7 +281,7 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .section-nav a:nth-child(4n + 3),
-.lesson-main > .lesson-section:nth-of-type(4n + 3) {
+.lesson-main>.lesson-section:nth-of-type(4n + 3) {
   --lesson-accent: #69c8e8;
   --lesson-accent-soft: rgba(105, 200, 232, 0.38);
   --lesson-accent-border: rgba(31, 135, 125, 0.18);
@@ -299,7 +291,7 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .section-nav a:nth-child(4n + 4),
-.lesson-main > .lesson-section:nth-of-type(4n + 4) {
+.lesson-main>.lesson-section:nth-of-type(4n + 4) {
   --lesson-accent: #f2cf6a;
   --lesson-accent-soft: rgba(242, 207, 106, 0.42);
   --lesson-accent-border: rgba(185, 140, 25, 0.22);
@@ -308,22 +300,18 @@ body.teacher-mode-active .slide-fullrow {
   --lesson-accent-active: rgba(255, 249, 227, 0.94);
 }
 
-.section-nav a:is(
-    [href="#overview"],
-    [href="#registers"],
-    [href="#matrices"],
-    [href="#scalar-multiplication"],
-    [href="#data-types"],
-    [href="#simulation"]
-  ),
-.lesson-section:is(
-    .lesson-section--overview,
-    .lesson-section--registers,
-    .lesson-section--matrices,
-    .lesson-section--scalar-multiplication,
-    .lesson-section--data-types,
-    .lesson-section--simulation
-  ) {
+.section-nav a:is([href="#overview"],
+  [href="#registers"],
+  [href="#matrices"],
+  [href="#scalar-multiplication"],
+  [href="#data-types"],
+  [href="#simulation"]),
+.lesson-section:is(.lesson-section--overview,
+  .lesson-section--registers,
+  .lesson-section--matrices,
+  .lesson-section--scalar-multiplication,
+  .lesson-section--data-types,
+  .lesson-section--simulation) {
   --lesson-accent: #8bcf88;
   --lesson-accent-soft: rgba(139, 207, 136, 0.42);
   --lesson-accent-border: rgba(55, 129, 53, 0.18);
@@ -332,22 +320,18 @@ body.teacher-mode-active .slide-fullrow {
   --lesson-accent-active: rgba(238, 248, 231, 0.9);
 }
 
-.section-nav a:is(
-    [href="#interrupts"],
-    [href="#multi-dimensional"],
-    [href="#arrays"],
-    [href="#stack"],
-    [href="#mistakes"],
-    [href="#quiz"]
-  ),
-.lesson-section:is(
-    .lesson-section--interrupts,
-    .lesson-section--multi-dimensional,
-    .lesson-section--arrays,
-    .lesson-section--stack,
-    .lesson-section--mistakes,
-    .lesson-section--quiz
-  ) {
+.section-nav a:is([href="#interrupts"],
+  [href="#multi-dimensional"],
+  [href="#arrays"],
+  [href="#stack"],
+  [href="#mistakes"],
+  [href="#quiz"]),
+.lesson-section:is(.lesson-section--interrupts,
+  .lesson-section--multi-dimensional,
+  .lesson-section--arrays,
+  .lesson-section--stack,
+  .lesson-section--mistakes,
+  .lesson-section--quiz) {
   --lesson-accent: #ff9a7b;
   --lesson-accent-soft: rgba(255, 154, 123, 0.38);
   --lesson-accent-border: rgba(190, 91, 91, 0.18);
@@ -356,24 +340,20 @@ body.teacher-mode-active .slide-fullrow {
   --lesson-accent-active: rgba(255, 240, 241, 0.9);
 }
 
-.section-nav a:is(
-    [href="#register-handling"],
-    [href="#special-registers"],
-    [href="#matrix-multiplication"],
-    [href="#memory-order"],
-    [href="#lists"],
-    [href="#queue"],
-    [href="#exam-practice"]
-  ),
-.lesson-section:is(
-    .lesson-section--register-handling,
-    .lesson-section--special-registers,
-    .lesson-section--matrix-multiplication,
-    .lesson-section--memory-order,
-    .lesson-section--lists,
-    .lesson-section--queue,
-    .lesson-section--exam-practice
-  ) {
+.section-nav a:is([href="#register-handling"],
+  [href="#special-registers"],
+  [href="#matrix-multiplication"],
+  [href="#memory-order"],
+  [href="#lists"],
+  [href="#queue"],
+  [href="#exam-practice"]),
+.lesson-section:is(.lesson-section--register-handling,
+  .lesson-section--special-registers,
+  .lesson-section--matrix-multiplication,
+  .lesson-section--memory-order,
+  .lesson-section--lists,
+  .lesson-section--queue,
+  .lesson-section--exam-practice) {
   --lesson-accent: #69c8e8;
   --lesson-accent-soft: rgba(105, 200, 232, 0.38);
   --lesson-accent-border: rgba(31, 135, 125, 0.18);
@@ -409,11 +389,9 @@ body.teacher-mode-active .slide-fullrow {
   --lesson-accent-border: rgba(55, 129, 53, 0.18);
   --lesson-accent-card: rgba(238, 248, 231, 0.78);
   --lesson-accent-heading: #29523b;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.98),
-    rgba(252, 248, 241, 0.95)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(252, 248, 241, 0.95));
   border-top: 8px solid var(--lesson-accent);
 }
 
@@ -422,36 +400,30 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .lesson-section h2,
-.lesson-section :is(
-    .lesson-card h3,
-    .application-card h3,
-    .simulator-card h3,
-    .glossary-card h2,
-    .revision-card h2,
-    .context-card h2,
-    .trap-card h3,
-    .term-card strong
-  ),
+.lesson-section :is(.lesson-card h3,
+  .application-card h3,
+  .simulator-card h3,
+  .glossary-card h2,
+  .revision-card h2,
+  .context-card h2,
+  .trap-card h3,
+  .term-card strong),
 .lesson-section .example-chip strong {
   color: var(--lesson-accent-heading);
 }
 
-.lesson-section :is(
-    .lesson-card,
-    .application-card,
-    .simulator-card,
-    .glossary-card,
-    .revision-card,
-    .context-card,
-    .term-card,
-    .trap-card
-  ) {
+.lesson-section :is(.lesson-card,
+  .application-card,
+  .simulator-card,
+  .glossary-card,
+  .revision-card,
+  .context-card,
+  .term-card,
+  .trap-card) {
   border-color: var(--lesson-accent-border);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.92),
-    var(--lesson-accent-card)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.92),
+      var(--lesson-accent-card));
 }
 
 .lesson-intro-grid {
@@ -701,11 +673,9 @@ body.teacher-mode-active .slide-fullrow {
   padding: 1rem;
   border-radius: 20px;
   border: 1.5px dashed rgba(37, 52, 66, 0.16);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.86),
-    rgba(247, 251, 253, 0.82)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.86),
+      rgba(247, 251, 253, 0.82));
 }
 
 .memory-lane {
@@ -1020,11 +990,9 @@ body.teacher-mode-active .slide-fullrow {
   padding: 1rem;
   border-radius: 20px;
   border: 1.5px dashed rgba(37, 52, 66, 0.16);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.88),
-    rgba(247, 251, 253, 0.84)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.88),
+      rgba(247, 251, 253, 0.84));
 }
 
 .stack-flow {
@@ -1105,11 +1073,9 @@ body.teacher-mode-active .slide-fullrow {
   border-right: 3px solid rgba(223, 107, 111, 0.2);
   border-bottom: 3px solid rgba(223, 107, 111, 0.2);
   border-radius: 0 0 24px 24px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 248, 249, 0.98),
-    rgba(255, 255, 255, 0.92)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 248, 249, 0.98),
+      rgba(255, 255, 255, 0.92));
 }
 
 .stack-flow__top-label {
@@ -1231,11 +1197,9 @@ body.teacher-mode-active .slide-fullrow {
   padding: 1rem;
   border-radius: 18px;
   border: 2px solid rgba(31, 135, 125, 0.16);
-  background: linear-gradient(
-    180deg,
-    rgba(232, 246, 255, 0.34),
-    rgba(255, 255, 255, 0.92)
-  );
+  background: linear-gradient(180deg,
+      rgba(232, 246, 255, 0.34),
+      rgba(255, 255, 255, 0.92));
 }
 
 .queue-flow__item {
@@ -1256,6 +1220,7 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 @keyframes stack-top-pulse {
+
   0%,
   100% {
     transform: translateY(0);
@@ -1267,6 +1232,7 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 @keyframes queue-leave-cycle {
+
   0%,
   18% {
     transform: translateX(0);
@@ -1291,6 +1257,7 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 @keyframes queue-join-cycle {
+
   0%,
   30% {
     transform: translateX(90px);
@@ -1407,11 +1374,9 @@ body.teacher-mode-active .slide-fullrow {
   list-style: none;
   border-radius: 20px;
   border: 2px dashed rgba(37, 52, 66, 0.16);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.84),
-    rgba(247, 251, 253, 0.82)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.84),
+      rgba(247, 251, 253, 0.82));
 }
 
 .structure-visual--stack {
@@ -1553,11 +1518,9 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .lesson-rail-card {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(248, 252, 255, 0.92)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(248, 252, 255, 0.92));
 }
 
 .lesson-sequence {
@@ -1683,11 +1646,9 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .teacher-tool-toggle {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.98),
-    rgba(232, 246, 255, 0.94)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(232, 246, 255, 0.94));
 }
 
 .teacher-tool-mini,
@@ -1708,14 +1669,14 @@ body.teacher-mode-active .slide-fullrow {
 
 .teacher-tool-toggle.has-active-tool,
 .teacher-tool-toggle[aria-expanded="true"],
-.teacher-tool-item.is-active > .teacher-tool-button,
+.teacher-tool-item.is-active>.teacher-tool-button,
 .teacher-tool-button.is-active,
 .teacher-tool-swatch.is-active {
   background: rgba(232, 246, 255, 0.9);
   border-color: rgba(31, 135, 125, 0.24);
 }
 
-.teacher-tool-item[data-tool="blank"].is-active > .teacher-tool-button {
+.teacher-tool-item[data-tool="blank"].is-active>.teacher-tool-button {
   background: rgba(255, 240, 241, 0.96);
   border-color: rgba(223, 107, 111, 0.28);
 }
@@ -1794,7 +1755,7 @@ body.teacher-mode-active .slide-fullrow {
   gap: 0.45rem;
 }
 
-.teacher-tool-popover-row + .teacher-tool-popover-row {
+.teacher-tool-popover-row+.teacher-tool-popover-row {
   margin-top: 0.45rem;
 }
 
@@ -1926,17 +1887,42 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .teacher-presentation-overlay.is-blank {
-  background: rgba(16, 21, 27, 0.95);
+  background: rgba(5, 7, 10, 0.98);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .teacher-presentation-overlay.is-spotlight {
-  background: radial-gradient(
-    circle var(--teacher-spotlight-size, 210px) at
-      var(--teacher-spotlight-x, 50%) var(--teacher-spotlight-y, 34%),
-    transparent 0,
-    transparent calc(var(--teacher-spotlight-size, 210px) - 24px),
-    rgba(18, 23, 28, 0.74) calc(var(--teacher-spotlight-size, 210px) + 70px)
-  );
+  --teacher-spotlight-outside: rgba(0, 0, 0, 0.97);
+  --teacher-spotlight-fallback-edge: rgba(0, 0, 0, 0.86);
+  --teacher-spotlight-mask-edge: rgba(0, 0, 0, 0.7);
+  background: radial-gradient(circle var(--teacher-spotlight-size, 210px) at var(--teacher-spotlight-x, 50%) var(--teacher-spotlight-y, 34%),
+      transparent 0,
+      transparent calc(var(--teacher-spotlight-size, 210px) - 10px),
+      var(--teacher-spotlight-fallback-edge) calc(var(--teacher-spotlight-size, 210px) + 6px),
+      var(--teacher-spotlight-outside) calc(var(--teacher-spotlight-size, 210px) + 28px));
+}
+
+@supports ((-webkit-mask-image: radial-gradient(circle at center, #000, transparent)) or (mask-image: radial-gradient(circle at center, #000, transparent))) {
+  .teacher-presentation-overlay.is-spotlight {
+    background: var(--teacher-spotlight-outside);
+    -webkit-mask-image: radial-gradient(circle var(--teacher-spotlight-size, 210px) at var(--teacher-spotlight-x, 50%) var(--teacher-spotlight-y, 34%),
+        transparent 0,
+        transparent calc(var(--teacher-spotlight-size, 210px) - 10px),
+        var(--teacher-spotlight-mask-edge) calc(var(--teacher-spotlight-size, 210px) + 6px),
+        #000 calc(var(--teacher-spotlight-size, 210px) + 28px));
+    mask-image: radial-gradient(circle var(--teacher-spotlight-size, 210px) at var(--teacher-spotlight-x, 50%) var(--teacher-spotlight-y, 34%),
+        transparent 0,
+        transparent calc(var(--teacher-spotlight-size, 210px) - 10px),
+        var(--teacher-spotlight-mask-edge) calc(var(--teacher-spotlight-size, 210px) + 6px),
+        #000 calc(var(--teacher-spotlight-size, 210px) + 28px));
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
 }
 
 body.teacher-mode-active {
@@ -2007,7 +1993,7 @@ body.teacher-mode-active .lesson-section::before {
   right: 2rem;
 }
 
-body.teacher-mode-active .lesson-section > :not(.teacher-highlight-layer) {
+body.teacher-mode-active .lesson-section> :not(.teacher-highlight-layer) {
   position: relative;
   z-index: 1;
 }
@@ -2041,10 +2027,8 @@ body.teacher-mode-active .matrix-equation__token {
 }
 
 body.teacher-mode-active .matrix-grid {
-  grid-template-columns: repeat(
-    var(--matrix-columns, 2),
-    minmax(var(--teacher-slide-matrix-cell-size, 3.2rem), 1fr)
-  );
+  grid-template-columns: repeat(var(--matrix-columns, 2),
+      minmax(var(--teacher-slide-matrix-cell-size, 3.2rem), 1fr));
 }
 
 body.teacher-mode-active .matrix-grid__cell,
@@ -2096,6 +2080,7 @@ body.teacher-mode-active .teacher-tools-dock {
 }
 
 @media (max-width: 700px) {
+
   .lesson-hero,
   .lesson-sidebar,
   .lesson-section,
@@ -2179,6 +2164,7 @@ body.teacher-mode-active .teacher-tools-dock {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .stack-flow__item--top,
   .queue-flow__motion--leave,
   .queue-flow__motion--join {
