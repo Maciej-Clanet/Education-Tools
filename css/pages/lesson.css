@@ -1895,9 +1895,10 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .teacher-presentation-overlay.is-spotlight {
-  --teacher-spotlight-outside: rgba(0, 0, 0, 0.97);
-  --teacher-spotlight-fallback-edge: rgba(0, 0, 0, 0.86);
-  --teacher-spotlight-mask-edge: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  --teacher-spotlight-outside: rgba(0, 0, 0, 0.75);
+  --teacher-spotlight-fallback-edge: rgba(0, 0, 0, 0.66);
+  --teacher-spotlight-mask-edge: rgba(0, 0, 0, 0.3);
   background: radial-gradient(circle var(--teacher-spotlight-size, 210px) at var(--teacher-spotlight-x, 50%) var(--teacher-spotlight-y, 34%),
       transparent 0,
       transparent calc(var(--teacher-spotlight-size, 210px) - 10px),
