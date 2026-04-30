@@ -222,6 +222,23 @@ body.teacher-mode-active .slide-fullrow {
   align-items: start;
 }
 
+.lesson-layout > *,
+.lesson-main,
+.lesson-sidebar,
+.lesson-section,
+.lesson-card,
+.application-card,
+.simulator-card,
+.quiz-question,
+.sequence-card,
+.glossary-card,
+.revision-card,
+.context-card,
+.trap-card,
+.exam-card {
+  min-width: 0;
+}
+
 .lesson-sidebar,
 .lesson-section,
 .lesson-rail-card {
@@ -252,6 +269,7 @@ body.teacher-mode-active .slide-fullrow {
   color: var(--page-ink);
   text-decoration: none;
   font-weight: 700;
+  overflow-wrap: anywhere;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
@@ -439,6 +457,7 @@ body.teacher-mode-active .slide-fullrow {
 .context-card h2 {
   margin-bottom: 0.45rem;
   font-size: 1.08rem;
+  overflow-wrap: anywhere;
 }
 
 .lesson-list,
@@ -2099,8 +2118,27 @@ body.teacher-mode-active .teacher-tools-dock {
   }
 
   .section-nav,
+  .lesson-meta-grid,
+  .lesson-intro-grid,
+  .term-grid,
+  .application-grid,
+  .trap-grid,
+  .exam-grid,
+  .matrix-note-grid,
+  .simulator-grid,
+  .sequence-grid,
+  .lesson-rail,
   .structure-input-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wide,
+  .fullrow,
+  body:not(.teacher-mode-active) .lesson-wide,
+  body:not(.teacher-mode-active) .lesson-fullrow,
+  body.teacher-mode-active .slide-wide,
+  body.teacher-mode-active .slide-fullrow {
+    grid-column: 1 / -1;
   }
 
   .queue-flow__cycle {
