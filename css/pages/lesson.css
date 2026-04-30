@@ -1953,10 +1953,12 @@ body.teacher-mode-active .lesson-main {
   gap: 0;
   width: 100vw;
   height: 100vh;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
+  overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  touch-action: pan-y;
 }
 
 body.teacher-mode-active .lesson-main::-webkit-scrollbar {
@@ -1976,6 +1978,7 @@ body.teacher-mode-active .lesson-section {
   box-shadow: none;
   scroll-snap-align: start;
   isolation: isolate;
+  touch-action: pan-y;
 }
 
 body.teacher-mode-active .lesson-section .eyebrow {

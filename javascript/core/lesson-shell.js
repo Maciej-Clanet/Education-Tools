@@ -1563,6 +1563,7 @@ function initTeacherMode(config) {
     pointerStart = {
       x: event.clientX,
       y: event.clientY,
+      slideIndex: activeSlideIndex,
       interactive: startedOnInteractive,
       toolLocked:
         teacherToolsState.blankScreen ||
@@ -1591,6 +1592,7 @@ function initTeacherMode(config) {
 
     const deltaX = event.clientX - pointerStart.x
     const deltaY = event.clientY - pointerStart.y
+    const startSlideIndex = pointerStart.slideIndex
     const startedOnInteractive = pointerStart.interactive
     const toolLocked = pointerStart.toolLocked
     pointerStart = null
@@ -1614,12 +1616,12 @@ function initTeacherMode(config) {
     }
 
     if (Math.abs(deltaX) > 60 && Math.abs(deltaX) > Math.abs(deltaY)) {
-      goToSlide(activeSlideIndex + (deltaX < 0 ? 1 : -1))
+      goToSlide(startSlideIndex + (deltaX < 0 ? 1 : -1))
       return
     }
 
     if (Math.abs(deltaX) < 12 && Math.abs(deltaY) < 12) {
-      goToSlide(activeSlideIndex + 1)
+      goToSlide(startSlideIndex + 1)
     }
   })
 
