@@ -27,6 +27,10 @@ Before making major UI, content, or structure changes, read:
 - Spec pages should stay brief and mainly route users into their unit pages.
 - Unit pages should act as scheme-of-work hubs with links to all topics in that
   unit.
+- Unit pages can include protected classroom-only past exam practice entries.
+  These should stay static-first, save drafts and submitted attempts locally,
+  and show feedback under each question after submission where marking feedback
+  is available.
 - Unit pages should use shared quiz progress data where available so each
   specification bucket can show aggregate quiz progress from lesson quizzes.
 - Topic pages should be the main learning/SEO pages and should stay

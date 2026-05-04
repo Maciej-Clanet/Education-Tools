@@ -9,8 +9,9 @@ const STATUS_PRIORITY = {
 
 const TYPE_PRIORITY = {
   unit: 0,
-  topic: 1,
-  spec: 2,
+  exam: 1,
+  topic: 2,
+  spec: 3,
 };
 
 function buildCatalogIndex(item) {
