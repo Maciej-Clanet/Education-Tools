@@ -297,6 +297,11 @@
   background: rgba(255, 247, 216, 0.78);
 }
 
+.exam-nav-link[data-state="pending"] {
+  border-color: rgba(242, 207, 106, 0.55);
+  background: rgba(255, 247, 216, 0.78);
+}
+
 .exam-nav-link[data-state="marked"] {
   border-color: rgba(105, 200, 232, 0.48);
   background: rgba(232, 246, 255, 0.82);
@@ -316,6 +321,13 @@
 .exam-attempts {
   display: grid;
   gap: 0.55rem;
+}
+
+.exam-tool-help {
+  margin: 0;
+  color: var(--muted-ink);
+  font-size: 0.84rem;
+  line-height: 1.35;
 }
 
 .secondary-link {
@@ -689,9 +701,9 @@
   display: grid;
   gap: 0.55rem;
   padding: 0.9rem;
-  border: 1.5px solid rgba(255, 154, 123, 0.26);
+  border: 1.5px solid rgba(105, 200, 232, 0.28);
   border-radius: 16px;
-  background: rgba(255, 240, 241, 0.72);
+  background: rgba(232, 246, 255, 0.72);
 }
 
 .exam-feedback--strong {
@@ -699,9 +711,23 @@
   background: rgba(238, 248, 231, 0.82);
 }
 
+.exam-feedback--pending {
+  border-color: rgba(242, 207, 106, 0.42);
+  background: rgba(255, 247, 216, 0.76);
+}
+
+.exam-feedback--low {
+  border-color: rgba(255, 154, 123, 0.26);
+  background: rgba(255, 240, 241, 0.72);
+}
+
 .exam-feedback h4 {
   margin: 0;
   font-size: 1.05rem;
+}
+
+.exam-feedback__comment {
+  font-weight: 800;
 }
 
 .exam-feedback__matched {

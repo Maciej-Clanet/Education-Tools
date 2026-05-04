@@ -12,6 +12,13 @@ const EMPTY_ATTEMPT = {
   score: null,
 }
 
+const AUTO_MARKABLE_RUBRICS = new Set([
+  "calculation",
+  "exact-table",
+  "exact-text-table",
+  "sequence",
+])
+
 function buildDraftKey(exam) {
   return `past-exam-draft:${exam.id}:v${exam.version ?? 1}`
 }
@@ -43,6 +50,10 @@ function normaliseCompact(value) {
 
 function getAllParts(exam) {
   return exam.groups.flatMap((group) => group.parts)
+}
+
+function getPartById(exam, partId) {
+  return getAllParts(exam).find((part) => part.id === partId)
 }
 
 function getPartFieldIds(part) {
@@ -243,6 +254,22 @@ function markExtendedRubric(part, answers) {
 }
 
 function markPart(part, answers) {
+  if (!AUTO_MARKABLE_RUBRICS.has(part.rubric.type)) {
+    return {
+      partId: part.id,
+      label: part.label,
+      score: null,
+      maxMarks: part.marks,
+      matched: [],
+      missed: [],
+      comment:
+        "This written answer needs teacher or AI marking. Export your attempt JSON and send it to your teacher, then import the feedback file here.",
+      examinerTip: "",
+      markingStatus: "pending",
+      source: "teacher-required",
+    }
+  }
+
   let result
 
   switch (part.rubric.type) {
@@ -273,19 +300,179 @@ function markPart(part, answers) {
     matched: result.matched,
     missed: result.missed,
     examinerTip: part.rubric.examinerTip,
+    markingStatus: "auto",
+    source: "local-auto",
   }
 }
 
 function markAttempt(exam, answers) {
   const feedback = getAllParts(exam).map((part) => markPart(part, answers))
-  const score = feedback.reduce((total, item) => total + item.score, 0)
+  const scoredFeedback = feedback.filter((item) => typeof item.score === "number")
+  const autoScore = scoredFeedback.reduce((total, item) => total + item.score, 0)
+  const autoTotalMarks = scoredFeedback.reduce((total, item) => total + item.maxMarks, 0)
 
   return {
-    score,
+    score: null,
     totalMarks: exam.totalMarks,
+    autoScore,
+    autoTotalMarks,
     feedback,
     markedAt: new Date().toISOString(),
-    mode: "local-demo",
+    markingStatus: "awaiting-teacher",
+    mode: "fallback-export",
+  }
+}
+
+function buildAttemptExport(exam, attempt) {
+  return {
+    type: "past-exam-attempt-export",
+    schemaVersion: 1,
+    exportedAt: new Date().toISOString(),
+    exam: {
+      examId: exam.id,
+      version: exam.version ?? 1,
+      title: exam.title,
+      shortTitle: exam.shortTitle,
+      unitId: exam.unitId,
+      totalMarks: exam.totalMarks,
+      paperReference: exam.paperReference,
+    },
+    attempt: {
+      attemptId: attempt.attemptId,
+      examId: attempt.examId,
+      version: attempt.version,
+      startedAt: attempt.startedAt,
+      submittedAt: attempt.submittedAt,
+      durationSeconds: attempt.durationSeconds,
+      answers: attempt.answers,
+    },
+    parts: getAllParts(exam).map((part) => ({
+      partId: part.id,
+      label: part.label,
+      marks: part.marks,
+      answerText: getPartAnswerText(part, attempt.answers),
+      fieldIds: getPartFieldIds(part),
+    })),
+  }
+}
+
+function createExportFilename(exam, attempt) {
+  const submitted = String(attempt.submittedAt ?? "")
+    .slice(0, 10)
+    .replace(/[^0-9-]/g, "")
+  const suffix = submitted || new Date().toISOString().slice(0, 10)
+
+  return `${exam.id}-${suffix}-${attempt.attemptId}.json`
+}
+
+function downloadJson(filename, payload) {
+  const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], {
+    type: "application/json",
+  })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement("a")
+
+  link.href = url
+  link.download = filename
+  document.body.append(link)
+  link.click()
+  link.remove()
+  window.setTimeout(() => URL.revokeObjectURL(url), 0)
+}
+
+function asStringArray(value) {
+  if (Array.isArray(value)) {
+    return value.map((item) => String(item ?? "").trim()).filter(Boolean)
+  }
+
+  return String(value ?? "").trim() ? [String(value).trim()] : []
+}
+
+function getFeedbackPayload(payload) {
+  return payload?.feedback
+    ? payload
+    : payload?.marking?.feedback
+      ? payload.marking
+      : payload?.attempt?.feedback
+        ? payload.attempt
+        : null
+}
+
+function normaliseImportedFeedback(exam, payload) {
+  const source = getFeedbackPayload(payload)
+
+  if (!source) {
+    throw new Error("That file does not contain feedback.")
+  }
+
+  const examId = source.examId ?? payload.examId ?? payload.exam?.examId
+  const version = source.version ?? payload.version ?? payload.exam?.version
+  const attemptId = source.attemptId ?? payload.attemptId ?? payload.attempt?.attemptId
+
+  if (examId && examId !== exam.id) {
+    throw new Error("That feedback is for a different exam.")
+  }
+
+  if (version && Number(version) !== (exam.version ?? 1)) {
+    throw new Error("That feedback is for a different version of this exam.")
+  }
+
+  if (!attemptId) {
+    throw new Error("That feedback file does not include an attempt id.")
+  }
+
+  if (!Array.isArray(source.feedback)) {
+    throw new Error("That feedback file does not include question feedback.")
+  }
+
+  const feedback = source.feedback.map((item) => {
+    const part = getPartById(exam, item.partId)
+
+    if (!part) {
+      throw new Error(`Unknown question part in feedback: ${item.partId}`)
+    }
+
+    const numericScore = Number(item.score)
+    const hasScore =
+      item.score !== null &&
+      item.score !== undefined &&
+      item.score !== "" &&
+      Number.isFinite(numericScore)
+
+    return {
+      partId: part.id,
+      label: item.label ?? part.label,
+      score: hasScore ? clamp(Math.round(numericScore), 0, part.marks) : null,
+      maxMarks: part.marks,
+      matched: asStringArray(item.matched),
+      missed: asStringArray(item.missed),
+      comment: String(item.comment ?? "").trim(),
+      examinerTip: String(item.examinerTip ?? part.rubric.examinerTip ?? "").trim(),
+      markingStatus: hasScore ? "teacher-marked" : "pending",
+      source: "teacher-import",
+    }
+  })
+  const scoredFeedback = feedback.filter((item) => typeof item.score === "number")
+  const fullScore =
+    scoredFeedback.length === getAllParts(exam).length
+      ? scoredFeedback.reduce((total, item) => total + item.score, 0)
+      : null
+  const importedScore = Number(source.score)
+  const hasImportedScore =
+    source.score !== null &&
+    source.score !== undefined &&
+    source.score !== "" &&
+    Number.isFinite(importedScore)
+
+  return {
+    attemptId,
+    score: hasImportedScore
+      ? clamp(Math.round(importedScore), 0, exam.totalMarks)
+      : fullScore,
+    totalMarks: exam.totalMarks,
+    feedback,
+    markedAt: source.markedAt ?? new Date().toISOString(),
+    marker: source.marker ?? payload.marker ?? "teacher",
   }
 }
 
@@ -505,14 +692,32 @@ function renderResponse(part, answers, readOnly) {
 
 function renderFeedback(feedback) {
   const wrapper = document.createElement("aside")
-  wrapper.className = `exam-feedback ${
-    feedback.score === feedback.maxMarks ? "exam-feedback--strong" : ""
-  }`
+  const hasScore = typeof feedback.score === "number"
+  const classNames = ["exam-feedback"]
+
+  if (!hasScore || feedback.markingStatus === "pending") {
+    classNames.push("exam-feedback--pending")
+  } else if (feedback.score === feedback.maxMarks) {
+    classNames.push("exam-feedback--strong")
+  } else if (feedback.score === 0) {
+    classNames.push("exam-feedback--low")
+  }
+
+  wrapper.className = classNames.join(" ")
   wrapper.dataset.feedbackFor = feedback.partId
 
   const heading = document.createElement("h4")
-  heading.textContent = `${feedback.label} feedback: ${feedback.score}/${feedback.maxMarks}`
+  heading.textContent = hasScore
+    ? `${feedback.label} feedback: ${feedback.score}/${feedback.maxMarks}`
+    : `${feedback.label} feedback: awaiting teacher marking`
   wrapper.append(heading)
+
+  if (feedback.comment) {
+    const comment = document.createElement("p")
+    comment.className = "exam-feedback__comment"
+    comment.textContent = feedback.comment
+    wrapper.append(comment)
+  }
 
   if (feedback.matched.length > 0) {
     const matched = document.createElement("p")
@@ -531,7 +736,10 @@ function renderFeedback(feedback) {
   if (feedback.examinerTip) {
     const tip = document.createElement("p")
     tip.className = "exam-feedback__tip"
-    tip.textContent = feedback.examinerTip
+    tip.textContent =
+      hasScore || feedback.source === "teacher-import"
+        ? feedback.examinerTip
+        : `Teacher marking note: ${feedback.examinerTip}`
     wrapper.append(tip)
   }
 
@@ -692,7 +900,15 @@ function renderSummary(summaryElement, exam, state) {
   if (attempt?.score !== null && attempt?.score !== undefined) {
     summaryElement.innerHTML = `
       <strong>${attempt.score}/${exam.totalMarks}</strong>
-      <span>${exam.markingModeLabel}</span>
+      <span>teacher feedback imported</span>
+    `
+    return
+  }
+
+  if (attempt?.autoTotalMarks > 0) {
+    summaryElement.innerHTML = `
+      <strong>${attempt.autoScore}/${attempt.autoTotalMarks}</strong>
+      <span>auto-marked; export for teacher feedback</span>
     `
     return
   }
@@ -721,9 +937,14 @@ function renderNavigation(navElement, exam, state) {
 
     if (feedbackMap.has(part.id)) {
       const feedback = feedbackMap.get(part.id)
-      link.dataset.state =
-        feedback.score === feedback.maxMarks ? "full" : feedback.score > 0 ? "marked" : "low"
-      link.title = `${feedback.score}/${feedback.maxMarks}`
+      if (typeof feedback.score !== "number") {
+        link.dataset.state = "pending"
+        link.title = "Awaiting teacher marking"
+      } else {
+        link.dataset.state =
+          feedback.score === feedback.maxMarks ? "full" : feedback.score > 0 ? "marked" : "low"
+        link.title = `${feedback.score}/${feedback.maxMarks}`
+      }
     } else {
       link.dataset.state = answered.has(part.id) ? "answered" : "empty"
       link.title = answered.has(part.id) ? "Answered" : "Not answered"
@@ -769,11 +990,17 @@ function renderAttempts(attemptsElement, exam, state, callbacks) {
             hour: "2-digit",
             minute: "2-digit",
           })
+      const scoreLabel =
+        typeof attempt.score === "number"
+          ? `${attempt.score}/${exam.totalMarks}`
+          : attempt.autoTotalMarks > 0
+            ? `Auto ${attempt.autoScore}/${attempt.autoTotalMarks}`
+            : "Needs teacher feedback"
 
       button.innerHTML = `
         <strong>Attempt ${attempts.length - index}</strong>
         <span>${dateLabel}</span>
-        <span>${attempt.score}/${exam.totalMarks}</span>
+        <span>${scoreLabel}</span>
       `
 
       button.addEventListener("click", () => {
@@ -829,6 +1056,9 @@ export function initPastExam(exam) {
     submit: document.querySelector("[data-action='submit-exam']"),
     newAttempt: document.querySelector("[data-action='new-attempt']"),
     resumeDraft: document.querySelector("[data-action='resume-draft']"),
+    exportAttempt: document.querySelector("[data-action='export-attempt']"),
+    chooseFeedback: document.querySelector("[data-action='choose-feedback']"),
+    importFeedback: document.querySelector("[data-action='import-feedback']"),
   }
 
   if (!elements.lock || !elements.app || !elements.paper) {
@@ -923,6 +1153,14 @@ export function initPastExam(exam) {
           ? "Use this after viewing a submitted attempt to return to the current unsent draft."
           : "Start a new attempt to create a draft."
     }
+
+    if (elements.exportAttempt) {
+      const canExport = Boolean(state.activeAttempt?.attemptId)
+      elements.exportAttempt.disabled = !canExport
+      elements.exportAttempt.title = canExport
+        ? "Download the currently selected submitted attempt as JSON."
+        : "Submit or open an attempt before downloading it."
+    }
   }
 
   function handleFieldChange() {
@@ -1007,7 +1245,10 @@ export function initPastExam(exam) {
       activeAttempt: attempt,
     }
 
-    setStatus(elements.status, "Attempt submitted. Feedback is shown under each question.")
+    setStatus(
+      elements.status,
+      "Attempt submitted. Auto-marked questions are shown; download the attempt JSON for teacher feedback."
+    )
     render()
     window.location.hash = "exam-results"
   }
@@ -1062,9 +1303,101 @@ export function initPastExam(exam) {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
+  function exportSelectedAttempt() {
+    const attempt = state.activeAttempt
+
+    if (!attempt) {
+      setStatus(elements.status, "Submit or open an attempt before downloading it.")
+      return
+    }
+
+    downloadJson(
+      createExportFilename(exam, attempt),
+      buildAttemptExport(exam, attempt)
+    )
+    setStatus(elements.status, "Attempt JSON downloaded. Send that file to your teacher.")
+  }
+
+  async function importFeedbackFile(event) {
+    const file = event.target.files?.[0]
+
+    if (!file) {
+      return
+    }
+
+    try {
+      const payload = JSON.parse(await file.text())
+      const imported = normaliseImportedFeedback(exam, payload)
+      const attempts = readAttempts(exam)
+      const attemptIndex = attempts.findIndex(
+        (attempt) => attempt.attemptId === imported.attemptId
+      )
+
+      if (attemptIndex === -1) {
+        throw new Error(
+          "No matching saved attempt was found on this device. Open the same browser profile used for the exam, then import again."
+        )
+      }
+
+      const existingAttempt = attempts[attemptIndex]
+      const importedByPart = new Map(
+        imported.feedback.map((item) => [item.partId, item])
+      )
+      const existingByPart = new Map(
+        (existingAttempt.feedback ?? []).map((item) => [item.partId, item])
+      )
+      const mergedFeedback = getAllParts(exam).map(
+        (part) => importedByPart.get(part.id) ?? existingByPart.get(part.id) ?? markPart(part, existingAttempt.answers)
+      )
+      const scoredFeedback = mergedFeedback.filter(
+        (item) => typeof item.score === "number"
+      )
+      const fullScore =
+        scoredFeedback.length === getAllParts(exam).length
+          ? scoredFeedback.reduce((total, item) => total + item.score, 0)
+          : null
+      const updatedAttempt = {
+        ...existingAttempt,
+        score: imported.score ?? fullScore,
+        totalMarks: exam.totalMarks,
+        feedback: mergedFeedback,
+        markedAt: imported.markedAt,
+        marker: imported.marker,
+        feedbackImportedAt: new Date().toISOString(),
+        markingStatus: fullScore !== null ? "teacher-marked" : "partly-marked",
+        mode: "teacher-import",
+      }
+
+      attempts[attemptIndex] = updatedAttempt
+      writeAttempts(exam, attempts)
+      state = {
+        mode: "review",
+        answers: updatedAttempt.answers,
+        activeAttempt: updatedAttempt,
+      }
+      setStatus(elements.status, "Teacher feedback imported and saved on this device.")
+      render()
+      window.location.hash = "exam-results"
+    } catch (error) {
+      setStatus(
+        elements.status,
+        error instanceof Error
+          ? error.message
+          : "That feedback file could not be imported."
+      )
+    } finally {
+      event.target.value = ""
+    }
+  }
+
   elements.submit?.addEventListener("click", submitAttempt)
   elements.newAttempt?.addEventListener("click", startNewAttempt)
   elements.resumeDraft?.addEventListener("click", resumeDraft)
+  elements.exportAttempt?.addEventListener("click", exportSelectedAttempt)
+  elements.chooseFeedback?.addEventListener("click", () => {
+    elements.importFeedback?.click()
+  })
+  elements.importFeedback?.addEventListener("change", importFeedbackFile)
   elements.paper.addEventListener("input", handleFieldChange)
   elements.paper.addEventListener("change", handleFieldChange)
   window.addEventListener("pagehide", () => saveDraft({ silent: true }))

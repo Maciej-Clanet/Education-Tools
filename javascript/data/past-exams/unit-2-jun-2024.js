@@ -10,7 +10,7 @@ export const unit2Jun2024Exam = {
   totalMarks: 80,
   unlockPassword: "unit2-jun2024",
   version: 1,
-  markingModeLabel: "Practice marking preview",
+  markingModeLabel: "Teacher feedback workflow",
   groups: [
     {
       id: "q1",
