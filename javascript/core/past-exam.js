@@ -31,6 +31,10 @@ function buildUnlockKey(exam) {
   return `past-exam-unlocked:${exam.id}`
 }
 
+function buildStudentNameKey(exam) {
+  return `past-exam-student-name:${exam.id}`
+}
+
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
 }
@@ -46,6 +50,14 @@ function normaliseCompact(value) {
   return String(value ?? "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "")
+}
+
+function sanitiseFilenamePart(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
 }
 
 function getAllParts(exam) {
@@ -339,7 +351,7 @@ function markAttempt(exam, answers) {
   }
 }
 
-function buildAttemptExport(exam, attempt) {
+function buildAttemptExport(exam, attempt, studentName) {
   const feedbackByPart = new Map(
     (attempt.feedback ?? []).map((item) => [item.partId, item])
   )
@@ -355,6 +367,7 @@ function buildAttemptExport(exam, attempt) {
     type: "past-exam-attempt-export",
     schemaVersion: 1,
     exportedAt: new Date().toISOString(),
+    studentName,
     exam: {
       examId: exam.id,
       version: exam.version ?? 1,
@@ -371,6 +384,7 @@ function buildAttemptExport(exam, attempt) {
       startedAt: attempt.startedAt,
       submittedAt: attempt.submittedAt,
       durationSeconds: attempt.durationSeconds,
+      studentName,
       answers: attempt.answers,
     },
     parts,
@@ -408,13 +422,14 @@ function buildAttemptExport(exam, attempt) {
   }
 }
 
-function createExportFilename(exam, attempt) {
+function createExportFilename(exam, attempt, studentName) {
   const submitted = String(attempt.submittedAt ?? "")
     .slice(0, 10)
     .replace(/[^0-9-]/g, "")
   const suffix = submitted || new Date().toISOString().slice(0, 10)
+  const nameSlug = sanitiseFilenamePart(studentName) || "student"
 
-  return `${exam.id}-${suffix}-${attempt.attemptId}.json`
+  return `${exam.id}-${nameSlug}-${suffix}-${attempt.attemptId}.json`
 }
 
 function downloadJson(filename, payload) {
@@ -1124,6 +1139,8 @@ export function initPastExam(exam) {
     summary: document.querySelector("[data-role='exam-summary']"),
     status: document.querySelector("[data-role='exam-status']"),
     timer: document.querySelector("[data-role='exam-timer']"),
+    reviewTools: document.querySelector("[data-role='exam-review-tools']"),
+    studentName: document.querySelector("[data-role='student-name']"),
     submit: document.querySelector("[data-action='submit-exam']"),
     newAttempt: document.querySelector("[data-action='new-attempt']"),
     resumeDraft: document.querySelector("[data-action='resume-draft']"),
@@ -1138,6 +1155,7 @@ export function initPastExam(exam) {
   }
 
   const draftKey = buildDraftKey(exam)
+  const studentNameKey = buildStudentNameKey(exam)
   let draft = createDraft(exam, readStorage(draftKey, null))
   let state = {
     mode: "draft",
@@ -1224,6 +1242,10 @@ export function initPastExam(exam) {
         hasDraft
           ? "Use this after viewing a submitted attempt to return to the current unsent draft."
           : "Start a new attempt to create a draft."
+    }
+
+    if (elements.reviewTools) {
+      elements.reviewTools.hidden = state.mode !== "review" || !state.activeAttempt
     }
 
     if (elements.exportAttempt) {
@@ -1391,9 +1413,18 @@ export function initPastExam(exam) {
       return
     }
 
+    const studentName = String(elements.studentName?.value ?? "").trim()
+
+    if (!studentName) {
+      setStatus(elements.status, "Enter your name before downloading the attempt JSON.")
+      elements.studentName?.focus()
+      return
+    }
+
+    writeStorage(studentNameKey, studentName)
     downloadJson(
-      createExportFilename(exam, attempt),
-      buildAttemptExport(exam, attempt)
+      createExportFilename(exam, attempt, studentName),
+      buildAttemptExport(exam, attempt, studentName)
     )
     setStatus(elements.status, "Attempt JSON downloaded. Send that file to your teacher.")
   }
@@ -1497,6 +1528,12 @@ export function initPastExam(exam) {
   elements.resumeDraft?.addEventListener("click", resumeDraft)
   elements.exportAttempt?.addEventListener("click", exportSelectedAttempt)
   elements.retryAiMarking?.addEventListener("click", retryAiMarking)
+  if (elements.studentName) {
+    elements.studentName.value = readStorage(studentNameKey, "")
+    elements.studentName.addEventListener("input", () => {
+      writeStorage(studentNameKey, elements.studentName.value.trim())
+    })
+  }
   elements.chooseFeedback?.addEventListener("click", () => {
     elements.importFeedback?.click()
   })

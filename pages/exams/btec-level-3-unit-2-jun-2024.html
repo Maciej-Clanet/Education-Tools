@@ -75,8 +75,8 @@
           <p class="eyebrow">Protected Paper</p>
           <h2 id="exam-lock-heading">Enter the class password</h2>
           <p>
-            This practice paper is currently available only to students with
-            the classroom password.
+            This practice paper is currently available only to students with the
+            classroom password.
           </p>
         </div>
 
@@ -131,25 +131,32 @@
 
           <section class="exam-sidebar-section exam-teacher-tools">
             <p class="eyebrow">Teacher feedback</p>
-            <p class="exam-tool-help">
-              Download your submitted attempt and send the JSON file to your
-              teacher. Import the feedback JSON here when it is returned.
-            </p>
             <div class="exam-action-stack">
-              <button
-                class="primary-link"
-                type="button"
-                data-action="export-attempt"
-              >
-                Download attempt JSON
-              </button>
-              <button
-                class="secondary-link"
-                type="button"
-                data-action="retry-ai-marking"
-              >
-                Retry AI marking
-              </button>
+              <div class="exam-review-tools" data-role="exam-review-tools" hidden>
+                <label class="exam-student-name-field">
+                  <span>Student name</span>
+                  <input
+                    type="text"
+                    autocomplete="name"
+                    data-role="student-name"
+                    placeholder="Enter your name"
+                  />
+                </label>
+                <button
+                  class="primary-link"
+                  type="button"
+                  data-action="export-attempt"
+                >
+                  Download attempt JSON
+                </button>
+                <button
+                  class="secondary-link"
+                  type="button"
+                  data-action="retry-ai-marking"
+                >
+                  Retry AI marking
+                </button>
+              </div>
               <button
                 class="secondary-link"
                 type="button"
@@ -157,6 +164,9 @@
               >
                 Import feedback JSON
               </button>
+              <p class="exam-tool-help">
+                If your teacher gives you a feedback file, import it here.
+              </p>
               <input
                 class="exam-file-input"
                 type="file"
