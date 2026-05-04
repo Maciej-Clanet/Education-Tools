@@ -676,6 +676,7 @@ function createAttemptId(exam) {
 function setStatus(statusElement, message) {
   if (statusElement) {
     statusElement.textContent = message
+    statusElement.hidden = !message
   }
 }
 
@@ -930,7 +931,7 @@ export function initPastExam(exam) {
     }
 
     state.answers = collectAnswers()
-    saveDraft()
+    saveDraft({ silent: true })
     renderSummary(elements.summary, exam, state)
     renderNavigation(elements.nav, exam, state)
   }
@@ -1045,7 +1046,7 @@ export function initPastExam(exam) {
       answers: draft.answers,
       activeAttempt: null,
     }
-    setStatus(elements.status, "Draft loaded.")
+    setStatus(elements.status, "")
     render()
     startTimer()
   }
@@ -1076,6 +1077,7 @@ export function initPastExam(exam) {
   initLock(exam, elements, () => {
     elements.lock.hidden = true
     elements.app.hidden = false
+    setStatus(elements.status, "")
     saveDraft({ silent: true })
     render()
     startTimer()

@@ -91,29 +91,42 @@
             />
             <button class="primary-link" type="submit">Unlock paper</button>
           </div>
-          <p class="exam-status" data-role="exam-lock-status" aria-live="polite"></p>
+          <p
+            class="exam-status"
+            data-role="exam-lock-status"
+            aria-live="polite"
+            hidden
+          ></p>
         </form>
       </section>
 
       <div class="exam-layout" data-role="exam-app" hidden>
         <aside class="exam-sidebar panel">
-          <section class="exam-sidebar-section" id="exam-results">
-            <p class="eyebrow">Progress</p>
-            <div class="exam-summary" data-role="exam-summary"></div>
-            <div class="exam-timer" aria-label="Suggested time remaining">
-              <span>Suggested time</span>
-              <strong data-role="exam-timer">01:45:00</strong>
+          <section
+            class="exam-sidebar-section exam-sidebar-section--questions"
+            id="exam-results"
+          >
+            <div class="exam-question-overview">
+              <div>
+                <p class="eyebrow">Questions</p>
+                <div class="exam-summary" data-role="exam-summary"></div>
+              </div>
+              <div class="exam-timer" aria-label="Suggested time remaining">
+                <span>Suggested time</span>
+                <strong data-role="exam-timer">01:45:00</strong>
+              </div>
             </div>
-            <p class="exam-status" data-role="exam-status" aria-live="polite"></p>
-          </section>
-
-          <section class="exam-sidebar-section">
-            <p class="eyebrow">Questions</p>
             <nav
               class="exam-nav"
               data-role="exam-nav"
               aria-label="Question navigation"
             ></nav>
+            <p
+              class="exam-status"
+              data-role="exam-status"
+              aria-live="polite"
+              hidden
+            ></p>
           </section>
 
           <section class="exam-sidebar-section">
