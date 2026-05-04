@@ -134,12 +134,28 @@ function markCalculationRubric(part, answers) {
   const requiredHits = part.rubric.requiredNumbers.filter((number) =>
     compact.includes(number)
   ).length
+  const matrixFinalValues =
+    part.response.type === "matrix-calculation"
+      ? Array.from({ length: part.response.rows }, (_, rowIndex) =>
+          Array.from({ length: part.response.columns }, (_, columnIndex) => {
+            const row = rowIndex + 1
+            const column = columnIndex + 1
+
+            return String(answers[`${part.id}-result-r${row}c${column}`] ?? "")
+              .trim()
+              .replace(/\s+/g, "")
+          })
+        ).flat()
+      : null
   const workingHit =
     part.rubric.workingTerms?.some((termSet) => hasTermSet(answerText, termSet)) ||
     (answerText.includes("+") && /[\[\](){}]/.test(answerText))
-  const finalHit = requiredHits === part.rubric.requiredNumbers.length
-  const partialFinalHit = requiredHits >= Math.ceil(part.rubric.requiredNumbers.length / 2)
-  const score = (workingHit ? 1 : 0) + (finalHit || partialFinalHit ? 1 : 0)
+  const finalHit = matrixFinalValues
+    ? part.rubric.requiredNumbers.every(
+        (number, index) => normaliseCompact(matrixFinalValues[index]) === number
+      )
+    : requiredHits === part.rubric.requiredNumbers.length
+  const score = (workingHit ? 1 : 0) + (finalHit ? 1 : 0)
 
   return {
     score: clamp(score, 0, part.rubric.maxMarks),
@@ -324,6 +340,17 @@ function markAttempt(exam, answers) {
 }
 
 function buildAttemptExport(exam, attempt) {
+  const feedbackByPart = new Map(
+    (attempt.feedback ?? []).map((item) => [item.partId, item])
+  )
+  const parts = getAllParts(exam).map((part) => ({
+    partId: part.id,
+    label: part.label,
+    marks: part.marks,
+    answerText: getPartAnswerText(part, attempt.answers),
+    fieldIds: getPartFieldIds(part),
+  }))
+
   return {
     type: "past-exam-attempt-export",
     schemaVersion: 1,
@@ -346,13 +373,38 @@ function buildAttemptExport(exam, attempt) {
       durationSeconds: attempt.durationSeconds,
       answers: attempt.answers,
     },
-    parts: getAllParts(exam).map((part) => ({
-      partId: part.id,
-      label: part.label,
-      marks: part.marks,
-      answerText: getPartAnswerText(part, attempt.answers),
-      fieldIds: getPartFieldIds(part),
-    })),
+    parts,
+    marking: {
+      status: "teacher-template",
+      instructions:
+        "Fill in score, matched, missed, and comment for each question part. Leave auto-marked rows as they are unless you want to override them, then give this same JSON file back to the student to import.",
+      attemptId: attempt.attemptId,
+      examId: exam.id,
+      version: exam.version ?? 1,
+      score: attempt.score ?? null,
+      totalMarks: exam.totalMarks,
+      marker: "",
+      markedAt: "",
+      feedback: parts.map((part) => {
+        const currentFeedback = feedbackByPart.get(part.partId)
+        const isAutoMarked = currentFeedback?.source === "local-auto"
+
+        return {
+          partId: part.partId,
+          label: part.label,
+          maxMarks: part.marks,
+          answerText: part.answerText,
+          score: isAutoMarked ? currentFeedback.score : null,
+          matched: isAutoMarked ? currentFeedback.matched : [],
+          missed: isAutoMarked ? currentFeedback.missed : [],
+          comment: isAutoMarked
+            ? "Auto-marked in the browser. Teacher can edit if needed."
+            : "",
+          examinerTip: currentFeedback?.examinerTip ?? "",
+          markingStatus: isAutoMarked ? "auto" : "needs-teacher",
+        }
+      }),
+    },
   }
 }
 
@@ -402,6 +454,12 @@ function normaliseImportedFeedback(exam, payload) {
   const source = getFeedbackPayload(payload)
 
   if (!source) {
+    if (payload?.type === "past-exam-attempt-export") {
+      throw new Error(
+        "That is an attempt export, but no teacher scores or comments have been added yet. Fill in the marking.feedback section first, then import it."
+      )
+    }
+
     throw new Error("That file does not contain feedback.")
   }
 
@@ -438,6 +496,8 @@ function normaliseImportedFeedback(exam, payload) {
       item.score !== undefined &&
       item.score !== "" &&
       Number.isFinite(numericScore)
+    const incomingStatus = String(item.markingStatus ?? "")
+    const isAutoTemplate = incomingStatus === "auto"
 
     return {
       partId: part.id,
@@ -448,8 +508,8 @@ function normaliseImportedFeedback(exam, payload) {
       missed: asStringArray(item.missed),
       comment: String(item.comment ?? "").trim(),
       examinerTip: String(item.examinerTip ?? part.rubric.examinerTip ?? "").trim(),
-      markingStatus: hasScore ? "teacher-marked" : "pending",
-      source: "teacher-import",
+      markingStatus: isAutoTemplate ? "auto" : hasScore ? "teacher-marked" : "pending",
+      source: isAutoTemplate ? "local-auto" : "teacher-import",
     }
   })
   const scoredFeedback = feedback.filter((item) => typeof item.score === "number")
@@ -463,6 +523,16 @@ function normaliseImportedFeedback(exam, payload) {
     source.score !== undefined &&
     source.score !== "" &&
     Number.isFinite(importedScore)
+  const hasTeacherContent =
+    hasImportedScore ||
+    feedback.some(
+      (item) =>
+        item.source === "teacher-import" &&
+        (typeof item.score === "number" ||
+          item.comment ||
+          item.matched.length > 0 ||
+          item.missed.length > 0)
+    )
 
   return {
     attemptId,
@@ -471,8 +541,9 @@ function normaliseImportedFeedback(exam, payload) {
       : fullScore,
     totalMarks: exam.totalMarks,
     feedback,
-    markedAt: source.markedAt ?? new Date().toISOString(),
-    marker: source.marker ?? payload.marker ?? "teacher",
+    markedAt: source.markedAt || new Date().toISOString(),
+    marker: source.marker || payload.marker || "teacher",
+    hasTeacherContent,
   }
 }
 
@@ -1057,6 +1128,7 @@ export function initPastExam(exam) {
     newAttempt: document.querySelector("[data-action='new-attempt']"),
     resumeDraft: document.querySelector("[data-action='resume-draft']"),
     exportAttempt: document.querySelector("[data-action='export-attempt']"),
+    retryAiMarking: document.querySelector("[data-action='retry-ai-marking']"),
     chooseFeedback: document.querySelector("[data-action='choose-feedback']"),
     importFeedback: document.querySelector("[data-action='import-feedback']"),
   }
@@ -1160,6 +1232,14 @@ export function initPastExam(exam) {
       elements.exportAttempt.title = canExport
         ? "Download the currently selected submitted attempt as JSON."
         : "Submit or open an attempt before downloading it."
+    }
+
+    if (elements.retryAiMarking) {
+      const canRetry = Boolean(state.activeAttempt?.attemptId)
+      elements.retryAiMarking.disabled = !canRetry
+      elements.retryAiMarking.title = canRetry
+        ? "AI marking will use this saved attempt when the marking endpoint is connected."
+        : "Submit or open an attempt before retrying AI marking."
     }
   }
 
@@ -1318,6 +1398,18 @@ export function initPastExam(exam) {
     setStatus(elements.status, "Attempt JSON downloaded. Send that file to your teacher.")
   }
 
+  function retryAiMarking() {
+    if (!state.activeAttempt) {
+      setStatus(elements.status, "Submit or open an attempt before retrying AI marking.")
+      return
+    }
+
+    setStatus(
+      elements.status,
+      "AI marking is not connected yet. This saved attempt will be reusable when the marking endpoint is added."
+    )
+  }
+
   async function importFeedbackFile(event) {
     const file = event.target.files?.[0]
 
@@ -1328,6 +1420,15 @@ export function initPastExam(exam) {
     try {
       const payload = JSON.parse(await file.text())
       const imported = normaliseImportedFeedback(exam, payload)
+
+      if (!imported.hasTeacherContent) {
+        setStatus(
+          elements.status,
+          "That JSON is an attempt export/template, but no teacher scores or comments have been added yet."
+        )
+        return
+      }
+
       const attempts = readAttempts(exam)
       const attemptIndex = attempts.findIndex(
         (attempt) => attempt.attemptId === imported.attemptId
@@ -1364,7 +1465,8 @@ export function initPastExam(exam) {
         markedAt: imported.markedAt,
         marker: imported.marker,
         feedbackImportedAt: new Date().toISOString(),
-        markingStatus: fullScore !== null ? "teacher-marked" : "partly-marked",
+        markingStatus:
+          (imported.score ?? fullScore) !== null ? "teacher-marked" : "partly-marked",
         mode: "teacher-import",
       }
 
@@ -1394,6 +1496,7 @@ export function initPastExam(exam) {
   elements.newAttempt?.addEventListener("click", startNewAttempt)
   elements.resumeDraft?.addEventListener("click", resumeDraft)
   elements.exportAttempt?.addEventListener("click", exportSelectedAttempt)
+  elements.retryAiMarking?.addEventListener("click", retryAiMarking)
   elements.chooseFeedback?.addEventListener("click", () => {
     elements.importFeedback?.click()
   })
