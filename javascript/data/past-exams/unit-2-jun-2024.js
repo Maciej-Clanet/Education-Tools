@@ -1,14 +1,14 @@
 export const unit2Jun2024Exam = {
   id: "btec-level-3-unit-2-jun-2024",
   unitId: "btec-level-3-unit-2",
-  title: "BTEC Level 3 Computing Unit 2 - June 2024 Practice Paper",
-  shortTitle: "June 2024 practice paper",
+  title: "BTEC Level 3 Computing Unit 2 - Practice Paper",
+  shortTitle: "Unit 2 practice paper",
   qualification: "Pearson BTEC Level 3 National Computing",
   paperReference: "31769H",
   dateLabel: "Monday 10 June 2024",
   durationMinutes: 105,
   totalMarks: 80,
-  unlockPassword: "unit2-jun2024",
+  unlockPassword: "unit2",
   version: 1,
   markingModeLabel: "Teacher feedback workflow",
   groups: [

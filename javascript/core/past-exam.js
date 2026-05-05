@@ -467,6 +467,8 @@ function getFeedbackPayload(payload) {
 
 function normaliseImportedFeedback(exam, payload) {
   const source = getFeedbackPayload(payload)
+  const exportedAttempt =
+    payload?.attempt && typeof payload.attempt === "object" ? payload.attempt : null
 
   if (!source) {
     if (payload?.type === "past-exam-attempt-export") {
@@ -559,6 +561,19 @@ function normaliseImportedFeedback(exam, payload) {
     markedAt: source.markedAt || new Date().toISOString(),
     marker: source.marker || payload.marker || "teacher",
     hasTeacherContent,
+    studentName: source.studentName || payload.studentName || exportedAttempt?.studentName || "",
+    attempt:
+      exportedAttempt?.answers && typeof exportedAttempt.answers === "object"
+        ? {
+            attemptId: exportedAttempt.attemptId ?? attemptId,
+            startedAt: exportedAttempt.startedAt ?? "",
+            submittedAt: exportedAttempt.submittedAt ?? "",
+            durationSeconds: Number(exportedAttempt.durationSeconds) || 0,
+            studentName:
+              exportedAttempt.studentName || payload.studentName || source.studentName || "",
+            answers: exportedAttempt.answers,
+          }
+        : null,
   }
 }
 
@@ -1461,17 +1476,41 @@ export function initPastExam(exam) {
       }
 
       const attempts = readAttempts(exam)
-      const attemptIndex = attempts.findIndex(
+      let attemptIndex = attempts.findIndex(
         (attempt) => attempt.attemptId === imported.attemptId
       )
+      let recreatedAttempt = false
+      let existingAttempt
 
       if (attemptIndex === -1) {
-        throw new Error(
-          "No matching saved attempt was found on this device. Open the same browser profile used for the exam, then import again."
-        )
+        if (!imported.attempt) {
+          throw new Error(
+            "No matching saved attempt was found on this device, and this feedback file does not include the original answers."
+          )
+        }
+
+        const fallbackMarking = markAttempt(exam, imported.attempt.answers)
+
+        existingAttempt = {
+          ...fallbackMarking,
+          attemptId: imported.attemptId,
+          examId: exam.id,
+          version: exam.version ?? 1,
+          startedAt:
+            imported.attempt.startedAt ||
+            imported.attempt.submittedAt ||
+            imported.markedAt,
+          submittedAt: imported.attempt.submittedAt || imported.markedAt,
+          durationSeconds: imported.attempt.durationSeconds,
+          studentName: imported.attempt.studentName || imported.studentName || "",
+          answers: imported.attempt.answers,
+        }
+        attemptIndex = attempts.length
+        recreatedAttempt = true
+      } else {
+        existingAttempt = attempts[attemptIndex]
       }
 
-      const existingAttempt = attempts[attemptIndex]
       const importedByPart = new Map(
         imported.feedback.map((item) => [item.partId, item])
       )
@@ -1501,14 +1540,24 @@ export function initPastExam(exam) {
         mode: "teacher-import",
       }
 
-      attempts[attemptIndex] = updatedAttempt
+      if (recreatedAttempt) {
+        attempts.push(updatedAttempt)
+      } else {
+        attempts[attemptIndex] = updatedAttempt
+      }
+
       writeAttempts(exam, attempts)
       state = {
         mode: "review",
         answers: updatedAttempt.answers,
         activeAttempt: updatedAttempt,
       }
-      setStatus(elements.status, "Teacher feedback imported and saved on this device.")
+      setStatus(
+        elements.status,
+        recreatedAttempt
+          ? "Teacher feedback imported and this attempt was recreated on this device."
+          : "Teacher feedback imported and saved on this device."
+      )
       render()
       window.location.hash = "exam-results"
     } catch (error) {
