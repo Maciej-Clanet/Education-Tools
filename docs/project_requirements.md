@@ -98,6 +98,10 @@ the browser with `localStorage` where useful.
 - Unit pages should group lessons by specification headings such as `A1` and
   `B2`, but should usually expose the specific lesson targets directly instead
   of requiring an extra group-page click.
+- Unit pages can include protected classroom-only past exam practice entries
+  where useful. These should stay static-first, save drafts and submitted
+  attempts locally, and show question-level feedback instead of relying only on
+  a long end report.
 - Unit pages should show quiz progress for each specification bucket where
   quiz metadata is available. The progress should aggregate lesson quiz
   summaries from `localStorage`, using green for correct checked answers, red
@@ -200,6 +204,11 @@ the browser with `localStorage` where useful.
 - The Unit 2 hub now shows per-bucket quiz progress bars and lesson status
   indicators using `javascript/core/unit-progress.js` and
   `javascript/data/unit-progress-data.js`.
+- The Unit 2 hub now includes a protected June 2024 practice paper entry at
+  `pages/exams/btec-level-3-unit-2-jun-2024.html`. The exam page uses native
+  HTML questions, local draft/attempt storage, a temporary client-side password
+  gate, and inline local-demo feedback that can later be replaced by a VPS
+  marking endpoint.
 - The current lesson template now includes glossary, exam trap, and exam-style
   practice patterns that future lessons should reuse where appropriate.
 - A shared accessibility launcher now provides reading, focus, visual, font,
