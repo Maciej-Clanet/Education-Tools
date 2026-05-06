@@ -19,6 +19,10 @@ const AUTO_MARKABLE_RUBRICS = new Set([
   "sequence",
 ])
 
+const TIMER_DISPLAY_INTERVAL_MS = 250
+const TIMER_DRAFT_SAVE_INTERVAL_MS = 5000
+const TIMER_SECOND_MS = 1000
+
 function buildDraftKey(exam) {
   return `past-exam-draft:${exam.id}:v${exam.version ?? 1}`
 }
@@ -1178,12 +1182,38 @@ export function initPastExam(exam) {
     activeAttempt: null,
   }
   let timerId = null
-  let lastTick = Date.now()
+  let timerRunning = false
+  let timerStartedAtMs = 0
+  let timerBaseDurationSeconds = draft.durationSeconds
+  let lastTimerDraftSaveMs = 0
   let overtimeMessageShown = draft.remainingSeconds < 0
+
+  function getTimerNowMs() {
+    return window.performance?.now?.() ?? Date.now()
+  }
+
+  function syncTimerDuration() {
+    if (!timerRunning || state.mode !== "draft") {
+      return draft.durationSeconds
+    }
+
+    // Anchor to the session start so early interval ticks cannot drop fractions.
+    const elapsedSeconds = Math.max(
+      Math.floor((getTimerNowMs() - timerStartedAtMs) / TIMER_SECOND_MS),
+      0
+    )
+
+    draft.durationSeconds = timerBaseDurationSeconds + elapsedSeconds
+    return draft.durationSeconds
+  }
 
   function saveDraft(options = {}) {
     if (state.mode !== "draft") {
       return
+    }
+
+    if (options.syncTimer !== false) {
+      syncTimerDuration()
     }
 
     draft.answers = state.answers
@@ -1293,7 +1323,10 @@ export function initPastExam(exam) {
 
   function startTimer() {
     window.clearInterval(timerId)
-    lastTick = Date.now()
+    timerRunning = true
+    timerStartedAtMs = getTimerNowMs()
+    timerBaseDurationSeconds = draft.durationSeconds
+    lastTimerDraftSaveMs = timerStartedAtMs
     overtimeMessageShown = getTimerState(exam, draft.durationSeconds).isOvertime
     updateTimerDisplay()
 
@@ -1302,16 +1335,12 @@ export function initPastExam(exam) {
         return
       }
 
-      const now = Date.now()
-      const elapsedSeconds = Math.floor((now - lastTick) / 1000)
+      const previousDurationSeconds = draft.durationSeconds
+      syncTimerDuration()
 
-      if (elapsedSeconds <= 0) {
-        return
+      if (draft.durationSeconds !== previousDurationSeconds) {
+        updateTimerDisplay()
       }
-
-      lastTick = now
-      draft.durationSeconds += elapsedSeconds
-      updateTimerDisplay()
 
       const timerState = getTimerState(exam, draft.durationSeconds)
 
@@ -1323,8 +1352,19 @@ export function initPastExam(exam) {
         )
       }
 
-      saveDraft({ silent: true })
-    }, 1000)
+      const now = getTimerNowMs()
+      if (now - lastTimerDraftSaveMs >= TIMER_DRAFT_SAVE_INTERVAL_MS) {
+        lastTimerDraftSaveMs = now
+        saveDraft({ silent: true, syncTimer: false })
+      }
+    }, TIMER_DISPLAY_INTERVAL_MS)
+  }
+
+  function stopTimer() {
+    syncTimerDuration()
+    timerRunning = false
+    window.clearInterval(timerId)
+    timerId = null
   }
 
   function submitAttempt() {
@@ -1339,6 +1379,7 @@ export function initPastExam(exam) {
       return
     }
 
+    stopTimer()
     const marking = markAttempt(exam, state.answers)
     const attempt = {
       attemptId: createAttemptId(exam),
@@ -1383,6 +1424,7 @@ export function initPastExam(exam) {
       return
     }
 
+    stopTimer()
     removeStorage(draftKey)
     draft = createDraft(exam)
     state = {
@@ -1398,6 +1440,7 @@ export function initPastExam(exam) {
   }
 
   function resumeDraft() {
+    stopTimer()
     draft = createDraft(exam, readStorage(draftKey, null))
     state = {
       mode: "draft",
@@ -1410,6 +1453,8 @@ export function initPastExam(exam) {
   }
 
   function loadAttempt(attempt) {
+    stopTimer()
+    saveDraft({ silent: true, syncTimer: false })
     state = {
       mode: "review",
       answers: attempt.answers,
