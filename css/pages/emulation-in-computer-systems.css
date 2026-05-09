@@ -1,0 +1,318 @@
+.emulation-overview-map,
+.emulation-stack,
+.emulation-use-flow,
+.execution-path-visual,
+.emulation-choice-board {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.emulation-overview-map,
+.emulation-use-flow {
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.execution-path-visual,
+.emulation-choice-board {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.emulation-map-card,
+.emulation-use-step,
+.execution-path,
+.emulation-choice-card,
+.emulation-stack-row {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.emulation-map-card {
+  justify-items: center;
+  text-align: center;
+}
+
+.emulation-map-card h3,
+.emulation-use-step strong,
+.execution-path h3,
+.emulation-choice-card h3,
+.emulation-stack-row strong {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.emulation-map-card p,
+.emulation-use-step p,
+.execution-path p,
+.emulation-choice-card li,
+.emulation-stack-row span {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.emulation-map-badge,
+.emulation-use-label,
+.emulation-choice-label {
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.emulation-map-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.emulation-map-icon--target {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(120, 94, 22, 0.2) 18%,
+      transparent 18% 30%,
+      rgba(120, 94, 22, 0.2) 30% 46%,
+      transparent 46% 58%,
+      rgba(120, 94, 22, 0.2) 58% 74%,
+      transparent 74%
+    ),
+    rgba(255, 249, 227, 0.96);
+}
+
+.emulation-map-icon--emulator {
+  background:
+    radial-gradient(circle at 28% 34%, #155b75 0 0.23rem, transparent 0.25rem),
+    radial-gradient(circle at 70% 66%, #8b4831 0 0.23rem, transparent 0.25rem),
+    linear-gradient(135deg, transparent 43%, rgba(31, 135, 125, 0.24) 44% 56%, transparent 57%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.emulation-map-icon--host {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #29523b 0 0.25rem, transparent 0.27rem),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.55rem, rgba(41, 82, 59, 0.24) 0.57rem 0.66rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.emulation-map-card--target,
+.emulation-use-step--problem,
+.emulation-choice-card--caution {
+  border-color: rgba(185, 140, 25, 0.22);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 249, 227, 0.9)
+  );
+}
+
+.emulation-map-card--emulator,
+.emulation-use-step--solution,
+.execution-path--emulated,
+.emulation-choice-card--suitable {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(232, 246, 255, 0.88)
+  );
+}
+
+.emulation-map-card--host,
+.emulation-use-step--check,
+.emulation-choice-card--avoid,
+.execution-path--native {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(238, 248, 231, 0.88)
+  );
+}
+
+.emulation-map-arrow,
+.emulation-use-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.emulation-stack {
+  padding: 1rem;
+  border-radius: 20px;
+  border: 1.5px dashed rgba(37, 52, 66, 0.16);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.86),
+    rgba(247, 251, 253, 0.82)
+  );
+}
+
+.emulation-stack-row {
+  grid-template-columns: minmax(9rem, 0.45fr) minmax(0, 1fr);
+  align-items: center;
+  border-left: 6px solid var(--stack-accent, var(--lesson-accent));
+}
+
+.emulation-stack-row--software {
+  --stack-accent: #8b4831;
+}
+
+.emulation-stack-row--target {
+  --stack-accent: #785e16;
+}
+
+.emulation-stack-row--emulator {
+  --stack-accent: #155b75;
+}
+
+.emulation-stack-row--host {
+  --stack-accent: #29523b;
+}
+
+.emulation-use-step {
+  border-top: 6px solid var(--lesson-accent);
+}
+
+.execution-path {
+  border-left: 6px solid var(--path-accent, var(--lesson-accent));
+}
+
+.execution-path--native {
+  --path-accent: #29523b;
+}
+
+.execution-path--emulated {
+  --path-accent: #155b75;
+}
+
+.execution-lane {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.execution-lane span {
+  display: grid;
+  min-height: 3rem;
+  place-items: center;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--page-ink);
+  font-weight: 800;
+  text-align: center;
+}
+
+.execution-path--emulated .execution-lane span:nth-child(2) {
+  border-color: rgba(31, 135, 125, 0.2);
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.emulation-choice-card {
+  border-top: 6px solid var(--choice-accent, var(--lesson-accent));
+}
+
+.emulation-choice-card--suitable {
+  --choice-accent: #155b75;
+}
+
+.emulation-choice-card--caution {
+  --choice-accent: #785e16;
+}
+
+.emulation-choice-card--avoid {
+  --choice-accent: #8b4831;
+  border-color: rgba(190, 91, 91, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 240, 241, 0.88)
+  );
+}
+
+.choice-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+body.teacher-mode-active .emulation-overview-map,
+body.teacher-mode-active .emulation-use-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .emulation-map-arrow,
+body.teacher-mode-active .emulation-use-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .execution-path-visual {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .emulation-choice-board {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1080px) {
+  .emulation-overview-map,
+  .emulation-use-flow,
+  body.teacher-mode-active .emulation-overview-map,
+  body.teacher-mode-active .emulation-use-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .emulation-map-arrow,
+  .emulation-use-arrow {
+    min-height: 2rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .emulation-stack-row,
+  body.teacher-mode-active .execution-path-visual,
+  body.teacher-mode-active .emulation-choice-board {
+    grid-template-columns: 1fr;
+  }
+
+  .emulation-map-card,
+  .emulation-use-step,
+  .execution-path,
+  .emulation-choice-card,
+  .emulation-stack-row {
+    border-radius: 18px;
+  }
+}

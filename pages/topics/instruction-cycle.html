@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/pages/instruction-cycle.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -111,8 +112,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Interactive quiz scoring and teacher slides need JavaScript, but the
-          lesson notes still work without it.
+          Interactive quiz scoring, the simulator, and teacher slides need
+          JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -124,6 +125,7 @@
             <a href="#cycle" data-section-link>The cycle</a>
             <a href="#fetch" data-section-link>Fetch stage</a>
             <a href="#decode-execute" data-section-link>Decode and execute</a>
+            <a href="#simulation" data-section-link>Try the simulator</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
             <a href="#exam-practice" data-section-link>Exam-style practice</a>
@@ -142,8 +144,54 @@
               The instruction cycle is the repeated process the CPU uses to run
               a program. In Unit 2, strong answers explain the stages in order
               and name what the main registers hold while the cycle is
-              happening.
+              happening. The important idea is movement: the CPU is constantly
+              moving addresses, instructions, and data between registers and
+              memory.
             </p>
+
+            <div
+              class="instruction-cycle-map"
+              aria-label="Fetch decode execute cycle"
+            >
+              <article class="cycle-map-card cycle-map-card--fetch">
+                <span class="cycle-map-badge">1</span>
+                <span
+                  class="cycle-map-icon cycle-map-icon--fetch"
+                  aria-hidden="true"
+                ></span>
+                <h3>Fetch</h3>
+                <p>
+                  Use the program counter to find the next instruction in memory
+                  and bring it into the CPU.
+                </p>
+              </article>
+              <article class="cycle-map-card cycle-map-card--decode">
+                <span class="cycle-map-badge">2</span>
+                <span
+                  class="cycle-map-icon cycle-map-icon--decode"
+                  aria-hidden="true"
+                ></span>
+                <h3>Decode</h3>
+                <p>
+                  The control unit interprets the opcode and prepares the
+                  required control signals.
+                </p>
+              </article>
+              <article class="cycle-map-card cycle-map-card--execute">
+                <span class="cycle-map-badge">3</span>
+                <span
+                  class="cycle-map-icon cycle-map-icon--execute"
+                  aria-hidden="true"
+                ></span>
+                <h3>Execute</h3>
+                <p>
+                  The CPU performs the instruction, then moves on to the next
+                  address unless a branch changes the PC.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
@@ -154,6 +202,10 @@
                     Explain what happens during fetch, decode, and execute.
                   </li>
                   <li>Name the key registers linked to the cycle.</li>
+                  <li>
+                    Trace a short program through PC, MAR, MDR, IR, and
+                    accumulator changes.
+                  </li>
                   <li>Apply the sequence to short exam scenarios.</li>
                 </ul>
               </article>
@@ -182,7 +234,8 @@
                 <p>
                   Every stored-program CPU depends on the instruction cycle.
                   When you explain any processor action, you are usually
-                  describing one part of this repeated loop.
+                  describing one part of this repeated loop. It also links
+                  forward to registers, cache, pipelining, and CPU performance.
                 </p>
               </article>
             </div>
@@ -214,6 +267,29 @@
                 ><strong>Execute</strong> carry out the required action</span
               >
             </div>
+
+            <div
+              class="cycle-loop-visual"
+              aria-label="Instruction cycle loop with register involvement"
+            >
+              <article class="cycle-loop-node cycle-loop-node--fetch">
+                <strong>Fetch</strong>
+                <span>PC, MAR, MDR, IR</span>
+              </article>
+              <span class="cycle-loop-arrow">then</span>
+              <article class="cycle-loop-node cycle-loop-node--decode">
+                <strong>Decode</strong>
+                <span>IR and control unit</span>
+              </article>
+              <span class="cycle-loop-arrow">then</span>
+              <article class="cycle-loop-node cycle-loop-node--execute">
+                <strong>Execute</strong>
+                <span>ALU, registers, memory, or PC</span>
+              </article>
+              <span class="cycle-loop-return">repeat</span>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -262,8 +338,9 @@
               <h3>Why exam questions like this topic</h3>
               <p>
                 The instruction cycle links together registers, memory access,
-                control signals, and processor performance. It is a good test of
-                whether you understand how separate CPU concepts fit together.
+                buses, control signals, and processor performance. It is a good
+                test of whether you understand how separate CPU concepts fit
+                together rather than memorising register names in isolation.
               </p>
             </article>
           </section>
@@ -278,8 +355,37 @@
             <p class="lesson-section-copy">
               Fetch questions are often about register roles. The key is to say
               what each register holds at that moment rather than listing names
-              without explanation.
+              without explanation. The PC starts the process by identifying the
+              next instruction address, while the MAR and MDR handle the memory
+              access itself.
             </p>
+
+            <div
+              class="fetch-flow-visual"
+              aria-label="Fetch stage register flow"
+            >
+              <article class="fetch-flow-card fetch-flow-card--pc">
+                <strong>Program counter</strong>
+                <span>Holds the next instruction address.</span>
+              </article>
+              <span class="fetch-flow-arrow">copy address</span>
+              <article class="fetch-flow-card fetch-flow-card--mar">
+                <strong>MAR</strong>
+                <span>Receives the address memory should read from.</span>
+              </article>
+              <span class="fetch-flow-arrow">read memory</span>
+              <article class="fetch-flow-card fetch-flow-card--mdr">
+                <strong>MDR</strong>
+                <span>Carries the fetched instruction back to the CPU.</span>
+              </article>
+              <span class="fetch-flow-arrow">load</span>
+              <article class="fetch-flow-card fetch-flow-card--ir">
+                <strong>Instruction register</strong>
+                <span>Holds the current instruction ready for decoding.</span>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -334,6 +440,8 @@
               </table>
             </div>
 
+            <div data-slide-break></div>
+
             <div class="application-grid">
               <article class="application-card">
                 <h3>PC</h3>
@@ -384,8 +492,43 @@
               The control unit decodes the instruction so the processor knows
               which action is required. Execution may mean an arithmetic
               calculation, a comparison, a store to memory, or a jump to a new
-              instruction address.
+              instruction address. This is where the same cycle can create many
+              different program behaviours.
             </p>
+
+            <div
+              class="decode-execute-board"
+              aria-label="Decode and execute outcomes"
+            >
+              <article class="decode-card decode-card--decode">
+                <span class="decode-label">Decode</span>
+                <h3>Control unit reads the opcode</h3>
+                <p>
+                  It works out which operation is needed and which operands,
+                  registers, or memory addresses are involved.
+                </p>
+              </article>
+              <article class="decode-card decode-card--alu">
+                <span class="decode-label">Execute</span>
+                <h3>ALU operation</h3>
+                <p>Add, subtract, compare, or perform logic using registers.</p>
+              </article>
+              <article class="decode-card decode-card--memory">
+                <span class="decode-label">Execute</span>
+                <h3>Memory operation</h3>
+                <p>Load data from memory or store a result back to memory.</p>
+              </article>
+              <article class="decode-card decode-card--branch">
+                <span class="decode-label">Execute</span>
+                <h3>Branch operation</h3>
+                <p>
+                  Change the PC so the next fetch comes from a different
+                  address.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="term-grid">
               <article class="term-card">
@@ -423,9 +566,135 @@
               <p>
                 The CPU must first understand what the instruction means before
                 it can carry it out. Saying "the CPU fetches and does it" skips
-                an important exam mark because decoding is its own stage.
+                an important exam mark because decoding is its own stage. In a
+                longer answer, connect decode to the control unit and execute to
+                the actual action being performed.
               </p>
             </article>
+          </section>
+
+          <section
+            id="simulation"
+            class="lesson-section lesson-section--simulation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Simulator</p>
+            <h2>Step through a tiny fetch-decode-execute program</h2>
+            <p class="simulator-copy">
+              Use the controls to move through a small program. Watch how the
+              PC, MAR, MDR, IR, and accumulator change as each instruction is
+              fetched, decoded, and executed.
+            </p>
+
+            <div
+              class="simulator-grid instruction-simulator"
+              data-role="instruction-simulator"
+            >
+              <article class="simulator-card lesson-fullrow">
+                <div class="instruction-sim-header">
+                  <div>
+                    <h3>Sample program</h3>
+                    <p>
+                      The CPU will load 5, add 3, and store the result. The
+                      simulator shows the register story behind those simple
+                      program steps.
+                    </p>
+                  </div>
+                  <div
+                    class="instruction-sim-controls"
+                    aria-label="Instruction cycle simulator controls"
+                  >
+                    <button
+                      class="structure-button"
+                      type="button"
+                      data-cycle-action="previous"
+                    >
+                      Previous
+                    </button>
+                    <button
+                      class="primary-link"
+                      type="button"
+                      data-cycle-action="next"
+                    >
+                      Next step
+                    </button>
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-cycle-action="reset"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+                <div class="instruction-sim-status-row">
+                  <span
+                    class="cycle-step-counter"
+                    data-role="cycle-step-counter"
+                    >Step 1</span
+                  >
+                  <span class="cycle-stage-pill" data-role="cycle-stage-pill"
+                    >Ready</span
+                  >
+                </div>
+                <p
+                  class="structure-status"
+                  data-role="cycle-status"
+                  aria-live="polite"
+                >
+                  The program counter points to the first instruction.
+                </p>
+                <div class="cycle-stage-track" aria-label="Current cycle stage">
+                  <span data-cycle-stage-marker="fetch">Fetch</span>
+                  <span data-cycle-stage-marker="decode">Decode</span>
+                  <span data-cycle-stage-marker="execute">Execute</span>
+                  <span data-cycle-stage-marker="complete">Complete</span>
+                </div>
+                <p class="cycle-explanation" data-role="cycle-explanation">
+                  The first fetch begins with the PC pointing at address 200.
+                </p>
+              </article>
+
+              <article class="simulator-card instruction-register-card">
+                <h3>Registers</h3>
+                <div class="register-grid" aria-label="CPU register values">
+                  <article class="register-tile" data-register="pc">
+                    <strong>PC</strong>
+                    <span data-register-value="pc">200</span>
+                    <small>Next instruction address</small>
+                  </article>
+                  <article class="register-tile" data-register="mar">
+                    <strong>MAR</strong>
+                    <span data-register-value="mar">-</span>
+                    <small>Address currently accessed</small>
+                  </article>
+                  <article class="register-tile" data-register="mdr">
+                    <strong>MDR</strong>
+                    <span data-register-value="mdr">-</span>
+                    <small>Value moving to or from memory</small>
+                  </article>
+                  <article class="register-tile" data-register="ir">
+                    <strong>IR</strong>
+                    <span data-register-value="ir">-</span>
+                    <small>Current instruction</small>
+                  </article>
+                  <article class="register-tile" data-register="acc">
+                    <strong>ACC</strong>
+                    <span data-register-value="acc">0</span>
+                    <small>Accumulator result</small>
+                  </article>
+                </div>
+              </article>
+
+              <article class="simulator-card instruction-memory-card">
+                <h3>Memory</h3>
+                <div
+                  class="cycle-memory"
+                  data-role="cycle-memory"
+                  aria-label="Program and data memory"
+                ></div>
+              </article>
+            </div>
           </section>
 
           <section
@@ -479,6 +748,24 @@
                 <p class="trap-fix">
                   <strong>Fix:</strong> Link the PC to the word
                   <code>next</code> in your answer.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Assuming the PC always just increases by one</h3>
+                <p>
+                  Most simple explanations say the PC increments, but branch or
+                  jump instructions can replace it with a new address.
+                </p>
+                <ul class="trap-list">
+                  <li>Normal sequence: PC moves to the next address.</li>
+                  <li>
+                    Branch sequence: PC is loaded with a different address.
+                  </li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Say
+                  <code>unless a branch changes it</code>.
                 </p>
               </article>
             </div>
@@ -854,6 +1141,34 @@
                 <dt>Execute</dt>
                 <dd>The stage where the instruction is carried out.</dd>
               </div>
+              <div class="glossary-item">
+                <dt>Program counter</dt>
+                <dd>
+                  A register that stores the address of the next instruction to
+                  fetch.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>MAR</dt>
+                <dd>
+                  Memory address register, which holds the memory address being
+                  accessed.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>MDR</dt>
+                <dd>
+                  Memory data register, which holds the data or instruction
+                  being transferred to or from memory.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Instruction register</dt>
+                <dd>
+                  A register that holds the current instruction while it is
+                  decoded and executed.
+                </dd>
+              </div>
             </dl>
           </section>
 
@@ -864,6 +1179,8 @@
               <li>PC means next instruction address.</li>
               <li>MAR means address to access now.</li>
               <li>MDR means data or instruction in transit.</li>
+              <li>IR means current instruction being decoded or executed.</li>
+              <li>Branch instructions can change the next PC value.</li>
             </ul>
           </section>
 
@@ -904,7 +1221,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 13</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

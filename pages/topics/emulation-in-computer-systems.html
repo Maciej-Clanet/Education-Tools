@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emulation in Computer Systems Revision Lesson | Education Tools</title>
+    <title>
+      Emulation in Computer Systems Revision Lesson | Education Tools
+    </title>
     <meta
       name="description"
       content="Revise emulation in computer systems with clear explanations of how one system imitates another, when emulation is useful, its trade-offs, exam traps, exam-style practice, and a short end-of-lesson quiz."
@@ -24,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/emulation-in-computer-systems.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -75,14 +81,6 @@
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
             <span>Compatibility, use cases, and trade-offs of emulation</span>
-          </article>
-          <article class="lesson-meta-card">
-            <strong>Lesson style</strong>
-            <span>Explanation, comparison, exam practice, and quiz</span>
-          </article>
-          <article class="lesson-meta-card">
-            <strong>Teacher mode</strong>
-            <span>Swipe or tap through full-screen slides</span>
           </article>
         </div>
 
@@ -141,18 +139,50 @@
             <p class="lesson-section-copy">
               Emulation is about recreating the behaviour of one computer system
               on another. In Unit 2, strong answers explain what is being
-              imitated, why emulation can be useful, and why emulated systems
-              may not perform the same as native ones.
+              imitated, which system is doing the work, why the original
+              platform is a problem, and why emulated systems may not perform
+              the same as native ones.
             </p>
+
+            <div
+              class="emulation-overview-map"
+              aria-label="Target system behaviour recreated by an emulator on a host system"
+            >
+              <article class="emulation-map-card emulation-map-card--target">
+                <span class="emulation-map-badge">Target</span>
+                <span class="emulation-map-icon emulation-map-icon--target" aria-hidden="true"></span>
+                <h3>Original platform</h3>
+                <p>Older hardware, a different processor, or a platform the software expects.</p>
+              </article>
+              <span class="emulation-map-arrow">behaviour copied</span>
+              <article class="emulation-map-card emulation-map-card--emulator">
+                <span class="emulation-map-badge">Emulator</span>
+                <span class="emulation-map-icon emulation-map-icon--emulator" aria-hidden="true"></span>
+                <h3>Imitation layer</h3>
+                <p>Recreates target instructions, devices, or operating environment.</p>
+              </article>
+              <span class="emulation-map-arrow">runs on</span>
+              <article class="emulation-map-card emulation-map-card--host">
+                <span class="emulation-map-badge">Host</span>
+                <span class="emulation-map-icon emulation-map-icon--host" aria-hidden="true"></span>
+                <h3>Current system</h3>
+                <p>The real machine providing CPU time, memory, storage, and display output.</p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
-                  <li>Define emulation clearly.</li>
-                  <li>Explain common uses of emulation.</li>
+                  <li>Define emulation using host and target terminology.</li>
                   <li>
-                    Describe the main benefits and drawbacks of emulation.
+                    Explain how an emulator maps target behaviour onto a host
+                    system.
+                  </li>
+                  <li>
+                    Describe common uses, benefits, and drawbacks of emulation.
                   </li>
                   <li>
                     Recommend when emulation is a suitable choice for a
@@ -169,12 +199,15 @@
                     system's behaviour.
                   </li>
                   <li>
-                    <strong>Use:</strong> compatibility, legacy software, and
-                    preservation.
+                    <strong>Host:</strong> the real system running the emulator.
                   </li>
                   <li>
-                    <strong>Benefit:</strong> old or different software can run
-                    without the original hardware.
+                    <strong>Target:</strong> the system whose behaviour is being
+                    recreated.
+                  </li>
+                  <li>
+                    <strong>Use:</strong> compatibility, legacy software, and
+                    preservation.
                   </li>
                   <li>
                     <strong>Trade-off:</strong> emulation can be slower or less
@@ -187,8 +220,9 @@
                 <h3>Where it appears</h3>
                 <p>
                   This topic appears when the exam asks about legacy systems,
-                  compatibility between platforms, testing, training, or the
-                  impact of choosing one architecture approach over another.
+                  compatibility between platforms, testing, training,
+                  preservation, or the impact of choosing one architecture
+                  approach over another.
                 </p>
               </article>
             </div>
@@ -203,9 +237,9 @@
             <h2>Emulation recreates the behaviour of another system</h2>
             <p class="lesson-section-copy">
               An emulator is designed to imitate how another computer system,
-              processor, console, or platform behaves. That lets software built
-              for the original system run on different hardware or in a new
-              environment.
+              processor, console, operating system, or platform behaves. That
+              lets software built for the original system run on different
+              hardware or in a new environment.
             </p>
 
             <div class="example-strip" aria-label="Emulation summary">
@@ -217,9 +251,34 @@
                 ><strong>Emulator</strong> reproduces that behaviour</span
               >
               <span class="example-chip"
-                ><strong>Host system</strong> runs the emulated environment</span
+                ><strong>Host system</strong> runs the emulated
+                environment</span
               >
             </div>
+
+            <div
+              class="emulation-stack"
+              aria-label="Emulated software stack running on a host system"
+            >
+              <article class="emulation-stack-row emulation-stack-row--software">
+                <strong>Target software</strong>
+                <span>The program expects the old or different platform.</span>
+              </article>
+              <article class="emulation-stack-row emulation-stack-row--target">
+                <strong>Target behaviour</strong>
+                <span>Instruction set, OS calls, storage, input, and display rules.</span>
+              </article>
+              <article class="emulation-stack-row emulation-stack-row--emulator">
+                <strong>Emulator</strong>
+                <span>Interprets, translates, or maps those expected actions.</span>
+              </article>
+              <article class="emulation-stack-row emulation-stack-row--host">
+                <strong>Host hardware and OS</strong>
+                <span>The real CPU, memory, devices, and operating system do the work.</span>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <article class="lesson-card">
               <h3>Simple example</h3>
@@ -227,22 +286,19 @@
                 A modern computer may run an emulator so that a program written
                 for an older or different platform can still work. The host
                 machine is not magically becoming the original hardware. It is
-                imitating enough of its behaviour for the software to run.
+                using software to imitate enough of the target platform's
+                behaviour for the program to run.
               </p>
             </article>
 
             <div class="term-grid">
               <article class="term-card">
                 <strong>Host system</strong>
-                <span>
-                  The real machine that is running the emulator.
-                </span>
+                <span> The real machine that is running the emulator. </span>
               </article>
               <article class="term-card">
                 <strong>Target system</strong>
-                <span>
-                  The original machine or platform being imitated.
-                </span>
+                <span> The original machine or platform being imitated. </span>
               </article>
               <article class="term-card">
                 <strong>Compatibility</strong>
@@ -257,6 +313,20 @@
                   Recreating another system's behaviour takes extra work.
                 </span>
               </article>
+              <article class="term-card">
+                <strong>Native execution</strong>
+                <span>
+                  Software runs directly on the platform it was built for,
+                  without an imitation layer.
+                </span>
+              </article>
+              <article class="term-card">
+                <strong>Instruction set</strong>
+                <span>
+                  The set of machine-code instructions a processor understands.
+                  Emulation may need to translate these.
+                </span>
+              </article>
             </div>
           </section>
 
@@ -266,11 +336,15 @@
             data-lesson-section
           >
             <p class="eyebrow">Uses</p>
-            <h2>Emulation is useful when the original platform is unavailable or impractical</h2>
+            <h2>
+              Emulation is useful when the original platform is unavailable or
+              impractical
+            </h2>
             <p class="lesson-section-copy">
               Emulation is often chosen when software, training material, or
               system behaviour still matters but the original hardware is
-              unavailable, expensive, outdated, or difficult to maintain.
+              unavailable, expensive, outdated, difficult to maintain, or
+              unsafe to rely on for daily use.
             </p>
 
             <div class="application-grid">
@@ -295,6 +369,49 @@
                   without needing the real target hardware.
                 </p>
               </article>
+              <article class="application-card">
+                <h3>Cross-platform development</h3>
+                <p>
+                  Developers can test how software behaves on a different
+                  platform before deploying to the real target device.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
+
+            <div
+              class="emulation-use-flow"
+              aria-label="Emulation suitability flow from problem to checks"
+            >
+              <article class="emulation-use-step emulation-use-step--problem">
+                <span class="emulation-use-label">Problem</span>
+                <strong>Software depends on a target platform</strong>
+                <p>
+                  The program expects old hardware, a different processor, a
+                  specific operating environment, or specialist device
+                  behaviour.
+                </p>
+              </article>
+              <span class="emulation-use-arrow">then</span>
+              <article class="emulation-use-step emulation-use-step--solution">
+                <span class="emulation-use-label">Solution</span>
+                <strong>Emulator recreates enough of that behaviour</strong>
+                <p>
+                  The host system can run the software without needing the
+                  original platform to be available.
+                </p>
+              </article>
+              <span class="emulation-use-arrow">check</span>
+              <article class="emulation-use-step emulation-use-step--check">
+                <span class="emulation-use-label">Decision</span>
+                <strong>Accuracy and speed still matter</strong>
+                <p>
+                  A suitable choice depends on whether the emulator is reliable,
+                  fast enough, legal to use, and compatible with the needed
+                  files and devices.
+                </p>
+              </article>
             </div>
 
             <article class="lesson-card">
@@ -302,7 +419,8 @@
               <p>
                 Exam questions usually want more than "to run old software".
                 Strong answers explain the reason the original platform is a
-                problem and why imitation is a practical solution.
+                problem, what the emulator is recreating, and why imitation is
+                a practical solution for that scenario.
               </p>
             </article>
           </section>
@@ -313,13 +431,48 @@
             data-lesson-section
           >
             <p class="eyebrow">Impact</p>
-            <h2>Emulation improves access and compatibility, but it can reduce performance</h2>
+            <h2>
+              Emulation improves access and compatibility, but it can reduce
+              performance
+            </h2>
             <p class="lesson-section-copy">
               Emulation has real benefits, but it also adds overhead because the
               host system must reproduce another platform's behaviour. That can
-              affect speed, precision, or the range of features that work
-              perfectly.
+              affect speed, precision, reliability, or the range of features
+              that work perfectly.
             </p>
+
+            <div
+              class="execution-path-visual"
+              aria-label="Native execution compared with emulated execution"
+            >
+              <article class="execution-path execution-path--native">
+                <h3>Native path</h3>
+                <div class="execution-lane">
+                  <span>Program</span>
+                  <span>OS and CPU it was built for</span>
+                  <span>Devices</span>
+                </div>
+                <p>
+                  Fewer layers usually means lower overhead and more predictable
+                  access to hardware features.
+                </p>
+              </article>
+              <article class="execution-path execution-path--emulated">
+                <h3>Emulated path</h3>
+                <div class="execution-lane">
+                  <span>Target program</span>
+                  <span>Emulator maps behaviour</span>
+                  <span>Host OS and CPU</span>
+                </div>
+                <p>
+                  More compatibility, but the mapping layer can cost time and
+                  may not recreate every device detail.
+                </p>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -363,6 +516,29 @@
                       host is translating or reproducing behaviour.
                     </td>
                   </tr>
+                  <tr>
+                    <td>Accuracy</td>
+                    <td>
+                      A well-built emulator can reproduce the target behaviour
+                      closely enough for learning, testing, or daily access.
+                    </td>
+                    <td>
+                      Timing-sensitive software, unusual peripherals, or
+                      hardware bugs may be difficult to match exactly.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Support and risk</td>
+                    <td>
+                      Old systems can be accessed without relying on ageing
+                      physical hardware.
+                    </td>
+                    <td>
+                      The organisation still needs licences, valid system
+                      images, documentation, and a plan if the emulator stops
+                      being supported.
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -372,8 +548,9 @@
               <p>
                 If a question asks about the impact of emulation, useful phrases
                 include <code>compatibility</code>, <code>legacy support</code>,
-                <code>performance overhead</code>, and
-                <code>recreating behaviour</code>.
+                <code>hardware dependency</code>,
+                <code>performance overhead</code>,
+                <code>accuracy</code>, and <code>recreating behaviour</code>.
               </p>
             </article>
           </section>
@@ -384,12 +561,51 @@
             data-lesson-section
           >
             <p class="eyebrow">Comparison</p>
-            <h2>Choose emulation when imitation is more important than native speed</h2>
+            <h2>
+              Choose emulation when imitation is more important than native
+              speed
+            </h2>
             <p class="lesson-section-copy">
-              Good answers explain when emulation is worth it and when it is not.
-              The strongest justification matches the need for compatibility to
-              the cost of extra overhead.
+              Good answers explain when emulation is worth it and when it is
+              not. The strongest justification matches the need for
+              compatibility, accuracy, and preservation to the cost of extra
+              overhead.
             </p>
+
+            <div
+              class="emulation-choice-board"
+              aria-label="Decision board for choosing emulation"
+            >
+              <article class="emulation-choice-card emulation-choice-card--suitable">
+                <span class="emulation-choice-label">Usually suitable</span>
+                <h3>When target behaviour matters</h3>
+                <ul class="choice-list">
+                  <li>The original platform is unavailable or hard to maintain.</li>
+                  <li>The software is still needed for records, learning, or workflow.</li>
+                  <li>Performance needs are modest enough for the host system.</li>
+                </ul>
+              </article>
+              <article class="emulation-choice-card emulation-choice-card--caution">
+                <span class="emulation-choice-label">Check carefully</span>
+                <h3>When exact hardware behaviour matters</h3>
+                <ul class="choice-list">
+                  <li>The software depends on timing, specialist devices, or old drivers.</li>
+                  <li>The emulator may not support every target feature.</li>
+                  <li>Licensing or system-image ownership is unclear.</li>
+                </ul>
+              </article>
+              <article class="emulation-choice-card emulation-choice-card--avoid">
+                <span class="emulation-choice-label">Often weaker</span>
+                <h3>When native performance matters most</h3>
+                <ul class="choice-list">
+                  <li>A supported native version already exists.</li>
+                  <li>The workload needs low latency or high throughput.</li>
+                  <li>The emulator would create more support risk than benefit.</li>
+                </ul>
+              </article>
+            </div>
+
+            <div data-slide-break></div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -423,6 +639,17 @@
                     </td>
                   </tr>
                   <tr>
+                    <td>Testing software for another platform</td>
+                    <td>
+                      Developers can check behaviour before using the real
+                      target device or platform.
+                    </td>
+                    <td>
+                      Final testing may still need real hardware if timing or
+                      device behaviour is important.
+                    </td>
+                  </tr>
+                  <tr>
                     <td>Maximum performance production work</td>
                     <td>
                       Only suitable if compatibility matters more than speed.
@@ -442,8 +669,8 @@
                 If the exam scenario focuses on keeping older software usable,
                 preserving a system, or accessing another platform without the
                 original hardware, emulation is often a strong answer. If the
-                scenario focuses on speed alone, emulation may be a weaker
-                choice.
+                scenario focuses on speed, exact hardware timing, or a fully
+                supported modern version, emulation may be a weaker choice.
               </p>
             </article>
           </section>
@@ -482,9 +709,7 @@
 
               <article class="trap-card">
                 <h3>Assuming emulation is always as fast as native use</h3>
-                <p>
-                  Recreating another platform usually adds overhead.
-                </p>
+                <p>Recreating another platform usually adds overhead.</p>
                 <ul class="trap-list">
                   <li>Compatibility can improve.</li>
                   <li>Performance can still fall.</li>
@@ -511,6 +736,30 @@
                 <p class="trap-fix">
                   <strong>Fix:</strong> Link emulation to compatibility or
                   preservation.
+                </p>
+              </article>
+
+              <article class="trap-card">
+                <h3>Confusing emulation with virtualisation</h3>
+                <p>
+                  Virtualisation usually shares the same or similar processor
+                  architecture and isolates systems through a virtual machine.
+                  Emulation focuses on imitating a different target platform's
+                  behaviour.
+                </p>
+                <ul class="trap-list">
+                  <li>
+                    Virtualisation can be close to native speed when the host
+                    and guest architecture match.
+                  </li>
+                  <li>
+                    Emulation may need to translate instructions or recreate
+                    devices, so overhead is usually higher.
+                  </li>
+                </ul>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Use <code>imitates the target</code>
+                  when the question is about emulation.
                 </p>
               </article>
             </div>
@@ -613,7 +862,9 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="a" />
-                      <span>It makes memory disappear from the host system</span>
+                      <span
+                        >It makes memory disappear from the host system</span
+                      >
                     </label>
                   </li>
                   <li>
@@ -756,8 +1007,9 @@
                 </div>
                 <h3>Question 1</h3>
                 <p>
-                  Explain what emulation is and give one reason why a business
-                  or college might use it.
+                  Explain what emulation is. In your answer, identify the host
+                  system and target system, then give one reason why a business
+                  or college might use emulation.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="emulation-exam-1">
@@ -774,13 +1026,21 @@
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
                     <p>
-                      A strong answer defines the imitation clearly and then
-                      links it to a realistic use case.
+                      A strong answer uses the host and target terms correctly,
+                      then links the idea to a realistic use case.
                     </p>
                     <ul class="exam-points">
                       <li>
                         Emulation means one system imitates the behaviour of
                         another system or platform.
+                      </li>
+                      <li>
+                        The host system is the real machine running the
+                        emulator.
+                      </li>
+                      <li>
+                        The target system is the original platform being
+                        imitated.
                       </li>
                       <li>
                         This allows software written for the original platform
@@ -804,8 +1064,10 @@
                 <h3>Question 2</h3>
                 <p>
                   A college needs access to an old specialist application that
-                  was written for a platform it no longer owns. Discuss whether
-                  emulation is a suitable solution and justify your answer.
+                  was written for a platform it no longer owns. The application
+                  is needed for training, but it is not used for high-speed
+                  production work. Discuss whether emulation is a suitable
+                  solution and justify your answer.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="emulation-exam-2">
@@ -839,13 +1101,23 @@
                         training.
                       </li>
                       <li>
-                        However, emulation may be slower than native use or may
-                        not reproduce every feature perfectly.
+                        The training context makes emulation more suitable
+                        because perfect production speed is less important.
                       </li>
                       <li>
-                        A strong conclusion states that emulation is suitable if
-                        access to the old software matters more than maximum
-                        performance.
+                        However, emulation may be slower than native use or may
+                        not reproduce every feature, device, or timing detail
+                        perfectly.
+                      </li>
+                      <li>
+                        The college should also check licensing, availability of
+                        the required system image, and whether the emulator is
+                        reliable enough for classroom use.
+                      </li>
+                      <li>
+                        A strong conclusion states that emulation is suitable
+                        here if access to the old software matters more than
+                        maximum performance.
                       </li>
                     </ul>
                   </div>
@@ -869,15 +1141,11 @@
               </div>
               <div class="glossary-item">
                 <dt>Host system</dt>
-                <dd>
-                  The real machine running the emulator.
-                </dd>
+                <dd>The real machine running the emulator.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Target system</dt>
-                <dd>
-                  The original machine or platform being imitated.
-                </dd>
+                <dd>The original machine or platform being imitated.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Legacy software</dt>
@@ -886,16 +1154,30 @@
                   original platform is outdated.
                 </dd>
               </div>
+              <div class="glossary-item">
+                <dt>Native execution</dt>
+                <dd>
+                  Running software directly on the platform it was designed for.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Virtualisation</dt>
+                <dd>
+                  Running a guest system in an isolated virtual machine, usually
+                  on the same or similar processor architecture.
+                </dd>
+              </div>
             </dl>
           </section>
 
           <section class="lesson-rail-card panel revision-card">
             <p class="eyebrow">Remember</p>
-            <h2>Compatibility is the usual reason</h2>
+            <h2>Always name what is being imitated</h2>
             <ul class="memory-list">
-              <li>Emulation imitates another platform.</li>
-              <li>It is often used for legacy access or preservation.</li>
-              <li>Useful does not mean identical to native performance.</li>
+              <li>Target means the platform being recreated.</li>
+              <li>Host means the real system running the emulator.</li>
+              <li>Compatibility is useful, but overhead can reduce speed.</li>
+              <li>Good answers link the choice to the scenario.</li>
             </ul>
           </section>
         </aside>
@@ -920,7 +1202,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 13</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

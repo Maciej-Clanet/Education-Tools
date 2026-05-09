@@ -108,10 +108,10 @@ saved progress should be shown as needing a fresh attempt.
 ### B1 Approaches to computer architecture
 - [x] Stored program architecture: Von Neumann and Harvard
 - [x] Cluster computing, UMA, and NUMA
-- [ ] Emulation
+- [x] Emulation
 
 ### B2 The concepts of microarchitecture
-- [ ] The instruction cycle
+- [x] The instruction cycle
 - [ ] CPU performance, instruction sets, and cache
 - [ ] Pipelining, multi-processing, and multi-threading
 - [ ] CPU architecture for different systems
