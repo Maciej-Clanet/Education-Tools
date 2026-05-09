@@ -114,7 +114,7 @@ saved progress should be shown as needing a fresh attempt.
 - [x] The instruction cycle
 - [x] CPU performance, instruction sets, and cache
 - [x] Pipelining, multi-processing, and multi-threading
-- [ ] CPU architecture for different systems
+- [x] CPU architecture for different systems
 
 ### B3 Registers and register handling
 - [ ] Registers and their functions

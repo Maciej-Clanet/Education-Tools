@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/cpu-architecture-for-different-systems.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -81,14 +85,6 @@
               systems</span
             >
           </article>
-          <article class="lesson-meta-card">
-            <strong>Lesson style</strong>
-            <span>Explanation, comparison, exam practice, and quiz</span>
-          </article>
-          <article class="lesson-meta-card">
-            <strong>Teacher mode</strong>
-            <span>Swipe or tap through full-screen slides</span>
-          </article>
         </div>
 
         <div class="lesson-hero-actions">
@@ -115,8 +111,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Interactive quiz scoring and teacher slides need JavaScript, but the
-          lesson notes still work without it.
+          Interactive quiz scoring, teacher slides, and the architecture chooser
+          need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -129,6 +125,9 @@
             <a href="#microcomputer" data-section-link>Microcomputer</a>
             <a href="#server" data-section-link>Server</a>
             <a href="#compare" data-section-link>Compare choices</a>
+            <a href="#architecture-chooser" data-section-link
+              >Architecture chooser</a
+            >
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
             <a href="#exam-practice" data-section-link>Exam-style practice</a>
@@ -149,6 +148,51 @@
               aim for balanced general-purpose performance, and servers focus on
               throughput, many users, and reliability.
             </p>
+
+            <div class="architecture-map" aria-label="CPU architecture map">
+              <article
+                class="architecture-map-card architecture-map-card--mobile"
+              >
+                <span
+                  class="architecture-icon architecture-icon--mobile"
+                  aria-hidden="true"
+                ></span>
+                <span class="architecture-badge">Efficiency</span>
+                <h3>Embedded and mobile</h3>
+                <p>
+                  Small, cool, efficient designs for devices with tight power,
+                  space, and heat limits.
+                </p>
+              </article>
+              <article
+                class="architecture-map-card architecture-map-card--microcomputer"
+              >
+                <span
+                  class="architecture-icon architecture-icon--microcomputer"
+                  aria-hidden="true"
+                ></span>
+                <span class="architecture-badge">Balance</span>
+                <h3>Microcomputer</h3>
+                <p>
+                  General-purpose CPU choices for varied applications, cost
+                  control, and everyday responsiveness.
+                </p>
+              </article>
+              <article
+                class="architecture-map-card architecture-map-card--server"
+              >
+                <span
+                  class="architecture-icon architecture-icon--server"
+                  aria-hidden="true"
+                ></span>
+                <span class="architecture-badge">Throughput</span>
+                <h3>Server</h3>
+                <p>
+                  Sustained shared workloads, many cores, large memory support,
+                  and reliability.
+                </p>
+              </article>
+            </div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
@@ -212,6 +256,27 @@
               heat as practical.
             </p>
 
+            <div
+              class="mobile-architecture-visual"
+              aria-label="Mobile CPU priorities"
+            >
+              <article class="priority-chip priority-chip--battery">
+                <span class="priority-label">Battery</span>
+                <strong>Low power draw</strong>
+                <span>Longer use between charges.</span>
+              </article>
+              <article class="system-on-chip" aria-label="System on a chip">
+                <span class="architecture-badge">SoC</span>
+                <strong>CPU + graphics + controllers</strong>
+                <span>Integrated to save space and energy.</span>
+              </article>
+              <article class="priority-chip priority-chip--thermal">
+                <span class="priority-label">Thermal</span>
+                <strong>Low heat output</strong>
+                <span>Works in compact cases.</span>
+              </article>
+            </div>
+
             <div class="term-grid">
               <article class="term-card">
                 <strong>Low power use</strong>
@@ -269,6 +334,33 @@
               balances performance, cost, and practical cooling.
             </p>
 
+            <div
+              class="microcomputer-workload-board"
+              aria-label="Microcomputer workloads"
+            >
+              <article class="workload-card">
+                <span class="workload-dot workload-dot--office"></span>
+                <strong>Office and web</strong>
+                <span>Responsive everyday work.</span>
+              </article>
+              <article class="workload-card">
+                <span class="workload-dot workload-dot--media"></span>
+                <strong>Media and graphics</strong>
+                <span>Enough performance for varied software.</span>
+              </article>
+              <article class="workload-card">
+                <span class="workload-dot workload-dot--coding"></span>
+                <strong>Coding and study</strong>
+                <span>General-purpose multitasking.</span>
+              </article>
+              <article class="workload-card workload-card--summary">
+                <strong>Design goal</strong>
+                <span
+                  >Balanced CPU speed, cost, cooling, and compatibility.</span
+                >
+              </article>
+            </div>
+
             <div class="application-grid">
               <article class="application-card">
                 <h3>General-purpose strength</h3>
@@ -319,6 +411,26 @@
               high throughput, multiple cores, large memory capacities, and
               dependable operation over long periods.
             </p>
+
+            <div
+              class="server-architecture-visual"
+              aria-label="Server CPU priorities"
+            >
+              <article class="server-rack">
+                <span class="server-rack-row">Core pool</span>
+                <span class="server-rack-row">Virtual machines</span>
+                <span class="server-rack-row">Large memory support</span>
+                <span class="server-rack-row">Reliability features</span>
+              </article>
+              <article class="server-load-card">
+                <span class="architecture-badge">Many users</span>
+                <strong>Throughput over burst speed</strong>
+                <p>
+                  A server CPU is judged by how much work it can keep handling
+                  for many users over time.
+                </p>
+              </article>
+            </div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -382,6 +494,48 @@
               particular architecture fits the scenario better than the others.
             </p>
 
+            <div
+              class="priority-comparison-board"
+              aria-label="Architecture priorities"
+            >
+              <article class="priority-profile priority-profile--mobile">
+                <h3>Embedded and mobile</h3>
+                <div class="priority-meter priority-meter--high">
+                  <span>Efficiency</span>
+                </div>
+                <div class="priority-meter priority-meter--medium">
+                  <span>Responsiveness</span>
+                </div>
+                <div class="priority-meter priority-meter--low">
+                  <span>Peak throughput</span>
+                </div>
+              </article>
+              <article class="priority-profile priority-profile--desktop">
+                <h3>Microcomputer</h3>
+                <div class="priority-meter priority-meter--medium">
+                  <span>Efficiency</span>
+                </div>
+                <div class="priority-meter priority-meter--high">
+                  <span>Responsiveness</span>
+                </div>
+                <div class="priority-meter priority-meter--medium">
+                  <span>Throughput</span>
+                </div>
+              </article>
+              <article class="priority-profile priority-profile--server">
+                <h3>Server</h3>
+                <div class="priority-meter priority-meter--medium">
+                  <span>Efficiency</span>
+                </div>
+                <div class="priority-meter priority-meter--high">
+                  <span>Throughput</span>
+                </div>
+                <div class="priority-meter priority-meter--high">
+                  <span>Reliability</span>
+                </div>
+              </article>
+            </div>
+
             <div class="compare-table-wrap">
               <table class="compare-table">
                 <thead>
@@ -427,6 +581,101 @@
                 which one is most suitable for the intended use.
               </p>
             </article>
+          </section>
+
+          <section
+            id="architecture-chooser"
+            class="lesson-section lesson-section--simulation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Interactive Chooser</p>
+            <h2>Pick a system and justify the CPU architecture</h2>
+            <p class="lesson-section-copy">
+              Exam questions usually give you a context. Use the chooser to
+              practise linking the CPU design to the system's real priorities.
+            </p>
+
+            <div class="architecture-chooser" data-role="architecture-chooser">
+              <article class="chooser-panel chooser-panel--scenarios">
+                <h3>Choose the scenario</h3>
+                <div
+                  class="scenario-button-grid"
+                  role="group"
+                  aria-label="CPU architecture scenarios"
+                >
+                  <button
+                    type="button"
+                    class="scenario-button"
+                    data-architecture-scenario="sensor"
+                  >
+                    <strong>Battery sensor</strong>
+                    <span>Runs for months in a small case.</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="scenario-button"
+                    data-architecture-scenario="tablet"
+                  >
+                    <strong>Student tablet</strong>
+                    <span>Needs battery life and smooth apps.</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="scenario-button"
+                    data-architecture-scenario="desktop"
+                  >
+                    <strong>Classroom desktop</strong>
+                    <span
+                      >Runs browsers, office tools, and coding software.</span
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="scenario-button"
+                    data-architecture-scenario="server"
+                  >
+                    <strong>Company server</strong>
+                    <span>Handles many users and shared files.</span>
+                  </button>
+                </div>
+              </article>
+
+              <article class="chooser-panel chooser-panel--result">
+                <div class="chooser-result-header">
+                  <span
+                    class="architecture-badge"
+                    data-role="architecture-result-type"
+                    >Embedded and mobile</span
+                  >
+                  <h3 data-role="architecture-result-title">Battery sensor</h3>
+                </div>
+                <p data-role="architecture-result-summary">
+                  Use an embedded or mobile-focused CPU because the device has
+                  strict limits on power, heat, and physical space.
+                </p>
+                <div
+                  class="chooser-priority-bars"
+                  data-role="architecture-priority-bars"
+                  aria-label="Scenario priorities"
+                ></div>
+                <div class="chooser-reason-grid">
+                  <div>
+                    <strong>Best justification</strong>
+                    <p data-role="architecture-result-justification">
+                      Low power use extends battery life and low heat helps the
+                      small enclosure stay safe and reliable.
+                    </p>
+                  </div>
+                  <div>
+                    <strong>Trade-off</strong>
+                    <p data-role="architecture-result-tradeoff">
+                      It may have lower peak performance than a larger desktop
+                      or server CPU.
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
           </section>
 
           <section
@@ -871,6 +1120,13 @@
                   and reliability.
                 </dd>
               </div>
+              <div class="glossary-item">
+                <dt>System on a chip</dt>
+                <dd>
+                  A compact chip package that combines CPU and other components
+                  such as graphics or controllers.
+                </dd>
+              </div>
             </dl>
           </section>
 
@@ -921,7 +1177,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 9</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>
