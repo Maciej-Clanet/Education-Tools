@@ -1,0 +1,314 @@
+.register-overview-map,
+.register-speed-visual,
+.register-family-board,
+.register-path-visual,
+.alu-register-visual,
+.register-inspector {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.register-overview-map,
+.register-family-board {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.register-speed-visual {
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.register-path-visual {
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.alu-register-visual,
+.register-inspector {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.85fr);
+  align-items: stretch;
+}
+
+.register-map-card,
+.speed-node,
+.register-family-card,
+.register-path-node,
+.alu-card,
+.inspector-panel,
+.register-choice,
+.register-detail-card {
+  display: grid;
+  gap: 0.58rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.register-map-card,
+.speed-node,
+.register-path-node,
+.alu-card {
+  justify-items: center;
+  text-align: center;
+}
+
+.register-map-card h3,
+.speed-node strong,
+.register-family-card h3,
+.register-path-node strong,
+.alu-card strong,
+.inspector-panel h3,
+.register-choice strong,
+.register-detail-card strong {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.register-map-card p,
+.speed-node span:not(.register-badge),
+.register-family-card p,
+.register-path-node span:not(.register-badge),
+.alu-card span:not(.register-badge),
+.register-choice span,
+.register-detail-card p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.register-badge,
+.family-tag {
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.register-map-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.register-map-icon--cpu {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 16%,
+      rgba(31, 135, 125, 0.22) 17% 31%,
+      transparent 32% 43%,
+      rgba(31, 135, 125, 0.22) 44% 58%,
+      transparent 59% 70%,
+      rgba(31, 135, 125, 0.22) 71% 85%,
+      transparent 86%
+    ),
+    rgba(232, 246, 255, 0.96);
+}
+
+.register-map-icon--memory {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(120, 94, 22, 0.2) 0 0.5rem,
+      transparent 0.52rem 0.9rem
+    ),
+    rgba(255, 249, 227, 0.96);
+}
+
+.register-map-icon--work {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 38%, #378135 0 0.24rem, transparent 0.26rem),
+    radial-gradient(circle at 66% 62%, #1f877d 0 0.24rem, transparent 0.26rem),
+    linear-gradient(
+      135deg,
+      transparent 43%,
+      rgba(55, 129, 53, 0.24) 44% 56%,
+      transparent 57%
+    ),
+    rgba(238, 248, 231, 0.96);
+}
+
+.register-map-card--cpu,
+.speed-node--registers,
+.register-path-node--pc,
+.register-path-node--ir {
+  border-color: rgba(31, 135, 125, 0.2);
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.register-map-card--memory,
+.speed-node--cache,
+.register-family-card--special,
+.register-path-node--mar,
+.register-path-node--mdr {
+  border-color: rgba(185, 140, 25, 0.22);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.register-map-card--work,
+.speed-node--ram,
+.register-family-card--general,
+.alu-card,
+.alu-card--accumulator {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.speed-node,
+.register-path-node,
+.alu-card {
+  align-content: center;
+}
+
+.speed-arrow,
+.register-path-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.register-family-card {
+  border-left: 4px solid rgba(37, 52, 66, 0.16);
+}
+
+.register-inspector {
+  align-items: stretch;
+}
+
+.inspector-panel {
+  align-content: start;
+}
+
+.register-choice-grid {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.register-choice {
+  width: 100%;
+  cursor: pointer;
+  border-left: 4px solid rgba(37, 52, 66, 0.16);
+  font: inherit;
+  text-align: left;
+}
+
+.register-choice:hover,
+.register-choice:focus-visible,
+.register-choice.is-active {
+  border-color: rgba(31, 135, 125, 0.42);
+  background: rgba(232, 246, 255, 0.94);
+}
+
+.register-result-header,
+.register-detail-grid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.register-detail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.register-detail-card {
+  gap: 0.35rem;
+  padding: 0.82rem;
+  border-radius: 14px;
+}
+
+.register-detail-card--trap {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: rgba(255, 240, 241, 0.88);
+}
+
+body.teacher-mode-active .register-overview-map,
+body.teacher-mode-active .register-family-board {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .register-speed-visual {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .register-path-visual {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .speed-arrow,
+body.teacher-mode-active .register-path-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .alu-register-visual,
+body.teacher-mode-active .register-inspector {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.85fr);
+}
+
+@media (max-width: 1080px) {
+  .register-speed-visual,
+  .register-path-visual,
+  body.teacher-mode-active .register-speed-visual,
+  body.teacher-mode-active .register-path-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .speed-arrow,
+  .register-path-arrow {
+    min-height: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .alu-register-visual,
+  .register-inspector,
+  body.teacher-mode-active .alu-register-visual,
+  body.teacher-mode-active .register-inspector {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  body.teacher-mode-active .register-overview-map,
+  body.teacher-mode-active .register-family-board {
+    grid-template-columns: 1fr;
+  }
+
+  .register-choice-grid,
+  .register-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

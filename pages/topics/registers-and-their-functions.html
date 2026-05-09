@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/registers-and-their-functions.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -77,14 +81,6 @@
             <strong>Main focus</strong>
             <span>General purpose and special purpose CPU registers</span>
           </article>
-          <article class="lesson-meta-card">
-            <strong>Lesson style</strong>
-            <span>Explanation, comparison, exam practice, and quiz</span>
-          </article>
-          <article class="lesson-meta-card">
-            <strong>Teacher mode</strong>
-            <span>Swipe or tap through full-screen slides</span>
-          </article>
         </div>
 
         <div class="lesson-hero-actions">
@@ -111,8 +107,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Interactive quiz scoring and teacher slides need JavaScript, but the
-          lesson notes still work without it.
+          Interactive quiz scoring, teacher slides, and the register inspector
+          need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -123,6 +119,7 @@
             <a href="#overview" data-section-link>Overview</a>
             <a href="#registers" data-section-link>Registers</a>
             <a href="#special-registers" data-section-link>Special registers</a>
+            <a href="#register-inspector" data-section-link>Register inspector</a>
             <a href="#compare" data-section-link>Compare and choose</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
@@ -144,6 +141,45 @@
               register, explain what information it holds, and connect that
               function to the instruction cycle or overall CPU performance.
             </p>
+
+            <div class="register-overview-map" aria-label="Registers overview">
+              <article class="register-map-card register-map-card--cpu">
+                <span
+                  class="register-map-icon register-map-icon--cpu"
+                  aria-hidden="true"
+                ></span>
+                <span class="register-badge">Inside CPU</span>
+                <h3>Registers</h3>
+                <p>
+                  Tiny storage locations close to the control unit and ALU, used
+                  for active instructions, addresses, and values.
+                </p>
+              </article>
+              <article class="register-map-card register-map-card--memory">
+                <span
+                  class="register-map-icon register-map-icon--memory"
+                  aria-hidden="true"
+                ></span>
+                <span class="register-badge">Bridge</span>
+                <h3>Memory access</h3>
+                <p>
+                  The MAR and MDR help the CPU send addresses to memory and
+                  receive or write data.
+                </p>
+              </article>
+              <article class="register-map-card register-map-card--work">
+                <span
+                  class="register-map-icon register-map-icon--work"
+                  aria-hidden="true"
+                ></span>
+                <span class="register-badge">Working values</span>
+                <h3>Fast processing</h3>
+                <p>
+                  The accumulator and general purpose registers keep temporary
+                  values ready for immediate CPU use.
+                </p>
+              </article>
+            </div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
@@ -198,6 +234,26 @@
               reading instructions, holding temporary values, and moving data.
             </p>
 
+            <div class="register-speed-visual" aria-label="CPU storage speed">
+              <article class="speed-node speed-node--registers">
+                <span class="register-badge">Fastest</span>
+                <strong>Registers</strong>
+                <span>Inside the CPU, used for active work.</span>
+              </article>
+              <span class="speed-arrow" aria-hidden="true">then</span>
+              <article class="speed-node speed-node--cache">
+                <span class="register-badge">Fast</span>
+                <strong>Cache</strong>
+                <span>Small memory close to the CPU.</span>
+              </article>
+              <span class="speed-arrow" aria-hidden="true">then</span>
+              <article class="speed-node speed-node--ram">
+                <span class="register-badge">Slower</span>
+                <strong>RAM</strong>
+                <span>Main memory, larger but further away.</span>
+              </article>
+            </div>
+
             <div class="example-strip" aria-label="Register features">
               <span class="example-chip"
                 ><strong>Small</strong> hold only a limited amount of data</span
@@ -209,6 +265,25 @@
                 ><strong>Temporary</strong> used while processing is
                 happening</span
               >
+            </div>
+
+            <div class="register-family-board" aria-label="Register families">
+              <article class="register-family-card register-family-card--general">
+                <h3>General purpose registers</h3>
+                <p>
+                  Flexible temporary storage for values a program is actively
+                  using, such as operands or intermediate results.
+                </p>
+                <span class="family-tag">Flexible role</span>
+              </article>
+              <article class="register-family-card register-family-card--special">
+                <h3>Special purpose registers</h3>
+                <p>
+                  Fixed-purpose storage for specific CPU jobs, such as holding
+                  the next instruction address or data moving to memory.
+                </p>
+                <span class="family-tag">Precise role</span>
+              </article>
             </div>
 
             <div class="term-grid">
@@ -271,6 +346,46 @@
               register, and program counter. Strong answers explain what each
               one holds, not just its name.
             </p>
+
+            <div class="register-path-visual" aria-label="Register data path">
+              <article class="register-path-node register-path-node--pc">
+                <span class="register-badge">PC</span>
+                <strong>200</strong>
+                <span>Next instruction address</span>
+              </article>
+              <span class="register-path-arrow" aria-hidden="true">copy</span>
+              <article class="register-path-node register-path-node--mar">
+                <span class="register-badge">MAR</span>
+                <strong>200</strong>
+                <span>Address currently accessed</span>
+              </article>
+              <span class="register-path-arrow" aria-hidden="true">read</span>
+              <article class="register-path-node register-path-node--mdr">
+                <span class="register-badge">MDR</span>
+                <strong>LOAD 12</strong>
+                <span>Instruction or data moving from memory</span>
+              </article>
+              <span class="register-path-arrow" aria-hidden="true">store</span>
+              <article class="register-path-node register-path-node--ir">
+                <span class="register-badge">IR</span>
+                <strong>LOAD 12</strong>
+                <span>Current instruction to decode</span>
+              </article>
+            </div>
+
+            <div class="alu-register-visual" aria-label="Accumulator and ALU">
+              <article class="alu-card">
+                <span class="register-badge">ALU</span>
+                <strong>5 + 3</strong>
+                <span>Arithmetic or logic operation</span>
+              </article>
+              <span class="register-path-arrow" aria-hidden="true">result</span>
+              <article class="alu-card alu-card--accumulator">
+                <span class="register-badge">ACC</span>
+                <strong>8</strong>
+                <span>Intermediate result held near the ALU</span>
+              </article>
+            </div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -357,6 +472,114 @@
                 result while the calculation continues.
               </p>
             </article>
+          </section>
+
+          <section
+            id="register-inspector"
+            class="lesson-section lesson-section--simulation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Interactive Inspector</p>
+            <h2>Pick a register and check what it actually holds</h2>
+            <p class="lesson-section-copy">
+              Use the inspector to practise the exact wording exam answers need:
+              register name, what it holds, when it is used, and the common
+              mistake to avoid.
+            </p>
+
+            <div class="register-inspector" data-role="register-inspector">
+              <article class="inspector-panel inspector-panel--choices">
+                <h3>Choose a register</h3>
+                <div
+                  class="register-choice-grid"
+                  role="group"
+                  aria-label="Register choices"
+                >
+                  <button
+                    class="register-choice"
+                    type="button"
+                    data-register-choice="pc"
+                  >
+                    <strong>PC</strong>
+                    <span>Program counter</span>
+                  </button>
+                  <button
+                    class="register-choice"
+                    type="button"
+                    data-register-choice="mar"
+                  >
+                    <strong>MAR</strong>
+                    <span>Memory address register</span>
+                  </button>
+                  <button
+                    class="register-choice"
+                    type="button"
+                    data-register-choice="mdr"
+                  >
+                    <strong>MDR</strong>
+                    <span>Memory data register</span>
+                  </button>
+                  <button
+                    class="register-choice"
+                    type="button"
+                    data-register-choice="ir"
+                  >
+                    <strong>IR</strong>
+                    <span>Instruction register</span>
+                  </button>
+                  <button
+                    class="register-choice"
+                    type="button"
+                    data-register-choice="acc"
+                  >
+                    <strong>ACC</strong>
+                    <span>Accumulator</span>
+                  </button>
+                  <button
+                    class="register-choice"
+                    type="button"
+                    data-register-choice="gpr"
+                  >
+                    <strong>GPR</strong>
+                    <span>General purpose register</span>
+                  </button>
+                </div>
+              </article>
+
+              <article class="inspector-panel inspector-panel--result">
+                <div class="register-result-header">
+                  <span class="register-badge" data-role="register-kind">
+                    Special purpose
+                  </span>
+                  <h3 data-role="register-name">Program counter</h3>
+                </div>
+                <div class="register-detail-grid">
+                  <div class="register-detail-card">
+                    <strong>Holds</strong>
+                    <p data-role="register-holds">
+                      The address of the next instruction to fetch.
+                    </p>
+                  </div>
+                  <div class="register-detail-card">
+                    <strong>Used when</strong>
+                    <p data-role="register-use">
+                      The CPU begins the next fetch stage of the instruction
+                      cycle.
+                    </p>
+                  </div>
+                  <div class="register-detail-card">
+                    <strong>Example value</strong>
+                    <p data-role="register-example">200</p>
+                  </div>
+                  <div class="register-detail-card register-detail-card--trap">
+                    <strong>Watch out</strong>
+                    <p data-role="register-trap">
+                      The PC holds an address, not the instruction itself.
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
           </section>
 
           <section
@@ -829,6 +1052,20 @@
                 <dd>A small, fast storage location inside the CPU.</dd>
               </div>
               <div class="glossary-item">
+                <dt>Accumulator</dt>
+                <dd>
+                  A register commonly used to hold intermediate arithmetic or
+                  logic results.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Instruction register</dt>
+                <dd>
+                  A register that holds the current instruction while it is
+                  being decoded or executed.
+                </dd>
+              </div>
+              <div class="glossary-item">
                 <dt>MAR</dt>
                 <dd>
                   The memory address register holds the address being accessed.
@@ -897,7 +1134,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

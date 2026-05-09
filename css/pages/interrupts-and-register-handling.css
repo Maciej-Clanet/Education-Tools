@@ -1,0 +1,362 @@
+.interrupt-overview-map,
+.interrupt-flow-visual,
+.state-save-visual,
+.interrupt-simulator {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.interrupt-overview-map {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.interrupt-flow-visual {
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.state-save-visual {
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.interrupt-simulator {
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.82fr);
+}
+
+.interrupt-simulator > .lesson-fullrow {
+  grid-column: 1 / -1;
+}
+
+.interrupt-map-card,
+.interrupt-flow-card,
+.state-card,
+.interrupt-sim-card,
+.sim-register-tile,
+.interrupt-step-marker {
+  display: grid;
+  gap: 0.58rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.interrupt-map-card,
+.interrupt-flow-card,
+.state-card {
+  justify-items: center;
+  text-align: center;
+}
+
+.interrupt-map-card h3,
+.interrupt-flow-card strong,
+.state-card h3,
+.state-card strong,
+.interrupt-sim-card h3,
+.sim-register-tile strong,
+.interrupt-step-marker strong {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.interrupt-map-card p,
+.interrupt-flow-card span:not(.interrupt-badge),
+.state-card p,
+.mini-register-grid span,
+.interrupt-sim-header p,
+.interrupt-explanation,
+.sim-register-tile span,
+.interrupt-step-marker span {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.interrupt-badge,
+.interrupt-step-counter,
+.interrupt-stage-pill {
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.interrupt-map-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.interrupt-map-icon--signal {
+  background:
+    radial-gradient(circle at 50% 50%, #1f877d 0 0.28rem, transparent 0.3rem),
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      transparent 0 0.58rem,
+      rgba(31, 135, 125, 0.2) 0.6rem 0.7rem
+    ),
+    rgba(232, 246, 255, 0.96);
+}
+
+.interrupt-map-icon--state {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 12%,
+      rgba(120, 94, 22, 0.22) 13% 31%,
+      transparent 32% 42%,
+      rgba(120, 94, 22, 0.22) 43% 61%,
+      transparent 62% 72%,
+      rgba(120, 94, 22, 0.22) 73% 91%,
+      transparent 92%
+    ),
+    rgba(255, 249, 227, 0.96);
+}
+
+.interrupt-map-icon--routine {
+  background:
+    linear-gradient(
+      135deg,
+      transparent 38%,
+      rgba(55, 129, 53, 0.26) 39% 61%,
+      transparent 62%
+    ),
+    radial-gradient(circle at 28% 28%, #378135 0 0.24rem, transparent 0.26rem),
+    radial-gradient(circle at 72% 72%, #378135 0 0.24rem, transparent 0.26rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.interrupt-map-card--signal,
+.interrupt-flow-card--interrupt,
+.sim-register-tile.is-active {
+  border-color: rgba(31, 135, 125, 0.2);
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.interrupt-map-card--state,
+.interrupt-flow-card--running,
+.state-card--before,
+.state-card--saved,
+.interrupt-step-marker.is-current {
+  border-color: rgba(185, 140, 25, 0.22);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.interrupt-map-card--routine,
+.interrupt-flow-card--service,
+.interrupt-flow-card--resume,
+.state-card--after,
+.interrupt-step-marker.is-complete {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.interrupt-flow-card,
+.state-card {
+  align-content: center;
+}
+
+.interrupt-flow-arrow,
+.state-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.mini-register-grid,
+.sim-register-grid,
+.interrupt-step-track {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.mini-register-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mini-register-grid span {
+  display: grid;
+  gap: 0.16rem;
+  padding: 0.52rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.interrupt-sim-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.interrupt-sim-header h3,
+.interrupt-explanation {
+  margin: 0;
+}
+
+.interrupt-sim-controls,
+.interrupt-sim-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.interrupt-sim-controls {
+  justify-content: flex-end;
+}
+
+.interrupt-sim-status-row {
+  margin-top: 0.85rem;
+}
+
+.interrupt-explanation {
+  padding: 0.72rem 0.8rem;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+}
+
+.sim-register-tile {
+  grid-template-columns: minmax(3.2rem, auto) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.48rem;
+  padding: 0.58rem 0.68rem;
+  border-left: 4px solid rgba(37, 52, 66, 0.16);
+  border-radius: 14px;
+}
+
+.sim-register-tile span {
+  color: var(--page-ink);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.interrupt-step-track {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.interrupt-step-marker {
+  justify-items: center;
+  gap: 0.32rem;
+  padding: 0.7rem 0.5rem;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.interrupt-step-marker strong {
+  display: inline-flex;
+  width: 1.7rem;
+  height: 1.7rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+body.teacher-mode-active .interrupt-overview-map {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .interrupt-flow-visual {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .state-save-visual {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .interrupt-flow-arrow,
+body.teacher-mode-active .state-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .interrupt-simulator {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.82fr);
+}
+
+@media (max-width: 1080px) {
+  .interrupt-flow-visual,
+  .state-save-visual,
+  body.teacher-mode-active .interrupt-flow-visual,
+  body.teacher-mode-active .state-save-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .interrupt-flow-arrow,
+  .state-arrow {
+    min-height: 2rem;
+  }
+
+  .interrupt-sim-header {
+    grid-template-columns: 1fr;
+  }
+
+  .interrupt-sim-controls {
+    justify-content: flex-start;
+  }
+
+  .interrupt-step-track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .interrupt-simulator,
+  body.teacher-mode-active .interrupt-simulator {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  body.teacher-mode-active .interrupt-overview-map {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-register-grid,
+  .interrupt-step-track,
+  .sim-register-tile {
+    grid-template-columns: 1fr;
+  }
+
+  .interrupt-sim-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

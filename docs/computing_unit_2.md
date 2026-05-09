@@ -117,8 +117,8 @@ saved progress should be shown as needing a fresh attempt.
 - [x] CPU architecture for different systems
 
 ### B3 Registers and register handling
-- [ ] Registers and their functions
-- [ ] Interrupts and register handling
+- [x] Registers and their functions
+- [x] Interrupts and register handling
 
 ## C How data is represented by computer systems
 

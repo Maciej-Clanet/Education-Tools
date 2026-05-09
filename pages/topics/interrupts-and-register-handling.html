@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/interrupts-and-register-handling.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -79,14 +83,6 @@
               >Interrupts, context saving, and restoring register state</span
             >
           </article>
-          <article class="lesson-meta-card">
-            <strong>Lesson style</strong>
-            <span>Explanation, comparison, exam practice, and quiz</span>
-          </article>
-          <article class="lesson-meta-card">
-            <strong>Teacher mode</strong>
-            <span>Swipe or tap through full-screen slides</span>
-          </article>
         </div>
 
         <div class="lesson-hero-actions">
@@ -113,8 +109,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Interactive quiz scoring and teacher slides need JavaScript, but the
-          lesson notes still work without it.
+          Interactive quiz scoring, teacher slides, and the interrupt simulator
+          need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -125,6 +121,9 @@
             <a href="#overview" data-section-link>Overview</a>
             <a href="#interrupts" data-section-link>Interrupts</a>
             <a href="#register-handling" data-section-link>Register handling</a>
+            <a href="#interrupt-simulator" data-section-link
+              >Interrupt simulator</a
+            >
             <a href="#compare" data-section-link>Compare and choose</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
@@ -146,6 +145,45 @@
               explain not just that the CPU pauses, but how register values are
               protected so the interrupted task can continue properly afterward.
             </p>
+
+            <div class="interrupt-overview-map" aria-label="Interrupt overview">
+              <article class="interrupt-map-card interrupt-map-card--signal">
+                <span
+                  class="interrupt-map-icon interrupt-map-icon--signal"
+                  aria-hidden="true"
+                ></span>
+                <span class="interrupt-badge">Signal</span>
+                <h3>Interrupt request</h3>
+                <p>
+                  A device, timer, or event asks for CPU attention while another
+                  task is running.
+                </p>
+              </article>
+              <article class="interrupt-map-card interrupt-map-card--state">
+                <span
+                  class="interrupt-map-icon interrupt-map-icon--state"
+                  aria-hidden="true"
+                ></span>
+                <span class="interrupt-badge">Save state</span>
+                <h3>Protect registers</h3>
+                <p>
+                  The current register contents and return point are saved so
+                  the interrupted task is not corrupted.
+                </p>
+              </article>
+              <article class="interrupt-map-card interrupt-map-card--routine">
+                <span
+                  class="interrupt-map-icon interrupt-map-icon--routine"
+                  aria-hidden="true"
+                ></span>
+                <span class="interrupt-badge">Resume</span>
+                <h3>Handle and return</h3>
+                <p>
+                  The service routine runs, then the saved state is restored and
+                  the original program continues.
+                </p>
+              </article>
+            </div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
@@ -210,6 +248,38 @@
               more efficient because the processor can continue normal work
               until attention is genuinely needed.
             </p>
+
+            <div class="interrupt-flow-visual" aria-label="Interrupt flow">
+              <article class="interrupt-flow-card interrupt-flow-card--running">
+                <span class="interrupt-badge">1</span>
+                <strong>Program running</strong>
+                <span>The CPU is executing normal instructions.</span>
+              </article>
+              <span class="interrupt-flow-arrow" aria-hidden="true"
+                >signal</span
+              >
+              <article
+                class="interrupt-flow-card interrupt-flow-card--interrupt"
+              >
+                <span class="interrupt-badge">2</span>
+                <strong>Interrupt arrives</strong>
+                <span>A device or timer requests attention.</span>
+              </article>
+              <span class="interrupt-flow-arrow" aria-hidden="true">pause</span>
+              <article class="interrupt-flow-card interrupt-flow-card--service">
+                <span class="interrupt-badge">3</span>
+                <strong>Service routine</strong>
+                <span>The CPU runs code to handle the event.</span>
+              </article>
+              <span class="interrupt-flow-arrow" aria-hidden="true"
+                >return</span
+              >
+              <article class="interrupt-flow-card interrupt-flow-card--resume">
+                <span class="interrupt-badge">4</span>
+                <strong>Resume task</strong>
+                <span>The original program continues correctly.</span>
+              </article>
+            </div>
 
             <div class="example-strip" aria-label="Interrupt features">
               <span class="example-chip"
@@ -288,6 +358,40 @@
               is why the current register state is saved before the interrupt is
               serviced and restored afterwards.
             </p>
+
+            <div
+              class="state-save-visual"
+              aria-label="Register state save and restore"
+            >
+              <article class="state-card state-card--before">
+                <span class="interrupt-badge">Before interrupt</span>
+                <h3>Current register state</h3>
+                <div class="mini-register-grid">
+                  <span><strong>PC</strong> 204</span>
+                  <span><strong>ACC</strong> 8</span>
+                  <span><strong>IR</strong> ADD 13</span>
+                </div>
+              </article>
+              <span class="state-arrow" aria-hidden="true">save</span>
+              <article class="state-card state-card--saved">
+                <span class="interrupt-badge">Saved context</span>
+                <h3>Safe copy</h3>
+                <div class="mini-register-grid">
+                  <span><strong>PC</strong> 204</span>
+                  <span><strong>ACC</strong> 8</span>
+                  <span><strong>IR</strong> ADD 13</span>
+                </div>
+              </article>
+              <span class="state-arrow" aria-hidden="true">restore</span>
+              <article class="state-card state-card--after">
+                <span class="interrupt-badge">After routine</span>
+                <h3>Original task resumes</h3>
+                <p>
+                  The CPU puts the saved values back before continuing the
+                  interrupted program.
+                </p>
+              </article>
+            </div>
 
             <div class="compare-table-wrap">
               <table class="compare-table">
@@ -368,6 +472,108 @@
                 original calculation continues from the correct point.
               </p>
             </article>
+          </section>
+
+          <section
+            id="interrupt-simulator"
+            class="lesson-section lesson-section--simulation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Interactive Simulator</p>
+            <h2>Step through an interrupt without losing the register state</h2>
+            <p class="lesson-section-copy">
+              The key idea is not just that the CPU pauses. Watch how register
+              values are copied to a saved context, used by the interrupt
+              routine, then restored before the original task resumes.
+            </p>
+
+            <div class="interrupt-simulator" data-role="interrupt-simulator">
+              <article
+                class="interrupt-sim-card interrupt-sim-card--header lesson-fullrow"
+              >
+                <div class="interrupt-sim-header">
+                  <div>
+                    <h3>Keyboard interrupt while a program is calculating</h3>
+                    <p data-role="interrupt-status" aria-live="polite">
+                      The program is running normally. Step forward to trigger
+                      the interrupt.
+                    </p>
+                  </div>
+                  <div class="interrupt-sim-controls">
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-interrupt-action="previous"
+                    >
+                      Previous step
+                    </button>
+                    <button
+                      class="primary-link"
+                      type="button"
+                      data-interrupt-action="next"
+                    >
+                      Next step
+                    </button>
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-interrupt-action="reset"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="interrupt-sim-status-row"
+                  aria-label="Interrupt simulator status"
+                >
+                  <span
+                    class="interrupt-step-counter"
+                    data-role="interrupt-step-counter"
+                    >Step 1 of 6</span
+                  >
+                  <span
+                    class="interrupt-stage-pill"
+                    data-role="interrupt-stage-pill"
+                    >Running</span
+                  >
+                </div>
+                <p
+                  class="interrupt-explanation"
+                  data-role="interrupt-explanation"
+                >
+                  The CPU has active values in registers. If these are lost, the
+                  calculation cannot resume correctly.
+                </p>
+              </article>
+
+              <article class="interrupt-sim-card">
+                <h3>Live CPU registers</h3>
+                <div
+                  class="sim-register-grid"
+                  data-role="live-registers"
+                  aria-label="Live CPU register values"
+                ></div>
+              </article>
+
+              <article class="interrupt-sim-card">
+                <h3>Saved context</h3>
+                <div
+                  class="sim-register-grid"
+                  data-role="saved-registers"
+                  aria-label="Saved register values"
+                ></div>
+              </article>
+
+              <article class="interrupt-sim-card lesson-fullrow">
+                <h3>Handling sequence</h3>
+                <div
+                  class="interrupt-step-track"
+                  data-role="interrupt-step-track"
+                  aria-label="Interrupt handling sequence"
+                ></div>
+              </article>
+            </div>
           </section>
 
           <section
@@ -899,6 +1105,13 @@
                 <dd>The code that handles the interrupt event.</dd>
               </div>
               <div class="glossary-item">
+                <dt>Context</dt>
+                <dd>
+                  The current CPU state needed to continue a task, including
+                  register values and the return point.
+                </dd>
+              </div>
+              <div class="glossary-item">
                 <dt>Restore</dt>
                 <dd>
                   Put the saved register values back so the original task can
@@ -957,7 +1170,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>
