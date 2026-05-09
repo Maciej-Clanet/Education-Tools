@@ -1,0 +1,427 @@
+.pipeline-concept-map,
+.pipeline-flow-visual,
+.pipeline-note-grid,
+.parallel-architecture-board,
+.decision-strip {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.pipeline-concept-map,
+.pipeline-note-grid,
+.decision-strip {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.parallel-architecture-board {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.pipeline-concept-card,
+.pipeline-flow-card,
+.pipeline-note-card,
+.architecture-card,
+.decision-card,
+.pipeline-sim-card,
+.pipeline-stage-lane,
+.throughput-stat {
+  display: grid;
+  gap: 0.58rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.pipeline-concept-card {
+  justify-items: center;
+  text-align: center;
+}
+
+.pipeline-concept-card h3,
+.pipeline-flow-card strong,
+.pipeline-note-card h3,
+.architecture-card h3,
+.decision-card strong,
+.pipeline-sim-card h3,
+.pipeline-stage-lane strong,
+.throughput-stat strong {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.pipeline-concept-card p,
+.pipeline-flow-card span:not(.pipeline-stage-label),
+.pipeline-note-card p,
+.architecture-card p,
+.decision-card span:not(.concept-badge),
+.pipeline-sim-header p,
+.pipeline-explanation,
+.pipeline-stage-lane span:not(.pipeline-stage-label),
+.throughput-stat span,
+.pipeline-small-note {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.concept-badge,
+.pipeline-stage-label,
+.pipeline-step-counter,
+.pipeline-cycle-pill,
+.pipeline-throughput-pill {
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.concept-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.concept-icon--pipe {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(31, 135, 125, 0.2) 0 23%,
+      transparent 23% 35%,
+      rgba(185, 140, 25, 0.24) 35% 58%,
+      transparent 58% 70%,
+      rgba(55, 129, 53, 0.22) 70% 100%
+    ),
+    rgba(232, 246, 255, 0.96);
+}
+
+.concept-icon--cores {
+  background:
+    radial-gradient(circle at 33% 32%, rgba(21, 91, 117, 0.4) 0 0.55rem, transparent 0.58rem),
+    radial-gradient(circle at 66% 32%, rgba(21, 91, 117, 0.4) 0 0.55rem, transparent 0.58rem),
+    radial-gradient(circle at 50% 68%, rgba(21, 91, 117, 0.4) 0 0.55rem, transparent 0.58rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.concept-icon--threads {
+  background:
+    linear-gradient(90deg, transparent 17%, rgba(120, 94, 22, 0.2) 18% 24%, transparent 25%),
+    linear-gradient(90deg, transparent 47%, rgba(120, 94, 22, 0.2) 48% 54%, transparent 55%),
+    linear-gradient(90deg, transparent 76%, rgba(120, 94, 22, 0.2) 77% 83%, transparent 84%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 0.62rem,
+      rgba(120, 94, 22, 0.16) 0.64rem 0.72rem
+    ),
+    rgba(255, 249, 227, 0.96);
+}
+
+.pipeline-concept-card--pipe,
+.pipeline-flow-card--fetch,
+.pipeline-stage-lane--fetch,
+.pipeline-timeline-cell--fetch {
+  border-color: rgba(31, 135, 125, 0.2);
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.pipeline-concept-card--cores,
+.pipeline-flow-card--execute,
+.pipeline-stage-lane--execute,
+.pipeline-timeline-cell--execute,
+.architecture-card--cores {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.pipeline-concept-card--threads,
+.pipeline-flow-card--decode,
+.pipeline-stage-lane--decode,
+.pipeline-timeline-cell--decode,
+.architecture-card--threads {
+  border-color: rgba(185, 140, 25, 0.22);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.pipeline-flow-visual {
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.pipeline-flow-card {
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.pipeline-flow-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pipeline-note-card {
+  border-left: 4px solid rgba(37, 52, 66, 0.16);
+}
+
+.core-stack,
+.thread-stack {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.core-stack {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.thread-stack span,
+.core-stack span {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--page-ink);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.thread-stack span {
+  justify-content: flex-start;
+  min-height: 2.35rem;
+}
+
+.decision-card {
+  border-left: 4px solid rgba(31, 135, 125, 0.2);
+}
+
+.pipeline-simulator {
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.78fr);
+}
+
+.pipeline-simulator > .lesson-fullrow {
+  grid-column: 1 / -1;
+}
+
+.pipeline-sim-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.pipeline-sim-header h3,
+.pipeline-explanation,
+.pipeline-small-note {
+  margin: 0;
+}
+
+.pipeline-sim-controls,
+.pipeline-sim-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.pipeline-sim-controls {
+  justify-content: flex-end;
+}
+
+.pipeline-sim-status-row {
+  margin-top: 0.85rem;
+}
+
+.pipeline-explanation,
+.pipeline-small-note {
+  padding: 0.72rem 0.8rem;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+}
+
+.pipeline-stage-lanes {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.pipeline-stage-lane {
+  align-content: start;
+  gap: 0.36rem;
+  padding: 0.72rem 0.8rem;
+  border-left-width: 4px;
+}
+
+.pipeline-stage-lane:not(.is-active) {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-ink);
+}
+
+.throughput-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.throughput-stat {
+  gap: 0.2rem;
+  padding: 0.75rem 0.8rem;
+  border-radius: 14px;
+}
+
+.throughput-stat strong {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 900;
+}
+
+.throughput-stat--saving {
+  border-color: rgba(55, 129, 53, 0.22);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.pipeline-timeline {
+  display: grid;
+  gap: 0.36rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.pipeline-timeline-row {
+  display: grid;
+  grid-template-columns: minmax(8.5rem, 1.15fr) repeat(6, minmax(3.2rem, 1fr));
+  gap: 0.36rem;
+  min-width: 36rem;
+  align-items: center;
+}
+
+.pipeline-timeline-row > :first-child {
+  color: var(--page-ink);
+  font-size: 0.86rem;
+}
+
+.pipeline-timeline-row--header span {
+  color: var(--lesson-accent-heading);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pipeline-timeline-cell {
+  display: inline-flex;
+  min-height: 2.2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-ink);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.pipeline-timeline-cell[class*="pipeline-timeline-cell--"] {
+  color: var(--page-ink);
+}
+
+.pipeline-timeline-cell.is-current {
+  outline: 3px solid rgba(31, 135, 125, 0.24);
+  outline-offset: 1px;
+}
+
+.pipeline-timeline-cell.is-complete {
+  filter: saturate(0.75);
+  opacity: 0.72;
+}
+
+body.teacher-mode-active .pipeline-concept-map,
+body.teacher-mode-active .pipeline-note-grid,
+body.teacher-mode-active .decision-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .pipeline-flow-visual {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .pipeline-flow-arrow {
+  display: none;
+}
+
+body.teacher-mode-active .pipeline-simulator {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.78fr);
+}
+
+@media (max-width: 1080px) {
+  .pipeline-flow-visual,
+  body.teacher-mode-active .pipeline-flow-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-flow-arrow {
+    min-height: 2rem;
+  }
+
+  .pipeline-sim-header {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-sim-controls {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .pipeline-simulator,
+  body.teacher-mode-active .pipeline-simulator {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  body.teacher-mode-active .pipeline-concept-map,
+  body.teacher-mode-active .pipeline-note-grid,
+  body.teacher-mode-active .decision-strip,
+  body.teacher-mode-active .parallel-architecture-board {
+    grid-template-columns: 1fr;
+  }
+
+  .core-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-sim-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pipelining, Multi-processing, and Multi-threading Revision Lesson | Education Tools</title>
+    <title>
+      Pipelining, Multi-processing, and Multi-threading Revision Lesson |
+      Education Tools
+    </title>
     <meta
       name="description"
       content="Revise pipelining, multi-processing, and multi-threading with clear comparisons, exam traps, exam-style practice, and a short end-of-lesson quiz."
@@ -24,6 +27,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/pipelining-multi-processing-and-multi-threading.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -45,7 +52,9 @@
                 >Unit 2: Computer Systems</a
               >
             </li>
-            <li aria-current="page">Pipelining, multi-processing, and multi-threading</li>
+            <li aria-current="page">
+              Pipelining, multi-processing, and multi-threading
+            </li>
           </ol>
         </nav>
 
@@ -59,7 +68,9 @@
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
-              <span data-role="context-label">BTEC Level 3 Computing Unit 2</span>.
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
             </p>
           </div>
         </div>
@@ -73,18 +84,12 @@
             <strong>Main focus</strong>
             <span>Throughput gains from pipelining and parallel work</span>
           </article>
-          <article class="lesson-meta-card">
-            <strong>Lesson style</strong>
-            <span>Explanation, comparison, exam practice, and quiz</span>
-          </article>
-          <article class="lesson-meta-card">
-            <strong>Teacher mode</strong>
-            <span>Swipe or tap through full-screen slides</span>
-          </article>
         </div>
 
         <div class="lesson-hero-actions">
-          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
           <a
             class="lesson-secondary-action"
             data-role="back-to-unit"
@@ -105,8 +110,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Interactive quiz scoring and teacher slides need JavaScript, but the
-          lesson notes still work without it.
+          Interactive quiz scoring, teacher slides, and the pipeline visualiser
+          need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -118,6 +123,7 @@
             <a href="#pipelining" data-section-link>Pipelining</a>
             <a href="#parallel-work" data-section-link>Parallel work</a>
             <a href="#compare" data-section-link>Compare approaches</a>
+            <a href="#pipeline-lab" data-section-link>Pipeline visualiser</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
             <a href="#exam-practice" data-section-link>Exam-style practice</a>
@@ -139,6 +145,39 @@
               from true parallel execution and explain the trade-offs.
             </p>
 
+            <div class="pipeline-concept-map" aria-label="Performance ideas">
+              <article class="pipeline-concept-card pipeline-concept-card--pipe">
+                <span class="concept-icon concept-icon--pipe" aria-hidden="true"></span>
+                <span class="concept-badge">Overlap</span>
+                <h3>Pipelining</h3>
+                <p>
+                  Several instructions move through different CPU stages at the
+                  same time.
+                </p>
+              </article>
+              <article class="pipeline-concept-card pipeline-concept-card--cores">
+                <span class="concept-icon concept-icon--cores" aria-hidden="true"></span>
+                <span class="concept-badge">Hardware</span>
+                <h3>Multi-processing</h3>
+                <p>
+                  Multiple processors or cores can carry out separate work in
+                  parallel.
+                </p>
+              </article>
+              <article class="pipeline-concept-card pipeline-concept-card--threads">
+                <span
+                  class="concept-icon concept-icon--threads"
+                  aria-hidden="true"
+                ></span>
+                <span class="concept-badge">Software</span>
+                <h3>Multi-threading</h3>
+                <p>
+                  A process is split into threads that can be scheduled
+                  independently.
+                </p>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
@@ -153,10 +192,21 @@
               <article class="lesson-card">
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
-                  <li><strong>Pipelining:</strong> overlap instruction stages.</li>
-                  <li><strong>Multi-processing:</strong> more than one processor or core works at once.</li>
-                  <li><strong>Multi-threading:</strong> more than one thread of execution is managed within a process.</li>
-                  <li><strong>Throughput:</strong> amount of work finished over time.</li>
+                  <li>
+                    <strong>Pipelining:</strong> overlap instruction stages.
+                  </li>
+                  <li>
+                    <strong>Multi-processing:</strong> more than one processor
+                    or core works at once.
+                  </li>
+                  <li>
+                    <strong>Multi-threading:</strong> more than one thread of
+                    execution is managed within a process.
+                  </li>
+                  <li>
+                    <strong>Throughput:</strong> amount of work finished over
+                    time.
+                  </li>
                 </ul>
               </article>
 
@@ -177,17 +227,46 @@
             data-lesson-section
           >
             <p class="eyebrow">Pipelining</p>
-            <h2>Pipelining overlaps stages so more instructions are in progress at once</h2>
+            <h2>
+              Pipelining overlaps stages so more instructions are in progress at
+              once
+            </h2>
             <p class="lesson-section-copy">
               Pipelining does not mean one instruction finishes instantly. It
               means the CPU can work on different stages of different
               instructions at the same time, which improves throughput.
             </p>
 
+            <div class="pipeline-flow-visual" aria-label="Pipeline stages">
+              <article class="pipeline-flow-card pipeline-flow-card--fetch">
+                <span class="pipeline-stage-label">Fetch</span>
+                <strong>Get instruction</strong>
+                <span>Read the next instruction from memory or cache.</span>
+              </article>
+              <span class="pipeline-flow-arrow" aria-hidden="true">then</span>
+              <article class="pipeline-flow-card pipeline-flow-card--decode">
+                <span class="pipeline-stage-label">Decode</span>
+                <strong>Work out meaning</strong>
+                <span>Identify the opcode, operands, and required action.</span>
+              </article>
+              <span class="pipeline-flow-arrow" aria-hidden="true">then</span>
+              <article class="pipeline-flow-card pipeline-flow-card--execute">
+                <span class="pipeline-stage-label">Execute</span>
+                <strong>Carry it out</strong>
+                <span>Run the operation and update registers or memory.</span>
+              </article>
+            </div>
+
             <div class="example-strip" aria-label="Pipelining idea">
-              <span class="example-chip"><strong>Instruction A</strong> might be executing</span>
-              <span class="example-chip"><strong>Instruction B</strong> might be decoding</span>
-              <span class="example-chip"><strong>Instruction C</strong> might be fetching</span>
+              <span class="example-chip">
+                <strong>Cycle 3:</strong> A executes
+              </span>
+              <span class="example-chip">
+                <strong>Cycle 3:</strong> B decodes
+              </span>
+              <span class="example-chip">
+                <strong>Cycle 3:</strong> C fetches
+              </span>
             </div>
 
             <div class="compare-table-wrap">
@@ -227,10 +306,34 @@
               <h3>Key implication</h3>
               <p>
                 Pipelining improves the number of instructions completed over
-                time, but it can be disrupted by hazards such as dependencies
-                or branch decisions that change the normal flow.
+                time, but it can be disrupted by hazards such as dependencies or
+                branch decisions that change the normal flow.
               </p>
             </article>
+
+            <div class="pipeline-note-grid">
+              <article class="pipeline-note-card">
+                <h3>Latency</h3>
+                <p>
+                  One instruction still needs to pass through each stage, so the
+                  path for a single instruction is not removed.
+                </p>
+              </article>
+              <article class="pipeline-note-card">
+                <h3>Throughput</h3>
+                <p>
+                  Once the pipeline is full, the CPU can complete work more
+                  regularly because several stages are busy at once.
+                </p>
+              </article>
+              <article class="pipeline-note-card">
+                <h3>Hazards</h3>
+                <p>
+                  Dependencies, cache misses, and branch decisions can cause
+                  stalls, so the real speed-up is not always perfect.
+                </p>
+              </article>
+            </div>
           </section>
 
           <section
@@ -246,6 +349,36 @@
               and scheduled.
             </p>
 
+            <div
+              class="parallel-architecture-board"
+              aria-label="Parallel work comparison"
+            >
+              <article class="architecture-card architecture-card--cores">
+                <h3>Multi-processing</h3>
+                <div class="core-stack" aria-hidden="true">
+                  <span>Core 1</span>
+                  <span>Core 2</span>
+                  <span>Core 3</span>
+                </div>
+                <p>
+                  The hardware has more than one place where instructions can
+                  execute at the same moment.
+                </p>
+              </article>
+              <article class="architecture-card architecture-card--threads">
+                <h3>Multi-threading</h3>
+                <div class="thread-stack" aria-hidden="true">
+                  <span>UI thread</span>
+                  <span>Network thread</span>
+                  <span>Worker thread</span>
+                </div>
+                <p>
+                  The software has multiple flows of execution that the
+                  operating system can schedule.
+                </p>
+              </article>
+            </div>
+
             <div class="compare-table-wrap">
               <table class="compare-table">
                 <thead>
@@ -258,18 +391,35 @@
                 <tbody>
                   <tr>
                     <td>Multi-processing</td>
-                    <td>Two or more processors or cores can work on tasks at the same time.</td>
-                    <td>Allows genuine parallel execution for separate tasks or workloads.</td>
+                    <td>
+                      Two or more processors or cores can work on tasks at the
+                      same time.
+                    </td>
+                    <td>
+                      Allows genuine parallel execution for separate tasks or
+                      workloads.
+                    </td>
                   </tr>
                   <tr>
                     <td>Multi-threading</td>
-                    <td>A program is split into multiple threads of execution.</td>
-                    <td>Improves responsiveness and makes better use of available CPU time.</td>
+                    <td>
+                      A program is split into multiple threads of execution.
+                    </td>
+                    <td>
+                      Improves responsiveness and makes better use of available
+                      CPU time.
+                    </td>
                   </tr>
                   <tr>
                     <td>Combined use</td>
-                    <td>Modern systems often use multiple cores and multi-threaded software together.</td>
-                    <td>Can improve overall throughput when tasks are designed well.</td>
+                    <td>
+                      Modern systems often use multiple cores and multi-threaded
+                      software together.
+                    </td>
+                    <td>
+                      Can improve overall throughput when tasks are designed
+                      well.
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -279,19 +429,22 @@
               <article class="application-card">
                 <h3>Multi-processing example</h3>
                 <p>
-                  A server may use several cores to handle many client requests at once.
+                  A server may use several cores to handle many client requests
+                  at once.
                 </p>
               </article>
               <article class="application-card">
                 <h3>Multi-threading example</h3>
                 <p>
-                  A program may keep the user interface responsive while another thread handles background work.
+                  A program may keep the user interface responsive while another
+                  thread handles background work.
                 </p>
               </article>
               <article class="application-card">
                 <h3>Limitation</h3>
                 <p>
-                  Parallel work is not free. Threads and processes still need coordination and shared resources can become bottlenecks.
+                  Parallel work is not free. Threads and processes still need
+                  coordination and shared resources can become bottlenecks.
                 </p>
               </article>
             </div>
@@ -309,6 +462,24 @@
               of treating every performance improvement as if it were the same.
             </p>
 
+            <div class="decision-strip" aria-label="Choosing an approach">
+              <article class="decision-card">
+                <span class="concept-badge">Instruction stages</span>
+                <strong>Pipelining</strong>
+                <span>Look for fetch, decode, execute being overlapped.</span>
+              </article>
+              <article class="decision-card">
+                <span class="concept-badge">More cores</span>
+                <strong>Multi-processing</strong>
+                <span>Look for separate hardware execution resources.</span>
+              </article>
+              <article class="decision-card">
+                <span class="concept-badge">Program threads</span>
+                <strong>Multi-threading</strong>
+                <span>Look for separate flows inside one process.</span>
+              </article>
+            </div>
+
             <div class="compare-table-wrap">
               <table class="compare-table">
                 <thead>
@@ -320,24 +491,40 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Several instructions are at different stages at once</td>
+                    <td>
+                      Several instructions are at different stages at once
+                    </td>
                     <td>Pipelining</td>
-                    <td>It describes overlapping fetch, decode, and execute stages.</td>
+                    <td>
+                      It describes overlapping fetch, decode, and execute
+                      stages.
+                    </td>
                   </tr>
                   <tr>
-                    <td>Several cores are handling different tasks simultaneously</td>
+                    <td>
+                      Several cores are handling different tasks simultaneously
+                    </td>
                     <td>Multi-processing</td>
-                    <td>It is about multiple processors or cores doing parallel work.</td>
+                    <td>
+                      It is about multiple processors or cores doing parallel
+                      work.
+                    </td>
                   </tr>
                   <tr>
-                    <td>One application splits work into UI and background tasks</td>
+                    <td>
+                      One application splits work into UI and background tasks
+                    </td>
                     <td>Multi-threading</td>
                     <td>It is about multiple threads inside a program.</td>
                   </tr>
                   <tr>
-                    <td>A workload needs more finished instructions over time</td>
+                    <td>
+                      A workload needs more finished instructions over time
+                    </td>
                     <td>Throughput</td>
-                    <td>This lets you explain the performance effect clearly.</td>
+                    <td>
+                      This lets you explain the performance effect clearly.
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -348,10 +535,130 @@
               <p>
                 Pipelining improves throughput by overlapping stages, while
                 multi-processing increases the amount of hardware that can work
-                in parallel. Multi-threading is usually discussed at the software
-                and scheduling level.
+                in parallel. Multi-threading is usually discussed at the
+                software and scheduling level.
               </p>
             </article>
+          </section>
+
+          <section
+            id="pipeline-lab"
+            class="lesson-section lesson-section--simulation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Interactive Visualiser</p>
+            <h2>Step through a pipeline filling, running, and draining</h2>
+            <p class="lesson-section-copy">
+              Use this small model to see why pipelining improves throughput.
+              It uses a simple three-stage pipeline: fetch, decode, execute.
+            </p>
+
+            <div
+              class="simulator-grid pipeline-simulator"
+              data-role="pipeline-simulator"
+            >
+              <article
+                class="pipeline-sim-card pipeline-sim-card--header lesson-fullrow"
+              >
+                <div class="pipeline-sim-header">
+                  <div>
+                    <h3>Four instructions through three stages</h3>
+                    <p data-role="pipeline-status" aria-live="polite">
+                      The pipeline is ready. Step forward to fetch the first
+                      instruction.
+                    </p>
+                  </div>
+                  <div class="pipeline-sim-controls">
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-pipeline-action="previous"
+                    >
+                      Previous cycle
+                    </button>
+                    <button
+                      class="primary-link"
+                      type="button"
+                      data-pipeline-action="next"
+                    >
+                      Next cycle
+                    </button>
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-pipeline-action="reset"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+                <div class="pipeline-sim-status-row" aria-label="Pipeline status">
+                  <span
+                    class="pipeline-step-counter"
+                    data-role="pipeline-step-counter"
+                    >Cycle 0 of 6</span
+                  >
+                  <span
+                    class="pipeline-cycle-pill"
+                    data-role="pipeline-cycle-pill"
+                    >Ready</span
+                  >
+                  <span
+                    class="pipeline-throughput-pill"
+                    data-role="pipeline-throughput-pill"
+                    >Completed 0 of 4</span
+                  >
+                </div>
+                <p
+                  class="pipeline-explanation"
+                  data-role="pipeline-explanation"
+                >
+                  Watch how the first instruction takes time to move through
+                  the stages, then later cycles have several instructions active
+                  at once.
+                </p>
+              </article>
+
+              <article class="pipeline-sim-card">
+                <h3>Current cycle stages</h3>
+                <div
+                  class="pipeline-stage-lanes"
+                  data-role="pipeline-stage-lanes"
+                  aria-label="Current pipeline stages"
+                ></div>
+              </article>
+
+              <article class="pipeline-sim-card">
+                <h3>Throughput comparison</h3>
+                <div class="throughput-grid">
+                  <div class="throughput-stat">
+                    <span>Pipeline cycles used</span>
+                    <strong data-role="pipeline-cycle-value">0</strong>
+                  </div>
+                  <div class="throughput-stat">
+                    <span>Serial cycles for same completed work</span>
+                    <strong data-role="serial-cycle-value">0</strong>
+                  </div>
+                  <div class="throughput-stat throughput-stat--saving">
+                    <span>Cycle saving so far</span>
+                    <strong data-role="cycle-saving-value">0</strong>
+                  </div>
+                </div>
+                <p class="pipeline-small-note">
+                  This simplified model assumes each stage takes one cycle and
+                  there are no stalls.
+                </p>
+              </article>
+
+              <article class="pipeline-sim-card lesson-fullrow">
+                <h3>Timeline</h3>
+                <div
+                  class="pipeline-timeline"
+                  data-role="pipeline-timeline"
+                  aria-label="Pipeline timeline"
+                ></div>
+              </article>
+            </div>
           </section>
 
           <section
@@ -374,7 +681,10 @@
                 </p>
                 <ul class="trap-list">
                   <li>Each instruction still passes through the pipeline.</li>
-                  <li>The gain is higher throughput, not magic zero-time execution.</li>
+                  <li>
+                    The gain is higher throughput, not magic zero-time
+                    execution.
+                  </li>
                 </ul>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Use the word <code>overlap</code>.
@@ -383,9 +693,7 @@
 
               <article class="trap-card">
                 <h3>Confusing threads with processors</h3>
-                <p>
-                  A thread is not the same thing as a separate CPU.
-                </p>
+                <p>A thread is not the same thing as a separate CPU.</p>
                 <ul class="trap-list">
                   <li>Threads are lines of execution inside software.</li>
                   <li>Processors or cores are hardware resources.</li>
@@ -422,8 +730,8 @@
             <p class="eyebrow">Quiz</p>
             <h2>Check your understanding</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
+              Answer all five questions, then check your score. Your choices and
+              best score save in this browser so you can revisit the lesson
               later.
             </p>
 
@@ -440,19 +748,28 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="a" />
-                      <span>A way of permanently storing instructions in cache</span>
+                      <span
+                        >A way of permanently storing instructions in
+                        cache</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="b" />
-                      <span>A way of overlapping instruction stages so different instructions are in progress together</span>
+                      <span
+                        >A way of overlapping instruction stages so different
+                        instructions are in progress together</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="c" />
-                      <span>A technique for replacing the operating system with firmware</span>
+                      <span
+                        >A technique for replacing the operating system with
+                        firmware</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -471,7 +788,10 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="a" />
-                      <span>Using two or more processors or cores to handle work at the same time</span>
+                      <span
+                        >Using two or more processors or cores to handle work at
+                        the same time</span
+                      >
                     </label>
                   </li>
                   <li>
@@ -497,24 +817,35 @@
                 data-success="Correct. Multi-threading is about multiple threads of execution within software."
                 data-feedback="Multi-threading describes multiple threads inside a program, not extra physical processors."
               >
-                <legend>3. Which statement best describes multi-threading?</legend>
+                <legend>
+                  3. Which statement best describes multi-threading?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="a" />
-                      <span>Using larger cache memory to speed up file storage</span>
+                      <span
+                        >Using larger cache memory to speed up file
+                        storage</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="b" />
-                      <span>Replacing the instruction cycle with direct execution</span>
+                      <span
+                        >Replacing the instruction cycle with direct
+                        execution</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="c" />
-                      <span>Splitting program work into multiple threads of execution</span>
+                      <span
+                        >Splitting program work into multiple threads of
+                        execution</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -533,19 +864,28 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="a" />
-                      <span>It removes the need for fetch, decode, and execute stages</span>
+                      <span
+                        >It removes the need for fetch, decode, and execute
+                        stages</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="b" />
-                      <span>It increases throughput by allowing several instructions to be at different stages together</span>
+                      <span
+                        >It increases throughput by allowing several
+                        instructions to be at different stages together</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="c" />
-                      <span>It guarantees every program runs at the same speed</span>
+                      <span
+                        >It guarantees every program runs at the same
+                        speed</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -564,19 +904,29 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="a" />
-                      <span>Multi-processing uses more than one processor or core, while multi-threading splits program work into multiple threads</span>
+                      <span
+                        >Multi-processing uses more than one processor or core,
+                        while multi-threading splits program work into multiple
+                        threads</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>Pipelining and multi-threading both mean adding more physical CPUs</span>
+                      <span
+                        >Pipelining and multi-threading both mean adding more
+                        physical CPUs</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
-                      <span>Threads are the same as cores, just with a shorter name</span>
+                      <span
+                        >Threads are the same as cores, just with a shorter
+                        name</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -623,9 +973,7 @@
                   <span class="exam-pill">Explain</span>
                 </div>
                 <h3>Question 1</h3>
-                <p>
-                  Explain how pipelining improves CPU throughput.
-                </p>
+                <p>Explain how pipelining improves CPU throughput.</p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="pipeline-exam-1">
                     Your answer
@@ -640,14 +988,23 @@
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
-                    <p>
-                      A strong answer focuses on overlapping stages.
-                    </p>
+                    <p>A strong answer focuses on overlapping stages.</p>
                     <ul class="exam-points">
-                      <li>Pipelining allows different instructions to be in different stages at the same time.</li>
-                      <li>For example, one instruction may execute while another decodes and another fetches.</li>
-                      <li>This means the CPU keeps more of its hardware busy.</li>
-                      <li>As a result, more instructions can be completed over time.</li>
+                      <li>
+                        Pipelining allows different instructions to be in
+                        different stages at the same time.
+                      </li>
+                      <li>
+                        For example, one instruction may execute while another
+                        decodes and another fetches.
+                      </li>
+                      <li>
+                        This means the CPU keeps more of its hardware busy.
+                      </li>
+                      <li>
+                        As a result, more instructions can be completed over
+                        time.
+                      </li>
                     </ul>
                   </div>
                 </details>
@@ -679,14 +1036,30 @@
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
                     <p>
-                      The best answers explain both ideas rather than choosing only one.
+                      The best answers explain both ideas rather than choosing
+                      only one.
                     </p>
                     <ul class="exam-points">
-                      <li>Multi-processing allows several cores or processors to work on separate tasks in parallel.</li>
-                      <li>This can help a server handle many requests at once.</li>
-                      <li>Multi-threading lets software split work into separate threads such as request handling and background tasks.</li>
-                      <li>This can improve responsiveness and make better use of processor time.</li>
-                      <li>Used together, they can improve throughput, but coordination and shared resources can still limit the gain.</li>
+                      <li>
+                        Multi-processing allows several cores or processors to
+                        work on separate tasks in parallel.
+                      </li>
+                      <li>
+                        This can help a server handle many requests at once.
+                      </li>
+                      <li>
+                        Multi-threading lets software split work into separate
+                        threads such as request handling and background tasks.
+                      </li>
+                      <li>
+                        This can improve responsiveness and make better use of
+                        processor time.
+                      </li>
+                      <li>
+                        Used together, they can improve throughput, but
+                        coordination and shared resources can still limit the
+                        gain.
+                      </li>
                     </ul>
                   </div>
                 </details>
@@ -702,15 +1075,28 @@
             <dl class="glossary-list">
               <div class="glossary-item">
                 <dt>Pipelining</dt>
-                <dd>Overlapping instruction stages so more than one instruction is in progress at once.</dd>
+                <dd>
+                  Overlapping instruction stages so more than one instruction is
+                  in progress at once.
+                </dd>
               </div>
               <div class="glossary-item">
                 <dt>Throughput</dt>
                 <dd>The amount of work completed over a period of time.</dd>
               </div>
               <div class="glossary-item">
+                <dt>Pipeline stall</dt>
+                <dd>
+                  A delay where a pipeline stage has to wait, often because of
+                  a dependency, branch, or cache miss.
+                </dd>
+              </div>
+              <div class="glossary-item">
                 <dt>Multi-processing</dt>
-                <dd>Using multiple processors or cores to carry out work in parallel.</dd>
+                <dd>
+                  Using multiple processors or cores to carry out work in
+                  parallel.
+                </dd>
               </div>
               <div class="glossary-item">
                 <dt>Multi-threading</dt>
@@ -766,7 +1152,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

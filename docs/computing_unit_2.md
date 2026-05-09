@@ -112,8 +112,8 @@ saved progress should be shown as needing a fresh attempt.
 
 ### B2 The concepts of microarchitecture
 - [x] The instruction cycle
-- [ ] CPU performance, instruction sets, and cache
-- [ ] Pipelining, multi-processing, and multi-threading
+- [x] CPU performance, instruction sets, and cache
+- [x] Pipelining, multi-processing, and multi-threading
 - [ ] CPU architecture for different systems
 
 ### B3 Registers and register handling
