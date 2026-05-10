@@ -6,7 +6,7 @@
     <title>Binary Arithmetic Revision Lesson | Education Tools</title>
     <meta
       name="description"
-      content="Revise binary addition, subtraction, multiplication, division, and the basics of BCD arithmetic for BTEC Level 3 Computing Unit 2."
+      content="Revise binary addition, subtraction, multiplication, division, and BCD correction with visual worked examples and practice generators for BTEC Level 3 Computing Unit 2."
     />
     <meta
       property="og:title"
@@ -14,7 +14,7 @@
     />
     <meta
       property="og:description"
-      content="Revise binary addition, subtraction, multiplication, division, and the basics of BCD arithmetic for BTEC Level 3 Computing Unit 2."
+      content="Revise binary addition, subtraction, multiplication, division, and BCD correction with visual worked examples and practice generators for BTEC Level 3 Computing Unit 2."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/pages/binary-arithmetic.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -53,9 +54,9 @@
           <div>
             <h1>Binary arithmetic</h1>
             <p class="lesson-hero-text">
-              Learn how to add, subtract, multiply, and divide in binary, then
-              see why BCD arithmetic needs extra care when a 4-bit digit goes
-              beyond 9.
+              Learn the patterns behind binary addition, subtraction,
+              multiplication, division, and BCD correction, then practise each
+              action one question at a time.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -73,7 +74,10 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Binary operations, carrying, borrowing, and BCD correction</span>
+            <span
+              >Binary operations, carries, borrows, shifts, and BCD
+              correction</span
+            >
           </article>
         </div>
 
@@ -101,8 +105,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, and teacher slides need JavaScript, but
-          the lesson notes still work without it.
+          Quiz scoring, practice generation, answer saving, and teacher slides
+          need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -111,13 +115,15 @@
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
+            <a href="#core-patterns" data-section-link>Core patterns</a>
             <a href="#addition" data-section-link>Addition</a>
             <a href="#subtraction" data-section-link>Subtraction</a>
-            <a href="#multiply-divide" data-section-link>Multiply and divide</a>
+            <a href="#multiplication" data-section-link>Multiplication</a>
+            <a href="#division" data-section-link>Division</a>
             <a href="#bcd-arithmetic" data-section-link>BCD arithmetic</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+            <a href="#exam-practice" data-section-link>Exam practice</a>
           </nav>
         </aside>
 
@@ -128,33 +134,110 @@
             data-lesson-section
           >
             <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
+            <h2>Binary arithmetic is normal arithmetic in base 2</h2>
             <p class="lesson-section-copy">
-              Binary arithmetic follows familiar arithmetic ideas, but the rules
-              only use the digits 0 and 1. Strong exam answers show the working
-              clearly, especially where carries, borrows, or BCD corrections
-              appear.
+              The ideas are familiar: add from the right, carry when a column
+              overflows, borrow when subtraction does not have enough, and use
+              place value shifts for multiplication and division. The difference
+              is that every column only has two possible digits:
+              <code>0</code> and <code>1</code>.
             </p>
+
+            <div class="arithmetic-overview-map">
+              <article
+                class="arithmetic-overview-card arithmetic-overview-card--add"
+              >
+                <span
+                  class="arithmetic-icon arithmetic-icon--add"
+                  aria-hidden="true"
+                ></span>
+                <h3>Add</h3>
+                <p>When a column reaches 2, write 0 and carry 1.</p>
+              </article>
+
+              <article
+                class="arithmetic-overview-card arithmetic-overview-card--subtract"
+              >
+                <span
+                  class="arithmetic-icon arithmetic-icon--subtract"
+                  aria-hidden="true"
+                ></span>
+                <h3>Subtract</h3>
+                <p>When a column has too little, borrow from the left.</p>
+              </article>
+
+              <article
+                class="arithmetic-overview-card arithmetic-overview-card--shift"
+              >
+                <span
+                  class="arithmetic-icon arithmetic-icon--shift"
+                  aria-hidden="true"
+                ></span>
+                <h3>Shift</h3>
+                <p>Left shifts multiply by powers of 2; right shifts divide.</p>
+              </article>
+            </div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>Apply the basic rules of binary addition.</li>
-                  <li>Use borrowing to subtract in binary.</li>
-                  <li>Recognise simple binary multiplication and division.</li>
-                  <li>Explain when BCD arithmetic needs correction.</li>
+                <ul class="lesson-list fullrow">
+                  <li>Apply the main rules for binary addition.</li>
+                  <li>Explain and use borrowing in binary subtraction.</li>
+                  <li>Use shifts and partial products for multiplication.</li>
+                  <li>Use inverse multiplication ideas for division.</li>
+                  <li>Explain why BCD addition may need correction.</li>
                 </ul>
               </article>
+            </div>
+          </section>
 
-              <article class="lesson-card">
-                <h3>Quick rules</h3>
-                <ul class="memory-list">
-                  <li><strong>1 + 1 =</strong> 10 in binary.</li>
-                  <li><strong>1 + 1 + 1 =</strong> 11 in binary.</li>
-                  <li><strong>Borrow:</strong> take 1 from the next column.</li>
-                  <li><strong>BCD:</strong> each nibble must stay 0000 to 1001.</li>
-                </ul>
+          <section
+            id="core-patterns"
+            class="lesson-section lesson-section--core-patterns panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Rules</p>
+            <h2>The same small patterns appear again and again</h2>
+            <p class="lesson-section-copy">
+              Learn these patterns first. They are the building blocks for all
+              the worked methods later in the lesson.
+            </p>
+
+            <div class="rule-pattern-grid">
+              <article class="rule-pattern-card rule-pattern-card--addition">
+                <span class="rule-badge">Addition</span>
+                <h3>Carry patterns</h3>
+                <div class="mini-rule-table" aria-label="Binary addition rules">
+                  <span>0 + 0</span><strong>0</strong> <span>0 + 1</span
+                  ><strong>1</strong> <span>1 + 0</span><strong>1</strong>
+                  <span>1 + 1</span><strong>10</strong>
+                  <span>1 + 1 + carry</span><strong>11</strong>
+                </div>
+              </article>
+
+              <article class="rule-pattern-card rule-pattern-card--subtraction">
+                <span class="rule-badge">Subtraction</span>
+                <h3>Borrow patterns</h3>
+                <div
+                  class="mini-rule-table"
+                  aria-label="Binary subtraction rules"
+                >
+                  <span>0 - 0</span><strong>0</strong> <span>1 - 0</span
+                  ><strong>1</strong> <span>1 - 1</span><strong>0</strong>
+                  <span>0 - 1</span><strong>borrow</strong>
+                </div>
+              </article>
+
+              <article class="rule-pattern-card rule-pattern-card--shift">
+                <span class="rule-badge">Shift</span>
+                <h3>Place value movement</h3>
+                <div class="shift-visual" aria-label="Binary shift visual">
+                  <span>0101</span>
+                  <span class="shift-arrow">left</span>
+                  <span>1010</span>
+                  <span class="shift-caption">5 becomes 10</span>
+                </div>
               </article>
             </div>
           </section>
@@ -165,31 +248,96 @@
             data-lesson-section
           >
             <p class="eyebrow">Addition</p>
-            <h2>Binary addition uses carrying in the same way as denary</h2>
+            <h2>Add from right to left and carry when a column reaches 2</h2>
             <p class="lesson-section-copy">
-              Start from the right and work left. The main rule to remember is
-              that <code>1 + 1</code> produces <code>10</code>, so you write
-              <code>0</code> and carry <code>1</code>.
+              Binary addition works column by column. Because the base is 2, a
+              column cannot write the digit 2. Instead,
+              <code>1 + 1</code> becomes <code>10</code>: write
+              <code>0</code> in the current column and carry <code>1</code> to
+              the next column on the left.
             </p>
 
-            <div class="example-strip" aria-label="Binary addition rules">
-              <span class="example-chip"><strong>0 + 0</strong> = 0</span>
-              <span class="example-chip"><strong>0 + 1</strong> = 1</span>
-              <span class="example-chip"><strong>1 + 1</strong> = 10</span>
-              <span class="example-chip"><strong>1 + 1 + 1</strong> = 11</span>
-            </div>
+            <div class="operation-explain-grid">
+              <article class="operation-visual-card">
+                <span class="rule-badge">Worked visual</span>
+                <h3>1011 + 0110</h3>
+                <div class="binary-working-table binary-working-table--static">
+                  <span class="row-label">carry</span>
+                  <span>1</span><span>1</span><span>1</span><span></span
+                  ><span></span>
+                  <span class="row-label">top</span>
+                  <span></span><span>1</span><span>0</span><span>1</span
+                  ><span>1</span>
+                  <span class="row-label">bottom</span>
+                  <span></span><span>0</span><span>1</span><span>1</span
+                  ><span>0</span>
+                  <span class="row-label result-label">result</span>
+                  <span>1</span><span>0</span><span>0</span><span>0</span
+                  ><span>1</span>
+                </div>
+                <p>
+                  Two 1s in a column create a carry. The final answer is
+                  <code>10001</code>.
+                </p>
+              </article>
 
-            <article class="lesson-card">
-              <h3>Worked example</h3>
-              <p>
-                Add <code>1011 + 0110</code>.
-                From right to left: <code>1 + 0 = 1</code>,
-                <code>1 + 1 = 10</code> so write 0 carry 1,
-                <code>0 + 1 + carry 1 = 10</code> so write 0 carry 1,
-                <code>1 + 0 + carry 1 = 10</code>. Final answer:
-                <code>10001</code>.
-              </p>
-            </article>
+              <article
+                class="arithmetic-practice-card"
+                data-practice-type="addition"
+                data-no-slide-advance
+              >
+                <div class="practice-card-head">
+                  <div>
+                    <span class="rule-badge">Practice</span>
+                    <h3>Addition generator</h3>
+                  </div>
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-practice-action="new-question"
+                  >
+                    New question
+                  </button>
+                </div>
+                <div
+                  class="practice-question"
+                  data-role="practice-question"
+                ></div>
+                <form
+                  class="arithmetic-practice-form"
+                  data-role="practice-form"
+                >
+                  <label class="sr-only" for="addition-answer"
+                    >Addition answer in binary</label
+                  >
+                  <div class="practice-answer-row">
+                    <input
+                      id="addition-answer"
+                      class="practice-answer-input"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="off"
+                      placeholder="Type binary answer"
+                      data-role="practice-answer"
+                    />
+                    <button class="primary-link" type="submit">
+                      Check answer
+                    </button>
+                  </div>
+                </form>
+                <p
+                  class="practice-feedback"
+                  data-role="practice-feedback"
+                  aria-live="polite"
+                >
+                  Generate a question, then type the answer in binary.
+                </p>
+                <div
+                  class="practice-working"
+                  data-role="practice-working"
+                ></div>
+              </article>
+            </div>
           </section>
 
           <section
@@ -198,82 +346,434 @@
             data-lesson-section
           >
             <p class="eyebrow">Subtraction</p>
-            <h2>Binary subtraction often needs borrowing from the next column</h2>
+            <h2>Borrow when the current column cannot subtract</h2>
             <p class="lesson-section-copy">
-              Subtract from right to left. If you need to take
-              <code>1</code> from <code>0</code>, borrow from the next column to
-              the left, just as you would in denary subtraction.
+              In binary subtraction, <code>1 - 0</code> and
+              <code>1 - 1</code> are straightforward. The difficult case is
+              <code>0 - 1</code>. You borrow from the next column to the left,
+              which gives the current column enough value to subtract.
             </p>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>0 - 0</strong>
-                <span>Gives 0.</span>
+            <div class="operation-explain-grid">
+              <article class="operation-visual-card">
+                <span class="rule-badge">Worked visual</span>
+                <h3>1000 - 0011</h3>
+                <div
+                  class="subtraction-stepper"
+                  data-role="subtraction-visualiser"
+                  data-no-slide-advance
+                >
+                  <div
+                    class="subtraction-step-table"
+                    data-role="subtraction-step-table"
+                    aria-label="Binary subtraction step table"
+                  ></div>
+                  <p
+                    class="subtraction-step-note"
+                    data-role="subtraction-step-note"
+                    aria-live="polite"
+                  >
+                    Start at the right-hand column.
+                  </p>
+                  <div class="subtraction-step-controls">
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-subtraction-step="previous"
+                    >
+                      Previous
+                    </button>
+                    <span
+                      class="practice-status-pill"
+                      data-role="subtraction-step-counter"
+                      >Step 1 of 5</span
+                    >
+                    <button
+                      class="primary-link"
+                      type="button"
+                      data-subtraction-step="next"
+                    >
+                      Next
+                    </button>
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-subtraction-step="reset"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+                <p>
+                  The 1s column needs to borrow, but the 2s and 4s columns are
+                  also 0, so the borrow has to travel from the 8s column.
+                </p>
               </article>
-              <article class="term-card">
-                <strong>1 - 0</strong>
-                <span>Gives 1.</span>
-              </article>
-              <article class="term-card">
-                <strong>1 - 1</strong>
-                <span>Gives 0.</span>
-              </article>
-              <article class="term-card">
-                <strong>0 - 1</strong>
-                <span>Borrow from the next column first.</span>
+
+              <article
+                class="arithmetic-practice-card"
+                data-practice-type="subtraction"
+                data-no-slide-advance
+              >
+                <div class="practice-card-head">
+                  <div>
+                    <span class="rule-badge">Practice</span>
+                    <h3>Subtraction generator</h3>
+                  </div>
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-practice-action="new-question"
+                  >
+                    New question
+                  </button>
+                </div>
+                <div
+                  class="practice-question"
+                  data-role="practice-question"
+                ></div>
+                <form
+                  class="arithmetic-practice-form"
+                  data-role="practice-form"
+                >
+                  <label class="sr-only" for="subtraction-answer"
+                    >Subtraction answer in binary</label
+                  >
+                  <div class="practice-answer-row">
+                    <input
+                      id="subtraction-answer"
+                      class="practice-answer-input"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="off"
+                      placeholder="Type binary answer"
+                      data-role="practice-answer"
+                    />
+                    <button class="primary-link" type="submit">
+                      Check answer
+                    </button>
+                  </div>
+                </form>
+                <p
+                  class="practice-feedback"
+                  data-role="practice-feedback"
+                  aria-live="polite"
+                >
+                  Generate a question, then type the answer in binary.
+                </p>
+                <div
+                  class="practice-working"
+                  data-role="practice-working"
+                ></div>
               </article>
             </div>
-
-            <article class="lesson-card">
-              <h3>Worked example</h3>
-              <p>
-                Subtract <code>1000 - 0011</code>. Borrow from the left so the
-                two rightmost columns can be completed. The result is
-                <code>0101</code>, which is 5 in denary.
-              </p>
-            </article>
           </section>
 
           <section
-            id="multiply-divide"
-            class="lesson-section lesson-section--multiply-divide panel"
+            id="multiplication"
+            class="lesson-section lesson-section--multiplication panel"
             data-lesson-section
           >
-            <p class="eyebrow">Multiply And Divide</p>
-            <h2>Binary multiplication and division often reduce to shifting and repeated subtraction</h2>
+            <p class="eyebrow">Multiplication</p>
+            <h2>Multiply with shifts and partial products</h2>
             <p class="lesson-section-copy">
-              Multiplying by <code>10</code> in binary shifts the number left by
-              one place, which doubles it. Dividing by <code>10</code> shifts
-              right by one place, which halves it for whole-number cases.
+              Multiplying by <code>10</code> in binary shifts a number left by
+              one place, which doubles it. For larger multipliers, write a
+              shifted copy of the first number for each <code>1</code> bit in
+              the multiplier, then add the partial products.
             </p>
 
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Operation</th>
-                    <th>Binary example</th>
-                    <th>Meaning</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Multiply by 2</td>
-                    <td><code>1011 x 10 = 10110</code></td>
-                    <td>Shift left once</td>
-                  </tr>
-                  <tr>
-                    <td>Divide by 2</td>
-                    <td><code>10110 / 10 = 1011</code></td>
-                    <td>Shift right once</td>
-                  </tr>
-                  <tr>
-                    <td>Multiply by 3</td>
-                    <td><code>101 x 11</code></td>
-                    <td>Add a shifted copy as part of the working</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="method-step-grid">
+              <article class="method-step-card">
+                <span class="rule-badge">Step 1</span>
+                <h3>Look at the multiplier</h3>
+                <p>
+                  A <code>1</code> bit means "use a copy". A <code>0</code>
+                  bit means "skip this place".
+                </p>
+              </article>
+              <article class="method-step-card">
+                <span class="rule-badge">Step 2</span>
+                <h3>Shift each copy</h3>
+                <p>
+                  A copy in the <code>10</code> place shifts left once; a copy
+                  in the <code>100</code> place shifts left twice.
+                </p>
+              </article>
+              <article class="method-step-card">
+                <span class="rule-badge">Step 3</span>
+                <h3>Add the partial products</h3>
+                <p>
+                  The final multiplication answer is the sum of the shifted
+                  copies.
+                </p>
+              </article>
+            </div>
+
+            <div class="operation-explain-grid">
+              <article class="operation-visual-card">
+                <span class="rule-badge">Worked visual</span>
+                <h3>101 x 11</h3>
+                <div class="partial-product-visual">
+                  <span class="partial-label">101 x 1</span>
+                  <code>00101</code>
+                  <span class="partial-label">101 x 10</span>
+                  <code>01010</code>
+                  <span class="partial-label result-label">add</span>
+                  <code>01111</code>
+                </div>
+                <p>
+                  The multiplier <code>11</code> has two 1 bits, so two shifted
+                  copies are added.
+                </p>
+              </article>
+
+              <article
+                class="arithmetic-practice-card"
+                data-practice-type="multiplication"
+                data-no-slide-advance
+              >
+                <div class="practice-card-head">
+                  <div>
+                    <span class="rule-badge">Practice</span>
+                    <h3>Multiplication generator</h3>
+                  </div>
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-practice-action="new-question"
+                  >
+                    New question
+                  </button>
+                </div>
+                <div
+                  class="practice-question"
+                  data-role="practice-question"
+                ></div>
+                <form
+                  class="arithmetic-practice-form"
+                  data-role="practice-form"
+                >
+                  <label class="sr-only" for="multiplication-answer"
+                    >Multiplication answer in binary</label
+                  >
+                  <div class="practice-answer-row">
+                    <input
+                      id="multiplication-answer"
+                      class="practice-answer-input"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="off"
+                      placeholder="Type binary answer"
+                      data-role="practice-answer"
+                    />
+                    <button class="primary-link" type="submit">
+                      Check answer
+                    </button>
+                  </div>
+                </form>
+                <p
+                  class="practice-feedback"
+                  data-role="practice-feedback"
+                  aria-live="polite"
+                >
+                  Generate a question, then type the answer in binary.
+                </p>
+                <div
+                  class="practice-working"
+                  data-role="practice-working"
+                ></div>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="division"
+            class="lesson-section lesson-section--division panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Division</p>
+            <h2>Division asks how many times the divisor fits</h2>
+            <p class="lesson-section-copy">
+              Dividing by <code>10</code> in binary shifts right by one place,
+              which halves a whole-number value. For other divisors, use the
+              inverse of multiplication: find the binary quotient that
+              multiplied by the divisor gives the dividend.
+            </p>
+
+            <div class="method-step-grid">
+              <article class="method-step-card">
+                <span class="rule-badge">Divide by 2</span>
+                <h3>Shift right once</h3>
+                <p>
+                  Each bit moves into the next smaller place value. This halves
+                  the number when there is no remainder. This shortcut only
+                  works directly for powers of 2 such as <code>/ 10</code> or
+                  <code>/ 100</code>.
+                </p>
+              </article>
+              <article class="method-step-card">
+                <span class="rule-badge">/ 11 or / 101</span>
+                <h3>Try shifted divisors</h3>
+                <p>
+                  Shift the divisor left until it lines up with the dividend. If
+                  it fits, write a <code>1</code> in the quotient and subtract.
+                  If it is too large, write <code>0</code> and shift right.
+                </p>
+              </article>
+              <article class="method-step-card">
+                <span class="rule-badge">Check</span>
+                <h3>Multiply to verify</h3>
+                <p>
+                  If <code>divisor x quotient = dividend</code>, the division
+                  answer is correct.
+                </p>
+              </article>
+            </div>
+
+            <div class="operation-explain-grid">
+              <article class="operation-visual-card fullrow">
+                <span class="rule-badge">Worked visual</span>
+                <h3>10110 / 10</h3>
+                <div
+                  class="division-visual"
+                  aria-label="Binary division shift visual"
+                >
+                  <code>10110</code>
+                  <span class="shift-arrow">right</span>
+                  <code>1011</code>
+                  <span class="shift-caption">22 halves to 11</span>
+                </div>
+                <p>
+                  A right shift removes the lowest place value and moves each
+                  remaining bit one column to the right.
+                </p>
+              </article>
+
+              <article class="operation-visual-card fullrow">
+                <span class="rule-badge">Step-through visual</span>
+                <h3>1111 / 11</h3>
+                <div
+                  class="division-stepper"
+                  data-role="division-visualiser"
+                  data-no-slide-advance
+                >
+                  <div class="division-step-summary">
+                    <span>Dividend <strong>1111</strong></span>
+                    <span>Divisor <strong>11</strong></span>
+                    <span
+                      >Quotient
+                      <strong data-role="division-step-quotient">---</strong></span
+                    >
+                    <span
+                      >Remainder
+                      <strong data-role="division-step-remainder">1111</strong></span
+                    >
+                  </div>
+                  <div
+                    class="division-step-table"
+                    data-role="division-step-table"
+                    aria-label="Binary division shifted divisor table"
+                  ></div>
+                  <p
+                    class="division-step-note"
+                    data-role="division-step-note"
+                    aria-live="polite"
+                  >
+                    Start with the divisor shifted as far left as it can line up
+                    with the dividend.
+                  </p>
+                  <div class="division-step-controls">
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-division-step="previous"
+                    >
+                      Previous
+                    </button>
+                    <span
+                      class="practice-status-pill"
+                      data-role="division-step-counter"
+                      >Step 1 of 5</span
+                    >
+                    <button
+                      class="primary-link"
+                      type="button"
+                      data-division-step="next"
+                    >
+                      Next
+                    </button>
+                    <button
+                      class="lesson-secondary-action"
+                      type="button"
+                      data-division-step="reset"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+                <p>
+                  For divisors like <code>11</code> or <code>101</code>, build
+                  the quotient by testing shifted versions of the divisor.
+                </p>
+              </article>
+
+              <article
+                class="arithmetic-practice-card fullrow"
+                data-practice-type="division"
+                data-no-slide-advance
+              >
+                <div class="practice-card-head">
+                  <div>
+                    <span class="rule-badge">Practice</span>
+                    <h3>Division generator</h3>
+                  </div>
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-practice-action="new-question"
+                  >
+                    New question
+                  </button>
+                </div>
+                <div
+                  class="practice-question"
+                  data-role="practice-question"
+                ></div>
+                <form
+                  class="arithmetic-practice-form"
+                  data-role="practice-form"
+                >
+                  <label class="sr-only" for="division-answer"
+                    >Division answer in binary</label
+                  >
+                  <div class="practice-answer-row">
+                    <input
+                      id="division-answer"
+                      class="practice-answer-input"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="off"
+                      placeholder="Type binary quotient"
+                      data-role="practice-answer"
+                    />
+                    <button class="primary-link" type="submit">
+                      Check answer
+                    </button>
+                  </div>
+                </form>
+                <p
+                  class="practice-feedback"
+                  data-role="practice-feedback"
+                  aria-live="polite"
+                >
+                  Generate a question, then type the quotient in binary.
+                </p>
+                <div
+                  class="practice-working"
+                  data-role="practice-working"
+                ></div>
+              </article>
             </div>
           </section>
 
@@ -283,33 +783,88 @@
             data-lesson-section
           >
             <p class="eyebrow">BCD</p>
-            <h2>BCD arithmetic must keep each 4-bit digit inside the valid range</h2>
+            <h2>BCD addition needs correction when a digit goes beyond 9</h2>
             <p class="lesson-section-copy">
-              In BCD, valid digits run from <code>0000</code> to
-              <code>1001</code>. If an addition produces an invalid digit such
-              as <code>1010</code> to <code>1111</code>, the result needs
-              decimal correction.
+              In BCD, each denary digit is stored as its own 4-bit group. Valid
+              BCD digit patterns are <code>0000</code> to <code>1001</code>. If
+              a 4-bit addition produces <code>1010</code> to <code>1111</code>,
+              or creates a carry, add <code>0110</code> to correct the digit.
             </p>
 
-            <article class="lesson-card">
-              <h3>Simple correction example</h3>
-              <p>
-                Add decimal 5 and 7 in BCD:
-                <code>0101 + 0111 = 1100</code>. The nibble
-                <code>1100</code> is not a valid BCD digit, so add
-                <code>0110</code> to correct it. That gives
-                <code>1 0010</code>, which represents decimal 12.
-              </p>
-            </article>
+            <div class="operation-explain-grid">
+              <article class="operation-visual-card">
+                <span class="rule-badge">Worked visual</span>
+                <h3>5 + 7 in BCD</h3>
+                <div class="bcd-correction-visual">
+                  <span>0101 + 0111</span>
+                  <code>1100</code>
+                  <span class="correction-arrow">invalid digit, add 0110</span>
+                  <code>1 0010</code>
+                  <span>BCD for 12</span>
+                </div>
+                <p>
+                  The raw result <code>1100</code> is valid binary, but it is
+                  not a valid single BCD digit.
+                </p>
+              </article>
 
-            <article class="lesson-card">
-              <h3>Why BCD needs this extra step</h3>
-              <p>
-                Pure binary arithmetic is happy with any 4-bit result from
-                <code>0000</code> to <code>1111</code>, but BCD only allows
-                the patterns for decimal 0 to 9 in each digit position.
-              </p>
-            </article>
+              <article
+                class="arithmetic-practice-card"
+                data-practice-type="bcd"
+                data-no-slide-advance
+              >
+                <div class="practice-card-head">
+                  <div>
+                    <span class="rule-badge">Practice</span>
+                    <h3>BCD correction generator</h3>
+                  </div>
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-practice-action="new-question"
+                  >
+                    New question
+                  </button>
+                </div>
+                <div
+                  class="practice-question"
+                  data-role="practice-question"
+                ></div>
+                <form
+                  class="arithmetic-practice-form"
+                  data-role="practice-form"
+                >
+                  <label class="sr-only" for="bcd-answer"
+                    >BCD corrected answer</label
+                  >
+                  <div class="practice-answer-row">
+                    <input
+                      id="bcd-answer"
+                      class="practice-answer-input"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="off"
+                      placeholder="e.g. 0001 0010"
+                      data-role="practice-answer"
+                    />
+                    <button class="primary-link" type="submit">
+                      Check answer
+                    </button>
+                  </div>
+                </form>
+                <p
+                  class="practice-feedback"
+                  data-role="practice-feedback"
+                  aria-live="polite"
+                >
+                  Generate a question, then type the corrected BCD result.
+                </p>
+                <div
+                  class="practice-working"
+                  data-role="practice-working"
+                ></div>
+              </article>
+            </div>
           </section>
 
           <section
@@ -327,31 +882,32 @@
                   next column.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Write carries above the columns if the
-                  working is getting busy.
+                  <strong>Fix:</strong> Write carries above the columns when
+                  more than one column overflows.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Borrowing from the wrong place</h3>
+                <h3>Borrowing without updating the column</h3>
                 <p>
-                  In subtraction, the borrow must come from the next higher
-                  column to the left.
+                  Borrowing changes the column borrowed from, so later work must
+                  use the updated value.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Mark the changed columns clearly.
+                  <strong>Fix:</strong> Mark borrowed columns clearly before
+                  moving on.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Accepting an invalid BCD nibble</h3>
+                <h3>Treating invalid BCD as finished</h3>
                 <p>
-                  A result like <code>1100</code> is fine in binary but invalid
-                  as one BCD digit.
+                  A result like <code>1100</code> is fine in pure binary but is
+                  not valid as a single BCD digit.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Check each BCD digit stays between
-                  <code>0000</code> and <code>1001</code>.
+                  <strong>Fix:</strong> Check every BCD nibble is no higher than
+                  <code>1001</code>.
                 </p>
               </article>
             </div>
@@ -363,39 +919,40 @@
             data-lesson-section
           >
             <p class="eyebrow">Quiz</p>
-            <h2>Check your understanding</h2>
+            <h2>Check the ideas, not the calculations</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
-              later.
+              The practice generators handle calculation. This quiz checks the
+              concepts that explain why the methods work.
             </p>
 
             <form id="lesson-quiz" class="quiz-form">
               <fieldset
                 class="quiz-question"
                 data-question="q1"
-                data-answer="c"
-                data-success="Correct. 1 + 1 is 10 in binary."
-                data-feedback="Binary addition carries into the next column when 1 and 1 are added."
+                data-answer="b"
+                data-success="Correct. A carry moves overflow into the next column."
+                data-feedback="A carry is used when a column result is too large for the current base."
               >
-                <legend>1. What is <code>1 + 1</code> in binary?</legend>
+                <legend>
+                  1. What is the purpose of a carry in binary addition?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="a" />
-                      <span>0</span>
+                      <span>It deletes a column from the answer</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="b" />
-                      <span>1</span>
+                      <span>It moves overflow into the next column</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="c" />
-                      <span>10</span>
+                      <span>It changes binary into BCD</span>
                     </label>
                   </li>
                 </ul>
@@ -405,28 +962,33 @@
               <fieldset
                 class="quiz-question"
                 data-question="q2"
-                data-answer="b"
-                data-success="Correct. 101 + 011 = 1000."
-                data-feedback="5 plus 3 gives 8, so the binary result is 1000."
+                data-answer="a"
+                data-success="Correct. Borrowing takes value from a higher column."
+                data-feedback="Borrowing is used when the current subtraction column does not have enough value."
               >
-                <legend>2. What is <code>101 + 011</code>?</legend>
+                <legend>
+                  2. When is borrowing needed in binary subtraction?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="a" />
-                      <span>110</span>
+                      <span
+                        >When the current column does not have enough
+                        value</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="b" />
-                      <span>1000</span>
+                      <span>Whenever two 1 bits are added</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="c" />
-                      <span>1110</span>
+                      <span>Only when a number is stored in BCD</span>
                     </label>
                   </li>
                 </ul>
@@ -436,28 +998,32 @@
               <fieldset
                 class="quiz-question"
                 data-question="q3"
-                data-answer="a"
-                data-success="Correct. 1000 - 0011 = 0101."
-                data-feedback="8 minus 3 equals 5, which is 0101 in binary."
+                data-answer="c"
+                data-success="Correct. A left shift moves bits into larger place values."
+                data-feedback="A left shift moves bits into larger place values, so the value doubles for each one-place shift."
               >
-                <legend>3. What is <code>1000 - 0011</code>?</legend>
+                <legend>
+                  3. Why does a one-place left shift double a binary value?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="a" />
-                      <span>0101</span>
+                      <span>It changes every bit into a denary digit</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="b" />
-                      <span>0111</span>
+                      <span>It removes the most significant bit</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="c" />
-                      <span>1011</span>
+                      <span
+                        >Each bit moves into a place value twice as large</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -468,27 +1034,29 @@
                 class="quiz-question"
                 data-question="q4"
                 data-answer="b"
-                data-success="Correct. Multiplying by 10 in binary shifts left by one place."
-                data-feedback="A left shift by one place doubles the binary value."
+                data-success="Correct. Partial products come from the 1 bits in the multiplier."
+                data-feedback="In binary multiplication, each 1 bit in the multiplier creates a shifted partial product."
               >
-                <legend>4. What does multiplying by <code>10</code> in binary usually do?</legend>
+                <legend>
+                  4. What creates partial products in binary multiplication?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="a" />
-                      <span>It halves the value</span>
+                      <span>Every 0 bit in the multiplier</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="b" />
-                      <span>It shifts the value left by one place</span>
+                      <span>The 1 bits in the multiplier</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="c" />
-                      <span>It removes all carries</span>
+                      <span>The final BCD correction step</span>
                     </label>
                   </li>
                 </ul>
@@ -498,28 +1066,31 @@
               <fieldset
                 class="quiz-question"
                 data-question="q5"
-                data-answer="c"
-                data-success="Correct. A BCD digit must stay between 0000 and 1001."
-                data-feedback="Values from 1010 to 1111 are invalid as a single BCD digit."
+                data-answer="a"
+                data-success="Correct. BCD correction keeps each 4-bit digit valid."
+                data-feedback="BCD correction is needed when a 4-bit digit goes beyond the valid decimal digit range."
               >
-                <legend>5. Which 4-bit value is invalid as a single BCD digit?</legend>
+                <legend>5. Why can BCD addition need correction?</legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="a" />
-                      <span>0101</span>
+                      <span
+                        >A 4-bit BCD digit must represent only decimal 0 to
+                        9</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>1001</span>
+                      <span>BCD never uses binary place values</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
-                      <span>1100</span>
+                      <span>BCD correction is the same as a right shift</span>
                     </label>
                   </li>
                 </ul>
@@ -549,11 +1120,10 @@
             data-lesson-section
           >
             <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Try longer answers like the ones used in written papers</h2>
+            <h2>Explain the method as well as the answer</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              These questions reward clear method explanations. Type your
+              answers into the page, then compare your ideas with the guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -563,12 +1133,11 @@
               <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">4 marks</span>
-                  <span class="exam-pill">Calculate</span>
+                  <span class="exam-pill">Explain</span>
                 </div>
                 <h3>Question 1</h3>
                 <p>
-                  Calculate <code>1011 + 0101</code> and explain where any
-                  carry is used.
+                  Describe how carries are used when adding two binary numbers.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-1">
@@ -578,19 +1147,27 @@
                     id="exam-response-1"
                     class="exam-response"
                     data-exam-response="question-1"
-                    placeholder="Show the columns and mention the carry."
+                    placeholder="Explain right-to-left columns and carrying."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
-                      <li>Start from the right-hand column.</li>
                       <li>
-                        Use <code>1 + 1 = 10</code> whenever two 1s meet.
+                        Start from the rightmost, least significant column.
                       </li>
-                      <li>Carry the extra 1 into the next column.</li>
-                      <li>The final result is <code>10000</code>.</li>
+                      <li>
+                        Add the bits in each column and include any carried bit.
+                      </li>
+                      <li>
+                        If the column total reaches binary <code>10</code>,
+                        write the lower bit and carry into the next column.
+                      </li>
+                      <li>
+                        Continue until every column and final carry has been
+                        handled.
+                      </li>
                     </ul>
                   </div>
                 </details>
@@ -599,12 +1176,12 @@
               <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">6 marks</span>
-                  <span class="exam-pill">Explain</span>
+                  <span class="exam-pill">Compare</span>
                 </div>
                 <h3>Question 2</h3>
                 <p>
-                  Explain why BCD arithmetic sometimes needs a correction step
-                  even when normal binary arithmetic appears to be complete.
+                  Explain why BCD arithmetic can need a correction step even
+                  after normal binary addition has produced a result.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-2">
@@ -614,27 +1191,25 @@
                     id="exam-response-2"
                     class="exam-response"
                     data-exam-response="question-2"
-                    placeholder="Explain the valid BCD range and what happens beyond 1001."
+                    placeholder="Explain valid BCD digits and correction by 0110."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
+                      <li>BCD stores each denary digit in a 4-bit group.</li>
                       <li>
-                        Each BCD digit is stored in a 4-bit group representing
-                        decimal 0 to 9 only.
+                        Valid BCD digit values only run from
+                        <code>0000</code> to <code>1001</code>.
                       </li>
                       <li>
-                        Normal binary addition can produce values from
-                        <code>1010</code> to <code>1111</code>.
+                        Normal binary addition can create results above
+                        <code>1001</code> in one group.
                       </li>
                       <li>
-                        Those patterns are invalid for a single BCD digit.
-                      </li>
-                      <li>
-                        A correction step is used so the digit becomes a valid
-                        decimal representation again.
+                        Adding <code>0110</code> corrects the group into valid
+                        BCD and carries into the next digit if needed.
                       </li>
                     </ul>
                   </div>
@@ -651,19 +1226,27 @@
             <dl class="glossary-list">
               <div class="glossary-item">
                 <dt>Carry</dt>
-                <dd>An extra value moved into the next column during addition.</dd>
+                <dd>
+                  An extra value moved into the next column during addition.
+                </dd>
               </div>
               <div class="glossary-item">
                 <dt>Borrow</dt>
-                <dd>A value taken from the next higher column in subtraction.</dd>
+                <dd>
+                  A value taken from the next higher column in subtraction.
+                </dd>
               </div>
               <div class="glossary-item">
-                <dt>BCD correction</dt>
-                <dd>The extra step needed when a BCD digit becomes invalid.</dd>
+                <dt>Partial product</dt>
+                <dd>A shifted copy used during multiplication.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Shift</dt>
                 <dd>Moving binary digits left or right by place value.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>BCD correction</dt>
+                <dd>The extra step used when a BCD digit becomes invalid.</dd>
               </div>
             </dl>
           </section>
@@ -674,7 +1257,10 @@
             <ul class="memory-list">
               <li>Carrying and borrowing should be visible on the page.</li>
               <li>Left shift doubles and right shift halves whole numbers.</li>
-              <li>BCD digits cannot go beyond 1001 without correction.</li>
+              <li>
+                BCD digits cannot go beyond <code>1001</code> without
+                correction.
+              </li>
             </ul>
           </section>
         </aside>
@@ -699,7 +1285,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 10</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

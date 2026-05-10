@@ -686,7 +686,7 @@ export const catalogItems = [
     kicker: "C1 Number systems",
     title: "Binary arithmetic",
     summary:
-      "A live revision lesson on binary addition, subtraction, multiplication, division, and the basics of BCD arithmetic.",
+      "A live revision lesson with visual rules and one-question practice generators for binary addition, subtraction, multiplication, division, and BCD correction.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "binary arithmetic",
@@ -695,6 +695,9 @@ export const catalogItems = [
       "binary multiplication",
       "binary division",
       "bcd arithmetic",
+      "bcd correction",
+      "binary practice",
+      "interactive practice",
       "carry",
       "borrow",
       "btec unit 2 c1",

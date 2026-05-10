@@ -1,0 +1,577 @@
+.arithmetic-overview-map,
+.rule-pattern-grid,
+.method-step-grid,
+.operation-explain-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.arithmetic-overview-map,
+.rule-pattern-grid,
+.method-step-grid,
+.operation-explain-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.arithmetic-overview-card,
+.rule-pattern-card,
+.method-step-card,
+.operation-visual-card,
+.arithmetic-practice-card {
+  display: grid;
+  gap: 0.62rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.arithmetic-overview-card {
+  justify-items: center;
+  text-align: center;
+}
+
+.arithmetic-overview-card h3,
+.rule-pattern-card h3,
+.method-step-card h3,
+.operation-visual-card h3,
+.arithmetic-practice-card h3,
+.practice-question p {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.arithmetic-overview-card p,
+.rule-pattern-card p,
+.method-step-card p,
+.operation-visual-card p,
+.practice-feedback,
+.practice-working-note,
+.shift-caption,
+.practice-question small,
+.subtraction-step-note {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.rule-badge,
+.practice-status-pill {
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.arithmetic-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.arithmetic-icon--add {
+  background:
+    linear-gradient(90deg, transparent 46%, rgba(31, 135, 125, 0.36) 47% 53%, transparent 54%),
+    linear-gradient(0deg, transparent 46%, rgba(31, 135, 125, 0.36) 47% 53%, transparent 54%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.arithmetic-icon--subtract {
+  background:
+    linear-gradient(0deg, transparent 46%, rgba(120, 94, 22, 0.38) 47% 53%, transparent 54%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.arithmetic-icon--shift {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(55, 129, 53, 0.24) 0 18%,
+      transparent 18% 25%,
+      rgba(55, 129, 53, 0.24) 25% 43%,
+      transparent 43% 50%,
+      rgba(55, 129, 53, 0.24) 50% 68%,
+      transparent 68%
+    ),
+    rgba(238, 248, 231, 0.96);
+}
+
+.arithmetic-overview-card--add,
+.rule-pattern-card--addition,
+.operation-visual-card {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: rgba(232, 246, 255, 0.88);
+}
+
+.arithmetic-overview-card--subtract,
+.rule-pattern-card--subtraction,
+.arithmetic-practice-card {
+  border-color: rgba(185, 140, 25, 0.22);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.arithmetic-overview-card--shift,
+.rule-pattern-card--shift,
+.method-step-card {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.mini-rule-table,
+.partial-product-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.mini-rule-table span,
+.mini-rule-table strong,
+.partial-product-visual span,
+.partial-product-visual code,
+.bcd-correction-visual span,
+.bcd-correction-visual code,
+.division-visual code,
+.division-step-summary span,
+.division-step-table span,
+.division-practice-table span,
+.shift-visual span,
+.borrow-visual span,
+.binary-working-table span,
+.binary-entry-table span,
+.subtraction-step-table span {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 2.7rem;
+  padding: 0.48rem 0.58rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--page-ink);
+  font-weight: 900;
+  text-align: center;
+}
+
+.mini-rule-table span {
+  color: var(--muted-ink);
+  font-weight: 800;
+  text-align: left;
+}
+
+.shift-visual,
+.division-visual,
+.borrow-visual,
+.bcd-correction-visual {
+  display: grid;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.shift-visual,
+.division-visual {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+.shift-caption,
+.borrow-visual .borrow-step:last-child,
+.bcd-correction-visual span:last-child {
+  grid-column: 1 / -1;
+}
+
+.shift-arrow,
+.borrow-arrow,
+.correction-arrow {
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.binary-working-table {
+  display: grid;
+  grid-template-columns: minmax(4.8rem, auto) repeat(var(--working-columns, 5), minmax(0, 1fr));
+  gap: 0.35rem;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.binary-entry-table,
+.subtraction-step-table {
+  display: grid;
+  grid-template-columns: minmax(5.2rem, auto) repeat(var(--working-columns, 4), minmax(0, 1fr));
+  gap: 0.35rem;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.binary-working-table--static {
+  --working-columns: 5;
+}
+
+.binary-working-table .row-label,
+.binary-entry-table .row-label,
+.subtraction-step-table .row-label {
+  background: rgba(255, 255, 255, 0.52);
+  color: var(--muted-ink);
+  font-size: 0.78rem;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.binary-working-table .result-label,
+.binary-entry-table .result-label,
+.subtraction-step-table .result-label,
+.partial-product-visual .result-label {
+  color: var(--lesson-accent-heading);
+}
+
+.binary-entry-table input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.7rem;
+  padding: 0.45rem 0.3rem;
+  border: 1px solid rgba(37, 52, 66, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 900;
+  text-align: center;
+}
+
+.binary-entry-table input:focus {
+  outline: 3px solid rgba(31, 135, 125, 0.22);
+  outline-offset: 2px;
+}
+
+.arithmetic-practice-card.is-table-practice .practice-answer-input {
+  display: none;
+}
+
+.arithmetic-practice-card.is-table-practice .practice-answer-row {
+  grid-template-columns: auto;
+  justify-content: start;
+}
+
+.practice-entry {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.subtraction-stepper {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.division-stepper {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.division-step-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.division-step-summary span {
+  gap: 0.14rem;
+  align-content: center;
+  min-height: 3.3rem;
+}
+
+.division-step-summary strong {
+  color: var(--page-ink);
+  font-size: 1.08rem;
+}
+
+.division-step-table {
+  display: grid;
+  grid-template-columns:
+    minmax(5.5rem, auto)
+    repeat(5, minmax(0, 1fr));
+  gap: 0.35rem;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.division-practice-table {
+  display: grid;
+  grid-template-columns:
+    minmax(4.8rem, auto)
+    minmax(5.6rem, 1fr)
+    minmax(5.6rem, 1fr)
+    minmax(5.2rem, 0.8fr)
+    minmax(6.2rem, 1fr);
+  gap: 0.35rem;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.division-step-table .row-label,
+.division-practice-table .row-label {
+  background: rgba(255, 255, 255, 0.52);
+  color: var(--muted-ink);
+  font-size: 0.78rem;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.division-practice-table .division-current-remainder {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: rgba(232, 247, 245, 0.76);
+}
+
+.division-step-table .is-active {
+  border-color: rgba(185, 140, 25, 0.34);
+  background: rgba(255, 249, 227, 0.98);
+  box-shadow: 0 10px 18px rgba(36, 49, 59, 0.08);
+}
+
+.division-step-table .is-complete {
+  border-color: rgba(55, 129, 53, 0.22);
+  background: rgba(238, 248, 231, 0.94);
+}
+
+.division-practice-table input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.7rem;
+  padding: 0.45rem 0.3rem;
+  border: 1px solid rgba(37, 52, 66, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 900;
+  text-align: center;
+}
+
+.division-practice-table input:focus {
+  outline: 3px solid rgba(31, 135, 125, 0.22);
+  outline-offset: 2px;
+}
+
+.division-step-note {
+  margin: 0;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-ink);
+}
+
+.subtraction-step-table {
+  --working-columns: 4;
+}
+
+.subtraction-step-table .is-current {
+  border-color: rgba(185, 140, 25, 0.34);
+  background: rgba(255, 249, 227, 0.98);
+  box-shadow: 0 10px 18px rgba(36, 49, 59, 0.08);
+}
+
+.subtraction-step-table .is-changed {
+  border-color: rgba(31, 135, 125, 0.26);
+  background: rgba(232, 246, 255, 0.96);
+}
+
+.subtraction-step-note {
+  padding: 0.72rem 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.subtraction-step-controls,
+.division-step-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.partial-product-visual {
+  grid-template-columns: minmax(7rem, auto) minmax(0, 1fr);
+}
+
+.bcd-correction-visual {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.practice-card-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.practice-question {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.78rem 0.82rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.practice-question code {
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.arithmetic-practice-form {
+  display: grid;
+  gap: 0.58rem;
+}
+
+.practice-answer-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.practice-answer-input {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.practice-answer-input:focus {
+  outline: 3px solid rgba(31, 135, 125, 0.22);
+  outline-offset: 2px;
+}
+
+.practice-feedback {
+  min-height: 3.4rem;
+  padding: 0.7rem 0.78rem;
+  border: 1px solid rgba(37, 52, 66, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+}
+
+.practice-feedback.is-correct {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.98);
+  color: #29523b;
+}
+
+.practice-feedback.is-incorrect {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: rgba(255, 240, 241, 0.98);
+  color: #8b4831;
+}
+
+.practice-working {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.practice-working[hidden] {
+  display: none;
+}
+
+.practice-working-note {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.working-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.working-chip-row span {
+  padding: 0.42rem 0.6rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body.teacher-mode-active .arithmetic-overview-map,
+body.teacher-mode-active .rule-pattern-grid,
+body.teacher-mode-active .method-step-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .operation-explain-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .practice-card-head {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .arithmetic-overview-map,
+  .rule-pattern-grid,
+  .method-step-grid,
+  .operation-explain-grid,
+  body.teacher-mode-active .arithmetic-overview-map,
+  body.teacher-mode-active .rule-pattern-grid,
+  body.teacher-mode-active .method-step-grid,
+  body.teacher-mode-active .operation-explain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shift-visual,
+  .division-visual,
+  .division-step-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-answer-row {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-answer-row .primary-link,
+  .practice-card-head .lesson-secondary-action,
+  .subtraction-step-controls > *,
+  .division-step-controls > * {
+    width: 100%;
+  }
+}

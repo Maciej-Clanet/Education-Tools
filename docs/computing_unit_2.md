@@ -125,7 +125,7 @@ saved progress should be shown as needing a fresh attempt.
 ### C1 Number systems
 - [x] Units of digital data
 - [x] Binary and BCD
-- [ ] Binary arithmetic
+- [x] Binary arithmetic
 - [ ] Negative and floating point representation
 
 ### C2 Text representation

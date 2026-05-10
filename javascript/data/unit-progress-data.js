@@ -178,7 +178,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "binary-arithmetic",
           title: "Binary arithmetic",
           href: "../topics/binary-arithmetic.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 2, totalQuestions: 5, passScore: 4 },
         },
         {
           id: "negative-and-floating-point-representation",
