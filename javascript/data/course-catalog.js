@@ -630,7 +630,7 @@ export const catalogItems = [
     kicker: "C1 Number systems",
     title: "Units of digital data",
     summary:
-      "A live revision lesson on bits, bytes, kilobytes, larger data units, and the difference between storage capacity and transfer rate.",
+      "A live revision lesson on bits, bytes, decimal and binary data units, conversion strategy, and storage versus transfer-rate units.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "units of digital data",
@@ -640,6 +640,9 @@ export const catalogItems = [
       "megabyte",
       "gigabyte",
       "terabyte",
+      "unit conversion",
+      "decimal units",
+      "binary units",
       "storage capacity",
       "data rate",
       "btec unit 2 c1",
@@ -656,7 +659,7 @@ export const catalogItems = [
     kicker: "C1 Number systems",
     title: "Binary and BCD",
     summary:
-      "A live revision lesson on binary place value, denary conversion, and binary coded decimal in computer systems.",
+      "A live revision lesson on binary numbers, bases, place value tables, conversion practice, and binary coded decimal.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "binary",
@@ -666,6 +669,9 @@ export const catalogItems = [
       "binary place value",
       "binary coded decimal",
       "denary conversion",
+      "binary conversion practice",
+      "hexadecimal",
+      "bases",
       "btec unit 2 c1",
       "computer systems",
     ],

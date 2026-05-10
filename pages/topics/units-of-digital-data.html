@@ -6,7 +6,7 @@
     <title>Units of Digital Data Revision Lesson | Education Tools</title>
     <meta
       name="description"
-      content="Revise bits, bytes, kilobytes, larger data units, and the difference between storage capacity and data transfer rates for BTEC Level 3 Computing Unit 2."
+      content="Revise bits, bytes, kilobytes, decimal and binary data units, and safe conversion strategies for BTEC Level 3 Computing Unit 2."
     />
     <meta
       property="og:title"
@@ -14,7 +14,7 @@
     />
     <meta
       property="og:description"
-      content="Revise bits, bytes, kilobytes, larger data units, and the difference between storage capacity and data transfer rates for BTEC Level 3 Computing Unit 2."
+      content="Revise bits, bytes, kilobytes, decimal and binary data units, and safe conversion strategies for BTEC Level 3 Computing Unit 2."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/pages/units-of-digital-data.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -53,9 +54,9 @@
           <div>
             <h1>Units of digital data</h1>
             <p class="lesson-hero-text">
-              Learn how bits, bytes, kilobytes, and larger units describe data
-              size, and how to avoid mixing up storage capacity with data
-              transfer rate.
+              Learn what a bit actually is, why bits matter, how data units grow
+              from bytes to terabytes, and how to choose the right conversion
+              strategy for decimal and binary systems.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -73,7 +74,7 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Bits, bytes, data size, and transfer-rate conversions</span>
+            <span>Bits, bytes, unit systems, and conversion strategy</span>
           </article>
         </div>
 
@@ -101,8 +102,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, and teacher slides need JavaScript, but
-          the lesson notes still work without it.
+          Quiz scoring, the practice zone, answer saving, and teacher slides
+          need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -112,7 +113,12 @@
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
             <a href="#bits-and-bytes" data-section-link>Bits and bytes</a>
-            <a href="#larger-units" data-section-link>Larger units</a>
+            <a href="#unit-ladder" data-section-link>Unit ladder</a>
+            <a href="#two-systems" data-section-link>Two systems</a>
+            <a href="#conversion-strategy" data-section-link
+              >Conversion strategy</a
+            >
+            <a href="#practice-zone" data-section-link>Practice zone</a>
             <a href="#capacity-and-rate" data-section-link>Capacity and rate</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
@@ -130,38 +136,66 @@
             <h2>What you should know by the end of this lesson</h2>
             <p class="lesson-section-copy">
               Digital data units tell us how much information is being stored,
-              processed, or transmitted. Exam questions often become easier as
-              soon as you spot whether the value is measured in bits or bytes.
+              processed, or transmitted. The key skill is not memorising a long
+              list of labels; it is knowing what the smallest unit means, how
+              units scale up, and which conversion system the question is using.
             </p>
 
+            <div class="data-overview-map" aria-label="Lesson overview">
+              <article class="data-overview-card data-overview-card--bit">
+                <span
+                  class="data-icon data-icon--bit"
+                  aria-hidden="true"
+                ></span>
+                <span class="data-badge">Smallest unit</span>
+                <h3>Bits</h3>
+                <p>
+                  One binary state, written as <code>0</code> or <code>1</code>.
+                </p>
+              </article>
+              <article class="data-overview-card data-overview-card--byte">
+                <span
+                  class="data-icon data-icon--byte"
+                  aria-hidden="true"
+                ></span>
+                <span class="data-badge">Useful group</span>
+                <h3>Bytes</h3>
+                <p>Eight bits grouped together for storage and file sizes.</p>
+              </article>
+              <article class="data-overview-card data-overview-card--systems">
+                <span
+                  class="data-icon data-icon--systems"
+                  aria-hidden="true"
+                ></span>
+                <span class="data-badge">Two systems</span>
+                <h3>1000 or 1024</h3>
+                <p>
+                  Decimal units use powers of 1000; binary units use powers of
+                  1024.
+                </p>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="lesson-card fullrow">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
-                  <li>Define bit, byte, kilobyte, megabyte, and gigabyte.</li>
-                  <li>Convert between common data units accurately.</li>
-                  <li>Explain the difference between size and speed.</li>
-                  <li>Use unit language clearly in exam answers.</li>
-                </ul>
-              </article>
-
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>Bit:</strong> one binary digit, 0 or 1.</li>
-                  <li><strong>Byte:</strong> 8 bits.</li>
-                  <li><strong>Capacity:</strong> how much data fits.</li>
-                  <li><strong>Rate:</strong> how fast data moves.</li>
+                  <li>Explain what a bit is and why bits matter.</li>
+                  <li>
+                    Describe how data units progress from bits to terabytes.
+                  </li>
+                  <li>Separate decimal and binary unit systems.</li>
+                  <li>Use a reliable strategy for unit conversions.</li>
                 </ul>
               </article>
 
               <article class="lesson-card fullrow">
                 <h3>Why it matters</h3>
                 <p>
-                  Hardware specifications, file sizes, memory capacity, and
-                  network speeds all rely on these units. If you confuse
-                  megabits with megabytes, your final answer can be eight times
-                  too large or too small.
+                  Hardware specifications, file sizes, memory capacity, image
+                  sizes, and network speeds all rely on these units. If you
+                  confuse bits with bytes, a final answer can be eight times too
+                  large or too small.
                 </p>
               </article>
             </div>
@@ -173,117 +207,294 @@
             data-lesson-section
           >
             <p class="eyebrow">Foundations</p>
-            <h2>Bits and bytes are the core building blocks of digital data</h2>
+            <h2>
+              A bit is one binary state, and patterns of bits represent data
+            </h2>
             <p class="lesson-section-copy">
-              A <strong>bit</strong> is the smallest unit of data and can hold
-              one of two values: <code>0</code> or <code>1</code>. A
-              <strong>byte</strong> groups eight bits together, which is why
-              bytes are commonly used for storage sizes.
+              A <strong>bit</strong> is a binary digit. It can hold one of two
+              possible values: <code>0</code> or <code>1</code>. Those values
+              can stand for different pairs of states, such as off/on,
+              false/true, no/yes, or low/high voltage. A single bit is tiny, but
+              patterns of many bits can represent numbers, text, images, audio,
+              and instructions.
             </p>
+
+            <div class="bit-state-visual" aria-label="Bit states">
+              <article class="bit-state bit-state--zero">
+                <strong>0</strong>
+                <span>off / false / no</span>
+              </article>
+              <article class="bit-state bit-state--one">
+                <strong>1</strong>
+                <span>on / true / yes</span>
+              </article>
+            </div>
+
+            <div class="bit-pattern-board" aria-label="Bit pattern examples">
+              <article class="pattern-card">
+                <h3>1 bit</h3>
+                <p><code>0</code> or <code>1</code></p>
+                <span>2 possible patterns</span>
+              </article>
+              <article class="pattern-card">
+                <h3>2 bits</h3>
+                <p>
+                  <code>00</code> <code>01</code> <code>10</code>
+                  <code>11</code>
+                </p>
+                <span>4 possible patterns</span>
+              </article>
+              <article class="pattern-card">
+                <h3>8 bits</h3>
+                <p><code>01000001</code></p>
+                <span>256 possible patterns</span>
+              </article>
+            </div>
+
+            <p class="lesson-section-copy">
+              A <strong>byte</strong> is a group of eight bits. Bytes are useful
+              because file sizes, storage capacity, and memory capacity would be
+              awkward to describe one bit at a time.
+            </p>
+
+            <div class="byte-visual" aria-label="A byte made of eight bits">
+              <span>0</span>
+              <span>1</span>
+              <span>0</span>
+              <span>0</span>
+              <span>0</span>
+              <span>0</span>
+              <span>0</span>
+              <span>1</span>
+            </div>
 
             <div class="example-strip" aria-label="Bits and bytes summary">
               <span class="example-chip"
-                ><strong>1 bit</strong> one binary choice</span
+                ><strong>Lowercase b</strong> usually means bits</span
               >
               <span class="example-chip"
-                ><strong>1 byte</strong> 8 bits</span
+                ><strong>Uppercase B</strong> usually means bytes</span
               >
               <span class="example-chip"
-                ><strong>Uppercase B</strong> bytes</span
-              >
-              <span class="example-chip"
-                ><strong>Lowercase b</strong> bits</span
+                ><strong>1 byte</strong> is 8 bits</span
               >
             </div>
+          </section>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Bit</strong>
-                <span>
-                  Used when talking about binary states, bandwidth, and raw
-                  signal information.
-                </span>
+          <section
+            id="unit-ladder"
+            class="lesson-section lesson-section--unit-ladder panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Progression</p>
+            <h2>
+              Units grow in a ladder from small values to large storage sizes
+            </h2>
+            <p class="lesson-section-copy">
+              Each step to the right is a larger unit. Each step to the left is
+              a smaller unit. The multiplier for each step depends on which
+              system the question is using: decimal or binary.
+            </p>
+
+            <div
+              class="unit-ladder-visual"
+              aria-label="Digital data unit ladder"
+            >
+              <article class="ladder-unit ladder-unit--bits">
+                <span class="data-badge">bit</span>
+                <strong>b</strong>
+                <span>One binary state</span>
               </article>
-              <article class="term-card">
-                <strong>Byte</strong>
-                <span>
-                  Commonly used for file size, storage capacity, and memory
-                  size.
-                </span>
+              <article class="ladder-unit">
+                <span class="data-badge">byte</span>
+                <strong>B</strong>
+                <span>8 bits</span>
               </article>
-              <article class="term-card">
-                <strong>Example</strong>
-                <span>
-                  A 24-byte record contains 192 bits because
-                  <code>24 x 8 = 192</code>.
-                </span>
+              <article class="ladder-unit">
+                <span class="data-badge">kilobyte</span>
+                <strong>KB / KiB</strong>
+                <span>Thousands of bytes</span>
               </article>
-              <article class="term-card">
-                <strong>Exam clue</strong>
-                <span>
-                  Watch the symbol carefully: <code>Mb</code> is not the same
-                  as <code>MB</code>.
-                </span>
+              <article class="ladder-unit">
+                <span class="data-badge">megabyte</span>
+                <strong>MB / MiB</strong>
+                <span>Images, audio, documents</span>
+              </article>
+              <article class="ladder-unit">
+                <span class="data-badge">gigabyte</span>
+                <strong>GB / GiB</strong>
+                <span>Apps, videos, storage</span>
+              </article>
+              <article class="ladder-unit">
+                <span class="data-badge">terabyte</span>
+                <strong>TB / TiB</strong>
+                <span>Large drives and backups</span>
+              </article>
+            </div>
+
+            <div class="direction-board">
+              <article class="direction-card direction-card--larger">
+                <h3>Moving to a larger unit</h3>
+                <p>Divide once for each step along the ladder.</p>
+              </article>
+              <article class="direction-card direction-card--smaller">
+                <h3>Moving to a smaller unit</h3>
+                <p>Multiply once for each step along the ladder.</p>
               </article>
             </div>
           </section>
 
           <section
-            id="larger-units"
-            class="lesson-section lesson-section--larger-units panel"
+            id="two-systems"
+            class="lesson-section lesson-section--two-systems panel"
             data-lesson-section
           >
-            <p class="eyebrow">Multiples</p>
-            <h2>Larger units help us describe useful amounts of data</h2>
+            <p class="eyebrow">Decimal and Binary</p>
+            <h2>There are two common systems for larger digital data units</h2>
             <p class="lesson-section-copy">
-              Once data gets larger than a few bytes, bigger units make values
-              easier to read. In many computing exam questions, sizes are
-              treated as powers of 1024 unless the context clearly says
-              otherwise.
+              Decimal units use powers of 1000. Binary units use powers of 1024.
+              Both appear in computing, and both can be valid depending on the
+              question, device, or software context.
             </p>
 
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Unit</th>
-                    <th>Common meaning</th>
-                    <th>Approximate size</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Kilobyte (KB)</td>
-                    <td>Small file or memory block</td>
-                    <td>1024 bytes</td>
-                  </tr>
-                  <tr>
-                    <td>Megabyte (MB)</td>
-                    <td>Image, song, or program file</td>
-                    <td>1024 KB</td>
-                  </tr>
-                  <tr>
-                    <td>Gigabyte (GB)</td>
-                    <td>Large storage amount</td>
-                    <td>1024 MB</td>
-                  </tr>
-                  <tr>
-                    <td>Terabyte (TB)</td>
-                    <td>Very large drive or backup store</td>
-                    <td>1024 GB</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="unit-system-board">
+              <article class="unit-system-card unit-system-card--decimal">
+                <span class="data-badge">Decimal</span>
+                <h3>Base 1000</h3>
+                <ul class="lesson-list">
+                  <li>1 KB = 1000 bytes</li>
+                  <li>1 MB = 1000 KB</li>
+                  <li>1 GB = 1000 MB</li>
+                </ul>
+                <p>
+                  Often seen in storage marketing, networking contexts, and
+                  simpler classroom tasks.
+                </p>
+              </article>
+              <article class="unit-system-card unit-system-card--binary">
+                <span class="data-badge">Binary</span>
+                <h3>Base 1024</h3>
+                <ul class="lesson-list">
+                  <li>1 KiB = 1024 bytes</li>
+                  <li>1 MiB = 1024 KiB</li>
+                  <li>1 GiB = 1024 MiB</li>
+                </ul>
+                <p>
+                  Based on powers of two. In many lessons and tools, KB, MB, and
+                  GB are still used even when the intended base is 1024.
+                </p>
+              </article>
             </div>
 
             <article class="lesson-card">
-              <h3>Worked conversion</h3>
+              <h3>How to decide which one to use</h3>
               <p>
-                If a memory stick holds <code>4 GB</code>, that is
-                <code>4 x 1024 = 4096 MB</code>. If you want the answer in
-                bytes, continue multiplying by <code>1024</code> at each step.
+                If the question says <code>KiB</code>, <code>MiB</code>, or "use
+                1024", use the binary system. If the question says "use 1000",
+                use the decimal system. If the context is unclear, state your
+                assumption before calculating.
               </p>
             </article>
+          </section>
+
+          <section
+            id="conversion-strategy"
+            class="lesson-section lesson-section--conversion-strategy panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Strategy</p>
+            <h2>Use a repeatable method instead of guessing the operation</h2>
+            <p class="lesson-section-copy">
+              Most conversion mistakes happen before the arithmetic starts. Slow
+              down, read the units, choose the system, then move along the unit
+              ladder one step at a time.
+            </p>
+
+            <div class="conversion-steps" aria-label="Conversion strategy">
+              <article class="conversion-step">
+                <span class="data-badge">1</span>
+                <h3>Read the unit</h3>
+                <p>Check whether the value is in bits or bytes.</p>
+              </article>
+              <article class="conversion-step">
+                <span class="data-badge">2</span>
+                <h3>Choose the base</h3>
+                <p>Use 1000 for decimal or 1024 for binary.</p>
+              </article>
+              <article class="conversion-step">
+                <span class="data-badge">3</span>
+                <h3>Count steps</h3>
+                <p>Find how many spaces you move on the unit ladder.</p>
+              </article>
+              <article class="conversion-step">
+                <span class="data-badge">4</span>
+                <h3>Multiply or divide</h3>
+                <p>Smaller unit means multiply; larger unit means divide.</p>
+              </article>
+              <article class="conversion-step">
+                <span class="data-badge">5</span>
+                <h3>Write the final unit</h3>
+                <p>The number is incomplete without the unit.</p>
+              </article>
+            </div>
+
+            <div class="worked-conversion-grid">
+              <article class="worked-conversion-card">
+                <h3>Example: moving to a larger unit</h3>
+                <p>
+                  <code>2048 KB</code> to <code>MB</code> is one step right. In
+                  binary, divide by <code>1024</code>, so the result is
+                  <code>2 MB</code>.
+                </p>
+              </article>
+              <article class="worked-conversion-card">
+                <h3>Example: bits to bytes</h3>
+                <p>
+                  A rate in <code>Mb/s</code> must be divided by
+                  <code>8</code> before comparing it with a file size in
+                  <code>MB</code>.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="practice-zone"
+            class="lesson-section lesson-section--simulation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Practice Zone</p>
+            <h2>Practise conversions</h2>
+            <p class="lesson-section-copy">
+              Type the converted number only, or include the target unit. The
+              checker accepts decimal answers, binary answers, and sensible
+              rounded versions.
+            </p>
+
+            <div class="unit-practice" data-role="unit-practice">
+              <article class="practice-header-card lesson-fullrow">
+                <div>
+                  <h3>Conversion workshop</h3>
+                </div>
+                <div class="practice-tools">
+                  <span class="practice-progress" data-role="practice-progress"
+                    >0 / 12 completed</span
+                  >
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-action="reset-practice"
+                  >
+                    Reset answers
+                  </button>
+                </div>
+              </article>
+
+              <div
+                class="practice-task-grid lesson-fullrow"
+                data-role="practice-task-grid"
+              ></div>
+            </div>
           </section>
 
           <section
@@ -292,54 +503,42 @@
             data-lesson-section
           >
             <p class="eyebrow">Interpretation</p>
-            <h2>Storage capacity and transfer rate use similar units for different ideas</h2>
+            <h2>
+              Storage capacity and transfer rate use similar units for different
+              ideas
+            </h2>
             <p class="lesson-section-copy">
               Capacity tells you how much data can be stored. Transfer rate
-              tells you how quickly data moves. The same prefixes appear in both
-              contexts, but network speeds are often written in bits per second
-              rather than bytes.
+              tells you how quickly data moves. Network speeds are often written
+              in bits per second, while file sizes are usually written in bytes.
             </p>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Storage example</strong>
-                <span>
-                  A file size of <code>80 MB</code> describes how much space
-                  the file uses.
-                </span>
+            <div class="capacity-rate-board">
+              <article class="capacity-rate-card capacity-rate-card--capacity">
+                <span class="data-badge">Capacity</span>
+                <h3>How much fits?</h3>
+                <p>
+                  A file size of <code>80 MB</code> describes how much storage
+                  space the file uses.
+                </p>
               </article>
-              <article class="term-card">
-                <strong>Transfer example</strong>
-                <span>
+              <article class="capacity-rate-card capacity-rate-card--rate">
+                <span class="data-badge">Rate</span>
+                <h3>How fast does it move?</h3>
+                <p>
                   A connection speed of <code>80 Mb/s</code> describes how much
                   data can move each second.
-                </span>
+                </p>
               </article>
-              <article class="term-card">
-                <strong>Useful conversion</strong>
-                <span>
-                  Divide by 8 to change bits into bytes, so
-                  <code>80 Mb/s = 10 MB/s</code>.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Exam habit</strong>
-                <span>
-                  Write the unit beside every answer so the examiner can see
-                  exactly what you calculated.
-                </span>
+              <article class="capacity-rate-card capacity-rate-card--warning">
+                <span class="data-badge">Warning</span>
+                <h3>Compare like with like</h3>
+                <p>
+                  Convert bits to bytes, or bytes to bits, before estimating
+                  transfer time.
+                </p>
               </article>
             </div>
-
-            <article class="lesson-card">
-              <h3>Why the distinction matters</h3>
-              <p>
-                If a <code>200 MB</code> video is downloaded over a
-                <code>40 Mb/s</code> link, you must convert the rate to
-                megabytes per second before estimating time. Otherwise you will
-                compare unlike units and misjudge the download speed.
-              </p>
-            </article>
           </section>
 
           <section
@@ -368,22 +567,21 @@
               </article>
 
               <article class="trap-card">
-                <h3>Forgetting the factor of 8</h3>
+                <h3>Using 1000 or 1024 without checking</h3>
                 <p>
-                  Network rates are often measured in bits per second, but file
-                  sizes are usually measured in bytes.
+                  Decimal and binary unit systems give different numbers, so the
+                  base must match the question.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Use
-                  <code>1 byte = 8 bits</code> before comparing values.
+                  <strong>Fix:</strong> Look for <code>1000</code>,
+                  <code>1024</code>, or binary unit labels such as
+                  <code>MiB</code>.
                 </p>
               </article>
 
               <article class="trap-card">
                 <h3>Leaving the answer unitless</h3>
-                <p>
-                  A number on its own is incomplete in data-size questions.
-                </p>
+                <p>A number on its own is incomplete in data-size questions.</p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Always include the final unit, such as
                   <code>MB</code>, <code>Gb</code>, or <code>seconds</code>.
@@ -400,9 +598,8 @@
             <p class="eyebrow">Quiz</p>
             <h2>Check your understanding</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
-              later.
+              This quiz checks the concepts. Use the practice zone for
+              conversion drills.
             </p>
 
             <form id="lesson-quiz" class="quiz-form">
@@ -410,27 +607,27 @@
                 class="quiz-question"
                 data-question="q1"
                 data-answer="b"
-                data-success="Correct. A byte is made of 8 bits."
-                data-feedback="A byte groups eight bits together."
+                data-success="Correct. A bit stores one binary state."
+                data-feedback="A bit is a binary digit. It can hold one of two values: 0 or 1."
               >
-                <legend>1. How many bits are in one byte?</legend>
+                <legend>1. What is a bit?</legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="a" />
-                      <span>2</span>
+                      <span>A complete file stored on a disk</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="b" />
-                      <span>8</span>
+                      <span>A binary digit that can be 0 or 1</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="c" />
-                      <span>16</span>
+                      <span>A storage device used for backups</span>
                     </label>
                   </li>
                 </ul>
@@ -441,27 +638,30 @@
                 class="quiz-question"
                 data-question="q2"
                 data-answer="a"
-                data-success="Correct. File sizes are commonly given in bytes and their multiples."
-                data-feedback="Storage capacity and file size are usually expressed in bytes rather than bits."
+                data-success="Correct. Patterns of bits can represent different kinds of data."
+                data-feedback="Computers use patterns of binary states to represent numbers, text, images, sound, instructions, and more."
               >
-                <legend>2. Which unit is most commonly used for file size?</legend>
+                <legend>2. Why do bits matter in computer systems?</legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="a" />
-                      <span>MB</span>
+                      <span
+                        >Patterns of bits can represent data and
+                        instructions</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="b" />
-                      <span>Mb/s</span>
+                      <span>Bits are only used for screen brightness</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="c" />
-                      <span>Hz</span>
+                      <span>Bits replace the need for software</span>
                     </label>
                   </li>
                 </ul>
@@ -472,27 +672,35 @@
                 class="quiz-question"
                 data-question="q3"
                 data-answer="c"
-                data-success="Correct. 2 GB equals 2048 MB when using powers of 1024."
-                data-feedback="Multiply by 1024 to convert gigabytes to megabytes in this exam-style context."
+                data-success="Correct. The decimal and binary systems use different step sizes."
+                data-feedback="Decimal units scale by 1000, while binary units scale by 1024."
               >
-                <legend>3. Using powers of 1024, how many MB are in 2 GB?</legend>
+                <legend>
+                  3. Which statement correctly compares the two unit systems?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="a" />
-                      <span>2000</span>
+                      <span
+                        >Decimal and binary units always give identical
+                        answers</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="b" />
-                      <span>2024</span>
+                      <span>Binary units use steps of 10</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="c" />
-                      <span>2048</span>
+                      <span
+                        >Decimal uses 1000 per step; binary uses 1024 per
+                        step</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -503,27 +711,34 @@
                 class="quiz-question"
                 data-question="q4"
                 data-answer="b"
-                data-success="Correct. 64 Mb/s is 8 MB/s because you divide by 8."
-                data-feedback="Convert bits per second to bytes per second by dividing by 8."
+                data-success="Correct. Direction and base are both part of a safe conversion strategy."
+                data-feedback="The safest method is to identify the units, choose the base, count the steps, then multiply or divide in the correct direction."
               >
-                <legend>4. A connection runs at 64 Mb/s. What is that in MB/s?</legend>
+                <legend>
+                  4. What is the safest strategy for a unit conversion?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="a" />
-                      <span>64 MB/s</span>
+                      <span
+                        >Always multiply by the largest number you can see</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="b" />
-                      <span>8 MB/s</span>
+                      <span
+                        >Identify the units, choose the system, count steps,
+                        then multiply or divide</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="c" />
-                      <span>512 MB/s</span>
+                      <span>Ignore the target unit until the final line</span>
                     </label>
                   </li>
                 </ul>
@@ -534,27 +749,38 @@
                 class="quiz-question"
                 data-question="q5"
                 data-answer="a"
-                data-success="Correct. Capacity means how much data can be stored."
-                data-feedback="Capacity describes the amount of data a device or file can hold."
+                data-success="Correct. The letter case changes the meaning of the unit."
+                data-feedback="Lowercase b usually means bits, while uppercase B usually means bytes."
               >
-                <legend>5. What does storage capacity describe?</legend>
+                <legend>
+                  5. Why does <code>Mb</code> mean something different from
+                  <code>MB</code>?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="a" />
-                      <span>How much data can be stored</span>
+                      <span
+                        >The lowercase b means bits and uppercase B means
+                        bytes</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>How quickly the CPU clock ticks</span>
+                      <span
+                        >Lowercase b means binary and uppercase B means
+                        backup</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
-                      <span>How many users are logged in</span>
+                      <span
+                        >They mean exactly the same thing in all contexts</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -586,9 +812,9 @@
             <p class="eyebrow">Exam-Style Practice</p>
             <h2>Try longer answers like the ones used in written papers</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              These questions need fuller explanations than the quick quiz. Type
+              your answers straight into the page, then compare your ideas with
+              the answer guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -602,8 +828,8 @@
                 </div>
                 <h3>Question 1</h3>
                 <p>
-                  Explain the difference between a bit and a byte, and give one
-                  reason why both terms are still needed in computing.
+                  Explain what a bit is and why patterns of bits are important
+                  in a computer system.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-1">
@@ -620,15 +846,15 @@
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
-                      <li>A bit stores one binary value: 0 or 1.</li>
-                      <li>A byte contains 8 bits.</li>
+                      <li>A bit is a binary digit.</li>
+                      <li>It can hold one of two values, 0 or 1.</li>
                       <li>
-                        Bits are often used for bandwidth or very small binary
-                        states.
+                        These values can represent states such as off/on or
+                        false/true.
                       </li>
                       <li>
-                        Bytes are commonly used for file size, RAM, and storage
-                        capacity.
+                        Patterns of bits can represent numbers, text, images,
+                        sound, instructions, and other data.
                       </li>
                     </ul>
                   </div>
@@ -637,14 +863,14 @@
 
               <article class="exam-card">
                 <div class="exam-meta">
-                  <span class="exam-pill">5 marks</span>
-                  <span class="exam-pill">Calculate</span>
+                  <span class="exam-pill">6 marks</span>
+                  <span class="exam-pill">Explain and apply</span>
                 </div>
                 <h3>Question 2</h3>
                 <p>
-                  A file is <code>240 MB</code> and a network runs at
-                  <code>80 Mb/s</code>. Explain how to estimate the transfer
-                  time and why unit conversion is necessary.
+                  A student needs to convert between digital data units. Explain
+                  how they should decide whether to multiply or divide, and how
+                  they should choose between the decimal and binary systems.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-2">
@@ -654,29 +880,28 @@
                     id="exam-response-2"
                     class="exam-response"
                     data-exam-response="question-2"
-                    placeholder="Describe the conversion steps and the final method."
+                    placeholder="Describe the conversion strategy clearly."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
+                      <li>First identify the starting unit and target unit.</li>
+                      <li>Count the steps between them on the unit ladder.</li>
                       <li>
-                        The file size is in megabytes but the rate is in
-                        megabits per second.
+                        Moving to a larger unit means divide; moving to a
+                        smaller unit means multiply.
                       </li>
                       <li>
-                        Convert the rate to megabytes per second by dividing by
-                        8, so <code>80 Mb/s = 10 MB/s</code>.
+                        Use 1000 for decimal units or when the question says to
+                        use 1000.
                       </li>
                       <li>
-                        Divide file size by rate:
-                        <code>240 MB / 10 MB/s = 24 seconds</code>.
+                        Use 1024 for binary units, KiB/MiB/GiB labels, or when
+                        the question says to use 1024.
                       </li>
-                      <li>
-                        Unit conversion is needed because bits and bytes are
-                        different units.
-                      </li>
+                      <li>Include the final unit with the answer.</li>
                     </ul>
                   </div>
                 </details>
@@ -699,8 +924,12 @@
                 <dd>A group of 8 bits.</dd>
               </div>
               <div class="glossary-item">
-                <dt>Capacity</dt>
-                <dd>The amount of data that can be stored.</dd>
+                <dt>Decimal units</dt>
+                <dd>Data units that scale by 1000 each step.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Binary units</dt>
+                <dd>Data units that scale by 1024 each step.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Bandwidth</dt>
@@ -714,7 +943,7 @@
             <h2>Read the final letter</h2>
             <ul class="memory-list">
               <li><code>b</code> means bits and <code>B</code> means bytes.</li>
-              <li>Capacity and transfer rate describe different things.</li>
+              <li>Decimal and binary systems use different step sizes.</li>
               <li>Unit conversion should happen before the calculation.</li>
             </ul>
           </section>
@@ -740,7 +969,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 10</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

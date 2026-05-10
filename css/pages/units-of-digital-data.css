@@ -1,0 +1,415 @@
+.data-overview-map,
+.bit-state-visual,
+.bit-pattern-board,
+.unit-ladder-visual,
+.direction-board,
+.unit-system-board,
+.conversion-steps,
+.worked-conversion-grid,
+.unit-practice,
+.capacity-rate-board {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.data-overview-map,
+.bit-pattern-board,
+.direction-board,
+.unit-system-board,
+.worked-conversion-grid,
+.capacity-rate-board {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.bit-state-visual {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.unit-ladder-visual {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.conversion-steps {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.unit-practice {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.unit-practice > .lesson-fullrow {
+  grid-column: 1 / -1;
+}
+
+.data-overview-card,
+.bit-state,
+.pattern-card,
+.ladder-unit,
+.direction-card,
+.unit-system-card,
+.conversion-step,
+.worked-conversion-card,
+.capacity-rate-card,
+.practice-header-card,
+.practice-task-card {
+  display: grid;
+  gap: 0.58rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.data-overview-card,
+.bit-state,
+.ladder-unit {
+  justify-items: center;
+  text-align: center;
+}
+
+.data-overview-card h3,
+.bit-state strong,
+.pattern-card h3,
+.ladder-unit strong,
+.direction-card h3,
+.unit-system-card h3,
+.conversion-step h3,
+.worked-conversion-card h3,
+.capacity-rate-card h3,
+.practice-header-card h3,
+.practice-task-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.data-overview-card p,
+.bit-state span,
+.pattern-card span,
+.ladder-unit span:not(.data-badge),
+.direction-card p,
+.unit-system-card p,
+.conversion-step p,
+.worked-conversion-card p,
+.capacity-rate-card p,
+.practice-header-card p,
+.practice-task-note,
+.practice-task-hint {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.data-badge,
+.practice-progress,
+.practice-task-label,
+.practice-unit-pill {
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.data-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.data-icon--bit {
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, rgba(31, 135, 125, 0.24) 0 50%, transparent 50%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.data-icon--byte {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(120, 94, 22, 0.22) 0 10%,
+      transparent 10% 14%,
+      rgba(120, 94, 22, 0.22) 14% 24%,
+      transparent 24% 28%,
+      rgba(120, 94, 22, 0.22) 28% 38%,
+      transparent 38% 42%,
+      rgba(120, 94, 22, 0.22) 42% 52%,
+      transparent 52% 56%,
+      rgba(120, 94, 22, 0.22) 56% 66%,
+      transparent 66% 70%,
+      rgba(120, 94, 22, 0.22) 70% 80%,
+      transparent 80% 84%,
+      rgba(120, 94, 22, 0.22) 84% 94%,
+      transparent 94%
+    ),
+    rgba(255, 249, 227, 0.96);
+}
+
+.data-icon--systems {
+  background:
+    radial-gradient(circle at 32% 38%, #1f877d 0 0.26rem, transparent 0.28rem),
+    radial-gradient(circle at 68% 62%, #785e16 0 0.26rem, transparent 0.28rem),
+    linear-gradient(
+      135deg,
+      transparent 43%,
+      rgba(55, 129, 53, 0.24) 44% 56%,
+      transparent 57%
+    ),
+    rgba(238, 248, 231, 0.96);
+}
+
+.data-overview-card--bit,
+.bit-state--zero,
+.unit-system-card--decimal,
+.capacity-rate-card--capacity {
+  border-color: rgba(31, 135, 125, 0.2);
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.data-overview-card--byte,
+.bit-state--one,
+.unit-system-card--binary,
+.direction-card--larger,
+.capacity-rate-card--rate {
+  border-color: rgba(185, 140, 25, 0.22);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.data-overview-card--systems,
+.direction-card--smaller,
+.capacity-rate-card--warning,
+.practice-header-card {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.bit-state strong {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1;
+}
+
+.pattern-card p,
+.worked-conversion-card code,
+.capacity-rate-card code {
+  overflow-wrap: anywhere;
+}
+
+.byte-visual {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+
+.byte-visual span {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.ladder-unit {
+  align-content: center;
+  min-height: 8.5rem;
+  padding: 0.85rem;
+}
+
+.ladder-unit--bits {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: rgba(255, 240, 241, 0.88);
+}
+
+.conversion-step,
+.practice-task-card {
+  border-left: 4px solid rgba(37, 52, 66, 0.16);
+}
+
+.practice-header-card {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+
+.practice-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.practice-progress {
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.practice-task-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.practice-task-card {
+  align-content: start;
+}
+
+.practice-task-card.is-correct {
+  border-color: rgba(55, 129, 53, 0.34);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.practice-task-card.is-incorrect {
+  border-color: rgba(190, 91, 91, 0.26);
+  background: rgba(255, 240, 241, 0.88);
+}
+
+.practice-task-top,
+.practice-task-form {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.practice-task-title {
+  font-size: 1rem;
+}
+
+.practice-answer-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.practice-task-input {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 52, 66, 0.16);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.practice-task-input:focus {
+  outline: 3px solid rgba(31, 135, 125, 0.22);
+  outline-offset: 2px;
+}
+
+.practice-unit-pill {
+  min-width: 3.6rem;
+  justify-self: end;
+  text-align: center;
+}
+
+.practice-feedback {
+  min-height: 4.2rem;
+  margin: 0;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-ink);
+  font-size: 0.9rem;
+}
+
+.practice-feedback.is-correct {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.98);
+  color: #29523b;
+}
+
+.practice-feedback.is-incorrect {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: rgba(255, 240, 241, 0.98);
+  color: #8b4831;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body.teacher-mode-active .data-overview-map,
+body.teacher-mode-active .bit-pattern-board,
+body.teacher-mode-active .unit-system-board,
+body.teacher-mode-active .worked-conversion-grid,
+body.teacher-mode-active .capacity-rate-board {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .unit-ladder-visual {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .conversion-steps {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .unit-ladder-visual,
+  body.teacher-mode-active .unit-ladder-visual {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .conversion-steps,
+  body.teacher-mode-active .conversion-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .bit-state-visual,
+  .unit-ladder-visual,
+  .conversion-steps,
+  .practice-header-card,
+  body.teacher-mode-active .data-overview-map,
+  body.teacher-mode-active .bit-pattern-board,
+  body.teacher-mode-active .unit-system-board,
+  body.teacher-mode-active .worked-conversion-grid,
+  body.teacher-mode-active .capacity-rate-board,
+  body.teacher-mode-active .unit-ladder-visual,
+  body.teacher-mode-active .conversion-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .byte-visual {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .practice-tools {
+    justify-content: flex-start;
+  }
+
+  .practice-answer-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-unit-pill {
+    justify-self: start;
+  }
+}

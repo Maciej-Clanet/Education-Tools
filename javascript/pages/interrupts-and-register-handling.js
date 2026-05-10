@@ -17,8 +17,9 @@ const lessonConfig = {
       },
       next: {
         title: "Units of digital data",
-        description: "Next in C1 Number systems. This lesson is still planned.",
-        status: "Planned",
+        description: "Next in C1 Number systems.",
+        status: "Live",
+        href: "../topics/units-of-digital-data.html",
       },
     },
   },

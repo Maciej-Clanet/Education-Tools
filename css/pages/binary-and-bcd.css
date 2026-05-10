@@ -1,0 +1,567 @@
+.binary-overview-map,
+.base-system-board,
+.conversion-method-grid,
+.place-value-summary,
+.binary-practice,
+.bcd-visual,
+.bcd-compare-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.binary-overview-map,
+.base-system-board,
+.conversion-method-grid,
+.place-value-summary,
+.bcd-compare-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.binary-practice {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.binary-practice > .lesson-fullrow {
+  grid-column: 1 / -1;
+}
+
+.binary-overview-card,
+.base-system-card,
+.conversion-method-card,
+.place-summary-card,
+.binary-conversion-simulator,
+.practice-header-card,
+.practice-panel,
+.conversion-task-card,
+.practice-completion-card,
+.bcd-card,
+.bcd-compare-card,
+.binary-scratch-card {
+  display: grid;
+  gap: 0.58rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(247, 251, 253, 0.84)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.binary-overview-card,
+.place-summary-card,
+.bcd-card {
+  justify-items: center;
+  text-align: center;
+}
+
+.binary-overview-card h3,
+.base-system-card h3,
+.conversion-method-card h3,
+.place-summary-card strong,
+.binary-sim-header h3,
+.practice-header-card h3,
+.practice-panel h3,
+.conversion-task-card h3,
+.practice-completion-card h3,
+.bcd-compare-card h3,
+.binary-scratch-card h2 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.binary-overview-card p,
+.base-system-card p,
+.conversion-method-card li,
+.binary-sim-header p,
+.binary-sim-note,
+.practice-header-card p,
+.practice-completion-card p,
+.conversion-task-note,
+.bcd-compare-card p,
+.binary-scratch-card p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.base-badge,
+.binary-sim-pill,
+.practice-progress,
+.conversion-task-label {
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.binary-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.binary-icon--bit {
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, rgba(31, 135, 125, 0.26) 0 50%, transparent 50%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.binary-icon--byte {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 94, 22, 0.24) 0 0.38rem,
+      transparent 0.38rem 0.62rem
+    ),
+    rgba(255, 249, 227, 0.96);
+}
+
+.binary-icon--system {
+  background:
+    radial-gradient(circle at 34% 34%, #1f877d 0 0.24rem, transparent 0.26rem),
+    radial-gradient(circle at 66% 66%, #785e16 0 0.24rem, transparent 0.26rem),
+    linear-gradient(
+      135deg,
+      transparent 43%,
+      rgba(55, 129, 53, 0.24) 44% 56%,
+      transparent 57%
+    ),
+    rgba(238, 248, 231, 0.96);
+}
+
+.binary-overview-card--bit,
+.base-system-card--binary,
+.conversion-method-card--binary,
+.place-summary-card:first-child,
+.bcd-card--digit {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: rgba(232, 246, 255, 0.9);
+}
+
+.binary-overview-card--byte,
+.base-system-card--denary,
+.conversion-method-card--denary,
+.place-summary-card:nth-child(2),
+.bcd-card--result {
+  border-color: rgba(185, 140, 25, 0.22);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.binary-overview-card--system,
+.base-system-card--hex,
+.place-summary-card:nth-child(3),
+.practice-header-card,
+.practice-completion-card {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.base-place-row,
+.binary-sim-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.base-place-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.base-place-row span,
+.binary-sim-cell {
+  display: grid;
+  place-items: center;
+  min-height: 2.85rem;
+  padding: 0.48rem 0.3rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--page-ink);
+  font-weight: 900;
+  text-align: center;
+}
+
+.binary-place-table-wrap,
+.scratch-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+}
+
+.binary-place-table,
+.binary-scratch-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.binary-place-table caption {
+  margin-bottom: 0.65rem;
+  color: var(--muted-ink);
+  text-align: left;
+}
+
+.binary-place-table th,
+.binary-place-table td,
+.binary-scratch-table th,
+.binary-scratch-table td {
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  padding: 0.7rem 0.4rem;
+  text-align: center;
+}
+
+.binary-place-table th:first-child {
+  width: 5.3rem;
+  background: rgba(31, 135, 125, 0.1);
+  text-align: left;
+}
+
+.binary-place-table .is-included {
+  background: rgba(238, 248, 231, 0.94);
+  color: #29523b;
+  font-weight: 900;
+}
+
+.place-summary-card span {
+  color: var(--page-ink);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 900;
+}
+
+.binary-sim-header,
+.practice-header-card,
+.practice-panel-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.binary-sim-form {
+  display: grid;
+  gap: 0.45rem;
+  min-width: min(16rem, 100%);
+}
+
+.binary-sim-form label {
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.binary-sim-input-row,
+.binary-sim-controls,
+.binary-sim-status-row,
+.practice-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.binary-sim-input-row input {
+  width: 6rem;
+  min-height: 2.8rem;
+  padding: 0.62rem 0.7rem;
+  border: 1px solid rgba(37, 52, 66, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 800;
+}
+
+.binary-sim-status-row {
+  margin-top: 0.2rem;
+}
+
+.binary-sim-cell {
+  gap: 0.18rem;
+  align-content: center;
+  min-height: 5.2rem;
+}
+
+.binary-sim-cell small {
+  color: var(--muted-ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.binary-sim-cell strong {
+  color: var(--page-ink);
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  line-height: 1;
+}
+
+.binary-sim-cell.is-current {
+  border-color: rgba(120, 94, 22, 0.38);
+  background: rgba(255, 249, 227, 0.96);
+  box-shadow: 0 12px 20px rgba(36, 49, 59, 0.08);
+}
+
+.binary-sim-cell.is-one {
+  border-color: rgba(55, 129, 53, 0.28);
+  background: rgba(238, 248, 231, 0.96);
+}
+
+.binary-sim-cell.is-zero {
+  background: rgba(247, 251, 253, 0.92);
+  color: var(--muted-ink);
+}
+
+.binary-sim-action,
+.binary-sim-note {
+  padding: 0.72rem 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.binary-sim-action {
+  margin: 0;
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.practice-tools {
+  justify-content: flex-end;
+}
+
+.practice-panel {
+  align-content: start;
+}
+
+.conversion-task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.conversion-task-card {
+  align-content: start;
+  border-left: 4px solid rgba(37, 52, 66, 0.16);
+}
+
+.conversion-task-card.is-correct {
+  border-color: rgba(55, 129, 53, 0.34);
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.conversion-task-card.is-incorrect {
+  border-color: rgba(190, 91, 91, 0.28);
+  background: rgba(255, 240, 241, 0.9);
+}
+
+.conversion-task-top,
+.conversion-task-form {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.conversion-task-title {
+  font-size: 1rem;
+}
+
+.conversion-answer-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.conversion-task-input {
+  width: 100%;
+  min-height: 2.8rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.conversion-task-input:focus,
+.binary-sim-input-row input:focus,
+.binary-scratch-table input:focus {
+  outline: 3px solid rgba(31, 135, 125, 0.22);
+  outline-offset: 2px;
+}
+
+.conversion-feedback {
+  min-height: 3.7rem;
+  margin: 0;
+  padding: 0.7rem 0.78rem;
+  border: 1px solid rgba(37, 52, 66, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-ink);
+  font-size: 0.9rem;
+}
+
+.conversion-feedback.is-correct {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.98);
+  color: #29523b;
+}
+
+.conversion-feedback.is-incorrect {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: rgba(255, 240, 241, 0.98);
+  color: #8b4831;
+}
+
+.bcd-visual {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr);
+  align-items: stretch;
+}
+
+.bcd-card strong {
+  color: var(--page-ink);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1;
+}
+
+.bcd-card code {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 900;
+}
+
+.binary-scratch-table {
+  min-width: 0;
+  font-size: 0.72rem;
+}
+
+.binary-scratch-table th,
+.binary-scratch-table td {
+  padding: 0.28rem 0.1rem;
+}
+
+.binary-scratch-table th {
+  background: rgba(232, 246, 255, 0.88);
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.binary-scratch-table input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.1rem;
+  border: none;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 900;
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body.teacher-mode-active .binary-overview-map,
+body.teacher-mode-active .base-system-board,
+body.teacher-mode-active .conversion-method-grid,
+body.teacher-mode-active .place-value-summary,
+body.teacher-mode-active .bcd-compare-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .bcd-visual {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .binary-sim-grid {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .binary-practice {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 1181px) {
+  .lesson-rail {
+    position: sticky;
+    top: 1rem;
+    align-self: start;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+}
+
+@media (max-width: 900px) {
+  .binary-sim-header,
+  .practice-header-card,
+  .practice-panel-header {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-tools {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .binary-overview-map,
+  .base-system-board,
+  .conversion-method-grid,
+  .place-value-summary,
+  .bcd-visual,
+  .bcd-compare-grid,
+  body.teacher-mode-active .binary-overview-map,
+  body.teacher-mode-active .base-system-board,
+  body.teacher-mode-active .conversion-method-grid,
+  body.teacher-mode-active .place-value-summary,
+  body.teacher-mode-active .bcd-visual,
+  body.teacher-mode-active .bcd-compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .binary-sim-grid,
+  body.teacher-mode-active .binary-sim-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .conversion-answer-row,
+  .binary-sim-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .binary-sim-input-row {
+    display: grid;
+  }
+
+  .binary-sim-input-row input,
+  .binary-sim-input-row button,
+  .binary-sim-controls > *,
+  .conversion-answer-row button {
+    width: 100%;
+  }
+
+  .binary-place-table {
+    min-width: 540px;
+  }
+}

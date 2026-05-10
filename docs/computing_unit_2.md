@@ -123,8 +123,8 @@ saved progress should be shown as needing a fresh attempt.
 ## C How data is represented by computer systems
 
 ### C1 Number systems
-- [ ] Units of digital data
-- [ ] Binary and BCD
+- [x] Units of digital data
+- [x] Binary and BCD
 - [ ] Binary arithmetic
 - [ ] Negative and floating point representation
 
