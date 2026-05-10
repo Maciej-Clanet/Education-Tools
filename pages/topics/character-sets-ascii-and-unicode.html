@@ -8,7 +8,7 @@
     </title>
     <meta
       name="description"
-      content="Revise character sets, ASCII, Unicode, and the implications of text encoding for BTEC Level 3 Computing Unit 2."
+      content="Revise character sets, ASCII, Unicode, UTF-8, code points, compatibility, and text encoding implications for BTEC Level 3 Computing Unit 2."
     />
     <meta
       property="og:title"
@@ -16,7 +16,7 @@
     />
     <meta
       property="og:description"
-      content="Revise character sets, ASCII, Unicode, and the implications of text encoding for BTEC Level 3 Computing Unit 2."
+      content="Revise character sets, ASCII, Unicode, UTF-8, code points, compatibility, and text encoding implications for BTEC Level 3 Computing Unit 2."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/character-sets-ascii-and-unicode.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -55,8 +59,9 @@
           <div>
             <h1>Character sets, ASCII, and Unicode</h1>
             <p class="lesson-hero-text">
-              Learn why computers need agreed character codes, how ASCII works,
-              and why Unicode is essential for modern multilingual text.
+              Learn how visible text becomes stored binary data, why agreed
+              character codes matter, where ASCII fits, and why Unicode is
+              needed for modern global text.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -74,7 +79,11 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Character encoding, ASCII, Unicode, and compatibility</span>
+            <span>Character sets, ASCII, Unicode, and compatibility</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Practice focus</strong>
+            <span>Inspecting characters and judging ASCII suitability</span>
           </article>
         </div>
 
@@ -102,8 +111,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, and teacher slides need JavaScript, but
-          the lesson notes still work without it.
+          Quiz scoring, answer saving, practice tools, and teacher slides need
+          JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -115,6 +124,8 @@
             <a href="#character-sets" data-section-link>Character sets</a>
             <a href="#ascii" data-section-link>ASCII</a>
             <a href="#unicode" data-section-link>Unicode</a>
+            <a href="#inspector" data-section-link>Inspector</a>
+            <a href="#practice" data-section-link>Practice</a>
             <a href="#implications" data-section-link>Implications</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
@@ -129,31 +140,55 @@
             data-lesson-section
           >
             <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
+            <h2>Text is stored as numbers, then interpreted as characters</h2>
             <p class="lesson-section-copy">
-              Computers do not store letters as visible shapes. They store
-              numeric codes that software interprets as characters, symbols, and
-              control instructions.
+              A computer does not store the shape of a letter every time you
+              type it. It stores a numeric code. Software then uses an agreed
+              character set to interpret that code as a letter, digit, symbol,
+              or control instruction.
             </p>
+
+            <div class="text-pipeline" aria-label="Text encoding pipeline">
+              <article class="pipeline-card pipeline-card--character">
+                <span class="pipeline-symbol">A</span>
+                <h3>Character</h3>
+                <p>The visible symbol a user expects to read.</p>
+              </article>
+              <article class="pipeline-card pipeline-card--code">
+                <span class="pipeline-symbol">65</span>
+                <h3>Code</h3>
+                <p>The agreed number assigned by the character set.</p>
+              </article>
+              <article class="pipeline-card pipeline-card--binary">
+                <span class="pipeline-symbol">1000001</span>
+                <h3>Binary</h3>
+                <p>The stored or transmitted bit pattern.</p>
+              </article>
+              <article class="pipeline-card pipeline-card--display">
+                <span class="pipeline-symbol">A</span>
+                <h3>Display</h3>
+                <p>The software turns the code back into text.</p>
+              </article>
+            </div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Explain why character sets are needed.</li>
-                  <li>Describe the basic features of ASCII.</li>
-                  <li>Explain why Unicode is widely used.</li>
-                  <li>Link encoding choices to compatibility and storage.</li>
+                  <li>Describe the purpose and limitations of ASCII.</li>
+                  <li>Explain why Unicode supports wider modern text.</li>
+                  <li>Connect encoding choices to storage and compatibility.</li>
                 </ul>
               </article>
 
               <article class="lesson-card">
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
-                  <li><strong>Character set:</strong> agreed code mapping.</li>
-                  <li><strong>ASCII:</strong> smaller, older standard.</li>
-                  <li><strong>Unicode:</strong> much wider character coverage.</li>
-                  <li><strong>Encoding:</strong> how text becomes stored data.</li>
+                  <li><strong>Character set:</strong> maps codes to characters.</li>
+                  <li><strong>ASCII:</strong> 7-bit, 128 standard codes.</li>
+                  <li><strong>Unicode:</strong> wide international coverage.</li>
+                  <li><strong>Encoding:</strong> how codes become stored bytes.</li>
                 </ul>
               </article>
             </div>
@@ -165,42 +200,59 @@
             data-lesson-section
           >
             <p class="eyebrow">Foundations</p>
-            <h2>Character sets let systems agree what each code means</h2>
+            <h2>A character set gives each character an agreed code</h2>
             <p class="lesson-section-copy">
-              A character set is a standard list that matches numeric codes to
-              letters, digits, punctuation, symbols, and control characters. If
-              two systems use different mappings, the same stored value can be
-              displayed as the wrong character.
+              A character set is a standard mapping between stored numbers and
+              characters. It can include letters, digits, punctuation, symbols,
+              and control characters. If two systems do not agree on the
+              mapping, the same stored data can be displayed incorrectly.
             </p>
+
+            <div class="mapping-board">
+              <article class="mapping-card">
+                <span class="mapping-character">A</span>
+                <div>
+                  <strong>Denary 65</strong>
+                  <code>1000001</code>
+                </div>
+                <p>Uppercase letter A in ASCII and Unicode.</p>
+              </article>
+
+              <article class="mapping-card">
+                <span class="mapping-character">0</span>
+                <div>
+                  <strong>Denary 48</strong>
+                  <code>0110000</code>
+                </div>
+                <p>The character <code>0</code>, not the number zero.</p>
+              </article>
+
+              <article class="mapping-card">
+                <span class="mapping-character">LF</span>
+                <div>
+                  <strong>Denary 10</strong>
+                  <code>0001010</code>
+                </div>
+                <p>A line feed control code, used for a new line.</p>
+              </article>
+            </div>
 
             <div class="term-grid">
               <article class="term-card">
-                <strong>Text is data</strong>
-                <span>
-                  Characters must be converted into binary before a computer can
-                  store or transmit them.
-                </span>
+                <strong>Printable characters</strong>
+                <span>Visible letters, digits, punctuation, and symbols.</span>
               </article>
               <article class="term-card">
-                <strong>Agreed meaning</strong>
-                <span>
-                  The standard makes sure code 65, for example, means the same
-                  thing to both sender and receiver.
-                </span>
+                <strong>Control characters</strong>
+                <span>Codes for actions such as tab, line feed, or escape.</span>
               </article>
               <article class="term-card">
-                <strong>Control codes</strong>
-                <span>
-                  Some values are not visible letters at all. They may mean line
-                  break, tab, or another command.
-                </span>
+                <strong>Code point</strong>
+                <span>The number assigned to a character in a character set.</span>
               </article>
               <article class="term-card">
-                <strong>Compatibility issue</strong>
-                <span>
-                  Mismatched encodings can create garbled text or missing
-                  symbols.
-                </span>
+                <strong>Encoding</strong>
+                <span>The method used to store those codes as bytes.</span>
               </article>
             </div>
           </section>
@@ -211,27 +263,59 @@
             data-lesson-section
           >
             <p class="eyebrow">ASCII</p>
-            <h2>ASCII is a small, widely recognised character standard</h2>
+            <h2>ASCII is small, simple, and historically important</h2>
             <p class="lesson-section-copy">
-              ASCII uses a limited number of codes to represent common English
-              letters, digits, punctuation, and control characters. It is often
-              described as a 7-bit standard, giving 128 possible codes.
+              Standard ASCII uses 7 bits, giving <code>128</code> possible
+              codes. It covers English uppercase and lowercase letters, digits,
+              punctuation, and control characters. It is useful for explaining
+              the principle of text encoding, but it is too limited for modern
+              international text.
             </p>
 
-            <div class="example-strip" aria-label="ASCII summary">
-              <span class="example-chip"><strong>7-bit standard</strong> 128 codes</span>
-              <span class="example-chip"><strong>Good for</strong> basic Latin text</span>
-              <span class="example-chip"><strong>Limitation</strong> small character range</span>
+            <div class="ascii-grid" aria-label="ASCII code examples">
+              <article>
+                <span>Space</span>
+                <strong>32</strong>
+                <code>0100000</code>
+              </article>
+              <article>
+                <span>0</span>
+                <strong>48</strong>
+                <code>0110000</code>
+              </article>
+              <article>
+                <span>A</span>
+                <strong>65</strong>
+                <code>1000001</code>
+              </article>
+              <article>
+                <span>a</span>
+                <strong>97</strong>
+                <code>1100001</code>
+              </article>
             </div>
 
-            <article class="lesson-card">
-              <h3>Why ASCII still matters</h3>
-              <p>
-                ASCII appears in many exam questions because it is simple and
-                historically important. It helps explain how text encoding works
-                before moving to larger standards.
-              </p>
-            </article>
+            <div class="ascii-limit-strip">
+              <article>
+                <h3>Strength</h3>
+                <p>ASCII is compact and easy to process for basic text.</p>
+              </article>
+              <article>
+                <h3>Limit</h3>
+                <p>
+                  Standard ASCII cannot represent characters such as
+                  <code>&pound;</code>, <code>&eacute;</code>, or
+                  <code>&Omega;</code>.
+                </p>
+              </article>
+              <article>
+                <h3>Exam note</h3>
+                <p>
+                  Extended ASCII exists, but different extensions used different
+                  extra characters, so compatibility was not guaranteed.
+                </p>
+              </article>
+            </div>
           </section>
 
           <section
@@ -240,30 +324,194 @@
             data-lesson-section
           >
             <p class="eyebrow">Unicode</p>
-            <h2>Unicode supports a far wider range of languages and symbols</h2>
+            <h2>Unicode is designed for many languages and symbols</h2>
             <p class="lesson-section-copy">
-              Unicode was designed so modern systems can represent characters
-              from many languages, plus mathematical symbols, currency signs,
-              and more. It solves the problem of ASCII being too limited for
-              global computing.
+              Unicode gives characters from many writing systems a consistent
+              code point. This helps websites, documents, databases, and
+              messaging apps exchange text across countries, devices, and
+              software platforms.
             </p>
 
-            <article class="lesson-card">
-              <h3>Why Unicode is important</h3>
-              <p>
-                A multilingual website, messaging app, or document system needs
-                more than the small ASCII set. Unicode allows text from
-                different writing systems to be handled more consistently across
-                software and devices.
-              </p>
-            </article>
+            <div class="unicode-map" aria-label="Unicode examples">
+              <article>
+                <span>A</span>
+                <strong>U+0041</strong>
+                <p>Basic Latin</p>
+              </article>
+              <article>
+                <span>&pound;</span>
+                <strong>U+00A3</strong>
+                <p>Currency symbol</p>
+              </article>
+              <article>
+                <span>&Omega;</span>
+                <strong>U+03A9</strong>
+                <p>Greek letter</p>
+              </article>
+              <article>
+                <span>&#28450;</span>
+                <strong>U+6F22</strong>
+                <p>CJK character</p>
+              </article>
+            </div>
 
             <article class="lesson-card">
-              <h3>Main trade-off</h3>
+              <h3>Unicode is the character set, UTF-8 is an encoding</h3>
               <p>
-                Supporting a much wider range of characters can increase storage
-                and processing demands compared with a smaller encoding, but the
-                compatibility benefits are usually worth it.
+                Unicode defines the code points. UTF-8 is one common way to
+                store those code points as bytes. UTF-8 is widely used on the
+                web because the first 128 Unicode code points match ASCII, while
+                wider characters can use more bytes when needed.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="inspector"
+            class="lesson-section lesson-section--inspector panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Interactive</p>
+            <h2>Inspect how characters become codes</h2>
+            <p class="lesson-section-copy">
+              Type a short message or choose a sample. The table shows each
+              character, its Unicode code point, whether it fits standard ASCII,
+              and the UTF-8 bytes that would store it.
+            </p>
+
+            <article
+              class="character-inspector"
+              data-role="character-inspector"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Text inspector</p>
+                  <h3>Character code viewer</h3>
+                </div>
+                <div class="sample-actions" aria-label="Sample messages">
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-inspector-sample="Code 65 = A"
+                  >
+                    ASCII
+                  </button>
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-inspector-sample="Caf&eacute;"
+                  >
+                    Accent
+                  </button>
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-inspector-sample="Price &pound;12"
+                  >
+                    Currency
+                  </button>
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-inspector-sample="Omega &Omega;"
+                  >
+                    Symbol
+                  </button>
+                </div>
+              </div>
+
+              <label class="inspector-input-label">
+                Message
+                <textarea
+                  rows="3"
+                  maxlength="40"
+                  data-role="inspector-input"
+                ></textarea>
+              </label>
+
+              <div class="inspector-summary">
+                <article>
+                  <span>Characters</span>
+                  <strong data-role="inspector-character-count">0</strong>
+                </article>
+                <article>
+                  <span>ASCII check</span>
+                  <strong data-role="inspector-ascii-status">-</strong>
+                </article>
+                <article>
+                  <span>UTF-8 bytes</span>
+                  <strong data-role="inspector-utf8-count">0</strong>
+                </article>
+              </div>
+
+              <div class="character-table-wrap">
+                <div
+                  class="character-code-table"
+                  data-role="inspector-table"
+                ></div>
+              </div>
+
+              <p class="tool-note" data-role="inspector-note">
+                Type text to inspect its character codes.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="practice"
+            class="lesson-section lesson-section--practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Practice</p>
+            <h2>Can standard ASCII store this whole message?</h2>
+            <p class="lesson-section-copy">
+              Look at the message and decide whether every character is inside
+              the first 128 ASCII codes. This is about suitability, not
+              memorising every code number.
+            </p>
+
+            <article class="ascii-practice" data-role="ascii-practice">
+              <div class="practice-message" data-role="ascii-practice-message">
+                HELLO
+              </div>
+              <div class="ascii-choice-row">
+                <button
+                  type="button"
+                  class="lesson-secondary-action"
+                  data-ascii-choice="yes"
+                >
+                  Yes, ASCII can store it
+                </button>
+                <button
+                  type="button"
+                  class="lesson-secondary-action"
+                  data-ascii-choice="no"
+                >
+                  No, Unicode is needed
+                </button>
+              </div>
+              <div class="practice-action-row">
+                <button
+                  type="button"
+                  class="primary-link"
+                  data-action="check-ascii-practice"
+                >
+                  Check answer
+                </button>
+                <button
+                  type="button"
+                  class="lesson-secondary-action"
+                  data-action="new-ascii-practice"
+                >
+                  New message
+                </button>
+              </div>
+              <p
+                class="practice-feedback"
+                data-role="ascii-practice-feedback"
+                aria-live="polite"
+              >
+                Decide whether standard ASCII can store every character.
               </p>
             </article>
           </section>
@@ -274,31 +522,43 @@
             data-lesson-section
           >
             <p class="eyebrow">Implications</p>
-            <h2>Encoding choices affect compatibility, storage, and user experience</h2>
+            <h2>Encoding choices affect compatibility, storage, and users</h2>
+            <p class="lesson-section-copy">
+              Text encoding is not just a technical detail. It affects whether
+              users can type their names correctly, whether data is exchanged
+              safely between systems, and how much storage or bandwidth text
+              may need.
+            </p>
+
             <div class="compare-table-wrap">
               <table class="compare-table">
                 <thead>
                   <tr>
-                    <th>Question</th>
-                    <th>ASCII</th>
-                    <th>Unicode</th>
+                    <th>Issue</th>
+                    <th>Why it matters</th>
+                    <th>Example</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Character range</td>
-                    <td>Small and basic</td>
-                    <td>Very wide</td>
+                    <td>Compatibility</td>
+                    <td>Systems must interpret the same bytes the same way.</td>
+                    <td><code>caf&eacute;</code> can become <code>caf&Atilde;&copy;</code>.</td>
                   </tr>
                   <tr>
-                    <td>Good for</td>
-                    <td>Simple English text</td>
-                    <td>Global text and varied symbols</td>
+                    <td>Storage</td>
+                    <td>Wider characters can need more bytes in UTF-8.</td>
+                    <td>Plain ASCII text is compact.</td>
                   </tr>
                   <tr>
-                    <td>Main issue</td>
-                    <td>Cannot cover many languages</td>
-                    <td>Can require more storage</td>
+                    <td>Accessibility and inclusion</td>
+                    <td>People need names, languages, and symbols represented correctly.</td>
+                    <td>Unicode supports a wider range of writing systems.</td>
+                  </tr>
+                  <tr>
+                    <td>Validation</td>
+                    <td>Systems should not reject valid characters unnecessarily.</td>
+                    <td>A form should handle accents and currency signs where needed.</td>
                   </tr>
                 </tbody>
               </table>
@@ -316,7 +576,8 @@
               <article class="trap-card">
                 <h3>Calling ASCII a language</h3>
                 <p>
-                  ASCII is a coding standard, not a spoken or written language.
+                  ASCII is a character coding standard, not a spoken or written
+                  language.
                 </p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Describe it as a character set or
@@ -325,26 +586,26 @@
               </article>
 
               <article class="trap-card">
-                <h3>Assuming Unicode means one language</h3>
+                <h3>Mixing up character set and font</h3>
                 <p>
-                  Unicode exists to support many languages and symbol sets, not
-                  a single one.
+                  A character set decides which code means which character. A
+                  font decides how that character looks on screen.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Link Unicode to international or
-                  multilingual text.
+                  <strong>Fix:</strong> Use font only when discussing visual
+                  style.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Ignoring compatibility</h3>
+                <h3>Assuming Unicode always wastes storage</h3>
                 <p>
-                  Encoding is not just about storage. It affects whether systems
-                  can exchange and display text correctly.
+                  UTF-8 stores standard ASCII characters in one byte each, while
+                  wider characters use more bytes.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Mention mismatched codes causing garbled
-                  characters.
+                  <strong>Fix:</strong> Say the storage impact depends on the
+                  encoding and characters used.
                 </p>
               </article>
             </div>
@@ -356,11 +617,10 @@
             data-lesson-section
           >
             <p class="eyebrow">Quiz</p>
-            <h2>Check your understanding</h2>
+            <h2>Check the concepts</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
-              later.
+              The interactive tools handle examples. This quiz checks the ideas
+              that explain why character sets and encodings matter.
             </p>
 
             <form id="lesson-quiz" class="quiz-form">
@@ -399,27 +659,27 @@
                 class="quiz-question"
                 data-question="q2"
                 data-answer="a"
-                data-success="Correct. ASCII is commonly described as a 7-bit standard."
-                data-feedback="ASCII uses 7 bits in its standard form, giving 128 codes."
+                data-success="Correct. Standard ASCII uses 7 bits, giving 128 codes."
+                data-feedback="Standard ASCII is usually described as 7-bit, so it has a limited character range."
               >
-                <legend>2. How many bits are used in standard ASCII?</legend>
+                <legend>2. What is a key feature of standard ASCII?</legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="a" />
-                      <span>7</span>
+                      <span>It uses 7 bits and has 128 standard codes</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="b" />
-                      <span>8</span>
+                      <span>It stores every writing system in the world</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="c" />
-                      <span>16</span>
+                      <span>It is an image compression method</span>
                     </label>
                   </li>
                 </ul>
@@ -431,7 +691,7 @@
                 data-question="q3"
                 data-answer="c"
                 data-success="Correct. Unicode supports a much wider character range."
-                data-feedback="Unicode is used so systems can handle many languages and symbols."
+                data-feedback="Unicode is used so systems can handle many languages and symbols consistently."
               >
                 <legend>3. Why is Unicode widely used?</legend>
                 <ul class="quiz-answer-list">
@@ -461,7 +721,7 @@
                 class="quiz-question"
                 data-question="q4"
                 data-answer="b"
-                data-success="Correct. Control characters are non-printing instructions."
+                data-success="Correct. A control character is a non-printing instruction."
                 data-feedback="Control codes tell the system to do something like move to a new line."
               >
                 <legend>4. What is a control character?</legend>
@@ -481,7 +741,7 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="c" />
-                      <span>A CPU instruction format</span>
+                      <span>A CPU cache level</span>
                     </label>
                   </li>
                 </ul>
@@ -492,10 +752,13 @@
                 class="quiz-question"
                 data-question="q5"
                 data-answer="a"
-                data-success="Correct. Different encodings can make the same data display incorrectly."
+                data-success="Correct. Different encodings can make text display incorrectly."
                 data-feedback="If systems use different mappings, the text may become garbled."
               >
-                <legend>5. What can happen if two systems use different text encodings?</legend>
+                <legend>
+                  5. What can happen if two systems use incompatible text
+                  encodings?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
@@ -506,7 +769,7 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>The keyboard stops sending input</span>
+                      <span>The keyboard stops sending any input</span>
                     </label>
                   </li>
                   <li>
@@ -542,11 +805,11 @@
             data-lesson-section
           >
             <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Try longer answers like the ones used in written papers</h2>
+            <h2>Explain the choice, not just the definition</h2>
             <p class="lesson-section-copy">
               These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              Type your answers into the page, then compare your ideas with the
+              answer guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -571,7 +834,7 @@
                     id="exam-response-1"
                     class="exam-response"
                     data-exam-response="question-1"
-                    placeholder="Link storage to binary codes and interpretation."
+                    placeholder="Link binary storage, numeric codes, and interpretation."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
@@ -580,16 +843,16 @@
                     <ul class="exam-points">
                       <li>Computers store data as binary values.</li>
                       <li>
-                        Characters need a standard code so their binary value
-                        has an agreed meaning.
+                        A character needs an agreed numeric code so it can be
+                        stored and transmitted.
                       </li>
                       <li>
-                        Software uses the code to display the correct letter or
-                        symbol.
+                        Software uses the character set or encoding to interpret
+                        the code.
                       </li>
                       <li>
-                        Without a shared character set, text could be interpreted
-                        incorrectly.
+                        Without a shared standard, text could display as the
+                        wrong character.
                       </li>
                     </ul>
                   </div>
@@ -614,7 +877,7 @@
                     id="exam-response-2"
                     class="exam-response"
                     data-exam-response="question-2"
-                    placeholder="Compare character range with storage cost."
+                    placeholder="Compare character range with storage and compatibility."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
@@ -623,10 +886,12 @@
                     <ul class="exam-points">
                       <li>ASCII has a small character range.</li>
                       <li>
-                        Unicode supports far more languages and symbols.
+                        Unicode supports far more languages, scripts, and
+                        symbols.
                       </li>
                       <li>
-                        Unicode may use more storage than a smaller encoding.
+                        Unicode or encodings such as UTF-8 can use more storage
+                        for wider characters.
                       </li>
                       <li>
                         An international messaging app needs broad language
@@ -658,8 +923,12 @@
                 <dd>A much wider standard for characters and symbols.</dd>
               </div>
               <div class="glossary-item">
-                <dt>Control character</dt>
-                <dd>A code that gives an instruction rather than visible text.</dd>
+                <dt>Code point</dt>
+                <dd>The number assigned to a character in a character set.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>UTF-8</dt>
+                <dd>A common Unicode encoding used to store code points as bytes.</dd>
               </div>
             </dl>
           </section>
@@ -668,9 +937,10 @@
             <p class="eyebrow">Remember</p>
             <h2>Same code, same meaning</h2>
             <ul class="memory-list">
-              <li>Character sets let systems interpret stored text consistently.</li>
-              <li>ASCII is simple but limited.</li>
+              <li>Character sets let systems interpret text consistently.</li>
+              <li>ASCII is compact but limited to 128 standard codes.</li>
               <li>Unicode is stronger for global modern computing.</li>
+              <li>Encoding mismatches can create garbled text.</li>
             </ul>
           </section>
         </aside>
@@ -695,7 +965,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 10</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

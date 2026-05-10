@@ -1,0 +1,294 @@
+.quality-map,
+.resolution-visual,
+.compression-grid,
+.trap-grid,
+.bit-depth-preview-grid,
+.bit-depth-stats {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.quality-map,
+.resolution-visual,
+.compression-grid,
+.trap-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.quality-card,
+.resolution-visual article,
+.bit-depth-equation,
+.bit-depth-tool,
+.bit-depth-stats article,
+.bit-depth-preview-grid article,
+.palette-preview-wrap,
+.formula-card,
+.compression-card {
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(247, 251, 253, 0.86)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.quality-card h3,
+.resolution-visual h3,
+.tool-heading h3,
+.bit-depth-preview-grid h4,
+.palette-preview-wrap h4,
+.compression-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.quality-card p,
+.resolution-visual p,
+.bit-depth-equation p,
+.tool-note,
+.formula-card p,
+.compression-card p,
+.compression-card span {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.quality-card--resolution,
+.resolution-visual article:first-child,
+.bit-depth-tool {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.quality-card--depth,
+.bit-depth-equation,
+.bit-depth-preview-grid article:first-child,
+.compression-card--lossless {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.quality-card--compression,
+.formula-card,
+.bit-depth-preview-grid article:nth-child(2),
+.compression-card--lossy {
+  border-color: rgba(185, 140, 25, 0.24);
+  background: rgba(255, 249, 227, 0.94);
+}
+
+.quality-icon {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.84);
+}
+
+.quality-icon--resolution {
+  background:
+    linear-gradient(90deg, rgba(37, 52, 66, 0.16) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(37, 52, 66, 0.16) 1px, transparent 1px),
+    linear-gradient(135deg, #1f877d 0 38%, #f2c94c 38% 68%, #253442 68%);
+  background-size:
+    0.8rem 0.8rem,
+    0.8rem 0.8rem,
+    100% 100%;
+}
+
+.quality-icon--depth {
+  background:
+    linear-gradient(90deg, #253442, #1f877d 33%, #f2c94c 66%, #fff7dc);
+}
+
+.quality-icon--compression {
+  background:
+    linear-gradient(90deg, transparent 44%, rgba(37, 52, 66, 0.2) 45% 55%, transparent 56%),
+    linear-gradient(180deg, #e8f6ff 0 33%, #eef8e7 33% 66%, #fff7dc 66%);
+}
+
+.resolution-grid {
+  display: grid;
+  width: min(100%, 14rem);
+  aspect-ratio: 1;
+  gap: 0.14rem;
+  padding: 0.65rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.resolution-grid--low {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.resolution-grid--high {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.resolution-grid span {
+  min-width: 0;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 4px;
+  background: #c7e9e6;
+}
+
+.resolution-grid span:nth-child(3n) {
+  background: #f2c94c;
+}
+
+.resolution-grid span:nth-child(5n) {
+  background: #253442;
+}
+
+.resolution-grid span:nth-child(7n) {
+  background: #8bcf88;
+}
+
+.bit-depth-equation strong,
+.formula-card strong,
+.bit-depth-stats span {
+  color: var(--muted-ink);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bit-depth-equation code,
+.formula-card code,
+.bit-depth-stats strong {
+  color: var(--page-ink);
+  font-size: 1.08rem;
+  font-weight: 900;
+}
+
+.tool-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tool-heading .eyebrow {
+  margin-bottom: 0.2rem;
+}
+
+.tool-pill {
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tool-slider-label {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.tool-slider-label input {
+  width: 100%;
+  accent-color: #1f877d;
+}
+
+.bit-depth-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.bit-depth-stats article {
+  justify-items: center;
+  text-align: center;
+}
+
+.bit-depth-preview-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.gradient-preview,
+.image-preview,
+.palette-preview {
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+}
+
+.gradient-preview {
+  display: grid;
+  grid-template-columns: repeat(32, minmax(0, 1fr));
+  min-height: 5.4rem;
+  border-radius: 18px;
+}
+
+.image-preview {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0.45rem, 1fr));
+  gap: 0.08rem;
+  max-width: 22rem;
+  padding: 0.45rem;
+  border-radius: 18px;
+}
+
+.image-preview span {
+  aspect-ratio: 1;
+  min-width: 0;
+  border-radius: 3px;
+}
+
+.palette-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1.6rem, 1fr));
+  gap: 0.18rem;
+  min-height: 2.4rem;
+  padding: 0.3rem;
+  border-radius: 16px;
+}
+
+.palette-preview span {
+  min-height: 1.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 8px;
+}
+
+.tool-note {
+  padding: 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.compression-card span {
+  display: block;
+  padding: 0.7rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  font-weight: 800;
+}
+
+@media (max-width: 820px) {
+  .bit-depth-preview-grid,
+  .bit-depth-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .resolution-grid {
+    width: min(100%, 11rem);
+  }
+}

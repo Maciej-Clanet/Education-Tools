@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/error-correction-with-arq-and-fec.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -140,8 +144,37 @@
               without a retransmission.
             </p>
 
+            <div class="correction-map">
+              <article class="correction-card correction-card--detect">
+                <span class="correction-icon correction-icon--detect" aria-hidden="true"></span>
+                <h3>Detect the problem</h3>
+                <p>
+                  A check such as parity, checksum, or CRC signals that the
+                  received data should not be trusted.
+                </p>
+              </article>
+
+              <article class="correction-card correction-card--request">
+                <span class="correction-icon correction-icon--request" aria-hidden="true"></span>
+                <h3>Request another copy</h3>
+                <p>
+                  ARQ uses feedback, acknowledgements, and retransmission to
+                  replace damaged data.
+                </p>
+              </article>
+
+              <article class="correction-card correction-card--rebuild">
+                <span class="correction-icon correction-icon--rebuild" aria-hidden="true"></span>
+                <h3>Rebuild from redundancy</h3>
+                <p>
+                  FEC sends extra information so the receiver can repair some
+                  errors without asking again.
+                </p>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="model-answer-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Explain the difference between detection and correction.</li>
@@ -161,7 +194,7 @@
                 </ul>
               </article>
 
-              <article class="lesson-card fullrow">
+              <article class="model-answer-card fullrow">
                 <h3>Why this matters</h3>
                 <p>
                   Some systems can afford to resend data, but others cannot.
@@ -209,6 +242,33 @@
                 </tbody>
               </table>
             </div>
+
+            <div class="core-flow-grid">
+              <article class="core-flow-card">
+                <h3>Detection</h3>
+                <div class="mini-flow" aria-label="Detection flow">
+                  <span>Data arrives</span>
+                  <strong>Check fails</strong>
+                  <span>Problem known</span>
+                </div>
+                <p>
+                  Detection gives a warning. The data may still be unusable.
+                </p>
+              </article>
+
+              <article class="core-flow-card">
+                <h3>Correction</h3>
+                <div class="mini-flow" aria-label="Correction flow">
+                  <span>Problem known</span>
+                  <strong>Recover</strong>
+                  <span>Usable data</span>
+                </div>
+                <p>
+                  Correction takes the next step: replace or reconstruct the
+                  damaged data.
+                </p>
+              </article>
+            </div>
           </section>
 
           <section
@@ -231,7 +291,26 @@
               <span class="example-chip"><strong>Timeout</strong> no reply means retry</span>
             </div>
 
-            <article class="lesson-card">
+            <div class="arq-flow-visual" aria-label="ARQ retransmission flow">
+              <article>
+                <span>1</span>
+                <strong>Sender transmits block</strong>
+              </article>
+              <article class="is-error">
+                <span>2</span>
+                <strong>Receiver detects damage</strong>
+              </article>
+              <article>
+                <span>3</span>
+                <strong>NAK or timeout triggers retry</strong>
+              </article>
+              <article class="is-success">
+                <span>4</span>
+                <strong>Clean block is accepted</strong>
+              </article>
+            </div>
+
+            <article class="model-answer-card">
               <h3>How the cycle works</h3>
               <ol class="lesson-list">
                 <li>The sender transmits the data.</li>
@@ -244,7 +323,7 @@
               </ol>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>Where ARQ works well</h3>
               <p>
                 ARQ is effective when two-way communication is available and
@@ -298,7 +377,37 @@
               </article>
             </div>
 
-            <article class="lesson-card">
+            <div class="fec-visual-grid">
+              <article class="fec-card">
+                <h3>Extra data travels with the message</h3>
+                <div class="fec-blocks" aria-label="Forward error correction redundancy">
+                  <span>D1</span>
+                  <span>D2</span>
+                  <span>D3</span>
+                  <strong>R</strong>
+                </div>
+                <p>
+                  The receiver gets data blocks plus redundant information for
+                  recovery.
+                </p>
+              </article>
+
+              <article class="fec-card">
+                <h3>Some damage can be repaired immediately</h3>
+                <div class="fec-blocks" aria-label="FEC repair example">
+                  <span>D1</span>
+                  <span class="is-damaged">D2</span>
+                  <span>D3</span>
+                  <strong>R</strong>
+                </div>
+                <p>
+                  If the damage is within what the code can handle, the
+                  receiver rebuilds the missing or damaged value.
+                </p>
+              </article>
+            </div>
+
+            <article class="model-answer-card">
               <h3>Why FEC is useful for live or distant links</h3>
               <p>
                 If you are streaming live media or sending data across a link
@@ -321,7 +430,103 @@
               general?" but "Which is better for this job?"
             </p>
 
-            <article class="lesson-card">
+            <article
+              class="correction-simulator"
+              data-role="correction-simulator"
+              aria-labelledby="correction-simulator-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Simulator</p>
+                  <h3 id="correction-simulator-heading">
+                    Choose ARQ or FEC for the scenario
+                  </h3>
+                </div>
+                <span class="tool-pill" data-role="sim-verdict">Choose a method</span>
+              </div>
+
+              <div class="scenario-grid" role="group" aria-label="Scenario">
+                <button
+                  type="button"
+                  data-scenario="file"
+                  aria-pressed="true"
+                >
+                  <strong>File transfer</strong>
+                  <span>Two-way link, delay acceptable</span>
+                </button>
+                <button
+                  type="button"
+                  data-scenario="stream"
+                  aria-pressed="false"
+                >
+                  <strong>Live stream</strong>
+                  <span>Delay matters, many receivers</span>
+                </button>
+                <button
+                  type="button"
+                  data-scenario="satellite"
+                  aria-pressed="false"
+                >
+                  <strong>Satellite link</strong>
+                  <span>Long delay, resend is slow</span>
+                </button>
+                <button
+                  type="button"
+                  data-scenario="sensor"
+                  aria-pressed="false"
+                >
+                  <strong>Remote sensor</strong>
+                  <span>Small data, unreliable return path</span>
+                </button>
+              </div>
+
+              <div class="simulator-controls">
+                <div
+                  class="segmented-control"
+                  role="group"
+                  aria-label="Correction method"
+                >
+                  <button type="button" data-method="arq" aria-pressed="true">
+                    ARQ
+                  </button>
+                  <button type="button" data-method="fec" aria-pressed="false">
+                    FEC
+                  </button>
+                </div>
+
+                <label class="tool-slider-label" for="error-severity">
+                  Error severity
+                  <input
+                    id="error-severity"
+                    type="range"
+                    min="1"
+                    max="3"
+                    value="2"
+                    data-role="error-severity"
+                  />
+                </label>
+              </div>
+
+              <div class="correction-timeline" data-role="correction-timeline"></div>
+
+              <div class="simulator-summary">
+                <article>
+                  <span>Feedback path</span>
+                  <strong data-role="feedback-rating">Available</strong>
+                </article>
+                <article>
+                  <span>Delay impact</span>
+                  <strong data-role="delay-rating">Low</strong>
+                </article>
+                <article>
+                  <span>Overhead</span>
+                  <strong data-role="overhead-rating">Low</strong>
+                </article>
+              </div>
+              <p class="tool-note" data-role="sim-note"></p>
+            </article>
+
+            <article class="model-answer-card">
               <h3>ARQ versus FEC</h3>
               <div class="compare-table-wrap">
                 <table class="compare-table">
@@ -351,7 +556,7 @@
               </div>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>Model answer shape</h3>
               <p>
                 A stronger response sounds like this:
@@ -795,7 +1000,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

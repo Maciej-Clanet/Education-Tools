@@ -9,7 +9,7 @@
     </title>
     <meta
       name="description"
-      content="Revise the contents of a data packet, packet switching, and protocols used to control transmission in computer systems."
+      content="Revise packet contents, packet switching, routing, reassembly, error handling, and protocols used to control data transmission."
     />
     <meta
       property="og:title"
@@ -17,7 +17,7 @@
     />
     <meta
       property="og:description"
-      content="Revise the contents of a data packet, packet switching, and protocols used to control transmission in computer systems."
+      content="Revise packet contents, packet switching, routing, reassembly, error handling, and protocols with an interactive packet switching simulator."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/packet-data-packet-switching-and-protocols.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -58,9 +62,9 @@
           <div>
             <h1>Packet data, packet switching, and protocols</h1>
             <p class="lesson-hero-text">
-              Learn what goes inside a data packet, how packets are routed
-              across a network, and why protocols are needed to keep
-              transmission organised, reliable, and interpretable.
+              Learn what goes inside a data packet, how packets can travel
+              separately across a network, and why protocols make the whole
+              process understandable.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -78,7 +82,11 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Packets, switching, routing, and protocol rules</span>
+            <span>Packet fields, switching, reassembly, and protocols</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Interactive focus</strong>
+            <span>Packet switching simulator</span>
           </article>
         </div>
 
@@ -106,8 +114,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, and teacher slides need JavaScript, but
-          the lesson notes still work without it.
+          Quiz scoring, answer saving, the packet simulator, and teacher slides
+          need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -117,11 +125,12 @@
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
             <a href="#packets" data-section-link>Inside a packet</a>
+            <a href="#simulator" data-section-link>Simulator</a>
             <a href="#switching" data-section-link>Packet switching</a>
             <a href="#protocols" data-section-link>Protocols</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam-style practice</a>
+            <a href="#exam-practice" data-section-link>Exam practice</a>
           </nav>
         </aside>
 
@@ -132,22 +141,40 @@
             data-lesson-section
           >
             <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
+            <h2>Packets make large messages manageable</h2>
             <p class="lesson-section-copy">
-              Modern networks often break large messages into packets. Unit 2
-              expects you to understand what those packets contain, how they
-              are switched across the network, and why protocols are essential
-              for both ends to handle the data properly.
+              A network does not usually send a whole file as one giant block.
+              It can split the data into smaller packets, send those packets
+              across available routes, then rebuild the message at the
+              destination.
             </p>
+
+            <div class="packet-overview-map">
+              <article class="packet-overview-card packet-overview-card--split">
+                <span class="packet-icon packet-icon--split"></span>
+                <h3>Split</h3>
+                <p>The message is broken into numbered packets.</p>
+              </article>
+              <article class="packet-overview-card packet-overview-card--route">
+                <span class="packet-icon packet-icon--route"></span>
+                <h3>Route</h3>
+                <p>Packets can travel across different network paths.</p>
+              </article>
+              <article class="packet-overview-card packet-overview-card--rebuild">
+                <span class="packet-icon packet-icon--rebuild"></span>
+                <h3>Rebuild</h3>
+                <p>The receiver checks, orders, and reassembles the packets.</p>
+              </article>
+            </div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
-                  <li>Describe the key parts of a data packet.</li>
-                  <li>Explain packet switching clearly.</li>
-                  <li>Explain the role of protocols in transmission.</li>
-                  <li>Link packet methods to network reliability and scale.</li>
+                  <li>Describe the key fields inside a data packet.</li>
+                  <li>Explain packet switching and reassembly.</li>
+                  <li>Explain why protocols are needed.</li>
+                  <li>Link packet methods to reliability and network sharing.</li>
                 </ul>
               </article>
 
@@ -155,20 +182,10 @@
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
                   <li><strong>Packet:</strong> one manageable chunk of data.</li>
-                  <li><strong>Header:</strong> control and addressing details.</li>
+                  <li><strong>Header:</strong> addressing and control details.</li>
                   <li><strong>Payload:</strong> the actual user data.</li>
-                  <li><strong>Protocol:</strong> the agreed rules.</li>
+                  <li><strong>Protocol:</strong> agreed communication rules.</li>
                 </ul>
-              </article>
-
-              <article class="lesson-card fullrow">
-                <h3>Why this matters</h3>
-                <p>
-                  If packets can be addressed, checked, re-ordered, and
-                  interpreted correctly, networks can move large amounts of data
-                  between many devices efficiently instead of forcing one fixed
-                  path for every transmission.
-                </p>
               </article>
             </div>
           </section>
@@ -179,57 +196,204 @@
             data-lesson-section
           >
             <p class="eyebrow">Packet Data</p>
-            <h2>A data packet contains both the message and the control details</h2>
+            <h2>A packet contains the message piece and handling details</h2>
             <p class="lesson-section-copy">
               A packet is not just raw data. It also needs information that
               helps the network deliver it and helps the receiver rebuild the
               original message correctly.
             </p>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Source address</strong>
-                <span>
-                  Identifies where the packet came from so replies or tracking
-                  can work.
-                </span>
+            <div class="packet-frame" aria-label="Simplified packet fields">
+              <article class="packet-frame-part packet-frame-part--header">
+                <span>Header</span>
+                <strong>Source, destination, sequence number</strong>
               </article>
-              <article class="term-card">
-                <strong>Destination address</strong>
-                <span>
-                  Shows where the packet should be delivered.
-                </span>
+              <article class="packet-frame-part packet-frame-part--payload">
+                <span>Payload</span>
+                <strong>The actual piece of user data</strong>
               </article>
-              <article class="term-card">
-                <strong>Sequence information</strong>
-                <span>
-                  Helps the receiver place packets back into the correct order.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Error-checking data</strong>
-                <span>
-                  Allows the system to detect whether the packet changed during
-                  transmission.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Payload</strong>
-                <span>
-                  The actual piece of the user's message or file.
-                </span>
+              <article class="packet-frame-part packet-frame-part--trailer">
+                <span>Trailer or check data</span>
+                <strong>Error check such as a checksum</strong>
               </article>
             </div>
 
-            <article class="lesson-card">
-              <h3>Packet structure in simple terms</h3>
-              <p>
-                Think of the packet as a labelled parcel. The address and
-                handling information guide the network, while the contents are
-                the useful data. If a file is split into many packets, each one
-                carries enough information for the network to route it and for
-                the receiver to rebuild the complete file.
-              </p>
+            <div class="field-grid">
+              <article class="field-card">
+                <h3>Source address</h3>
+                <p>Identifies where the packet came from.</p>
+              </article>
+              <article class="field-card">
+                <h3>Destination address</h3>
+                <p>Shows where the packet should be delivered.</p>
+              </article>
+              <article class="field-card">
+                <h3>Sequence information</h3>
+                <p>Helps the receiver place packets back into order.</p>
+              </article>
+              <article class="field-card">
+                <h3>Error-checking data</h3>
+                <p>Helps detect whether the packet changed in transit.</p>
+              </article>
+              <article class="field-card">
+                <h3>Payload</h3>
+                <p>The actual piece of the message or file.</p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="simulator"
+            class="lesson-section lesson-section--simulator panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Interactive</p>
+            <h2>Packet switching simulator</h2>
+            <p class="lesson-section-copy">
+              Split a short message into packets, send them across network
+              routes, and watch the receiver check and rebuild the message.
+            </p>
+
+            <article
+              class="packet-simulator"
+              data-role="packet-simulator"
+              aria-labelledby="packet-simulator-heading"
+            >
+              <div class="simulator-heading">
+                <div>
+                  <p class="eyebrow">Simulator</p>
+                  <h3 id="packet-simulator-heading">Send a message as packets</h3>
+                </div>
+                <span class="status-pill" data-role="packet-status">Ready</span>
+              </div>
+
+              <div class="simulator-composer">
+                <div class="message-wrap">
+                  <label class="message-label" for="packet-message-input">
+                    Message to transmit
+                  </label>
+                  <textarea
+                    id="packet-message-input"
+                    maxlength="120"
+                    rows="3"
+                    data-role="packet-message"
+                  ></textarea>
+                  <button
+                    type="button"
+                    class="random-message-button"
+                    data-action="random-message"
+                  >
+                    Random example
+                  </button>
+                </div>
+              </div>
+
+              <div class="setting-grid">
+                <label class="setting-card">
+                  <input type="checkbox" data-setting="out-of-order" />
+                  <span>Out-of-order arrival</span>
+                  <small>Packets use different routes, so the order may change.</small>
+                </label>
+                <label class="setting-card">
+                  <input type="checkbox" data-setting="packet-loss" />
+                  <span>Packet loss</span>
+                  <small>One packet fails to reach the receiver.</small>
+                </label>
+                <label class="setting-card">
+                  <input type="checkbox" data-setting="corruption" />
+                  <span>Corrupted packet</span>
+                  <small>One packet arrives with changed data.</small>
+                </label>
+                <label class="setting-card">
+                  <input type="checkbox" data-setting="auto-resend" />
+                  <span>Auto resend</span>
+                  <small>Missing or corrupted packets are queued again.</small>
+                </label>
+              </div>
+
+              <div class="simulator-actions simulator-actions--main">
+                <button
+                  type="button"
+                  class="primary-link"
+                  data-action="next-packet"
+                >
+                  Send next packet
+                </button>
+                <button
+                  type="button"
+                  class="lesson-secondary-action"
+                  data-action="run-all"
+                >
+                  Run remaining
+                </button>
+                <button
+                  type="button"
+                  class="lesson-secondary-action"
+                  data-action="resend-packets"
+                >
+                  Queue resend
+                </button>
+                <button
+                  type="button"
+                  class="lesson-secondary-action"
+                  data-action="reset-simulation"
+                >
+                  Reset
+                </button>
+              </div>
+
+              <div class="simulator-stats">
+                <article>
+                  <span>Sender</span>
+                  <strong data-role="sender-count">0 prepared</strong>
+                </article>
+                <article>
+                  <span>Network queue</span>
+                  <strong data-role="queue-count">0 waiting</strong>
+                </article>
+                <article>
+                  <span>Arrivals</span>
+                  <strong data-role="arrival-count">0 arrivals</strong>
+                </article>
+              </div>
+
+              <div class="packet-board">
+                <section class="network-column network-column--stage">
+                  <h4>Network routes</h4>
+                  <div class="network-stage" data-role="network-stage"></div>
+                </section>
+
+                <section class="packet-column">
+                  <h4>Sender packets</h4>
+                  <div class="packet-list" data-role="sender-packets"></div>
+                </section>
+
+                <section class="packet-column">
+                  <h4>Arrival order</h4>
+                  <div class="packet-list" data-role="arrival-packets"></div>
+                </section>
+
+                <section class="log-card packet-board-log">
+                  <h4>Transmission log</h4>
+                  <ul class="packet-log" data-role="packet-log"></ul>
+                </section>
+              </div>
+
+              <div class="reassembly-panel">
+                <div>
+                  <h4>Reassembly at the receiver</h4>
+                  <div
+                    class="reassembly-slots"
+                    data-role="reassembly-slots"
+                  ></div>
+                </div>
+                <article class="final-message-card">
+                  <h4>Reconstructed message</h4>
+                  <p data-role="final-message">
+                    The reconstructed message will appear here.
+                  </p>
+                </article>
+              </div>
             </article>
           </section>
 
@@ -239,61 +403,32 @@
             data-lesson-section
           >
             <p class="eyebrow">Packet Switching</p>
-            <h2>Packet switching sends packets independently across the network</h2>
+            <h2>Packet switching routes separate pieces through the network</h2>
             <p class="lesson-section-copy">
-              In packet switching, packets do not have to follow one fixed
-              dedicated route from start to finish. The network can forward
-              packets using available paths and the receiver can reassemble the
-              message afterwards.
+              In packet switching, packets do not need one fixed dedicated path
+              from start to finish. The network can forward each packet using
+              available routes, and the receiver can reassemble the message
+              afterwards.
             </p>
 
-            <div class="example-strip" aria-label="Packet switching summary">
-              <span class="example-chip"><strong>Split</strong> the message into packets</span>
-              <span class="example-chip"><strong>Route</strong> packets across the network</span>
-              <span class="example-chip"><strong>Reassemble</strong> at the destination</span>
+            <div class="switching-grid">
+              <article class="switching-card">
+                <h3>Flexible routing</h3>
+                <p>Packets can take different paths around congestion or failure.</p>
+              </article>
+              <article class="switching-card">
+                <h3>Shared network use</h3>
+                <p>Many users can share the same network infrastructure.</p>
+              </article>
+              <article class="switching-card">
+                <h3>Reassembly needed</h3>
+                <p>Packets may arrive out of order, so sequence data matters.</p>
+              </article>
+              <article class="switching-card">
+                <h3>Retransmission possible</h3>
+                <p>Lost or corrupted packets can be requested again.</p>
+              </article>
             </div>
-
-            <article class="lesson-card">
-              <h3>Why packet switching is useful</h3>
-              <div class="compare-table-wrap">
-                <table class="compare-table">
-                  <thead>
-                    <tr>
-                      <th>Feature</th>
-                      <th>Benefit</th>
-                      <th>Implication</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Packets are separate units</td>
-                      <td>Traffic can be managed flexibly</td>
-                      <td>The receiver must reorder them if needed</td>
-                    </tr>
-                    <tr>
-                      <td>Paths can vary</td>
-                      <td>Networks can work around congestion or failures</td>
-                      <td>Different packets may arrive at different times</td>
-                    </tr>
-                    <tr>
-                      <td>Shared network use</td>
-                      <td>Many users can share the infrastructure</td>
-                      <td>Control rules are needed to prevent confusion</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </article>
-
-            <article class="lesson-card">
-              <h3>What the receiver has to do</h3>
-              <p>
-                The destination system may need to check whether all packets
-                have arrived, place them back into the correct order using
-                sequence information, and confirm that the data is complete
-                enough to rebuild the original message.
-              </p>
-            </article>
           </section>
 
           <section
@@ -302,50 +437,39 @@
             data-lesson-section
           >
             <p class="eyebrow">Protocols</p>
-            <h2>Protocols are the agreed rules that make communication workable</h2>
+            <h2>Protocols are the agreed rules that make packets usable</h2>
             <p class="lesson-section-copy">
               A protocol tells devices how to format, address, send, receive,
-              and sometimes confirm data. Without agreed rules, the packets
-              might arrive but still be unusable because the receiving system
-              would not know how to interpret them.
+              and sometimes confirm data. Without agreed rules, packets might
+              arrive but still be unusable because the receiver would not know
+              how to interpret them.
             </p>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Formatting rules</strong>
-                <span>
-                  Define what the packet should contain and where each part
-                  belongs.
-                </span>
+            <div class="protocol-grid">
+              <article class="protocol-card">
+                <h3>Format</h3>
+                <p>Defines what fields are included and where they belong.</p>
               </article>
-              <article class="term-card">
-                <strong>Addressing rules</strong>
-                <span>
-                  Help packets reach the correct device or service.
-                </span>
+              <article class="protocol-card">
+                <h3>Addressing</h3>
+                <p>Helps packets reach the correct device or service.</p>
               </article>
-              <article class="term-card">
-                <strong>Control and timing rules</strong>
-                <span>
-                  Help systems know when to send, wait, acknowledge, or retry.
-                </span>
+              <article class="protocol-card">
+                <h3>Control</h3>
+                <p>Defines when to send, wait, acknowledge, or retry.</p>
               </article>
-              <article class="term-card">
-                <strong>Interoperability</strong>
-                <span>
-                  Different systems can communicate because they follow the same
-                  agreed standard.
-                </span>
+              <article class="protocol-card">
+                <h3>Interoperability</h3>
+                <p>Allows different systems to communicate using the same rules.</p>
               </article>
             </div>
 
-            <article class="lesson-card">
-              <h3>Protocol examples you may recognise</h3>
+            <article class="model-answer-card">
+              <h3>Protocol examples</h3>
               <p>
-                You do not need to memorise every protocol in depth for this
-                topic, but it helps to recognise that different protocols handle
-                different jobs. For example, IP helps with addressing and
-                routing, while TCP helps manage reliable ordered delivery.
+                IP helps with addressing and routing. TCP helps manage reliable
+                ordered delivery. The exact protocol details vary, but the core
+                idea is always agreed rules for communication.
               </p>
             </article>
           </section>
@@ -357,10 +481,6 @@
           >
             <p class="eyebrow">Exam Traps</p>
             <h2>Common mistakes with packets and protocols</h2>
-            <p class="lesson-section-copy">
-              Strong answers separate the data itself from the control
-              information that helps the network handle it.
-            </p>
 
             <div class="trap-grid">
               <article class="trap-card">
@@ -369,13 +489,9 @@
                   The payload is only the useful data part, not the addressing
                   or control information.
                 </p>
-                <ul class="trap-list">
-                  <li>The header guides the transmission.</li>
-                  <li>The payload carries the message content.</li>
-                </ul>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Use
-                  <em>"header plus payload"</em> in your explanation.
+                  <strong>Fix:</strong> Use "header plus payload" in your
+                  explanation.
                 </p>
               </article>
 
@@ -383,28 +499,19 @@
                 <h3>Assuming all packets take the same path</h3>
                 <p>
                   In packet-switched networks, packets may travel by different
-                  routes.
+                  routes and arrive out of order.
                 </p>
-                <ul class="trap-list">
-                  <li>They can arrive out of order.</li>
-                  <li>The receiver may need sequence information to rebuild the message.</li>
-                </ul>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Mention routing flexibility and
-                  reassembly.
+                  <strong>Fix:</strong> Mention flexible routing and reassembly.
                 </p>
               </article>
 
               <article class="trap-card">
                 <h3>Treating protocols as optional extras</h3>
                 <p>
-                  Protocols are not decoration. They are what make
-                  communication understandable between systems.
+                  Protocols define how systems format, send, receive, and
+                  interpret packet data.
                 </p>
-                <ul class="trap-list">
-                  <li>They define format and behaviour.</li>
-                  <li>They support reliable interpretation.</li>
-                </ul>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Describe protocols as agreed rules.
                 </p>
@@ -418,7 +525,7 @@
             data-lesson-section
           >
             <p class="eyebrow">Quiz</p>
-            <h2>Check your understanding</h2>
+            <h2>Check the concepts</h2>
             <p class="quiz-intro">
               Answer all five questions, then check your score. Your choices
               and best score save in this browser so you can revisit the lesson
@@ -608,11 +715,11 @@
             data-lesson-section
           >
             <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Try longer answers like the ones used in written papers</h2>
+            <h2>Explain the process</h2>
             <p class="lesson-section-copy">
               These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              Type your answers into the page, then compare your ideas with the
+              answer guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -627,8 +734,8 @@
                 <h3>Question 1</h3>
                 <p>
                   Describe the contents of a data packet and explain how those
-                  contents help the network and the destination system handle
-                  the data correctly.
+                  contents help the network and destination system handle the
+                  data correctly.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-1">
@@ -638,16 +745,12 @@
                     id="exam-response-1"
                     class="exam-response"
                     data-exam-response="question-1"
-                    placeholder="Write a short exam-style explanation here."
+                    placeholder="Mention payload, addressing, sequence information, and checking data."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
-                    <p>
-                      A strong answer identifies both the data and the control
-                      parts.
-                    </p>
                     <ul class="exam-points">
                       <li>
                         A packet contains payload data plus control details such
@@ -673,7 +776,7 @@
               <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">5 marks</span>
-                  <span class="exam-pill">Explain and justify</span>
+                  <span class="exam-pill">Explain</span>
                 </div>
                 <h3>Question 2</h3>
                 <p>
@@ -689,16 +792,12 @@
                     id="exam-response-2"
                     class="exam-response"
                     data-exam-response="question-2"
-                    placeholder="Explain the benefit of switching and the need for protocol rules."
+                    placeholder="Link shared network use, flexible routing, and agreed rules."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
-                    <p>
-                      The best answers cover both traffic handling and agreed
-                      communication rules.
-                    </p>
                     <ul class="exam-points">
                       <li>
                         Packet switching lets many users share the network by
@@ -709,12 +808,12 @@
                         areas.
                       </li>
                       <li>
-                        This makes network use more efficient than a single
-                        dedicated route for each transfer.
+                        The receiver can reorder and rebuild the message using
+                        packet information.
                       </li>
                       <li>
-                        Protocols ensure all devices use the same rules for
-                        addressing, formatting, and handling the packets.
+                        Protocols ensure devices use the same rules for
+                        addressing, formatting, and handling packets.
                       </li>
                       <li>
                         Without protocols, devices may receive data but fail to
@@ -749,6 +848,10 @@
                 <dt>Protocol</dt>
                 <dd>An agreed set of communication rules.</dd>
               </div>
+              <div class="glossary-item">
+                <dt>Checksum</dt>
+                <dd>A value used to check whether data may have changed.</dd>
+              </div>
             </dl>
           </section>
 
@@ -756,9 +859,9 @@
             <p class="eyebrow">Remember</p>
             <h2>Data plus rules</h2>
             <ul class="memory-list">
-              <li>Packets carry both user data and handling information.</li>
-              <li>Packet switching routes the pieces flexibly.</li>
-              <li>Protocols tell every device how to use those pieces.</li>
+              <li>Packets carry data and handling information.</li>
+              <li>Packet switching routes pieces flexibly.</li>
+              <li>Protocols tell devices how to use those pieces.</li>
             </ul>
           </section>
         </aside>
@@ -783,7 +886,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/encryption-and-data-compression.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -114,6 +118,7 @@
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
             <a href="#ciphers" data-section-link>Encryption basics</a>
+            <a href="#vigenere-square" data-section-link>Vigenere square</a>
             <a href="#system-encryption" data-section-link>System encryption</a>
             <a href="#compression" data-section-link>Compression</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
@@ -131,13 +136,44 @@
             <p class="eyebrow">Overview</p>
             <h2>What you should know by the end of this lesson</h2>
             <p class="lesson-section-copy">
-              Transmission is not only about moving bits. The data may also
-              need protection from unauthorised reading and may need to be made
-              smaller so it can be stored or sent more efficiently.
+              Transmission is not only about moving bits from one system to
+              another. Sometimes the data needs to be protected from people who
+              should not read it, and sometimes it needs to be made smaller so
+              it can move faster or use less storage.
             </p>
 
+            <div class="security-size-map">
+              <article class="concept-card concept-card--protect">
+                <span class="concept-icon concept-icon--lock" aria-hidden="true"></span>
+                <h3>Encryption protects meaning</h3>
+                <p>
+                  Data is transformed into ciphertext. Anyone who intercepts it
+                  should see unreadable data unless they have the correct key.
+                </p>
+              </article>
+
+              <article class="concept-card concept-card--reduce">
+                <span class="concept-icon concept-icon--compress" aria-hidden="true"></span>
+                <h3>Compression reduces size</h3>
+                <p>
+                  Data is represented using fewer bits. This can reduce
+                  bandwidth, transfer time, storage use, and sometimes quality.
+                </p>
+              </article>
+
+              <article class="concept-card concept-card--decision">
+                <span class="concept-icon concept-icon--choice" aria-hidden="true"></span>
+                <h3>The choice depends on the job</h3>
+                <p>
+                  A medical record, streamed video, and login message do not
+                  have the same requirements. Strong answers explain the
+                  trade-off, not just the definition.
+                </p>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="model-answer-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Explain simple ciphers such as Caesar and Vigenere.</li>
@@ -153,16 +189,18 @@
                   <li><strong>Encryption:</strong> makes data unreadable without the right key.</li>
                   <li><strong>Symmetric:</strong> same key to encrypt and decrypt.</li>
                   <li><strong>Public key:</strong> paired public and private keys.</li>
-                  <li><strong>Compression:</strong> reduces file size.</li>
+                  <li><strong>Compression:</strong> reduces file size, but may affect quality.</li>
                 </ul>
               </article>
 
-              <article class="lesson-card fullrow">
+              <article class="model-answer-card fullrow">
                 <h3>Why this matters</h3>
                 <p>
-                  Security protects privacy, identity, and business data.
-                  Compression can reduce bandwidth use and storage needs, but
-                  some compression methods permanently remove detail.
+                  Encryption is about confidentiality: protecting the meaning
+                  of data if it is intercepted. Compression is about
+                  efficiency: reducing the amount of data that must be stored or
+                  transmitted. They can be used together, but they solve
+                  different problems.
                 </p>
               </article>
             </div>
@@ -177,39 +215,336 @@
             <h2>Simple ciphers show the basic idea of scrambling data</h2>
             <p class="lesson-section-copy">
               Simple ciphers are not strong enough for modern secure systems,
-              but they help explain the central idea of encryption: plain text
-              is transformed into cipher text using a rule or key.
+              but they make the core idea visible: plaintext is transformed
+              into ciphertext using a rule and a key. To decrypt it, the
+              receiver reverses the process with the correct key.
             </p>
 
-            <div class="example-strip" aria-label="Simple encryption methods">
-              <span class="example-chip"><strong>Caesar cipher</strong> fixed shift</span>
-              <span class="example-chip"><strong>Vigenere cipher</strong> repeating keyword shift</span>
+            <div class="cipher-flow" aria-label="Encryption process">
+              <article>
+                <span>Plaintext</span>
+                <strong>MEET AT 4</strong>
+              </article>
+              <span class="flow-arrow" aria-hidden="true">+</span>
+              <article>
+                <span>Key</span>
+                <strong>shift 3</strong>
+              </article>
+              <span class="flow-arrow" aria-hidden="true">=</span>
+              <article>
+                <span>Ciphertext</span>
+                <strong>PHHW DW 4</strong>
+              </article>
             </div>
 
-            <article class="lesson-card">
-              <h3>Caesar cipher</h3>
+            <div class="cipher-grid">
+              <article class="cipher-card cipher-card--caesar">
+                <h3>Caesar cipher</h3>
+                <p>
+                  Every letter is shifted by the same number of places in the
+                  alphabet. A shift of 3 changes <code>A</code> to
+                  <code>D</code> and <code>CAT</code> to <code>FDW</code>.
+                </p>
+                <p>
+                  It is easy to explain, but weak because there are only 25
+                  useful shifts to try.
+                </p>
+              </article>
+
+              <article class="cipher-card cipher-card--vigenere">
+                <h3>Vigenere cipher</h3>
+                <p>
+                  A keyword creates changing shifts. If the key is
+                  <code>CODE</code>, then letters use shifts based on
+                  <code>C</code>, <code>O</code>, <code>D</code>,
+                  <code>E</code>, then repeat.
+                </p>
+                <p>
+                  This hides patterns better than a Caesar cipher, but it is
+                  still a historic teaching cipher rather than modern security.
+                </p>
+              </article>
+            </div>
+
+            <article
+              class="cipher-tool"
+              data-role="cipher-tool"
+              aria-labelledby="cipher-tool-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Playground</p>
+                  <h3 id="cipher-tool-heading">Try a simple cipher</h3>
+                </div>
+                <span class="tool-pill" data-role="cipher-mode-label">Caesar</span>
+              </div>
+
+              <div class="cipher-tool-layout">
+                <label class="tool-input-label" for="cipher-plain-input">
+                  Plaintext
+                  <textarea
+                    id="cipher-plain-input"
+                    rows="4"
+                    maxlength="80"
+                    data-role="cipher-plain"
+                  ></textarea>
+                </label>
+
+                <div class="cipher-controls">
+                  <div
+                    class="segmented-control"
+                    role="group"
+                    aria-label="Cipher method"
+                  >
+                    <button
+                      type="button"
+                      data-cipher-mode="caesar"
+                      aria-pressed="true"
+                    >
+                      Caesar
+                    </button>
+                    <button
+                      type="button"
+                      data-cipher-mode="vigenere"
+                      aria-pressed="false"
+                    >
+                      Vigenere
+                    </button>
+                  </div>
+
+                  <label class="tool-slider-label" for="caesar-shift">
+                    Caesar shift
+                    <input
+                      id="caesar-shift"
+                      type="range"
+                      min="1"
+                      max="25"
+                      value="3"
+                      data-role="caesar-shift"
+                    />
+                  </label>
+
+                  <label class="tool-input-label" for="vigenere-key">
+                    Vigenere key
+                    <input
+                      id="vigenere-key"
+                      type="text"
+                      maxlength="12"
+                      data-role="vigenere-key"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <div class="cipher-output-grid">
+                <article>
+                  <span>Output ciphertext</span>
+                  <strong data-role="cipher-output">-</strong>
+                </article>
+                <article>
+                  <span>Current key</span>
+                  <strong data-role="cipher-key-summary">-</strong>
+                </article>
+              </div>
+
+              <div class="alphabet-shift" data-role="alphabet-shift"></div>
+              <div class="cipher-steps" data-role="cipher-steps"></div>
+              <p class="tool-note" data-role="cipher-note"></p>
+            </article>
+          </section>
+
+          <section
+            id="vigenere-square"
+            class="lesson-section lesson-section--vigenere-square panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Vigenere Square</p>
+            <h2>Use a Vigenere square to encode and decode letters</h2>
+            <p class="lesson-section-copy">
+              A Vigenere square is a table of shifted alphabets. The keyword
+              chooses the row. The plaintext or ciphertext letter chooses what
+              you look for in that row.
+            </p>
+
+            <div class="vigenere-method-grid">
+              <article class="method-card method-card--encode">
+                <h3>Encoding</h3>
+                <ol class="method-list">
+                  <li>Write the plaintext.</li>
+                  <li>Repeat the keyword until it lines up with each letter.</li>
+                  <li>Use the key letter to choose the row.</li>
+                  <li>Use the plaintext letter to choose the column.</li>
+                  <li>The intersection gives the ciphertext letter.</li>
+                </ol>
+              </article>
+
+              <article class="method-card method-card--decode">
+                <h3>Decoding</h3>
+                <ol class="method-list">
+                  <li>Write the ciphertext.</li>
+                  <li>Repeat the same keyword above it.</li>
+                  <li>Use the key letter to choose the row.</li>
+                  <li>Find the ciphertext letter inside that row.</li>
+                  <li>The column heading gives the plaintext letter.</li>
+                </ol>
+              </article>
+            </div>
+
+            <div class="vigenere-worked-grid">
+              <article class="vigenere-worked-card">
+                <h3>Worked encoding example</h3>
+                <p>
+                  Encode <code>CAT</code> using the keyword <code>KEY</code>.
+                  The keyword is already the same length, so each plaintext
+                  letter has one key letter above it.
+                </p>
+                <div class="vigenere-worked-table" aria-label="Encoding CAT with KEY">
+                  <div class="worked-row">
+                    <span>Plaintext</span>
+                    <strong>C</strong>
+                    <strong>A</strong>
+                    <strong>T</strong>
+                  </div>
+                  <div class="worked-row">
+                    <span>Key</span>
+                    <strong>K</strong>
+                    <strong>E</strong>
+                    <strong>Y</strong>
+                  </div>
+                  <div class="worked-row worked-row--result">
+                    <span>Ciphertext</span>
+                    <strong>M</strong>
+                    <strong>E</strong>
+                    <strong>R</strong>
+                  </div>
+                </div>
+                <p>
+                  Row <code>K</code> and column <code>C</code> meet at
+                  <code>M</code>. Row <code>E</code> and column <code>A</code>
+                  meet at <code>E</code>. Row <code>Y</code> and column
+                  <code>T</code> meet at <code>R</code>.
+                </p>
+              </article>
+
+              <article class="vigenere-worked-card">
+                <h3>Worked decoding example</h3>
+                <p>
+                  Decode <code>MER</code> using the same keyword
+                  <code>KEY</code>. This time the ciphertext is inside the row,
+                  and the plaintext is the column heading.
+                </p>
+                <div class="vigenere-worked-table" aria-label="Decoding MER with KEY">
+                  <div class="worked-row">
+                    <span>Ciphertext</span>
+                    <strong>M</strong>
+                    <strong>E</strong>
+                    <strong>R</strong>
+                  </div>
+                  <div class="worked-row">
+                    <span>Key</span>
+                    <strong>K</strong>
+                    <strong>E</strong>
+                    <strong>Y</strong>
+                  </div>
+                  <div class="worked-row worked-row--result">
+                    <span>Plaintext</span>
+                    <strong>C</strong>
+                    <strong>A</strong>
+                    <strong>T</strong>
+                  </div>
+                </div>
+                <p>
+                  In row <code>K</code>, find <code>M</code>; its column is
+                  <code>C</code>. In row <code>E</code>, find <code>E</code>;
+                  its column is <code>A</code>. In row <code>Y</code>, find
+                  <code>R</code>; its column is <code>T</code>.
+                </p>
+              </article>
+            </div>
+
+            <article class="vigenere-square-card" data-role="vigenere-square-tool">
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Square</p>
+                  <h3>Highlighted Vigenere square</h3>
+                </div>
+                <span class="tool-pill">CAT + KEY = MER</span>
+              </div>
               <p>
-                A Caesar cipher shifts each letter by the same number of places
-                in the alphabet. For example, a shift of 3 changes
-                <code>A</code> to <code>D</code> and <code>CAT</code> to
-                <code>FDW</code>.
+                Step through the worked example one letter at a time. Rows come
+                from the key. When encoding, columns come from the plaintext.
+                When decoding, you find the ciphertext inside the key row and
+                read the plaintext from the column heading.
               </p>
-              <p>
-                This is easy to understand, but it is also easy to break
-                because there are only a small number of possible shifts.
-              </p>
+              <div class="vigenere-square-controls">
+                <div
+                  class="segmented-control"
+                  role="group"
+                  aria-label="Vigenere square direction"
+                >
+                  <button
+                    type="button"
+                    data-vigenere-square-mode="encode"
+                    aria-pressed="true"
+                  >
+                    Encode
+                  </button>
+                  <button
+                    type="button"
+                    data-vigenere-square-mode="decode"
+                    aria-pressed="false"
+                  >
+                    Decode
+                  </button>
+                </div>
+
+                <label class="tool-slider-label" for="vigenere-square-step">
+                  Letter step
+                  <input
+                    id="vigenere-square-step"
+                    type="range"
+                    min="1"
+                    max="3"
+                    value="1"
+                    data-role="vigenere-square-step"
+                  />
+                </label>
+              </div>
+
+              <div class="vigenere-step-summary">
+                <article>
+                  <span>Step</span>
+                  <strong data-role="vigenere-step-number">1 of 3</strong>
+                </article>
+                <article>
+                  <span>Key row</span>
+                  <strong data-role="vigenere-step-key">K</strong>
+                </article>
+                <article>
+                  <span data-role="vigenere-source-label">Plaintext column</span>
+                  <strong data-role="vigenere-step-source">C</strong>
+                </article>
+                <article>
+                  <span data-role="vigenere-result-label">Ciphertext</span>
+                  <strong data-role="vigenere-step-result">M</strong>
+                </article>
+              </div>
+              <p class="tool-note" data-role="vigenere-step-note"></p>
+              <div class="vigenere-square-wrap">
+                <div
+                  class="vigenere-square-table"
+                  data-role="vigenere-square"
+                ></div>
+              </div>
             </article>
 
-            <article class="lesson-card">
-              <h3>Vigenere cipher</h3>
+            <article class="model-answer-card">
+              <h3>Exam wording</h3>
               <p>
-                A Vigenere cipher uses a keyword so the shift changes from one
-                letter to the next. That makes patterns less obvious than in a
-                simple fixed-shift cipher.
-              </p>
-              <p>
-                It is stronger than a Caesar cipher, but it is still not secure
-                enough for modern sensitive data.
+                A Vigenere cipher uses a keyword to choose different Caesar
+                shifts. With a Vigenere square, the key letter selects the row
+                and the plaintext letter selects the column; the intersection is
+                the encrypted letter.
               </p>
             </article>
           </section>
@@ -224,59 +559,71 @@
             <p class="lesson-section-copy">
               Real systems need methods that scale beyond classroom ciphers.
               Unit 2 expects you to recognise the difference between symmetric
-              key encryption and public key encryption, and the implications of
-              using each.
+              key encryption and public key encryption, including the
+              implications of how keys are shared.
             </p>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Symmetric key encryption</strong>
-                <span>
-                  The same secret key is used to encrypt and decrypt the data.
-                </span>
+            <div class="key-system-grid">
+              <article class="key-system-card key-system-card--symmetric">
+                <h3>Symmetric key encryption</h3>
+                <div class="key-flow" aria-label="Symmetric key process">
+                  <span>Sender</span>
+                  <strong>shared secret key</strong>
+                  <span>Receiver</span>
+                </div>
+                <p>
+                  The same secret key encrypts and decrypts the data. It can be
+                  efficient, but both parties must already have the key or share
+                  it securely first.
+                </p>
               </article>
-              <article class="term-card">
-                <strong>Main strength</strong>
-                <span>
-                  It is efficient once both parties already have the key.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Main challenge</strong>
-                <span>
-                  The shared key itself has to be exchanged securely.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Public key encryption</strong>
-                <span>
-                  One key is public for encryption and a different private key
-                  is kept secret for decryption.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Main strength</strong>
-                <span>
-                  It helps solve the key-sharing problem because the public key
-                  can be distributed openly.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Main implication</strong>
-                <span>
-                  It is powerful for secure exchange, but usually more complex
-                  than simple symmetric use.
-                </span>
+
+              <article class="key-system-card key-system-card--public">
+                <h3>Public key encryption</h3>
+                <div class="key-flow key-flow--public" aria-label="Public key process">
+                  <span>Public key</span>
+                  <strong>encrypt</strong>
+                  <span>Private key</span>
+                </div>
+                <p>
+                  A public key can be distributed openly. The matching private
+                  key is kept secret and is needed to decrypt the message.
+                </p>
               </article>
             </div>
 
-            <article class="lesson-card">
-              <h3>Why encryption matters in transmission</h3>
+            <div class="implication-grid">
+              <article class="implication-card">
+                <h3>Confidentiality</h3>
+                <p>
+                  If encrypted traffic is intercepted, the original message
+                  should still be unreadable without the correct key.
+                </p>
+              </article>
+              <article class="implication-card">
+                <h3>Key management</h3>
+                <p>
+                  The encryption method is only useful if keys are protected and
+                  given to the correct people or systems.
+                </p>
+              </article>
+              <article class="implication-card">
+                <h3>Performance</h3>
+                <p>
+                  Stronger security and key exchange processes can add
+                  complexity, so systems must balance security with practical
+                  use.
+                </p>
+              </article>
+            </div>
+
+            <article class="model-answer-card">
+              <h3>How to phrase it in an exam</h3>
               <p>
-                If intercepted traffic is encrypted, an attacker cannot easily
-                read the original message without the necessary key. That is
-                especially important when data crosses public or shared
-                networks.
+                Symmetric encryption uses one shared secret key, so the key
+                exchange is the main challenge. Public key encryption uses a
+                key pair, so the public key can be shared while the private key
+                stays secret.
               </p>
             </article>
           </section>
@@ -295,12 +642,35 @@
               rebuilt exactly.
             </p>
 
-            <div class="example-strip" aria-label="Compression types">
-              <span class="example-chip"><strong>Lossless</strong> no information lost</span>
-              <span class="example-chip"><strong>Lossy</strong> some detail removed</span>
+            <div class="compression-visual-grid">
+              <article class="compression-card compression-card--lossless">
+                <h3>Lossless keeps the original</h3>
+                <div class="compression-demo" aria-label="Lossless compression example">
+                  <span>AAAABBBCC</span>
+                  <strong>A4 B3 C2</strong>
+                  <span>AAAABBBCC</span>
+                </div>
+                <p>
+                  The stored pattern is smaller, but the exact original can be
+                  rebuilt.
+                </p>
+              </article>
+
+              <article class="compression-card compression-card--lossy">
+                <h3>Lossy removes detail</h3>
+                <div class="lossy-preview" aria-label="Lossy compression example">
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <p>
+                  The file can become much smaller, but removed detail cannot
+                  be recovered later.
+                </p>
+              </article>
             </div>
 
-            <article class="lesson-card">
+            <article class="compression-table-card">
               <h3>Lossless versus lossy</h3>
               <div class="compare-table-wrap">
                 <table class="compare-table">
@@ -316,7 +686,7 @@
                     <tr>
                       <td>Lossless</td>
                       <td>The original data can be rebuilt exactly.</td>
-                      <td>Text files, documents, program files</td>
+                      <td>Text files, documents, code, databases</td>
                       <td>Safer when accuracy matters</td>
                     </tr>
                     <tr>
@@ -330,14 +700,70 @@
               </div>
             </article>
 
-            <article class="lesson-card">
-              <h3>Why organisations compress data</h3>
-              <p>
-                Smaller files usually take less storage space and can often be
-                sent more quickly. The trade-off is that lossy compression may
-                remove detail which cannot be recovered later, so it is a poor
-                choice for data that must stay exact.
-              </p>
+            <article
+              class="compression-tool"
+              data-role="compression-tool"
+              aria-labelledby="compression-tool-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Decision Tool</p>
+                  <h3 id="compression-tool-heading">Choose a compression approach</h3>
+                </div>
+                <span class="tool-pill" data-role="compression-choice">Lossless</span>
+              </div>
+
+              <div class="file-type-grid" role="group" aria-label="File type">
+                <button type="button" data-file-type="document" aria-pressed="true">
+                  <strong>Document</strong>
+                  <span>Exact words and formatting matter</span>
+                </button>
+                <button type="button" data-file-type="photo" aria-pressed="false">
+                  <strong>Photo</strong>
+                  <span>Some quality loss may be acceptable</span>
+                </button>
+                <button type="button" data-file-type="video" aria-pressed="false">
+                  <strong>Video</strong>
+                  <span>Large file, bandwidth matters</span>
+                </button>
+                <button type="button" data-file-type="program" aria-pressed="false">
+                  <strong>Program file</strong>
+                  <span>Every bit must remain correct</span>
+                </button>
+              </div>
+
+              <label class="tool-slider-label" for="quality-tolerance">
+                Acceptable quality loss
+                <input
+                  id="quality-tolerance"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="0"
+                  data-role="quality-tolerance"
+                />
+              </label>
+
+              <div class="compression-result-grid">
+                <article>
+                  <span>Recommended type</span>
+                  <strong data-role="recommended-type">Lossless</strong>
+                </article>
+                <article>
+                  <span>Estimated file size</span>
+                  <strong data-role="estimated-size">7.0 MB</strong>
+                </article>
+                <article>
+                  <span>Recoverability</span>
+                  <strong data-role="recoverability">Exact original</strong>
+                </article>
+              </div>
+
+              <div class="size-meter" aria-hidden="true">
+                <span data-role="size-meter-fill"></span>
+              </div>
+
+              <p class="tool-note" data-role="compression-note"></p>
             </article>
           </section>
 
@@ -773,7 +1199,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

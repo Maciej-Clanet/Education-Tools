@@ -16,10 +16,10 @@ const lessonConfig = {
         href: "../topics/units-of-digital-data.html",
       },
       next: {
-        title: "Binary arithmetic",
+        title: "Hexadecimal numbers",
         description: "Next in C1 Number systems.",
         status: "Live",
-        href: "../topics/binary-arithmetic.html",
+        href: "../topics/hexadecimal-numbers.html",
       },
     },
   },

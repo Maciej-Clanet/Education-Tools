@@ -9,7 +9,7 @@
     </title>
     <meta
       name="description"
-      content="Revise image resolution, bit depth, and compression trade-offs for bitmap storage in BTEC Level 3 Computing Unit 2."
+      content="Revise image resolution, bit depth, colour banding, raw bitmap size, lossy compression, and lossless compression for BTEC Level 3 Computing Unit 2."
     />
     <meta
       property="og:title"
@@ -17,7 +17,7 @@
     />
     <meta
       property="og:description"
-      content="Revise image resolution, bit depth, and compression trade-offs for bitmap storage in BTEC Level 3 Computing Unit 2."
+      content="Revise image resolution, bit depth, colour banding, raw bitmap size, lossy compression, and lossless compression for BTEC Level 3 Computing Unit 2."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/resolution-bit-depth-and-image-compression.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -58,9 +62,9 @@
           <div>
             <h1>Resolution, bit depth, and image compression</h1>
             <p class="lesson-hero-text">
-              Learn how image clarity and colour quality depend on stored data,
-              and how compression changes the balance between file size and
-              quality.
+              Learn how pixel count, colour precision, and compression choices
+              change image quality, storage size, transfer time, and suitability
+              for a task.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -78,7 +82,11 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Image quality, colour precision, and compression trade-offs</span>
+            <span>Resolution, colour depth, compression, and trade-offs</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Interactive focus</strong>
+            <span>Changing bit depth and seeing the visual/storage effect</span>
           </article>
         </div>
 
@@ -106,8 +114,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, and teacher slides need JavaScript, but
-          the lesson notes still work without it.
+          Quiz scoring, answer saving, the bit-depth tool, and teacher slides
+          need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -118,6 +126,8 @@
             <a href="#overview" data-section-link>Overview</a>
             <a href="#resolution" data-section-link>Resolution</a>
             <a href="#bit-depth" data-section-link>Bit depth</a>
+            <a href="#bit-depth-tool" data-section-link>Bit-depth tool</a>
+            <a href="#raw-size" data-section-link>Raw image size</a>
             <a href="#compression" data-section-link>Compression</a>
             <a href="#trade-offs" data-section-link>Compare and choose</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
@@ -133,21 +143,40 @@
             data-lesson-section
           >
             <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
+            <h2>Image quality is a set of linked storage decisions</h2>
             <p class="lesson-section-copy">
-              Image quality is not determined by one feature alone. Resolution,
-              bit depth, and compression each affect how an image looks, how
-              much data it needs, and how suitable it is for a task.
+              For bitmap images, resolution decides how many pixels are stored.
+              Bit depth decides how much colour information each pixel can hold.
+              Compression decides how the stored data is reduced, and whether
+              image data is preserved exactly.
             </p>
+
+            <div class="quality-map">
+              <article class="quality-card quality-card--resolution">
+                <span class="quality-icon quality-icon--resolution"></span>
+                <h3>Resolution</h3>
+                <p>More pixels can store more detail.</p>
+              </article>
+              <article class="quality-card quality-card--depth">
+                <span class="quality-icon quality-icon--depth"></span>
+                <h3>Bit depth</h3>
+                <p>More bits per pixel can store more colour values.</p>
+              </article>
+              <article class="quality-card quality-card--compression">
+                <span class="quality-icon quality-icon--compression"></span>
+                <h3>Compression</h3>
+                <p>Smaller files can save space and transfer faster.</p>
+              </article>
+            </div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
-                  <li>Explain how resolution affects image detail.</li>
-                  <li>Explain how bit depth affects colour range.</li>
+                  <li>Explain how resolution affects detail and file size.</li>
+                  <li>Explain how bit depth affects colours and storage.</li>
                   <li>Compare lossy and lossless compression.</li>
-                  <li>Choose suitable settings for different uses.</li>
+                  <li>Recommend suitable image settings for a scenario.</li>
                 </ul>
               </article>
 
@@ -155,9 +184,9 @@
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
                   <li><strong>Resolution:</strong> how many pixels.</li>
-                  <li><strong>Bit depth:</strong> how much colour per pixel.</li>
-                  <li><strong>Compression:</strong> reduce stored data.</li>
-                  <li><strong>Trade-off:</strong> quality versus size.</li>
+                  <li><strong>Bit depth:</strong> how many bits per pixel.</li>
+                  <li><strong>Lossless:</strong> exact recovery possible.</li>
+                  <li><strong>Lossy:</strong> smaller file, possible quality loss.</li>
                 </ul>
               </article>
             </div>
@@ -169,27 +198,48 @@
             data-lesson-section
           >
             <p class="eyebrow">Resolution</p>
-            <h2>Resolution affects how much image detail can be stored</h2>
+            <h2>Resolution controls how many pixels are stored</h2>
             <p class="lesson-section-copy">
-              Resolution describes the number of pixels used to build the image.
-              More pixels usually mean more detail, but they also increase the
-              amount of data stored.
+              Resolution is usually given as width by height, such as
+              <code>1920 x 1080</code>. A higher resolution stores more pixels,
+              so it can capture more fine detail. It also usually needs more
+              storage because there are more pixel values to save.
             </p>
 
-            <div class="example-strip" aria-label="Resolution summary">
-              <span class="example-chip"><strong>More pixels</strong> more detail</span>
-              <span class="example-chip"><strong>Fewer pixels</strong> less detail</span>
-              <span class="example-chip"><strong>Trade-off</strong> higher storage use</span>
+            <div class="resolution-visual">
+              <article>
+                <h3>Low resolution</h3>
+                <div class="resolution-grid resolution-grid--low">
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <p>Fewer stored samples, less detail, smaller raw data.</p>
+              </article>
+              <article>
+                <h3>Higher resolution</h3>
+                <div class="resolution-grid resolution-grid--high">
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <p>More stored samples, more detail, larger raw data.</p>
+              </article>
             </div>
-
-            <article class="lesson-card">
-              <h3>Why resolution matters</h3>
-              <p>
-                A small web thumbnail can use lower resolution than a printed
-                poster because it is displayed at a smaller size. The larger the
-                final display area, the more detail may be needed.
-              </p>
-            </article>
           </section>
 
           <section
@@ -198,38 +248,136 @@
             data-lesson-section
           >
             <p class="eyebrow">Bit Depth</p>
-            <h2>Bit depth controls how many possible colours each pixel can store</h2>
+            <h2>Bit depth controls how many colour values each pixel can store</h2>
             <p class="lesson-section-copy">
-              Bit depth is the number of bits used for one pixel's colour
-              information. Increasing bit depth allows more colours or shades to
-              be represented, which can improve realism and smooth gradients.
+              Bit depth is the number of bits used for each pixel. More bits
+              create more possible values. For example, 1 bit gives
+              <code>2</code> values, 2 bits give <code>4</code> values, and 8
+              bits give <code>256</code> values for the channel or palette being
+              represented.
             </p>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Low bit depth</strong>
-                <span>
-                  Fewer possible colours, smaller storage requirements.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>High bit depth</strong>
-                <span>
-                  More colours and smoother transitions, but more data needed.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Visual effect</strong>
-                <span>
-                  Greater colour range can reduce banding in detailed images.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Storage effect</strong>
-                <span>
-                  Each pixel takes more bits, so the whole file grows.
-                </span>
-              </article>
+            <div class="bit-depth-equation">
+              <strong>Possible values</strong>
+              <code>2 ^ bit depth</code>
+              <p>
+                More possible values can reduce visible banding in gradients and
+                keep subtle tone changes.
+              </p>
+            </div>
+          </section>
+
+          <section
+            id="bit-depth-tool"
+            class="lesson-section lesson-section--bit-depth-tool panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Interactive</p>
+            <h2>Change the bit depth and watch the image data change</h2>
+            <p class="lesson-section-copy">
+              Use the slider to reduce or increase bit depth. The gradient shows
+              banding clearly, while the small image preview shows how tone
+              detail is lost or preserved. The storage figures update for a
+              <code>16 x 10</code> sample bitmap. This simplified preview uses
+              greyscale values so the effect is easy to see; colour images use
+              the same principle for their colour data.
+            </p>
+
+            <article
+              class="bit-depth-tool"
+              data-role="bit-depth-tool"
+              aria-labelledby="bit-depth-tool-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Bit-depth visualiser</p>
+                  <h3 id="bit-depth-tool-heading">Colour values per pixel</h3>
+                </div>
+                <span class="tool-pill" data-role="bit-depth-value">3 bits</span>
+              </div>
+
+              <label class="tool-slider-label">
+                Bits per pixel
+                <input
+                  type="range"
+                  min="1"
+                  max="8"
+                  step="1"
+                  data-role="bit-depth-slider"
+                />
+              </label>
+
+              <div class="bit-depth-stats">
+                <article>
+                  <span>Possible values</span>
+                  <strong data-role="bit-depth-levels">8</strong>
+                </article>
+                <article>
+                  <span>Sample raw bits</span>
+                  <strong data-role="bit-depth-sample-bits">480</strong>
+                </article>
+                <article>
+                  <span>Sample raw bytes</span>
+                  <strong data-role="bit-depth-sample-bytes">60</strong>
+                </article>
+              </div>
+
+              <div class="bit-depth-preview-grid">
+                <article>
+                  <h4>Gradient</h4>
+                  <div
+                    class="gradient-preview"
+                    data-role="bit-depth-gradient"
+                    aria-label="Gradient preview affected by bit depth"
+                  ></div>
+                </article>
+                <article>
+                  <h4>Sample image</h4>
+                  <div
+                    class="image-preview"
+                    data-role="bit-depth-image"
+                    aria-label="Small bitmap preview affected by bit depth"
+                  ></div>
+                </article>
+              </div>
+
+              <div class="palette-preview-wrap">
+                <h4>Sample values available</h4>
+                <div
+                  class="palette-preview"
+                  data-role="bit-depth-palette"
+                  aria-label="Preview of available shade values"
+                ></div>
+              </div>
+
+              <p class="tool-note" data-role="bit-depth-note">
+                Low bit depth creates obvious bands because there are very few
+                shades available.
+              </p>
+            </article>
+          </section>
+
+          <section
+            id="raw-size"
+            class="lesson-section lesson-section--raw-size panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Raw Size</p>
+            <h2>Resolution and bit depth multiply together</h2>
+            <p class="lesson-section-copy">
+              Raw bitmap storage can be estimated by multiplying width by
+              height by bits per pixel. Compression and metadata can change the
+              final file size, but this formula explains the basic pressure on
+              storage.
+            </p>
+
+            <div class="formula-card">
+              <strong>Raw image size in bits</strong>
+              <code>width x height x bit depth</code>
+              <p>
+                Example: <code>800 x 600 x 24 = 11,520,000 bits</code>, before
+                compression or extra file information.
+              </p>
             </div>
           </section>
 
@@ -239,45 +387,31 @@
             data-lesson-section
           >
             <p class="eyebrow">Compression</p>
-            <h2>Compression reduces file size by removing or reorganising stored data</h2>
+            <h2>Compression reduces file size, but the method matters</h2>
             <p class="lesson-section-copy">
-              Compression makes files smaller, which helps storage and transfer.
-              The important distinction is whether the original image can be
-              recovered exactly.
+              Compression makes image files smaller for storage and transfer.
+              The key distinction is whether the original data can be recovered
+              exactly after decompression.
             </p>
 
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Method</th>
-                    <th>What it does</th>
-                    <th>Main implication</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Lossless</td>
-                    <td>Reduces size without losing original image data</td>
-                    <td>Image can be restored exactly</td>
-                  </tr>
-                  <tr>
-                    <td>Lossy</td>
-                    <td>Removes some data to shrink the file further</td>
-                    <td>Quality may decrease</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="compression-grid">
+              <article class="compression-card compression-card--lossless">
+                <h3>Lossless compression</h3>
+                <p>
+                  Reorganises data so the file is smaller, but no original image
+                  data is lost. The image can be restored exactly.
+                </p>
+                <span>Useful for archives, diagrams, medical or legal images.</span>
+              </article>
+              <article class="compression-card compression-card--lossy">
+                <h3>Lossy compression</h3>
+                <p>
+                  Removes some image data to reduce file size more strongly.
+                  The original cannot be perfectly restored.
+                </p>
+                <span>Useful for web photos where smaller files matter.</span>
+              </article>
             </div>
-
-            <article class="lesson-card">
-              <h3>Choosing the right compression</h3>
-              <p>
-                If perfect image fidelity matters, lossless compression is
-                safer. If a much smaller file is more important than exact
-                preservation, lossy compression may be chosen.
-              </p>
-            </article>
           </section>
 
           <section
@@ -299,18 +433,23 @@
                 <tbody>
                   <tr>
                     <td>Small web image</td>
-                    <td>Lower resolution or stronger compression</td>
-                    <td>Faster loading and smaller storage use</td>
+                    <td>Lower resolution or lossy compression</td>
+                    <td>Faster loading and smaller transfer size</td>
                   </tr>
                   <tr>
                     <td>Detailed print work</td>
                     <td>Higher resolution and suitable bit depth</td>
-                    <td>Better visual quality</td>
+                    <td>More detail and smoother colour transitions</td>
                   </tr>
                   <tr>
                     <td>Exact archive</td>
                     <td>Lossless compression</td>
-                    <td>Preserves the original data</td>
+                    <td>Preserves the original image data</td>
+                  </tr>
+                  <tr>
+                    <td>Low storage device</td>
+                    <td>Reduced resolution, bit depth, or compression</td>
+                    <td>Saves space, but may reduce quality</td>
                   </tr>
                 </tbody>
               </table>
@@ -328,11 +467,11 @@
               <article class="trap-card">
                 <h3>Mixing up resolution and bit depth</h3>
                 <p>
-                  Resolution is about pixel count. Bit depth is about colour per
-                  pixel.
+                  Resolution is about pixel count. Bit depth is about colour
+                  values per pixel.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Ask whether the question is about image
+                  <strong>Fix:</strong> Ask whether the question is about
                   detail or colour range.
                 </p>
               </article>
@@ -355,8 +494,8 @@
                   sacrificed.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Link image quality decisions to file
-                  size and intended use.
+                  <strong>Fix:</strong> Link image settings to file size and
+                  intended use.
                 </p>
               </article>
             </div>
@@ -368,11 +507,10 @@
             data-lesson-section
           >
             <p class="eyebrow">Quiz</p>
-            <h2>Check your understanding</h2>
+            <h2>Check the concepts</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
-              later.
+              The bit-depth tool handles the visual examples. This quiz checks
+              the ideas behind image quality and compression choices.
             </p>
 
             <form id="lesson-quiz" class="quiz-form">
@@ -411,7 +549,7 @@
                 class="quiz-question"
                 data-question="q2"
                 data-answer="c"
-                data-success="Correct. Higher bit depth means more possible colours."
+                data-success="Correct. Higher bit depth means more possible colours or shades."
                 data-feedback="Bit depth controls the range of colour values each pixel can hold."
               >
                 <legend>2. What is a likely effect of increasing bit depth?</legend>
@@ -431,7 +569,7 @@
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="c" />
-                      <span>More possible colours per pixel</span>
+                      <span>More possible colour values per pixel</span>
                     </label>
                   </li>
                 </ul>
@@ -504,27 +642,29 @@
                 class="quiz-question"
                 data-question="q5"
                 data-answer="b"
-                data-success="Correct. Higher resolution tends to increase image detail."
-                data-feedback="More pixels can store more detail, though they also use more space."
+                data-success="Correct. More pixels and more bits per pixel both increase raw bitmap storage."
+                data-feedback="Raw bitmap size depends on pixel count and bit depth."
               >
-                <legend>5. What is a common benefit of higher resolution?</legend>
+                <legend>
+                  5. Which pair directly affects raw bitmap storage size?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="a" />
-                      <span>Guaranteed lossless compression</span>
+                      <span>Keyboard type and mouse speed</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>More image detail can be stored</span>
+                      <span>Pixel count and bits per pixel</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
-                      <span>Fewer colour options per pixel</span>
+                      <span>Screen brightness and speaker volume</span>
                     </label>
                   </li>
                 </ul>
@@ -554,11 +694,11 @@
             data-lesson-section
           >
             <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Try longer answers like the ones used in written papers</h2>
+            <h2>Explain the effect, then judge the trade-off</h2>
             <p class="lesson-section-copy">
               These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              Type your answers into the page, then compare your ideas with the
+              answer guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -572,8 +712,8 @@
                 </div>
                 <h3>Question 1</h3>
                 <p>
-                  Explain how both resolution and bit depth can increase the
-                  storage needed for one bitmap image.
+                  Explain how reducing the bit depth of an image will affect the
+                  way the image data is stored and displayed.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-1">
@@ -583,22 +723,20 @@
                     id="exam-response-1"
                     class="exam-response"
                     data-exam-response="question-1"
-                    placeholder="Link more pixels and more bits per pixel to larger files."
+                    placeholder="Link fewer bits per pixel to fewer colour values and smaller storage."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
+                      <li>Each pixel stores fewer bits of colour data.</li>
+                      <li>There are fewer possible colours or shades.</li>
                       <li>
-                        Higher resolution means more pixels must be stored.
+                        The image may show banding, posterisation, or less
+                        realistic colour.
                       </li>
-                      <li>
-                        Higher bit depth means each pixel uses more bits.
-                      </li>
-                      <li>
-                        Both changes increase the total amount of image data.
-                      </li>
+                      <li>The raw image data will be smaller.</li>
                     </ul>
                   </div>
                 </details>
@@ -666,6 +804,10 @@
                 <dd>The number of bits used to store each pixel's colour.</dd>
               </div>
               <div class="glossary-item">
+                <dt>Banding</dt>
+                <dd>Visible steps between tones when too few values are available.</dd>
+              </div>
+              <div class="glossary-item">
                 <dt>Lossless compression</dt>
                 <dd>Compression that preserves the original data exactly.</dd>
               </div>
@@ -707,7 +849,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 10</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

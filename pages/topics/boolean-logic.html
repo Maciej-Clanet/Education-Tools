@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/pages/boolean-logic.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script type="module" src="../../javascript/pages/boolean-logic.js"></script>
@@ -132,8 +133,37 @@
               output.
             </p>
 
+            <div class="logic-map">
+              <article class="logic-map-card logic-map-card--inputs">
+                <span class="logic-icon logic-icon--inputs" aria-hidden="true"></span>
+                <h3>Inputs become 1 or 0</h3>
+                <p>
+                  Sensors, buttons, checks, and conditions can be represented
+                  as true or false values.
+                </p>
+              </article>
+
+              <article class="logic-map-card logic-map-card--rule">
+                <span class="logic-icon logic-icon--rule" aria-hidden="true"></span>
+                <h3>A rule combines them</h3>
+                <p>
+                  AND, OR, and NOT describe exactly how the input states affect
+                  the result.
+                </p>
+              </article>
+
+              <article class="logic-map-card logic-map-card--output">
+                <span class="logic-icon logic-icon--output" aria-hidden="true"></span>
+                <h3>The output controls action</h3>
+                <p>
+                  The result can unlock a door, start a fan, sound an alarm, or
+                  route data through a process.
+                </p>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="model-answer-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Explain what Boolean logic represents.</li>
@@ -153,7 +183,7 @@
                 </ul>
               </article>
 
-              <article class="lesson-card fullrow">
+              <article class="model-answer-card fullrow">
                 <h3>Why it matters</h3>
                 <p>
                   Exam questions often describe alarms, sensors, access control,
@@ -188,32 +218,60 @@
               >
             </div>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>AND</strong>
-                <span>
+            <div class="operator-grid">
+              <article class="operator-card operator-card--and">
+                <div class="gate-visual gate-visual--and" aria-hidden="true">
+                  <span>A</span>
+                  <strong>AND</strong>
+                  <span>B</span>
+                </div>
+                <h3>AND</h3>
+                <p>
                   Output is true only when every required condition is true.
-                </span>
+                  Use it for wording such as "both" or "only when all".
+                </p>
               </article>
-              <article class="term-card">
-                <strong>OR</strong>
-                <span>
-                  Output is true when at least one condition is true.
-                </span>
+
+              <article class="operator-card operator-card--or">
+                <div class="gate-visual gate-visual--or" aria-hidden="true">
+                  <span>A</span>
+                  <strong>OR</strong>
+                  <span>B</span>
+                </div>
+                <h3>OR</h3>
+                <p>
+                  Output is true when at least one condition is true. Use it
+                  when either input is enough.
+                </p>
               </article>
-              <article class="term-card">
-                <strong>NOT</strong>
-                <span>Output becomes the opposite of the original input.</span>
+
+              <article class="operator-card operator-card--not">
+                <div class="gate-visual gate-visual--not" aria-hidden="true">
+                  <span>A</span>
+                  <strong>NOT</strong>
+                  <span>Y</span>
+                </div>
+                <h3>NOT</h3>
+                <p>
+                  Output becomes the opposite of the original input. Use it for
+                  wording such as "not", "unless", or "is false".
+                </p>
               </article>
-              <article class="term-card">
-                <strong>Boolean values</strong>
-                <span>
-                  Systems usually store the result as true or false, or 1 or 0.
-                </span>
+
+              <article class="operator-card operator-card--values">
+                <div class="state-visual" aria-hidden="true">
+                  <span>0</span>
+                  <span>1</span>
+                </div>
+                <h3>Boolean values</h3>
+                <p>
+                  Systems usually store logic as true or false, or as binary
+                  values 1 and 0.
+                </p>
               </article>
             </div>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>From words to logic</h3>
               <p>
                 If a door alarm sounds only when the system is armed
@@ -227,7 +285,7 @@
               <pre><code>warning = lowBattery OR highTemperature</code></pre>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>What NOT changes</h3>
               <p>
                 NOT is often used when the sensor signal is the opposite of the
@@ -251,7 +309,50 @@
               inputs there are four rows: 00, 01, 10, and 11.
             </p>
 
-            <article class="lesson-card">
+            <article
+              class="logic-lab"
+              data-role="logic-lab"
+              aria-labelledby="logic-lab-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Logic Lab</p>
+                  <h3 id="logic-lab-heading">Build and test a truth table</h3>
+                </div>
+                <span class="tool-pill" data-role="logic-output-pill"
+                  >Selected output 0</span
+                >
+              </div>
+
+              <div class="logic-lab-controls">
+                <label class="tool-select-label" for="logic-expression">
+                  Logic expression
+                  <select id="logic-expression" data-role="logic-expression">
+                    <option value="and">A AND B</option>
+                    <option value="or">A OR B</option>
+                    <option value="notA">NOT A</option>
+                    <option value="alarm">A AND (B OR C)</option>
+                    <option value="secure">(A OR B) AND NOT C</option>
+                  </select>
+                </label>
+
+                <div class="input-toggle-grid" data-role="logic-inputs"></div>
+              </div>
+
+              <div class="logic-expression-card">
+                <span>Current rule</span>
+                <strong data-role="logic-expression-text">A AND B</strong>
+              </div>
+
+              <div class="logic-live-flow" data-role="logic-live-flow"></div>
+
+              <div class="truth-table-wrap">
+                <table class="truth-table" data-role="logic-truth-table"></table>
+              </div>
+              <p class="tool-note" data-role="logic-note"></p>
+            </article>
+
+            <article class="model-answer-card">
               <h3>Core patterns to remember</h3>
               <div class="compare-table-wrap">
                 <table class="compare-table">
@@ -293,7 +394,7 @@
               </div>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>Worked NOT example</h3>
               <p>
                 If <code>safeMode</code> is 1, then <code>NOT safeMode</code>
@@ -303,17 +404,17 @@
               </p>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>How to read exam wording</h3>
               <ul class="lesson-list">
                 <li>
-                  “Only when both” usually signals <strong>AND</strong>.
+                  "Only when both" usually signals <strong>AND</strong>.
                 </li>
                 <li>
-                  “If either” usually signals <strong>OR</strong>.
+                  "If either" usually signals <strong>OR</strong>.
                 </li>
                 <li>
-                  “When not” or “unless” often signals
+                  "When not" or "unless" often signals
                   <strong>NOT</strong>.
                 </li>
                 <li>
@@ -337,7 +438,24 @@
               control.
             </p>
 
-            <article class="lesson-card">
+            <div class="data-flow-visual" aria-label="Boolean data flow">
+              <article>
+                <span>Inputs</span>
+                <strong>armed, doorOpen</strong>
+              </article>
+              <span class="flow-symbol" aria-hidden="true">+</span>
+              <article>
+                <span>Logic rule</span>
+                <strong>armed AND doorOpen</strong>
+              </article>
+              <span class="flow-symbol" aria-hidden="true">=</span>
+              <article>
+                <span>Output</span>
+                <strong>alarm</strong>
+              </article>
+            </div>
+
+            <article class="model-answer-card">
               <h3>Access control example</h3>
               <p>
                 A secure door opens only when a valid passcode is entered and
@@ -349,7 +467,7 @@
               </p>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>Alarm example</h3>
               <p>
                 A home alarm may trigger when a window sensor or a door sensor
@@ -362,7 +480,7 @@
               </p>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>How to build a logic answer</h3>
               <div class="compare-table-wrap">
                 <table class="compare-table">
@@ -433,7 +551,7 @@
                 </p>
                 <p class="trap-fix">
                   <strong>Fix:</strong> Rewrite the statement in plain English,
-                  for example “NOT locked” means “unlocked”.
+                  for example "NOT locked" means "unlocked".
                 </p>
               </article>
 
@@ -621,7 +739,7 @@
               <div class="quiz-actions">
                 <button class="primary-link" type="submit">Check answers</button>
                 <button
-                  class="ghost-button"
+                  class="lesson-secondary-action"
                   type="button"
                   data-action="reset-quiz"
                 >
@@ -746,12 +864,7 @@
         </main>
 
         <aside class="lesson-rail">
-          <section class="lesson-rail-card panel">
-            <p class="eyebrow">Lesson Sequence</p>
-            <div class="sequence-grid" data-role="lesson-sequence"></div>
-          </section>
-
-          <section class="lesson-rail-card panel">
+          <section class="lesson-rail-card panel glossary-card">
             <p class="eyebrow">Glossary</p>
             <h2>Key terms</h2>
             <dl class="glossary-list">
@@ -773,8 +886,49 @@
               </div>
             </dl>
           </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Conditions to outputs</h2>
+            <ul class="memory-list">
+              <li>AND means every condition must be true.</li>
+              <li>OR means at least one condition is true.</li>
+              <li>NOT flips the state before the output is decided.</li>
+            </ul>
+          </section>
         </aside>
       </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
     </div>
   </body>
 </html>

@@ -125,15 +125,16 @@ saved progress should be shown as needing a fresh attempt.
 ### C1 Number systems
 - [x] Units of digital data
 - [x] Binary and BCD
+- [x] Hexadecimal numbers
 - [x] Binary arithmetic
-- [ ] Negative and floating point representation
+- [x] Negative and floating point representation
 
 ### C2 Text representation
-- [ ] Character sets, ASCII, and Unicode
+- [x] Character sets, ASCII, and Unicode
 
 ### C3 Image representation
-- [ ] Bitmap image storage
-- [ ] Resolution, bit depth, and image compression
+- [x] Image storage: bitmap and vector images
+- [x] Resolution, bit depth, and image compression
 
 ## D How data is organised on computer systems
 
@@ -148,24 +149,24 @@ saved progress should be shown as needing a fresh attempt.
 ## E How data is transmitted by computer systems
 
 ### E1 Transmitting data
-- [ ] Communication channels and connection methods
-- [ ] Transmission methods: synchronous, asynchronous, serial, and parallel
-- [ ] Packet data, packet switching, and protocols
-- [ ] Encryption and data compression
+- [x] Communication channels and connection methods
+- [x] Transmission methods: synchronous, asynchronous, serial, and parallel
+- [x] Packet data, packet switching, and protocols
+- [x] Encryption and data compression
 
 ### E2 Error detection
-- [ ] Error detection methods
+- [x] Error detection methods
 
 ### E3 Error correction
-- [ ] Error correction with ARQ and FEC
+- [x] Error correction with ARQ and FEC
 
 ## F The use of logic and data flow in computer systems
 
 ### F1 Boolean logic
-- [ ] Boolean logic
+- [x] Boolean logic
 
 ### F2 Flow charts and system diagrams
-- [ ] Flow charts and system diagrams
+- [x] Flow charts and system diagrams
 
 # Essential content
 The essential content is set out under content areas. Learners must cover all specified content

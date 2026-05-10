@@ -6,7 +6,7 @@
     <title>Flow Charts and System Diagrams Revision Lesson | Education Tools</title>
     <meta
       name="description"
-      content="Revise flow charts and system diagrams with standard symbols, data flow, system modelling, exam traps, exam-style practice, and a short end-of-lesson quiz."
+      content="Revise flow charts, system diagrams, data flow, exam traps, practice tasks, and a quick quiz."
     />
     <meta
       property="og:title"
@@ -14,7 +14,7 @@
     />
     <meta
       property="og:description"
-      content="Revise flow charts and system diagrams with standard symbols, data flow, system modelling, exam traps, exam-style practice, and a short end-of-lesson quiz."
+      content="Revise flow charts, system diagrams, data flow, exam traps, practice tasks, and a quick quiz."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/flow-charts-and-system-diagrams.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -135,8 +139,39 @@
               movement of data between them.
             </p>
 
+            <div class="diagram-purpose-grid">
+              <article class="diagram-purpose-card">
+                <div class="mini-flowchart" aria-hidden="true">
+                  <span class="mini-node mini-node--terminator">Start</span>
+                  <span class="mini-arrow"></span>
+                  <span class="mini-node mini-node--process">Check</span>
+                  <span class="mini-arrow"></span>
+                  <span class="mini-node mini-node--decision">?</span>
+                </div>
+                <h3>Flow chart</h3>
+                <p>
+                  Use it when the important question is: what happens first,
+                  what happens next, and where does the process branch?
+                </p>
+              </article>
+
+              <article class="diagram-purpose-card">
+                <div class="mini-system-map" aria-hidden="true">
+                  <span>Input</span>
+                  <span>Process</span>
+                  <span>Storage</span>
+                  <span>Output</span>
+                </div>
+                <h3>System diagram</h3>
+                <p>
+                  Use it when the important question is: which parts of the
+                  system are involved, and where does data move?
+                </p>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="model-answer-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Recognise common flow chart symbols.</li>
@@ -146,7 +181,7 @@
                 </ul>
               </article>
 
-              <article class="lesson-card">
+              <article class="model-answer-card">
                 <h3>Quick memory hooks</h3>
                 <ul class="memory-list">
                   <li><strong>Flow chart:</strong> steps in order.</li>
@@ -156,7 +191,7 @@
                 </ul>
               </article>
 
-              <article class="lesson-card fullrow">
+              <article class="model-answer-card fullrow">
                 <h3>Why this matters</h3>
                 <p>
                   In the exam, diagrams are often used to explain a process,
@@ -180,67 +215,123 @@
               order in which operations happen.
             </p>
 
-            <div class="example-strip" aria-label="Flow chart essentials">
-              <span class="example-chip"
-                ><strong>Start/End</strong> where the process begins or stops</span
-              >
-              <span class="example-chip"
-                ><strong>Process</strong> an action or calculation</span
-              >
-              <span class="example-chip"
-                ><strong>Decision</strong> choose between paths</span
-              >
+            <div class="symbol-gallery" aria-label="Common flow chart symbols">
+              <article class="symbol-card">
+                <span
+                  class="flow-symbol-shape flow-symbol-shape--terminator"
+                  aria-hidden="true"
+                  >Start</span
+                >
+                <h3>Terminator</h3>
+                <p>Shows where the process begins or ends.</p>
+              </article>
+
+              <article class="symbol-card">
+                <span
+                  class="flow-symbol-shape flow-symbol-shape--process"
+                  aria-hidden="true"
+                  >Process</span
+                >
+                <h3>Process</h3>
+                <p>Shows an action, calculation, update, or task.</p>
+              </article>
+
+              <article class="symbol-card">
+                <span
+                  class="flow-symbol-shape flow-symbol-shape--io"
+                  aria-hidden="true"
+                  >Input / Output</span
+                >
+                <h3>Input or output</h3>
+                <p>Shows data entering or leaving the process.</p>
+              </article>
+
+              <article class="symbol-card">
+                <span
+                  class="flow-symbol-shape flow-symbol-shape--decision"
+                  aria-hidden="true"
+                  >Decision?</span
+                >
+                <h3>Decision</h3>
+                <p>Shows a yes/no branch, such as a validation check.</p>
+              </article>
+
+              <article class="symbol-card">
+                <span
+                  class="flow-symbol-shape flow-symbol-shape--storage"
+                  aria-hidden="true"
+                  >Data</span
+                >
+                <h3>Stored data</h3>
+                <p>Shows data being saved to or read from storage.</p>
+              </article>
             </div>
 
-            <article class="lesson-card">
-              <h3>Common symbol meanings</h3>
-              <div class="compare-table-wrap">
-                <table class="compare-table">
-                  <thead>
-                    <tr>
-                      <th>Symbol type</th>
-                      <th>Meaning</th>
-                      <th>Typical use</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Terminator</td>
-                      <td>Start or end point</td>
-                      <td>Beginning or finish of a process</td>
-                    </tr>
-                    <tr>
-                      <td>Process</td>
-                      <td>An action or task</td>
-                      <td>Calculate total, save file, update record</td>
-                    </tr>
-                    <tr>
-                      <td>Input/Output</td>
-                      <td>Data entering or leaving the system</td>
-                      <td>Read sensor, display message, print receipt</td>
-                    </tr>
-                    <tr>
-                      <td>Decision</td>
-                      <td>A yes/no test</td>
-                      <td>Is password correct? Is stock available?</td>
-                    </tr>
-                    <tr>
-                      <td>Flow line</td>
-                      <td>Direction of the process</td>
-                      <td>Connects one step to the next</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <article
+              class="trace-tool"
+              data-role="flow-trace-tool"
+              aria-labelledby="trace-tool-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Trace Tool</p>
+                  <h3 id="trace-tool-heading">Step through a flow chart</h3>
+                </div>
+                <span class="tool-pill" data-role="trace-status">Step 1</span>
+              </div>
+
+              <label class="tool-select-label" for="trace-scenario">
+                Scenario
+                <select id="trace-scenario" data-role="trace-scenario">
+                  <option value="login">Login check</option>
+                  <option value="sensor">Temperature alert</option>
+                </select>
+              </label>
+
+              <div class="trace-layout">
+                <div
+                  class="trace-flow"
+                  data-role="trace-flow"
+                  aria-label="Flow chart trace"
+                ></div>
+
+                <div class="trace-control-panel">
+                  <p class="trace-current" data-role="trace-current">
+                    Current step
+                  </p>
+                  <p class="tool-note" data-role="trace-detail"></p>
+                  <div class="branch-choice" data-role="trace-choices"></div>
+                  <div class="trace-actions">
+                    <button
+                      class="trace-button trace-button--primary"
+                      type="button"
+                      data-action="trace-next"
+                    >
+                      Next step
+                    </button>
+                    <button
+                      class="trace-button"
+                      type="button"
+                      data-action="trace-reset"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                  <div class="trace-log-card">
+                    <h4>Path taken</h4>
+                    <ol class="trace-log" data-role="trace-log"></ol>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="lesson-card">
-              <h3>Reading a simple process</h3>
+            <article class="model-answer-card">
+              <h3>How to read a flow chart</h3>
               <p>
-                A login flow chart might start with the user entering a
-                password, then move to a decision: “Is the password correct?”
-                If yes, access is granted. If no, an error message is shown and
-                the process may loop back for another attempt.
+                Start at the terminator, follow one arrow at a time, and read
+                each decision as a question. A decision normally has labelled
+                paths such as <strong>Yes</strong> and <strong>No</strong>, so
+                your route through the process depends on the answer.
               </p>
             </article>
           </section>
@@ -258,43 +349,56 @@
               how data passes between them.
             </p>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Input</strong>
-                <span>Where data enters, such as a sensor or keyboard.</span>
+            <div class="system-model" aria-label="Barcode checkout system model">
+              <article class="system-node system-node--input">
+                <span>Input</span>
+                <strong>Barcode scanner</strong>
               </article>
-              <article class="term-card">
-                <strong>Process</strong>
-                <span>
-                  The component or software that handles the data.
-                </span>
+              <span class="system-arrow" aria-hidden="true">Item code</span>
+              <article class="system-node system-node--process">
+                <span>Process</span>
+                <strong>Till software</strong>
               </article>
-              <article class="term-card">
-                <strong>Storage</strong>
-                <span>Where data is held for later use or retrieval.</span>
+              <span class="system-arrow system-arrow--split" aria-hidden="true"
+                >Lookup / update</span
+              >
+              <article class="system-node system-node--storage">
+                <span>Storage</span>
+                <strong>Product database</strong>
               </article>
-              <article class="term-card">
-                <strong>Output</strong>
-                <span>Where the final result is sent or shown.</span>
+              <span class="system-arrow" aria-hidden="true">Price and receipt</span>
+              <article class="system-node system-node--output">
+                <span>Output</span>
+                <strong>Display and printer</strong>
               </article>
             </div>
 
-            <article class="lesson-card">
-              <h3>Example system model</h3>
-              <p>
-                In a barcode checkout system, the scanner is the input, the
-                till software is the process, the product database is storage,
-                and the display or receipt printer is the output. Arrows show
-                the path the data follows between those parts.
-              </p>
-            </article>
+            <div class="component-grid">
+              <article class="component-card">
+                <h3>Input</h3>
+                <p>Where data enters, such as a scanner, sensor, form, or keyboard.</p>
+              </article>
+              <article class="component-card">
+                <h3>Process</h3>
+                <p>The hardware or software that checks, calculates, or transforms data.</p>
+              </article>
+              <article class="component-card">
+                <h3>Storage</h3>
+                <p>Where data is saved, read, updated, or retrieved for later use.</p>
+              </article>
+              <article class="component-card">
+                <h3>Output</h3>
+                <p>Where the result is displayed, printed, transmitted, or acted on.</p>
+              </article>
+            </div>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>Why arrows matter</h3>
               <p>
-                The direction of the arrow tells you where the data is going. A
-                reversed arrow can change the meaning completely, so diagrams
-                should show data flow carefully and consistently.
+                The direction of an arrow tells you where the data is going and
+                often what kind of data is moving. A reversed or missing arrow
+                can change the meaning of the system, so labels should be short,
+                precise, and scenario-specific.
               </p>
             </article>
           </section>
@@ -313,7 +417,26 @@
               software, or storage, a system diagram is usually stronger.
             </p>
 
-            <article class="lesson-card">
+            <div class="choice-grid" aria-label="Choosing a diagram type">
+              <article class="choice-card">
+                <span class="choice-pill">Use a flow chart when...</span>
+                <h3>The question is about sequence</h3>
+                <p>
+                  Look for words such as steps, decision, loop, branch,
+                  validate, repeat, start, stop, or process order.
+                </p>
+              </article>
+              <article class="choice-card">
+                <span class="choice-pill">Use a system diagram when...</span>
+                <h3>The question is about structure</h3>
+                <p>
+                  Look for words such as components, data flow, input, output,
+                  storage, network, subsystem, or relationship.
+                </p>
+              </article>
+            </div>
+
+            <article class="model-answer-card">
               <h3>Flow chart or system diagram?</h3>
               <div class="compare-table-wrap">
                 <table class="compare-table">
@@ -350,7 +473,7 @@
               </div>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>How to build a strong diagram answer</h3>
               <ul class="lesson-list">
                 <li>Start by identifying the purpose of the diagram.</li>
@@ -581,7 +704,7 @@
               <div class="quiz-actions">
                 <button class="primary-link" type="submit">Check answers</button>
                 <button
-                  class="ghost-button"
+                  class="lesson-secondary-action"
                   type="button"
                   data-action="reset-quiz"
                 >
@@ -704,12 +827,7 @@
         </main>
 
         <aside class="lesson-rail">
-          <section class="lesson-rail-card panel">
-            <p class="eyebrow">Lesson Sequence</p>
-            <div class="sequence-grid" data-role="lesson-sequence"></div>
-          </section>
-
-          <section class="lesson-rail-card panel">
+          <section class="lesson-rail-card panel glossary-card">
             <p class="eyebrow">Glossary</p>
             <h2>Key terms</h2>
             <dl class="glossary-list">
@@ -734,8 +852,49 @@
               </div>
             </dl>
           </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Model the question</h2>
+            <ul class="memory-list">
+              <li>Flow charts show process order and decisions.</li>
+              <li>System diagrams show components and data movement.</li>
+              <li>Arrow direction must match the scenario.</li>
+            </ul>
+          </section>
         </aside>
       </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
     </div>
   </body>
 </html>

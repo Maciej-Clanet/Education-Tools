@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/pages/error-detection-methods.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -134,8 +135,37 @@
               the data can be checked, rejected, or sent again.
             </p>
 
+            <div class="detection-map">
+              <article class="detection-card detection-card--send">
+                <span class="detection-icon detection-icon--send" aria-hidden="true"></span>
+                <h3>Sender adds evidence</h3>
+                <p>
+                  Extra information such as a parity bit, checksum, or CRC
+                  value is sent with the data.
+                </p>
+              </article>
+
+              <article class="detection-card detection-card--check">
+                <span class="detection-icon detection-icon--check" aria-hidden="true"></span>
+                <h3>Receiver checks again</h3>
+                <p>
+                  The receiver repeats the check and compares its result with
+                  the value that arrived.
+                </p>
+              </article>
+
+              <article class="detection-card detection-card--respond">
+                <span class="detection-icon detection-icon--respond" aria-hidden="true"></span>
+                <h3>The system responds</h3>
+                <p>
+                  If the values do not match, the data should not be trusted.
+                  The next step is usually reject, request resend, or correct.
+                </p>
+              </article>
+            </div>
+
             <div class="lesson-intro-grid">
-              <article class="lesson-card">
+              <article class="model-answer-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
                   <li>Explain how parity schemes detect simple bit errors.</li>
@@ -157,7 +187,7 @@
                 </ul>
               </article>
 
-              <article class="lesson-card fullrow">
+              <article class="model-answer-card fullrow">
                 <h3>Why this matters</h3>
                 <p>
                   If a network or storage system cannot tell that data changed,
@@ -189,7 +219,111 @@
               <span class="example-chip"><strong>Bit flip</strong> parity can reveal the change</span>
             </div>
 
-            <article class="lesson-card">
+            <article
+              class="parity-lab"
+              data-role="parity-lab"
+              aria-labelledby="parity-lab-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Parity Lab</p>
+                  <h3 id="parity-lab-heading">Watch the parity check</h3>
+                </div>
+                <span class="tool-pill" data-role="parity-status">Ready</span>
+              </div>
+
+              <div class="parity-controls">
+                <div
+                  class="segmented-control"
+                  role="group"
+                  aria-label="Parity mode"
+                >
+                  <button
+                    type="button"
+                    data-parity-mode="even"
+                    aria-pressed="true"
+                  >
+                    Even parity
+                  </button>
+                  <button
+                    type="button"
+                    data-parity-mode="odd"
+                    aria-pressed="false"
+                  >
+                    Odd parity
+                  </button>
+                </div>
+                <div class="tool-actions">
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-action="random-parity-data"
+                  >
+                    Random data
+                  </button>
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-action="flip-received-bit"
+                  >
+                    Flip received bit
+                  </button>
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-action="reset-parity-error"
+                  >
+                    Reset received
+                  </button>
+                </div>
+              </div>
+
+              <div class="parity-lab-grid">
+                <article>
+                  <h4>Sender data bits</h4>
+                  <div class="bit-row" data-role="sender-bits"></div>
+                  <p>
+                    Toggle the data bits. The parity bit is recalculated
+                    automatically.
+                  </p>
+                </article>
+
+                <article>
+                  <h4>Frame sent</h4>
+                  <div class="bit-row" data-role="sent-frame"></div>
+                  <p>
+                    The final bit is the parity bit added to the data.
+                  </p>
+                </article>
+
+                <article>
+                  <h4>Frame received</h4>
+                  <div class="bit-row" data-role="received-frame"></div>
+                  <p>
+                    Click a received bit or use the button to simulate a
+                    transmission error.
+                  </p>
+                </article>
+              </div>
+
+              <div class="parity-summary">
+                <article>
+                  <span>Expected</span>
+                  <strong data-role="parity-expected">Even 1s</strong>
+                </article>
+                <article>
+                  <span>Received 1s</span>
+                  <strong data-role="parity-ones">0</strong>
+                </article>
+                <article>
+                  <span>Result</span>
+                  <strong data-role="parity-result">Ready</strong>
+                </article>
+              </div>
+              <p class="tool-note" data-role="parity-note"></p>
+            </article>
+
+            <article class="model-answer-card">
               <h3>Worked example</h3>
               <p>
                 Suppose the data is <code>1011001</code>. It contains four
@@ -200,7 +334,7 @@
               </p>
             </article>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>What parity can and cannot do</h3>
               <div class="compare-table-wrap">
                 <table class="compare-table">
@@ -278,8 +412,89 @@
               </article>
             </div>
 
-            <article class="lesson-card">
+            <article
+              class="checksum-lab"
+              data-role="checksum-lab"
+              aria-labelledby="checksum-lab-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Checksum Lab</p>
+                  <h3 id="checksum-lab-heading">Compare the check values</h3>
+                </div>
+                <span class="tool-pill" data-role="checksum-status">Ready</span>
+              </div>
+
+              <div class="checksum-input-row">
+                <label class="tool-input-label" for="checksum-message">
+                  Message
+                  <input
+                    id="checksum-message"
+                    type="text"
+                    maxlength="18"
+                    data-role="checksum-message"
+                  />
+                </label>
+                <div class="tool-actions">
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-action="corrupt-checksum-message"
+                  >
+                    Corrupt received copy
+                  </button>
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-action="reset-checksum-message"
+                  >
+                    Reset received
+                  </button>
+                </div>
+              </div>
+
+              <div class="checksum-flow">
+                <article>
+                  <h4>Sender calculation</h4>
+                  <div class="byte-strip" data-role="sender-bytes"></div>
+                  <p>
+                    Add the byte values, then keep the result modulo 256.
+                  </p>
+                </article>
+
+                <article>
+                  <h4>Received copy</h4>
+                  <div class="byte-strip" data-role="receiver-bytes"></div>
+                  <p>
+                    The receiver recalculates the checksum from what arrived.
+                  </p>
+                </article>
+              </div>
+
+              <div class="checksum-summary">
+                <article>
+                  <span>Sender checksum</span>
+                  <strong data-role="sender-checksum">0</strong>
+                </article>
+                <article>
+                  <span>Receiver checksum</span>
+                  <strong data-role="receiver-checksum">0</strong>
+                </article>
+                <article>
+                  <span>Comparison</span>
+                  <strong data-role="checksum-result">Ready</strong>
+                </article>
+              </div>
+              <p class="tool-note" data-role="checksum-note"></p>
+            </article>
+
+            <article class="repetition-card">
               <h3>When repetition helps</h3>
+              <div class="repetition-visual" aria-label="Repetition scheme example">
+                <span>101101</span>
+                <span>101101</span>
+                <span class="is-damaged">101001</span>
+              </div>
               <p>
                 If a short control message is very important, sending it more
                 than once can reduce the chance that a single damaged copy is
@@ -309,7 +524,48 @@
               <span class="example-chip"><strong>Good for blocks</strong> and patterned errors</span>
             </div>
 
-            <article class="lesson-card">
+            <div class="crc-visual-grid">
+              <article class="crc-card crc-card--calculation">
+                <h3>What travels</h3>
+                <div class="crc-flow" aria-label="CRC value travels with data">
+                  <span>Data block</span>
+                  <strong>CRC value</strong>
+                  <span>Receiver</span>
+                </div>
+                <p>
+                  The check value is calculated from the data block and sent
+                  alongside it.
+                </p>
+              </article>
+
+              <article class="crc-card crc-card--compare">
+                <h3>What is compared</h3>
+                <div class="crc-flow" aria-label="CRC comparison">
+                  <span>Arrived data</span>
+                  <strong>Recalculate</strong>
+                  <span>Match?</span>
+                </div>
+                <p>
+                  If the receiver's new CRC does not match the transmitted CRC,
+                  the block should be treated as corrupted.
+                </p>
+              </article>
+
+              <article class="crc-card crc-card--burst">
+                <h3>Why it is useful</h3>
+                <div class="burst-visual" aria-label="Burst error pattern">
+                  <span>1</span><span>0</span><span>1</span><span>1</span>
+                  <span class="is-error">0</span><span class="is-error">0</span>
+                  <span class="is-error">1</span><span>0</span>
+                </div>
+                <p>
+                  CRC is good at detecting burst errors, where a group of
+                  nearby bits is affected.
+                </p>
+              </article>
+            </div>
+
+            <article class="model-answer-card">
               <h3>Why CRC is popular</h3>
               <p>
                 CRC is more sophisticated than simple parity and is strong at
@@ -332,7 +588,7 @@
               data, but simple methods can miss important faults.
             </p>
 
-            <article class="lesson-card">
+            <article class="model-answer-card">
               <h3>Method comparison</h3>
               <div class="compare-table-wrap">
                 <table class="compare-table">
@@ -803,7 +1059,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

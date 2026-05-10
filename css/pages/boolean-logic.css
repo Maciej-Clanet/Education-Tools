@@ -1,0 +1,397 @@
+.logic-map,
+.operator-grid,
+.logic-lab-controls,
+.input-toggle-grid,
+.logic-live-flow,
+.data-flow-visual {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.logic-map,
+.operator-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.logic-map-card,
+.operator-card,
+.logic-lab,
+.logic-expression-card,
+.model-answer-card,
+.logic-flow-step {
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(247, 251, 253, 0.86)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.logic-map-card h3,
+.operator-card h3,
+.tool-heading h3,
+.model-answer-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.logic-map-card p,
+.operator-card p,
+.model-answer-card p,
+.tool-note {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.logic-map-card--inputs,
+.operator-card--and,
+.logic-lab {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.logic-map-card--rule,
+.operator-card--or,
+.operator-card--values {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.logic-map-card--output,
+.operator-card--not,
+.model-answer-card {
+  border-color: rgba(185, 140, 25, 0.24);
+  background: rgba(255, 249, 227, 0.94);
+}
+
+.logic-icon {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.84);
+}
+
+.logic-icon--inputs {
+  background:
+    linear-gradient(90deg, transparent 20%, #253442 20% 30%, transparent 30% 45%, #1f877d 45% 55%, transparent 55% 70%, #253442 70% 80%, transparent 80%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.logic-icon--rule {
+  background:
+    radial-gradient(circle at 35% 50%, #1f877d 0 0.35rem, transparent 0.38rem),
+    radial-gradient(circle at 65% 50%, #b98c19 0 0.35rem, transparent 0.38rem),
+    linear-gradient(90deg, transparent 30%, rgba(37, 52, 66, 0.24) 30% 70%, transparent 70%),
+    rgba(238, 248, 231, 0.96);
+}
+
+.logic-icon--output {
+  background:
+    radial-gradient(circle at 68% 50%, #1f877d 0 0.48rem, transparent 0.5rem),
+    linear-gradient(90deg, #253442 0 20%, transparent 20% 35%, #f2c94c 35% 58%, transparent 58%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.gate-visual,
+.state-visual {
+  display: grid;
+  gap: 0.35rem;
+  align-items: center;
+  min-height: 5.8rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.gate-visual {
+  grid-template-columns: 1fr 1.4fr 1fr;
+}
+
+.gate-visual span,
+.gate-visual strong,
+.state-visual span {
+  display: grid;
+  place-items: center;
+  min-height: 2.4rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 12px;
+  background: rgba(247, 251, 253, 0.94);
+  color: var(--page-ink);
+  font-weight: 900;
+  text-align: center;
+}
+
+.gate-visual strong {
+  background: rgba(255, 249, 227, 0.96);
+  color: #785e16;
+}
+
+.gate-visual--not {
+  grid-template-columns: 1fr 1.4fr 1fr;
+}
+
+.state-visual {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.state-visual span:nth-child(2) {
+  background: rgba(232, 246, 255, 0.96);
+  color: var(--lesson-accent-heading);
+}
+
+.tool-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tool-heading .eyebrow {
+  margin-bottom: 0.2rem;
+}
+
+.tool-pill,
+.logic-expression-card span {
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.logic-lab-controls {
+  grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.2fr);
+  align-items: end;
+}
+
+.tool-select-label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.tool-select-label select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.input-toggle-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+}
+
+.input-toggle {
+  display: grid;
+  gap: 0.25rem;
+  justify-items: center;
+  min-width: 0;
+  min-height: 4.1rem;
+  padding: 0.7rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--page-ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.input-toggle span {
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.input-toggle strong {
+  font-size: 1.3rem;
+}
+
+.input-toggle[data-state="1"] {
+  border-color: rgba(31, 135, 125, 0.34);
+  background: rgba(238, 248, 231, 0.96);
+  color: var(--lesson-accent-heading);
+}
+
+.logic-expression-card {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.logic-expression-card strong {
+  color: var(--page-ink);
+  font-size: 1.1rem;
+}
+
+.logic-live-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.logic-flow-step {
+  justify-items: center;
+  padding: 0.75rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.logic-flow-step[data-state="true"] {
+  border-color: rgba(55, 129, 53, 0.24);
+  background: rgba(238, 248, 231, 0.96);
+}
+
+.logic-flow-step[data-state="false"] {
+  border-color: rgba(37, 52, 66, 0.12);
+  background: rgba(247, 251, 253, 0.92);
+}
+
+.logic-flow-step span {
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.logic-flow-step strong {
+  color: var(--page-ink);
+  font-size: 1.25rem;
+}
+
+.truth-table-wrap {
+  max-width: 100%;
+  overflow: auto;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.truth-table {
+  width: 100%;
+  min-width: 20rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.truth-table th,
+.truth-table td {
+  padding: 0.65rem;
+  border-right: 1px solid rgba(37, 52, 66, 0.08);
+  border-bottom: 1px solid rgba(37, 52, 66, 0.08);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--page-ink);
+  font-weight: 850;
+  text-align: center;
+}
+
+.truth-table th {
+  background: rgba(232, 246, 255, 0.96);
+  color: var(--lesson-accent-heading);
+}
+
+.truth-table tr.is-active td {
+  background: rgba(255, 249, 227, 0.96);
+}
+
+.truth-output--true {
+  background: rgba(238, 248, 231, 0.96);
+  color: var(--lesson-accent-heading);
+}
+
+.truth-output--false {
+  background: rgba(247, 251, 253, 0.96);
+  color: var(--muted-ink);
+}
+
+.truth-table tr.is-active .truth-output--true {
+  background: #1f877d;
+  color: #ffffff;
+}
+
+.truth-table tr.is-active .truth-output--false {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--page-ink);
+}
+
+.tool-note {
+  padding: 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-ink);
+}
+
+.data-flow-visual {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.data-flow-visual article {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  padding: 0.85rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  text-align: center;
+}
+
+.data-flow-visual span:not(.flow-symbol) {
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.data-flow-visual strong {
+  color: var(--page-ink);
+  overflow-wrap: anywhere;
+}
+
+.flow-symbol {
+  color: var(--lesson-accent-heading);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+@media (max-width: 920px) {
+  .logic-lab-controls,
+  .logic-live-flow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .gate-visual,
+  .data-flow-visual,
+  .input-toggle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-symbol {
+    text-align: center;
+  }
+}

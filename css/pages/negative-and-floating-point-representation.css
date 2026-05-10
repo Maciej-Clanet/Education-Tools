@@ -1,0 +1,592 @@
+.representation-map,
+.range-board,
+.method-grid,
+.float-part-board,
+.term-grid,
+.tradeoff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.representation-card,
+.range-card,
+.method-card,
+.twos-tool,
+.practice-panel,
+.normaliser-tool,
+.tradeoff-tool,
+.float-part,
+.term-card,
+.float-example-card {
+  display: grid;
+  gap: 0.7rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(247, 251, 253, 0.86)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.representation-card,
+.range-card,
+.float-part,
+.term-card {
+  align-content: start;
+}
+
+.representation-card h3,
+.range-card h3,
+.method-card h3,
+.tool-heading h3,
+.float-part strong,
+.float-example-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.representation-card p,
+.range-card p,
+.method-card p,
+.tool-note,
+.normaliser-flow p,
+.float-part p,
+.term-card span,
+.tradeoff-card p,
+.float-example-card p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.representation-card--unsigned,
+.range-card--unsigned,
+.float-part--sign {
+  border-color: rgba(31, 135, 125, 0.2);
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.representation-card--twos,
+.range-card--twos,
+.method-card--twos,
+.float-part--significand,
+.tradeoff-card--precision {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.representation-card--float,
+.method-card--sign,
+.float-part--exponent,
+.tradeoff-card--range {
+  border-color: rgba(185, 140, 25, 0.24);
+  background: rgba(255, 249, 227, 0.94);
+}
+
+.representation-icon {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.82);
+}
+
+.representation-icon--unsigned {
+  background:
+    linear-gradient(90deg, rgba(31, 135, 125, 0.28) 0 12.5%, transparent 12.5%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(31, 135, 125, 0.2) 0 0.22rem,
+      transparent 0.22rem 0.5rem
+    ),
+    rgba(255, 255, 255, 0.92);
+}
+
+.representation-icon--twos {
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 180deg,
+      rgba(55, 129, 53, 0.3),
+      rgba(255, 249, 227, 0.9),
+      rgba(31, 135, 125, 0.28),
+      rgba(55, 129, 53, 0.3)
+    ),
+    rgba(255, 255, 255, 0.9);
+}
+
+.representation-icon--float {
+  background:
+    linear-gradient(90deg, rgba(185, 140, 25, 0.28) 0 22%, transparent 22%),
+    linear-gradient(90deg, transparent 0 45%, rgba(31, 135, 125, 0.24) 45% 63%, transparent 63%),
+    linear-gradient(0deg, transparent 0 45%, rgba(55, 129, 53, 0.24) 45% 55%, transparent 55%),
+    rgba(255, 255, 255, 0.9);
+}
+
+.range-line {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  align-items: center;
+  min-height: 3.4rem;
+  padding: 0.75rem;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(31, 135, 125, 0.28),
+      rgba(55, 129, 53, 0.28)
+    ),
+    rgba(255, 255, 255, 0.72);
+}
+
+.range-line--split {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background:
+    linear-gradient(
+      90deg,
+      rgba(191, 88, 62, 0.2) 0 50%,
+      rgba(31, 135, 125, 0.22) 50% 100%
+    ),
+    rgba(255, 255, 255, 0.72);
+}
+
+.range-line span {
+  display: grid;
+  place-items: center;
+  min-height: 2.1rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--page-ink);
+  font-weight: 900;
+  text-align: center;
+}
+
+.bit-demo-row,
+.twos-byte-row {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.bit-cell {
+  display: grid;
+  place-items: center;
+  min-height: 2.8rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(37, 52, 66, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.bit-cell.is-sign {
+  border-color: rgba(191, 88, 62, 0.32);
+  background: rgba(255, 239, 232, 0.92);
+}
+
+.bit-cell.is-one {
+  border-color: rgba(31, 135, 125, 0.2);
+  background: rgba(232, 246, 255, 0.96);
+}
+
+.bit-cell.is-zero {
+  color: var(--muted-ink);
+}
+
+.twos-wheel {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 38%, transparent 39%),
+    conic-gradient(
+      rgba(191, 88, 62, 0.24),
+      rgba(255, 249, 227, 0.88),
+      rgba(31, 135, 125, 0.24),
+      rgba(191, 88, 62, 0.24)
+    );
+}
+
+.twos-wheel span {
+  display: block;
+  padding: 0.42rem 0.55rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--page-ink);
+  font-weight: 900;
+  text-align: center;
+}
+
+.tool-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tool-heading .eyebrow {
+  margin-bottom: 0.2rem;
+}
+
+.tool-pill {
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.twos-form,
+.practice-answer-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 1.3fr) auto;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.twos-form label,
+.practice-answer-row label,
+.tradeoff-slider-label {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.twos-form input[type="number"],
+.practice-answer-row input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 800;
+}
+
+.twos-slider,
+.tradeoff-slider-label input {
+  width: 100%;
+  accent-color: #1f877d;
+}
+
+.twos-range-track {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  min-height: 2.5rem;
+  padding-top: 1.2rem;
+  color: var(--muted-ink);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.twos-range-track::before {
+  position: absolute;
+  top: 0.45rem;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(191, 88, 62, 0.3) 0 50%,
+      rgba(31, 135, 125, 0.28) 50% 100%
+    );
+  content: "";
+}
+
+.twos-range-marker {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  min-width: 2.35rem;
+  min-height: 1.35rem;
+  padding: 0.08rem 0.35rem;
+  border: 1px solid rgba(37, 52, 66, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--page-ink);
+  font-size: 0.78rem;
+  box-shadow: 0 8px 18px rgba(36, 49, 59, 0.12);
+}
+
+.twos-output {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.twos-summary,
+.twos-step-grid,
+.float-register-strip,
+.normaliser-flow {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.twos-summary {
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+}
+
+.twos-summary article,
+.twos-step-grid article,
+.float-register-strip article,
+.normaliser-flow article,
+.tradeoff-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.twos-summary span,
+.twos-step-grid span,
+.float-register-strip span,
+.normaliser-flow span,
+.tradeoff-card span,
+.float-part span,
+.term-card strong {
+  color: var(--muted-ink);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.twos-summary strong,
+.twos-step-grid code,
+.float-register-strip strong,
+.normaliser-flow code,
+.tradeoff-card strong {
+  color: var(--page-ink);
+  font-size: 1.08rem;
+  font-weight: 900;
+}
+
+.twos-step-grid,
+.float-register-strip {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.practice-panel {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.practice-form {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.practice-panel .practice-answer-row {
+  grid-template-columns: auto;
+  justify-content: start;
+}
+
+.practice-question {
+  margin: 0;
+  color: var(--page-ink);
+  font-size: 1.08rem;
+  font-weight: 900;
+}
+
+.twos-practice-table-wrap {
+  overflow-x: auto;
+}
+
+.twos-practice-table {
+  display: grid;
+  grid-template-columns: minmax(8.6rem, 1.25fr) repeat(8, minmax(2.55rem, 1fr));
+  gap: 0.35rem;
+  min-width: 42rem;
+  align-items: center;
+}
+
+.twos-practice-table span,
+.twos-practice-table input {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 2.65rem;
+  padding: 0.42rem 0.35rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 900;
+  text-align: center;
+}
+
+.twos-practice-table .row-label {
+  justify-items: start;
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.twos-practice-table input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.twos-practice-table input:focus {
+  outline: 3px solid rgba(31, 135, 125, 0.22);
+  outline-offset: 2px;
+}
+
+.practice-feedback {
+  margin: 0;
+  padding: 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-ink);
+  font-weight: 800;
+}
+
+.practice-feedback.is-correct {
+  border-color: rgba(55, 129, 53, 0.22);
+  background: rgba(238, 248, 231, 0.9);
+  color: #27572a;
+}
+
+.practice-feedback.is-incorrect {
+  border-color: rgba(191, 88, 62, 0.22);
+  background: rgba(255, 239, 232, 0.9);
+  color: #7a3526;
+}
+
+.practice-working {
+  padding: 0.75rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.twos-working-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--page-ink);
+}
+
+.twos-working-list li + li {
+  margin-top: 0.35rem;
+}
+
+.float-part-board {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.float-part {
+  text-align: center;
+}
+
+.float-part strong {
+  font-size: 1.4rem;
+}
+
+.normaliser-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.normaliser-actions .is-active {
+  border-color: rgba(31, 135, 125, 0.36);
+  background: rgba(232, 246, 255, 0.96);
+  color: var(--page-ink);
+}
+
+.normaliser-flow {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr) minmax(0, 0.9fr);
+}
+
+.normaliser-flow article:nth-child(2) {
+  border-color: rgba(185, 140, 25, 0.2);
+  background: rgba(255, 249, 227, 0.76);
+}
+
+.tradeoff-tool {
+  --range-score: 60%;
+  --precision-score: 80%;
+}
+
+.tradeoff-grid {
+  margin: 0;
+}
+
+.tradeoff-bar {
+  overflow: hidden;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: rgba(37, 52, 66, 0.1);
+}
+
+.tradeoff-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: rgba(31, 135, 125, 0.72);
+}
+
+.tradeoff-card--range .tradeoff-bar span {
+  width: var(--range-score);
+  background: rgba(185, 140, 25, 0.76);
+}
+
+.tradeoff-card--precision .tradeoff-bar span {
+  width: var(--precision-score);
+}
+
+.term-card {
+  text-align: center;
+}
+
+.term-card strong {
+  color: var(--page-ink);
+  font-size: 1rem;
+}
+
+@media (max-width: 780px) {
+  .twos-form,
+  .practice-answer-row,
+  .twos-output,
+  .float-part-board,
+  .normaliser-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .bit-demo-row,
+  .twos-byte-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

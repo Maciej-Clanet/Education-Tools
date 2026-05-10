@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hexadecimal Numbers Revision Lesson | Education Tools</title>
+    <meta
+      name="description"
+      content="Revise hexadecimal numbers, base 16 digits, binary shorthand, hex to binary conversion, binary to hex conversion, and common uses in computer systems."
+    />
+    <meta
+      property="og:title"
+      content="Hexadecimal Numbers Revision Lesson | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Revise hexadecimal numbers, base 16 digits, binary shorthand, conversion with 4-bit nibbles, and common uses in computer systems."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/pages/hexadecimal-numbers.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/hexadecimal-numbers.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">Number Systems</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../units/btec-level-3-unit-2.html#section-c"
+                data-role="breadcrumb-unit-link"
+                >Unit 2: Computer Systems</a
+              >
+            </li>
+            <li aria-current="page">Hexadecimal numbers</li>
+          </ol>
+        </nav>
+
+        <div class="lesson-header-row">
+          <div>
+            <h1>Hexadecimal numbers</h1>
+            <p class="lesson-hero-text">
+              Learn what base 16 means, why hexadecimal is a useful shorthand
+              for binary, and how to convert cleanly between hex digits and
+              4-bit binary groups.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label"
+                >BTEC Level 3 Computing Unit 2</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Unit area</strong>
+            <span>C1 Number systems</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Base 16, binary shorthand, and conversion strategy</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Practice focus</strong>
+            <span>Hex to binary and binary to hex questions</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../units/btec-level-3-unit-2.html#section-c"
+          >
+            Back to Unit 2 content
+          </a>
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          Quiz scoring, conversion practice, answer saving, and teacher slides
+          need JavaScript, but the lesson notes still work without it.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#overview" data-section-link>Overview</a>
+            <a href="#base-sixteen" data-section-link>Base 16</a>
+            <a href="#place-value" data-section-link>Place value</a>
+            <a href="#nibbles" data-section-link>4-bit groups</a>
+            <a href="#converter" data-section-link>Explorer</a>
+            <a href="#conversion-methods" data-section-link>Conversion</a>
+            <a href="#practice-zone" data-section-link>Practice</a>
+            <a href="#uses" data-section-link>Where it is used</a>
+            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#exam-practice" data-section-link>Exam practice</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="overview"
+            class="lesson-section lesson-section--overview panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Overview</p>
+            <h2>Hexadecimal is a compact way to write binary data</h2>
+            <p class="lesson-section-copy">
+              Hexadecimal, often shortened to hex, is a base 16 number system.
+              It uses sixteen symbols: <code>0</code> to <code>9</code>, then
+              <code>A</code> to <code>F</code>. It is useful in computing
+              because one hex digit maps exactly to four binary bits.
+            </p>
+
+            <div class="hex-overview-map">
+              <article class="hex-overview-card hex-overview-card--base">
+                <span class="hex-icon hex-icon--base">16</span>
+                <h3>Base 16</h3>
+                <p>Each place value is sixteen times larger than the one before.</p>
+              </article>
+              <article class="hex-overview-card hex-overview-card--compact">
+                <span class="hex-icon hex-icon--compact">4b</span>
+                <h3>Binary shorthand</h3>
+                <p>Four bits can be replaced by one easy-to-read hex digit.</p>
+              </article>
+              <article class="hex-overview-card hex-overview-card--use">
+                <span class="hex-icon hex-icon--use">#F0A</span>
+                <h3>Common in computing</h3>
+                <p>Hex appears in colours, addresses, debugging, and identifiers.</p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="base-sixteen"
+            class="lesson-section lesson-section--base-sixteen panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Base 16</p>
+            <h2>Hex needs extra digits after 9</h2>
+            <p class="lesson-section-copy">
+              Denary has ten symbols, so it can use <code>0</code> to
+              <code>9</code>. Hexadecimal needs sixteen symbols, so it keeps
+              <code>0</code> to <code>9</code> and then uses letters
+              <code>A</code>, <code>B</code>, <code>C</code>, <code>D</code>,
+              <code>E</code>, and <code>F</code> for the values 10 to 15.
+            </p>
+
+            <div class="hex-digit-strip" aria-label="Hexadecimal digits">
+              <span>0</span><span>1</span><span>2</span><span>3</span>
+              <span>4</span><span>5</span><span>6</span><span>7</span>
+              <span>8</span><span>9</span><span>A</span><span>B</span>
+              <span>C</span><span>D</span><span>E</span><span>F</span>
+            </div>
+          </section>
+
+          <section
+            id="place-value"
+            class="lesson-section lesson-section--place-value panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Place Value</p>
+            <h2>Hex place values are powers of 16</h2>
+            <p class="lesson-section-copy">
+              Like denary and binary, hexadecimal uses place value. Moving one
+              place left multiplies the value by 16. This is why
+              <code>2F</code> means <code>2 x 16</code> plus
+              <code>15 x 1</code>, which is <code>47</code> in denary.
+            </p>
+
+            <div class="hex-place-board">
+              <article class="hex-place-card">
+                <h3>Hex places</h3>
+                <div class="hex-place-row">
+                  <span>4096s</span>
+                  <span>256s</span>
+                  <span>16s</span>
+                  <span>1s</span>
+                </div>
+              </article>
+              <article class="hex-place-card">
+                <h3>Example: 2F</h3>
+                <p><code>2F = (2 x 16) + (F x 1)</code></p>
+                <p><code>F</code> represents denary <code>15</code>.</p>
+              </article>
+              <article class="hex-place-card">
+                <h3>Important idea</h3>
+                <p>
+                  Letters in hex are still numbers. They are not text characters
+                  in the usual sense.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="nibbles"
+            class="lesson-section lesson-section--nibbles panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">4-Bit Groups</p>
+            <h2>One hex digit matches one binary nibble</h2>
+            <p class="lesson-section-copy">
+              A nibble is four bits. Four bits can represent sixteen patterns,
+              from <code>0000</code> to <code>1111</code>. That is exactly the
+              same number of values as one hexadecimal digit, so conversion can
+              be done one group at a time.
+            </p>
+
+            <div class="nibble-map" aria-label="Binary nibble to hex examples">
+              <span><code>0000</code> = <code>0</code></span>
+              <span><code>0101</code> = <code>5</code></span>
+              <span><code>1010</code> = <code>A</code></span>
+              <span><code>1111</code> = <code>F</code></span>
+            </div>
+          </section>
+
+          <section
+            id="converter"
+            class="lesson-section lesson-section--converter panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Explorer</p>
+            <h2>Pick a hex digit and inspect its four bits</h2>
+            <p class="lesson-section-copy">
+              Use the digit buttons to see how each hex symbol matches the
+              <code>8</code>, <code>4</code>, <code>2</code>, and
+              <code>1</code> binary place values.
+            </p>
+
+            <article class="hex-explorer" data-role="hex-explorer">
+              <h3>Nibble explorer</h3>
+              <div
+                class="hex-digit-buttons"
+                data-role="hex-digit-buttons"
+                aria-label="Choose a hexadecimal digit"
+              ></div>
+              <div
+                class="nibble-bit-row"
+                data-role="nibble-bits"
+                aria-label="Binary bits for selected hex digit"
+              ></div>
+              <div class="explorer-result-grid">
+                <article>
+                  <span>Hex</span>
+                  <strong data-role="explorer-hex">A</strong>
+                </article>
+                <article>
+                  <span>Binary</span>
+                  <strong data-role="explorer-binary">1010</strong>
+                </article>
+                <article>
+                  <span>Denary</span>
+                  <strong data-role="explorer-denary">10</strong>
+                </article>
+              </div>
+            </article>
+          </section>
+
+          <section
+            id="conversion-methods"
+            class="lesson-section lesson-section--conversion-methods panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Conversion</p>
+            <h2>Convert in 4-bit chunks</h2>
+            <div class="conversion-grid">
+              <article class="conversion-card">
+                <h3>Hexadecimal to binary</h3>
+                <ol class="lesson-list">
+                  <li>Take one hex digit at a time.</li>
+                  <li>Convert it into a 4-bit binary nibble.</li>
+                  <li>Keep leading zeroes inside each nibble.</li>
+                </ol>
+                <p>
+                  Example: <code>3A</code> becomes
+                  <code>0011 1010</code>.
+                </p>
+              </article>
+              <article class="conversion-card">
+                <h3>Binary to hexadecimal</h3>
+                <ol class="lesson-list">
+                  <li>Start from the right and split the binary into groups of four.</li>
+                  <li>Add leading zeroes on the left if the first group is short.</li>
+                  <li>Convert each group into one hex digit.</li>
+                </ol>
+                <p>
+                  Example: <code>1100 0111</code> becomes <code>C7</code>.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="practice-zone"
+            class="lesson-section lesson-section--practice-zone panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Practice</p>
+            <h2>Try one conversion at a time</h2>
+            <p class="lesson-section-copy">
+              The final quiz checks concepts, so use this practice card for the
+              conversion skill itself. A new question will choose either hex to
+              binary or binary to hex.
+            </p>
+
+            <div class="hex-practice-layout" data-role="hex-practice">
+              <article class="hex-practice-card" data-role="practice-card">
+                <span class="practice-mode-pill" data-role="practice-mode"
+                  >Hexadecimal to binary</span
+                >
+                <h3>Question</h3>
+                <strong class="practice-question" data-role="practice-question"
+                  >A5</strong
+                >
+                <p data-role="practice-hint">
+                  Convert each hex digit into its own 4-bit binary nibble.
+                </p>
+                <div class="hex-practice-form">
+                  <label for="hex-practice-answer">Your answer</label>
+                  <input
+                    id="hex-practice-answer"
+                    type="text"
+                    autocomplete="off"
+                    spellcheck="false"
+                    data-role="practice-answer"
+                  />
+                </div>
+                <div class="hex-practice-actions">
+                  <button
+                    type="button"
+                    class="primary-link"
+                    data-action="check-practice"
+                  >
+                    Check answer
+                  </button>
+                  <button
+                    type="button"
+                    class="lesson-secondary-action"
+                    data-action="new-practice"
+                  >
+                    New question
+                  </button>
+                </div>
+                <p
+                  class="practice-feedback"
+                  data-role="practice-feedback"
+                  aria-live="polite"
+                >
+                  Type your answer, then check it.
+                </p>
+              </article>
+
+              <article class="scratch-card">
+                <h3>Scratch nibbles</h3>
+                <p>
+                  Use these boxes to group bits or test one hex digit at a time.
+                  The page will not fill them in for you.
+                </p>
+                <div class="scratch-grid">
+                  <label>
+                    Left nibble
+                    <input maxlength="4" autocomplete="off" spellcheck="false" />
+                  </label>
+                  <label>
+                    Right nibble
+                    <input maxlength="4" autocomplete="off" spellcheck="false" />
+                  </label>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="uses"
+            class="lesson-section lesson-section--uses panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Uses</p>
+            <h2>Hex is used when binary would be too long to read comfortably</h2>
+            <div class="use-case-grid">
+              <article class="use-case-card">
+                <h3>Web colours</h3>
+                <p>
+                  Colour codes such as <code>#3FA7D6</code> store red, green,
+                  and blue values in pairs of hex digits.
+                </p>
+              </article>
+              <article class="use-case-card">
+                <h3>Memory addresses</h3>
+                <p>
+                  Addresses are often shown in hex because long binary addresses
+                  become shorter and easier to compare.
+                </p>
+              </article>
+              <article class="use-case-card">
+                <h3>Debugging and machine code</h3>
+                <p>
+                  Low-level tools often display bytes and instructions in hex so
+                  patterns are easier to spot.
+                </p>
+              </article>
+              <article class="use-case-card">
+                <h3>Identifiers</h3>
+                <p>
+                  MAC addresses, IPv6 addresses, and file signatures commonly
+                  use hexadecimal notation.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="mistakes"
+            class="lesson-section lesson-section--mistakes panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam Traps</p>
+            <h2>Common mistakes with hexadecimal</h2>
+            <div class="trap-grid">
+              <article class="trap-card">
+                <h3>Forgetting that A to F are numbers</h3>
+                <p>
+                  <code>A</code> is ten and <code>F</code> is fifteen in hex.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Keep the digit map nearby until the
+                  values feel automatic.
+                </p>
+              </article>
+              <article class="trap-card">
+                <h3>Drops leading zeroes inside a nibble</h3>
+                <p>
+                  <code>3</code> is <code>0011</code>, not just
+                  <code>11</code>, when converting hex to binary.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Every hex digit must become four bits.
+                </p>
+              </article>
+              <article class="trap-card">
+                <h3>Groups binary from the wrong side</h3>
+                <p>
+                  Binary should be grouped from the right when converting to
+                  hex.
+                </p>
+                <p class="trap-fix">
+                  <strong>Fix:</strong> Pad the left side if the first group is
+                  short.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section lesson-section--quiz panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check the concepts</h2>
+            <p class="quiz-intro">
+              Conversion practice lives in the practice zone. This quiz checks
+              the key ideas behind hexadecimal notation.
+            </p>
+
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. Hexadecimal is base 16."
+                data-feedback="Hexadecimal uses sixteen possible digit values."
+              >
+                <legend>1. What base is hexadecimal?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="a" />
+                      <span>Base 2</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="b" />
+                      <span>Base 16</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q1" value="c" />
+                      <span>Base 256</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="c"
+                data-success="Correct. One hex digit maps to four binary bits."
+                data-feedback="The direct 4-bit mapping is the main reason hex is useful as binary shorthand."
+              >
+                <legend>2. Why is hex useful when working with binary?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="a" />
+                      <span>It removes the need for bits</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="b" />
+                      <span>It is always smaller than every compressed file</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q2" value="c" />
+                      <span>Each hex digit represents exactly four bits</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="a"
+                data-success="Correct. A nibble is four bits."
+                data-feedback="A nibble is half a byte, so it contains four bits."
+              >
+                <legend>3. How many bits are in one nibble?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="a" />
+                      <span>4 bits</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="b" />
+                      <span>8 bits</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q3" value="c" />
+                      <span>16 bits</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. Hex continues after 9 with A."
+                data-feedback="Hex uses A, B, C, D, E, and F for the values 10 to 15."
+              >
+                <legend>4. Which symbol comes after 9 in hexadecimal?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="a" />
+                      <span>10 as a single digit</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="b" />
+                      <span>A</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q4" value="c" />
+                      <span>G</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. Hex is commonly used for colour codes and addresses."
+                data-feedback="Hex is useful wherever long binary values need a shorter readable form."
+              >
+                <legend>5. Which is a common use of hexadecimal?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="a" />
+                      <span>Web colour codes and memory addresses</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="b" />
+                      <span>Choosing monitor refresh rate only</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer">
+                      <input type="radio" name="q5" value="c" />
+                      <span>Replacing all text encodings</span>
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+
+          <section
+            id="exam-practice"
+            class="lesson-section lesson-section--exam-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Exam-Style Practice</p>
+            <h2>Explain why hex is useful</h2>
+            <p class="lesson-section-copy">
+              Use the response boxes to practise fuller answers. Then compare
+              your ideas with the guide.
+            </p>
+            <p class="exam-response-note">
+              Draft answers save automatically in this browser.
+            </p>
+
+            <div class="exam-grid">
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Explain</span>
+                </div>
+                <h3>Question 1</h3>
+                <p>
+                  Explain why hexadecimal is often used instead of writing long
+                  binary values directly.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-1">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-1"
+                    class="exam-response"
+                    data-exam-response="question-1"
+                    placeholder="Link one hex digit to four bits, readability, and fewer copying errors."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>One hexadecimal digit represents four binary bits.</li>
+                      <li>This makes long binary values shorter to write.</li>
+                      <li>Shorter values are easier for humans to read and compare.</li>
+                      <li>
+                        It can reduce mistakes when copying addresses, bytes, or
+                        colour values.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">4 marks</span>
+                  <span class="exam-pill">Demonstrate</span>
+                </div>
+                <h3>Question 2</h3>
+                <p>
+                  Describe how to convert <code>1100 1010</code> from binary to
+                  hexadecimal.
+                </p>
+                <div class="exam-response-wrap">
+                  <label class="exam-response-label" for="exam-response-2">
+                    Your answer
+                  </label>
+                  <textarea
+                    id="exam-response-2"
+                    class="exam-response"
+                    data-exam-response="question-2"
+                    placeholder="Explain grouping into nibbles and mapping each group."
+                  ></textarea>
+                </div>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul class="exam-points">
+                      <li>Split the binary into 4-bit groups: <code>1100</code> and <code>1010</code>.</li>
+                      <li><code>1100</code> is denary 12, which is hex <code>C</code>.</li>
+                      <li><code>1010</code> is denary 10, which is hex <code>A</code>.</li>
+                      <li>The hexadecimal answer is <code>CA</code>.</li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Hexadecimal</dt>
+                <dd>A base 16 number system using 0-9 and A-F.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Nibble</dt>
+                <dd>A group of four bits.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Base</dt>
+                <dd>The number of different digit values used by a number system.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Place value</dt>
+                <dd>The value a digit has because of its position.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>Four bits at a time</h2>
+            <ul class="memory-list">
+              <li>One hex digit equals one 4-bit nibble.</li>
+              <li>Use A-F for denary values 10-15.</li>
+              <li>Group binary from the right when converting to hex.</li>
+            </ul>
+          </section>
+
+          <section class="lesson-rail-card panel hex-table-card">
+            <p class="eyebrow">Digit Map</p>
+            <h2>Hex digits</h2>
+            <table class="hex-table">
+              <thead>
+                <tr>
+                  <th>Hex</th>
+                  <th>Binary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>0</code></td><td><code>0000</code></td></tr>
+                <tr><td><code>1</code></td><td><code>0001</code></td></tr>
+                <tr><td><code>2</code></td><td><code>0010</code></td></tr>
+                <tr><td><code>3</code></td><td><code>0011</code></td></tr>
+                <tr><td><code>4</code></td><td><code>0100</code></td></tr>
+                <tr><td><code>5</code></td><td><code>0101</code></td></tr>
+                <tr><td><code>6</code></td><td><code>0110</code></td></tr>
+                <tr><td><code>7</code></td><td><code>0111</code></td></tr>
+                <tr><td><code>8</code></td><td><code>1000</code></td></tr>
+                <tr><td><code>9</code></td><td><code>1001</code></td></tr>
+                <tr><td><code>A</code></td><td><code>1010</code></td></tr>
+                <tr><td><code>B</code></td><td><code>1011</code></td></tr>
+                <tr><td><code>C</code></td><td><code>1100</code></td></tr>
+                <tr><td><code>D</code></td><td><code>1101</code></td></tr>
+                <tr><td><code>E</code></td><td><code>1110</code></td></tr>
+                <tr><td><code>F</code></td><td><code>1111</code></td></tr>
+              </tbody>
+            </table>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 11</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,678 @@
+.security-size-map,
+.cipher-grid,
+.vigenere-method-grid,
+.vigenere-worked-grid,
+.key-system-grid,
+.implication-grid,
+.compression-visual-grid,
+.compression-result-grid,
+.file-type-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.security-size-map,
+.cipher-grid,
+.vigenere-method-grid,
+.vigenere-worked-grid,
+.key-system-grid,
+.implication-grid,
+.compression-visual-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.concept-card,
+.cipher-card,
+.cipher-tool,
+.method-card,
+.vigenere-worked-card,
+.vigenere-square-card,
+.key-system-card,
+.implication-card,
+.compression-card,
+.compression-table-card,
+.compression-tool,
+.compression-result-grid article,
+.model-answer-card {
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(247, 251, 253, 0.86)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.concept-card h3,
+.cipher-card h3,
+.method-card h3,
+.vigenere-worked-card h3,
+.tool-heading h3,
+.key-system-card h3,
+.implication-card h3,
+.compression-card h3,
+.compression-table-card h3,
+.model-answer-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.concept-card p,
+.cipher-card p,
+.vigenere-worked-card p,
+.vigenere-square-card p,
+.key-system-card p,
+.implication-card p,
+.compression-card p,
+.compression-table-card p,
+.model-answer-card p,
+.tool-note {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.concept-card--protect,
+.cipher-card--caesar,
+.cipher-tool,
+.method-card--encode,
+.key-system-card--symmetric,
+.compression-tool {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.concept-card--reduce,
+.cipher-card--vigenere,
+.method-card--decode,
+.key-system-card--public,
+.compression-card--lossless,
+.implication-card:nth-child(2) {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.concept-card--decision,
+.vigenere-worked-card,
+.vigenere-square-card,
+.implication-card:nth-child(3),
+.compression-card--lossy,
+.compression-table-card,
+.model-answer-card {
+  border-color: rgba(185, 140, 25, 0.24);
+  background: rgba(255, 249, 227, 0.94);
+}
+
+.concept-icon {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.84);
+}
+
+.concept-icon--lock {
+  background:
+    radial-gradient(circle at 50% 34%, transparent 0 0.55rem, #253442 0.58rem 0.78rem, transparent 0.8rem),
+    linear-gradient(90deg, transparent 28%, #253442 28% 72%, transparent 72%),
+    linear-gradient(180deg, transparent 45%, #1f877d 45% 78%, transparent 78%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.concept-icon--compress {
+  background:
+    linear-gradient(90deg, transparent 18%, #253442 18% 25%, transparent 25% 75%, #253442 75% 82%, transparent 82%),
+    linear-gradient(180deg, #e8f6ff 0 28%, #eef8e7 28% 50%, #fff7dc 50% 72%, #e8f6ff 72%);
+}
+
+.concept-icon--choice {
+  background:
+    radial-gradient(circle at 30% 50%, #1f877d 0 0.35rem, transparent 0.38rem),
+    radial-gradient(circle at 70% 30%, #b98c19 0 0.35rem, transparent 0.38rem),
+    radial-gradient(circle at 70% 70%, #253442 0 0.35rem, transparent 0.38rem),
+    linear-gradient(135deg, transparent 44%, rgba(37, 52, 66, 0.22) 44% 56%, transparent 56%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.cipher-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.cipher-flow article,
+.key-flow,
+.compression-demo {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  text-align: center;
+}
+
+.cipher-flow span,
+.compression-result-grid span {
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cipher-flow strong,
+.compression-result-grid strong {
+  color: var(--page-ink);
+  overflow-wrap: anywhere;
+}
+
+.flow-arrow {
+  color: var(--lesson-accent-heading);
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.tool-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tool-heading .eyebrow {
+  margin-bottom: 0.2rem;
+}
+
+.tool-pill {
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cipher-tool-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.cipher-controls,
+.tool-input-label,
+.tool-slider-label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.tool-input-label textarea,
+.tool-input-label input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.tool-input-label textarea {
+  resize: vertical;
+}
+
+.tool-slider-label input {
+  width: 100%;
+  accent-color: #1f877d;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem;
+  padding: 0.25rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.segmented-control button,
+.file-type-grid button {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.segmented-control button {
+  padding: 0.55rem;
+}
+
+.segmented-control button.is-selected,
+.file-type-grid button.is-selected {
+  border-color: rgba(31, 135, 125, 0.34);
+  background: rgba(238, 248, 231, 0.96);
+  color: var(--lesson-accent-heading);
+}
+
+.cipher-output-grid,
+.compression-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.cipher-output-grid article {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.cipher-output-grid span,
+.cipher-step-row--head span,
+.alphabet-pair strong,
+.alphabet-pair em {
+  color: var(--muted-ink);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cipher-output-grid strong {
+  color: var(--page-ink);
+  overflow-wrap: anywhere;
+}
+
+.alphabet-shift {
+  display: grid;
+  grid-template-columns: repeat(13, minmax(0, 1fr));
+  gap: 0.25rem;
+  padding: 0.6rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.alphabet-shift.is-muted {
+  opacity: 0.58;
+}
+
+.alphabet-pair {
+  display: grid;
+  gap: 0.1rem;
+  justify-items: center;
+  min-width: 0;
+  padding: 0.35rem 0.2rem;
+  border-radius: 10px;
+  background: rgba(247, 251, 253, 0.94);
+}
+
+.alphabet-pair strong {
+  color: var(--page-ink);
+}
+
+.alphabet-pair em {
+  color: var(--lesson-accent-heading);
+  font-style: normal;
+}
+
+.cipher-steps {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.cipher-step-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.cipher-step-row span,
+.cipher-step-row strong {
+  display: grid;
+  place-items: center;
+  min-height: 2rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.cipher-step-row strong {
+  color: var(--lesson-accent-heading);
+}
+
+.method-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted-ink);
+}
+
+.method-list li::marker {
+  color: var(--lesson-accent-heading);
+  font-weight: 900;
+}
+
+.vigenere-worked-table {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.65rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.worked-row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 1fr) repeat(3, minmax(2.4rem, 0.35fr));
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.worked-row span,
+.worked-row strong {
+  display: grid;
+  place-items: center;
+  min-height: 2.2rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 10px;
+  background: rgba(247, 251, 253, 0.94);
+}
+
+.worked-row span {
+  justify-content: start;
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.worked-row strong {
+  color: var(--page-ink);
+  font-size: 1.05rem;
+}
+
+.worked-row--result strong {
+  background: rgba(238, 248, 231, 0.98);
+  color: var(--lesson-accent-heading);
+}
+
+.vigenere-square-wrap {
+  max-width: 100%;
+  overflow: auto;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.vigenere-square-controls {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.8fr) minmax(0, 1.2fr);
+  gap: 0.8rem;
+  align-items: end;
+}
+
+.vigenere-step-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.vigenere-step-summary article {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: 0.65rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  text-align: center;
+}
+
+.vigenere-step-summary span {
+  color: var(--muted-ink);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vigenere-step-summary strong {
+  color: var(--page-ink);
+  overflow-wrap: anywhere;
+}
+
+.vigenere-square-table table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.76rem;
+}
+
+.vigenere-square-table th,
+.vigenere-square-table td {
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
+  border-right: 1px solid rgba(37, 52, 66, 0.08);
+  border-bottom: 1px solid rgba(37, 52, 66, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--page-ink);
+  font-weight: 850;
+  text-align: center;
+}
+
+.vigenere-square-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(232, 246, 255, 0.98);
+  color: var(--lesson-accent-heading);
+}
+
+.vigenere-square-table tbody th {
+  left: 0;
+  z-index: 1;
+}
+
+.vigenere-square-table .square-corner {
+  left: 0;
+  z-index: 3;
+  min-width: 5.2rem;
+}
+
+.vigenere-square-table .is-active-row th,
+.vigenere-square-table .is-active-row td {
+  background: rgba(255, 249, 227, 0.92);
+}
+
+.vigenere-square-table .is-active-column {
+  background: rgba(238, 248, 231, 0.96);
+}
+
+.vigenere-square-table .is-active-cell {
+  background: #1f877d !important;
+  color: #ffffff;
+}
+
+.tool-note {
+  padding: 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.key-flow {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.key-flow span,
+.key-flow strong,
+.compression-demo span,
+.compression-demo strong {
+  display: grid;
+  place-items: center;
+  min-height: 2.4rem;
+  padding: 0.45rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 12px;
+  background: rgba(247, 251, 253, 0.92);
+  color: var(--page-ink);
+  font-weight: 900;
+  text-align: center;
+}
+
+.key-flow strong {
+  background: rgba(255, 249, 227, 0.96);
+  color: #785e16;
+}
+
+.key-flow--public strong {
+  background: rgba(232, 246, 255, 0.96);
+  color: var(--lesson-accent-heading);
+}
+
+.compression-demo {
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.compression-demo strong {
+  color: var(--lesson-accent-heading);
+}
+
+.lossy-preview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.18rem;
+  max-width: 16rem;
+  padding: 0.6rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.lossy-preview span {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: #1f877d;
+}
+
+.lossy-preview span:nth-child(2n) {
+  background: #8bcf88;
+}
+
+.lossy-preview span:nth-child(3n) {
+  background: #f2c94c;
+}
+
+.lossy-preview span:nth-child(5n) {
+  background: #253442;
+}
+
+.file-type-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.file-type-grid button {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.file-type-grid span {
+  color: var(--muted-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.compression-result-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.compression-result-grid article {
+  justify-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.size-meter {
+  height: 1rem;
+  padding: 0.16rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+}
+
+.size-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1f877d, #f2c94c);
+  transition: width 180ms ease;
+}
+
+@media (max-width: 920px) {
+  .cipher-tool-layout,
+  .cipher-output-grid,
+  .compression-result-grid,
+  .worked-row,
+  .vigenere-square-controls,
+  .vigenere-step-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .file-type-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .cipher-flow,
+  .compression-demo,
+  .key-flow,
+  .file-type-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-arrow {
+    text-align: center;
+  }
+
+  .alphabet-shift {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}

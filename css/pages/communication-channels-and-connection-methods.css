@@ -1,0 +1,365 @@
+.communication-map,
+.channel-visual-grid,
+.topology-grid,
+.method-grid,
+.selection-grid,
+.trap-grid,
+.scenario-output {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.communication-map,
+.channel-visual-grid,
+.topology-grid,
+.method-grid,
+.selection-grid,
+.trap-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.communication-card,
+.channel-card,
+.topology-card,
+.method-card,
+.scenario-tool,
+.scenario-output article,
+.scenario-reasoning,
+.selection-card,
+.model-answer-card {
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(247, 251, 253, 0.86)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.communication-card h3,
+.channel-card h3,
+.topology-card h3,
+.method-card h3,
+.tool-heading h3,
+.scenario-reasoning h4,
+.selection-card h3,
+.model-answer-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.communication-card p,
+.channel-card p,
+.method-card p,
+.method-card strong,
+.selection-card p,
+.model-answer-card p,
+.scenario-reasoning li {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.communication-card--direction,
+.channel-card--simplex,
+.topology-card:first-child,
+.method-card:first-child,
+.scenario-tool {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.communication-card--arrangement,
+.channel-card--half,
+.topology-card:nth-child(2),
+.method-card:nth-child(2),
+.selection-card:nth-child(2n) {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.communication-card--method,
+.channel-card--full,
+.method-card:nth-child(3),
+.model-answer-card {
+  border-color: rgba(185, 140, 25, 0.24);
+  background: rgba(255, 249, 227, 0.94);
+}
+
+.method-card:nth-child(4),
+.method-card:nth-child(5),
+.selection-card:nth-child(3n) {
+  border-color: rgba(126, 88, 153, 0.2);
+  background: rgba(246, 240, 250, 0.9);
+}
+
+.communication-icon,
+.method-icon {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.84);
+}
+
+.communication-icon--direction {
+  background:
+    linear-gradient(90deg, transparent 8%, #1f877d 8% 72%, transparent 72%),
+    radial-gradient(circle at 16% 50%, #253442 0 0.35rem, transparent 0.38rem),
+    radial-gradient(circle at 76% 50%, #253442 0 0.35rem, transparent 0.38rem),
+    rgba(232, 246, 255, 0.92);
+}
+
+.communication-icon--arrangement {
+  background:
+    radial-gradient(circle at 24% 50%, #253442 0 0.32rem, transparent 0.34rem),
+    radial-gradient(circle at 50% 50%, #1f877d 0 0.32rem, transparent 0.34rem),
+    radial-gradient(circle at 76% 50%, #b98c19 0 0.32rem, transparent 0.34rem),
+    linear-gradient(90deg, transparent 18%, rgba(37, 52, 66, 0.25) 18% 82%, transparent 82%),
+    rgba(238, 248, 231, 0.92);
+}
+
+.communication-icon--method {
+  background:
+    linear-gradient(135deg, #253442 0 28%, transparent 28% 36%, #1f877d 36% 64%, transparent 64% 72%, #f2c94c 72%),
+    rgba(255, 255, 255, 0.86);
+}
+
+.channel-diagram,
+.topology-diagram {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 6.5rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+  overflow: hidden;
+}
+
+.channel-diagram {
+  grid-template-columns: auto minmax(6rem, 1fr) auto;
+}
+
+.device-node {
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 2px solid rgba(37, 52, 66, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.signal-stack {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.signal-line,
+.topology-line,
+.bus-line {
+  position: relative;
+  display: block;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: rgba(37, 52, 66, 0.18);
+}
+
+.signal-line::after {
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: 0.45rem solid transparent;
+  border-bottom: 0.45rem solid transparent;
+  content: "";
+  transform: translateY(-50%);
+}
+
+.signal-line--right::after {
+  right: -0.1rem;
+  border-left: 0.75rem solid #1f877d;
+}
+
+.signal-line--left::after {
+  left: -0.1rem;
+  border-right: 0.75rem solid #b98c19;
+}
+
+.signal-line.is-live {
+  background: rgba(31, 135, 125, 0.38);
+}
+
+.topology-diagram--point {
+  grid-template-columns: auto minmax(6rem, 1fr) auto;
+}
+
+.topology-line {
+  background: rgba(31, 135, 125, 0.32);
+}
+
+.topology-diagram--drop {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-items: center;
+}
+
+.topology-diagram--drop .bus-line {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  left: 1rem;
+  background: rgba(37, 52, 66, 0.22);
+}
+
+.method-card {
+  align-content: start;
+}
+
+.method-icon--ethernet {
+  background:
+    linear-gradient(90deg, transparent 12%, #253442 12% 88%, transparent 88%),
+    linear-gradient(0deg, transparent 40%, rgba(31, 135, 125, 0.4) 40% 60%, transparent 60%),
+    rgba(232, 246, 255, 0.96);
+}
+
+.method-icon--fibre {
+  background:
+    radial-gradient(circle at 25% 50%, #f2c94c 0 0.38rem, transparent 0.42rem),
+    radial-gradient(circle at 50% 50%, #1f877d 0 0.38rem, transparent 0.42rem),
+    radial-gradient(circle at 75% 50%, #7e5899 0 0.38rem, transparent 0.42rem),
+    linear-gradient(90deg, transparent 12%, rgba(37, 52, 66, 0.16) 12% 88%, transparent 88%),
+    rgba(255, 249, 227, 0.96);
+}
+
+.method-icon--wifi {
+  background:
+    radial-gradient(circle at 50% 68%, #253442 0 0.26rem, transparent 0.3rem),
+    radial-gradient(circle at 50% 68%, transparent 0 0.58rem, #1f877d 0.6rem 0.68rem, transparent 0.7rem),
+    radial-gradient(circle at 50% 68%, transparent 0 1.08rem, #1f877d 1.1rem 1.18rem, transparent 1.2rem),
+    rgba(238, 248, 231, 0.96);
+}
+
+.method-icon--bluetooth {
+  background:
+    linear-gradient(45deg, transparent 42%, #253442 42% 56%, transparent 56%),
+    linear-gradient(135deg, transparent 42%, #253442 42% 56%, transparent 56%),
+    rgba(246, 240, 250, 0.96);
+}
+
+.method-icon--cellular {
+  background:
+    linear-gradient(0deg, #1f877d 0 20%, transparent 20%),
+    linear-gradient(0deg, transparent 0 24%, #1f877d 24% 48%, transparent 48%),
+    linear-gradient(0deg, transparent 0 52%, #1f877d 52% 76%, transparent 76%),
+    linear-gradient(0deg, transparent 0 80%, #1f877d 80% 100%),
+    rgba(232, 246, 255, 0.96);
+  background-size:
+    18% 100%,
+    18% 100%,
+    18% 100%,
+    18% 100%,
+    100% 100%;
+  background-position:
+    18% 0,
+    38% 0,
+    58% 0,
+    78% 0,
+    0 0;
+  background-repeat: no-repeat;
+}
+
+.tool-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tool-heading .eyebrow {
+  margin-bottom: 0.2rem;
+}
+
+.scenario-pill,
+.scenario-button,
+.scenario-output span {
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--lesson-accent-heading);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.scenario-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.scenario-button {
+  cursor: pointer;
+  font: inherit;
+}
+
+.scenario-button.is-selected {
+  border-color: rgba(31, 135, 125, 0.38);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 8px 16px rgba(36, 49, 59, 0.1);
+}
+
+.scenario-output {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.scenario-output article {
+  justify-items: center;
+  margin: 0;
+  text-align: center;
+}
+
+.scenario-output strong {
+  color: var(--page-ink);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
+.scenario-reasoning ul {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+body.teacher-mode-active .communication-map,
+body.teacher-mode-active .channel-visual-grid,
+body.teacher-mode-active .method-grid,
+body.teacher-mode-active .selection-grid,
+body.teacher-mode-active .trap-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 820px) {
+  .scenario-output,
+  body.teacher-mode-active .communication-map,
+  body.teacher-mode-active .channel-visual-grid,
+  body.teacher-mode-active .method-grid,
+  body.teacher-mode-active .selection-grid,
+  body.teacher-mode-active .trap-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -9,7 +9,7 @@
     </title>
     <meta
       name="description"
-      content="Revise negative binary values, two's complement, floating point storage, and precision limits for BTEC Level 3 Computing Unit 2."
+      content="Revise negative binary, two's complement, floating point normalisation, range, precision, and rounding for BTEC Level 3 Computing Unit 2."
     />
     <meta
       property="og:title"
@@ -17,7 +17,7 @@
     />
     <meta
       property="og:description"
-      content="Revise negative binary values, two's complement, floating point storage, and precision limits for BTEC Level 3 Computing Unit 2."
+      content="Revise negative binary, two's complement, floating point normalisation, range, precision, and rounding for BTEC Level 3 Computing Unit 2."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/negative-and-floating-point-representation.css"
+    />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -58,9 +62,9 @@
           <div>
             <h1>Negative and floating point representation</h1>
             <p class="lesson-hero-text">
-              Learn how computers store negative integers, why two's complement
-              is useful, and how floating point makes fractions and very large
-              or very small values possible.
+              See how computers store values below zero, why two's complement is
+              easier for binary arithmetic, and how floating point stores
+              fractions or values with a very large range.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -78,7 +82,11 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Negative values, two's complement, and floating point</span>
+            <span>Two's complement and floating point representation</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Practice focus</strong>
+            <span>8-bit two's complement and floating point normalisation</span>
           </article>
         </div>
 
@@ -106,8 +114,8 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, and teacher slides need JavaScript, but
-          the lesson notes still work without it.
+          Quiz scoring, practice checking, tools, answer saving, and teacher
+          slides need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
 
@@ -116,10 +124,14 @@
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
+            <a href="#range" data-section-link>Bit width and range</a>
             <a href="#negative-numbers" data-section-link>Negative numbers</a>
+            <a href="#twos-complement" data-section-link>Two's complement</a>
+            <a href="#twos-practice" data-section-link>Practice</a>
             <a href="#floating-point" data-section-link>Floating point</a>
+            <a href="#normalisation" data-section-link>Normalisation</a>
             <a href="#precision" data-section-link>Precision and limits</a>
-            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#compare" data-section-link>Compare</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
             <a href="#exam-practice" data-section-link>Exam-style practice</a>
@@ -133,34 +145,138 @@
             data-lesson-section
           >
             <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
+            <h2>Binary patterns need an agreed interpretation</h2>
             <p class="lesson-section-copy">
-              Unsigned binary only handles positive values and zero. Real
-              computer systems also need to represent negative numbers,
-              fractions, and values with a huge range, so other schemes are
-              used.
+              A pattern such as <code>11111011</code> is just eight bits. It
+              only becomes a value when the system knows the representation
+              being used. The same pattern can mean an unsigned integer, a
+              negative two's complement value, part of a floating point number,
+              or something else entirely.
             </p>
+
+            <div class="representation-map">
+              <article
+                class="representation-card representation-card--unsigned"
+              >
+                <span
+                  class="representation-icon representation-icon--unsigned"
+                ></span>
+                <h3>Unsigned binary</h3>
+                <p>Uses every bit for size, so values run from zero upwards.</p>
+              </article>
+
+              <article class="representation-card representation-card--twos">
+                <span
+                  class="representation-icon representation-icon--twos"
+                ></span>
+                <h3>Two's complement</h3>
+                <p>
+                  Uses the bit pattern range to cover positive and negative
+                  whole numbers.
+                </p>
+              </article>
+
+              <article class="representation-card representation-card--float">
+                <span
+                  class="representation-icon representation-icon--float"
+                ></span>
+                <h3>Floating point</h3>
+                <p>
+                  Splits storage into sign, exponent, and significand so the
+                  point can move.
+                </p>
+              </article>
+            </div>
 
             <div class="lesson-intro-grid">
               <article class="lesson-card">
                 <h3>Learning goals</h3>
                 <ul class="lesson-list">
-                  <li>Explain how negative values can be represented.</li>
-                  <li>Describe the role of two's complement.</li>
-                  <li>Outline the main idea behind floating point.</li>
-                  <li>Identify precision limits and rounding issues.</li>
+                  <li>
+                    Explain why unsigned binary cannot represent negatives.
+                  </li>
+                  <li>Convert small values using 8-bit two's complement.</li>
+                  <li>
+                    Describe sign, exponent, and significand in floating point.
+                  </li>
+                  <li>
+                    Explain range, precision, rounding, overflow, and underflow.
+                  </li>
                 </ul>
               </article>
 
               <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>Unsigned:</strong> no negative values.</li>
-                  <li><strong>Two's complement:</strong> common negative format.</li>
-                  <li><strong>Floating point:</strong> sign, exponent, significand.</li>
-                  <li><strong>Trade-off:</strong> range versus exactness.</li>
-                </ul>
+                <h3>The big idea</h3>
+                <p>
+                  The CPU does not store a minus symbol or a decimal point as a
+                  handwritten mark. It stores bits, then interprets those bits
+                  according to a chosen format.
+                </p>
               </article>
+            </div>
+          </section>
+
+          <section
+            id="range"
+            class="lesson-section lesson-section--range panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Bit Width</p>
+            <h2>The number of bits controls the range</h2>
+            <p class="lesson-section-copy">
+              A fixed number of bits gives a fixed number of patterns. With 8
+              bits there are 256 patterns. Unsigned binary spends all 256 on
+              values from <code>0</code> to <code>255</code>. Two's complement
+              splits them across negative and non-negative values, from
+              <code>-128</code> to <code>127</code>.
+            </p>
+
+            <div class="range-board" aria-label="8-bit range comparison">
+              <article class="range-card range-card--unsigned">
+                <h3>8-bit unsigned</h3>
+                <div class="range-line">
+                  <span>0</span>
+                  <span>255</span>
+                </div>
+                <p>All patterns represent zero or a positive whole number.</p>
+              </article>
+
+              <article class="range-card range-card--twos">
+                <h3>8-bit two's complement</h3>
+                <div class="range-line range-line--split">
+                  <span>-128</span>
+                  <span>0</span>
+                  <span>127</span>
+                </div>
+                <p>The same 256 patterns are interpreted around zero.</p>
+              </article>
+            </div>
+
+            <div class="compare-table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Bit width</th>
+                    <th>Number of patterns</th>
+                    <th>Unsigned range</th>
+                    <th>Two's complement range</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>4 bits</td>
+                    <td>16</td>
+                    <td>0 to 15</td>
+                    <td>-8 to 7</td>
+                  </tr>
+                  <tr>
+                    <td>8 bits</td>
+                    <td>256</td>
+                    <td>0 to 255</td>
+                    <td>-128 to 127</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </section>
 
@@ -169,46 +285,203 @@
             class="lesson-section lesson-section--negative-numbers panel"
             data-lesson-section
           >
-            <p class="eyebrow">Negative Values</p>
-            <h2>Computers need a way to show values below zero</h2>
+            <p class="eyebrow">Negative Numbers</p>
+            <h2>Negative binary is a representation choice</h2>
             <p class="lesson-section-copy">
-              One simple idea is a sign bit, where the leftmost bit shows
-              positive or negative. In practice, two's complement is widely used
-              because it makes arithmetic easier for the CPU.
+              A simple approach is sign and magnitude: use the leftmost bit for
+              the sign and the remaining bits for the size. That is easy to
+              understand, but it creates awkward arithmetic cases. Two's
+              complement is the common method because addition and subtraction
+              can use the same binary hardware.
             </p>
 
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Method</th>
-                    <th>Main idea</th>
-                    <th>Weakness or strength</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Sign and magnitude</td>
-                    <td>One bit shows sign, the rest show size</td>
-                    <td>Simple idea but less convenient for arithmetic</td>
-                  </tr>
-                  <tr>
-                    <td>Two's complement</td>
-                    <td>Invert the positive value and add 1</td>
-                    <td>Efficient for binary arithmetic</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <div class="method-grid">
+              <article class="method-card method-card--sign">
+                <h3>Sign and magnitude</h3>
+                <div class="bit-demo-row">
+                  <span class="bit-cell is-sign is-one">1</span>
+                  <span class="bit-cell">0</span>
+                  <span class="bit-cell">0</span>
+                  <span class="bit-cell">0</span>
+                  <span class="bit-cell">0</span>
+                  <span class="bit-cell">1</span>
+                  <span class="bit-cell">0</span>
+                  <span class="bit-cell">1</span>
+                </div>
+                <p>
+                  The sign bit says negative, and the remaining bits show the
+                  magnitude. The idea is readable, but arithmetic is less neat.
+                </p>
+              </article>
 
-            <article class="lesson-card">
-              <h3>Worked example for two's complement</h3>
-              <p>
-                In 8 bits, positive 5 is <code>00000101</code>. To represent
-                negative 5 in two's complement, invert the bits to get
-                <code>11111010</code>, then add 1. The result is
-                <code>11111011</code>.
+              <article class="method-card method-card--twos">
+                <h3>Two's complement</h3>
+                <div
+                  class="twos-wheel"
+                  aria-label="Two's complement wrap around"
+                >
+                  <span>11111111 = -1</span>
+                  <span>00000000 = 0</span>
+                  <span>00000001 = 1</span>
+                </div>
+                <p>
+                  The bit patterns wrap around zero. This means adding
+                  <code>00000001</code> to <code>11111111</code> produces
+                  <code>00000000</code>, just like -1 + 1 = 0.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="twos-complement"
+            class="lesson-section lesson-section--twos-complement panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Two's Complement</p>
+            <h2>
+              To make a negative value, invert the positive bits and add 1
+            </h2>
+            <p class="lesson-section-copy">
+              For an 8-bit negative value, start with the positive magnitude,
+              flip every bit, then add <code>1</code>. Keep the full 8-bit
+              pattern, including leading bits.
+            </p>
+
+            <article
+              class="twos-tool"
+              data-role="twos-complement-tool"
+              aria-labelledby="twos-tool-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Interactive</p>
+                  <h3 id="twos-tool-heading">8-bit two's complement viewer</h3>
+                </div>
+                <span class="tool-pill">Range -128 to 127</span>
+              </div>
+
+              <form class="twos-form" data-role="twos-form">
+                <label>
+                  Denary value
+                  <input
+                    type="number"
+                    min="-128"
+                    max="127"
+                    step="1"
+                    data-role="twos-input"
+                  />
+                </label>
+                <input
+                  class="twos-slider"
+                  type="range"
+                  min="-128"
+                  max="127"
+                  step="1"
+                  data-role="twos-slider"
+                  aria-label="Choose denary value"
+                />
+                <button class="lesson-secondary-action" type="submit">
+                  Update
+                </button>
+              </form>
+
+              <div class="twos-range-track" aria-hidden="true">
+                <span>-128</span>
+                <span data-role="twos-range-marker" class="twos-range-marker"
+                  >-5</span
+                >
+                <span>127</span>
+              </div>
+
+              <div class="twos-output">
+                <div class="twos-byte-row" data-role="twos-byte"></div>
+                <div class="twos-summary">
+                  <article>
+                    <span>Denary</span>
+                    <strong data-role="twos-denary">-5</strong>
+                  </article>
+                  <article>
+                    <span>Stored pattern</span>
+                    <strong data-role="twos-result">11111011</strong>
+                  </article>
+                  <article>
+                    <span>First bit suggests</span>
+                    <strong data-role="twos-sign">negative range</strong>
+                  </article>
+                </div>
+              </div>
+
+              <div class="twos-step-grid" aria-label="Two's complement steps">
+                <article>
+                  <span>1. Positive magnitude</span>
+                  <code data-role="twos-magnitude">00000101</code>
+                </article>
+                <article>
+                  <span>2. Invert bits</span>
+                  <code data-role="twos-invert">11111010</code>
+                </article>
+                <article>
+                  <span>3. Add 1</span>
+                  <code data-role="twos-add-one">11111011</code>
+                </article>
+              </div>
+
+              <p class="tool-note" data-role="twos-note">
+                To store -5, start with 5, invert every bit, then add 1.
               </p>
+            </article>
+          </section>
+
+          <section
+            id="twos-practice"
+            class="lesson-section lesson-section--twos-practice panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Practice</p>
+            <h2>Try one two's complement question at a time</h2>
+
+            <article class="practice-panel" data-role="twos-practice">
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Auto-generated</p>
+                  <h3>Two's complement practice</h3>
+                </div>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="new-twos-question"
+                >
+                  New question
+                </button>
+              </div>
+
+              <form class="practice-form" data-role="twos-practice-form">
+                <p class="practice-question" data-role="twos-practice-prompt">
+                  Represent -5 in 8-bit two's complement.
+                </p>
+                <div
+                  class="twos-practice-table-wrap"
+                  data-role="twos-practice-table"
+                ></div>
+                <div class="practice-answer-row">
+                  <button class="primary-link" type="submit">
+                    Check answer
+                  </button>
+                </div>
+                <p
+                  class="practice-feedback"
+                  data-role="twos-practice-feedback"
+                  aria-live="polite"
+                >
+                  Try the question, then check your answer.
+                </p>
+                <div
+                  class="practice-working"
+                  data-role="twos-practice-working"
+                  hidden
+                ></div>
+              </form>
             </article>
           </section>
 
@@ -218,28 +491,123 @@
             data-lesson-section
           >
             <p class="eyebrow">Floating Point</p>
-            <h2>Floating point stores a value using scale as well as digits</h2>
+            <h2>Floating point stores the point position separately</h2>
             <p class="lesson-section-copy">
-              Floating point works like scientific notation. Instead of storing
-              every digit in one fixed place, the system stores a sign, an
-              exponent, and a significand or mantissa.
+              Floating point is useful when a value might be fractional, very
+              large, or very small. It works like scientific notation: store the
+              sign, store the main digits, and store a power that scales the
+              value.
             </p>
 
-            <div class="example-strip" aria-label="Floating-point summary">
-              <span class="example-chip"><strong>Sign</strong> positive or negative</span>
-              <span class="example-chip"><strong>Exponent</strong> how far the point moves</span>
-              <span class="example-chip"><strong>Significand</strong> the main digits</span>
+            <div class="float-part-board" aria-label="Floating point parts">
+              <article class="float-part float-part--sign">
+                <span>Sign</span>
+                <strong>0 or 1</strong>
+                <p>Whether the value is positive or negative.</p>
+              </article>
+              <article class="float-part float-part--significand">
+                <span>Significand</span>
+                <strong>1.xxxxx</strong>
+                <p>The main precision bits, sometimes called the mantissa.</p>
+              </article>
+              <article class="float-part float-part--exponent">
+                <span>Exponent</span>
+                <strong>2^n</strong>
+                <p>How far the binary point has moved.</p>
+              </article>
             </div>
 
-            <article class="lesson-card">
+            <article class="lesson-card float-example-card">
               <h3>Worked idea</h3>
               <p>
-                Decimal scientific notation might write 3500 as
-                <code>3.5 x 10^3</code>. A binary floating-point system uses the
-                same principle with powers of 2. For example,
-                <code>1101.01</code> can be normalised to
-                <code>1.10101 x 2^3</code>.
+                The binary value <code>1101.01</code> can be written as
+                <code>1.10101 x 2^3</code>. The significand is
+                <code>1.10101</code> and the exponent is <code>3</code>
+                because the point moved three places left.
               </p>
+            </article>
+          </section>
+
+          <section
+            id="normalisation"
+            class="lesson-section lesson-section--normalisation panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Normalisation</p>
+            <h2>Normalising keeps one non-zero digit before the point</h2>
+            <p class="lesson-section-copy">
+              A normalised binary floating point value is usually written with
+              one leading <code>1</code> before the binary point. Moving the
+              point left gives a positive exponent. Moving it right gives a
+              negative exponent.
+            </p>
+
+            <article
+              class="normaliser-tool"
+              data-role="floating-normaliser"
+              aria-labelledby="normaliser-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Visualiser</p>
+                  <h3 id="normaliser-heading">Floating point normaliser</h3>
+                </div>
+                <div class="normaliser-actions" aria-label="Example choices">
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-normalise-case="large"
+                  >
+                    1101.01
+                  </button>
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-normalise-case="fraction"
+                  >
+                    0.001101
+                  </button>
+                  <button
+                    class="lesson-secondary-action"
+                    type="button"
+                    data-normalise-case="negative"
+                  >
+                    -101.1
+                  </button>
+                </div>
+              </div>
+
+              <div class="normaliser-flow">
+                <article>
+                  <span>Original</span>
+                  <code data-role="normalise-raw">1101.01</code>
+                </article>
+                <article>
+                  <span>Move point</span>
+                  <p data-role="normalise-movement">
+                    Move the point 3 places left so the value starts 1.x.
+                  </p>
+                </article>
+                <article>
+                  <span>Normalised</span>
+                  <code data-role="normalise-result">1.10101 x 2^3</code>
+                </article>
+              </div>
+
+              <div class="float-register-strip">
+                <article>
+                  <span>Sign</span>
+                  <strong data-role="normalise-sign">0</strong>
+                </article>
+                <article>
+                  <span>Exponent</span>
+                  <strong data-role="normalise-exponent">+3</strong>
+                </article>
+                <article>
+                  <span>Significand</span>
+                  <strong data-role="normalise-significand">1.10101</strong>
+                </article>
+              </div>
             </article>
           </section>
 
@@ -249,39 +617,88 @@
             data-lesson-section
           >
             <p class="eyebrow">Precision</p>
-            <h2>Floating point gives range, but not always exact values</h2>
+            <h2>Floating point trades exactness for range</h2>
             <p class="lesson-section-copy">
-              Because the number of bits is limited, some real numbers cannot be
-              stored exactly. This can lead to rounding, loss of precision, or
-              overflow when a value is too large for the available format.
+              A floating point format has a limited number of bits. Giving more
+              bits to the exponent increases range. Giving more bits to the
+              significand increases precision. You cannot maximise both in the
+              same fixed-size format.
             </p>
+
+            <article
+              class="tradeoff-tool"
+              data-role="float-tradeoff"
+              aria-labelledby="tradeoff-heading"
+            >
+              <div class="tool-heading">
+                <div>
+                  <p class="eyebrow">Toy model</p>
+                  <h3 id="tradeoff-heading">Split 8 storage bits</h3>
+                </div>
+                <span class="tool-pill">1 sign bit + 7 shared bits</span>
+              </div>
+
+              <label class="tradeoff-slider-label">
+                Exponent bits
+                <input
+                  type="range"
+                  min="2"
+                  max="5"
+                  step="1"
+                  data-role="tradeoff-slider"
+                />
+              </label>
+
+              <div class="tradeoff-grid">
+                <article class="tradeoff-card tradeoff-card--range">
+                  <span>Exponent bits</span>
+                  <strong data-role="tradeoff-exponent-bits">3</strong>
+                  <div class="tradeoff-bar">
+                    <span></span>
+                  </div>
+                  <p>
+                    Scale choices:
+                    <strong data-role="tradeoff-range-levels">8</strong>
+                  </p>
+                </article>
+                <article class="tradeoff-card tradeoff-card--precision">
+                  <span>Significand bits</span>
+                  <strong data-role="tradeoff-significand-bits">4</strong>
+                  <div class="tradeoff-bar">
+                    <span></span>
+                  </div>
+                  <p>
+                    Detail steps:
+                    <strong data-role="tradeoff-precision-steps">16</strong>
+                  </p>
+                </article>
+              </div>
+
+              <p class="tool-note" data-role="tradeoff-note">
+                This setup balances range and precision.
+              </p>
+            </article>
 
             <div class="term-grid">
               <article class="term-card">
-                <strong>Precision</strong>
-                <span>
-                  How many significant digits or bits the system can keep.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Range</strong>
-                <span>
-                  How large or small a value can be while still fitting in the
-                  format.
-                </span>
-              </article>
-              <article class="term-card">
                 <strong>Rounding</strong>
-                <span>
-                  The nearest representable value may be stored instead of the
-                  exact one.
-                </span>
+                <span>The closest representable value is stored.</span>
               </article>
               <article class="term-card">
                 <strong>Overflow</strong>
-                <span>
-                  The value is too large for the available number of bits.
-                </span>
+                <span>The value is too large for the exponent range.</span>
+              </article>
+              <article class="term-card">
+                <strong>Underflow</strong>
+                <span
+                  >The value is too close to zero to represent accurately.</span
+                >
+              </article>
+              <article class="term-card">
+                <strong>Precision loss</strong>
+                <span
+                  >Small detail is lost because there are not enough bits.</span
+                >
               </article>
             </div>
           </section>
@@ -292,31 +709,39 @@
             data-lesson-section
           >
             <p class="eyebrow">Compare</p>
-            <h2>Choose the representation by the type of value you need</h2>
+            <h2>Choose the representation for the kind of value</h2>
             <div class="compare-table-wrap">
               <table class="compare-table">
                 <thead>
                   <tr>
                     <th>Representation</th>
-                    <th>Useful for</th>
-                    <th>Main trade-off</th>
+                    <th>Best for</th>
+                    <th>Key limitation</th>
+                    <th>Exam phrase to remember</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Unsigned binary</td>
-                    <td>Non-negative whole numbers</td>
+                    <td>
+                      Counts, addresses, sizes, and positive whole numbers
+                    </td>
                     <td>No negative values</td>
+                    <td>All bits contribute to magnitude</td>
                   </tr>
                   <tr>
                     <td>Two's complement</td>
-                    <td>Negative and positive integers</td>
-                    <td>Bit width limits the range</td>
+                    <td>Positive and negative integers</td>
+                    <td>Range depends on bit width</td>
+                    <td>Invert and add 1 for a negative value</td>
                   </tr>
                   <tr>
                     <td>Floating point</td>
-                    <td>Fractions and a large value range</td>
-                    <td>Possible rounding and precision loss</td>
+                    <td>
+                      Fractions, measurements, and very large or small values
+                    </td>
+                    <td>May store an approximation</td>
+                    <td>Range and precision are a trade-off</td>
                   </tr>
                 </tbody>
               </table>
@@ -332,38 +757,38 @@
             <h2>Common mistakes with negative and floating point values</h2>
             <div class="trap-grid">
               <article class="trap-card">
-                <h3>Forgetting the bit width</h3>
+                <h3>Dropping leading bits</h3>
                 <p>
-                  A binary pattern only has meaning inside a stated size such as
-                  8 bits or 16 bits.
+                  In two's complement, the full bit width matters. Removing a
+                  leading <code>1</code> can change the value completely.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Keep the full bit pattern and do not
-                  drop leading bits.
+                  <strong>Fix:</strong> Keep all bits stated by the question,
+                  especially in 8-bit examples.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Assuming floating point is always exact</h3>
+                <h3>Treating every first bit as just a sign</h3>
                 <p>
-                  Some decimal fractions cannot be represented perfectly in a
-                  limited binary format.
+                  In two's complement the leftmost bit helps indicate the
+                  negative range, but the whole pattern determines the value.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> Mention rounding or precision when
-                  asked about limitations.
+                  <strong>Fix:</strong> Decode the whole bit pattern, not only
+                  the first bit.
                 </p>
               </article>
 
               <article class="trap-card">
-                <h3>Mixing methods together</h3>
+                <h3>Assuming floating point is exact</h3>
                 <p>
-                  Sign-and-magnitude rules and two's complement rules are not
-                  interchangeable.
+                  Some values cannot be represented exactly with the available
+                  significand bits.
                 </p>
                 <p class="trap-fix">
-                  <strong>Fix:</strong> State which representation method the
-                  question is using before you work the answer out.
+                  <strong>Fix:</strong> Mention rounding, precision loss, or
+                  approximation when asked about limitations.
                 </p>
               </article>
             </div>
@@ -375,11 +800,10 @@
             data-lesson-section
           >
             <p class="eyebrow">Quiz</p>
-            <h2>Check your understanding</h2>
+            <h2>Check the ideas, not the conversions</h2>
             <p class="quiz-intro">
-              Answer all five questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
-              later.
+              The practice tool handles two's complement conversion. This quiz
+              checks the concepts that explain why the representations work.
             </p>
 
             <form id="lesson-quiz" class="quiz-form">
@@ -387,27 +811,31 @@
                 class="quiz-question"
                 data-question="q1"
                 data-answer="b"
-                data-success="Correct. Unsigned binary cannot show negative values."
-                data-feedback="Unsigned binary only covers zero and positive whole numbers."
+                data-success="Correct. Bit width controls how many patterns are available."
+                data-feedback="A fixed bit width gives a fixed number of patterns, which limits the range."
               >
-                <legend>1. What is the main limit of unsigned binary?</legend>
+                <legend>
+                  1. Why does bit width matter for stored numbers?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="a" />
-                      <span>It cannot store zero</span>
+                      <span>It decides which keyboard is attached</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="b" />
-                      <span>It cannot represent negative values</span>
+                      <span
+                        >It limits how many different bit patterns exist</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q1" value="c" />
-                      <span>It only works in decimal</span>
+                      <span>It means binary cannot store whole numbers</span>
                     </label>
                   </li>
                 </ul>
@@ -418,27 +846,30 @@
                 class="quiz-question"
                 data-question="q2"
                 data-answer="a"
-                data-success="Correct. Two's complement is widely used for negative integers."
-                data-feedback="Two's complement is the common method because it suits binary arithmetic well."
+                data-success="Correct. Two's complement lets the same binary arithmetic circuits handle signed values."
+                data-feedback="Two's complement is useful because it works neatly with normal binary addition and subtraction."
               >
-                <legend>2. Which method is commonly used to store negative integers?</legend>
+                <legend>2. Why is two's complement widely used?</legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="a" />
-                      <span>Two's complement</span>
+                      <span
+                        >It makes signed integer arithmetic easier for the
+                        CPU</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="b" />
-                      <span>BCD</span>
+                      <span>It is used only for text characters</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q2" value="c" />
-                      <span>ASCII</span>
+                      <span>It removes the need for a fixed bit width</span>
                     </label>
                   </li>
                 </ul>
@@ -449,27 +880,33 @@
                 class="quiz-question"
                 data-question="q3"
                 data-answer="c"
-                data-success="Correct. Floating point stores sign, exponent, and significand."
-                data-feedback="Floating point needs a scale part as well as the main digits."
+                data-success="Correct. The first bit helps indicate the negative range, but the full pattern matters."
+                data-feedback="A two's complement value is decoded from the whole bit pattern, not from the first bit alone."
               >
-                <legend>3. Which set of parts belongs to a floating-point value?</legend>
+                <legend>
+                  3. What should you remember about the leftmost bit in two's
+                  complement?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="a" />
-                      <span>Byte, parity, checksum</span>
+                      <span>It can be ignored when decoding the value</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="b" />
-                      <span>Opcode, operand, register</span>
+                      <span>It always stores the exact denary magnitude</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q3" value="c" />
-                      <span>Sign, exponent, significand</span>
+                      <span
+                        >It helps indicate negative range, but the whole pattern
+                        matters</span
+                      >
                     </label>
                   </li>
                 </ul>
@@ -480,27 +917,27 @@
                 class="quiz-question"
                 data-question="q4"
                 data-answer="b"
-                data-success="Correct. Floating point is helpful for fractions and wide ranges."
-                data-feedback="Floating point is chosen when whole-number-only representation is not enough."
+                data-success="Correct. Floating point stores the main digits and a scale."
+                data-feedback="Floating point uses a sign, significand, and exponent."
               >
-                <legend>4. Why is floating point useful?</legend>
+                <legend>4. Which parts describe a floating point value?</legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="a" />
-                      <span>It removes all rounding errors permanently</span>
+                      <span>Opcode, operand, and register</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="b" />
-                      <span>It can represent fractions and a large range of values</span>
+                      <span>Sign, significand, and exponent</span>
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q4" value="c" />
-                      <span>It only works for text characters</span>
+                      <span>Parity bit, checksum, and packet header</span>
                     </label>
                   </li>
                 </ul>
@@ -511,27 +948,35 @@
                 class="quiz-question"
                 data-question="q5"
                 data-answer="a"
-                data-success="Correct. Precision loss means the stored value may be rounded."
-                data-feedback="Limited bits mean some real values are approximated rather than stored exactly."
+                data-success="Correct. More range can mean fewer precision bits in a fixed-size format."
+                data-feedback="A fixed-size floating point format must divide bits between exponent range and significand precision."
               >
-                <legend>5. What is a common limitation of floating point?</legend>
+                <legend>
+                  5. What is the main range and precision trade-off in floating
+                  point?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="a" />
-                      <span>Some values are stored approximately rather than exactly</span>
+                      <span
+                        >More exponent range can leave fewer bits for
+                        precision</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="b" />
-                      <span>It can only represent negative numbers</span>
+                      <span
+                        >Floating point always stores every value exactly</span
+                      >
                     </label>
                   </li>
                   <li>
                     <label class="quiz-answer">
                       <input type="radio" name="q5" value="c" />
-                      <span>It cannot use binary at all</span>
+                      <span>Floating point cannot store negative values</span>
                     </label>
                   </li>
                 </ul>
@@ -561,11 +1006,10 @@
             data-lesson-section
           >
             <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Try longer answers like the ones used in written papers</h2>
+            <h2>Explain the representation and the trade-off</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              Exam answers usually need the method and the reason. Type your
+              answers into the page, then compare your ideas with the guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
@@ -579,8 +1023,8 @@
                 </div>
                 <h3>Question 1</h3>
                 <p>
-                  Describe how a computer can represent negative 5 using an
-                  8-bit two's complement method.
+                  Describe how a computer can represent a negative integer using
+                  8-bit two's complement.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-1">
@@ -590,20 +1034,19 @@
                     id="exam-response-1"
                     class="exam-response"
                     data-exam-response="question-1"
-                    placeholder="Show the positive form, invert it, then add 1."
+                    placeholder="Mention bit width, positive magnitude, invert bits, and add 1."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
-                      <li>Write positive 5 as <code>00000101</code>.</li>
-                      <li>Invert the bits to get <code>11111010</code>.</li>
-                      <li>Add 1 to get <code>11111011</code>.</li>
                       <li>
-                        State that the final pattern is the two's complement
-                        representation of negative 5.
+                        State that the bit width is fixed, such as 8 bits.
                       </li>
+                      <li>Write the positive magnitude in binary.</li>
+                      <li>Invert every bit.</li>
+                      <li>Add 1 and keep the full 8-bit pattern.</li>
                     </ul>
                   </div>
                 </details>
@@ -616,9 +1059,10 @@
                 </div>
                 <h3>Question 2</h3>
                 <p>
-                  Explain why floating point is useful for scientific or sensor
-                  data, and evaluate one limitation that could affect the final
-                  answer stored by the system.
+                  A weather station stores sensor readings that include very
+                  small decimal values and occasional very large values. Explain
+                  why floating point is suitable, and evaluate one possible
+                  limitation.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-2">
@@ -628,7 +1072,7 @@
                     id="exam-response-2"
                     class="exam-response"
                     data-exam-response="question-2"
-                    placeholder="Link large range and fractions to a precision trade-off."
+                    placeholder="Link fractions and range to exponent/significand, then discuss precision."
                   ></textarea>
                 </div>
                 <details class="exam-guidance">
@@ -636,20 +1080,23 @@
                   <div class="exam-guidance-body">
                     <ul class="exam-points">
                       <li>
-                        Floating point can represent very large, very small, and
+                        Floating point is suitable because it can store
                         fractional values.
                       </li>
                       <li>
-                        That makes it useful for measurements or scientific
-                        calculations.
+                        The exponent lets the format represent very large or
+                        very small values.
                       </li>
                       <li>
-                        The format has limited bits for the significand and
-                        exponent.
+                        The significand stores the precision of the main digits.
                       </li>
                       <li>
-                        Some values are rounded, so the stored answer may only
-                        be approximate.
+                        A limitation is that some readings may be rounded or
+                        approximated because the number of bits is limited.
+                      </li>
+                      <li>
+                        A strong answer links this to possible precision loss in
+                        later calculations or reports.
                       </li>
                     </ul>
                   </div>
@@ -666,30 +1113,35 @@
             <dl class="glossary-list">
               <div class="glossary-item">
                 <dt>Two's complement</dt>
-                <dd>A common method for representing negative integers.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Exponent</dt>
-                <dd>The part that scales a floating-point value.</dd>
+                <dd>A common method for representing signed integers.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Significand</dt>
-                <dd>The main digits of a floating-point value.</dd>
+                <dd>The main precision digits in a floating point value.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Exponent</dt>
+                <dd>The part that scales a floating point value.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Overflow</dt>
-                <dd>A value that is too large to fit in the format.</dd>
+                <dd>A value is too large for the available range.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Underflow</dt>
+                <dd>A value is too close to zero to represent accurately.</dd>
               </div>
             </dl>
           </section>
 
           <section class="lesson-rail-card panel revision-card">
             <p class="eyebrow">Remember</p>
-            <h2>Range versus exactness</h2>
+            <h2>Range versus precision</h2>
             <ul class="memory-list">
-              <li>Two's complement helps with negative whole numbers.</li>
-              <li>Floating point helps with scale and fractions.</li>
-              <li>Greater range can come with precision limits.</li>
+              <li>Unsigned binary cannot represent negative values.</li>
+              <li>Two's complement is for signed whole numbers.</li>
+              <li>Floating point uses sign, significand, and exponent.</li>
+              <li>More range can mean less precision in a fixed size.</li>
             </ul>
           </section>
         </aside>
@@ -714,7 +1166,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 8</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 12</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

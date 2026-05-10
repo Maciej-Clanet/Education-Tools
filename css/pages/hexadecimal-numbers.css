@@ -1,0 +1,371 @@
+.hex-overview-map,
+.hex-place-board,
+.nibble-map,
+.conversion-grid,
+.use-case-grid,
+.trap-grid,
+.hex-practice-layout {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.hex-overview-map,
+.hex-place-board,
+.conversion-grid,
+.use-case-grid,
+.trap-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.hex-overview-card,
+.hex-place-card,
+.hex-explorer,
+.conversion-card,
+.hex-practice-card,
+.scratch-card,
+.use-case-card,
+.hex-table-card {
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(247, 251, 253, 0.86)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.hex-overview-card h3,
+.hex-place-card h3,
+.hex-explorer h3,
+.conversion-card h3,
+.hex-practice-card h3,
+.scratch-card h3,
+.use-case-card h3,
+.hex-table-card h3 {
+  margin: 0;
+  color: var(--page-ink);
+}
+
+.hex-overview-card p,
+.hex-place-card p,
+.conversion-card p,
+.hex-practice-card p,
+.scratch-card p,
+.use-case-card p {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.hex-overview-card--base,
+.hex-place-card:first-child,
+.conversion-card:first-child,
+.hex-explorer {
+  border-color: rgba(31, 135, 125, 0.18);
+  background: rgba(232, 246, 255, 0.92);
+}
+
+.hex-overview-card--compact,
+.hex-place-card:nth-child(2),
+.conversion-card:nth-child(2),
+.hex-practice-card {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.92);
+}
+
+.hex-overview-card--use,
+.hex-place-card:nth-child(3),
+.scratch-card,
+.hex-table-card {
+  border-color: rgba(185, 140, 25, 0.24);
+  background: rgba(255, 249, 227, 0.94);
+}
+
+.hex-icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--page-ink);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.hex-icon--base {
+  background:
+    linear-gradient(90deg, rgba(31, 135, 125, 0.2) 0 50%, transparent 50%),
+    rgba(232, 246, 255, 0.94);
+}
+
+.hex-icon--compact {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(37, 52, 66, 0.16) 0 0.28rem,
+      transparent 0.28rem 0.55rem
+    ),
+    rgba(238, 248, 231, 0.94);
+}
+
+.hex-icon--use {
+  background:
+    linear-gradient(135deg, #253442 0 32%, #1f877d 32% 65%, #f2c94c 65%),
+    rgba(255, 255, 255, 0.84);
+  color: #ffffff;
+}
+
+.hex-digit-strip,
+.hex-digit-buttons,
+.hex-practice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.hex-digit-strip span,
+.hex-digit-button,
+.practice-mode-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  min-height: 2.2rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.hex-digit-button {
+  cursor: pointer;
+  font: inherit;
+}
+
+.hex-digit-button.is-selected {
+  border-color: rgba(31, 135, 125, 0.38);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 8px 16px rgba(36, 49, 59, 0.1);
+}
+
+.hex-place-row,
+.nibble-bit-row {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.hex-place-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.nibble-bit-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.hex-place-row span,
+.nibble-bit-row span,
+.nibble-map span {
+  display: grid;
+  place-items: center;
+  min-height: 3.1rem;
+  padding: 0.4rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--page-ink);
+  font-weight: 900;
+  text-align: center;
+}
+
+.nibble-bit-row span {
+  gap: 0.18rem;
+}
+
+.nibble-bit-row em {
+  color: var(--lesson-accent-heading);
+  font-size: 1.35rem;
+  font-style: normal;
+  line-height: 1;
+}
+
+.nibble-bit-row .is-on {
+  border-color: rgba(55, 129, 53, 0.28);
+  background: rgba(238, 248, 231, 0.98);
+}
+
+.nibble-bit-row .is-off {
+  color: var(--muted-ink);
+}
+
+.explorer-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.explorer-result-grid article {
+  display: grid;
+  gap: 0.22rem;
+  justify-items: center;
+  padding: 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.76);
+  text-align: center;
+}
+
+.explorer-result-grid span,
+.practice-mode-pill {
+  color: var(--muted-ink);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.explorer-result-grid strong,
+.practice-question {
+  color: var(--page-ink);
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  font-weight: 900;
+}
+
+.nibble-map {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.nibble-map span {
+  min-height: 2.6rem;
+}
+
+.hex-practice-card.is-correct {
+  border-color: rgba(55, 129, 53, 0.34);
+}
+
+.hex-practice-card.is-incorrect {
+  border-color: rgba(190, 91, 91, 0.28);
+  background: rgba(255, 240, 241, 0.9);
+}
+
+.practice-question {
+  display: block;
+  padding: 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  overflow-wrap: anywhere;
+}
+
+.hex-practice-form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.hex-practice-form label,
+.scratch-grid label {
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+.hex-practice-form input,
+.scratch-grid input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(37, 52, 66, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 800;
+}
+
+.hex-practice-form input:focus,
+.scratch-grid input:focus,
+.hex-digit-button:focus-visible {
+  outline: 3px solid rgba(31, 135, 125, 0.22);
+  outline-offset: 2px;
+}
+
+.practice-feedback {
+  min-height: 3.25rem;
+  margin: 0;
+  padding: 0.75rem 0.8rem;
+  border: 1px solid rgba(37, 52, 66, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--muted-ink);
+}
+
+.practice-feedback.is-correct {
+  border-color: rgba(55, 129, 53, 0.18);
+  background: rgba(238, 248, 231, 0.98);
+  color: #29523b;
+}
+
+.practice-feedback.is-incorrect {
+  border-color: rgba(190, 91, 91, 0.18);
+  background: rgba(255, 240, 241, 0.98);
+  color: #8b4831;
+}
+
+.scratch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.hex-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hex-table th,
+.hex-table td {
+  border: 1px solid rgba(37, 52, 66, 0.12);
+  padding: 0.55rem 0.45rem;
+  text-align: center;
+}
+
+.hex-table th {
+  background: rgba(232, 246, 255, 0.88);
+  color: var(--page-ink);
+}
+
+.hex-table code {
+  color: var(--page-ink);
+  font-weight: 900;
+}
+
+body.teacher-mode-active .hex-overview-map,
+body.teacher-mode-active .hex-place-board,
+body.teacher-mode-active .conversion-grid,
+body.teacher-mode-active .use-case-grid,
+body.teacher-mode-active .trap-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 820px) {
+  .explorer-result-grid,
+  .scratch-grid,
+  body.teacher-mode-active .hex-overview-map,
+  body.teacher-mode-active .hex-place-board,
+  body.teacher-mode-active .conversion-grid,
+  body.teacher-mode-active .use-case-grid,
+  body.teacher-mode-active .trap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nibble-map {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -10,10 +10,10 @@ const lessonConfig = {
       backHref: "../units/btec-level-3-unit-2.html#section-c",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "Binary and BCD",
+        title: "Hexadecimal numbers",
         description: "Previous in C1 Number systems.",
         status: "Live",
-        href: "../topics/binary-and-bcd.html",
+        href: "../topics/hexadecimal-numbers.html",
       },
       next: {
         title: "Negative and floating point representation",
