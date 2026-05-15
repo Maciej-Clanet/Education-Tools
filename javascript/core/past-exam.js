@@ -1146,31 +1146,32 @@ function initLock(exam, elements, onUnlock) {
   })
 }
 
-export function initPastExam(exam) {
+export function initPastExam(exam, options = {}) {
+  const root = options.root ?? document
   const elements = {
-    lock: document.querySelector("[data-role='exam-lock']"),
-    unlockForm: document.querySelector("[data-role='exam-unlock-form']"),
-    lockStatus: document.querySelector("[data-role='exam-lock-status']"),
-    app: document.querySelector("[data-role='exam-app']"),
-    paper: document.querySelector("[data-role='exam-paper']"),
-    nav: document.querySelector("[data-role='exam-nav']"),
-    attempts: document.querySelector("[data-role='exam-attempts']"),
-    summary: document.querySelector("[data-role='exam-summary']"),
-    status: document.querySelector("[data-role='exam-status']"),
-    timer: document.querySelector("[data-role='exam-timer']"),
-    reviewTools: document.querySelector("[data-role='exam-review-tools']"),
-    studentName: document.querySelector("[data-role='student-name']"),
-    submit: document.querySelector("[data-action='submit-exam']"),
-    newAttempt: document.querySelector("[data-action='new-attempt']"),
-    resumeDraft: document.querySelector("[data-action='resume-draft']"),
-    exportAttempt: document.querySelector("[data-action='export-attempt']"),
-    retryAiMarking: document.querySelector("[data-action='retry-ai-marking']"),
-    chooseFeedback: document.querySelector("[data-action='choose-feedback']"),
-    importFeedback: document.querySelector("[data-action='import-feedback']"),
+    lock: root.querySelector("[data-role='exam-lock']"),
+    unlockForm: root.querySelector("[data-role='exam-unlock-form']"),
+    lockStatus: root.querySelector("[data-role='exam-lock-status']"),
+    app: root.querySelector("[data-role='exam-app']"),
+    paper: root.querySelector("[data-role='exam-paper']"),
+    nav: root.querySelector("[data-role='exam-nav']"),
+    attempts: root.querySelector("[data-role='exam-attempts']"),
+    summary: root.querySelector("[data-role='exam-summary']"),
+    status: root.querySelector("[data-role='exam-status']"),
+    timer: root.querySelector("[data-role='exam-timer']"),
+    reviewTools: root.querySelector("[data-role='exam-review-tools']"),
+    studentName: root.querySelector("[data-role='student-name']"),
+    submit: root.querySelector("[data-action='submit-exam']"),
+    newAttempt: root.querySelector("[data-action='new-attempt']"),
+    resumeDraft: root.querySelector("[data-action='resume-draft']"),
+    exportAttempt: root.querySelector("[data-action='export-attempt']"),
+    retryAiMarking: root.querySelector("[data-action='retry-ai-marking']"),
+    chooseFeedback: root.querySelector("[data-action='choose-feedback']"),
+    importFeedback: root.querySelector("[data-action='import-feedback']"),
   }
 
-  if (!elements.lock || !elements.app || !elements.paper) {
-    return
+  if (!elements.app || !elements.paper) {
+    return null
   }
 
   const draftKey = buildDraftKey(exam)
@@ -1641,12 +1642,31 @@ export function initPastExam(exam) {
     }
   })
 
-  initLock(exam, elements, () => {
-    elements.lock.hidden = true
+  function startExam() {
+    if (elements.lock) {
+      elements.lock.hidden = true
+    }
     elements.app.hidden = false
     setStatus(elements.status, "")
     saveDraft({ silent: true })
     render()
     startTimer()
-  })
+  }
+
+  const requiresUnlock =
+    options.requiresUnlock ?? Boolean(exam.unlockPassword && elements.lock)
+
+  if (requiresUnlock && elements.lock) {
+    initLock(exam, elements, startExam)
+  } else {
+    if (elements.lock) {
+      elements.lock.hidden = true
+    }
+    startExam()
+  }
+
+  return {
+    saveDraft,
+    stopTimer,
+  }
 }

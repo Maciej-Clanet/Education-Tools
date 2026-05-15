@@ -8,7 +8,6 @@ export const unit2Jun2024Exam = {
   dateLabel: "Monday 10 June 2024",
   durationMinutes: 105,
   totalMarks: 80,
-  unlockPassword: "unit2",
   version: 1,
   markingModeLabel: "Teacher feedback workflow",
   groups: [

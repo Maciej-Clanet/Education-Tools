@@ -84,6 +84,23 @@ if a reused lesson needs a different quiz in another unit.
 Bump the quiz `version` when questions or correct answers change enough that old
 saved progress should be shown as needing a fresh attempt.
 
+# Unit 2 exam practice
+The Unit 2 practice exam entry lives at
+`pages/exams/btec-level-3-unit-2-practice.html`. It uses reusable data in
+`javascript/data/exam-practice/unit-2-practice.js` and shared behaviour in
+`javascript/core/exam-practice.js` plus `javascript/core/past-exam.js`.
+
+The page is open access. It can launch the June 2024 predefined paper or build
+an adaptive custom paper from selected Unit 2 topics. Custom papers store their
+chosen question groups locally so refresh/resume keeps the same questions.
+Generated custom papers are indexed on the chooser page so learners can return
+to saved drafts and submitted attempts. Scenario-based question groups should
+stay intact when added to the bank.
+
+When adding exam-practice questions, include topic IDs, marks, response shape,
+rubric/mark scheme guidance, and AI-ready criteria. The starter bank is not yet
+complete for every Unit 2 topic.
+
 ## A Hardware and software
 
 ### A1 Computer hardware in a computer system
@@ -139,12 +156,12 @@ saved progress should be shown as needing a fresh attempt.
 ## D How data is organised on computer systems
 
 ### D1 Data structures
-- [ ] Stacks and queues
-- [ ] Arrays, lists, and data types
+- [x] Stacks and queues
+- [x] Arrays, lists, and data types
 
 ### D2 Indices and matrices
-- [ ] Matrices and arrays
-- [ ] Multi-dimensional arrays and memory order
+- [x] Matrices and arrays
+- [x] Multi-dimensional arrays and memory order
 
 ## E How data is transmitted by computer systems
 

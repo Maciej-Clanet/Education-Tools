@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Unit 2 Practice Exam | BTEC Level 3 Computing | Education Tools
+  </title>
+  <meta name="description"
+    content="Practise BTEC Level 3 Computing Unit 2 with a full predefined paper or an adaptive topic-built paper that saves attempts locally." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/past-exam.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/btec-level-3-unit-2-practice.js"></script>
+</head>
+
+<body>
+  <div class="page-shell exam-shell">
+    <header class="exam-hero panel panel-accent">
+      <p class="eyebrow">Unit 2 Exam Practice</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li>
+            <a href="../units/btec-level-3-unit-2.html">Unit 2: Computer Systems</a>
+          </li>
+          <li aria-current="page">Practice exam</li>
+        </ol>
+      </nav>
+      <h1>Unit 2 practice exam</h1>
+      <p class="exam-hero-text">
+        Open a full paper or build a topic-focused practice paper.
+      </p>
+    </header>
+
+    <section class="panel exam-practice-chooser" data-role="exam-practice-chooser"
+      aria-labelledby="practice-chooser-heading">
+      <div class="practice-chooser-header">
+        <div>
+          <p class="eyebrow">Choose Practice</p>
+          <h2 id="practice-chooser-heading">Choose Practice Paper</h2>
+        </div>
+        <p class="exam-status" data-role="exam-practice-status" aria-live="polite" hidden></p>
+      </div>
+
+      <div class="practice-choice-grid" data-role="practice-choice-grid">
+        <section class="practice-mode-section">
+          <h3>Predefined papers</h3>
+          <div class="practice-option-grid" data-role="predefined-paper-list"></div>
+        </section>
+
+        <section class="practice-mode-section practice-build-card">
+          <div>
+            <h3>Build your own paper</h3>
+            <p>
+              Choose Unit 2 topics and create an adaptive paper from the
+              starter question bank.
+            </p>
+          </div>
+          <button class="primary-link" type="button" data-action="show-topic-builder">
+            Build your own
+          </button>
+        </section>
+      </div>
+
+      <section class="practice-mode-section practice-saved-section" data-role="saved-custom-section" hidden>
+        <h3>Saved custom papers</h3>
+        <div class="saved-paper-list" data-role="saved-custom-papers"></div>
+      </section>
+
+      <section class="practice-mode-section practice-topic-builder" data-role="custom-topic-builder" hidden>
+        <div class="practice-builder-heading">
+          <div>
+            <h3>Build a topic paper</h3>
+            <p>
+              Select one or more available topics. Scenario questions stay
+              together so the paper still feels like a real written exam.
+            </p>
+          </div>
+          <div class="practice-builder-actions">
+            <p class="practice-builder-summary" data-role="custom-paper-summary" aria-live="polite"></p>
+            <button class="primary-link" type="button" data-action="build-custom-paper">
+              Build paper
+            </button>
+            <button class="secondary-link" type="button" data-action="hide-topic-builder">
+              Back to choices
+            </button>
+          </div>
+        </div>
+        <div class="custom-topic-list" data-role="custom-topic-list" aria-label="Unit 2 topics"></div>
+      </section>
+    </section>
+
+    <div class="exam-layout" data-role="exam-app" hidden>
+      <aside class="exam-sidebar panel">
+        <section class="exam-sidebar-section">
+          <p class="eyebrow">Paper</p>
+          <h2 class="selected-paper-title" data-role="selected-paper-title">
+            Practice paper
+          </h2>
+          <p class="exam-tool-help" data-role="selected-paper-meta"></p>
+          <a class="secondary-link" href="btec-level-3-unit-2-practice.html">
+            Choose another practice
+          </a>
+        </section>
+
+        <section class="exam-sidebar-section exam-sidebar-section--questions" id="exam-results">
+          <div class="exam-question-overview">
+            <div>
+              <p class="eyebrow">Questions</p>
+              <div class="exam-summary" data-role="exam-summary"></div>
+            </div>
+            <div class="exam-timer" aria-label="Suggested time remaining">
+              <span>Suggested time</span>
+              <strong data-role="exam-timer">00:00:00</strong>
+            </div>
+          </div>
+          <nav class="exam-nav" data-role="exam-nav" aria-label="Question navigation"></nav>
+          <p class="exam-status" data-role="exam-status" aria-live="polite" hidden></p>
+        </section>
+
+        <section class="exam-sidebar-section exam-teacher-tools">
+          <p class="eyebrow">Teacher feedback</p>
+          <div class="exam-action-stack">
+            <div class="exam-review-tools" data-role="exam-review-tools" hidden>
+              <label class="exam-student-name-field">
+                <span>Student name</span>
+                <input type="text" autocomplete="name" data-role="student-name" placeholder="Enter your name" />
+              </label>
+              <button class="primary-link" type="button" data-action="export-attempt">
+                Download attempt JSON
+              </button>
+              <button class="secondary-link" type="button" data-action="retry-ai-marking">
+                Retry AI marking
+              </button>
+            </div>
+            <button class="secondary-link" type="button" data-action="choose-feedback">
+              Import feedback JSON
+            </button>
+            <p class="exam-tool-help">
+              If your teacher gives you a feedback file, import it here.
+            </p>
+            <input class="exam-file-input" type="file" accept="application/json,.json" data-action="import-feedback"
+              hidden />
+          </div>
+        </section>
+
+        <section class="exam-sidebar-section">
+          <p class="eyebrow">Actions</p>
+          <div class="exam-action-stack">
+            <button class="primary-link" type="button" data-action="submit-exam">
+              Submit attempt
+            </button>
+            <button class="secondary-link" type="button" data-action="resume-draft">
+              Editing draft
+            </button>
+            <button class="secondary-link" type="button" data-action="new-attempt">
+              Start new attempt
+            </button>
+            <a class="secondary-link" href="btec-level-3-unit-2-practice.html">
+              Back to practice choices
+            </a>
+          </div>
+        </section>
+
+        <section class="exam-sidebar-section">
+          <p class="eyebrow">Attempts</p>
+          <div class="exam-attempts" data-role="exam-attempts"></div>
+        </section>
+      </aside>
+
+      <main class="exam-paper" data-role="exam-paper" aria-label="Practice paper questions"></main>
+    </div>
+  </div>
+</body>
+
+</html>
