@@ -1007,6 +1007,262 @@
 .exam-feedback__tip {
   font-weight: 700;
 }
+
+.question-review-shell {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.question-review-shell .exam-hero {
+  border-top-color: #145265;
+}
+
+.question-review-controls {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(220px, 0.6fr) minmax(220px, 0.6fr) minmax(220px, 0.6fr);
+  gap: 0.85rem;
+  align-items: end;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-top: 8px solid #69c8e8;
+}
+
+.question-review-controls::before {
+  background: rgba(105, 200, 232, 0.34);
+}
+
+.question-review-controls h2,
+.question-review-controls p {
+  margin: 0;
+}
+
+.question-review-controls label {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--page-ink);
+  font-weight: 800;
+}
+
+.question-review-controls input,
+.question-review-controls select {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.72rem 0.8rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.16);
+  border-radius: 14px;
+  background: #fffdfa;
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.question-review-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.question-review-list[data-empty="true"]::before {
+  content: "No questions match the current filters.";
+  display: block;
+  padding: 1rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--muted-ink);
+  font-weight: 800;
+}
+
+.review-group {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-top: 8px solid #f2cf6a;
+}
+
+.review-group[hidden] {
+  display: none;
+}
+
+.review-group::before {
+  background: rgba(242, 207, 106, 0.34);
+}
+
+.review-group-header,
+.review-part-header,
+.review-rubric-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.7rem;
+  align-items: start;
+}
+
+.review-group-header h2,
+.review-group-header p,
+.review-part-header h3,
+.review-part-header p {
+  margin: 0;
+}
+
+.review-group-header h2 span {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--muted-ink);
+  font-family: Arial, "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.review-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.review-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.8rem;
+  padding: 0.3rem 0.58rem;
+  border-radius: 999px;
+  background: rgba(20, 82, 101, 0.08);
+  color: var(--teal-deep);
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.review-pill--warning {
+  background: rgba(255, 240, 241, 0.92);
+  color: #7d3f43;
+}
+
+.review-pill--ok {
+  background: rgba(238, 248, 231, 0.92);
+  color: #29523b;
+}
+
+.review-scenario {
+  margin: 0;
+  padding: 0.9rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.review-part-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.review-part {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.95rem;
+  border: 1.5px solid rgba(37, 52, 66, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.review-prompt {
+  color: var(--page-ink);
+}
+
+.review-prompt > :first-child,
+.review-scenario > :first-child {
+  margin-top: 0;
+}
+
+.review-prompt > :last-child,
+.review-scenario > :last-child {
+  margin-bottom: 0;
+}
+
+.review-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.55rem;
+}
+
+.review-meta-grid p {
+  display: grid;
+  gap: 0.18rem;
+  margin: 0;
+  padding: 0.65rem;
+  border-radius: 12px;
+  background: rgba(232, 246, 255, 0.62);
+}
+
+.review-meta-grid strong {
+  color: var(--teal-deep);
+  font-size: 0.78rem;
+  line-height: 1.1;
+}
+
+.review-meta-grid span {
+  color: var(--page-ink);
+  font-weight: 800;
+}
+
+.review-rubric {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.8rem;
+  border-radius: 14px;
+  background: rgba(250, 247, 238, 0.78);
+}
+
+.review-rubric-header {
+  justify-content: flex-start;
+}
+
+.review-mark-points,
+.review-term-list {
+  margin: 0;
+}
+
+.review-mark-points {
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 1.35rem;
+}
+
+.review-mark-points > li::marker {
+  color: var(--teal-deep);
+  font-weight: 900;
+}
+
+.review-mark-points strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.review-term-list {
+  display: grid;
+  gap: 0.22rem;
+  padding-left: 1.1rem;
+  color: var(--muted-ink);
+  font-weight: 800;
+}
+
+.review-rubric-line {
+  margin: 0;
+  color: var(--muted-ink);
+}
+
+.review-rubric-line strong {
+  color: var(--page-ink);
+}
+
+.review-json {
+  overflow-x: auto;
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: rgba(37, 52, 66, 0.06);
+  color: var(--page-ink);
+  font: 0.86rem/1.45 Consolas, "Courier New", monospace;
+}
 @media (max-width: 1470px) {
   .exam-matrix-shell {
     display: flex;
@@ -1044,7 +1300,8 @@
   .exam-lock,
   .practice-chooser-header,
   .practice-builder-heading,
-  .practice-choice-grid {
+  .practice-choice-grid,
+  .question-review-controls {
     grid-template-columns: 1fr;
   }
 

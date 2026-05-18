@@ -98,8 +98,10 @@ to saved drafts and submitted attempts. Scenario-based question groups should
 stay intact when added to the bank.
 
 When adding exam-practice questions, include topic IDs, marks, response shape,
-rubric/mark scheme guidance, and AI-ready criteria. The starter bank is not yet
-complete for every Unit 2 topic.
+rubric/mark scheme guidance, and AI-ready criteria. The custom starter bank now
+includes at least one tagged question group for every Unit 2 topic, but it still
+needs more depth before broad topic selections can reliably produce full-length
+custom papers.
 
 ## A Hardware and software
 

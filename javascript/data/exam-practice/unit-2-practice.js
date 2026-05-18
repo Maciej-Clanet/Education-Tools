@@ -877,6 +877,626 @@ export const unit2ExamPracticeConfig = {
           },
         ],
       },
+      {
+        id: "u2-custom-a1-a3-clinic-data",
+        title: "Question 7",
+        totalMarks: 14,
+        customEligible: true,
+        topicIds: [
+          "raid-and-nas-storage-systems",
+          "collecting-and-processing-data",
+          "data-across-multiple-systems",
+          "backup-and-data-recovery",
+        ],
+        scenarioHtml: `
+          <p>A small medical clinic stores patient appointments, prescriptions, and scanned letters.</p>
+          <p>Reception staff, nurses, and doctors all need reliable access to the same records during the day.</p>
+        `,
+        parts: [
+          {
+            id: "a3-clinic-1",
+            label: "7(a)",
+            marks: 4,
+            topicIds: ["raid-and-nas-storage-systems"],
+            commandWord: "Explain",
+            ao: "AO2",
+            promptHtml:
+              "<p>Explain how RAID or NAS could help the clinic store patient files reliably.</p>",
+            response: {
+              type: "textarea",
+              rows: 6,
+              label: "Storage explanation",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "RAID can provide redundancy across disks",
+                  terms: [["raid"], ["redundan"], ["disk"]],
+                },
+                {
+                  label: "NAS provides shared network storage",
+                  terms: [["nas"], ["network"], ["shared"]],
+                },
+                {
+                  label: "Improves availability or reduces data loss risk",
+                  terms: [["availab"], ["data loss"], ["reliab"], ["failure"]],
+                },
+                {
+                  label: "Links to clinic records or multiple staff access",
+                  terms: [["clinic"], ["patient"], ["doctor"], ["nurse"], ["records"]],
+                },
+              ],
+              modelAnswer:
+                "A NAS could store files centrally so clinic staff access the same records. RAID could add redundancy so a disk failure is less likely to stop access to patient files.",
+              aiCriteria:
+                "Credit correct RAID/NAS features and applied benefit to reliable shared clinic storage.",
+              examinerTip:
+                "RAID is not a backup by itself. Explain the storage role clearly.",
+            },
+          },
+          {
+            id: "a3-clinic-2",
+            label: "7(b)",
+            marks: 3,
+            topicIds: ["collecting-and-processing-data"],
+            commandWord: "Describe",
+            ao: "AO2",
+            promptHtml:
+              "<p>Describe how appointment data could be collected and processed by the clinic system.</p>",
+            response: {
+              type: "textarea",
+              rows: 5,
+              label: "Data processing description",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 3,
+              points: [
+                {
+                  label: "Data is collected from a form, receptionist, or online booking",
+                  terms: [["form"], ["booking"], ["reception"], ["input"]],
+                },
+                {
+                  label: "Data is validated, sorted, searched, or updated",
+                  terms: [["validat"], ["sort"], ["search"], ["update"], ["process"]],
+                },
+                {
+                  label: "Processed output supports appointments or patient records",
+                  terms: [["appointment"], ["record"], ["schedule"], ["patient"]],
+                },
+              ],
+              modelAnswer:
+                "Appointment details could be entered through an online form and validated before being stored. The system can then sort appointments by date and update the patient record.",
+              aiCriteria:
+                "Credit a collection method, a processing action, and a clinic-related output or result.",
+              examinerTip:
+                "Name a processing action rather than only saying the computer stores the data.",
+            },
+          },
+          {
+            id: "a3-clinic-3",
+            label: "7(c)",
+            marks: 3,
+            topicIds: ["data-across-multiple-systems"],
+            commandWord: "Explain",
+            ao: "AO2",
+            promptHtml:
+              "<p>Explain one risk of using patient data across multiple systems.</p>",
+            response: {
+              type: "textarea",
+              rows: 5,
+              label: "Multiple systems risk",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 3,
+              points: [
+                {
+                  label: "Data may become inconsistent or duplicated",
+                  terms: [["inconsistent"], ["duplicat"], ["different"], ["out of date"]],
+                },
+                {
+                  label: "Security or privacy risk increases",
+                  terms: [["security"], ["privacy"], ["access"], ["breach"]],
+                },
+                {
+                  label: "Links the risk to patient care or clinic work",
+                  terms: [["patient"], ["clinic"], ["doctor"], ["appointment"], ["record"]],
+                },
+              ],
+              modelAnswer:
+                "If patient data is copied between systems, one copy may become out of date. This could mean a doctor sees the wrong appointment or prescription information.",
+              aiCriteria:
+                "Credit a valid multi-system data risk plus a clear consequence in the clinic scenario.",
+              examinerTip:
+                "Develop the consequence; do not only name a risk.",
+            },
+          },
+          {
+            id: "a3-clinic-4",
+            label: "7(d)",
+            marks: 4,
+            topicIds: ["backup-and-data-recovery"],
+            commandWord: "Explain",
+            ao: "AO2",
+            promptHtml:
+              "<p>Explain two features of a suitable backup and recovery plan for the clinic.</p>",
+            response: {
+              type: "list",
+              count: 2,
+              label: "Plan feature",
+              rows: 4,
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "Regular or scheduled backups",
+                  terms: [["regular"], ["schedule"], ["daily"], ["automatic"]],
+                },
+                {
+                  label: "Off-site, cloud, or separate backup location",
+                  terms: [["off-site"], ["offsite"], ["cloud"], ["separate"]],
+                },
+                {
+                  label: "Recovery testing or restore procedure",
+                  terms: [["test"], ["restore"], ["recover"], ["procedure"]],
+                },
+                {
+                  label: "Security such as encryption or access control for backups",
+                  terms: [["encrypt"], ["password"], ["access"], ["secure"]],
+                },
+              ],
+              modelAnswer:
+                "The clinic should take automatic daily backups and keep a protected copy off-site or in secure cloud storage. It should test restores so records can be recovered quickly.",
+              aiCriteria:
+                "Award up to two marks per developed feature: one for the feature and one for why it supports backup/recovery.",
+              examinerTip:
+                "A backup plan should include recovery, not just copying files.",
+            },
+          },
+        ],
+      },
+      {
+        id: "u2-custom-b2-b3-drone-controller",
+        title: "Question 8",
+        totalMarks: 15,
+        customEligible: true,
+        topicIds: [
+          "pipelining-multi-processing-and-multi-threading",
+          "cpu-architecture-for-different-systems",
+          "registers-and-their-functions",
+          "interrupts-and-register-handling",
+        ],
+        scenarioHtml: `
+          <p>A robotics company is developing a small delivery drone.</p>
+          <p>The drone must process sensor readings, control motors, and respond quickly if an obstacle is detected.</p>
+        `,
+        parts: [
+          {
+            id: "b-drone-1",
+            label: "8(a)",
+            marks: 4,
+            topicIds: ["pipelining-multi-processing-and-multi-threading"],
+            commandWord: "Explain",
+            ao: "AO2",
+            promptHtml:
+              "<p>Explain how multi-threading or pipelining could improve the drone controller's performance.</p>",
+            response: {
+              type: "textarea",
+              rows: 6,
+              label: "Performance explanation",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "Multi-threading lets tasks run concurrently or share CPU time",
+                  terms: [["multi-thread"], ["thread"], ["concurrent"], ["parallel"]],
+                },
+                {
+                  label: "Pipelining overlaps instruction stages",
+                  terms: [["pipeline"], ["overlap"], ["fetch"], ["decode"], ["execute"]],
+                },
+                {
+                  label: "Improves throughput or responsiveness",
+                  terms: [["throughput"], ["responsive"], ["faster"], ["performance"]],
+                },
+                {
+                  label: "Links to sensors, motors, or obstacle detection",
+                  terms: [["sensor"], ["motor"], ["obstacle"], ["drone"]],
+                },
+              ],
+              modelAnswer:
+                "Multi-threading could let the controller handle sensor input while also updating motor control. Pipelining can overlap instruction stages, improving throughput.",
+              aiCriteria:
+                "Credit accurate performance technique knowledge and application to the drone controller.",
+              examinerTip:
+                "Use the terms accurately; multi-threading and pipelining are not the same process.",
+            },
+          },
+          {
+            id: "b-drone-2",
+            label: "8(b)",
+            marks: 4,
+            topicIds: ["cpu-architecture-for-different-systems"],
+            commandWord: "Describe",
+            ao: "AO2",
+            promptHtml:
+              "<p>Describe two processor features that would be important when choosing a CPU architecture for the drone.</p>",
+            response: {
+              type: "list",
+              count: 2,
+              label: "Processor feature",
+              rows: 4,
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "Low power consumption or energy efficiency",
+                  terms: [["power"], ["battery"], ["energy"], ["efficient"]],
+                },
+                {
+                  label: "Real-time or fast response capability",
+                  terms: [["real-time"], ["real time"], ["response"], ["latency"]],
+                },
+                {
+                  label: "Size, heat, cost, or embedded suitability",
+                  terms: [["size"], ["heat"], ["cost"], ["embedded"]],
+                },
+                {
+                  label: "Enough performance for sensors and control tasks",
+                  terms: [["performance"], ["sensor"], ["motor"], ["control"]],
+                },
+              ],
+              modelAnswer:
+                "The processor should use little power so battery life is not reduced. It should also respond quickly enough for sensor and motor-control tasks.",
+              aiCriteria:
+                "Award up to two marks per developed CPU architecture feature with scenario application.",
+              examinerTip:
+                "For an embedded system, power and real-time response are often as important as raw speed.",
+            },
+          },
+          {
+            id: "b-drone-3",
+            label: "8(c)",
+            marks: 3,
+            topicIds: ["registers-and-their-functions"],
+            commandWord: "Give",
+            ao: "AO1",
+            promptHtml:
+              "<p>Give three CPU registers and state the purpose of each one.</p>",
+            response: {
+              type: "list",
+              count: 3,
+              label: "Register and purpose",
+              rows: 3,
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 3,
+              points: [
+                {
+                  label: "Program counter stores the address of the next instruction",
+                  terms: [["program counter"], ["pc"], ["next instruction"]],
+                },
+                {
+                  label: "Memory address register stores an address",
+                  terms: [["memory address register"], ["mar"], ["address"]],
+                },
+                {
+                  label: "Memory data register stores data being transferred",
+                  terms: [["memory data register"], ["mdr"], ["data"]],
+                },
+                {
+                  label: "Accumulator stores intermediate results",
+                  terms: [["accumulator"], ["acc"], ["result"]],
+                },
+                {
+                  label: "Current instruction register stores the current instruction",
+                  terms: [["current instruction register"], ["cir"], ["instruction"]],
+                },
+              ],
+              modelAnswer:
+                "PC stores the address of the next instruction, MAR stores a memory address, and MDR stores data being transferred to or from memory.",
+              aiCriteria:
+                "Award one mark for each valid register with a correct purpose, up to three marks.",
+              examinerTip:
+                "A register name without a purpose is not enough here.",
+            },
+          },
+          {
+            id: "b-drone-4",
+            label: "8(d)",
+            marks: 4,
+            topicIds: ["interrupts-and-register-handling"],
+            commandWord: "Explain",
+            ao: "AO2",
+            promptHtml:
+              "<p>Explain how the processor could handle an interrupt when an obstacle sensor is triggered.</p>",
+            response: {
+              type: "textarea",
+              rows: 6,
+              label: "Interrupt handling explanation",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "The current task state or register values are saved",
+                  terms: [["save"], ["register"], ["state"], ["stack"]],
+                },
+                {
+                  label: "Control transfers to an interrupt service routine",
+                  terms: [["interrupt service routine"], ["isr"], ["handler"]],
+                },
+                {
+                  label: "The obstacle event is dealt with quickly",
+                  terms: [["obstacle"], ["sensor"], ["avoid"], ["motor"]],
+                },
+                {
+                  label: "The previous task can resume afterwards",
+                  terms: [["resume"], ["return"], ["continue"]],
+                },
+              ],
+              modelAnswer:
+                "The processor can save its current register values, run an interrupt service routine for the obstacle sensor, then restore the saved state and resume the previous task.",
+              aiCriteria:
+                "Credit the interrupt handling sequence and application to an urgent obstacle event.",
+              examinerTip:
+                "Mention saving/restoring state to show how the CPU can continue safely.",
+            },
+          },
+        ],
+      },
+      {
+        id: "u2-custom-c1-c2-library-codes",
+        title: "Question 9",
+        totalMarks: 11,
+        customEligible: true,
+        topicIds: [
+          "hexadecimal-numbers",
+          "negative-and-floating-point-representation",
+          "character-sets-ascii-and-unicode",
+        ],
+        scenarioHtml: `
+          <p>A library system stores book IDs, account balances, and member names from several languages.</p>
+          <p>The developers need compact codes and data representations that are reliable across devices.</p>
+        `,
+        parts: [
+          {
+            id: "c-library-1",
+            label: "9(a)",
+            marks: 3,
+            topicIds: ["hexadecimal-numbers"],
+            commandWord: "Complete",
+            ao: "AO2",
+            promptHtml:
+              "<p>Complete the conversion of decimal <strong>175</strong> into hexadecimal.</p>",
+            response: {
+              type: "input",
+              label: "Hexadecimal value",
+              placeholder: "Enter the hexadecimal value",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 3,
+              points: [
+                {
+                  label: "Divides or groups the value into 16s",
+                  terms: [["16"], ["divide"], ["remainder"], ["10"]],
+                },
+                {
+                  label: "Uses A for 10 and F for 15",
+                  terms: [["a"], ["f"]],
+                },
+                {
+                  label: "Gives the correct hexadecimal value AF",
+                  terms: [["af"], ["a f"]],
+                },
+              ],
+              modelAnswer:
+                "175 divided by 16 is 10 remainder 15, so the hexadecimal value is AF.",
+              aiCriteria:
+                "Award credit for correct working with base 16 and the final hexadecimal value AF.",
+              examinerTip:
+                "Hexadecimal digits A to F represent decimal values 10 to 15.",
+            },
+          },
+          {
+            id: "c-library-2",
+            label: "9(b)",
+            marks: 4,
+            topicIds: ["negative-and-floating-point-representation"],
+            commandWord: "Explain",
+            ao: "AO1",
+            promptHtml:
+              "<p>Explain why a computer may use two's complement and floating point representation.</p>",
+            response: {
+              type: "textarea",
+              rows: 6,
+              label: "Representation explanation",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "Two's complement represents negative integers",
+                  terms: [["two"], ["complement"], ["negative"]],
+                },
+                {
+                  label: "The most significant bit can indicate sign in two's complement",
+                  terms: [["most significant"], ["msb"], ["sign"]],
+                },
+                {
+                  label: "Floating point represents fractional or very large/small values",
+                  terms: [["floating point"], ["fraction"], ["decimal"], ["large"], ["small"]],
+                },
+                {
+                  label: "Uses mantissa and exponent or allows a range/precision trade-off",
+                  terms: [["mantissa"], ["exponent"], ["range"], ["precision"]],
+                },
+              ],
+              modelAnswer:
+                "Two's complement is used for negative integers. Floating point stores values using a mantissa and exponent, allowing fractional or very large and small numbers to be represented.",
+              aiCriteria:
+                "Credit separate accurate points about negative integer representation and floating point range/precision.",
+              examinerTip:
+                "Do not describe both as just binary numbers; explain what each representation is for.",
+            },
+          },
+          {
+            id: "c-library-3",
+            label: "9(c)",
+            marks: 4,
+            topicIds: ["character-sets-ascii-and-unicode"],
+            commandWord: "Describe",
+            ao: "AO2",
+            promptHtml:
+              "<p>Describe why Unicode would be more suitable than ASCII for storing member names from several languages.</p>",
+            response: {
+              type: "textarea",
+              rows: 6,
+              label: "Character set description",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "ASCII uses a smaller character set",
+                  terms: [["ascii"], ["smaller"], ["limited"], ["128"]],
+                },
+                {
+                  label: "Unicode supports many languages and symbols",
+                  terms: [["unicode"], ["language"], ["symbol"], ["characters"]],
+                },
+                {
+                  label: "Characters are stored as numeric codes",
+                  terms: [["code"], ["number"], ["binary"]],
+                },
+                {
+                  label: "Links suitability to member names from several languages",
+                  terms: [["member"], ["name"], ["language"], ["library"]],
+                },
+              ],
+              modelAnswer:
+                "ASCII has a limited set of characters, while Unicode can represent characters from many languages. This makes Unicode more suitable for storing members' names accurately.",
+              aiCriteria:
+                "Credit comparison of ASCII and Unicode plus application to multilingual names.",
+              examinerTip:
+                "A strong answer compares the character sets instead of only defining one of them.",
+            },
+          },
+        ],
+      },
+      {
+        id: "u2-custom-f1-f2-access-control",
+        title: "Question 10",
+        totalMarks: 8,
+        customEligible: true,
+        topicIds: ["boolean-logic", "flow-charts-and-system-diagrams"],
+        scenarioHtml: `
+          <p>A sports centre is designing an access-control system for its equipment room.</p>
+          <p>The door should unlock only when the user has a valid card and the room is not already at its safety limit.</p>
+        `,
+        parts: [
+          {
+            id: "f-access-1",
+            label: "10(a)",
+            marks: 4,
+            topicIds: ["boolean-logic"],
+            commandWord: "Produce",
+            ao: "AO2",
+            promptHtml:
+              "<p>Produce a Boolean expression for unlocking the door using <strong>validCard</strong> and <strong>roomFull</strong>.</p>",
+            response: {
+              type: "input",
+              label: "Boolean expression",
+              placeholder: "Enter the expression",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "Uses validCard as a required condition",
+                  terms: [["validcard"]],
+                },
+                {
+                  label: "Uses NOT roomFull or equivalent",
+                  terms: [["not"], ["roomfull"]],
+                },
+                {
+                  label: "Combines conditions using AND",
+                  terms: [["and"]],
+                },
+                {
+                  label: "Expression unlocks only when the card is valid and the room is not full",
+                  terms: [["validcard", "and", "not", "roomfull"]],
+                },
+              ],
+              modelAnswer:
+                "unlock = validCard AND NOT roomFull",
+              aiCriteria:
+                "Credit logically equivalent expressions that require a valid card and a false roomFull condition.",
+              examinerTip:
+                "Use NOT with roomFull because the door unlocks when the room is not full.",
+            },
+          },
+          {
+            id: "f-access-2",
+            label: "10(b)",
+            marks: 4,
+            topicIds: ["flow-charts-and-system-diagrams"],
+            commandWord: "Describe",
+            ao: "AO2",
+            promptHtml:
+              "<p>Describe how a flow chart could show the access-control decision process.</p>",
+            response: {
+              type: "textarea",
+              rows: 6,
+              label: "Flow chart description",
+            },
+            rubric: {
+              type: "points",
+              maxMarks: 4,
+              points: [
+                {
+                  label: "Starts with an input such as card scan or room count",
+                  terms: [["input"], ["card"], ["scan"], ["room"]],
+                },
+                {
+                  label: "Uses decision symbols for valid card and room full checks",
+                  terms: [["decision"], ["valid"], ["room full"], ["check"]],
+                },
+                {
+                  label: "Uses different branches for unlock and deny/lock",
+                  terms: [["branch"], ["unlock"], ["deny"], ["lock"]],
+                },
+                {
+                  label: "Shows process/output symbols or a clear sequence",
+                  terms: [["process"], ["output"], ["sequence"], ["arrow"]],
+                },
+              ],
+              modelAnswer:
+                "The flow chart could input the card details and room count, use decision diamonds to test validCard and roomFull, then branch to unlock the door or keep it locked.",
+              aiCriteria:
+                "Credit correct flow-chart structure and clear application to the access-control process.",
+              examinerTip:
+                "Decision points need yes/no branches that lead to different outcomes.",
+            },
+          },
+        ],
+      },
     ],
   },
 }

@@ -233,5 +233,5 @@ the browser with `localStorage` where useful.
 - Decide how legacy `donetools/` pieces should be merged into the new shared
   design system.
 - Add more lesson-specific mini-tools where the topic benefits from them.
-- Expand the reusable Unit 2 exam-practice question bank so more topic
-  selections can produce full-length custom papers.
+- Deepen the reusable Unit 2 exam-practice question bank so topic selections can
+  produce richer and more reliably full-length custom papers.
