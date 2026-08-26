@@ -524,6 +524,9 @@ function initTeacherMode(config) {
   const sections = Array.from(document.querySelectorAll("[data-lesson-section]"))
   const { sectionSlides, slides, firstSlideIndexBySection } =
     buildTeacherSlideDeck(sections)
+  const sectionIndexBySection = new Map(
+    sections.map((section, index) => [section, index])
+  )
   const toggleButton = document.querySelector(
     "[data-action='toggle-teacher-mode']"
   )
@@ -1382,6 +1385,35 @@ function initTeacherMode(config) {
     return firstSlideIndexBySection.get(nearestSection) ?? 0
   }
 
+  function getVisibleTeacherSection() {
+    const sectionIndex = clamp(
+      Math.round(main.scrollLeft / Math.max(main.clientWidth, 1)),
+      0,
+      sections.length - 1
+    )
+
+    return sections[sectionIndex] ?? null
+  }
+
+  function scrollSlideSectionIntoView(section, behavior) {
+    if (isTeacherMode) {
+      const sectionIndex = sectionIndexBySection.get(section) ?? 0
+
+      main.scrollTo({
+        left: sectionIndex * Math.max(main.clientWidth, 1),
+        top: 0,
+        behavior,
+      })
+      return
+    }
+
+    section.scrollIntoView({
+      behavior,
+      block: "start",
+      inline: "nearest",
+    })
+  }
+
   function updateControls() {
     toggleButton.textContent = isTeacherMode
       ? "Exit teacher slides"
@@ -1419,7 +1451,7 @@ function initTeacherMode(config) {
     }
   }
 
-  function goToSlide(index, behavior = "smooth") {
+  function goToSlide(index, behavior = "auto") {
     const previousSlide = getSlide()
 
     activeSlideIndex = clamp(index, 0, slides.length - 1)
@@ -1428,24 +1460,23 @@ function initTeacherMode(config) {
     pruneEmptyHighlightLayers()
 
     const activeSlide = getSlide()
+    const activeSection = activeSlide?.section ?? null
+    const previousSection = previousSlide?.section ?? null
 
-    if (activeSlide?.section) {
-      activeSlide.section.scrollTop = 0
+    if (activeSection) {
+      activeSection.scrollTop = 0
     }
 
     if (
-      activeSlide?.section &&
-      (!previousSlide ||
-        previousSlide.section !== activeSlide.section ||
-        !isTeacherMode)
+      activeSection &&
+      (!previousSlide || previousSection !== activeSection || !isTeacherMode)
     ) {
-      slideScrollTargetSection = isTeacherMode ? activeSlide.section : null
-      activeSlide.section.scrollIntoView({
-        behavior,
-        block: isTeacherMode ? "nearest" : "start",
-        inline: "start",
-      })
-    } else {
+      slideScrollTargetSection = isTeacherMode ? activeSection : null
+      scrollSlideSectionIntoView(activeSection, behavior)
+    } else if (
+      !isTeacherMode ||
+      (slideScrollTargetSection && slideScrollTargetSection !== activeSection)
+    ) {
       slideScrollTargetSection = null
     }
 
@@ -1517,22 +1548,24 @@ function initTeacherMode(config) {
       return
     }
 
-    const nextSectionIndex = clamp(
-      Math.round(main.scrollLeft / Math.max(main.clientWidth, 1)),
-      0,
-      sections.length - 1
-    )
-    const visibleSection = sections[nextSectionIndex]
+    const visibleSection = getVisibleTeacherSection()
+    const currentSlide = getSlide()
 
     if (slideScrollTargetSection) {
-      if (visibleSection === slideScrollTargetSection) {
-        slideScrollTargetSection = null
-      } else {
+      const currentSection = currentSlide?.section ?? null
+
+      if (currentSection && slideScrollTargetSection !== currentSection) {
+        slideScrollTargetSection = currentSection
+      }
+
+      if (visibleSection !== currentSection) {
         return
       }
+
+      slideScrollTargetSection = null
+      return
     }
 
-    const currentSlide = getSlide()
     const nextSlideIndex =
       currentSlide?.section === visibleSection
         ? activeSlideIndex

@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is HTML? Intro Web Development Lesson | Education Tools</title>
+  <meta name="description"
+    content="Learn what HTML is, how tags and elements work, and how the head, body, header, main, and footer parts fit into a web page." />
+  <meta property="og:title" content="What Is HTML? Intro Web Development Lesson | Education Tools" />
+  <meta property="og:description"
+    content="Learn what HTML is, how tags and elements work, and how the head, body, header, main, and footer parts fit into a web page." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/pages/what-is-html.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/what-is-html.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">HTML Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li>
+            <a href="../resources/web-development.html#html-basics" data-role="breadcrumb-unit-link">Web Development</a>
+          </li>
+          <li aria-current="page">What is HTML?</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>What is HTML?</h1>
+          <p class="lesson-hero-text">
+            HTML is the markup language used to describe the structure and
+            meaning of content on a web page. Browsers read the HTML and use it
+            to decide what appears on the page and in what order.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside
+            <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card">
+          <strong>Resource area</strong>
+          <span>HTML basics</span>
+        </article>
+        <article class="lesson-meta-card">
+          <strong>Main focus</strong>
+          <span>Structure, tags, head, body, and common page landmarks</span>
+        </article>
+        <article class="lesson-meta-card">
+          <strong>Quiz</strong>
+          <span>8 quick questions</span>
+        </article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit"
+          href="../resources/web-development.html#html-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">
+          Teacher slides
+        </button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The lesson notes still work without JavaScript, but the code previews,
+        quiz scoring, saved answers, and teacher slides need JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#overview" data-section-link>Overview</a>
+          <a href="#structure" data-section-link>Structure in code</a>
+          <a href="#tags" data-section-link>Tags and elements</a>
+          <a href="#document-structure" data-section-link>Document structure</a>
+          <a href="#head" data-section-link>Head and metadata</a>
+          <a href="#body" data-section-link>Body and landmarks</a>
+          <a href="#mistakes" data-section-link>Common mistakes</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
+          <p class="eyebrow">Overview</p>
+          <h2>HTML gives a web page its structure</h2>
+          <p class="lesson-section-copy">
+            HTML stands for HyperText Markup Language. It is not the part that
+            usually makes a page colourful, and it is not the part that runs
+            calculations or responds to clicks. HTML gives the browser a clear
+            structure: this is a heading, this is a paragraph, this is a list,
+            this is a link, and this is the main content.
+          </p>
+
+          <div class="lesson-intro-grid">
+            <article class="lesson-card lesson-fullrow">
+              <h3>The main idea</h3>
+              <p>
+                When you write HTML, you are labelling content so the browser,
+                search engines, screen readers, and other tools can understand
+                what each part of the page is meant to be.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>HTML</h3>
+              <p>Defines the page structure and meaning.</p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>CSS</h3>
+              <p>Controls visual style such as colour, spacing, and layout.</p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>JavaScript</h3>
+              <p>Adds behaviour, interaction, and logic.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="structure" class="lesson-section lesson-section--structure panel" data-lesson-section>
+          <p class="eyebrow">Structure In Code</p>
+          <h2>Changing the order of HTML changes the page</h2>
+          <p class="lesson-section-copy">
+            A browser reads the elements in the document and builds the page
+            from them. If you move an element in the HTML, you usually move it
+            in the page as well.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>A heading moved below a paragraph</h3>
+              <p class="code-preview__copy">
+                The same two pieces of content are used in both steps. Only the
+                order in the code changes.
+              </p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="HTML code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff aria-label="What changed from the previous step"
+              hidden></div>
+
+            <template data-code-step data-step-label="Heading first"
+              data-step-note="The heading is first, so it appears at the top of the preview.">
+              <div data-code-content>
+                <pre><code>&lt;h1&gt;Welcome to Eco Club&lt;/h1&gt;
+&lt;p&gt;Students plan small projects that improve the school site.&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="html-mini-page">
+                  <h1>Welcome to Eco Club</h1>
+                  <p>
+                    Students plan small projects that improve the school site.
+                  </p>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="Paragraph first"
+              data-step-note="The paragraph moved before the heading, so the preview changes order too.">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;Students plan small projects that improve the school site.&lt;/p&gt;
+&lt;h1&gt;Welcome to Eco Club&lt;/h1&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="html-mini-page">
+                  <p>
+                    Students plan small projects that improve the school site.
+                  </p>
+                  <h1>Welcome to Eco Club</h1>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Moving content inside a whole section</h3>
+              <p class="code-preview__copy">
+                A section can contain several elements. Reordering those
+                elements changes the flow of that section.
+              </p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="HTML section code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff aria-label="What changed from the previous step"
+              hidden></div>
+
+            <template data-code-step data-step-label="Explain then list"
+              data-step-note="The section starts with a short explanation, then gives the ordered steps.">
+              <div data-code-content>
+                <pre><code>&lt;section&gt;
+  &lt;h2&gt;Build a profile page&lt;/h2&gt;
+  &lt;p&gt;Start with one clear purpose for the page.&lt;/p&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Add a heading&lt;/li&gt;
+    &lt;li&gt;Add a short paragraph&lt;/li&gt;
+    &lt;li&gt;Add a useful link&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/section&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <section class="html-preview-section">
+                  <h2>Build a profile page</h2>
+                  <p>Start with one clear purpose for the page.</p>
+                  <ol>
+                    <li>Add a heading</li>
+                    <li>Add a short paragraph</li>
+                    <li>Add a useful link</li>
+                  </ol>
+                </section>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="List then explain"
+              data-step-note="The list now appears before the explanation because the list moved up in the section.">
+              <div data-code-content>
+                <pre><code>&lt;section&gt;
+  &lt;h2&gt;Build a profile page&lt;/h2&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Add a heading&lt;/li&gt;
+    &lt;li&gt;Add a short paragraph&lt;/li&gt;
+    &lt;li&gt;Add a useful link&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;p&gt;Start with one clear purpose for the page.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <section class="html-preview-section">
+                  <h2>Build a profile page</h2>
+                  <ol>
+                    <li>Add a heading</li>
+                    <li>Add a short paragraph</li>
+                    <li>Add a useful link</li>
+                  </ol>
+                  <p>Start with one clear purpose for the page.</p>
+                </section>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="tags" class="lesson-section lesson-section--tags panel" data-lesson-section>
+          <p class="eyebrow">Tags And Elements</p>
+          <h2>Tags mark where elements start and end</h2>
+          <p class="lesson-section-copy">
+            A tag is written inside angle brackets. Many HTML elements use an
+            opening tag, content, and a closing tag. The whole thing is called
+            an element.
+          </p>
+
+          <figure class="tag-anatomy">
+            <figcaption>
+              <h3>A complete paragraph element</h3>
+              <p>
+                The opening tag starts the element, the content sits in the
+                middle, and the closing tag ends it.
+              </p>
+            </figcaption>
+            <div class="tag-anatomy__code" aria-label="Annotated paragraph element">
+              <span class="tag-token tag-token--open">&lt;p&gt;</span>
+              <span class="tag-token tag-token--content"
+                >Plan the page before writing code.</span
+              >
+              <span class="tag-token tag-token--close">&lt;/p&gt;</span>
+            </div>
+            <div class="tag-anatomy__callouts">
+              <article class="tag-callout tag-callout--open">
+                <strong>Opening tag</strong>
+                <p><code>&lt;p&gt;</code> tells the browser a paragraph starts.</p>
+              </article>
+              <article class="tag-callout tag-callout--content">
+                <strong>Content</strong>
+                <p>The text or nested elements inside the element.</p>
+              </article>
+              <article class="tag-callout tag-callout--close">
+                <strong>Closing tag</strong>
+                <p><code>&lt;/p&gt;</code> tells the browser the paragraph ends.</p>
+              </article>
+            </div>
+          </figure>
+
+          <div data-slide-break></div>
+
+          <figure class="tag-anatomy tag-anatomy--attributes">
+            <figcaption>
+              <h3>Attributes add extra information</h3>
+              <p>
+                Attributes live inside the opening tag. They usually use a name
+                and a value.
+              </p>
+            </figcaption>
+            <div class="tag-anatomy__code" aria-label="Annotated link element with attribute">
+              <span class="tag-token tag-token--punct">&lt;</span
+              ><span class="tag-token tag-token--name">a</span>
+              <span class="tag-token tag-token--attr">href</span
+              ><span class="tag-token tag-token--punct">=</span
+              ><span class="tag-token tag-token--value">"resources.html"</span
+              ><span class="tag-token tag-token--punct">&gt;</span>
+              <span class="tag-token tag-token--content">Open resources</span>
+              <span class="tag-token tag-token--close">&lt;/a&gt;</span>
+            </div>
+            <div class="tag-anatomy__callouts">
+              <article class="tag-callout tag-callout--open">
+                <strong>Tag name</strong>
+                <p><code>a</code> means this element is a link.</p>
+              </article>
+              <article class="tag-callout tag-callout--content">
+                <strong>Attribute</strong>
+                <p><code>href</code> says where the link should go.</p>
+              </article>
+              <article class="tag-callout tag-callout--close">
+                <strong>Value</strong>
+                <p><code>"resources.html"</code> is the destination.</p>
+              </article>
+            </div>
+          </figure>
+
+          <div data-slide-break></div>
+
+          <article class="tag-cycle" data-tag-cycle data-step-interval="2400">
+            <div class="tag-cycle__header">
+              <h3>The same words can become different elements</h3>
+              <p>
+                The tag changes the meaning of the content, and the browser
+                preview changes with it.
+              </p>
+              <p class="tag-cycle__status" data-tag-cycle-status></p>
+            </div>
+            <div class="tag-cycle__controls" data-tag-cycle-controls></div>
+            <div class="tag-cycle__display">
+              <div class="tag-cycle__code" data-tag-cycle-code></div>
+              <div class="tag-cycle__preview" data-tag-cycle-preview></div>
+            </div>
+
+            <template data-tag-cycle-step data-step-label="Paragraph">
+              <div data-tag-visual>
+                <span class="tag-token tag-token--open">&lt;p&gt;</span>
+                <span class="tag-token tag-token--content"
+                  >Plan the page before writing code.</span
+                >
+                <span class="tag-token tag-token--close">&lt;/p&gt;</span>
+              </div>
+              <div data-tag-preview>
+                <div class="tag-preview-frame">
+                  <p>Plan the page before writing code.</p>
+                </div>
+              </div>
+            </template>
+
+            <template data-tag-cycle-step data-step-label="Heading">
+              <div data-tag-visual>
+                <span class="tag-token tag-token--open">&lt;h1&gt;</span>
+                <span class="tag-token tag-token--content"
+                  >Plan the page before writing code.</span
+                >
+                <span class="tag-token tag-token--close">&lt;/h1&gt;</span>
+              </div>
+              <div data-tag-preview>
+                <div class="tag-preview-frame">
+                  <h1>Plan the page before writing code.</h1>
+                </div>
+              </div>
+            </template>
+
+            <template data-tag-cycle-step data-step-label="Button">
+              <div data-tag-visual>
+                <span class="tag-token tag-token--open">&lt;button&gt;</span>
+                <span class="tag-token tag-token--content"
+                  >Plan the page before writing code.</span
+                >
+                <span class="tag-token tag-token--close">&lt;/button&gt;</span>
+              </div>
+              <div data-tag-preview>
+                <div class="tag-preview-frame">
+                  <button type="button">Plan the page before writing code.</button>
+                </div>
+              </div>
+            </template>
+
+            <template data-tag-cycle-step data-step-label="List item">
+              <div data-tag-visual>
+                <span class="tag-token tag-token--open">&lt;ul&gt;</span>
+                <span class="tag-token tag-token--open">&lt;li&gt;</span>
+                <span class="tag-token tag-token--content"
+                  >Plan the page before writing code.</span
+                >
+                <span class="tag-token tag-token--close">&lt;/li&gt;</span>
+                <span class="tag-token tag-token--close">&lt;/ul&gt;</span>
+              </div>
+              <div data-tag-preview>
+                <div class="tag-preview-frame">
+                  <ul>
+                    <li>Plan the page before writing code.</li>
+                  </ul>
+                </div>
+              </div>
+            </template>
+
+            <template data-tag-cycle-step data-step-label="Link">
+              <div data-tag-visual>
+                <span class="tag-token tag-token--punct">&lt;</span
+                ><span class="tag-token tag-token--name">a</span>
+                <span class="tag-token tag-token--attr">href</span
+                ><span class="tag-token tag-token--punct">=</span
+                ><span class="tag-token tag-token--value">"resources.html"</span
+                ><span class="tag-token tag-token--punct">&gt;</span>
+                <span class="tag-token tag-token--content"
+                  >Plan the page before writing code.</span
+                >
+                <span class="tag-token tag-token--close">&lt;/a&gt;</span>
+              </div>
+              <div data-tag-preview>
+                <div class="tag-preview-frame">
+                  <a href="#tags">Plan the page before writing code.</a>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <figure class="tag-anatomy tag-anatomy--void">
+            <figcaption>
+              <h3>Void elements do not wrap content</h3>
+              <p>
+                Some elements get what they need from attributes and do not have
+                a closing tag. An image is a common example.
+              </p>
+            </figcaption>
+            <div class="tag-anatomy__code" aria-label="Annotated image element">
+              <span class="tag-token tag-token--punct">&lt;</span
+              ><span class="tag-token tag-token--name">img</span>
+              <span class="tag-token tag-token--attr">src</span
+              ><span class="tag-token tag-token--punct">=</span
+              ><span class="tag-token tag-token--value">"badge.png"</span>
+              <span class="tag-token tag-token--attr">alt</span
+              ><span class="tag-token tag-token--punct">=</span
+              ><span class="tag-token tag-token--value">"Eco Club badge"</span
+              ><span class="tag-token tag-token--punct">&gt;</span>
+            </div>
+            <div class="void-preview">
+              <div class="void-preview__image" aria-hidden="true">image</div>
+              <p>
+                The browser would load the image from <code>badge.png</code>.
+                The <code>alt</code> text describes it if the image cannot be
+                seen or loaded.
+              </p>
+            </div>
+          </figure>
+        </section>
+
+        <section id="document-structure" class="lesson-section lesson-section--document-structure panel"
+          data-lesson-section>
+          <p class="eyebrow">Document Structure</p>
+          <h2>Most HTML pages share the same outer shape</h2>
+          <p class="lesson-section-copy">
+            A full HTML document starts by telling the browser that it should
+            use modern HTML. The <code>&lt;html&gt;</code> element then
+            surrounds the page, with a <code>&lt;head&gt;</code> for
+            information about the page and a <code>&lt;body&gt;</code> for the
+            content people see.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>The common document skeleton</h3>
+              <p class="code-preview__copy">
+                The <code>&lt;html&gt;</code> element wraps the document. The
+                head and body sit inside it.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code
+                  aria-label="HTML document structure code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Document skeleton">
+              <div data-code-content>
+                <pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en-GB&quot;&gt;
+  &lt;head&gt;
+    &lt;title&gt;My first web page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;My first web page&lt;/h1&gt;
+    &lt;p&gt;This content appears in the browser window.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="html-document-preview">
+                  <div class="html-document-box">
+                    <strong>head</strong>
+                    <p>Information about the page, such as its title.</p>
+                  </div>
+                  <div class="html-document-box html-document-box--body">
+                    <strong>body</strong>
+                    <p>Visible page content, such as headings and paragraphs.</p>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="head" class="lesson-section lesson-section--head panel" data-lesson-section>
+          <p class="eyebrow">Head And Metadata</p>
+          <h2>The head describes the page without being the page content</h2>
+          <p class="lesson-section-copy">
+            The <code>&lt;head&gt;</code> element contains metadata: useful
+            information about the page. It can include the title shown in a
+            browser tab, a description for search engines, and links to other
+            resources such as stylesheets and scripts.
+          </p>
+
+          <div class="lesson-intro-grid">
+            <article class="lesson-card">
+              <h3>Metadata still matters</h3>
+              <p>
+                A description does not usually change what the page itself
+                looks like, but it can affect how the page is described in
+                Google and other search results.
+              </p>
+            </article>
+
+            <article class="lesson-card">
+              <h3>Resource links</h3>
+              <p>
+                Stylesheets and scripts are often linked from the head. CSS and
+                JavaScript will become more important once the page structure
+                is solid.
+              </p>
+            </article>
+          </div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Changing metadata changes how the page is described</h3>
+              <p class="code-preview__copy">
+                The web page preview stays the same here, but the search result
+                preview changes because the metadata changed.
+              </p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="HTML metadata code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff aria-label="What changed from the previous step"
+              hidden></div>
+
+            <template data-code-step data-step-label="General title"
+              data-step-note="The page content has not changed, but the search result wording is broad.">
+              <div data-code-content>
+                <pre><code>&lt;head&gt;
+  &lt;title&gt;My website&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;A page I made in class.&quot;&gt;
+&lt;/head&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="html-search-preview">
+                  <article class="html-search-card">
+                    <span class="html-search-url">example-school.local</span>
+                    <h3>My website</h3>
+                    <p>A page I made in class.</p>
+                  </article>
+                  <article class="html-unchanged-page">
+                    <strong>Page content preview</strong>
+                    <p>Eco Club project ideas stay visible in the page body.</p>
+                  </article>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="Clear title"
+              data-step-note="A clearer title and description help people understand what the page is about before opening it.">
+              <div data-code-content>
+                <pre><code>&lt;head&gt;
+  &lt;title&gt;Eco Club Project Ideas&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;Simple sustainability projects for students.&quot;&gt;
+&lt;/head&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="html-search-preview">
+                  <article class="html-search-card">
+                    <span class="html-search-url">example-school.local</span>
+                    <h3>Eco Club Project Ideas</h3>
+                    <p>Simple sustainability projects for students.</p>
+                  </article>
+                  <article class="html-unchanged-page">
+                    <strong>Page content preview</strong>
+                    <p>Eco Club project ideas stay visible in the page body.</p>
+                  </article>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="body" class="lesson-section lesson-section--body panel" data-lesson-section>
+          <p class="eyebrow">Body And Landmarks</p>
+          <h2>The body contains the page content people use</h2>
+          <p class="lesson-section-copy">
+            The <code>&lt;body&gt;</code> is where visible content usually
+            lives. Headings, paragraphs, images, lists, forms, navigation, and
+            buttons normally appear inside the body.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Content inside the body becomes the visible page</h3>
+              <p class="code-preview__copy">
+                This code is a small body section. The browser turns it into
+                visible content.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="HTML body code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Body content">
+              <div data-code-content>
+                <pre><code>&lt;body&gt;
+  &lt;h1&gt;My first project&lt;/h1&gt;
+  &lt;p&gt;This page explains what I built and what I learned.&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;One clear heading&lt;/li&gt;
+    &lt;li&gt;A short explanation&lt;/li&gt;
+    &lt;li&gt;A list of useful points&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="html-body-preview">
+                  <h1>My first project</h1>
+                  <p>This page explains what I built and what I learned.</p>
+                  <ul>
+                    <li>One clear heading</li>
+                    <li>A short explanation</li>
+                    <li>A list of useful points</li>
+                  </ul>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <p class="lesson-section-copy">
+            Modern pages often use semantic body elements to show the main
+            areas of the page. These do not replace headings or paragraphs,
+            but they make the page structure easier to understand.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Header, main, and footer</h3>
+              <p class="code-preview__copy">
+                These common elements mark the top area, main page content, and
+                bottom area of a page.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="HTML landmark code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Page landmarks">
+              <div data-code-content>
+                <pre><code>&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Student Portfolio&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;h2&gt;Featured project&lt;/h2&gt;
+    &lt;p&gt;A simple page built with HTML.&lt;/p&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;Updated this term.&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="html-landmark-preview">
+                  <header class="html-landmark-bar">
+                    <h1>Student Portfolio</h1>
+                  </header>
+                  <main class="html-landmark-main">
+                    <h2>Featured project</h2>
+                    <p>A simple page built with HTML.</p>
+                  </main>
+                  <footer class="html-landmark-footer">
+                    <p>Updated this term.</p>
+                  </footer>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="mistakes" class="lesson-section lesson-section--mistakes panel" data-lesson-section>
+          <p class="eyebrow">Common Mistakes</p>
+          <h2>Keep these early HTML traps out of your code</h2>
+          <p class="lesson-section-copy">
+            These are the mistakes that usually make a first page harder to
+            read, inspect, or fix.
+          </p>
+
+          <div class="trap-grid">
+            <article class="trap-card">
+              <h3>Thinking HTML is styling</h3>
+              <p>
+                HTML describes structure and meaning. CSS does most of the
+                styling work.
+              </p>
+              <p class="trap-fix">
+                <strong>Fix:</strong> First ask what each piece of content is,
+                then style it later.
+              </p>
+            </article>
+
+            <article class="trap-card">
+              <h3>Forgetting closing tags</h3>
+              <p>
+                Missing closing tags can make the browser guess where an
+                element ends.
+              </p>
+              <p class="trap-fix">
+                <strong>Fix:</strong> Check opening and closing tags as pairs
+                unless the element is a void element.
+              </p>
+            </article>
+
+            <article class="trap-card">
+              <h3>Putting visible content in the head</h3>
+              <p>
+                The head is for metadata and linked resources, not page text
+                the reader should see.
+              </p>
+              <p class="trap-fix">
+                <strong>Fix:</strong> Put visible page content inside the
+                body.
+              </p>
+            </article>
+
+            <article class="trap-card">
+              <h3>Using tags only for size</h3>
+              <p>
+                A heading tag is not just large text. It describes a heading in
+                the page structure.
+              </p>
+              <p class="trap-fix">
+                <strong>Fix:</strong> Choose tags for meaning first. Visual
+                size can be controlled later with CSS.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p>
+          <h2>Check your understanding</h2>
+          <p class="quiz-intro">
+            Answer all eight questions, then check your score. Your choices
+            and best score save in this browser so you can revisit the lesson
+            later.
+          </p>
+
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b"
+              data-success="Correct. HTML stands for HyperText Markup Language."
+              data-feedback="HTML stands for HyperText Markup Language.">
+              <legend>1. What does HTML stand for?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="a" />
+                    <span>Hyper Trainer Marking Language</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="b" />
+                    <span>HyperText Markup Language</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="c" />
+                    <span>Home Tool Management Language</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q2" data-answer="a"
+              data-success="Correct. HTML gives structure and meaning to page content."
+              data-feedback="HTML mainly describes the structure and meaning of content.">
+              <legend>2. What is HTML mainly used for?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="a" />
+                    <span>Giving web page content structure and meaning</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="b" />
+                    <span>Making every page colourful</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="c" />
+                    <span>Running calculations when a button is clicked</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q3" data-answer="c"
+              data-success="Correct. The browser usually displays elements in the order it reads them."
+              data-feedback="Changing the order of elements in the HTML usually changes the order shown in the browser.">
+              <legend>
+                3. What usually happens if you move a paragraph above a
+                heading in the HTML?
+              </legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="a" />
+                    <span>The page always stays exactly the same</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="b" />
+                    <span>The browser deletes the paragraph</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="c" />
+                    <span>The paragraph usually appears above the heading</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q4" data-answer="b"
+              data-success="Correct. The slash in the closing tag shows where the paragraph ends."
+              data-feedback="A normal paragraph element starts with &lt;p&gt; and ends with &lt;/p&gt;.">
+              <legend>
+                4. Which pair correctly starts and ends a paragraph element?
+              </legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="a" />
+                    <span><code>&lt;p&gt;</code> and <code>&lt;p&gt;</code></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="b" />
+                    <span><code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="c" />
+                    <span><code>&lt;/p&gt;</code> and <code>&lt;/p&gt;</code></span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q5" data-answer="a"
+              data-success="Correct. Attributes add extra information to an element."
+              data-feedback="Attributes go in the opening tag and add extra information, such as where a link should go.">
+              <legend>5. What does an attribute do in HTML?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="a" />
+                    <span>Adds extra information to an element</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="b" />
+                    <span>Deletes the element from the page</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="c" />
+                    <span>Replaces HTML with JavaScript</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q6" data-answer="c"
+              data-success="Correct. An img element is a void element, so it does not wrap text with a closing tag."
+              data-feedback="Elements such as img, br, and input are void elements in HTML.">
+              <legend>6. Which element is a void element in HTML?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="a" />
+                    <span><code>&lt;p&gt;</code></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="b" />
+                    <span><code>&lt;body&gt;</code></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="c" />
+                    <span><code>&lt;img&gt;</code></span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q7" data-answer="b"
+              data-success="Correct. The head contains metadata and linked resources."
+              data-feedback="Visible page content normally belongs in the body. The head is for metadata and linked resources.">
+              <legend>7. What normally belongs inside the head element?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="a" />
+                    <span>The main heading users read on the page</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="b" />
+                    <span>Metadata such as title and description</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="c" />
+                    <span>Every paragraph in the website</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q8" data-answer="a"
+              data-success="Correct. Header, main, and footer mark common body areas."
+              data-feedback="Header, main, and footer are semantic elements that help describe common areas of the page body.">
+              <legend>
+                8. What do the header, main, and footer elements help describe?
+              </legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q8" value="a" />
+                    <span>Common areas of the page body</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q8" value="b" />
+                    <span>The password used to edit the page</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q8" value="c" />
+                    <span>The file size of an image</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div class="quiz-actions">
+              <button class="primary-link" type="submit">Check score</button>
+              <button class="lesson-secondary-action" type="button" data-action="reset-quiz">
+                Reset quiz
+              </button>
+            </div>
+
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+              Your answers save automatically on this device once you start.
+            </p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p>
+          <h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item">
+              <dt>HTML</dt>
+              <dd>Markup language used to structure web page content.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Tag</dt>
+              <dd>Text inside angle brackets, such as <code>&lt;p&gt;</code>.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Element</dt>
+              <dd>A complete piece of HTML, usually opening tag, content, and closing tag.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Attribute</dt>
+              <dd>Extra information written in an opening tag.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Metadata</dt>
+              <dd>Information about the page, often stored in the head.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Body</dt>
+              <dd>The part of the document where visible page content usually lives.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Semantic element</dt>
+              <dd>An element whose name describes the meaning of the content.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="lesson-rail-card panel revision-card">
+          <p class="eyebrow">Remember</p>
+          <h2>Meaning first</h2>
+          <ul class="memory-list">
+            <li>HTML labels what each piece of content is.</li>
+            <li>Element order affects page order.</li>
+            <li>The head describes the page; the body contains the page.</li>
+            <li>Use semantic elements when they match the meaning.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+      <p class="eyebrow">Keep Going</p>
+      <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+      <div class="sequence-grid" data-role="lesson-sequence"></div>
+    </section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">
+      Previous
+    </button>
+    <p class="slide-status" data-role="slide-status">Slide 1 of 11</p>
+    <button type="button" class="slide-button" data-action="next-slide">
+      Next
+    </button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">
+      Exit slides
+    </button>
+  </div>
+</body>
+
+</html>

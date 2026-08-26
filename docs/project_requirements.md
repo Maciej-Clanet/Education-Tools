@@ -41,6 +41,10 @@ the browser with `localStorage` where useful.
 - Unit page:
   Scheme-of-work hub for a unit, with ordered links to all related topics,
   quizzes, and mini-tools.
+- Resource hub:
+  Subject-area collection page for teaching resources that are not tied to a
+  qualification unit. These can reuse the unit hub layout but should use
+  generic labels such as `Overview` rather than unit-specific wording.
 - Topic page:
   Main teaching page for a concept, designed to be reusable across multiple
   units where possible and likely to be the main SEO target.
@@ -52,8 +56,9 @@ the browser with `localStorage` where useful.
 
 - Students are more likely to search by unit number, unit name, or specific
   topic than by spec title alone.
-- The homepage should show unit cards first, then topic cards, and spec cards
-  last, while still letting spec pages appear in search.
+- The homepage should show unit cards and subject resource hubs first, then
+  topic cards, and spec cards last, while still letting spec pages appear in
+  search.
 - Spec cards should stay short and link through with a button such as
   `See all units` rather than listing every unit on the homepage.
 - Unit cards should show the unit name, the spec it belongs to, and a subject
@@ -92,6 +97,8 @@ the browser with `localStorage` where useful.
   blanking the screen, but it should stay compact when those tools are not in
   use.
 - The current content focus is BTEC Level 3 Computing Unit 2.
+- Web development teaching resources are starting as a separate non-unit
+  resource hub, beginning with HTML basics and JavaScript basics.
 - When the homepage is not filtered by search, it should prioritise real live
   pages. Planned lesson topics can still appear through search, but should not
   be presented as if they are already finished live pages by default.
@@ -167,6 +174,10 @@ the browser with `localStorage` where useful.
 - The homepage now highlights the live Unit 2 hub plus live and planned Unit 2
   lesson pages.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
+- A first Web Development resource hub now exists at
+  `pages/resources/web-development.html`.
+- The first Web Development lesson now exists at
+  `pages/topics/what-is-html.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,
@@ -201,6 +212,9 @@ the browser with `localStorage` where useful.
 - A shared lesson shell now supports sidebar navigation, contextual unit
   navigation, teacher slide mode, quiz persistence, and shared quiz progress
   summaries for unit pages.
+- A shared code-preview component now exists at
+  `javascript/core/code-preview.js` for code versus preview examples, step
+  changes, and animated/cycling examples in lesson pages.
 - The Unit 2 hub now shows per-bucket quiz progress bars and lesson status
   indicators using `javascript/core/unit-progress.js` and
   `javascript/data/unit-progress-data.js`.
@@ -222,6 +236,8 @@ the browser with `localStorage` where useful.
 ## Next Likely Steps
 
 - Build more Unit 2 lessons on top of the shared lesson shell.
+- Add more Web Development topic lessons under the HTML basics and JavaScript
+  basics sections.
 - Decide when lesson content should move from page HTML into structured
   `content/lessons/` data.
 - Decide what a short spec page should include beyond description + unit links.

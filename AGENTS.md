@@ -19,14 +19,18 @@ Before making major UI, content, or structure changes, read:
 ## Product Direction
 
 - The home page should help users find a unit, topic, course, or spec quickly.
-- Home page browsing should prioritise unit pages first, then topic pages, with
-  spec pages shown last unless directly searched for.
+- Home page browsing should prioritise unit pages and subject resource hubs
+  first, then topic pages, with spec pages shown last unless directly searched
+  for.
 - When the home page is not filtered by search, live pages should be shown by
   default. Planned lesson topics can still appear in search, but should not be
   presented as finished live pages in the default browse state.
 - Spec pages should stay brief and mainly route users into their unit pages.
 - Unit pages should act as scheme-of-work hubs with links to all topics in that
   unit.
+- Subject-area resource hubs can reuse the unit page layout when the page is a
+  collection of teaching topics, but should use generic labels such as
+  `Overview` instead of unit-specific wording.
 - Unit pages can include protected classroom-only past exam practice entries.
   These should stay static-first, save drafts and submitted attempts locally,
   and show feedback under each question after submission where marking feedback
@@ -87,6 +91,10 @@ Before making major UI, content, or structure changes, read:
 - Existing items in `donetools/` are legacy experiments and should not be
   treated as the final structure.
 - `pages/units/btec-level-3-unit-2.html` is the first live unit hub.
+- `pages/resources/web-development.html` is the first non-unit resource hub.
+- `pages/topics/what-is-html.html` is the first Web Development topic lesson.
+- `javascript/core/code-preview.js` is the shared component for code versus
+  preview, step-change, and cycling code examples.
 - Unit quiz progress metadata lives in `javascript/data/unit-progress-data.js`
   and shared rendering logic lives in `javascript/core/unit-progress.js`.
 
