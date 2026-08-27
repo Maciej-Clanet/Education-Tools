@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Headings, Paragraphs, Lists, and Links Lesson | Education Tools</title>
+  <meta name="description"
+    content="Learn common HTML tags including paragraphs, line breaks, headings, links, unordered lists, ordered lists, and nested lists." />
+  <meta property="og:title" content="Headings, Paragraphs, Lists, and Links Lesson | Education Tools" />
+  <meta property="og:description"
+    content="Learn common HTML tags including paragraphs, line breaks, headings, links, unordered lists, ordered lists, and nested lists." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/pages/headings-paragraphs-lists-and-links.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/headings-paragraphs-lists-and-links.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">HTML Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li>
+            <a href="../resources/web-development.html#html-basics" data-role="breadcrumb-unit-link">Web Development</a>
+          </li>
+          <li aria-current="page">Headings, paragraphs, lists, and links</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>Headings, paragraphs, lists, and links</h1>
+          <p class="lesson-hero-text">
+            HTML tags give ordinary content a job. In this lesson, you will use
+            common text tags and see how the same markup can carry meaning
+            before CSS changes the final design.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside
+            <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card">
+          <strong>Resource area</strong>
+          <span>HTML basics</span>
+        </article>
+        <article class="lesson-meta-card">
+          <strong>Main focus</strong>
+          <span>Paragraphs, headings, links, lists, and meaning</span>
+        </article>
+        <article class="lesson-meta-card">
+          <strong>Quiz</strong>
+          <span>8 quick questions</span>
+        </article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit"
+          href="../resources/web-development.html#html-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">
+          Teacher slides
+        </button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The lesson notes still work without JavaScript, but the code previews,
+        quiz scoring, saved answers, task drafts, and teacher slides need
+        JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#overview" data-section-link>Overview</a>
+          <a href="#paragraphs" data-section-link>Paragraphs</a>
+          <a href="#headings" data-section-link>Headings</a>
+          <a href="#links" data-section-link>Links</a>
+          <a href="#lists" data-section-link>Lists</a>
+          <a href="#combined" data-section-link>Combined example</a>
+          <a href="#task" data-section-link>Classroom task</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
+          <p class="eyebrow">Quick Recap</p>
+          <h2>Tags, attributes, and semantic tags all give HTML meaning</h2>
+          <p class="lesson-section-copy">
+            A tag tells the browser what kind of element to create. Attributes
+            add extra information to a tag. Semantic tags describe what the
+            content means, not just how it looks.
+          </p>
+
+          <div class="tag-anatomy-strip" aria-label="Example link tag with attribute">
+            <span class="tag-anatomy-strip__tag">&lt;a</span>
+            <span class="tag-anatomy-strip__attr">href="guide.html"</span>
+            <span class="tag-anatomy-strip__tag">&gt;</span>
+            <span class="tag-anatomy-strip__text">Read the guide</span>
+            <span class="tag-anatomy-strip__tag">&lt;/a&gt;</span>
+          </div>
+
+          <div class="tag-recap-grid">
+            <article class="tag-recap-card">
+              <span class="tag-token">&lt;p&gt;</span>
+              <strong>Tag</strong>
+              <p>The tag name tells the browser what kind of element this is.</p>
+            </article>
+            <article class="tag-recap-card">
+              <span class="tag-token">href="guide.html"</span>
+              <strong>Attribute</strong>
+              <p>An attribute gives extra information, such as where a link goes.</p>
+            </article>
+            <article class="tag-recap-card">
+              <span class="tag-token">&lt;header&gt;</span>
+              <strong>Semantic tag</strong>
+              <p>The tag name describes the role or meaning of the content.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="paragraphs" class="lesson-section lesson-section--paragraphs panel" data-lesson-section>
+          <p class="eyebrow">Paragraphs</p>
+          <h2>The paragraph tag marks a block of normal text</h2>
+          <p class="lesson-section-copy">
+            Use <code>&lt;p&gt;</code> for a paragraph of text. Browsers give
+            paragraphs default space above and below, so several paragraphs have
+            a visible gap even before you write CSS.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Paragraphs have default spacing</h3>
+              <p class="code-preview__copy">
+                The gap is not an empty line in your code. It is the browser's
+                default paragraph margin.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code
+                  aria-label="Paragraph default spacing code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Paragraphs">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;Our club is planning a small website.&lt;/p&gt;
+&lt;p&gt;Each paragraph is a separate block of text.&lt;/p&gt;
+&lt;p&gt;The browser leaves default space between them.&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="paragraph-default-preview">
+                  <div class="browser-bar" aria-hidden="true">
+                    <span class="browser-dot"></span>
+                    <span class="browser-dot"></span>
+                    <span class="browser-dot"></span>
+                  </div>
+                  <div class="paragraph-box">
+                    <p>Our club is planning a small website.</p>
+                    <span class="paragraph-gap-label">default margin</span>
+                    <p>Each paragraph is a separate block of text.</p>
+                    <span class="paragraph-gap-label">default margin</span>
+                    <p>The browser leaves default space between them.</p>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header">
+              <h3>A new line in your editor is not always a new line on the page</h3>
+              <p class="code-preview__copy">
+                HTML collapses normal spaces and line breaks inside a
+                paragraph. Use separate paragraphs for separate ideas, and use
+                <code>&lt;br&gt;</code> only when the line break is part of the content.
+              </p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code
+                  aria-label="Paragraph line break code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Editor line break"
+              data-step-note="The text is still one paragraph. The browser treats the line break like a normal space.">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;Monday: design ideas
+Tuesday: build the first page
+Wednesday: test the links&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="browser-preview linebreak-preview">
+                  <p>Monday: design ideas Tuesday: build the first page Wednesday: test the links</p>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="With br"
+              data-step-note="A br tag creates a line break without starting a new paragraph. It is useful for addresses, poems, or short lines that belong together.">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;Monday: design ideas&lt;br&gt;
+Tuesday: build the first page&lt;br&gt;
+Wednesday: test the links&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="browser-preview linebreak-preview">
+                  <p>
+                    Monday: design ideas<br>
+                    Tuesday: build the first page<br>
+                    Wednesday: test the links
+                  </p>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="Separate paragraphs"
+              data-step-note="Separate p tags create separate paragraphs. Use this when the ideas are separate blocks of text.">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;Monday: design ideas&lt;/p&gt;
+&lt;p&gt;Tuesday: build the first page&lt;/p&gt;
+&lt;p&gt;Wednesday: test the links&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="browser-preview linebreak-preview">
+                  <div class="separate-paragraphs">
+                    <p>Monday: design ideas</p>
+                    <p>Tuesday: build the first page</p>
+                    <p>Wednesday: test the links</p>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="headings" class="lesson-section lesson-section--headings panel" data-lesson-section>
+          <p class="eyebrow">Headings</p>
+          <h2>Heading numbers describe structure, not just size</h2>
+          <p class="lesson-section-copy">
+            Browsers usually make <code>&lt;h1&gt;</code> bigger than
+            <code>&lt;h2&gt;</code>, but that is only default styling. The
+            numbers tell assistive technology and search engines how the page is
+            organised.
+          </p>
+
+          <div class="heading-map">
+            <div class="heading-map__item">
+              <strong>&lt;h1&gt; School Garden Project</strong>
+              <span>The main page heading.</span>
+            </div>
+            <div class="heading-map__item heading-map__item--level-2">
+              <strong>&lt;h2&gt; Why we are building it</strong>
+              <span>A major section under the page heading.</span>
+            </div>
+            <div class="heading-map__item heading-map__item--level-2">
+              <strong>&lt;h2&gt; What we need</strong>
+              <span>Another major section at the same level.</span>
+            </div>
+            <div class="heading-map__item heading-map__item--level-3">
+              <strong>&lt;h3&gt; Tools and materials</strong>
+              <span>A smaller subsection inside "What we need".</span>
+            </div>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>You can use the same heading level more than once</h3>
+              <p class="code-preview__copy">
+                Two <code>&lt;h2&gt;</code> elements can be sibling sections.
+                The number is a level in the outline, not a one-time label.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code
+                  aria-label="Repeated heading level code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Heading outline">
+              <div data-code-content>
+                <pre><code>&lt;h1&gt;School Garden Project&lt;/h1&gt;
+
+&lt;h2&gt;Why we are building it&lt;/h2&gt;
+&lt;p&gt;Students need a quiet outdoor study space.&lt;/p&gt;
+
+&lt;h2&gt;What we need&lt;/h2&gt;
+&lt;p&gt;We need planters, soil, signs, and volunteers.&lt;/p&gt;
+
+&lt;h3&gt;Tools and materials&lt;/h3&gt;
+&lt;p&gt;The site team can lend gloves and trowels.&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="heading-preview">
+                  <h1>School Garden Project</h1>
+                  <section class="heading-preview__section">
+                    <h2>Why we are building it</h2>
+                    <p>Students need a quiet outdoor study space.</p>
+                  </section>
+                  <section class="heading-preview__section">
+                    <h2>What we need</h2>
+                    <p>We need planters, soil, signs, and volunteers.</p>
+                    <h3>Tools and materials</h3>
+                    <p>The site team can lend gloves and trowels.</p>
+                  </section>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <div class="mistake-compare">
+            <article class="mistake-card mistake-card--wrong">
+              <strong>Common mistake</strong>
+              <p>
+                Do not invent paragraph numbers. There is no
+                <code>&lt;p1&gt;</code> or <code>&lt;p2&gt;</code> for
+                paragraph importance.
+              </p>
+              <pre class="mistake-code"><code>&lt;p1&gt;Most important paragraph&lt;/p1&gt;
+&lt;p2&gt;Less important paragraph&lt;/p2&gt;</code></pre>
+            </article>
+            <article class="mistake-card mistake-card--right">
+              <strong>Use paragraphs for paragraphs</strong>
+              <p>
+                Paragraphs are all the same kind of element. Use headings to
+                organise sections, then use normal <code>&lt;p&gt;</code> tags
+                for the text underneath.
+              </p>
+              <pre class="mistake-code"><code>&lt;h2&gt;Important update&lt;/h2&gt;
+&lt;p&gt;This paragraph explains the update.&lt;/p&gt;
+&lt;p&gt;This paragraph adds another detail.&lt;/p&gt;</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section id="links" class="lesson-section lesson-section--links panel" data-lesson-section>
+          <p class="eyebrow">Links</p>
+          <h2>The anchor tag needs an href to become a useful link</h2>
+          <p class="lesson-section-copy">
+            The <code>&lt;a&gt;</code> tag creates an anchor. The
+            <code>href</code> attribute tells the browser where the link should
+            go.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header">
+              <h3>No href, then href</h3>
+              <p class="code-preview__copy">
+                Without <code>href</code>, the text is not a real link. Once
+                the href is added, the browser gives it default link styling and
+                it can be opened.
+              </p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Anchor href code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="No href"
+              data-step-note="This is an anchor element, but it has nowhere to go. The browser does not treat it like a normal link.">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;&lt;a&gt;Read the project guide&lt;/a&gt;&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="link-preview">
+                  <p><a>Read the project guide</a></p>
+                  <span class="link-status-note">Looks like normal text</span>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="With href"
+              data-step-note="The href attribute gives the destination. Now the browser can treat the text as a link.">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;&lt;a href=&quot;guide.html&quot;&gt;Read the project guide&lt;/a&gt;&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="link-preview">
+                  <p><a href="#links">Read the project guide</a></p>
+                  <span class="link-status-note">Default link styling appears</span>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <div class="link-rule-grid">
+            <article class="link-rule-card">
+              <span class="code-token">target="_self"</span>
+              <strong>Default behaviour</strong>
+              <p>
+                If you do not add a target, the browser usually opens the link
+                in the same tab.
+              </p>
+            </article>
+            <article class="link-rule-card">
+              <span class="code-token">target="_blank"</span>
+              <strong>New tab</strong>
+              <p>
+                This asks the browser to open the link in a new tab or window.
+                Use it when leaving the current task would be disruptive.
+              </p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Opening a link in a new tab</h3>
+              <p class="code-preview__copy">
+                The destination is still in <code>href</code>. The target
+                changes where the browser opens it.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Target blank link code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="New tab link">
+              <div data-code-content>
+                <pre><code>&lt;a href=&quot;https://example.com&quot; target=&quot;_blank&quot;&gt;
+  Open the reference site
+&lt;/a&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="browser-preview target-browser-row">
+                  <div class="target-browser">
+                    <div class="target-browser__tabs">
+                      <span class="target-tab is-active">Class page</span>
+                    </div>
+                    <p><a href="#links">Open the reference site</a></p>
+                  </div>
+                  <div class="target-browser">
+                    <div class="target-browser__tabs">
+                      <span class="target-tab">Class page</span>
+                      <span class="target-tab is-active">Reference site</span>
+                    </div>
+                    <p>The link opens in a new tab, so the class page stays open.</p>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Links can also jump to part of the same page</h3>
+              <p class="code-preview__copy">
+                A value like <code>#plan</code> points to an element with
+                <code>id="plan"</code>. For now, think of an id as a unique
+                label on part of the page.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Same page id link code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Page section link">
+              <div data-code-content>
+                <pre><code>&lt;a href=&quot;#garden-plan&quot;&gt;Jump to the garden plan&lt;/a&gt;
+
+&lt;h2 id=&quot;garden-plan&quot;&gt;Garden plan&lt;/h2&gt;
+&lt;p&gt;This section explains what we will build.&lt;/p&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="browser-preview anchor-map">
+                  <span class="anchor-link-chip">href="#garden-plan"</span>
+                  <span>points down the page to</span>
+                  <span class="anchor-target-chip">id="garden-plan"</span>
+                  <h2>Garden plan</h2>
+                  <p>This section explains what we will build.</p>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="lists" class="lesson-section lesson-section--lists panel" data-lesson-section>
+          <p class="eyebrow">Lists</p>
+          <h2>List item tags work inside list containers</h2>
+          <p class="lesson-section-copy">
+            The <code>&lt;li&gt;</code> tag means list item. It belongs inside
+            an unordered list <code>&lt;ul&gt;</code> or an ordered list
+            <code>&lt;ol&gt;</code>. The container changes how the items are
+            presented.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header">
+              <h3>The list container changes the list item</h3>
+              <p class="code-preview__copy">
+                The same <code>&lt;li&gt;</code> tags become bullet points in a
+                <code>&lt;ul&gt;</code> and numbered steps in an
+                <code>&lt;ol&gt;</code>.
+              </p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="List container code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Unordered list"
+              data-step-note="Use ul when the order is not the main point. Browsers usually show bullet points by default.">
+              <div data-code-content>
+                <pre><code>&lt;ul&gt;
+  &lt;li&gt;Collect project ideas&lt;/li&gt;
+  &lt;li&gt;Choose a page topic&lt;/li&gt;
+  &lt;li&gt;Draft the content&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="list-preview">
+                  <ul>
+                    <li>Collect project ideas</li>
+                    <li>Choose a page topic</li>
+                    <li>Draft the content</li>
+                  </ul>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="Ordered list"
+              data-step-note="Use ol when the order matters. Browsers usually number the items by default.">
+              <div data-code-content>
+                <pre><code>&lt;ol&gt;
+  &lt;li&gt;Collect project ideas&lt;/li&gt;
+  &lt;li&gt;Choose a page topic&lt;/li&gt;
+  &lt;li&gt;Draft the content&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="list-preview">
+                  <ol>
+                    <li>Collect project ideas</li>
+                    <li>Choose a page topic</li>
+                    <li>Draft the content</li>
+                  </ol>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="Loose li"
+              data-step-note="A lone li may still show a marker, but it is not valid list structure. Put list items inside ul or ol.">
+              <div data-code-content>
+                <pre><code>&lt;li&gt;Collect project ideas&lt;/li&gt;
+&lt;li&gt;Choose a page topic&lt;/li&gt;
+&lt;li&gt;Draft the content&lt;/li&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="list-preview">
+                  <div class="loose-list-item">Collect project ideas</div>
+                  <div class="loose-list-item">Choose a page topic</div>
+                  <div class="loose-list-item">Draft the content</div>
+                  <p class="invalid-note">Missing list container: use ul or ol.</p>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Lists can be nested inside other lists</h3>
+              <p class="code-preview__copy">
+                There is no tiny built-in limit to how deep nesting can go, but
+                deeply nested lists are hard to read. Closing tags clearly
+                matters more as the structure gets deeper.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Nested list code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Nested list">
+              <div data-code-content>
+                <pre><code>&lt;ul&gt;
+  &lt;li&gt;
+    Build the homepage
+    &lt;ul&gt;
+      &lt;li&gt;Write the heading&lt;/li&gt;
+      &lt;li&gt;Add two paragraphs&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Test every link&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="list-preview nested-list-preview">
+                  <ul>
+                    <li>
+                      Build the homepage
+                      <ul>
+                        <li>Write the heading</li>
+                        <li>Add two paragraphs</li>
+                      </ul>
+                    </li>
+                    <li>Test every link</li>
+                  </ul>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="combined" class="lesson-section lesson-section--combined panel" data-lesson-section>
+          <p class="eyebrow">Combined Example</p>
+          <h2>The same HTML can be plain or styled later</h2>
+          <p class="lesson-section-copy">
+            HTML gives the content structure and meaning. CSS can later change
+            the visual design without changing the HTML itself.
+          </p>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Same HTML, two visual results</h3>
+              <p class="code-preview__copy">
+                The unstyled view uses browser defaults. The styled view hints
+                at what CSS can do later.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Combined HTML tags code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Combined tags">
+              <div data-code-content>
+                <pre><code>&lt;header&gt;
+  &lt;h1&gt;School Garden Project&lt;/h1&gt;
+  &lt;p&gt;A student-led plan for the courtyard.&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;h2&gt;What we need&lt;/h2&gt;
+  &lt;p&gt;We need volunteers, planters, and soil.&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Choose plants&lt;/li&gt;
+    &lt;li&gt;Make signs&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;a href=&quot;volunteer.html&quot;&gt;Volunteer for the project&lt;/a&gt;
+&lt;/main&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="same-html-preview">
+                  <div class="same-html-pane unstyled-output">
+                    <strong>Unstyled browser default</strong>
+                    <h1>School Garden Project</h1>
+                    <p>A student-led plan for the courtyard.</p>
+                    <h2>What we need</h2>
+                    <p>We need volunteers, planters, and soil.</p>
+                    <ul>
+                      <li>Choose plants</li>
+                      <li>Make signs</li>
+                    </ul>
+                    <a href="#combined">Volunteer for the project</a>
+                  </div>
+
+                  <div class="same-html-pane styled-output">
+                    <strong>Styled later with CSS</strong>
+                    <div class="mini-site-header">
+                      <h1>School Garden Project</h1>
+                      <p>A student-led plan for the courtyard.</p>
+                    </div>
+                    <div class="mini-site-main">
+                      <div class="mini-feature">
+                        <h2>What we need</h2>
+                        <p>We need volunteers, planters, and soil.</p>
+                        <ul>
+                          <li>Choose plants</li>
+                          <li>Make signs</li>
+                        </ul>
+                        <a href="#combined">Volunteer for the project</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="task" class="lesson-section lesson-section--task panel" data-lesson-section>
+          <p class="eyebrow">Classroom Task</p>
+          <h2>Build a small information page</h2>
+          <p class="lesson-section-copy">
+            Use the tags from this lesson to make a small page about a school
+            club, local event, game guide, recipe, or project idea.
+          </p>
+
+          <div class="task-grid">
+            <article class="task-card">
+              <strong>Include these HTML features</strong>
+              <ol>
+                <li><strong>One h1</strong> for the page title.</li>
+                <li><strong>At least two h2 headings</strong> for major sections.</li>
+                <li><strong>At least three paragraphs</strong> of normal text.</li>
+                <li><strong>One link</strong> with an href attribute.</li>
+                <li><strong>One ul or ol</strong> with at least three li items.</li>
+              </ol>
+            </article>
+
+            <article class="exam-card">
+              <h3>Plan your structure first</h3>
+              <p class="exam-response-note">
+                Draft notes save automatically in this browser.
+              </p>
+              <div class="exam-response-wrap">
+                <label class="exam-response-label" for="tag-task-plan">
+                  Your page plan
+                </label>
+                <textarea id="tag-task-plan" class="exam-response" data-exam-response="page-plan"
+                  placeholder="Title, section headings, paragraphs, link destination, and list idea."></textarea>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p>
+          <h2>Check your understanding</h2>
+          <p class="quiz-intro">
+            Answer all eight questions, then check your score. Your choices and
+            best score save in this browser so you can revisit the lesson later.
+          </p>
+
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b"
+              data-success="Correct. A p element marks a paragraph of normal text."
+              data-feedback="Use p for a paragraph of normal text. It is not for section titles.">
+              <legend>1. What is the <code>&lt;p&gt;</code> tag mainly for?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="a" />
+                    <span>The main page heading</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="b" />
+                    <span>A paragraph of normal text</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="c" />
+                    <span>A numbered list item</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q2" data-answer="c"
+              data-success="Correct. Normal line breaks and extra spaces inside a paragraph are collapsed."
+              data-feedback="A line break in your editor does not automatically create a new visible line inside a normal paragraph.">
+              <legend>2. What usually happens if you press Enter inside one paragraph in your HTML code?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="a" />
+                    <span>The browser creates a new heading</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="b" />
+                    <span>The paragraph becomes a list</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="c" />
+                    <span>The browser usually treats it like a normal space</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q3" data-answer="a"
+              data-success="Correct. br creates a line break inside the same paragraph."
+              data-feedback="The br tag creates a line break without starting a new paragraph.">
+              <legend>3. What does <code>&lt;br&gt;</code> do?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="a" />
+                    <span>Creates a line break inside the content</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="b" />
+                    <span>Creates a new paragraph with paragraph margins</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="c" />
+                    <span>Creates a link to another page</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q4" data-answer="b"
+              data-success="Correct. Heading levels describe structure and importance."
+              data-feedback="Heading numbers are about the page outline and accessibility, not just default font size.">
+              <legend>4. What do heading numbers such as <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code> mainly describe?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="a" />
+                    <span>Only the colour of the text</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="b" />
+                    <span>The structure and importance of the content</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="c" />
+                    <span>The number of paragraphs after the heading</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q5" data-answer="a"
+              data-success="Correct. The same heading level can be used for sections at the same level."
+              data-feedback="You can use h2 more than once when several sections sit at the same level in the page outline.">
+              <legend>5. Can a page use <code>&lt;h2&gt;</code> more than once?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="a" />
+                    <span>Yes, for multiple sections at the same level</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="b" />
+                    <span>No, each heading number can only be used once</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="c" />
+                    <span>Only if the headings are hidden</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q6" data-answer="c"
+              data-success="Correct. href gives the destination for a link."
+              data-feedback="The href attribute tells the browser where the anchor should go.">
+              <legend>6. What does <code>href</code> provide for an <code>&lt;a&gt;</code> tag?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="a" />
+                    <span>The size of the link text</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="b" />
+                    <span>The list marker style</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="c" />
+                    <span>The link destination</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q7" data-answer="b"
+              data-success="Correct. target blank asks the browser to open the link in a new tab or window."
+              data-feedback="target=&quot;_blank&quot; asks the browser to open the destination in a new tab or window.">
+              <legend>7. What does <code>target="_blank"</code> usually do?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="a" />
+                    <span>Removes the link destination</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="b" />
+                    <span>Opens the link in a new tab or window</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="c" />
+                    <span>Turns the link into a heading</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q8" data-answer="a"
+              data-success="Correct. li belongs inside ul or ol."
+              data-feedback="List items should be placed inside ul or ol so the browser and assistive tools understand the list.">
+              <legend>8. Where should <code>&lt;li&gt;</code> elements normally go?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q8" value="a" />
+                    <span>Inside a ul or ol element</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q8" value="b" />
+                    <span>Inside the doctype</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q8" value="c" />
+                    <span>Only inside a link</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div class="quiz-actions">
+              <button class="primary-link" type="submit">Check score</button>
+              <button class="lesson-secondary-action" type="button" data-action="reset-quiz">
+                Reset quiz
+              </button>
+            </div>
+
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+              Your answers save automatically on this device once you start.
+            </p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p>
+          <h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item">
+              <dt>Paragraph</dt>
+              <dd>A block of normal text marked with a p element.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Line break</dt>
+              <dd>A forced new line inside content, often made with br.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Heading</dt>
+              <dd>A title or section label that helps organise the page outline.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Hyperlink</dt>
+              <dd>A link to another page, file, website, or part of the same page.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>List item</dt>
+              <dd>An li element that belongs inside a ul or ol list.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Nesting</dt>
+              <dd>Putting one element inside another element.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="lesson-rail-card panel revision-card">
+          <p class="eyebrow">Remember</p>
+          <h2>Meaning first</h2>
+          <ul class="memory-list">
+            <li>Paragraphs are for normal text blocks.</li>
+            <li>Heading numbers describe the page outline.</li>
+            <li>Links need href to go somewhere.</li>
+            <li>List items belong inside ul or ol.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+      <p class="eyebrow">Keep Going</p>
+      <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+      <div class="sequence-grid" data-role="lesson-sequence"></div>
+    </section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">
+      Previous
+    </button>
+    <p class="slide-status" data-role="slide-status">Slide 1 of 16</p>
+    <button type="button" class="slide-button" data-action="next-slide">
+      Next
+    </button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">
+      Exit slides
+    </button>
+  </div>
+</body>
+
+</html>

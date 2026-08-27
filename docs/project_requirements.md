@@ -176,8 +176,10 @@ the browser with `localStorage` where useful.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
 - A first Web Development resource hub now exists at
   `pages/resources/web-development.html`.
-- The first Web Development lesson now exists at
-  `pages/topics/what-is-html.html`.
+- The first Web Development lessons now exist at
+  `pages/topics/what-is-html.html` and
+  `pages/topics/html-document-structure.html`, and
+  `pages/topics/headings-paragraphs-lists-and-links.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,

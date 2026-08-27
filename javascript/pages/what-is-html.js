@@ -21,9 +21,10 @@ const lessonConfig = {
       },
       next: {
         title: "HTML document structure",
+        href: "html-document-structure.html",
         description:
-          "Next planned HTML basics lesson on page structure, headings, paragraphs, lists, and links.",
-        status: "Planned",
+          "Go deeper into the document skeleton, page landmarks, divs, and common layouts.",
+        status: "Live",
       },
     },
   },
