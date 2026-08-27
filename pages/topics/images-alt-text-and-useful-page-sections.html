@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Images, Alt Text, and Useful Page Sections Lesson | Education Tools</title>
+  <meta name="description"
+    content="Learn how to use HTML images, alt text, void elements, section, article, nav, figure, and figcaption in clear web pages." />
+  <meta property="og:title" content="Images, Alt Text, and Useful Page Sections Lesson | Education Tools" />
+  <meta property="og:description"
+    content="Learn how to use HTML images, alt text, void elements, section, article, nav, figure, and figcaption in clear web pages." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/pages/images-alt-text-and-useful-page-sections.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/images-alt-text-and-useful-page-sections.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">HTML Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li>
+            <a href="../resources/web-development.html#html-basics" data-role="breadcrumb-unit-link">Web Development</a>
+          </li>
+          <li aria-current="page">Images, alt text, and useful page sections</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>Images, alt text, and useful page sections</h1>
+          <p class="lesson-hero-text">
+            Images make a page more useful, but they need clear HTML. In this
+            lesson, you will add images, write helpful alt text, and use common
+            sectioning tags to organise page content.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside
+            <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card">
+          <strong>Resource area</strong>
+          <span>HTML basics</span>
+        </article>
+        <article class="lesson-meta-card">
+          <strong>Main focus</strong>
+          <span>Images, alt text, section, article, nav, and figure</span>
+        </article>
+        <article class="lesson-meta-card">
+          <strong>Quiz</strong>
+          <span>7 quick questions</span>
+        </article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit"
+          href="../resources/web-development.html#html-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">
+          Teacher slides
+        </button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The lesson notes still work without JavaScript, but the code previews,
+        quiz scoring, saved answers, and teacher slides need JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#overview" data-section-link>Overview</a>
+          <a href="#image-tag" data-section-link>The img tag</a>
+          <a href="#alt-text" data-section-link>Alt text</a>
+          <a href="#page-sections" data-section-link>Useful sections</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
+          <p class="eyebrow">Quick Recap</p>
+          <h2>Tags tell the browser what each piece of content is</h2>
+          <p class="lesson-section-copy">
+            You have already used tags for paragraphs, headings, links, and
+            lists. Some tags wrap text between an opening and closing tag. Some
+            tags use attributes to point to another resource.
+          </p>
+
+          <div class="tag-recap-grid">
+            <article class="tag-recap-card">
+              <span class="tag-token">&lt;p&gt;Text&lt;/p&gt;</span>
+              <strong>Wrapped text</strong>
+              <p>Paragraphs and headings wrap the content they describe.</p>
+            </article>
+            <article class="tag-recap-card">
+              <span class="tag-token">&lt;a href="..."&gt;</span>
+              <strong>Attributes</strong>
+              <p>Links use href to point to another page or section.</p>
+            </article>
+            <article class="tag-recap-card">
+              <span class="tag-token">&lt;ul&gt; &lt;li&gt;</span>
+              <strong>Nested structure</strong>
+              <p>List items only make proper sense inside a list container.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="image-tag" class="lesson-section lesson-section--image-tag panel" data-lesson-section>
+          <p class="eyebrow">The Img Tag</p>
+          <h2>The image tag embeds an image into the page</h2>
+          <p class="lesson-section-copy">
+            The <code>&lt;img&gt;</code> tag is different from paragraph or
+            heading tags. It does not wrap text. It points to an image file and
+            asks the browser to display that file.
+          </p>
+
+          <div class="void-reason-grid">
+            <article class="void-reason-card">
+              <span class="tag-token">&lt;img&gt;</span>
+              <strong>No closing tag</strong>
+              <p>Img is a void element, so it does not use <code>&lt;/img&gt;</code>.</p>
+            </article>
+            <article class="void-reason-card">
+              <span class="attribute-token">src="..."</span>
+              <strong>The source attribute</strong>
+              <p>The image content comes from the file named in the src attribute.</p>
+            </article>
+            <article class="void-reason-card">
+              <span class="attribute-token">alt="..."</span>
+              <strong>Alternative text</strong>
+              <p>Alt text describes the image when the image cannot be seen.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>A basic image element</h3>
+              <p class="code-preview__copy">
+                The tag has attributes, but no text inside it. There is nothing
+                for a closing tag to wrap.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Basic image tag code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Image tag">
+              <div data-code-content>
+                <pre><code>&lt;img
+  src=&quot;../../assets/images/school-garden-project.svg&quot;
+  alt=&quot;Raised beds and flowers in a school courtyard garden&quot;&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="image-preview">
+                  <div class="browser-bar" aria-hidden="true">
+                    <span class="browser-dot"></span>
+                    <span class="browser-dot"></span>
+                    <span class="browser-dot"></span>
+                  </div>
+                  <div class="image-preview__picture">
+                    <img src="../../assets/images/school-garden-project.svg"
+                      alt="Raised beds and flowers in a school courtyard garden">
+                  </div>
+                  <p class="image-preview__caption">
+                    The visible image comes from the src file.
+                  </p>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="alt-text" class="lesson-section lesson-section--alt-text panel" data-lesson-section>
+          <p class="eyebrow">Alt Text</p>
+          <h2>Alt text explains an image when the image is not available</h2>
+          <p class="lesson-section-copy">
+            Alt text is used by screen readers, search tools, and browsers when
+            an image does not load. It should describe the useful information
+            the image adds to the page.
+          </p>
+
+          <div class="alt-rule-grid">
+            <article class="alt-rule-card alt-rule-card--good">
+              <span class="attribute-token">alt="Raised beds..."</span>
+              <strong>Useful alt text</strong>
+              <p>Describe the important content or purpose of the image.</p>
+            </article>
+            <article class="alt-rule-card alt-rule-card--bad">
+              <span class="attribute-token">alt="image"</span>
+              <strong>Too vague</strong>
+              <p>Words like "image" or "photo" do not explain what is shown.</p>
+            </article>
+            <article class="alt-rule-card alt-rule-card--decorative">
+              <span class="attribute-token">alt=""</span>
+              <strong>Decorative images</strong>
+              <p>Empty alt can be used when an image adds no useful meaning.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header">
+              <h3>Loaded image, then broken image</h3>
+              <p class="code-preview__copy">
+                The same alt text can still communicate the image meaning when
+                the image file cannot be loaded.
+              </p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Loaded and broken image alt text example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Image loads"
+              data-step-note="When the file loads, people can see the image. The alt text is still part of the HTML.">
+              <div data-code-content>
+                <pre><code>&lt;img
+  src=&quot;../../assets/images/school-garden-project.svg&quot;
+  alt=&quot;Raised beds and flowers in a school courtyard garden&quot;&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="image-state-preview">
+                  <div class="image-state-grid">
+                    <article class="image-state-card">
+                      <strong>Image loaded</strong>
+                      <div class="image-state-card__frame">
+                        <img src="../../assets/images/school-garden-project.svg"
+                          alt="Raised beds and flowers in a school courtyard garden">
+                      </div>
+                      <p class="image-state-card__note">The browser displays the file from src.</p>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="Image missing"
+              data-step-note="If the file path is wrong or the image cannot download, the browser can show the alt text instead.">
+              <div data-code-content>
+                <pre><code>&lt;img
+  src=&quot;missing-garden-photo.jpg&quot;
+  alt=&quot;Raised beds and flowers in a school courtyard garden&quot;&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="image-state-preview">
+                  <div class="image-state-grid">
+                    <article class="image-state-card image-state-card--broken">
+                      <strong>Image did not load</strong>
+                      <div class="image-state-card__frame">
+                        <img class="broken-image-demo" src="../../assets/images/missing-garden-photo.jpg"
+                          alt="Raised beds and flowers in a school courtyard garden">
+                      </div>
+                      <p class="image-state-card__note">The alt text gives the missing image a useful fallback.</p>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="page-sections" class="lesson-section lesson-section--page-sections panel" data-lesson-section>
+          <p class="eyebrow">Useful Sections</p>
+          <h2>Some tags organise whole parts of a page</h2>
+          <p class="lesson-section-copy">
+            You already know that <code>&lt;div&gt;</code> can group content
+            without adding meaning. Sectioning tags also group content, but they
+            describe the role or theme of that group.
+          </p>
+
+          <div class="section-compare-grid">
+            <article class="section-compare-card section-compare-card--div">
+              <span class="tag-token">&lt;div&gt;</span>
+              <strong>Generic group</strong>
+              <p>
+                A div is useful for layout or styling when no meaningful HTML
+                tag fits.
+              </p>
+            </article>
+            <article class="section-compare-card section-compare-card--section">
+              <span class="tag-token">&lt;section&gt;</span>
+              <strong>Themed group</strong>
+              <p>
+                A section groups related content that has a clear theme, usually
+                with its own heading.
+              </p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="section-card-grid">
+            <article class="section-card">
+              <span class="tag-token">&lt;section&gt;</span>
+              <strong>A themed part of a page</strong>
+              <p>Useful for content such as gallery, timetable, or contact sections.</p>
+            </article>
+            <article class="section-card">
+              <span class="tag-token">&lt;article&gt;</span>
+              <strong>Self-contained content</strong>
+              <p>Useful for a post, news item, review, or update that could stand alone.</p>
+            </article>
+            <article class="section-card">
+              <span class="tag-token">&lt;nav&gt;</span>
+              <strong>Important navigation links</strong>
+              <p>Useful for menus or major links around the page or website.</p>
+            </article>
+            <article class="section-card">
+              <span class="tag-token">&lt;figure&gt;</span>
+              <strong>Media with a caption</strong>
+              <p>Groups an image, diagram, or code example with a visible caption.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Images inside useful page sections</h3>
+              <p class="code-preview__copy">
+                The image still needs alt text. The figure caption is visible on
+                the page, while the alt text supports the image itself.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Useful page section tags code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Page sections">
+              <div data-code-content>
+                <pre><code>&lt;nav&gt;
+  &lt;a href=&quot;#gallery&quot;&gt;Gallery&lt;/a&gt;
+  &lt;a href=&quot;#update&quot;&gt;Update&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;section id=&quot;gallery&quot;&gt;
+  &lt;h2&gt;Garden gallery&lt;/h2&gt;
+  &lt;figure&gt;
+    &lt;img
+      src=&quot;../../assets/images/school-garden-project.svg&quot;
+      alt=&quot;Raised beds and flowers in a school courtyard garden&quot;&gt;
+    &lt;figcaption&gt;Our first garden layout idea.&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/section&gt;
+
+&lt;article id=&quot;update&quot;&gt;
+  &lt;h2&gt;Planting update&lt;/h2&gt;
+  &lt;p&gt;The first raised bed is ready for soil.&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="section-preview">
+                  <div class="page-section-stack">
+                    <nav class="page-section-region page-section-region--nav">
+                      <strong>Navigation</strong>
+                      <p>Gallery | Update</p>
+                    </nav>
+                    <section class="page-section-region page-section-region--figure">
+                      <h2>Garden gallery</h2>
+                      <figure class="figure-mini">
+                        <img src="../../assets/images/school-garden-project.svg"
+                          alt="Raised beds and flowers in a school courtyard garden">
+                        <figcaption>Our first garden layout idea.</figcaption>
+                      </figure>
+                    </section>
+                    <article class="page-section-region page-section-region--article">
+                      <h2>Planting update</h2>
+                      <p>The first raised bed is ready for soil.</p>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p>
+          <h2>Check your understanding</h2>
+          <p class="quiz-intro">
+            Answer all seven questions, then check your score. Your choices and
+            best score save in this browser so you can revisit the lesson later.
+          </p>
+
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b"
+              data-success="Correct. Img embeds an image file into the page."
+              data-feedback="The img tag asks the browser to display an image file from a source path.">
+              <legend>1. What is the main job of the <code>&lt;img&gt;</code> tag?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="a" />
+                    <span>To create a paragraph of text</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="b" />
+                    <span>To embed an image file into the page</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q1" value="c" />
+                    <span>To create a numbered list</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q2" data-answer="a"
+              data-success="Correct. Img is a void element and does not wrap inner content."
+              data-feedback="Img is a void element. Its content comes from src, so it does not use a closing img tag.">
+              <legend>2. Why does <code>&lt;img&gt;</code> not need <code>&lt;/img&gt;</code>?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="a" />
+                    <span>It is a void element and does not wrap inner content</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="b" />
+                    <span>It only works inside a list</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q2" value="c" />
+                    <span>It is not really an HTML tag</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q3" data-answer="c"
+              data-success="Correct. Src points to the image file."
+              data-feedback="The src attribute gives the path or URL of the image file.">
+              <legend>3. What does the <code>src</code> attribute provide?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="a" />
+                    <span>The image caption</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="b" />
+                    <span>The section heading</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q3" value="c" />
+                    <span>The path or URL of the image file</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q4" data-answer="b"
+              data-success="Correct. Alt text should explain the important meaning or content of the image."
+              data-feedback="Good alt text describes the useful meaning of the image, not just that it is an image.">
+              <legend>4. Which alt text is most useful for a photo of three students planting flowers?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="a" />
+                    <span>alt="image"</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="b" />
+                    <span>alt="Three students planting flowers in the courtyard"</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q4" value="c" />
+                    <span>alt="nice"</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q5" data-answer="a"
+              data-success="Correct. Empty alt can be used for purely decorative images."
+              data-feedback="Use empty alt only when the image adds no useful information or function.">
+              <legend>5. When can <code>alt=""</code> be appropriate?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="a" />
+                    <span>When the image is purely decorative</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="b" />
+                    <span>Whenever the image is important</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q5" value="c" />
+                    <span>Only on headings</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q6" data-answer="c"
+              data-success="Correct. Section groups content with a clear theme or purpose."
+              data-feedback="A section is a meaningful group of related content, often with its own heading.">
+              <legend>6. How is <code>&lt;section&gt;</code> different from a plain <code>&lt;div&gt;</code>?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="a" />
+                    <span>Section is only for images</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="b" />
+                    <span>Section automatically adds a colourful design</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q6" value="c" />
+                    <span>Section groups content with a clear theme or purpose</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <fieldset class="quiz-question" data-question="q7" data-answer="b"
+              data-success="Correct. Figure and figcaption group media with a visible caption."
+              data-feedback="Figure can group media such as an image with a figcaption that appears visibly on the page.">
+              <legend>7. Which tags are useful for an image with a visible caption?</legend>
+              <ul class="quiz-answer-list">
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="a" />
+                    <span><code>&lt;ol&gt;</code> and <code>&lt;li&gt;</code></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="b" />
+                    <span><code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="quiz-answer">
+                    <input type="radio" name="q7" value="c" />
+                    <span><code>&lt;title&gt;</code> and <code>&lt;body&gt;</code></span>
+                  </label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div class="quiz-actions">
+              <button class="primary-link" type="submit">Check score</button>
+              <button class="lesson-secondary-action" type="button" data-action="reset-quiz">
+                Reset quiz
+              </button>
+            </div>
+
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+              Your answers save automatically on this device once you start.
+            </p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p>
+          <h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item">
+              <dt>Img</dt>
+              <dd>A void element that embeds an image file into the page.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Src</dt>
+              <dd>The attribute that points to the image file.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Alt text</dt>
+              <dd>Text that describes an image when the image cannot be seen.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Section</dt>
+              <dd>A meaningful group of related content, usually with a heading.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Figure</dt>
+              <dd>A group for media such as an image, often with a caption.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="lesson-rail-card panel revision-card">
+          <p class="eyebrow">Remember</p>
+          <h2>Images need meaning</h2>
+          <ul class="memory-list">
+            <li>Img is a void element, so it has no closing tag.</li>
+            <li>Src points to the file the browser should load.</li>
+            <li>Alt text explains the image if it cannot be seen.</li>
+            <li>Use sectioning tags when the group has meaning.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+      <p class="eyebrow">Keep Going</p>
+      <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+      <div class="sequence-grid" data-role="lesson-sequence"></div>
+    </section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">
+      Previous
+    </button>
+    <p class="slide-status" data-role="slide-status">Slide 1 of 9</p>
+    <button type="button" class="slide-button" data-action="next-slide">
+      Next
+    </button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">
+      Exit slides
+    </button>
+  </div>
+</body>
+
+</html>

@@ -179,7 +179,8 @@ the browser with `localStorage` where useful.
 - The first Web Development lessons now exist at
   `pages/topics/what-is-html.html` and
   `pages/topics/html-document-structure.html`, and
-  `pages/topics/headings-paragraphs-lists-and-links.html`.
+  `pages/topics/headings-paragraphs-lists-and-links.html`, and
+  `pages/topics/images-alt-text-and-useful-page-sections.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,

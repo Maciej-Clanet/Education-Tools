@@ -18,9 +18,10 @@ const lessonConfig = {
       },
       next: {
         title: "Images, alt text, and useful page sections",
+        href: "images-alt-text-and-useful-page-sections.html",
         description:
-          "Next planned HTML basics lesson on images and clearer page sections.",
-        status: "Planned",
+          "Learn how to add images, write useful alt text, and choose clearer page section tags.",
+        status: "Live",
       },
     },
   },
