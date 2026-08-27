@@ -17,10 +17,11 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "HTML practice project",
+        title: "Parent and child relationships in HTML",
+        href: "parent-child-relationships-in-html.html",
         description:
-          "Next planned HTML basics lesson for combining these tags into a small page.",
-        status: "Planned",
+          "Build a clear mental model of nesting, direct children, siblings, descendants, and closing order.",
+        status: "Live",
       },
     },
   },

@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parent and Child Relationships in HTML Lesson | Education Tools</title>
+  <meta name="description"
+    content="Learn how HTML nesting creates parent, child, sibling, and descendant relationships, and how indentation and closing order make structure clear." />
+  <meta property="og:title" content="Parent and Child Relationships in HTML Lesson | Education Tools" />
+  <meta property="og:description"
+    content="Explore HTML nesting, parent and child relationships, readable indentation, and correct closing order with interactive examples." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/pages/parent-child-relationships-in-html.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/parent-child-relationships-in-html.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">HTML Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#html-basics" data-role="breadcrumb-unit-link">Web Development</a></li>
+          <li aria-current="page">Parent and child relationships in HTML</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>Parent and child relationships in HTML</h1>
+          <p class="lesson-hero-text">
+            HTML elements fit inside one another to create a clear structure. Build a mental map of that nesting now,
+            before you use it to create more complicated pages and layouts.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside
+            <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Resource area</strong><span>HTML basics</span></article>
+        <article class="lesson-meta-card"><strong>Main focus</strong><span>Nesting and element relationships</span></article>
+        <article class="lesson-meta-card"><strong>Quiz</strong><span>10 understanding questions</span></article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit" href="../resources/web-development.html#html-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">
+          Teacher slides
+        </button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The complete lesson notes and relationship explanations still work without JavaScript, but the interactive
+        highlights, demonstrations, quiz scoring, saved answers, task drafts, and teacher slides need JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#overview" data-section-link>From images to nesting</a>
+          <a href="#nesting" data-section-link>See the nesting</a>
+          <a href="#relationships" data-section-link>Relationship words</a>
+          <a href="#explorer" data-section-link>Nesting explorer</a>
+          <a href="#parent-movement" data-section-link>Moving a parent</a>
+          <a href="#direct-children" data-section-link>Direct-child layout</a>
+          <a href="#grouping" data-section-link>Grouping with div</a>
+          <a href="#readable-nesting" data-section-link>Indent and close</a>
+          <a href="#practice" data-section-link>Practice</a>
+          <a href="#summary" data-section-link>Summary</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
+          <p class="eyebrow">Quick Recap</p>
+          <h2>An image cannot contain a child, but a link can contain an image</h2>
+          <p class="lesson-section-copy">
+            You already know that <code>&lt;img&gt;</code> is a void element. It gets its image from the
+            <code>src</code> attribute and cannot have content nested inside it.
+          </p>
+
+          <div class="bridge-grid">
+            <article class="relationship-card relationship-card--void">
+              <span class="relationship-card__label">Void element</span>
+              <pre><code>&lt;img src="cat.jpg"
+  alt="A black cat"&gt;</code></pre>
+              <p><code>&lt;img&gt;</code> cannot contain text or another element.</p>
+            </article>
+            <article class="relationship-card relationship-card--parent">
+              <span class="relationship-card__label">Parent with one child</span>
+              <pre><code>&lt;a href="cats.html"&gt;
+  &lt;img src="cat.jpg"
+    alt="A black cat"&gt;
+&lt;/a&gt;</code></pre>
+              <p>The link contains the image, so the image becomes clickable.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>A link is not limited to text</h3>
+              <p class="code-preview__copy">
+                An anchor can contain suitable content such as an image. Here, <code>&lt;a&gt;</code> is the parent and
+                <code>&lt;img&gt;</code> is its child.
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Image nested inside a link code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Relationship preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Linked image">
+              <div data-code-content><pre><code>&lt;a href="cats.html"&gt;
+  &lt;img src="cat.jpg" alt="A black cat"&gt;
+&lt;/a&gt;</code></pre></div>
+              <div data-preview-content>
+                <div class="linked-image-preview">
+                  <span class="nesting-badge">Parent: a</span>
+                  <a href="#linked-image-note" aria-label="Example linked image: black cat">
+                    <span aria-hidden="true">🐈‍⬛</span><span>Clickable cat image</span>
+                  </a>
+                  <span class="nesting-badge">Child: img</span>
+                  <p id="linked-image-note">The outer link makes its image child clickable.</p>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="nesting" class="lesson-section lesson-section--nesting panel" data-lesson-section>
+          <p class="eyebrow">Nesting</p>
+          <h2>Nesting means placing one HTML element inside another</h2>
+          <p class="lesson-section-copy">
+            You have already placed list items inside a list. A nested list adds another level inside one of those
+            list items. Indentation makes each level visible, while the tags create the real structure.
+          </p>
+
+          <div class="nesting-teach-grid lesson-fullrow">
+            <article class="code-map-card">
+              <h3>Indented HTML</h3>
+              <pre class="guide-code" aria-label="Nested list code with indentation guides"><code><span class="guide-line guide-line--0">&lt;ul&gt;</span>
+<span class="guide-line guide-line--1">  &lt;li&gt;Dogs&lt;/li&gt;</span>
+<span class="guide-line guide-line--1">  &lt;li&gt;</span>
+<span class="guide-line guide-line--2">    Cats</span>
+<span class="guide-line guide-line--2">    &lt;ul&gt;</span>
+<span class="guide-line guide-line--3">      &lt;li&gt;Black cats&lt;/li&gt;</span>
+<span class="guide-line guide-line--3">      &lt;li&gt;Orange cats&lt;/li&gt;</span>
+<span class="guide-line guide-line--2">    &lt;/ul&gt;</span>
+<span class="guide-line guide-line--1">  &lt;/li&gt;</span>
+<span class="guide-line guide-line--0">&lt;/ul&gt;</span></code></pre>
+            </article>
+            <article class="tree-card">
+              <h3>The same structure as a tree</h3>
+              <div class="html-tree" role="img" aria-label="Outer ul with two li children. The second li contains an inner ul, which contains two more li children.">
+                <div class="tree-node tree-node--level-0"><span>ul</span><small>outer list</small></div>
+                <div class="tree-branch tree-branch--level-1"><div class="tree-node"><span>li</span><small>Dogs</small></div></div>
+                <div class="tree-branch tree-branch--level-1"><div class="tree-node"><span>li</span><small>Cats</small></div>
+                  <div class="tree-branch tree-branch--level-2"><div class="tree-node"><span>ul</span><small>inner list</small></div>
+                    <div class="tree-branch tree-branch--level-3"><div class="tree-node"><span>li</span><small>Black cats</small></div></div>
+                    <div class="tree-branch tree-branch--level-3"><div class="tree-node"><span>li</span><small>Orange cats</small></div></div>
+                  </div>
+                </div>
+              </div>
+              <p class="text-equivalent"><strong>Text version:</strong> the outer ul contains two li elements. The second li also contains another ul, which contains two more li elements.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="relationships" class="lesson-section lesson-section--relationships panel" data-lesson-section>
+          <p class="eyebrow">Relationship Words</p>
+          <h2>Parent, child, sibling, and descendant describe where elements sit</h2>
+          <p class="lesson-section-copy">
+            These words describe relationships, not permanent types of element. The same element can have several
+            relationships at once.
+          </p>
+
+          <div class="term-grid">
+            <article class="term-card"><strong>Parent</strong><p>Contains another element as part of its content.</p></article>
+            <article class="term-card"><strong>Direct child</strong><p>Sits exactly one level inside a parent.</p></article>
+            <article class="term-card"><strong>Sibling</strong><p>Shares the same direct parent with another element.</p></article>
+            <article class="term-card"><strong>Descendant</strong><p>Sits anywhere deeper inside an element, even several levels down.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="relationship-callout lesson-fullrow">
+            <div class="mini-hierarchy" aria-hidden="true">
+              <span class="mini-hierarchy__label">header · parent</span>
+              <div class="mini-hierarchy__children">
+                <span class="mini-hierarchy__child">img · child</span>
+                <div class="mini-hierarchy__nav">
+                  <span class="mini-hierarchy__label">nav · child and parent</span>
+                  <div class="mini-hierarchy__links">
+                    <span>a</span>
+                    <span>a</span>
+                    <span>a</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3>A child can also be a parent</h3>
+              <p><code>&lt;nav&gt;</code> is a child of <code>&lt;header&gt;</code>, a sibling of <code>&lt;img&gt;</code>, and the parent of three links—all at the same time.</p>
+              <p>Nesting can keep going through deeper levels. The relationship depends on which two elements you compare.</p>
+            </div>
+          </div>
+
+          <div class="direct-child-note">
+            <strong>One-level test:</strong>
+            <p>The outer <code>&lt;ul&gt;</code> has the two outer <code>&lt;li&gt;</code> elements as direct children. The inner <code>&lt;ul&gt;</code> is a descendant, but not a direct child, because another <code>&lt;li&gt;</code> sits between them.</p>
+          </div>
+        </section>
+
+        <section id="explorer" class="lesson-section lesson-section--explorer panel" data-lesson-section>
+          <p class="eyebrow">Interactive Explorer</p>
+          <h2>Select an element to reveal its relationships</h2>
+          <p class="lesson-section-copy">
+            Use Tab and Enter, or click a labelled element. Every highlight includes a written relationship label, so
+            meaning does not depend on colour.
+          </p>
+
+          <div class="nesting-explorer lesson-fullrow" data-nesting-explorer>
+            <div class="explorer-canvas" role="group" aria-label="Selectable nested header example">
+              <div class="explorer-group explorer-group--header">
+                <button type="button" class="explorer-node explorer-node--header" data-node-id="header" data-select-node="header" aria-pressed="false">
+                  <span class="explorer-node__tag">header</span><span class="explorer-node__relation" data-node-relation></span>
+                </button>
+                <div class="explorer-node__children">
+                  <button type="button" class="explorer-node explorer-node--logo" data-node-id="logo" data-select-node="logo" aria-pressed="false">
+                    <span class="explorer-node__tag">img · logo</span><span class="explorer-node__relation" data-node-relation></span>
+                  </button>
+                  <div class="explorer-group explorer-group--nav">
+                    <button type="button" class="explorer-node explorer-node--nav" data-node-id="nav" data-select-node="nav" aria-pressed="false">
+                      <span class="explorer-node__tag">nav</span><span class="explorer-node__relation" data-node-relation></span>
+                    </button>
+                    <div class="explorer-node__children explorer-node__children--links">
+                      <button type="button" class="explorer-node explorer-node--link" data-node-id="home" data-select-node="home" aria-pressed="false"><span class="explorer-node__tag">a · Home</span><span class="explorer-node__relation" data-node-relation></span></button>
+                      <button type="button" class="explorer-node explorer-node--link" data-node-id="about" data-select-node="about" aria-pressed="false"><span class="explorer-node__tag">a · About</span><span class="explorer-node__relation" data-node-relation></span></button>
+                      <button type="button" class="explorer-node explorer-node--link" data-node-id="contact" data-select-node="contact" aria-pressed="false"><span class="explorer-node__tag">a · Contact</span><span class="explorer-node__relation" data-node-relation></span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <article class="explorer-report" aria-live="polite" aria-atomic="true">
+              <h3>Selected: <code data-report="selected">nav</code></h3>
+              <dl>
+                <div><dt>Parent</dt><dd data-report="parent">header</dd></div>
+                <div><dt>Direct children</dt><dd data-report="children">Home link, About link, Contact link</dd></div>
+                <div><dt>Siblings</dt><dd data-report="siblings">img</dd></div>
+                <div><dt>Descendants</dt><dd data-report="descendants">Home link, About link, Contact link</dd></div>
+              </dl>
+            </article>
+          </div>
+
+          <p class="non-interactive-note">
+            <strong>Without the interaction:</strong> header is the parent of img and nav. Nav is the parent of the
+            three links. The links are siblings because they share nav as their parent.
+          </p>
+        </section>
+
+        <section id="parent-movement" class="lesson-section lesson-section--movement panel" data-lesson-section>
+          <p class="eyebrow">Moving Together</p>
+          <h2>When a parent moves, its contents move with it</h2>
+          <p class="lesson-section-copy">
+            Move the second parent using the control. Its heading, paragraph, and button keep their positions inside
+            it because they are part of that parent's contents.
+          </p>
+
+          <div class="parent-move-demo lesson-fullrow" data-parent-move-demo>
+            <label class="demo-control" for="parent-gap">
+              <span>Space between the parent containers</span>
+              <input id="parent-gap" type="range" min="0" max="120" value="24" step="8" data-parent-gap />
+              <output for="parent-gap" data-parent-gap-output>24 pixels</output>
+            </label>
+            <div class="parent-stage" data-parent-stage>
+              <article class="moving-parent moving-parent--first">
+                <span class="parent-label">Parent A</span><h3>News card</h3><p>Its children stay inside.</p><button type="button">Read</button>
+              </article>
+              <article class="moving-parent moving-parent--second">
+                <span class="parent-label">Parent B · moving</span><h3>Event card</h3><p>All three children move too.</p><button type="button">Join</button>
+              </article>
+            </div>
+            <p class="demo-status" data-parent-move-status aria-live="polite">Parent B is 24 pixels farther across; its contents moved with it.</p>
+          </div>
+
+          <aside class="behind-scenes-note">
+            CSS is moving the parent behind the scenes. You do not need the CSS yet—the important idea is that nested
+            content travels with its container.
+          </aside>
+        </section>
+
+        <section id="direct-children" class="lesson-section lesson-section--direct-children panel" data-lesson-section>
+          <p class="eyebrow">Layout Preview</p>
+          <h2>A parent can arrange its direct children</h2>
+          <p class="lesson-section-copy">
+            In this header, the direct children are the image and nav. The three links sit one level deeper inside nav.
+          </p>
+
+          <div class="direct-layout-grid lesson-fullrow">
+            <pre class="compact-code"><code>&lt;header&gt;
+  &lt;img src="logo.png" alt="Site logo"&gt;
+  &lt;nav&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+    &lt;a href="#"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+            <div class="header-layout-demo" data-header-layout-demo>
+              <button class="lesson-secondary-action" type="button" data-arrange-header aria-pressed="false">
+                Arrange header children in a row
+              </button>
+              <div class="demo-header" data-demo-header>
+                <div class="demo-logo"><span aria-hidden="true">◆</span><span>img<br><small>direct child 1</small></span></div>
+                <nav class="demo-nav" aria-label="Demonstration navigation">
+                  <span class="demo-nav__label">nav · direct child 2</span>
+                  <a href="#direct-children">Home</a><a href="#direct-children">About</a><a href="#direct-children">Contact</a>
+                </nav>
+              </div>
+              <p data-header-layout-status aria-live="polite">The image and nav are stacked. The links remain grouped inside nav.</p>
+            </div>
+          </div>
+
+          <div class="concept-preview">
+            <p><strong>One level deeper:</strong> the links stay in nav's own internal arrangement.</p>
+            <p>Later, CSS layout tools such as Flexbox will use these parent and child relationships. You do not need to learn the CSS yet.</p>
+          </div>
+        </section>
+
+        <section id="grouping" class="lesson-section lesson-section--grouping panel" data-lesson-section>
+          <p class="eyebrow">Grouping Content</p>
+          <h2>Div creates a generic group when no meaningful element fits</h2>
+          <p class="lesson-section-copy">
+            A <code>&lt;div&gt;</code> can group several children into one container. The whole card can later be moved or
+            styled as one unit.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>A grouped animal card</h3>
+              <p class="code-preview__copy">The div is the direct parent of the image, heading, paragraph, and link.</p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Code</p><div class="code-preview__code" data-code-preview-code aria-label="Div card code example"></div></div>
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Preview</p><div class="code-preview__preview" data-code-preview-output></div></div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Generic card group">
+              <div data-code-content><pre><code>&lt;div&gt;
+  &lt;img src="panda.jpg" alt="A red panda"&gt;
+  &lt;h2&gt;Red Panda&lt;/h2&gt;
+  &lt;p&gt;Learn more about red pandas.&lt;/p&gt;
+  &lt;a href="#"&gt;Read more&lt;/a&gt;
+&lt;/div&gt;</code></pre></div>
+              <div data-preview-content>
+                <article class="panda-card"><div class="panda-card__image" role="img" aria-label="A red panda illustration">🦊</div><h2>Red Panda</h2><p>Learn more about red pandas.</p><a href="#grouping">Read more</a></article>
+              </div>
+            </template>
+          </article>
+
+          <div class="semantic-choice-grid">
+            <article><strong>Use a meaningful element when it fits</strong><p>Navigation should usually use <code>&lt;nav&gt;</code>. Self-contained content may suit <code>&lt;article&gt;</code>.</p></article>
+            <article><strong>Use div for a generic container</strong><p>Choose <code>&lt;div&gt;</code> when the group needs a container but has no clearer semantic meaning.</p></article>
+          </div>
+        </section>
+
+        <section id="readable-nesting" class="lesson-section lesson-section--readable panel" data-lesson-section>
+          <p class="eyebrow">Readable and Correct</p>
+          <h2>Indent for people, then close from the inside out</h2>
+          <p class="lesson-section-copy">
+            Tags create relationships; spaces do not. Indentation is still essential because it lets a person see the
+            levels and spot mistakes quickly.
+          </p>
+
+          <div class="format-compare-grid">
+            <article class="format-card format-card--hard"><h3>Hard to scan</h3><pre><code>&lt;header&gt;&lt;nav&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/nav&gt;&lt;/header&gt;</code></pre><p>The browser can read it, but the levels are hidden from the person editing it.</p></article>
+            <article class="format-card format-card--clear"><h3>Structure visible</h3><pre class="guide-code"><code><span class="guide-line guide-line--0">&lt;header&gt;</span>
+<span class="guide-line guide-line--1">  &lt;nav&gt;</span>
+<span class="guide-line guide-line--2">    &lt;a href="#"&gt;Home&lt;/a&gt;</span>
+<span class="guide-line guide-line--2">    &lt;a href="#"&gt;About&lt;/a&gt;</span>
+<span class="guide-line guide-line--1">  &lt;/nav&gt;</span>
+<span class="guide-line guide-line--0">&lt;/header&gt;</span></code></pre><p>Each level steps inward, and matching opening and closing tags line up.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="closing-order-grid lesson-fullrow">
+            <article class="closing-card closing-card--correct">
+              <span class="answer-marker">Correct · nested</span><h3>Inner closes before outer</h3>
+              <div class="nested-box nested-box--section"><span>Open section</span><div class="nested-box nested-box--paragraph"><span>Open p</span><strong>Hello</strong><span>Close p</span></div><span>Close section</span></div>
+              <pre><code>&lt;section&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+            </article>
+            <article class="closing-card closing-card--wrong">
+              <span class="answer-marker">Incorrect · crossed</span><h3>The boundaries cross</h3>
+              <div class="crossed-lines" role="img" aria-label="Section opens, paragraph opens, section incorrectly closes before paragraph closes"><span>&lt;section&gt;</span><span>&lt;p&gt;</span><span>&lt;/section&gt; ✕</span><span>&lt;/p&gt; ✕</span></div>
+              <pre><code>&lt;section&gt;
+  &lt;p&gt;Hello
+&lt;/section&gt;
+  &lt;/p&gt;</code></pre>
+            </article>
+          </div>
+
+          <div class="closing-rule"><strong>Closing-order rule:</strong><span>The element opened most recently normally closes first: open outer → open inner → close inner → close outer.</span></div>
+
+          <div data-slide-break></div>
+
+          <article class="next-tag-activity" data-closing-activity>
+            <h3>Which closing tag comes next?</h3>
+            <pre><code>&lt;article&gt;
+  &lt;section&gt;
+    &lt;p&gt;Welcome to our page</code></pre>
+            <p>The paragraph was opened most recently. Choose the next tag.</p>
+            <div class="next-tag-options">
+              <button type="button" data-closing-choice="article"><code>&lt;/article&gt;</code></button>
+              <button type="button" data-closing-choice="section"><code>&lt;/section&gt;</code></button>
+              <button type="button" data-closing-choice="p"><code>&lt;/p&gt;</code></button>
+            </div>
+            <p class="activity-feedback" data-closing-feedback aria-live="polite">Choose a tag, then check the explanation.</p>
+          </article>
+        </section>
+
+        <section id="practice" class="lesson-section lesson-section--exam-practice panel" data-lesson-section>
+          <p class="eyebrow">Common Traps and Practice</p>
+          <h2>Explain the structure, then repair it</h2>
+          <div class="trap-grid">
+            <article class="trap-card"><h3>Every child is not a direct child</h3><p>A descendant can be several levels down. Count one level only when asked for direct children.</p></article>
+            <article class="trap-card"><h3>Indentation does not fix tags</h3><p>Neat spacing helps you see structure, but only correctly placed opening and closing tags create it.</p></article>
+            <article class="trap-card"><h3>Div is not the automatic answer</h3><p>Use a semantic element when its meaning fits; use div for a genuinely generic group.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="exam-grid lesson-fullrow">
+            <article class="exam-card">
+              <p class="eyebrow">4 marks</p><h3>Relationship explanation</h3>
+              <pre><code>&lt;header&gt;
+  &lt;img src="logo.png" alt="Site logo"&gt;
+  &lt;nav&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;News&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+              <p>Identify the direct children of header. Then explain two relationships involving nav.</p>
+              <label class="exam-response-label" for="relationship-response">Your answer</label>
+              <textarea id="relationship-response" class="exam-response" data-exam-response="relationships" placeholder="The direct children are... Nav is..."></textarea>
+              <details class="exam-guidance"><summary>Show answer guidance</summary><p>Header's direct children are img and nav. Nav is a child of header and sibling of img. Nav is also the parent of the two links, which are descendants of header.</p></details>
+            </article>
+            <article class="exam-card">
+              <p class="eyebrow">4 marks</p><h3>Repair the nesting</h3>
+              <pre><code>&lt;section&gt;
+  &lt;div&gt;
+    &lt;p&gt;Welcome&lt;/div&gt;
+  &lt;/p&gt;
+&lt;/section&gt;</code></pre>
+              <p>Rewrite the HTML with readable indentation and correct closing order. Explain one change.</p>
+              <label class="exam-response-label" for="repair-response">Your repaired HTML and explanation</label>
+              <textarea id="repair-response" class="exam-response exam-response--code" data-exam-response="repair" placeholder="&lt;section&gt;&#10;  ..."></textarea>
+              <details class="exam-guidance"><summary>Show answer guidance</summary><pre><code>&lt;section&gt;
+  &lt;div&gt;
+    &lt;p&gt;Welcome&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre><p>The paragraph closes first because it was opened most recently. Div then closes before section.</p></details>
+            </article>
+          </div>
+          <p class="exam-response-note">Your practice answers save automatically in this browser.</p>
+        </section>
+
+        <section id="summary" class="lesson-section lesson-section--summary panel" data-lesson-section>
+          <p class="eyebrow">Memory Hooks</p>
+          <h2>See the levels, then follow them back out</h2>
+          <div class="memory-grid">
+            <article><strong>Parent</strong><span>contains a direct child</span></article>
+            <article><strong>Direct child</strong><span>one level down</span></article>
+            <article><strong>Siblings</strong><span>share the same parent</span></article>
+            <article><strong>Descendant</strong><span>anywhere deeper inside</span></article>
+            <article><strong>Move parent</strong><span>contents move with it</span></article>
+            <article><strong>Close tags</strong><span>inner first, then outer</span></article>
+          </div>
+          <p class="summary-line"><strong>Final reminder:</strong> a child can also be a parent, and indentation makes every nesting level easier for people to follow.</p>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p>
+          <h2>Check your understanding</h2>
+          <p class="quiz-intro">Answer all ten questions, then check your score. Your choices and best score save in this browser.</p>
+
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. The anchor contains the image." data-feedback="Look for the opening and closing tags wrapped around the image.">
+              <legend>1. In <code>&lt;a href="cats.html"&gt;&lt;img src="cat.jpg" alt="Cat"&gt;&lt;/a&gt;</code>, which element is the parent?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>img</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>a</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>Neither element</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q2" data-answer="c" data-success="Correct. Img and nav sit exactly one level inside header." data-feedback="Direct children are exactly one level down, not every deeper descendant.">
+              <legend>2. Which are the direct children of the header in the lesson example?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>Only the three links</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>Img, nav, and all three links</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>Img and nav</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q3" data-answer="a" data-success="Correct. Elements with the same direct parent are siblings." data-feedback="Compare which element directly contains each link.">
+              <legend>3. Why are the Home, About, and Contact links siblings?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>They share nav as their parent</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>They all use href</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span>They appear on the same website</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q4" data-answer="a" data-success="Correct. A parent's nested contents normally move with it." data-feedback="Think about the relationship between a container and everything nested inside it.">
+              <legend>4. What normally happens to nested content when its parent element moves?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>The nested content moves with the parent</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>Only the first child moves</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>The nested content leaves the parent</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q5" data-answer="b" data-success="Correct. Parent-controlled layout usually arranges the elements one level inside that parent." data-feedback="Count one level down from the parent being arranged.">
+              <legend>5. When a parent controls layout, which elements does it usually arrange first?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>Every descendant at every level</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>Its direct children</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>Only elements outside the parent</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q6" data-answer="c" data-success="Correct. The paragraph closes before its parent section." data-feedback="Close the element opened most recently before closing the outer one.">
+              <legend>6. Which HTML is correctly nested?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span><code>&lt;section&gt;&lt;p&gt;Hello&lt;/section&gt;&lt;/p&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span><code>&lt;section&gt;&lt;p&gt;Hello&lt;/section&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span><code>&lt;section&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/section&gt;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q7" data-answer="a" data-success="Correct. P was opened last, so it closes first." data-feedback="Follow the opening tags from outer to inner, then reverse the order.">
+              <legend>7. What closing tag comes next after <code>&lt;article&gt;&lt;section&gt;&lt;p&gt;Hello</code>?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span><code>&lt;/p&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span><code>&lt;/article&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span><code>&lt;/section&gt;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q8" data-answer="b" data-success="Correct. Indentation exposes the levels to human readers." data-feedback="Indentation does not create the relationship; it makes the tag structure easier to see.">
+              <legend>8. Why is indentation useful in nested HTML?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>It creates parent and child relationships</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>It makes levels and matching tags easier for people to see</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>It automatically repairs crossed tags</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q9" data-answer="c" data-success="Correct. Img is void, while an anchor can contain suitable content such as an image." data-feedback="Recall the bridge from the previous image lesson.">
+              <legend>9. Which statement is accurate?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q9" value="a" /><span>Img can contain a paragraph</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="b" /><span>Links can contain text only</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="c" /><span>Img cannot contain children, and a link can contain an image</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q10" data-answer="a" data-success="Correct. Semantic meaning comes first; div is the generic fallback." data-feedback="Do not choose div automatically when a meaningful element accurately describes the content.">
+              <legend>10. When is div the best choice for a parent container?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span>When the group needs a container but no more meaningful semantic element fits</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span>Whenever any element needs a parent</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>For every navigation menu instead of nav</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p><h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item"><dt>Nesting</dt><dd>Placing an element inside another element.</dd></div>
+            <div class="glossary-item"><dt>Parent</dt><dd>An element that directly contains another element.</dd></div>
+            <div class="glossary-item"><dt>Direct child</dt><dd>An element exactly one level inside its parent.</dd></div>
+            <div class="glossary-item"><dt>Sibling</dt><dd>An element that shares the same parent.</dd></div>
+            <div class="glossary-item"><dt>Descendant</dt><dd>An element anywhere deeper inside another element.</dd></div>
+            <div class="glossary-item"><dt>Div</dt><dd>A generic container with no extra semantic meaning.</dd></div>
+          </dl>
+        </section>
+        <section class="lesson-rail-card panel revision-card">
+          <p class="eyebrow">Remember</p><h2>Inside closes first</h2>
+          <ul class="memory-list"><li>Open outer.</li><li>Open inner.</li><li>Close inner.</li><li>Close outer.</li></ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+      <p class="eyebrow">Keep Going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div>
+    </section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+    <p class="slide-status" data-role="slide-status">Slide 1</p>
+    <button type="button" class="slide-button" data-action="next-slide">Next</button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+  </div>
+</body>
+
+</html>

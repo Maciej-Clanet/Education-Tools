@@ -1,3 +1,46 @@
+export const webDevelopmentProgressData = {
+  id: "web-development",
+  title: "Web Development",
+  sections: [
+    {
+      id: "html-basics",
+      title: "HTML basics",
+      lessons: [
+        {
+          id: "what-is-html",
+          title: "What is HTML?",
+          href: "../topics/what-is-html.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 8, passScore: 6 },
+        },
+        {
+          id: "html-document-structure",
+          title: "HTML document structure",
+          href: "../topics/html-document-structure.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 6, passScore: 5 },
+        },
+        {
+          id: "headings-paragraphs-lists-and-links",
+          title: "Headings, paragraphs, lists, and links",
+          href: "../topics/headings-paragraphs-lists-and-links.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 8, passScore: 7 },
+        },
+        {
+          id: "images-alt-text-and-useful-page-sections",
+          title: "Images, alt text, and useful page sections",
+          href: "../topics/images-alt-text-and-useful-page-sections.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 7, passScore: 6 },
+        },
+        {
+          id: "parent-child-relationships-in-html",
+          title: "Parent and child relationships in HTML",
+          href: "../topics/parent-child-relationships-in-html.html?context=web-development",
+          quiz: { version: 2, totalQuestions: 10, passScore: 8 },
+        },
+      ],
+    },
+  ],
+}
+
 export const btecLevel3Unit2ProgressData = {
   id: "btec-level-3-unit-2",
   title: "BTEC Level 3 Computing Unit 2",
