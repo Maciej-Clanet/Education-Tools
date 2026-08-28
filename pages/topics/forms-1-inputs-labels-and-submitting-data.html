@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forms 1: Inputs, Labels, and Submitting Data | Education Tools</title>
+  <meta name="description"
+    content="Learn the input, processing, output model and the first HTML form basics: form, input, label, id, name, required, and submit." />
+  <meta property="og:title" content="Forms 1: Inputs, Labels, and Submitting Data | Education Tools" />
+  <meta property="og:description"
+    content="A beginner-friendly lesson on computing input and output, HTML inputs, labels, ids, names, required fields, and simulated form submission." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/pages/forms-1-inputs-labels-and-submitting-data.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/forms-1-inputs-labels-and-submitting-data.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">HTML Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#html-basics" data-role="breadcrumb-unit-link">Web Development</a></li>
+          <li aria-current="page">Forms 1: Inputs, labels, and submitting data</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>Forms 1: Inputs, labels, and submitting data</h1>
+          <p class="lesson-hero-text">
+            Forms are how many websites collect input. Start with the computing model of input, processing, and
+            output, then build your first labelled HTML form controls.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside
+            <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Resource area</strong><span>HTML basics</span></article>
+        <article class="lesson-meta-card"><strong>Main focus</strong><span>Input/output, labels, id, name, and submit</span></article>
+        <article class="lesson-meta-card"><strong>Practice</strong><span>Live form demos</span></article>
+        <article class="lesson-meta-card"><strong>Quiz</strong><span>12 understanding questions</span></article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit" href="../resources/web-development.html#html-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">
+          Teacher slides
+        </button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The lesson notes still work without JavaScript, but the form demonstrations, code previews, quiz scoring,
+        saved answers, and teacher slides need JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#input-output" data-section-link>Input and output</a>
+          <a href="#ipo-demo" data-section-link>Live model</a>
+          <a href="#web-forms" data-section-link>Web forms</a>
+          <a href="#first-input" data-section-link>First input</a>
+          <a href="#labels" data-section-link>Labels</a>
+          <a href="#placeholders" data-section-link>Placeholders</a>
+          <a href="#types-validation" data-section-link>Types and required</a>
+          <a href="#names-submit" data-section-link>Names and submit</a>
+          <a href="#anatomy" data-section-link>Form anatomy</a>
+          <a href="#mistakes" data-section-link>Common mistakes</a>
+          <a href="#summary" data-section-link>Summary</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="input-output" class="lesson-section lesson-section--overview panel" data-lesson-section>
+          <p class="eyebrow">Computing Model</p>
+          <h2>Input goes in, processing happens, output comes out</h2>
+          <p class="lesson-section-copy">
+            Input and output are bigger ideas than keyboards and screens. In software, input means data or instructions
+            provided to a system. Output means information or results produced by that system.
+          </p>
+
+          <div class="ipo-flow" role="img" aria-label="Input goes into processing, and processing produces output.">
+            <article class="ipo-card ipo-card--input">
+              <span class="ipo-stage-label">Input</span>
+              <strong>Data or instructions</strong>
+              <p>What the user, another system, or a device provides.</p>
+            </article>
+            <article class="ipo-card ipo-card--process">
+              <span class="ipo-stage-label">Processing</span>
+              <strong>Work done by the system</strong>
+              <p>Checking, calculating, searching, storing, or changing the input.</p>
+            </article>
+            <article class="ipo-card ipo-card--output">
+              <span class="ipo-stage-label">Output</span>
+              <strong>Information or result</strong>
+              <p>What the system produces after processing.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="ipo-example-grid">
+            <article class="example-card"><strong>Search engine</strong><p>Input: "red panda facts". Processing: search for matches. Output: results page.</p></article>
+            <article class="example-card"><strong>Calculator</strong><p>Input: 5 + 3. Processing: addition. Output: 8.</p></article>
+            <article class="example-card"><strong>Login form</strong><p>Input: email and password. Processing: check the details. Output: success or an error.</p></article>
+            <article class="example-card"><strong>Online shop</strong><p>Input: item and quantity. Processing: calculate total. Output: order summary.</p></article>
+          </div>
+
+          <p class="form-note">
+            A keyboard is an input device, but the words typed into a form are also input when you are describing a
+            software system.
+          </p>
+        </section>
+
+        <section id="ipo-demo" class="lesson-section lesson-section--tool panel" data-lesson-section>
+          <p class="eyebrow">Interactive Model</p>
+          <h2>Change the input and watch the output change</h2>
+          <p class="lesson-section-copy">
+            This small teaching tool uses JavaScript behind the scenes, but the idea is not about JavaScript yet. The
+            same input, processing, output model appears in many kinds of software.
+          </p>
+
+          <div class="form-tool lesson-fullrow" data-ipo-demo>
+            <div class="ipo-demo-grid">
+              <form class="demo-form" data-no-slide-advance>
+                <label class="demo-label" for="ipo-demo-name">
+                  Input: name
+                  <input id="ipo-demo-name" class="demo-input" data-ipo-input type="text" value="Alex" autocomplete="off" />
+                </label>
+              </form>
+              <div class="demo-panel">
+                <div>
+                  <span class="ipo-stage-label">Processing</span>
+                  <p data-ipo-processing aria-live="polite"></p>
+                </div>
+                <div class="ipo-live-output">
+                  <span class="ipo-stage-label">Output</span>
+                  <span data-ipo-output aria-live="polite"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="web-forms" class="lesson-section lesson-section--forms panel" data-lesson-section>
+          <p class="eyebrow">Web Forms</p>
+          <h2>Web forms collect input from users</h2>
+          <p class="lesson-section-copy">
+            Websites use forms for searching, signing in, creating accounts, entering addresses, sending messages, and
+            choosing settings. A <code>&lt;form&gt;</code> groups the controls used to collect that information.
+          </p>
+
+          <div class="form-purpose-grid">
+            <article class="form-purpose-card"><strong>Collect</strong><p>The user enters or chooses values.</p></article>
+            <article class="form-purpose-card"><strong>Submit</strong><p>The user tells the form they are ready to send the values.</p></article>
+            <article class="form-purpose-card"><strong>Process</strong><p>A real website receives, checks, stores, or uses the values.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="form-tree-grid">
+            <article class="form-tree-card">
+              <h3>Form as a parent</h3>
+              <div class="form-tree-visual" role="img" aria-label="Form is the parent. Label, input, and submit button are children inside the form.">
+                <div class="form-tree-node"><span class="form-tree-label">Parent</span><code>form</code></div>
+                <div class="form-tree-children">
+                  <div class="form-tree-child"><span>child</span><code>label</code></div>
+                  <div class="form-tree-child"><span>child</span><code>input</code></div>
+                  <div class="form-tree-child"><span>child</span><code>button</code></div>
+                </div>
+              </div>
+            </article>
+            <article class="form-tree-card">
+              <h3>HTML shape</h3>
+              <pre class="form-tree-code"><code>&lt;form&gt;
+  &lt;label&gt;...&lt;/label&gt;
+  &lt;input&gt;
+  &lt;button&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+              <p class="form-tree-note">This connects back to the parent and child lesson: the controls sit inside the form.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="first-input" class="lesson-section lesson-section--input panel" data-lesson-section>
+          <p class="eyebrow">Your First Input</p>
+          <h2><code>&lt;input&gt;</code> creates a control for user input</h2>
+          <p class="lesson-section-copy">
+            In computing, input is data going into a system. In HTML, <code>&lt;input&gt;</code> is a specific element
+            used for several kinds of form control.
+          </p>
+
+          <div class="input-detail-grid">
+            <article class="input-detail-card"><span class="form-token">&lt;input&gt;</span><strong>Void element</strong><p>It does not wrap content and does not use <code>&lt;/input&gt;</code>.</p></article>
+            <article class="input-detail-card"><span class="form-token">type="text"</span><strong>Type attribute</strong><p>The type changes what kind of input the browser expects.</p></article>
+            <article class="input-detail-card"><span class="form-token">text</span><strong>Ordinary short text</strong><p>Useful for a name or another short typed value.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>A text input appears as a text box</h3>
+              <p class="code-preview__copy">Students can type into the preview, but the input still needs a proper label next.</p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Code</p><div class="code-preview__code" data-code-preview-code aria-label="Input type text code example"></div></div>
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Preview</p><div class="code-preview__preview" data-code-preview-output></div></div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Text input">
+              <div data-code-content><pre><code>&lt;input type="text"&gt;</code></pre></div>
+              <div data-preview-content>
+                <div class="form-preview">
+                  <p>This creates a small text field.</p>
+                  <input class="demo-input" type="text" aria-label="Unlabelled teaching example text input" placeholder="Type here" />
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="labels" class="lesson-section lesson-section--labels panel" data-lesson-section>
+          <p class="eyebrow">Labels</p>
+          <h2>A label tells the user what to enter</h2>
+          <p class="lesson-section-copy">
+            A label is not decoration. It explains what the field is for, makes forms easier to click or tap, and helps
+            screen-reader users understand the control.
+          </p>
+
+          <div class="label-benefit-grid">
+            <article class="label-benefit-card"><strong>Meaning</strong><p>The user knows what information is expected.</p></article>
+            <article class="label-benefit-card"><strong>Click area</strong><p>A connected label can focus the input when clicked.</p></article>
+            <article class="label-benefit-card"><strong>Accessibility</strong><p>Assistive technology can announce the control clearly.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header">
+              <h3>Improve the input by adding and connecting a label</h3>
+              <p class="code-preview__copy">Here the diff is useful because each step improves the same small form.</p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Code</p><div class="code-preview__code" data-code-preview-code aria-label="Label connection progression code example"></div></div>
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Preview</p><div class="code-preview__preview" data-code-preview-output></div></div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Input only" data-step-note="The text box exists, but the user has not been told what it is for.">
+              <div data-code-content><pre><code>&lt;input type="text"&gt;</code></pre></div>
+              <div data-preview-content><div class="form-preview"><input class="demo-input" type="text" aria-label="Input-only teaching example" /></div></div>
+            </template>
+            <template data-code-step data-step-label="Label added" data-step-note="The label gives visible meaning, but it is not connected to a specific input yet.">
+              <div data-code-content><pre><code>&lt;label&gt;Name&lt;/label&gt;
+&lt;input type="text"&gt;</code></pre></div>
+              <div data-preview-content><div class="form-preview"><label>Name</label><input class="demo-input" type="text" aria-label="Name input beside an unconnected label" /></div></div>
+            </template>
+            <template data-code-step data-step-label="Label connected" data-step-note="The label's for value matches the input's id, so the label identifies exactly which input it describes.">
+              <div data-code-content><pre><code>&lt;label for="name"&gt;Name&lt;/label&gt;
+&lt;input id="name" type="text"&gt;</code></pre></div>
+              <div data-preview-content><div class="form-preview"><label class="demo-label" for="label-step-name">Name<input id="label-step-name" class="demo-input" type="text" /></label></div></div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <div class="label-focus-demo lesson-fullrow" data-label-focus-demo>
+            <h3>Click the label to focus the input</h3>
+            <div class="label-focus-grid">
+              <form class="demo-form label-focus-preview" data-no-slide-advance>
+                <label for="label-focus-name">Name</label>
+                <input id="label-focus-name" class="demo-input" type="text" autocomplete="off" />
+              </form>
+              <div class="demo-panel">
+                <div class="connection-line">
+                  <span class="form-token">for="label-focus-name"</span>
+                  <span class="form-token">id="label-focus-name"</span>
+                  <p>These values match, so the label and input are connected.</p>
+                </div>
+                <p class="demo-status" data-label-focus-status aria-live="polite">Click the visible Name label or tab to the input.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="placeholders" class="lesson-section lesson-section--placeholders panel" data-lesson-section>
+          <p class="eyebrow">Placeholders</p>
+          <h2>Placeholder text is a hint, not a label</h2>
+          <p class="lesson-section-copy">
+            A placeholder can show an example value, but it disappears when typing starts. The label should remain
+            available so users still know what the field is.
+          </p>
+
+          <div class="placeholder-compare-grid">
+            <article class="placeholder-card placeholder-card--bad">
+              <h3>Less accessible</h3>
+              <pre class="form-code"><code>&lt;input placeholder="Email address"&gt;</code></pre>
+              <p>The only visible instruction is inside the empty box.</p>
+            </article>
+            <article class="placeholder-card placeholder-card--better">
+              <h3>Better</h3>
+              <pre class="form-code"><code>&lt;label for="email"&gt;Email address&lt;/label&gt;
+&lt;input
+  id="email"
+  type="email"
+  placeholder="name@example.com"&gt;</code></pre>
+              <p>The label tells the user what the field is. The placeholder is only an example.</p>
+            </article>
+            <article class="placeholder-card">
+              <h3>Often enough</h3>
+              <pre class="form-code"><code>&lt;label for="name"&gt;Name&lt;/label&gt;
+&lt;input id="name" type="text"&gt;</code></pre>
+              <p>Not every input needs a placeholder. A clear label may be enough.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="placeholder-demo lesson-fullrow" data-placeholder-demo>
+            <h3>Try typing into both fields</h3>
+            <div class="placeholder-demo-grid">
+              <div class="form-preview" data-no-slide-advance>
+                <p><strong>Placeholder-only pattern:</strong></p>
+                <input id="placeholder-only-demo" class="demo-input" data-placeholder-bad type="email" placeholder="Email address" aria-label="Placeholder-only teaching example for email address" />
+                <p><strong>Label plus optional placeholder:</strong></p>
+                <label class="demo-label" for="placeholder-better-demo">Email address
+                  <input id="placeholder-better-demo" class="demo-input" data-placeholder-better type="email" placeholder="name@example.com" />
+                </label>
+              </div>
+              <div class="demo-panel">
+                <p class="demo-status" data-placeholder-status aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="types-validation" class="lesson-section lesson-section--types panel" data-lesson-section>
+          <p class="eyebrow">Input Types</p>
+          <h2>The type attribute changes what kind of input is expected</h2>
+          <p class="lesson-section-copy">
+            <code>&lt;input&gt;</code> is one element, but <code>type</code> can make it behave like several useful
+            controls. This lesson only uses a small set.
+          </p>
+
+          <div class="input-detail-grid">
+            <article class="input-detail-card"><span class="form-token">type="text"</span><strong>Text</strong><p>General short text.</p></article>
+            <article class="input-detail-card"><span class="form-token">type="email"</span><strong>Email</strong><p>Email-specific help or validation may appear.</p></article>
+            <article class="input-detail-card"><span class="form-token">type="password"</span><strong>Password</strong><p>Masks display only; it does not encrypt by itself.</p></article>
+            <article class="input-detail-card"><span class="form-token">type="number"</span><strong>Number</strong><p>Useful for quantities, not every value containing digits.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="input-type-demo lesson-fullrow" data-input-type-demo>
+            <h3>Switch the input type</h3>
+            <div class="input-type-demo-grid">
+              <div class="demo-form" data-no-slide-advance>
+                <label class="demo-label" for="input-type-select">Choose type
+                  <select id="input-type-select" class="demo-select" data-input-type-select>
+                    <option value="text">text</option>
+                    <option value="email">email</option>
+                    <option value="password">password</option>
+                    <option value="number">number</option>
+                  </select>
+                </label>
+                <label class="demo-label" for="input-type-control"><span data-input-type-label></span>
+                  <input id="input-type-control" class="demo-input" data-input-type-control type="text" autocomplete="off" />
+                </label>
+              </div>
+              <div class="demo-panel">
+                <pre class="form-code input-type-code"><code data-input-type-code></code></pre>
+                <p data-input-type-note aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="validation-demo lesson-fullrow" data-validation-demo>
+            <h3>Required fields and browser validation</h3>
+            <div class="validation-grid">
+              <form class="demo-form" data-no-slide-advance>
+                <label class="demo-label" for="validation-email">Email address
+                  <input id="validation-email" class="demo-input" name="email" type="email" placeholder="name@example.com" required />
+                </label>
+                <button class="demo-button" type="submit">Submit</button>
+              </form>
+              <div class="demo-panel">
+                <pre class="form-code"><code>&lt;label for="email"&gt;Email address&lt;/label&gt;
+&lt;input
+  id="email"
+  name="email"
+  type="email"
+  required&gt;</code></pre>
+                <p class="demo-status" data-validation-status aria-live="polite">
+                  Try submitting an empty value, an invalid email, and then a sensible email address.
+                </p>
+                <p>Browser validation helps users, but real applications normally check important data again later.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="names-submit" class="lesson-section lesson-section--names panel" data-lesson-section>
+          <p class="eyebrow">Names and Submit</p>
+          <h2>id identifies the element; name identifies the submitted value</h2>
+          <p class="lesson-section-copy">
+            The two attributes often look similar, but they do different jobs. Keep the question simple:
+            <code>id</code> asks "which element on this page?" and <code>name</code> asks "what should this value be
+            called when submitted?"
+          </p>
+
+          <div class="id-name-grid">
+            <article class="id-name-card id-name-card--id"><span class="form-token">id="email"</span><strong>Element identifier</strong><p>Used on the page, including for connecting a label.</p></article>
+            <article class="id-name-card id-name-card--name"><span class="form-token">name="email"</span><strong>Submitted value name</strong><p>Used to label the value when form data is submitted.</p></article>
+            <article class="id-name-card"><span class="form-token">same text, different jobs</span><strong>Common but not magic</strong><p><code>id</code> and <code>name</code> may both be email, but they are not the same feature.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="form-data-demo lesson-fullrow" data-form-data-demo>
+            <h3>NAME -> VALUE form data</h3>
+            <p>This teaching example shows what data the form has collected. A real website would normally send the information somewhere to be processed.</p>
+            <div class="form-data-grid">
+              <div>
+                <div class="attribute-editor" data-no-slide-advance>
+                  <label class="demo-label" for="data-name-attribute">Name attribute for the Name input
+                    <input id="data-name-attribute" class="demo-input" type="text" value="studentName" autocomplete="off" />
+                  </label>
+                  <p>Current code: <code class="form-token" data-name-code></code></p>
+                </div>
+                <form class="demo-form" data-no-slide-advance>
+                  <label class="demo-label" for="data-student-name">Name
+                    <input id="data-student-name" class="demo-input" name="studentName" type="text" value="Alex" autocomplete="off" />
+                  </label>
+                  <label class="demo-label" for="data-student-email">Email
+                    <input id="data-student-email" class="demo-input" name="email" type="email" value="alex@example.com" autocomplete="off" />
+                  </label>
+                  <label class="demo-label" for="data-student-age">Age
+                    <input id="data-student-age" class="demo-input" name="age" type="number" value="16" autocomplete="off" />
+                  </label>
+                  <label class="demo-label" for="data-student-note">Nickname with no name attribute
+                    <input id="data-student-note" class="demo-input" type="text" value="Al" autocomplete="off" />
+                  </label>
+                  <button class="demo-button" type="submit">Submit form</button>
+                </form>
+              </div>
+              <div class="demo-panel">
+                <h3>Simulated submitted data</h3>
+                <div class="form-data-output" data-form-data-output aria-live="polite"></div>
+                <p class="form-data-status" data-form-data-status aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="submit-flow">
+            <article class="submit-card"><span class="ipo-stage-label">Input</span><p>Name, email, and age entered into controls.</p></article>
+            <article class="submit-card"><span class="ipo-stage-label">Processing</span><p>The website receives, checks, stores, or uses the submitted values.</p></article>
+            <article class="submit-card"><span class="ipo-stage-label">Output</span><p>Confirmation, results, next page, or an error message.</p></article>
+          </div>
+          <div class="form-note">
+            <p><code>&lt;button type="submit"&gt;Send&lt;/button&gt;</code> tells the form that the user wants to submit the entered information. Writing <code>type="submit"</code> makes the purpose clear.</p>
+          </div>
+        </section>
+
+        <section id="anatomy" class="lesson-section lesson-section--anatomy panel" data-lesson-section>
+          <p class="eyebrow">Form Anatomy</p>
+          <h2>Put the first form pieces together</h2>
+          <p class="lesson-section-copy">
+            This complete example uses only controls from Forms 1. It stays simple on purpose; more controls come in
+            the next forms lesson.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>A simple labelled form</h3>
+              <p class="code-preview__copy">The preview is interactive, but this static lesson page simulates submission elsewhere.</p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Code</p><div class="code-preview__code" data-code-preview-code aria-label="Simple complete form code example"></div></div>
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Preview</p><div class="code-preview__preview" data-code-preview-output></div></div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Simple form">
+              <div data-code-content><pre><code>&lt;form&gt;
+  &lt;label for="name"&gt;Name&lt;/label&gt;
+  &lt;input
+    id="name"
+    name="name"
+    type="text"
+    required&gt;
+
+  &lt;label for="email"&gt;Email address&lt;/label&gt;
+  &lt;input
+    id="email"
+    name="email"
+    type="email"
+    placeholder="name@example.com"
+    required&gt;
+
+  &lt;label for="age"&gt;Age&lt;/label&gt;
+  &lt;input id="age" name="age" type="number"&gt;
+
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre></div>
+              <div data-preview-content>
+                <form class="form-preview" data-static-form-preview data-no-slide-advance>
+                  <label class="demo-label" for="simple-form-preview-name">Name
+                    <input id="simple-form-preview-name" class="demo-input" type="text" required>
+                  </label>
+                  <label class="demo-label" for="simple-form-preview-email">Email address
+                    <input id="simple-form-preview-email" class="demo-input" type="email" placeholder="name@example.com" required>
+                  </label>
+                  <label class="demo-label" for="simple-form-preview-age">Age
+                    <input id="simple-form-preview-age" class="demo-input" type="number">
+                  </label>
+                  <button class="demo-button" type="submit">Send</button>
+                </form>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <div class="form-note">
+            <h3>You will also see action and method</h3>
+            <pre><code>&lt;form action="/signup" method="post"&gt;</code></pre>
+            <p><code>action</code> tells the form where the submitted data should go. <code>method</code> helps specify how the data is sent. You do not need the details yet.</p>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="form-anatomy lesson-fullrow" data-form-anatomy>
+            <h3>Form Anatomy Explorer</h3>
+            <div class="anatomy-grid">
+              <pre class="anatomy-code"><code><span class="anatomy-line"><span class="anatomy-highlight" data-anatomy-target="form">&lt;form&gt;</span></span>
+<span class="anatomy-line">  <span class="anatomy-highlight" data-anatomy-target="label">&lt;label</span> <span class="anatomy-highlight" data-anatomy-target="for">for="email"</span><span class="anatomy-highlight" data-anatomy-target="label">&gt;Email address&lt;/label&gt;</span></span>
+<span class="anatomy-line">  &lt;input</span>
+<span class="anatomy-line">    <span class="anatomy-highlight" data-anatomy-target="id">id="email"</span></span>
+<span class="anatomy-line">    <span class="anatomy-highlight" data-anatomy-target="name">name="email"</span></span>
+<span class="anatomy-line">    <span class="anatomy-highlight" data-anatomy-target="type">type="email"</span></span>
+<span class="anatomy-line">    <span class="anatomy-highlight" data-anatomy-target="required">required</span>&gt;</span>
+<span class="anatomy-line">  <span class="anatomy-highlight" data-anatomy-target="submit">&lt;button type="submit"&gt;Send&lt;/button&gt;</span></span>
+<span class="anatomy-line">&lt;/form&gt;</span></code></pre>
+              <div class="anatomy-panel" data-no-slide-advance>
+                <div class="anatomy-buttons">
+                  <button class="anatomy-button" type="button" data-anatomy-part="form">&lt;form&gt;</button>
+                  <button class="anatomy-button" type="button" data-anatomy-part="label">&lt;label&gt;</button>
+                  <button class="anatomy-button" type="button" data-anatomy-part="for">for</button>
+                  <button class="anatomy-button" type="button" data-anatomy-part="id">id</button>
+                  <button class="anatomy-button" type="button" data-anatomy-part="name">name</button>
+                  <button class="anatomy-button" type="button" data-anatomy-part="type">type</button>
+                  <button class="anatomy-button" type="button" data-anatomy-part="required">required</button>
+                  <button class="anatomy-button" type="button" data-anatomy-part="submit">submit</button>
+                </div>
+                <h3 data-anatomy-title></h3>
+                <p class="anatomy-text" data-anatomy-text aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="mistakes" class="lesson-section lesson-section--mistakes panel" data-lesson-section>
+          <p class="eyebrow">Common Mistakes</p>
+          <h2>Debug forms by asking what each attribute is doing</h2>
+          <p class="lesson-section-copy">
+            These are realistic beginner mistakes. The fix is usually to reconnect the meaning, the element, and the
+            submitted value.
+          </p>
+
+          <div class="mistake-grid">
+            <article class="mistake-card mistake-card--problem"><h3>Placeholder used as label</h3><pre class="common-mistake-code"><code>&lt;input placeholder="Email"&gt;</code></pre><p>Add a real label. Placeholder text is only a hint.</p></article>
+            <article class="mistake-card mistake-card--problem"><h3>for and id do not match</h3><pre class="common-mistake-code"><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="username" type="email"&gt;</code></pre><p>The label is looking for <code>id="email"</code>, but the input has a different id.</p></article>
+            <article class="mistake-card mistake-card--problem"><h3>Missing name</h3><pre class="common-mistake-code"><code>&lt;input id="email" type="email"&gt;</code></pre><p>The user can type, but the value does not have a submitted name.</p></article>
+            <article class="mistake-card mistake-card--problem"><h3>Password misconception</h3><pre class="common-mistake-code"><code>&lt;input type="password"&gt;</code></pre><p>This masks characters on screen. It does not securely store or encrypt the password by itself.</p></article>
+            <article class="mistake-card mistake-card--problem"><h3>Duplicate ids</h3><pre class="common-mistake-code"><code>&lt;input id="email"&gt;
+&lt;input id="email"&gt;</code></pre><p>An id should identify one element on the page.</p></article>
+            <article class="mistake-card mistake-card--better"><h3>Better pattern</h3><pre class="common-mistake-code"><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input
+  id="email"
+  name="email"
+  type="email"
+  placeholder="name@example.com"
+  required&gt;</code></pre><p>The label, id, name, type, hint, and required rule each have a job.</p></article>
+          </div>
+        </section>
+
+        <section id="summary" class="lesson-section lesson-section--summary panel" data-lesson-section>
+          <p class="eyebrow">Memory Hooks</p>
+          <h2>Forms turn user input into data a system can process</h2>
+          <div class="memory-grid">
+            <article class="memory-card"><strong>Input</strong><span>data or instructions going into a system</span></article>
+            <article class="memory-card"><strong>Processing</strong><span>what the system does with the input</span></article>
+            <article class="memory-card"><strong>Output</strong><span>information or results coming out</span></article>
+            <article class="memory-card"><strong>&lt;form&gt;</strong><span>groups form controls</span></article>
+            <article class="memory-card"><strong>&lt;input&gt;</strong><span>lets the user enter information</span></article>
+            <article class="memory-card"><strong>type</strong><span>what kind of input it is</span></article>
+            <article class="memory-card"><strong>label</strong><span>what the field is for</span></article>
+            <article class="memory-card"><strong>for + id</strong><span>connect label to input</span></article>
+            <article class="memory-card"><strong>name</strong><span>what the submitted value is called</span></article>
+            <article class="memory-card"><strong>required</strong><span>must be completed before submission</span></article>
+            <article class="memory-card"><strong>placeholder</strong><span>optional hint, not a label</span></article>
+            <article class="memory-card"><strong>submit</strong><span>send entered information for processing</span></article>
+          </div>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p>
+          <h2>Check your understanding</h2>
+          <p class="quiz-intro">Answer all twelve questions, then check your score. Your choices and best score save in this browser.</p>
+
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. Input is data or instructions going into a system." data-feedback="Input is not only an input device; it can be the data entered into software.">
+              <legend>1. In computing, what is input?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>Only a keyboard or mouse</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>Data or instructions provided to a system</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>The result produced by a system</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q2" data-answer="c" data-success="Correct. Output is the information or result produced." data-feedback="Output comes after the system has processed the input.">
+              <legend>2. A calculator shows <code>8</code> after the user enters <code>5 + 3</code>. What is <code>8</code>?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>Input</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>Processing</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>Output</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q3" data-answer="a" data-success="Correct. Checking the login details is processing." data-feedback="Processing is what the system does between receiving input and producing output.">
+              <legend>3. A login system checks an email and password. Which part is the processing?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>Checking whether the details match an account</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>The email typed by the user</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span>The success or error message</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q4" data-answer="b" data-success="Correct. A form groups controls that collect information." data-feedback="The form is a container for related form controls.">
+              <legend>4. What is the main purpose of the <code>&lt;form&gt;</code> element?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>To create a heading</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>To group controls used to collect information</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>To add an image to the page</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div data-slide-break></div>
+
+            <fieldset class="quiz-question" data-question="q5" data-answer="c" data-success="Correct. Input is a void element." data-feedback="Input gets its behaviour from attributes and does not wrap content.">
+              <legend>5. Why does <code>&lt;input&gt;</code> not use <code>&lt;/input&gt;</code>?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>Because it is only used for images</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>Because all form elements skip closing tags</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>Because it is a void element</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q6" data-answer="a" data-success="Correct. The for value and id value match." data-feedback="A label connects when its for value matches the input's id.">
+              <legend>6. Which pair is correctly connected?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span><code>&lt;label for="email"&gt;</code> and <code>&lt;input id="email"&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span><code>&lt;label for="email"&gt;</code> and <code>&lt;input id="username"&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span><code>&lt;label id="email"&gt;</code> and <code>&lt;input for="email"&gt;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q7" data-answer="b" data-success="Correct. Placeholder text is only a hint or example." data-feedback="The label names the field. The placeholder can give an optional hint.">
+              <legend>7. Why should placeholder text not replace a label?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span>Because placeholders never appear in browsers</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span>Because it is only a hint and can disappear when typing starts</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span>Because labels are only for CSS</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q8" data-answer="c" data-success="Correct. type changes the kind of input expected." data-feedback="Different type values help the browser understand the expected input.">
+              <legend>8. What does the <code>type</code> attribute change on an input?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>The folder path of the page</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>The alt text for the input</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>The kind of input the browser expects</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div data-slide-break></div>
+
+            <fieldset class="quiz-question" data-question="q9" data-answer="a" data-success="Correct. type=email is suitable for email addresses." data-feedback="Use a suitable type when one matches the expected value.">
+              <legend>9. Which input type is most suitable for an email address?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q9" value="a" /><span><code>type="email"</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="b" /><span><code>type="password"</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="c" /><span><code>type="number"</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q10" data-answer="b" data-success="Correct. Required asks the browser not to submit while the field is empty." data-feedback="Required is a browser validation rule for a field that must be completed.">
+              <legend>10. What does <code>required</code> do?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span>It encrypts the input value</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span>It asks the browser not to submit while the field is empty</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>It turns the input into a heading</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q11" data-answer="c" data-success="Correct. id identifies the page element; name identifies the submitted value." data-feedback="They may use the same text, but their jobs are different.">
+              <legend>11. Which statement correctly compares <code>id</code> and <code>name</code>?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q11" value="a" /><span>They always do exactly the same job</span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="b" /><span>id is for submitted data; name is for alt text</span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="c" /><span>id identifies an element on the page; name identifies the submitted value</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q12" data-answer="a" data-success="Correct. Password masking is not encryption." data-feedback="A password input hides the characters visually. It does not secure storage or processing by itself.">
+              <legend>12. Which statement about <code>type="password"</code> is accurate?</legend>
+              <ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q12" value="a" /><span>It masks the characters on screen, but does not encrypt the password by itself</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="b" /><span>It automatically stores the password securely forever</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="c" /><span>It should be used for every value containing numbers</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p><h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item"><dt>Input</dt><dd>Data or instructions provided to a system.</dd></div>
+            <div class="glossary-item"><dt>Output</dt><dd>Information or results produced by a system.</dd></div>
+            <div class="glossary-item"><dt>Form</dt><dd>An HTML element that groups controls for collecting user input.</dd></div>
+            <div class="glossary-item"><dt>Input element</dt><dd>A void HTML element that creates a form control.</dd></div>
+            <div class="glossary-item"><dt>Label</dt><dd>Text that explains what a form control is for.</dd></div>
+            <div class="glossary-item"><dt>Name</dt><dd>The label used for a value when form data is submitted.</dd></div>
+          </dl>
+        </section>
+        <section class="lesson-rail-card panel revision-card">
+          <p class="eyebrow">Remember</p><h2>Label the input, name the value</h2>
+          <ul class="memory-list"><li><code>for</code> matches <code>id</code>.</li><li><code>name</code> labels submitted data.</li><li>Placeholder text is only a hint.</li><li>Submit sends entered information for processing.</li></ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+      <p class="eyebrow">Keep Going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div>
+    </section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+    <p class="slide-status" data-role="slide-status">Slide 1</p>
+    <button type="button" class="slide-button" data-action="next-slide">Next</button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+  </div>
+</body>
+
+</html>

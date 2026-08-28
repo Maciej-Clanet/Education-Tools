@@ -1,0 +1,683 @@
+.recap-grid,
+.question-control-grid,
+.radio-rule-grid,
+.radio-value-grid,
+.choice-difference-grid,
+.textarea-compare-grid,
+.select-tree-grid,
+.radio-select-grid,
+.fieldset-legend-grid,
+.group-context-grid,
+.larger-form-grid,
+.mistake-grid,
+.memory-grid,
+.youll-see-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.recap-grid,
+.radio-rule-grid,
+.radio-value-grid,
+.choice-difference-grid,
+.textarea-compare-grid,
+.radio-select-grid,
+.fieldset-legend-grid,
+.group-context-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.question-control-grid,
+.mistake-grid,
+.memory-grid,
+.youll-see-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.select-tree-grid,
+.larger-form-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.9fr);
+}
+
+.recap-card,
+.question-control-card,
+.radio-rule-card,
+.radio-value-card,
+.choice-difference-card,
+.textarea-compare-card,
+.select-tree-card,
+.radio-select-card,
+.fieldset-legend-card,
+.group-context-card,
+.larger-form-card,
+.mistake-card,
+.memory-card,
+.youll-see-card,
+.form-note,
+.radio-name-demo,
+.choice-mode-demo,
+.checked-selected-demo,
+.textarea-demo,
+.select-value-demo,
+.form-data-inspector,
+.control-practice {
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.recap-card,
+.question-control-card,
+.radio-rule-card,
+.radio-value-card,
+.choice-difference-card,
+.textarea-compare-card,
+.select-tree-card,
+.radio-select-card,
+.fieldset-legend-card,
+.group-context-card,
+.larger-form-card,
+.mistake-card,
+.memory-card,
+.youll-see-card,
+.form-note,
+.radio-name-demo,
+.choice-mode-demo,
+.checked-selected-demo,
+.textarea-demo,
+.select-value-demo,
+.form-data-inspector,
+.control-practice {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.recap-card :is(p, pre),
+.question-control-card :is(p, pre),
+.radio-rule-card :is(p, pre),
+.radio-value-card :is(p, pre),
+.choice-difference-card :is(p, pre),
+.textarea-compare-card :is(p, pre),
+.select-tree-card :is(p, pre),
+.radio-select-card :is(p, pre),
+.fieldset-legend-card :is(p, pre),
+.group-context-card :is(p, pre),
+.larger-form-card :is(p, pre),
+.mistake-card :is(p, pre),
+.memory-card :is(p, pre),
+.youll-see-card :is(p, pre),
+.form-note :is(p, pre),
+.radio-name-demo p,
+.choice-mode-demo p,
+.checked-selected-demo p,
+.textarea-demo p,
+.select-value-demo p,
+.form-data-inspector p,
+.control-practice p {
+  margin: 0;
+}
+
+.form-code,
+.mistake-card pre,
+.form-note pre,
+.control-code,
+.select-tree-code {
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: #24313b;
+  color: #f8fbfc;
+  font: 0.9rem/1.55 Consolas, "Courier New", monospace;
+  tab-size: 2;
+}
+
+.form-token,
+.form-data-row code,
+.control-pill {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(36, 49, 59, 0.09);
+  color: var(--page-ink);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.86rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.question-control-card--text,
+.radio-rule-card--name,
+.choice-difference-card--checkbox,
+.fieldset-legend-card--legend,
+.mistake-card--better {
+  border-color: rgba(31, 135, 125, 0.3);
+  background: rgba(238, 248, 231, 0.88);
+}
+
+.question-control-card--textarea,
+.radio-rule-card--value,
+.choice-difference-card--radio,
+.fieldset-legend-card--fieldset {
+  border-color: rgba(242, 207, 106, 0.44);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.question-control-card--choice,
+.radio-rule-card--id,
+.select-tree-card--visual {
+  border-color: rgba(105, 200, 232, 0.42);
+  background: rgba(232, 246, 255, 0.88);
+}
+
+.mistake-card--problem {
+  border-color: rgba(190, 91, 91, 0.34);
+  background: rgba(255, 240, 241, 0.88);
+}
+
+.question-control-card strong,
+.recap-card strong,
+.radio-rule-card strong,
+.radio-value-card strong,
+.choice-difference-card strong,
+.textarea-compare-card strong,
+.select-tree-card strong,
+.radio-select-card strong,
+.fieldset-legend-card strong,
+.group-context-card strong,
+.larger-form-card strong,
+.memory-card strong,
+.youll-see-card strong {
+  color: var(--lesson-accent-heading);
+}
+
+.form-stage-label,
+.control-stage-label,
+.tree-label {
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.name-value-demo {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.85rem;
+  border-radius: 14px;
+  background: rgba(238, 248, 231, 0.88);
+}
+
+.name-value-row,
+.form-data-row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.8fr) auto minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.55rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.12);
+  border-radius: 10px;
+  background: rgba(238, 248, 231, 0.78);
+}
+
+.name-value-row span,
+.form-data-row span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.radio-name-demo,
+.choice-mode-demo,
+.checked-selected-demo,
+.textarea-demo,
+.select-value-demo,
+.form-data-inspector,
+.control-practice {
+  margin-top: 1rem;
+  background: rgba(248, 252, 255, 0.9);
+}
+
+.radio-name-grid,
+.choice-mode-grid,
+.checked-selected-grid,
+.textarea-demo-grid,
+.select-value-grid,
+.inspector-grid,
+.practice-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.9fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.demo-form,
+.demo-panel,
+.form-preview,
+.form-data-output,
+.practice-panel {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 18px rgba(36, 49, 59, 0.07);
+}
+
+.demo-fieldset {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 0.9rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.16);
+  border-radius: 12px;
+}
+
+.demo-fieldset legend {
+  padding: 0 0.35rem;
+  color: var(--lesson-accent-heading);
+  font-weight: 900;
+}
+
+.demo-label {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--page-ink);
+  font-weight: 800;
+}
+
+.demo-input,
+.demo-select,
+.demo-textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.2);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.demo-textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.demo-button,
+.mode-button,
+.practice-choice,
+.practice-next {
+  width: fit-content;
+  padding: 0.62rem 0.85rem;
+  border: 1.5px solid #24313b;
+  border-radius: 10px;
+  background: #24313b;
+  color: #ffffff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.mode-button,
+.practice-choice,
+.practice-next {
+  background: #ffffff;
+  color: var(--page-ink);
+}
+
+.mode-button.is-selected,
+.practice-choice.is-selected,
+.practice-choice.is-correct {
+  border-color: #1f877d;
+  background: rgba(238, 248, 231, 0.95);
+}
+
+.practice-choice.is-incorrect {
+  border-color: #be5b5b;
+  background: rgba(255, 240, 241, 0.95);
+}
+
+.practice-next {
+  border-color: #24313b;
+  background: #24313b;
+  color: #ffffff;
+}
+
+.demo-input:focus-visible,
+.demo-select:focus-visible,
+.demo-textarea:focus-visible,
+.demo-button:focus-visible,
+.mode-button:focus-visible,
+.practice-choice:focus-visible,
+.practice-next:focus-visible,
+.option-row:focus-within {
+  outline: 4px solid #f2cf6a;
+  outline-offset: 3px;
+}
+
+.mode-row,
+.practice-choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.option-row {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.55rem 0.65rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.86);
+  cursor: pointer;
+}
+
+.option-row input {
+  flex: 0 0 auto;
+}
+
+.demo-status,
+.form-data-status,
+.practice-feedback {
+  min-height: 1.5em;
+  font-weight: 700;
+}
+
+.radio-group-map,
+.select-tree-visual,
+.legend-label-map {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: #24313b;
+  color: #ffffff;
+}
+
+.tree-node,
+.tree-child,
+.legend-node,
+.label-node {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  width: fit-content;
+  padding: 0.45rem 0.62rem;
+  border: 2px solid rgba(255, 255, 255, 0.38);
+  border-radius: 10px;
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: 800;
+}
+
+.tree-children,
+.label-node-list {
+  display: grid;
+  gap: 0.4rem;
+  margin-left: 0.7rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.26);
+}
+
+.radio-value-card .name-value-demo {
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.comparison-mini {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.comparison-mini .option-row {
+  cursor: default;
+}
+
+.initial-state-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.textarea-output {
+  display: block;
+  min-height: 3rem;
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: rgba(238, 248, 231, 0.92);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.select-visible-panel {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.85rem;
+  border-left: 6px solid #69c8e8;
+  border-radius: 12px;
+  background: rgba(232, 246, 255, 0.88);
+}
+
+.larger-form-card {
+  align-content: start;
+}
+
+.larger-form-preview {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.larger-form-preview fieldset,
+.inspector-form fieldset {
+  min-width: 0;
+}
+
+.form-data-output {
+  min-height: 9rem;
+  align-content: start;
+}
+
+.form-data-empty {
+  color: var(--muted-ink);
+}
+
+.practice-prompt {
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(255, 249, 227, 0.9);
+  color: var(--page-ink);
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.common-mistake-code {
+  white-space: pre-wrap;
+}
+
+body.teacher-mode-active .recap-grid,
+body.teacher-mode-active .radio-rule-grid,
+body.teacher-mode-active .radio-value-grid,
+body.teacher-mode-active .choice-difference-grid,
+body.teacher-mode-active .textarea-compare-grid,
+body.teacher-mode-active .radio-select-grid,
+body.teacher-mode-active .fieldset-legend-grid,
+body.teacher-mode-active .group-context-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .question-control-grid,
+body.teacher-mode-active .mistake-grid,
+body.teacher-mode-active .memory-grid,
+body.teacher-mode-active .youll-see-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .radio-name-grid,
+body.teacher-mode-active .choice-mode-grid,
+body.teacher-mode-active .checked-selected-grid,
+body.teacher-mode-active .textarea-demo-grid,
+body.teacher-mode-active .select-value-grid,
+body.teacher-mode-active .inspector-grid,
+body.teacher-mode-active .practice-grid,
+body.teacher-mode-active .select-tree-grid,
+body.teacher-mode-active .larger-form-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.85fr);
+}
+
+body.teacher-mode-active .radio-name-demo,
+body.teacher-mode-active .choice-mode-demo,
+body.teacher-mode-active .checked-selected-demo,
+body.teacher-mode-active .textarea-demo,
+body.teacher-mode-active .select-value-demo,
+body.teacher-mode-active .form-data-inspector,
+body.teacher-mode-active .control-practice {
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+body.teacher-mode-active .demo-form,
+body.teacher-mode-active .demo-panel,
+body.teacher-mode-active .form-preview,
+body.teacher-mode-active .form-data-output,
+body.teacher-mode-active .practice-panel {
+  gap: 0.5rem;
+  padding: 0.72rem;
+  box-shadow: none;
+}
+
+body.teacher-mode-active .form-code,
+body.teacher-mode-active .mistake-card pre,
+body.teacher-mode-active .form-note pre,
+body.teacher-mode-active .control-code,
+body.teacher-mode-active .select-tree-code {
+  max-height: 15rem;
+  font-size: 0.8rem;
+}
+
+body.teacher-mode-active .inspector-grid {
+  gap: 0.7rem;
+}
+
+body.teacher-mode-active .lesson-section--inspector > h2 {
+  font-size: 1.72rem;
+}
+
+body.teacher-mode-active .form-data-inspector > p,
+body.teacher-mode-active .larger-form-card > p {
+  display: none;
+}
+
+body.teacher-mode-active .form-data-inspector {
+  gap: 0.45rem;
+  padding: 0.58rem;
+}
+
+body.teacher-mode-active .form-data-inspector h3 {
+  font-size: 1rem;
+}
+
+body.teacher-mode-active .inspector-form {
+  gap: 0.38rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  font-size: 0.78rem;
+}
+
+body.teacher-mode-active .inspector-form .demo-fieldset:first-of-type {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .inspector-form .demo-fieldset:first-of-type legend {
+  grid-column: 1 / -1;
+}
+
+body.teacher-mode-active .inspector-form .demo-fieldset,
+body.teacher-mode-active .inspector-form .demo-label,
+body.teacher-mode-active .inspector-form .option-row {
+  gap: 0.18rem;
+}
+
+body.teacher-mode-active .inspector-form .demo-fieldset,
+body.teacher-mode-active .form-data-inspector .demo-panel,
+body.teacher-mode-active .form-data-inspector .form-data-output {
+  padding: 0.36rem;
+}
+
+body.teacher-mode-active .inspector-form .demo-input,
+body.teacher-mode-active .inspector-form .demo-select,
+body.teacher-mode-active .inspector-form .demo-textarea {
+  padding: 0.24rem 0.38rem;
+}
+
+body.teacher-mode-active .inspector-form .demo-textarea {
+  min-height: 2rem;
+}
+
+body.teacher-mode-active .inspector-form .option-row {
+  padding: 0.22rem 0.35rem;
+}
+
+body.teacher-mode-active .inspector-form .demo-button {
+  padding: 0.3rem 0.48rem;
+}
+
+body.teacher-mode-active .form-data-inspector .form-data-row {
+  grid-template-columns: minmax(6.5rem, 0.75fr) auto minmax(0, 1fr);
+  gap: 0.28rem;
+  padding: 0.18rem 0.32rem;
+  font-size: 0.72rem;
+}
+
+body.teacher-mode-active .form-data-inspector .form-data-status {
+  font-size: 0.72rem;
+}
+
+body.a11y-simplify-visuals :is(.recap-card, .question-control-card, .radio-rule-card, .radio-value-card, .choice-difference-card, .textarea-compare-card, .select-tree-card, .radio-select-card, .fieldset-legend-card, .group-context-card, .larger-form-card, .mistake-card, .memory-card, .youll-see-card, .form-note, .radio-name-demo, .choice-mode-demo, .checked-selected-demo, .textarea-demo, .select-value-demo, .form-data-inspector, .control-practice, .demo-form, .demo-panel, .form-preview, .form-data-output, .practice-panel),
+body.a11y-high-contrast :is(.recap-card, .question-control-card, .radio-rule-card, .radio-value-card, .choice-difference-card, .textarea-compare-card, .select-tree-card, .radio-select-card, .fieldset-legend-card, .group-context-card, .larger-form-card, .mistake-card, .memory-card, .youll-see-card, .form-note, .radio-name-demo, .choice-mode-demo, .checked-selected-demo, .textarea-demo, .select-value-demo, .form-data-inspector, .control-practice, .demo-form, .demo-panel, .form-preview, .form-data-output, .practice-panel) {
+  box-shadow: none !important;
+}
+
+body.a11y-high-contrast :is(.demo-input, .demo-select, .demo-textarea, .demo-button, .mode-button, .practice-choice, .practice-next, .option-row, .tree-node, .tree-child, .legend-node, .label-node) {
+  border-color: currentColor !important;
+}
+
+@media (max-width: 900px) {
+  .recap-grid,
+  .question-control-grid,
+  .radio-rule-grid,
+  .radio-value-grid,
+  .choice-difference-grid,
+  .textarea-compare-grid,
+  .select-tree-grid,
+  .radio-select-grid,
+  .fieldset-legend-grid,
+  .group-context-grid,
+  .larger-form-grid,
+  .radio-name-grid,
+  .choice-mode-grid,
+  .checked-selected-grid,
+  .textarea-demo-grid,
+  .select-value-grid,
+  .inspector-grid,
+  .practice-grid,
+  .initial-state-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .name-value-row,
+  .form-data-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .demo-button,
+  .practice-next {
+    width: 100%;
+  }
+}

@@ -17,10 +17,11 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "HTML practice project",
+        title: "Forms 1: Inputs, labels, and submitting data",
+        href: "forms-1-inputs-labels-and-submitting-data.html",
         description:
-          "Next, combine the HTML basics lessons into a small structured page.",
-        status: "Planned",
+          "Next, start HTML forms with input, processing, output, labels, id, name, required fields, and submit.",
+        status: "Live",
       },
     },
   },

@@ -1,0 +1,1264 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forms 2: Choices, Larger Inputs, and Grouping | Education Tools</title>
+  <meta name="description"
+    content="Continue learning HTML forms with radio buttons, checkboxes, textarea, select, option, value, checked, selected, fieldset, legend, and submitted name/value data." />
+  <meta property="og:title" content="Forms 2: Choices, Larger Inputs, and Grouping | Education Tools" />
+  <meta property="og:description"
+    content="A beginner-friendly lesson on choosing the right HTML form control and understanding how grouped controls submit NAME -> VALUE data." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/pages/forms-2-choices-larger-inputs-and-grouping.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/forms-2-choices-larger-inputs-and-grouping.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">HTML Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#html-basics" data-role="breadcrumb-unit-link">Web
+              Development</a></li>
+          <li aria-current="page">Forms 2: Choices, larger inputs, and grouping</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>Forms 2: Choices, larger inputs, and grouping</h1>
+          <p class="lesson-hero-text">
+            Forms 1 taught how forms collect labelled input as NAME -> VALUE data. Now choose better controls for
+            choices, longer written answers, lists, and grouped questions.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside
+            <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Resource area</strong><span>HTML basics</span></article>
+        <article class="lesson-meta-card"><strong>Main focus</strong><span>Choosing suitable form controls</span>
+        </article>
+        <article class="lesson-meta-card"><strong>Practice</strong><span>Choice demos and form data inspector</span>
+        </article>
+        <article class="lesson-meta-card"><strong>Quiz</strong><span>15 application questions</span></article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit"
+          href="../resources/web-development.html#html-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">
+          Teacher slides
+        </button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The lesson notes still work without JavaScript, but the form demonstrations, code previews, quiz scoring,
+        saved answers, and teacher slides need JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#recap" data-section-link>Recap</a>
+          <a href="#choose-control" data-section-link>Choose controls</a>
+          <a href="#radio-buttons" data-section-link>Radio buttons</a>
+          <a href="#radio-name-demo" data-section-link>Radio grouping</a>
+          <a href="#checkboxes" data-section-link>Checkboxes</a>
+          <a href="#radio-checkbox" data-section-link>Radio vs checkbox</a>
+          <a href="#checked-selected" data-section-link>Checked and selected</a>
+          <a href="#textarea" data-section-link>Textarea</a>
+          <a href="#select-option" data-section-link>Select and option</a>
+          <a href="#radio-select" data-section-link>Radio or select</a>
+          <a href="#fieldset-legend" data-section-link>Fieldset and legend</a>
+          <a href="#larger-form" data-section-link>Larger form</a>
+          <a href="#inspector" data-section-link>Data inspector</a>
+          <a href="#practice" data-section-link>Practice</a>
+          <a href="#mistakes" data-section-link>Common mistakes</a>
+          <a href="#summary" data-section-link>Summary</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="recap" class="lesson-section lesson-section--recap panel" data-lesson-section>
+          <p class="eyebrow">Forms 1 Recap</p>
+          <h2>Forms collect NAME -> VALUE data</h2>
+          <p class="lesson-section-copy">
+            Forms 1 introduced a simple model: the user provides the value, and the <code>name</code> attribute says
+            what that value should be called when the form is submitted.
+          </p>
+
+          <div class="recap-grid">
+            <article class="recap-card">
+              <h3>HTML</h3>
+              <pre class="form-code"><code>&lt;label for="name"&gt;Name&lt;/label&gt;
+&lt;input
+  id="name"
+  name="name"
+  type="text"&gt;</code></pre>
+            </article>
+            <article class="recap-card">
+              <h3>Conceptual data</h3>
+              <div class="name-value-demo" aria-label="If the user enters Alex, the submitted data is name to Alex.">
+                <div class="name-value-row"><code>name</code><span>-></span><span>Alex</span></div>
+              </div>
+              <p><code>name</code> identifies the data. Alex is the value typed by the user.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="form-note">
+            <h3>The next question</h3>
+            <p>
+              What if the user is not typing a short answer? What if they are choosing one option, many options, a
+              long answer, or an item from a list?
+            </p>
+          </div>
+        </section>
+
+        <section id="choose-control" class="lesson-section lesson-section--choose panel" data-lesson-section>
+          <p class="eyebrow">Control Choice</p>
+          <h2>Different questions need different controls</h2>
+          <p class="lesson-section-copy">
+            The central question for this lesson is: what kind of information are we asking for, and which form control
+            is best suited to collecting it?
+          </p>
+
+          <div class="question-control-grid">
+            <article class="question-control-card question-control-card--text"><span class="control-stage-label">Short
+                text</span><strong>What is your name?</strong><span class="control-pill">&lt;input
+                type="text"&gt;</span></article>
+            <article class="question-control-card question-control-card--textarea"><span
+                class="control-stage-label">Longer text</span><strong>Tell us about yourself.</strong><span
+                class="control-pill">&lt;textarea&gt;</span></article>
+            <article class="question-control-card question-control-card--choice"><span
+                class="control-stage-label">Choose one</span><strong>Choose one delivery method.</strong><span
+                class="control-pill">radio buttons</span></article>
+            <article class="question-control-card"><span class="control-stage-label">Choose any</span><strong>Which
+                toppings would you like?</strong><span class="control-pill">checkboxes</span></article>
+            <article class="question-control-card"><span class="control-stage-label">Choose from
+                list</span><strong>Choose your country.</strong><span class="control-pill">&lt;select&gt;</span>
+            </article>
+          </div>
+        </section>
+
+        <section id="radio-buttons" class="lesson-section lesson-section--radio panel" data-lesson-section>
+          <p class="eyebrow">Radio Buttons</p>
+          <h2>Radio buttons let the user choose one option from a group</h2>
+          <p class="lesson-section-copy">
+            Radio buttons are useful when a small group of options answers one question, and only one option should be
+            selected.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header">
+              <h3>Fix the radio group by sharing the same name</h3>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Radio group code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Different names"
+              data-step-note="These look like one question, but the browser sees two separate groups because the names are different.">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;Choose a delivery method:&lt;/p&gt;
+&lt;input id="delivery" name="delivery" type="radio" value="delivery"&gt;
+&lt;label for="delivery"&gt;Delivery&lt;/label&gt;
+
+&lt;input id="collection" name="collection" type="radio" value="collection"&gt;
+&lt;label for="collection"&gt;Collection&lt;/label&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <form class="form-preview" data-static-form-preview data-no-slide-advance>
+                  <p>Choose a delivery method:</p>
+                  <label class="option-row" for="radio-preview-bad-delivery"><input id="radio-preview-bad-delivery"
+                      name="delivery" type="radio" value="delivery" checked>Delivery</label>
+                  <label class="option-row" for="radio-preview-bad-collection"><input id="radio-preview-bad-collection"
+                      name="collection" type="radio" value="collection">Collection</label>
+                </form>
+              </div>
+            </template>
+            <template data-code-step data-step-label="Same name"
+              data-step-note="Now both inputs share name=&quot;deliveryMethod&quot;, so the browser treats them as one radio group.">
+              <div data-code-content>
+                <pre><code>&lt;p&gt;Choose a delivery method:&lt;/p&gt;
+&lt;input id="delivery" name="deliveryMethod" type="radio" value="delivery"&gt;
+&lt;label for="delivery"&gt;Delivery&lt;/label&gt;
+
+&lt;input id="collection" name="deliveryMethod" type="radio" value="collection"&gt;
+&lt;label for="collection"&gt;Collection&lt;/label&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <form class="form-preview" data-static-form-preview data-no-slide-advance>
+                  <p>Choose a delivery method:</p>
+                  <label class="option-row" for="radio-preview-good-delivery"><input id="radio-preview-good-delivery"
+                      name="deliveryMethodPreview" type="radio" value="delivery" checked>Delivery</label>
+                  <label class="option-row" for="radio-preview-good-collection"><input
+                      id="radio-preview-good-collection" name="deliveryMethodPreview" type="radio"
+                      value="collection">Collection</label>
+                </form>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <div class="radio-rule-grid">
+            <article class="radio-rule-card radio-rule-card--name"><span class="form-token">SAME name</span><strong>Same
+                group</strong>
+              <p>Both delivery options use <code>name="deliveryMethod"</code>.</p>
+            </article>
+            <article class="radio-rule-card radio-rule-card--value"><span class="form-token">DIFFERENT
+                value</span><strong>Which option</strong>
+              <p><code>value="delivery"</code> and <code>value="collection"</code> identify the selected choice.</p>
+            </article>
+            <article class="radio-rule-card radio-rule-card--id"><span class="form-token">UNIQUE id</span><strong>Label
+                target</strong>
+              <p>Each option still needs its own <code>id</code> so each label connects correctly.</p>
+            </article>
+            <article class="radio-rule-card">
+              <div class="radio-group-map" role="img"
+                aria-label="deliveryMethod group contains delivery and collection values.">
+                <div class="tree-node"><span class="tree-label">name</span><code>deliveryMethod</code></div>
+                <div class="tree-children">
+                  <div class="tree-child"><span>value</span><code>delivery</code></div>
+                  <div class="tree-child"><span>value</span><code>collection</code></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="radio-value-grid">
+            <article class="radio-value-card">
+              <h3>If Delivery is selected</h3>
+              <div class="name-value-demo">
+                <div class="name-value-row"><code>deliveryMethod</code><span>-></span><span>delivery</span></div>
+              </div>
+            </article>
+            <article class="radio-value-card">
+              <h3>If Collection is selected</h3>
+              <div class="name-value-demo">
+                <div class="name-value-row"><code>deliveryMethod</code><span>-></span><span>collection</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="radio-name-demo" class="lesson-section lesson-section--radio-demo panel" data-lesson-section>
+          <p class="eyebrow">Interactive Radio Group</p>
+          <h2>Same name changes the behaviour</h2>
+          <p class="lesson-section-copy">
+            This demonstration shows the cause and effect. Same <code>name</code> means one group. Different names means
+            the browser treats the choices separately.
+          </p>
+
+          <div class="radio-name-demo lesson-fullrow" data-radio-name-demo>
+            <div class="mode-row" data-no-slide-advance>
+              <button class="mode-button" type="button" data-radio-name-mode="shared">Same name</button>
+              <button class="mode-button" type="button" data-radio-name-mode="separate">Different names</button>
+            </div>
+            <div class="radio-name-grid">
+              <form class="demo-form" data-no-slide-advance>
+                <fieldset class="demo-fieldset">
+                  <legend>Choose a delivery method</legend>
+                  <label class="option-row" for="radio-name-delivery"><input id="radio-name-delivery"
+                      name="deliveryMethod" type="radio" value="delivery" checked>Delivery</label>
+                  <label class="option-row" for="radio-name-collection"><input id="radio-name-collection"
+                      name="deliveryMethod" type="radio" value="collection">Collection</label>
+                </fieldset>
+              </form>
+              <div class="demo-panel">
+                <pre class="control-code"><code data-radio-name-code></code></pre>
+                <div class="form-data-output" data-radio-name-output aria-live="polite"></div>
+                <p class="demo-status" data-radio-name-status aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="checkboxes" class="lesson-section lesson-section--checkboxes panel" data-lesson-section>
+          <p class="eyebrow">Checkboxes</p>
+          <h2>Checkboxes let the user choose zero, one, or many</h2>
+          <p class="lesson-section-copy">
+            Checkboxes work well when each option can be independently on or off. That may be a group of multiple
+            choices, or a single yes/no statement.
+          </p>
+
+          <div class="choice-difference-grid">
+            <article class="choice-difference-card choice-difference-card--radio">
+              <span class="form-token">radio</span>
+              <strong>Choose ONE from a group</strong>
+              <div class="comparison-mini" aria-label="Radio style example">
+                <label class="option-row"><input type="radio" name="radio-visual" checked disabled>Cash</label>
+                <label class="option-row"><input type="radio" name="radio-visual" disabled>Card</label>
+              </div>
+            </article>
+            <article class="choice-difference-card choice-difference-card--checkbox">
+              <span class="form-token">checkbox</span>
+              <strong>Choose zero, one, or many</strong>
+              <div class="comparison-mini" aria-label="Checkbox style example">
+                <label class="option-row"><input type="checkbox" checked disabled>Cheese</label>
+                <label class="option-row"><input type="checkbox" checked disabled>Mushrooms</label>
+                <label class="option-row"><input type="checkbox" disabled>Peppers</label>
+              </div>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Checkboxes can be a group or one independent choice</h3>
+              <p class="code-preview__copy">Both examples use useful values so the submitted data is clear.</p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Checkbox code example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Several choices"
+              data-step-note="Each checked topping contributes a name/value pair. Unchecked toppings normally contribute nothing.">
+              <div data-code-content>
+                <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Choose your toppings&lt;/legend&gt;
+
+  &lt;input id="cheese" name="topping" type="checkbox" value="cheese"&gt;
+  &lt;label for="cheese"&gt;Cheese&lt;/label&gt;
+
+  &lt;input id="mushrooms" name="topping" type="checkbox" value="mushrooms"&gt;
+  &lt;label for="mushrooms"&gt;Mushrooms&lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <form class="form-preview" data-static-form-preview data-no-slide-advance>
+                  <fieldset class="demo-fieldset">
+                    <legend>Choose your toppings</legend>
+                    <label class="option-row" for="checkbox-preview-cheese"><input id="checkbox-preview-cheese"
+                        name="topping" type="checkbox" value="cheese" checked>Cheese</label>
+                    <label class="option-row" for="checkbox-preview-mushrooms"><input id="checkbox-preview-mushrooms"
+                        name="topping" type="checkbox" value="mushrooms" checked>Mushrooms</label>
+                    <label class="option-row" for="checkbox-preview-peppers"><input id="checkbox-preview-peppers"
+                        name="topping" type="checkbox" value="peppers">Peppers</label>
+                  </fieldset>
+                </form>
+              </div>
+            </template>
+            <template data-code-step data-step-label="Single yes/no"
+              data-step-note="A checkbox can also represent one independent yes/no state.">
+              <div data-code-content>
+                <pre><code>&lt;input
+  id="terms"
+  name="termsAccepted"
+  type="checkbox"
+  value="yes"&gt;
+&lt;label for="terms"&gt;I agree to the terms&lt;/label&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <form class="form-preview" data-static-form-preview data-no-slide-advance>
+                  <label class="option-row" for="checkbox-preview-terms"><input id="checkbox-preview-terms"
+                      name="termsAccepted" type="checkbox" value="yes">I agree to the terms</label>
+                </form>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="radio-checkbox" class="lesson-section lesson-section--compare panel" data-lesson-section>
+          <p class="eyebrow">Radio Or Checkbox</p>
+          <h2>Change the question, change the control</h2>
+          <p class="lesson-section-copy">
+            Use the same idea from Forms 1: look at the data being collected. If the question expects exactly one
+            answer, radio buttons often fit. If several answers may apply, checkboxes fit.
+          </p>
+
+          <div class="choice-mode-demo lesson-fullrow" data-choice-mode-demo>
+            <div class="mode-row" data-no-slide-advance>
+              <button class="mode-button" type="button" data-choice-mode="one">Choose ONE</button>
+              <button class="mode-button" type="button" data-choice-mode="any">Choose ANY</button>
+            </div>
+            <div class="choice-mode-grid">
+              <form class="demo-form" data-no-slide-advance>
+                <fieldset class="demo-fieldset">
+                  <legend data-choice-question></legend>
+                  <div data-choice-controls></div>
+                </fieldset>
+              </form>
+              <div class="demo-panel">
+                <pre class="control-code"><code data-choice-code></code></pre>
+                <div class="form-data-output" data-choice-output aria-live="polite"></div>
+                <p class="demo-status" data-choice-status aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="checked-selected" class="lesson-section lesson-section--initial panel" data-lesson-section>
+          <p class="eyebrow">Initial Choices</p>
+          <h2><code>checked</code> and <code>selected</code> set initial choices</h2>
+          <p class="lesson-section-copy">
+            Like <code>required</code>, <code>checked</code> can appear as a boolean-style attribute. Use default
+            selections thoughtfully; do not pre-check consent or marketing choices as a normal habit.
+          </p>
+
+          <div class="checked-selected-demo lesson-fullrow" data-checked-selected-demo>
+            <div class="checked-selected-grid">
+              <form class="demo-form" data-no-slide-advance>
+                <fieldset class="demo-fieldset">
+                  <legend>Initial radio or checkbox selection</legend>
+                  <label class="option-row" for="checked-radio-standard"><input id="checked-radio-standard"
+                      name="deliverySpeed" type="radio" value="standard" checked>Standard delivery</label>
+                  <label class="option-row" for="checked-radio-next"><input id="checked-radio-next" name="deliverySpeed"
+                      type="radio" value="nextDay">Next day</label>
+                  <label class="option-row" for="checked-extra-gift"><input id="checked-extra-gift" name="extra"
+                      type="checkbox" value="giftWrap" checked>Gift wrapping</label>
+                </fieldset>
+                <label class="demo-label" for="selected-time">Initial select option
+                  <select id="selected-time" class="demo-select" name="contactTime">
+                    <option value="morning" selected>Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="evening">Evening</option>
+                  </select>
+                </label>
+              </form>
+              <div class="demo-panel">
+                <pre class="form-code"><code>&lt;input type="radio" checked&gt;
+&lt;input type="checkbox" checked&gt;
+&lt;option value="morning" selected&gt;Morning&lt;/option&gt;</code></pre>
+                <div class="form-data-output" data-checked-selected-output aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="textarea" class="lesson-section lesson-section--textarea panel" data-lesson-section>
+          <p class="eyebrow">Textarea</p>
+          <h2><code>&lt;textarea&gt;</code> is for longer written answers</h2>
+          <p class="lesson-section-copy">
+            A text input is good for short answers. A textarea is better when the user may need several lines, such as
+            feedback, a message, a description, or a longer written answer.
+          </p>
+
+          <div class="textarea-compare-grid">
+            <article class="textarea-compare-card">
+              <span class="form-token">Short response</span>
+              <strong><code>&lt;input type="text"&gt;</code></strong>
+              <p>Name, username, short title.</p>
+            </article>
+            <article class="textarea-compare-card">
+              <span class="form-token">Longer response</span>
+              <strong><code>&lt;textarea&gt;&lt;/textarea&gt;</code></strong>
+              <p>Feedback, message, description, longer written answer.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="textarea-demo lesson-fullrow" data-textarea-demo>
+            <h3>Textarea content and placeholder behave differently</h3>
+            <div class="textarea-demo-grid">
+              <form class="demo-form" data-no-slide-advance>
+                <label class="demo-label" for="textarea-message">Message
+                  <textarea id="textarea-message" class="demo-textarea" data-textarea-control name="message" rows="5"
+                    cols="30" placeholder="Write your message..."></textarea>
+                </label>
+              </form>
+              <div class="demo-panel">
+                <pre class="form-code"><code>&lt;label for="message"&gt;Message&lt;/label&gt;
+&lt;textarea
+  id="message"
+  name="message"
+  rows="5"
+  cols="30"
+  placeholder="Write your message..."&gt;&lt;/textarea&gt;</code></pre>
+                <span class="form-stage-label">Current value</span>
+                <span class="textarea-output" data-textarea-output aria-live="polite"></span>
+                <p class="demo-status" data-textarea-status aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="form-note">
+            <h3>Text between the tags is initial content</h3>
+            <pre><code>&lt;textarea&gt;Write something here&lt;/textarea&gt;</code></pre>
+            <p>
+              That text starts inside the control as a real value. A placeholder is only a hint and disappears once the
+              user enters content. Either way, keep a proper label.
+            </p>
+          </div>
+        </section>
+
+        <section id="select-option" class="lesson-section lesson-section--select panel" data-lesson-section>
+          <p class="eyebrow">Select And Option</p>
+          <h2><code>&lt;select&gt;</code> creates a list; <code>&lt;option&gt;</code> creates each choice</h2>
+          <p class="lesson-section-copy">
+            Select menus are a useful reminder of parent and child structure. The <code>&lt;option&gt;</code> elements
+            must sit inside the <code>&lt;select&gt;</code>.
+          </p>
+
+          <div class="select-tree-grid">
+            <article class="select-tree-card select-tree-card--visual">
+              <h3>Hierarchy</h3>
+              <div class="select-tree-visual" role="img"
+                aria-label="Select is the parent. Options are children inside it.">
+                <div class="tree-node"><span class="tree-label">Parent</span><code>select</code></div>
+                <div class="tree-children">
+                  <div class="tree-child"><span>child</span><code>option</code></div>
+                  <div class="tree-child"><span>child</span><code>option</code></div>
+                  <div class="tree-child"><span>child</span><code>option</code></div>
+                </div>
+              </div>
+            </article>
+            <article class="select-tree-card">
+              <h3>HTML shape</h3>
+              <pre class="select-tree-code"><code>&lt;label for="country"&gt;Country&lt;/label&gt;
+&lt;select id="country" name="country"&gt;
+  &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+  &lt;option value="fr"&gt;France&lt;/option&gt;
+  &lt;option value="jp"&gt;Japan&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="select-value-demo lesson-fullrow" data-select-value-demo>
+            <h3>Visible text and submitted value can differ</h3>
+            <div class="select-value-grid">
+              <form class="demo-form" data-no-slide-advance>
+                <label class="demo-label" for="country-value-demo">Country
+                  <select id="country-value-demo" class="demo-select" name="country">
+                    <option value="uk">United Kingdom</option>
+                    <option value="fr">France</option>
+                    <option value="jp" selected>Japan</option>
+                  </select>
+                </label>
+              </form>
+              <div class="demo-panel">
+                <pre class="control-code"><code data-selected-option-code></code></pre>
+                <div class="select-visible-panel">
+                  <span class="form-stage-label">User sees</span>
+                  <strong data-selected-visible></strong>
+                </div>
+                <div class="form-data-output" data-selected-value-output aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="radio-select" class="lesson-section lesson-section--radio-select panel" data-lesson-section>
+          <p class="eyebrow">Radio Or Select</p>
+          <h2>More than one control may technically work</h2>
+          <p class="lesson-section-copy">
+            A radio group and a select can both represent one choice. The decision is often about how easy the form is
+            to use, not about a rigid rule.
+          </p>
+
+          <div class="radio-select-grid">
+            <article class="radio-select-card">
+              <h3>Radio buttons</h3>
+              <p>Useful when there are only a few choices and seeing them all immediately helps comparison.</p>
+              <form class="comparison-mini" data-static-form-preview data-no-slide-advance>
+                <fieldset class="demo-fieldset">
+                  <legend>Delivery speed</legend>
+                  <label class="option-row" for="radio-select-standard"><input id="radio-select-standard" name="speed"
+                      type="radio" value="standard" checked>Standard</label>
+                  <label class="option-row" for="radio-select-next"><input id="radio-select-next" name="speed"
+                      type="radio" value="nextDay">Next day</label>
+                  <label class="option-row" for="radio-select-collection"><input id="radio-select-collection"
+                      name="speed" type="radio" value="collection">Collection</label>
+                </fieldset>
+              </form>
+            </article>
+            <article class="radio-select-card">
+              <h3>Select menu</h3>
+              <p>Useful when there are more choices, space is limited, and the list is straightforward.</p>
+              <form class="comparison-mini" data-static-form-preview data-no-slide-advance>
+                <label class="demo-label" for="radio-select-menu">Delivery speed
+                  <select id="radio-select-menu" class="demo-select" name="speed">
+                    <option value="standard">Standard</option>
+                    <option value="nextDay">Next day</option>
+                    <option value="collection">Collection</option>
+                  </select>
+                </label>
+              </form>
+            </article>
+          </div>
+        </section>
+
+        <section id="fieldset-legend" class="lesson-section lesson-section--grouping panel" data-lesson-section>
+          <p class="eyebrow">Grouping</p>
+          <h2><code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> group related controls</h2>
+          <p class="lesson-section-copy">
+            A fieldset groups related controls. A legend gives that group a meaningful title, usually the question the
+            group is answering.
+          </p>
+
+          <div class="fieldset-legend-grid">
+            <article class="fieldset-legend-card fieldset-legend-card--fieldset">
+              <span class="form-token">&lt;fieldset&gt;</span>
+              <strong>Groups related controls</strong>
+              <p>Especially helpful for radio groups and checkbox groups.</p>
+            </article>
+            <article class="fieldset-legend-card fieldset-legend-card--legend">
+              <span class="form-token">&lt;legend&gt;</span>
+              <strong>Labels the group</strong>
+              <p>The legend explains the shared question or topic.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>The legend labels the question; labels identify choices</h3>
+              <p class="code-preview__copy">Individual radio buttons still need their own labels.</p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="Fieldset and legend code example">
+                </div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Preview</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Grouped radio buttons">
+              <div data-code-content>
+                <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Choose a delivery method&lt;/legend&gt;
+
+  &lt;input id="delivery" name="deliveryMethod" type="radio" value="delivery"&gt;
+  &lt;label for="delivery"&gt;Delivery&lt;/label&gt;
+
+  &lt;input id="collection" name="deliveryMethod" type="radio" value="collection"&gt;
+  &lt;label for="collection"&gt;Collection&lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <form class="form-preview" data-static-form-preview data-no-slide-advance>
+                  <fieldset class="demo-fieldset">
+                    <legend>Choose a delivery method</legend>
+                    <label class="option-row" for="fieldset-preview-delivery"><input id="fieldset-preview-delivery"
+                        name="fieldsetDelivery" type="radio" value="delivery" checked>Delivery</label>
+                    <label class="option-row" for="fieldset-preview-collection"><input id="fieldset-preview-collection"
+                        name="fieldsetDelivery" type="radio" value="collection">Collection</label>
+                  </fieldset>
+                </form>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <div class="group-context-grid">
+            <article class="group-context-card">
+              <h3>Without group context</h3>
+              <p>Hearing only "Delivery" and "Collection" may not explain what question those options answer.</p>
+            </article>
+            <article class="group-context-card">
+              <h3>With a legend</h3>
+              <div class="legend-label-map" role="img"
+                aria-label="Legend gives the group question. Labels give individual option names.">
+                <div class="legend-node"><span class="tree-label">Legend</span><code>Choose a delivery method</code>
+                </div>
+                <div class="label-node-list">
+                  <div class="label-node"><span>label</span><code>Delivery</code></div>
+                  <div class="label-node"><span>label</span><code>Collection</code></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="larger-form" class="lesson-section lesson-section--larger panel" data-lesson-section>
+          <p class="eyebrow">Larger Forms</p>
+          <h2>Structure a larger form around related questions</h2>
+          <p class="lesson-section-copy">
+            A sensible form is not a random list of controls. Group related questions, give each control a label, and
+            choose controls that match the information you need.
+          </p>
+
+          <div class="larger-form-grid">
+            <article class="larger-form-card">
+              <h3>Event signup form</h3>
+              <p>This form is coherent: contact details, attendance, extras, contact time, and notes.</p>
+              <form class="larger-form-preview" data-static-form-preview data-no-slide-advance>
+                <fieldset class="demo-fieldset">
+                  <legend>Contact details</legend>
+                  <label class="demo-label" for="large-preview-name">Name<input id="large-preview-name"
+                      class="demo-input" name="fullName" type="text" value="Alex"></label>
+                  <label class="demo-label" for="large-preview-email">Email<input id="large-preview-email"
+                      class="demo-input" name="email" type="email" value="alex@example.com"></label>
+                </fieldset>
+                <fieldset class="demo-fieldset">
+                  <legend>Attendance</legend>
+                  <label class="option-row" for="large-preview-in-person"><input id="large-preview-in-person"
+                      name="attendance" type="radio" value="inPerson" checked>In person</label>
+                  <label class="option-row" for="large-preview-online"><input id="large-preview-online"
+                      name="attendance" type="radio" value="online">Online</label>
+                </fieldset>
+              </form>
+            </article>
+            <article class="larger-form-card">
+              <h3>Control choices</h3>
+              <ul class="memory-list">
+                <li>Text/email inputs collect short contact details.</li>
+                <li>Radio buttons collect one attendance choice.</li>
+                <li>Checkboxes collect optional extras.</li>
+                <li>Select collects one option from a list.</li>
+                <li>Textarea collects longer notes.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="inspector" class="lesson-section lesson-section--inspector panel" data-lesson-section>
+          <p class="eyebrow">Form Data Inspector</p>
+          <h2>Inspect the NAME -> VALUE data from a larger form</h2>
+          <p class="lesson-section-copy">
+            Change the choices, type a note, and submit or inspect the form. The output stays at the conceptual level
+            from Forms 1: each included control contributes NAME -> VALUE data.
+          </p>
+
+          <div data-slide-break></div>
+
+          <div class="form-data-inspector lesson-fullrow" data-form-data-inspector>
+            <p>Unchecked checkboxes are normally omitted. A selected radio button, selected option, and textarea value
+              are included.</p>
+            <div class="inspector-grid">
+              <form class="demo-form inspector-form" data-no-slide-advance>
+                <fieldset class="demo-fieldset">
+                  <legend>Contact details</legend>
+                  <label class="demo-label" for="inspector-name">Name<input id="inspector-name" class="demo-input"
+                      name="fullName" type="text" value="Alex" autocomplete="off"></label>
+                  <label class="demo-label" for="inspector-email">Email<input id="inspector-email" class="demo-input"
+                      name="email" type="email" value="alex@example.com" autocomplete="off"></label>
+                </fieldset>
+                <fieldset class="demo-fieldset">
+                  <legend>Attendance</legend>
+                  <label class="option-row" for="inspector-in-person"><input id="inspector-in-person" name="attendance"
+                      type="radio" value="inPerson" checked>In person</label>
+                  <label class="option-row" for="inspector-online"><input id="inspector-online" name="attendance"
+                      type="radio" value="online">Online</label>
+                </fieldset>
+                <fieldset class="demo-fieldset">
+                  <legend>Extras</legend>
+                  <label class="option-row" for="inspector-extra-pack"><input id="inspector-extra-pack" name="extra"
+                      type="checkbox" value="resourcePack" checked>Resource pack</label>
+                  <label class="option-row" for="inspector-extra-updates"><input id="inspector-extra-updates"
+                      name="extra" type="checkbox" value="emailUpdates">Email updates</label>
+                  <label class="option-row" for="inspector-extra-certificate"><input id="inspector-extra-certificate"
+                      name="extra" type="checkbox" value="certificate" checked>Certificate</label>
+                </fieldset>
+                <label class="demo-label" for="inspector-time">Preferred contact time
+                  <select id="inspector-time" class="demo-select" name="contactTime">
+                    <option value="morning" selected>Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="evening">Evening</option>
+                  </select>
+                </label>
+                <label class="demo-label" for="inspector-notes">Notes
+                  <textarea id="inspector-notes" class="demo-textarea" name="notes" rows="4"
+                    placeholder="Anything we should know?">Leave materials at reception</textarea>
+                </label>
+                <button class="demo-button" type="submit">Submit form</button>
+              </form>
+              <div class="demo-panel">
+                <h3>Simulated submitted data</h3>
+                <div class="form-data-output" data-inspector-output aria-live="polite"></div>
+                <p class="form-data-status" data-inspector-status aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="practice" class="lesson-section lesson-section--practice panel" data-lesson-section>
+          <p class="eyebrow">Practice</p>
+          <h2>Choose the control that best fits the question</h2>
+          <p class="lesson-section-copy">
+            This is not about memorising tag names. Read the user requirement and choose the control that makes the
+            answer easiest to give correctly.
+          </p>
+
+          <div class="control-practice lesson-fullrow" data-control-practice>
+            <div class="practice-grid">
+              <div class="practice-panel">
+                <span class="form-stage-label" data-practice-count></span>
+                <p class="practice-prompt" data-practice-prompt></p>
+                <div class="practice-choice-row" data-no-slide-advance>
+                  <button class="practice-choice" type="button" data-practice-choice="text">Text input</button>
+                  <button class="practice-choice" type="button" data-practice-choice="textarea">Textarea</button>
+                  <button class="practice-choice" type="button" data-practice-choice="radio">Radio buttons</button>
+                  <button class="practice-choice" type="button" data-practice-choice="checkbox">Checkboxes</button>
+                  <button class="practice-choice" type="button" data-practice-choice="select">Select</button>
+                </div>
+                <button class="practice-next" type="button" data-practice-next data-no-slide-advance>Next
+                  scenario</button>
+              </div>
+              <div class="demo-panel">
+                <h3>Feedback</h3>
+                <p class="practice-feedback" data-practice-feedback aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="mistakes" class="lesson-section lesson-section--mistakes panel" data-lesson-section>
+          <p class="eyebrow">Common Mistakes</p>
+          <h2>Most form bugs come from mismatched meaning</h2>
+          <p class="lesson-section-copy">
+            These mistakes are common because controls have several relationships: group names, unique ids, useful
+            values, visible labels, and group legends.
+          </p>
+
+          <div class="mistake-grid">
+            <article class="mistake-card mistake-card--problem">
+              <h3>Different radio names</h3>
+              <pre class="common-mistake-code"><code>&lt;input name="delivery" type="radio" value="delivery"&gt;
+&lt;input name="collection" type="radio" value="collection"&gt;</code></pre>
+              <p>Both can be selected because the browser sees two groups. Use the same group name.</p>
+            </article>
+            <article class="mistake-card mistake-card--problem">
+              <h3>Same id on many controls</h3>
+              <pre class="common-mistake-code"><code>&lt;input id="delivery" name="deliveryMethod"&gt;
+&lt;input id="delivery" name="deliveryMethod"&gt;</code></pre>
+              <p>Same <code>name</code> can be intentional. Same <code>id</code> is not.</p>
+            </article>
+            <article class="mistake-card mistake-card--problem">
+              <h3>No useful value</h3>
+              <pre class="common-mistake-code"><code>&lt;input name="deliveryMethod" type="radio"&gt;</code></pre>
+              <p>Give each option a useful <code>value</code> so the submitted data says which choice was made.</p>
+            </article>
+            <article class="mistake-card mistake-card--problem">
+              <h3>Checkboxes for exactly one answer</h3>
+              <pre class="common-mistake-code"><code>How would you like to pay?
+[ ] Cash
+[ ] Card</code></pre>
+              <p>If exactly one method is allowed, radio buttons usually fit better.</p>
+            </article>
+            <article class="mistake-card mistake-card--problem">
+              <h3>Radio buttons for many answers</h3>
+              <pre class="common-mistake-code"><code>Which toppings would you like?
+( ) Cheese
+( ) Mushrooms
+( ) Peppers</code></pre>
+              <p>If several answers may apply, checkboxes make more sense.</p>
+            </article>
+            <article class="mistake-card mistake-card--problem">
+              <h3>Text input for a long response</h3>
+              <pre class="common-mistake-code"><code>&lt;input name="feedback" type="text"&gt;</code></pre>
+              <p>For messages or feedback, a textarea gives the user more room.</p>
+            </article>
+            <article class="mistake-card mistake-card--problem">
+              <h3>Forgetting labels</h3>
+              <pre
+                class="common-mistake-code"><code>&lt;input type="checkbox" name="extra" value="giftWrap"&gt;</code></pre>
+              <p>New controls still need meaningful labels.</p>
+            </article>
+            <article class="mistake-card mistake-card--problem">
+              <h3>Weak legend</h3>
+              <pre class="common-mistake-code"><code>&lt;fieldset&gt;
+  &lt;legend&gt;Options&lt;/legend&gt;
+&lt;/fieldset&gt;</code></pre>
+              <p>The legend should describe the group or question clearly.</p>
+            </article>
+            <article class="mistake-card mistake-card--problem">
+              <h3>Text confused with value</h3>
+              <pre class="common-mistake-code"><code>&lt;option value="jp"&gt;Japan&lt;/option&gt;</code></pre>
+              <p>The user sees Japan, but the submitted value is <code>jp</code>.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="summary" class="lesson-section lesson-section--summary panel" data-lesson-section>
+          <p class="eyebrow">Memory Hooks</p>
+          <h2>Question -> control, control -> NAME -> VALUE</h2>
+          <div class="memory-grid">
+            <article class="memory-card"><strong>Radio</strong><span>Choose one from a group.</span></article>
+            <article class="memory-card"><strong>Radio group</strong><span>Same <code>name</code>, different
+                <code>value</code>, unique <code>id</code>.</span></article>
+            <article class="memory-card"><strong>Checkbox</strong><span>Choose zero, one, or many.</span></article>
+            <article class="memory-card"><strong>Textarea</strong><span>Longer written response with opening and closing
+                tags.</span></article>
+            <article class="memory-card"><strong>Select</strong><span>Creates a choice list.</span></article>
+            <article class="memory-card"><strong>Option</strong><span>Creates a choice inside a select.</span></article>
+            <article class="memory-card"><strong>Value</strong><span>What the chosen option represents in submitted
+                data.</span></article>
+            <article class="memory-card"><strong>Checked</strong><span>Initial radio or checkbox selection.</span>
+            </article>
+            <article class="memory-card"><strong>Selected</strong><span>Initial select option.</span></article>
+            <article class="memory-card"><strong>Fieldset</strong><span>Groups related controls.</span></article>
+            <article class="memory-card"><strong>Legend</strong><span>Explains what the group is about.</span></article>
+            <article class="memory-card"><strong>Label</strong><span>Explains an individual control or choice.</span>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="youll-see-grid">
+            <article class="youll-see-card">
+              <h3>You will also see more input types</h3>
+              <p>HTML includes other specialised input types such as <code>date</code>, <code>time</code>,
+                <code>range</code>, and <code>color</code>.</p>
+            </article>
+            <article class="youll-see-card">
+              <h3>Look them up when useful</h3>
+              <p>You do not need a giant catalogue today. The habit is to choose a control that fits the question.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p>
+          <h2>Check your understanding</h2>
+          <p class="quiz-intro">Answer all fifteen questions, then check your score. Your choices and best score save in
+            this browser.</p>
+
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b"
+              data-success="Correct. The control should match the kind of answer needed."
+              data-feedback="Forms 2 is about choosing controls based on the question being asked.">
+              <legend>1. What is the main question to ask when choosing a form control?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>Which tag has the
+                      shortest name?</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>What kind of information
+                      are we asking the user for?</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>Which control needs the
+                      least HTML?</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q2" data-answer="a"
+              data-success="Correct. Radio buttons in one group share the same name."
+              data-feedback="Same name means same radio group.">
+              <legend>2. Which attribute should two radio buttons share if they answer the same question?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q2"
+                      value="a" /><span><code>name</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q2"
+                      value="b" /><span><code>id</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q2"
+                      value="c" /><span><code>placeholder</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q3" data-answer="c"
+              data-success="Correct. Each id should identify one element."
+              data-feedback="Labels target ids, so each control should have a unique id.">
+              <legend>3. Which attribute should remain unique for each radio button so labels can target the correct
+                control?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q3"
+                      value="a" /><span><code>name</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q3"
+                      value="b" /><span><code>type</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q3"
+                      value="c" /><span><code>id</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q4" data-answer="b"
+              data-success="Correct. name gives the data label and value gives the chosen option."
+              data-feedback="For radio buttons: same name for the group, different values for the choices.">
+              <legend>4. If <code>name="deliveryMethod"</code> and the selected radio has
+                <code>value="collection"</code>, what data is submitted?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q4"
+                      value="a" /><span><code>collection -> deliveryMethod</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q4"
+                      value="b" /><span><code>deliveryMethod -> collection</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q4"
+                      value="c" /><span><code>id -> collection</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q5" data-answer="c"
+              data-success="Correct. Checkboxes can allow zero, one, or many selections."
+              data-feedback="Checkboxes are not limited to one selected option.">
+              <legend>5. Which control is best for "Choose any toppings that apply"?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>Radio
+                      buttons</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>A password
+                      input</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>Checkboxes</span></label>
+                </li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div data-slide-break></div>
+
+            <fieldset class="quiz-question" data-question="q6" data-answer="a"
+              data-success="Correct. Unchecked checkboxes are normally omitted."
+              data-feedback="A checked checkbox contributes its name/value pair. An unchecked one normally contributes nothing.">
+              <legend>6. In a normal form submission, what happens to an unchecked checkbox?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span>It is normally omitted
+                      from the submitted data</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span>It submits the word
+                      "unchecked"</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span>It submits its id instead
+                      of its name</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q7" data-answer="b"
+              data-success="Correct. Useful values make submitted choices meaningful."
+              data-feedback="When the submitted value matters, write an explicit useful value.">
+              <legend>7. Why should radio buttons and checkboxes usually have useful <code>value</code> attributes?
+              </legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span>So the label becomes
+                      bold</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span>So the submitted data
+                      identifies which choice was made</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span>So the input becomes a
+                      textarea</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q8" data-answer="c"
+              data-success="Correct. checked selects a radio button or checkbox initially."
+              data-feedback="checked affects radio buttons and checkboxes.">
+              <legend>8. What does <code>checked</code> do?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>It submits every option
+                      in a group</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>It creates a dropdown
+                      menu</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>It makes a radio button
+                      or checkbox selected initially</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q9" data-answer="a"
+              data-success="Correct. A textarea is for longer written answers."
+              data-feedback="A text input is usually better for short answers only.">
+              <legend>9. Which control is best for a longer written message?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q9"
+                      value="a" /><span><code>&lt;textarea&gt;</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q9"
+                      value="b" /><span><code>&lt;input type="text"&gt;</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q9"
+                      value="c" /><span><code>&lt;option&gt;</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q10" data-answer="b"
+              data-success="Correct. Textarea is not a void element."
+              data-feedback="Input is void. Textarea has opening and closing tags.">
+              <legend>10. Which statement about <code>&lt;textarea&gt;</code> is correct?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span>It never has a closing
+                      tag</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span>It has opening and
+                      closing tags</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>It is only used inside
+                      images</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div data-slide-break></div>
+
+            <fieldset class="quiz-question" data-question="q11" data-answer="c"
+              data-success="Correct. Options belong inside a select."
+              data-feedback="Select creates the control; option creates each choice.">
+              <legend>11. What is the relationship between <code>&lt;select&gt;</code> and <code>&lt;option&gt;</code>?
+              </legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q11" value="a" /><span>They are always separate
+                      forms</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q11" value="b" /><span>The select goes inside
+                      each option</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q11" value="c" /><span>Options are choices
+                      inside the select</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q12" data-answer="a"
+              data-success="Correct. The submitted value is jp."
+              data-feedback="The visible text and submitted value do not have to be identical.">
+              <legend>12. For <code>&lt;option value="jp"&gt;Japan&lt;/option&gt;</code>, what value is submitted if
+                Japan is selected?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q12"
+                      value="a" /><span><code>jp</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q12"
+                      value="b" /><span><code>Japan</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q12"
+                      value="c" /><span><code>country</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q13" data-answer="b"
+              data-success="Correct. selected chooses the initial option."
+              data-feedback="selected is for an option; checked is for a radio button or checkbox.">
+              <legend>13. What does <code>selected</code> do on an <code>&lt;option&gt;</code>?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q13" value="a" /><span>It lets several radio
+                      buttons be selected</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q13" value="b" /><span>It makes that option
+                      selected initially</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q13" value="c" /><span>It connects a label to
+                      an input</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q14" data-answer="c"
+              data-success="Correct. The legend labels the group, while labels name individual controls."
+              data-feedback="A legend gives the shared group question; labels identify each individual option/control.">
+              <legend>14. What is the difference between a legend and individual labels in a radio group?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q14" value="a" /><span>The legend replaces all
+                      labels</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q14" value="b" /><span>Labels group controls;
+                      legend submits values</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q14" value="c" /><span>The legend describes the
+                      group question; labels identify each option</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q15" data-answer="a"
+              data-success="Correct. Radio buttons are usually best when exactly one answer should be selected from a small set."
+              data-feedback="Checkboxes would allow more than one payment method to be selected.">
+              <legend>15. Which control is usually best for "Choose exactly one payment method: Cash or Card"?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q15" value="a" /><span>Radio
+                      buttons</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q15"
+                      value="b" /><span>Checkboxes</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q15" value="c" /><span>A
+                      textarea</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button
+                class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this
+              device once you start.</p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p>
+          <h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item">
+              <dt>Radio button</dt>
+              <dd>A control for choosing one option from a group.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Checkbox</dt>
+              <dd>A control for choosing zero, one, or many independent options.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Value</dt>
+              <dd>The value submitted when a control is included in form data.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Textarea</dt>
+              <dd>A form control for longer written answers.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Select</dt>
+              <dd>A form control that shows a list of options.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Fieldset</dt>
+              <dd>An element that groups related form controls.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Legend</dt>
+              <dd>A label for a group of related controls.</dd>
+            </div>
+          </dl>
+        </section>
+        <section class="lesson-rail-card panel revision-card">
+          <p class="eyebrow">Remember</p>
+          <h2>Choose the control to fit the question</h2>
+          <ul class="memory-list">
+            <li>Radio: one choice.</li>
+            <li>Checkbox: zero, one, or many.</li>
+            <li>Select: list of options.</li>
+            <li>Textarea: longer written answer.</li>
+            <li>Fieldset and legend explain grouped controls.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+      <p class="eyebrow">Keep Going</p>
+      <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+      <div class="sequence-grid" data-role="lesson-sequence"></div>
+    </section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+    <p class="slide-status" data-role="slide-status">Slide 1</p>
+    <button type="button" class="slide-button" data-action="next-slide">Next</button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+  </div>
+</body>
+
+</html>

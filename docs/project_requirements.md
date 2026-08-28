@@ -182,7 +182,9 @@ the browser with `localStorage` where useful.
   `pages/topics/headings-paragraphs-lists-and-links.html`, and
   `pages/topics/images-alt-text-and-useful-page-sections.html`, and
   `pages/topics/parent-child-relationships-in-html.html`, and
-  `pages/topics/file-paths-folders-and-linking-pages.html`.
+  `pages/topics/file-paths-folders-and-linking-pages.html`, and
+  `pages/topics/forms-1-inputs-labels-and-submitting-data.html`, and
+  `pages/topics/forms-2-choices-larger-inputs-and-grouping.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,

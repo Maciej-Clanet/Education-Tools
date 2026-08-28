@@ -1,0 +1,592 @@
+.ipo-flow,
+.ipo-example-grid,
+.form-purpose-grid,
+.form-tree-grid,
+.input-detail-grid,
+.label-benefit-grid,
+.placeholder-compare-grid,
+.id-name-grid,
+.submit-flow,
+.mistake-grid,
+.memory-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.ipo-flow,
+.form-tree-grid,
+.placeholder-compare-grid,
+.id-name-grid,
+.submit-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ipo-example-grid,
+.form-purpose-grid,
+.input-detail-grid,
+.label-benefit-grid,
+.mistake-grid,
+.memory-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.ipo-card,
+.example-card,
+.form-purpose-card,
+.form-tree-card,
+.input-detail-card,
+.label-benefit-card,
+.placeholder-card,
+.id-name-card,
+.submit-card,
+.mistake-card,
+.memory-card,
+.form-tool,
+.form-note,
+.label-focus-demo,
+.placeholder-demo,
+.input-type-demo,
+.validation-demo,
+.form-data-demo,
+.form-anatomy {
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.ipo-card,
+.example-card,
+.form-purpose-card,
+.form-tree-card,
+.input-detail-card,
+.label-benefit-card,
+.placeholder-card,
+.id-name-card,
+.submit-card,
+.mistake-card,
+.memory-card,
+.form-tool,
+.form-note,
+.label-focus-demo,
+.placeholder-demo,
+.input-type-demo,
+.validation-demo,
+.form-data-demo,
+.form-anatomy {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.ipo-card :is(p, pre),
+.example-card :is(p, pre),
+.form-purpose-card :is(p, pre),
+.form-tree-card :is(p, pre),
+.input-detail-card :is(p, pre),
+.label-benefit-card :is(p, pre),
+.placeholder-card :is(p, pre),
+.id-name-card :is(p, pre),
+.submit-card :is(p, pre),
+.mistake-card :is(p, pre),
+.memory-card :is(p, pre),
+.form-tool p,
+.form-note :is(p, pre),
+.label-focus-demo p,
+.placeholder-demo p,
+.input-type-demo p,
+.validation-demo p,
+.form-data-demo p,
+.form-anatomy p {
+  margin: 0;
+}
+
+.form-code,
+.form-tree-code,
+.mistake-card pre,
+.form-note pre,
+.anatomy-code {
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: #24313b;
+  color: #f8fbfc;
+  font: 0.9rem/1.55 Consolas, "Courier New", monospace;
+  tab-size: 2;
+}
+
+.form-token,
+.form-data-row code {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(36, 49, 59, 0.09);
+  color: var(--page-ink);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.86rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.ipo-card--input,
+.placeholder-card--better,
+.mistake-card--better {
+  border-color: rgba(31, 135, 125, 0.3);
+  background: rgba(238, 248, 231, 0.88);
+}
+
+.ipo-card--process,
+.id-name-card--name {
+  border-color: rgba(242, 207, 106, 0.44);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.ipo-card--output,
+.id-name-card--id {
+  border-color: rgba(105, 200, 232, 0.42);
+  background: rgba(232, 246, 255, 0.88);
+}
+
+.placeholder-card--bad,
+.mistake-card--problem {
+  border-color: rgba(190, 91, 91, 0.34);
+  background: rgba(255, 240, 241, 0.88);
+}
+
+.ipo-arrow {
+  display: none;
+}
+
+.ipo-card strong,
+.example-card strong,
+.form-purpose-card strong,
+.input-detail-card strong,
+.label-benefit-card strong,
+.id-name-card strong,
+.submit-card strong,
+.memory-card strong {
+  color: var(--lesson-accent-heading);
+}
+
+.ipo-stage-label,
+.form-tree-label,
+.anatomy-label {
+  color: var(--lesson-accent-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.form-tool,
+.label-focus-demo,
+.placeholder-demo,
+.input-type-demo,
+.validation-demo,
+.form-data-demo,
+.form-anatomy {
+  margin-top: 1rem;
+  background: rgba(248, 252, 255, 0.9);
+}
+
+.ipo-demo-grid,
+.label-focus-grid,
+.placeholder-demo-grid,
+.input-type-demo-grid,
+.validation-grid,
+.form-data-grid,
+.anatomy-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.9fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.demo-form,
+.demo-panel,
+.form-preview,
+.form-data-output,
+.anatomy-panel {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 18px rgba(36, 49, 59, 0.07);
+}
+
+.demo-label {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--page-ink);
+  font-weight: 800;
+}
+
+.demo-input,
+.demo-select {
+  width: 100%;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.2);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.demo-input[type="password"],
+.demo-input[type="number"],
+.demo-input[type="email"] {
+  font-family: inherit;
+}
+
+.demo-input:focus-visible,
+.demo-select:focus-visible,
+.demo-button:focus-visible,
+.anatomy-button:focus-visible {
+  outline: 4px solid #f2cf6a;
+  outline-offset: 3px;
+}
+
+.demo-button {
+  width: fit-content;
+  padding: 0.62rem 0.85rem;
+  border: 1.5px solid #24313b;
+  border-radius: 10px;
+  background: #24313b;
+  color: #ffffff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.demo-status,
+.form-data-status,
+.anatomy-text {
+  min-height: 1.5em;
+  font-weight: 700;
+}
+
+.ipo-live-output {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ipo-live-output span {
+  display: block;
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: rgba(238, 248, 231, 0.92);
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.form-tree-visual {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: #24313b;
+  color: #ffffff;
+}
+
+.form-tree-node,
+.form-tree-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  width: fit-content;
+  padding: 0.45rem 0.62rem;
+  border: 2px solid rgba(255, 255, 255, 0.38);
+  border-radius: 10px;
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: 800;
+}
+
+.form-tree-children {
+  display: grid;
+  gap: 0.4rem;
+  margin-left: 0.7rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.26);
+}
+
+.form-tree-note {
+  color: var(--muted-ink);
+}
+
+.label-focus-preview label {
+  display: inline-block;
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.label-focus-preview label::after {
+  content: " for=\"label-focus-name\"";
+  display: block;
+  color: var(--muted-ink);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.78rem;
+}
+
+.label-focus-preview input:focus {
+  border-color: #1f877d;
+  box-shadow: 0 0 0 4px rgba(31, 135, 125, 0.16);
+}
+
+.connection-line {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.75rem;
+  border-left: 6px solid #69c8e8;
+  border-radius: 12px;
+  background: rgba(232, 246, 255, 0.88);
+}
+
+.placeholder-card input,
+.form-preview input {
+  margin-top: 0.35rem;
+}
+
+.input-type-code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.form-data-output {
+  min-height: 9rem;
+  align-content: start;
+}
+
+.form-data-row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.8fr) auto minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.55rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.12);
+  border-radius: 10px;
+  background: rgba(238, 248, 231, 0.78);
+}
+
+.form-data-empty {
+  color: var(--muted-ink);
+}
+
+.attribute-editor {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 249, 227, 0.86);
+}
+
+.anatomy-grid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
+}
+
+.anatomy-code {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.anatomy-line {
+  display: block;
+  min-width: max-content;
+}
+
+.anatomy-highlight {
+  padding: 0.08rem 0.18rem;
+  border-radius: 6px;
+}
+
+.anatomy-highlight.is-selected {
+  background: #f2cf6a;
+  color: #24313b;
+  outline: 2px solid #ffffff;
+}
+
+.anatomy-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.anatomy-button {
+  padding: 0.55rem 0.7rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.2);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--page-ink);
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.anatomy-button.is-selected {
+  border-color: #24313b;
+  background: #24313b;
+  color: #ffffff;
+}
+
+.common-mistake-code {
+  white-space: pre-wrap;
+}
+
+body.teacher-mode-active .ipo-flow,
+body.teacher-mode-active .placeholder-compare-grid,
+body.teacher-mode-active .submit-flow,
+body.teacher-mode-active .id-name-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .ipo-example-grid,
+body.teacher-mode-active .form-purpose-grid,
+body.teacher-mode-active .input-detail-grid,
+body.teacher-mode-active .label-benefit-grid,
+body.teacher-mode-active .mistake-grid,
+body.teacher-mode-active .memory-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .ipo-demo-grid,
+body.teacher-mode-active .label-focus-grid,
+body.teacher-mode-active .placeholder-demo-grid,
+body.teacher-mode-active .input-type-demo-grid,
+body.teacher-mode-active .validation-grid,
+body.teacher-mode-active .form-data-grid,
+body.teacher-mode-active .anatomy-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.85fr);
+}
+
+body.teacher-mode-active .form-tool,
+body.teacher-mode-active .label-focus-demo,
+body.teacher-mode-active .placeholder-demo,
+body.teacher-mode-active .input-type-demo,
+body.teacher-mode-active .validation-demo,
+body.teacher-mode-active .form-data-demo,
+body.teacher-mode-active .form-anatomy {
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+body.teacher-mode-active .demo-form,
+body.teacher-mode-active .demo-panel,
+body.teacher-mode-active .form-preview,
+body.teacher-mode-active .form-data-output,
+body.teacher-mode-active .anatomy-panel {
+  gap: 0.5rem;
+  padding: 0.72rem;
+  box-shadow: none;
+}
+
+body.teacher-mode-active .form-code,
+body.teacher-mode-active .form-tree-code,
+body.teacher-mode-active .mistake-card pre,
+body.teacher-mode-active .form-note pre,
+body.teacher-mode-active .anatomy-code {
+  max-height: 15rem;
+  font-size: 0.8rem;
+}
+
+body.teacher-mode-active .form-tree-visual {
+  font-size: 0.86rem;
+}
+
+body.teacher-mode-active .form-data-row {
+  grid-template-columns: minmax(7rem, 0.9fr) auto minmax(0, 1fr);
+}
+
+body.teacher-mode-active .form-data-grid .form-note,
+body.teacher-mode-active .anatomy-panel .anatomy-text {
+  font-size: 0.92rem;
+}
+
+body.teacher-mode-active .lesson-section--names > h2 {
+  font-size: 2.05rem;
+}
+
+body.teacher-mode-active .form-data-demo > p {
+  display: none;
+}
+
+body.teacher-mode-active .form-data-demo .form-data-grid {
+  gap: 0.7rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+}
+
+body.teacher-mode-active .form-data-demo .attribute-editor,
+body.teacher-mode-active .form-data-demo .demo-form,
+body.teacher-mode-active .form-data-demo .demo-panel,
+body.teacher-mode-active .form-data-demo .form-data-output {
+  gap: 0.38rem;
+  padding: 0.58rem;
+}
+
+body.teacher-mode-active .form-data-demo .demo-label {
+  gap: 0.18rem;
+  font-size: 0.9rem;
+}
+
+body.teacher-mode-active .form-data-demo .demo-input {
+  padding: 0.42rem 0.55rem;
+}
+
+body.teacher-mode-active .form-data-demo .demo-button {
+  padding: 0.44rem 0.62rem;
+}
+
+body.teacher-mode-active .form-data-demo .form-data-output {
+  min-height: auto;
+}
+
+body.teacher-mode-active .form-data-demo .form-data-row {
+  gap: 0.35rem;
+  padding: 0.34rem 0.45rem;
+}
+
+body.teacher-mode-active .form-data-demo .form-data-status {
+  font-size: 0.84rem;
+}
+
+body.a11y-simplify-visuals :is(.ipo-card, .example-card, .form-purpose-card, .form-tree-card, .input-detail-card, .label-benefit-card, .placeholder-card, .id-name-card, .submit-card, .mistake-card, .memory-card, .form-tool, .form-note, .label-focus-demo, .placeholder-demo, .input-type-demo, .validation-demo, .form-data-demo, .form-anatomy, .demo-form, .demo-panel, .form-preview, .form-data-output, .anatomy-panel),
+body.a11y-high-contrast :is(.ipo-card, .example-card, .form-purpose-card, .form-tree-card, .input-detail-card, .label-benefit-card, .placeholder-card, .id-name-card, .submit-card, .mistake-card, .memory-card, .form-tool, .form-note, .label-focus-demo, .placeholder-demo, .input-type-demo, .validation-demo, .form-data-demo, .form-anatomy, .demo-form, .demo-panel, .form-preview, .form-data-output, .anatomy-panel) {
+  box-shadow: none !important;
+}
+
+body.a11y-high-contrast :is(.demo-input, .demo-select, .demo-button, .anatomy-button, .form-tree-node, .form-tree-child) {
+  border-color: currentColor !important;
+}
+
+@media (max-width: 900px) {
+  .ipo-flow,
+  .form-tree-grid,
+  .placeholder-compare-grid,
+  .id-name-grid,
+  .submit-flow,
+  .ipo-demo-grid,
+  .label-focus-grid,
+  .placeholder-demo-grid,
+  .input-type-demo-grid,
+  .validation-grid,
+  .form-data-grid,
+  .anatomy-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .form-data-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .demo-button {
+    width: 100%;
+  }
+}
