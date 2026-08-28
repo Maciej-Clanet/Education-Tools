@@ -17,10 +17,11 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "HTML practice project",
+        title: "File paths, folders, and linking pages",
+        href: "file-paths-folders-and-linking-pages.html",
         description:
-          "Next, combine the HTML basics lessons into a small structured page.",
-        status: "Planned",
+          "Learn how paths tell the browser where to find images, resources, and other HTML pages.",
+        status: "Live",
       },
     },
   },

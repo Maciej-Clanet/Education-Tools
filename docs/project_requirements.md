@@ -181,7 +181,8 @@ the browser with `localStorage` where useful.
   `pages/topics/html-document-structure.html`, and
   `pages/topics/headings-paragraphs-lists-and-links.html`, and
   `pages/topics/images-alt-text-and-useful-page-sections.html`, and
-  `pages/topics/parent-child-relationships-in-html.html`.
+  `pages/topics/parent-child-relationships-in-html.html`, and
+  `pages/topics/file-paths-folders-and-linking-pages.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,

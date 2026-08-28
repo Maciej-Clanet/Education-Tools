@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Paths, Folders, and Linking Pages Lesson | Education Tools</title>
+  <meta name="description"
+    content="Learn how website file paths work, how folders organise HTML projects, and how to link pages together with relative paths." />
+  <meta property="og:title" content="File Paths, Folders, and Linking Pages Lesson | Education Tools" />
+  <meta property="og:description"
+    content="A beginner-friendly HTML lesson on src, href, relative paths, folders, index.html, and linking pages in a website project." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/pages/file-paths-folders-and-linking-pages.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/file-paths-folders-and-linking-pages.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">HTML Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#html-basics" data-role="breadcrumb-unit-link">Web
+              Development</a></li>
+          <li aria-current="page">File paths, folders, and linking pages</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>File paths, folders, and linking pages</h1>
+          <p class="lesson-hero-text">
+            A path tells the browser where to find another file. Use that one idea to find images, link pages, and
+            debug the mistakes that make website files disappear.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside
+            <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Resource area</strong><span>HTML basics</span></article>
+        <article class="lesson-meta-card"><strong>Main focus</strong><span>Relative paths, folders, and href
+            links</span></article>
+        <article class="lesson-meta-card"><strong>Practice</strong><span>Path explorer and path challenge</span>
+        </article>
+        <article class="lesson-meta-card"><strong>Quiz</strong><span>11 understanding questions</span></article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit"
+          href="../resources/web-development.html#html-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">
+          Teacher slides
+        </button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The lesson notes still work without JavaScript, but the path explorer, path challenge, code previews, quiz
+        scoring, saved answers, and teacher slides need JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#overview" data-section-link>Path idea</a>
+          <a href="#external-files" data-section-link>External files</a>
+          <a href="#project-folder" data-section-link>Project folder</a>
+          <a href="#relative-paths" data-section-link>Relative paths</a>
+          <a href="#going-up" data-section-link>Using ../</a>
+          <a href="#path-problems" data-section-link>Path problems</a>
+          <a href="#path-practice" data-section-link>Path practice</a>
+          <a href="#linking-pages" data-section-link>Linking pages</a>
+          <a href="#summary" data-section-link>Summary</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
+          <p class="eyebrow">Quick Recap</p>
+          <h2>The value inside src is a path</h2>
+          <p class="lesson-section-copy">
+            You already know that <code>&lt;img&gt;</code> uses <code>src</code> to choose an image file. This lesson
+            focuses on the text inside <code>src</code> and <code>href</code>.
+          </p>
+
+          <div class="path-idea-grid">
+            <article class="path-card">
+              <span class="path-token">src="images/panda.jpg"</span>
+              <strong>Find an image</strong>
+              <p>The browser reads the path and tries to load that file.</p>
+            </article>
+            <article class="path-card">
+              <span class="path-token">href="pages/contact.html"</span>
+              <strong>Link to a page</strong>
+              <p>The anchor uses the same path idea to move to another HTML file.</p>
+            </article>
+          </div>
+
+          <div class="path-card path-card--key">
+            <strong>Main idea</strong>
+            <p>A path tells the browser where to find another file.</p>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Start with the src value</h3>
+              <p class="code-preview__copy">
+                The tag is familiar. The new question is: where does that path send the browser?
+              </p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="External image source example"></div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">What it means</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Image src">
+              <div data-code-content>
+                <pre><code>&lt;img
+  src="https://example.com/images/cat.jpg"
+  alt="A cat"&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="path-note">
+                  <span class="path-token">https://example.com/images/cat.jpg</span>
+                  <p>The image is being requested from a complete web address somewhere else on the web.</p>
+                </div>
+              </div>
+            </template>
+          </article>
+        </section>
+
+        <section id="external-files" class="lesson-section lesson-section--external panel" data-lesson-section>
+          <p class="eyebrow">External Files</p>
+          <h2>A path can point to another website</h2>
+          <p class="lesson-section-copy">
+            A complete address such as <code>https://example.com/images/cat.jpg</code> tells the browser to go
+            somewhere else on the web and ask for that file.
+          </p>
+
+          <div class="url-compare-grid">
+            <article class="url-card url-card--external">
+              <span class="path-token">https://example.com/images/cat.jpg</span>
+              <strong>Useful for quick demos</strong>
+              <p>You do not need to keep the file inside your own project while testing an idea.</p>
+            </article>
+            <article class="url-card url-card--project">
+              <span class="path-token">images/panda.jpg</span>
+              <strong>Useful for your own project files</strong>
+              <p>The image belongs with the website files, so the project can move as a folder.</p>
+            </article>
+          </div>
+
+          <div class="path-note">
+            <strong>The trade-off</strong>
+            <p>
+              A file from another website can be changed, removed, blocked, or unavailable. You also need permission
+              to use images appropriately.
+            </p>
+          </div>
+        </section>
+
+        <section id="project-folder" class="lesson-section lesson-section--folder panel" data-lesson-section>
+          <p class="eyebrow">Website Project</p>
+          <h2>A website project is a folder full of files</h2>
+          <p class="lesson-section-copy">
+            HTML pages are files. Images are files. Folders help organise those files so paths are easier to read.
+          </p>
+
+          <div class="folder-lesson-grid">
+            <article class="folder-card folder-card--tree">
+              <h3>Animal-site project</h3>
+              <pre class="folder-tree-static"><code>animal-site/
+|-- index.html
+|-- images/
+|   |-- logo.png
+|   `-- panda.jpg
+|-- pages/
+|   |-- pandas.html
+|   |-- contact.html
+|   `-- team/
+|       `-- keepers.html
+`-- facts/
+    `-- red-pandas.html</code></pre>
+            </article>
+            <article class="folder-card">
+              <h3>Names are choices</h3>
+              <p>
+                Folders such as <code>images/</code> or <code>assets/</code> are common, but they are not magic HTML
+                keywords. They are useful names chosen by the person making the project.
+              </p>
+              <p>Use one clear project structure and make your paths match it.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="path-note">
+            <strong>Read the tree from the top folder downward</strong>
+            <p>
+              <code>pages/contact.html</code> means: inside <code>animal-site</code>, go into <code>pages</code>, then
+              find <code>contact.html</code>.
+            </p>
+          </div>
+        </section>
+
+        <section id="relative-paths" class="lesson-section lesson-section--relative panel" data-lesson-section>
+          <p class="eyebrow">Relative Paths</p>
+          <h2>A relative path starts from the current file</h2>
+          <p class="lesson-section-copy">
+            Before writing a path, ask the same question every time: <strong>where am I starting from?</strong>
+          </p>
+
+          <div class="relative-route-grid">
+            <article class="route-card">
+              <h3>Current file</h3>
+              <span class="path-token">index.html</span>
+              <p>Start beside the home page in the main project folder.</p>
+            </article>
+            <article class="route-card">
+              <h3>Target file</h3>
+              <span class="path-token">images/panda.jpg</span>
+              <p>Go into <code>images</code>, then find <code>panda.jpg</code>.</p>
+            </article>
+          </div>
+
+          <div class="path-note">
+            <strong>Result:</strong>
+            <code class="path-token">images/panda.jpg</code>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="path-tool lesson-fullrow" data-path-explorer>
+            <div>
+              <h3>Path Explorer</h3>
+              <p>Choose a current HTML file and a target file. The explorer traces the path as directions.</p>
+            </div>
+            <div class="path-tool__controls" data-no-slide-advance>
+              <label class="path-select-label">
+                Current file
+                <select data-path-current aria-label="Current HTML file"></select>
+              </label>
+              <label class="path-select-label">
+                Target file
+                <select data-path-target aria-label="Target file"></select>
+              </label>
+            </div>
+            <div class="path-tool__body">
+              <div class="path-tree" data-folder-tree
+                aria-label="Folder tree showing current file, target file, and route"></div>
+              <div class="path-route-panel">
+                <div class="path-output">
+                  <strong>Start folder</strong>
+                  <code data-start-folder></code>
+                </div>
+                <div class="path-output">
+                  <strong>Generated path</strong>
+                  <code data-generated-path></code>
+                </div>
+                <ol class="route-steps" data-route-steps></ol>
+                <p class="route-text" data-route-text aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="going-up" class="lesson-section lesson-section--up panel" data-lesson-section>
+          <p class="eyebrow">Using ../</p>
+          <h2><code>../</code> means go up one folder level</h2>
+          <p class="lesson-section-copy">
+            If the current file is inside <code>pages/</code>, the browser starts inside <code>pages/</code>. To reach
+            a file outside that folder, the path must go up first.
+          </p>
+
+          <div class="relative-route-grid">
+            <article class="route-card">
+              <h3>Current file</h3>
+              <span class="path-token">pages/pandas.html</span>
+              <p>Start inside the <code>pages</code> folder.</p>
+            </article>
+            <article class="route-card">
+              <h3>Target file</h3>
+              <span class="path-token">images/panda.jpg</span>
+              <p>The image is not inside <code>pages</code>. It is in <code>images</code>.</p>
+            </article>
+          </div>
+
+          <div class="path-note">
+            <strong>Directions:</strong>
+            <p>Go up/out of <code>pages</code>, go into <code>images</code>, find <code>panda.jpg</code>.</p>
+            <code class="path-token">../images/panda.jpg</code>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="path-note lesson-fullrow">
+            <h3>Going up and then into another folder</h3>
+            <pre><code>Current: pages/pandas.html
+Target:  images/logo.png
+
+Path:    ../images/logo.png</code></pre>
+            <p>
+              The first part, <code>../</code>, returns to the main project folder. The next part,
+              <code>images/logo.png</code>, goes into the images folder and finds the file.
+            </p>
+          </div>
+        </section>
+
+        <section id="path-problems" class="lesson-section lesson-section--problems panel" data-lesson-section>
+          <p class="eyebrow">Path Problems</p>
+          <h2>Some paths look believable but send the browser to the wrong place</h2>
+          <p class="lesson-section-copy">
+            Debug paths logically. Do not guess. Ask: where am I starting from, and where would this path make the
+            browser look?
+          </p>
+
+          <div class="url-compare-grid">
+            <article class="url-card url-card--external">
+              <h3>Absolute URL</h3>
+              <span class="path-token">https://example.com/images/cat.jpg</span>
+              <p>A complete web address. It points somewhere on the web.</p>
+            </article>
+            <article class="url-card url-card--project">
+              <h3>Relative path</h3>
+              <span class="path-token">../images/panda.jpg</span>
+              <p>Directions from the current file inside this project.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="local-path-compare lesson-fullrow">
+            <article class="problem-card problem-card--bad">
+              <h3>One computer</h3>
+              <pre><code>C:\Users\Jamie\Pictures\panda.jpg</code></pre>
+              <p>This tells the browser where the file exists on Jamie's computer.</p>
+            </article>
+            <article class="problem-card problem-card--good">
+              <h3>The website project</h3>
+              <pre><code>animal-site/
+|-- index.html
+`-- images/
+    `-- panda.jpg</code></pre>
+              <p>The project path should describe where the file exists inside the website folder.</p>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="problem-grid">
+            <article class="problem-card">
+              <h3>Slash direction</h3>
+              <div class="slash-pair" role="list">
+                <span role="listitem">images/panda.jpg</span>
+                <span role="listitem">images\panda.jpg</span>
+              </div>
+              <p>Website paths normally use <code>/</code>, not the Windows backslash.</p>
+            </article>
+            <article class="problem-card">
+              <h3>Filename and case</h3>
+              <pre><code>Actual file: images/panda.jpg
+HTML path:   images/Panda.jpg</code></pre>
+              <p>Capitalisation can matter when the website moves. Simple predictable filenames reduce mistakes.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="path-practice" class="lesson-section lesson-section--practice panel" data-lesson-section>
+          <p class="eyebrow">Debug and Practise</p>
+          <h2>Wrong paths can be traced too</h2>
+          <p class="lesson-section-copy">
+            When a path fails, trace where it would actually go. That usually reveals the fix.
+          </p>
+
+          <div class="debug-grid">
+            <article class="debug-card">
+              <h3>Forgot the folder</h3>
+              <pre><code>Current: index.html
+Target:  images/panda.jpg
+Wrong:   panda.jpg
+Fix:     images/panda.jpg</code></pre>
+            </article>
+            <article class="debug-card">
+              <h3>Started inside pages</h3>
+              <pre><code>Current: pages/pandas.html
+Target:  images/panda.jpg
+Wrong:   images/panda.jpg
+Looks:   pages/images/panda.jpg
+Fix:     ../images/panda.jpg</code></pre>
+            </article>
+            <article class="debug-card">
+              <h3>Used a computer path</h3>
+              <pre><code>Wrong:
+C:\Users\Student\Pictures\cat.jpg
+
+Use a website project path instead.</code></pre>
+            </article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="path-challenge lesson-fullrow" data-path-challenge>
+            <div class="challenge-header">
+              <div>
+                <p class="challenge-level" data-challenge-level></p>
+                <h3>Path Challenge</h3>
+              </div>
+              <div class="challenge-controls" data-no-slide-advance>
+                <button class="path-nav-button" type="button" data-action="previous-challenge">Previous
+                  challenge</button>
+                <button class="path-nav-button" type="button" data-action="next-challenge">Next challenge</button>
+              </div>
+            </div>
+
+            <p data-challenge-prompt></p>
+
+            <div class="path-challenge__body">
+              <div class="path-tree" data-folder-tree aria-label="Folder tree for path challenge"></div>
+              <div class="challenge-panel">
+                <div class="challenge-files">
+                  <article class="challenge-file-card">
+                    <strong>Current file</strong>
+                    <code data-challenge-current></code>
+                  </article>
+                  <article class="challenge-file-card">
+                    <strong>Target file</strong>
+                    <code data-challenge-target></code>
+                  </article>
+                </div>
+
+                <form class="challenge-actions" data-challenge-form data-no-slide-advance>
+                  <label class="path-input-label">
+                    Build the path
+                    <input data-path-answer type="text" autocomplete="off" spellcheck="false"
+                      placeholder="../images/panda.jpg" />
+                  </label>
+                  <button class="challenge-button" type="submit">Check path</button>
+                </form>
+
+                <p class="challenge-feedback" data-challenge-feedback aria-live="polite"></p>
+                <p class="debug-output" data-debug-output></p>
+                <p class="challenge-expected-line">Expected path: <code class="challenge-expected"
+                    data-challenge-expected></code></p>
+                <ol class="challenge-route" data-challenge-route></ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="linking-pages" class="lesson-section lesson-section--links panel" data-lesson-section>
+          <p class="eyebrow">Linking Pages</p>
+          <h2>href uses the same path rules as src</h2>
+          <p class="lesson-section-copy">
+            <code>src</code> can use a path to find an image. <code>href</code> can use a path to find another HTML
+            page. The browser still starts from the current file.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Navigation paths change depending on the current page</h3>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Code</p>
+                <div class="code-preview__code" data-code-preview-code aria-label="HTML page navigation path examples">
+                </div>
+              </div>
+              <div class="code-preview__panel">
+                <p class="code-preview__panel-title">Route</p>
+                <div class="code-preview__preview" data-code-preview-output></div>
+              </div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+
+            <template data-code-step data-step-label="Written in index.html"
+              data-step-note="Index.html starts in the main animal-site folder, so pages/pandas.html goes into the pages folder.">
+              <div data-code-content>
+                <pre><code>&lt;nav&gt;
+  &lt;a href="index.html"&gt;Home&lt;/a&gt;
+  &lt;a href="pages/pandas.html"&gt;Pandas&lt;/a&gt;
+  &lt;a href="pages/contact.html"&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="linking-map__routes">
+                  <div class="link-route"><strong>Home</strong><code>index.html</code><span>same folder</span></div>
+                  <div class="link-route"><strong>Pandas</strong><code>pages/pandas.html</code><span>go into
+                      pages</span></div>
+                  <div class="link-route"><strong>Contact</strong><code>pages/contact.html</code><span>go into
+                      pages</span></div>
+                </div>
+              </div>
+            </template>
+
+            <template data-code-step data-step-label="Written in pages/pandas.html"
+              data-step-note="A page inside pages starts there, so Home needs ../index.html to go up first.">
+              <div data-code-content>
+                <pre><code>&lt;nav&gt;
+  &lt;a href="../index.html"&gt;Home&lt;/a&gt;
+  &lt;a href="pandas.html"&gt;Pandas&lt;/a&gt;
+  &lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+              </div>
+              <div data-preview-content>
+                <div class="linking-map__routes">
+                  <div class="link-route"><strong>Home</strong><code>../index.html</code><span>go up to
+                      animal-site</span></div>
+                  <div class="link-route"><strong>Pandas</strong><code>pandas.html</code><span>same folder</span></div>
+                  <div class="link-route"><strong>Contact</strong><code>contact.html</code><span>same folder</span>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </article>
+
+          <div data-slide-break></div>
+
+          <div class="linking-map lesson-fullrow">
+            <article class="index-note">
+              <h3>What index.html usually means</h3>
+              <p>
+                <code>index.html</code> is the conventional name for the main or home page of a website or folder.
+                You will see and use that filename often.
+              </p>
+            </article>
+            <article class="root-note">
+              <h3>You will also see paths starting with /</h3>
+              <pre><code>/images/logo.png</code></pre>
+              <p>
+                Starting with <code>/</code> means start from the root of the website. You do not need to master this
+                yet; most practice in this lesson uses normal relative paths.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="summary" class="lesson-section lesson-section--summary panel" data-lesson-section>
+          <p class="eyebrow">Memory Hooks</p>
+          <h2>Always ask where the browser starts</h2>
+          <div class="memory-grid">
+            <article class="memory-card"><strong>Path</strong><span>where to find a file</span></article>
+            <article class="memory-card"><strong>Current file</strong><span>the starting point</span></article>
+            <article class="memory-card"><strong>folder/file.jpg</strong><span>go into a folder</span></article>
+            <article class="memory-card"><strong>../</strong><span>go up one folder</span></article>
+            <article class="memory-card"><strong>/</strong><span>website paths use forward slashes</span></article>
+            <article class="memory-card"><strong>https://...</strong><span>complete web address</span></article>
+            <article class="memory-card"><strong>C:\Users\...</strong><span>not a website project path</span></article>
+            <article class="memory-card"><strong>href</strong><span>can link to another HTML page</span></article>
+          </div>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p>
+          <h2>Check your understanding</h2>
+          <p class="quiz-intro">Answer all eleven questions, then check your score. Your choices and best score save in
+            this browser.</p>
+
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b"
+              data-success="Correct. A path tells the browser where to find a file."
+              data-feedback="A path is a set of directions or a complete address for a file.">
+              <legend>1. What does a path tell the browser?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>Which CSS colour to
+                      use</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>Where to find another
+                      file</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>Which tag closes
+                      first</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q2" data-answer="c"
+              data-success="Correct. Both src and href can use paths."
+              data-feedback="Src finds resources such as images. Href can link to pages or web addresses.">
+              <legend>2. Which pair of attributes can both point to files or web addresses?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span><code>alt</code> and
+                      <code>title</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span><code>class</code> and
+                      <code>id</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span><code>src</code> and
+                      <code>href</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q3" data-answer="a"
+              data-success="Correct. From index.html, go into images and find panda.jpg."
+              data-feedback="Index.html starts in the main project folder. The image is inside images.">
+              <legend>3. From <code>index.html</code>, what path finds <code>images/panda.jpg</code>?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q3"
+                      value="a" /><span><code>images/panda.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q3"
+                      value="b" /><span><code>panda.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q3"
+                      value="c" /><span><code>../panda.jpg</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q4" data-answer="b"
+              data-success="Correct. ../ goes up/out of the current folder once."
+              data-feedback="Use ../ when the current file starts inside a folder and you need to move up first.">
+              <legend>4. What does <code>../</code> mean in a relative path?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>Go into a folder named
+                      dots</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>Go up one folder
+                      level</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>Open a new browser
+                      tab</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q5" data-answer="c"
+              data-success="Correct. Go up from pages, then into images."
+              data-feedback="Pages and images are sibling folders, so the path starts with ../.">
+              <legend>5. Current file: <code>pages/pandas.html</code>. Target: <code>images/panda.jpg</code>. Which path
+                is correct?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q5"
+                      value="a" /><span><code>images/panda.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q5"
+                      value="b" /><span><code>panda.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q5"
+                      value="c" /><span><code>../images/panda.jpg</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q6" data-answer="b"
+              data-success="Correct. The browser starts inside pages, so it would look for pages/images/panda.jpg."
+              data-feedback="Trace the wrong path from the current file's folder.">
+              <legend>6. From <code>pages/pandas.html</code>, where would <code>images/panda.jpg</code> make the browser
+                look?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q6"
+                      value="a" /><span><code>images/panda.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q6"
+                      value="b" /><span><code>pages/images/panda.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q6"
+                      value="c" /><span><code>../pages/panda.jpg</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q7" data-answer="a"
+              data-success="Correct. That is a complete external web address."
+              data-feedback="A complete web address usually starts with https:// or http://.">
+              <legend>7. Which example is a complete external web address?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q7"
+                      value="a" /><span><code>https://example.com/images/cat.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q7"
+                      value="b" /><span><code>images/cat.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q7"
+                      value="c" /><span><code>../images/cat.jpg</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q8" data-answer="c"
+              data-success="Correct. It points to one computer, not the website project."
+              data-feedback="Website file links should describe files inside the project, not one person's computer folders.">
+              <legend>8. Why is <code>C:\Users\Jamie\Pictures\panda.jpg</code> unreliable for a website?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>It has too many
+                      letters</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>It is always an image
+                      caption</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>It points to one computer
+                      instead of the website project</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q9" data-answer="a"
+              data-success="Correct. Website paths normally use forward slashes."
+              data-feedback="Windows folders often use backslashes, but website paths normally use /.">
+              <legend>9. Which slash direction should you normally use in website paths?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q9"
+                      value="a" /><span><code>images/panda.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q9"
+                      value="b" /><span><code>images\panda.jpg</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q9"
+                      value="c" /><span><code>images:panda.jpg</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q10" data-answer="b"
+              data-success="Correct. Panda.jpg may not match panda.jpg."
+              data-feedback="Capitalisation can matter, so match the filename exactly.">
+              <legend>10. Actual file: <code>images/panda.jpg</code>. HTML path: <code>images/Panda.jpg</code>. What is
+                the likely problem?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span>The folder name is too
+                      short</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span>The capital letter may
+                      not match the real filename</span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>The file is definitely a
+                      paragraph</span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+            <fieldset class="quiz-question" data-question="q11" data-answer="c"
+              data-success="Correct. From pages/contact.html, ../index.html goes up to the main folder and finds the home page."
+              data-feedback="Start inside pages, then go up to animal-site to reach index.html.">
+              <legend>11. From <code>pages/contact.html</code>, which link goes back to the home page?</legend>
+              <ul class="quiz-answer-list">
+                <li><label class="quiz-answer"><input type="radio" name="q11"
+                      value="a" /><span><code>&lt;a href="index.html"&gt;Home&lt;/a&gt;</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q11"
+                      value="b" /><span><code>&lt;a href="pages/index.html"&gt;Home&lt;/a&gt;</code></span></label></li>
+                <li><label class="quiz-answer"><input type="radio" name="q11"
+                      value="c" /><span><code>&lt;a href="../index.html"&gt;Home&lt;/a&gt;</code></span></label></li>
+              </ul>
+              <p class="quiz-feedback-note" data-question-feedback></p>
+            </fieldset>
+
+            <div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button
+                class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this
+              device once you start.</p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p>
+          <h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item">
+              <dt>Path</dt>
+              <dd>Directions or an address that tells the browser where to find a file.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Relative path</dt>
+              <dd>A path that starts from the current file.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Absolute URL</dt>
+              <dd>A complete web address such as <code>https://example.com/image.jpg</code>.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>../</dt>
+              <dd>Go up/out of the current folder once.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>index.html</dt>
+              <dd>The common filename for a website or folder's main page.</dd>
+            </div>
+          </dl>
+        </section>
+        <section class="lesson-rail-card panel revision-card">
+          <p class="eyebrow">Remember</p>
+          <h2>Where am I starting from?</h2>
+          <ul class="memory-list">
+            <li>Paths start from the current file.</li>
+            <li><code>../</code> goes up one folder.</li>
+            <li>Use <code>/</code> in website paths.</li>
+            <li><code>href</code> and <code>src</code> use the same path logic.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
+      <p class="eyebrow">Keep Going</p>
+      <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+      <div class="sequence-grid" data-role="lesson-sequence"></div>
+    </section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+    <p class="slide-status" data-role="slide-status">Slide 1</p>
+    <button type="button" class="slide-button" data-action="next-slide">Next</button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+  </div>
+</body>
+
+</html>

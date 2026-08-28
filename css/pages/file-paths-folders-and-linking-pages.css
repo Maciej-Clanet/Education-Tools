@@ -1,0 +1,595 @@
+.path-idea-grid,
+.url-compare-grid,
+.folder-lesson-grid,
+.relative-route-grid,
+.problem-grid,
+.debug-grid,
+.memory-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.path-idea-grid,
+.url-compare-grid,
+.folder-lesson-grid,
+.relative-route-grid,
+.problem-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.debug-grid,
+.memory-grid {
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+}
+
+.path-card,
+.url-card,
+.folder-card,
+.route-card,
+.problem-card,
+.debug-card,
+.memory-card,
+.path-tool,
+.path-challenge,
+.path-note,
+.index-note,
+.root-note,
+.linking-map,
+.local-path-compare {
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.path-card,
+.url-card,
+.folder-card,
+.route-card,
+.problem-card,
+.debug-card,
+.memory-card,
+.path-tool,
+.path-challenge,
+.path-note,
+.index-note,
+.root-note {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.path-card :is(p, pre),
+.url-card :is(p, pre),
+.folder-card :is(p, pre),
+.route-card :is(p, pre),
+.problem-card :is(p, pre),
+.debug-card :is(p, pre),
+.memory-card :is(p, pre),
+.path-note :is(p, pre),
+.index-note :is(p, pre),
+.root-note :is(p, pre),
+.path-tool p,
+.path-challenge p {
+  margin: 0;
+}
+
+.path-code,
+.folder-tree-static,
+.problem-card pre,
+.debug-card pre,
+.url-card pre,
+.route-card pre,
+.linking-map pre,
+.path-note pre,
+.root-note pre {
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: #24313b;
+  color: #f8fbfc;
+  font: 0.9rem/1.55 Consolas, "Courier New", monospace;
+  overflow-wrap: normal;
+  tab-size: 2;
+}
+
+.path-token,
+.folder-token {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(36, 49, 59, 0.09);
+  color: var(--page-ink);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.86rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.path-card--key {
+  border-color: rgba(31, 135, 125, 0.28);
+  background: rgba(238, 248, 231, 0.88);
+}
+
+.url-card--external {
+  border-color: rgba(105, 200, 232, 0.42);
+  background: rgba(232, 246, 255, 0.88);
+}
+
+.url-card--project {
+  border-color: rgba(242, 207, 106, 0.48);
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.problem-card--bad,
+.path-challenge.is-incorrect {
+  border-color: rgba(190, 91, 91, 0.36);
+  background: rgba(255, 240, 241, 0.88);
+}
+
+.problem-card--good,
+.path-challenge.is-correct {
+  border-color: rgba(31, 135, 125, 0.3);
+  background: rgba(238, 248, 231, 0.88);
+}
+
+.folder-card--tree,
+.linking-map {
+  background: rgba(248, 252, 255, 0.88);
+}
+
+.path-tool,
+.path-challenge {
+  margin-top: 1rem;
+  background: rgba(248, 252, 255, 0.9);
+}
+
+.path-tool__controls,
+.challenge-controls,
+.challenge-files,
+.challenge-actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.path-tool__controls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.path-select-label,
+.path-input-label {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--page-ink);
+  font-weight: 800;
+}
+
+.path-select-label select,
+.path-input-label input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.2);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--page-ink);
+  font: 0.95rem/1.35 Consolas, "Courier New", monospace;
+}
+
+.path-tool__body,
+.path-challenge__body,
+.local-path-compare,
+.linking-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(17rem, 0.95fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.path-route-panel,
+.challenge-panel {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 18px rgba(36, 49, 59, 0.07);
+}
+
+.path-output {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border: 1.5px solid rgba(31, 135, 125, 0.2);
+  border-radius: 12px;
+  background: rgba(238, 248, 231, 0.82);
+}
+
+.path-output strong,
+.challenge-files strong {
+  color: var(--lesson-accent-heading);
+}
+
+.path-output code,
+.challenge-files code,
+.debug-output,
+.challenge-expected {
+  overflow-wrap: anywhere;
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: 800;
+}
+
+.route-steps,
+.challenge-route {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.route-steps li,
+.challenge-route li {
+  padding-left: 0.25rem;
+}
+
+.route-text,
+.challenge-feedback,
+.debug-output {
+  min-height: 1.5em;
+  font-weight: 700;
+}
+
+.path-tree {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 100%;
+  padding: 1rem;
+  border-radius: 14px;
+  background: #24313b;
+  color: #ffffff;
+  overflow-x: auto;
+}
+
+.path-tree__row {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.path-tree__children {
+  display: grid;
+  gap: 0.35rem;
+  margin-left: 0.45rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.24);
+}
+
+.path-tree__item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.35rem 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  color: #ffffff;
+}
+
+.path-tree__icon {
+  min-width: 2.1rem;
+  padding: 0.1rem 0.25rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.path-tree__name {
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.path-tree__item.is-route {
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.path-tree__item.is-current {
+  border-color: #69c8e8;
+  background: rgba(105, 200, 232, 0.18);
+}
+
+.path-tree__item.is-target {
+  border-color: #8bcf88;
+  background: rgba(139, 207, 136, 0.18);
+}
+
+.path-tree__item.is-lookup {
+  border-color: #ff9a7b;
+  background: rgba(255, 154, 123, 0.2);
+  outline: 3px solid rgba(255, 154, 123, 0.42);
+  outline-offset: 2px;
+}
+
+.path-tree__badge {
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #24313b;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.challenge-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.challenge-level {
+  margin: 0;
+  color: var(--lesson-accent-heading);
+  font-weight: 900;
+}
+
+.challenge-files {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.challenge-file-card {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.75rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.challenge-actions {
+  grid-template-columns: 1fr auto;
+  align-items: end;
+}
+
+.challenge-button,
+.path-nav-button {
+  width: fit-content;
+  padding: 0.62rem 0.85rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.2);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--page-ink);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.challenge-button {
+  background: #24313b;
+  color: #ffffff;
+}
+
+.challenge-button:focus-visible,
+.path-nav-button:focus-visible,
+.path-select-label select:focus-visible,
+.path-input-label input:focus-visible {
+  outline: 4px solid #f2cf6a;
+  outline-offset: 3px;
+}
+
+.path-nav-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.debug-output {
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: rgba(36, 49, 59, 0.08);
+}
+
+.challenge-expected {
+  color: var(--lesson-accent-heading);
+}
+
+.local-path-compare {
+  margin-top: 1rem;
+}
+
+.computer-tree,
+.project-tree {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.slash-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.slash-pair span {
+  padding: 0.7rem;
+  border-radius: 10px;
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.slash-pair span:first-child {
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.slash-pair span:last-child {
+  background: rgba(255, 240, 241, 0.9);
+}
+
+.linking-map {
+  margin-top: 1rem;
+}
+
+.linking-map__routes {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.link-route {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.link-route code {
+  overflow-wrap: anywhere;
+}
+
+.root-note {
+  margin-top: 1rem;
+  border-left: 6px solid #69c8e8;
+}
+
+body.teacher-mode-active .path-tool__body,
+body.teacher-mode-active .path-challenge__body,
+body.teacher-mode-active .local-path-compare,
+body.teacher-mode-active .linking-map {
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.85fr);
+}
+
+body.teacher-mode-active .path-idea-grid,
+body.teacher-mode-active .url-compare-grid,
+body.teacher-mode-active .folder-lesson-grid,
+body.teacher-mode-active .relative-route-grid,
+body.teacher-mode-active .problem-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.teacher-mode-active .path-code,
+body.teacher-mode-active .folder-tree-static,
+body.teacher-mode-active .problem-card pre,
+body.teacher-mode-active .debug-card pre,
+body.teacher-mode-active .url-card pre,
+body.teacher-mode-active .route-card pre,
+body.teacher-mode-active .linking-map pre,
+body.teacher-mode-active .path-note pre,
+body.teacher-mode-active .root-note pre {
+  max-height: 15rem;
+  font-size: 0.82rem;
+}
+
+body.teacher-mode-active .path-tree {
+  max-height: 18rem;
+  gap: 0.18rem;
+  padding: 0.7rem;
+  font-size: 0.8rem;
+}
+
+body.teacher-mode-active .path-tree__children {
+  gap: 0.18rem;
+  padding-left: 0.7rem;
+}
+
+body.teacher-mode-active .path-tree__item {
+  gap: 0.3rem;
+  padding: 0.22rem 0.34rem;
+}
+
+body.teacher-mode-active .path-tree__icon {
+  min-width: 1.85rem;
+  font-size: 0.64rem;
+}
+
+body.teacher-mode-active .path-tree__badge {
+  font-size: 0.66rem;
+}
+
+body.teacher-mode-active .route-steps,
+body.teacher-mode-active .challenge-route {
+  gap: 0.25rem;
+  font-size: 0.92rem;
+}
+
+body.teacher-mode-active .path-route-panel,
+body.teacher-mode-active .challenge-panel {
+  gap: 0.5rem;
+  padding: 0.7rem;
+}
+
+body.teacher-mode-active .path-output,
+body.teacher-mode-active .challenge-file-card,
+body.teacher-mode-active .debug-output {
+  padding: 0.55rem;
+}
+
+body.teacher-mode-active .route-text {
+  display: none;
+}
+
+body.teacher-mode-active .challenge-expected-line,
+body.teacher-mode-active .challenge-route {
+  display: none;
+}
+
+body.teacher-mode-active .path-tool,
+body.teacher-mode-active .path-challenge {
+  gap: 0.75rem;
+  margin-top: 0.65rem;
+}
+
+body.teacher-mode-active .path-tool > div:first-child p {
+  display: none;
+}
+
+body.a11y-simplify-visuals :is(.path-card, .url-card, .folder-card, .route-card, .problem-card, .debug-card, .memory-card, .path-tool, .path-challenge, .path-route-panel, .challenge-panel, .index-note, .root-note, .linking-map, .local-path-compare),
+body.a11y-high-contrast :is(.path-card, .url-card, .folder-card, .route-card, .problem-card, .debug-card, .memory-card, .path-tool, .path-challenge, .path-route-panel, .challenge-panel, .index-note, .root-note, .linking-map, .local-path-compare) {
+  box-shadow: none !important;
+}
+
+body.a11y-high-contrast :is(.path-tree__item, .challenge-button, .path-nav-button, .path-select-label select, .path-input-label input) {
+  border-color: currentColor !important;
+}
+
+@media (max-width: 900px) {
+  .path-idea-grid,
+  .url-compare-grid,
+  .folder-lesson-grid,
+  .relative-route-grid,
+  .problem-grid,
+  .path-tool__controls,
+  .path-tool__body,
+  .path-challenge__body,
+  .local-path-compare,
+  .linking-map,
+  .challenge-files {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .challenge-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .slash-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .path-tree {
+    padding: 0.75rem;
+  }
+
+  .path-tree__children {
+    margin-left: 0.2rem;
+    padding-left: 0.65rem;
+  }
+}
