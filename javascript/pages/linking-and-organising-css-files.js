@@ -18,9 +18,10 @@ const lessonConfig = {
       },
       next: {
         title: "CSS selectors",
+        href: "css-selectors.html",
         description:
           "Next, learn how CSS selects the HTML elements that should receive styling.",
-        status: "Planned",
+        status: "Live",
       },
     },
   },

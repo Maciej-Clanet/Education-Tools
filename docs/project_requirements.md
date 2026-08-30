@@ -185,7 +185,8 @@ the browser with `localStorage` where useful.
   `pages/topics/file-paths-folders-and-linking-pages.html`, and
   `pages/topics/forms-1-inputs-labels-and-submitting-data.html`, and
   `pages/topics/forms-2-choices-larger-inputs-and-grouping.html`, and
-  `pages/topics/linking-and-organising-css-files.html`.
+  `pages/topics/linking-and-organising-css-files.html`, and
+  `pages/topics/css-selectors.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,
@@ -223,6 +224,11 @@ the browser with `localStorage` where useful.
 - A shared code-preview component now exists at
   `javascript/core/code-preview.js` for code versus preview examples, step
   changes, and animated/cycling examples in lesson pages.
+- A shared guided Debug Lab component now exists at
+  `javascript/core/debug-lab.js`, with shared styling in `css/debug-lab.css`.
+  Lesson scripts can supply static scenario data for find-the-bug,
+  choose-the-repair, and find-and-fix activities without executing arbitrary
+  learner code.
 - The Unit 2 hub now shows per-bucket quiz progress bars and lesson status
   indicators using `javascript/core/unit-progress.js` and
   `javascript/data/unit-progress-data.js`.

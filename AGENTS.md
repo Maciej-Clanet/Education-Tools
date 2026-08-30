@@ -96,6 +96,9 @@ Before making major UI, content, or structure changes, read:
 - `pages/topics/linking-and-organising-css-files.html` is the first CSS Basics lesson.
 - `javascript/core/code-preview.js` is the shared component for code versus
   preview, step-change, and cycling code examples.
+- `javascript/core/debug-lab.js` and `css/debug-lab.css` provide the shared,
+  data-driven guided debugging activity for HTML, CSS, and JavaScript lessons;
+  its configuration contract is documented in `docs/debug_lab.md`.
 - Unit quiz progress metadata lives in `javascript/data/unit-progress-data.js`
   and shared rendering logic lives in `javascript/core/unit-progress.js`.
 

@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Selectors Lesson | Education Tools</title>
+  <meta name="description"
+    content="Learn how CSS selectors match HTML elements using reusable classes, unique IDs, and broad element selectors, with interactive examples and guided debugging." />
+  <meta property="og:title" content="CSS Selectors Lesson | Education Tools" />
+  <meta property="og:description"
+    content="A beginner CSS lesson on class, ID, and element selectors, multiple classes, base styling, selector choices, and guided debugging." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/debug-lab.css" />
+  <link rel="stylesheet" href="../../css/pages/css-selectors.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/css-selectors.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">CSS Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#css-basics" data-role="breadcrumb-unit-link">Web Development</a></li>
+          <li aria-current="page">CSS selectors</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>CSS selectors</h1>
+          <p class="lesson-hero-text">
+            HTML creates the elements on a page. CSS can modify them—but first it needs to know exactly which elements
+            we mean. Selectors make that connection.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Resource area</strong><span>CSS basics</span></article>
+        <article class="lesson-meta-card"><strong>Main focus</strong><span>Class, ID, and element selectors</span></article>
+        <article class="lesson-meta-card"><strong>Practice</strong><span>Selector explorer and five Debug Labs</span></article>
+        <article class="lesson-meta-card"><strong>Quiz</strong><span>15 understanding questions</span></article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit" href="../resources/web-development.html#css-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher slides</button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The lesson notes and code examples still work without JavaScript, but the selector explorer, class toggles,
+        Debug Labs, saved quiz, and teacher slides need JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#recap" data-section-link>CSS is connected</a>
+          <a href="#selector" data-section-link>What is a selector?</a>
+          <a href="#classes" data-section-link>Class selectors</a>
+          <a href="#reuse" data-section-link>Reuse classes</a>
+          <a href="#multiple-classes" data-section-link>Multiple classes</a>
+          <a href="#class-names" data-section-link>Spaces and hyphens</a>
+          <a href="#ids" data-section-link>ID selectors</a>
+          <a href="#elements" data-section-link>Element selectors</a>
+          <a href="#explorer" data-section-link>Selector explorer</a>
+          <a href="#comparison" data-section-link>Selector comparison</a>
+          <a href="#debug-labs-one" data-section-link>Debug Labs 1–2</a>
+          <a href="#debug-labs-two" data-section-link>Debug Labs 3–5</a>
+          <a href="#summary" data-section-link>Summary</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="recap" class="lesson-section lesson-section--recap panel" data-lesson-section>
+          <p class="eyebrow">Previous Lesson Recap</p>
+          <h2>The HTML page is connected to its CSS file</h2>
+          <pre class="selector-code selector-code--large"><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="css/common.css"&gt;
+&lt;/head&gt;</code></pre>
+          <p class="lesson-section-copy">
+            The browser can now load the external stylesheet. The next question is: <strong>how does CSS know what on
+            the page it should change?</strong>
+          </p>
+
+          <div data-slide-break></div>
+
+          <div class="role-bridge-grid lesson-fullrow">
+            <article class="role-bridge-card role-bridge-card--html">
+              <span>HTML</span><h3>Creates and describes</h3>
+              <ul><li>headings</li><li>paragraphs</li><li>buttons</li><li>sections</li><li>images</li></ul>
+            </article>
+            <div class="role-bridge-arrow" aria-hidden="true">→</div>
+            <article class="role-bridge-card role-bridge-card--css">
+              <span>CSS</span><h3>Can modify</h3>
+              <ul><li>appearance</li><li>spacing</li><li>sizing</li><li>position and layout</li></ul>
+            </article>
+          </div>
+          <p class="text-equivalent"><strong>Text version:</strong> HTML creates and describes page elements. CSS can modify how those elements look and are arranged.</p>
+        </section>
+
+        <section id="selector" class="lesson-section lesson-section--selector panel" data-lesson-section>
+          <p class="eyebrow">The Connection</p>
+          <h2>A selector tells CSS which element or elements to affect</h2>
+          <div class="selector-anatomy lesson-fullrow">
+            <div class="selector-anatomy__rule" aria-label="CSS rule with warning highlighted as the selector">
+              <strong>.warning</strong><span> {</span><small>/* supplied styling */</small><span>}</span>
+            </div>
+            <div class="selector-anatomy__label"><span aria-hidden="true">↑</span><strong>SELECTOR</strong><p>Which HTML element or elements should receive this rule?</p></div>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header"><h3>See both sides of the match</h3><p class="code-preview__copy">Switch between the connected HTML and CSS files.</p><p class="code-preview__status" data-code-preview-status></p></div>
+            <div class="code-preview__controls" data-code-preview-controls></div><p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage"><div class="code-preview__panel"><p class="code-preview__panel-title">Current file</p><div class="code-preview__code" data-code-preview-code aria-label="HTML and CSS selector example"></div></div><div class="code-preview__panel"><p class="code-preview__panel-title">Match</p><div class="code-preview__preview" data-code-preview-output></div></div></div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="index.html" data-step-note="HTML gives the paragraph a class name: warning."><div data-code-content><pre><code>&lt;p class="warning"&gt;
+  This action cannot be undone.
+&lt;/p&gt;</code></pre></div><div data-preview-content><div class="selector-match-preview"><span>HTML element</span><strong>class="warning"</strong></div></div></template>
+            <template data-code-step data-step-label="common.css" data-step-note="CSS adds a dot before that class name to create the selector .warning."><div data-code-content><pre><code>.warning {
+  /* supplied styling */
+}</code></pre></div><div data-preview-content><div class="selector-match-preview is-matched"><span>CSS selector</span><strong>.warning → MATCH</strong></div></div></template>
+          </article>
+        </section>
+
+        <section id="classes" class="lesson-section lesson-section--classes panel" data-lesson-section>
+          <p class="eyebrow">Main Styling Tool</p>
+          <h2>Classes identify specific reusable styling roles</h2>
+          <div class="syntax-mapping lesson-fullrow">
+            <article><span>HTML</span><code>class="warning"</code><small>No dot inside the class value</small></article>
+            <div class="syntax-arrow" aria-hidden="true">→</div>
+            <article><span>CSS</span><code>.warning</code><small>The dot belongs in the CSS selector</small></article>
+          </div>
+          <p class="course-rule"><strong>Course rule:</strong> when you want to style one or more specific elements, a class is usually the best place to start.</p>
+        </section>
+
+        <section id="reuse" class="lesson-section lesson-section--reuse panel" data-lesson-section>
+          <p class="eyebrow">Class Reuse</p>
+          <h2>One class can be reused on many elements</h2>
+          <div class="reuse-example lesson-fullrow">
+            <pre class="selector-code"><code>&lt;p class="warning"&gt;Your password is incorrect.&lt;/p&gt;
+&lt;p class="warning"&gt;Your session has expired.&lt;/p&gt;
+&lt;p class="warning"&gt;This file could not be opened.&lt;/p&gt;</code></pre>
+            <div class="reuse-rule"><code>.warning</code><span aria-hidden="true">→</span><strong>matches all three</strong></div>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="cross-element-example lesson-fullrow">
+            <pre class="selector-code"><code>&lt;p class="warning"&gt;Warning text&lt;/p&gt;
+&lt;button class="warning"&gt;Delete&lt;/button&gt;</code></pre>
+            <div><h3>A class is not tied to one tag</h3><p>Both elements possess the <code>warning</code> class, so <code>.warning</code> can match both. It does not mean “warning paragraph”.</p></div>
+          </div>
+        </section>
+
+        <section id="multiple-classes" class="lesson-section lesson-section--multiple panel" data-lesson-section>
+          <p class="eyebrow">Combining Classes</p>
+          <h2>One element can have several classes</h2>
+          <div class="multiple-class-map lesson-fullrow">
+            <code>&lt;div class="card featured"&gt;</code>
+            <div class="class-layer-row">
+              <article><strong>.card</strong><span>basic card treatment</span></article>
+              <span aria-hidden="true">+</span>
+              <article><strong>.featured</strong><span>extra featured emphasis</span></article>
+              <span aria-hidden="true">→</span>
+              <article><strong>one element</strong><span>both classes apply</span></article>
+            </div>
+          </div>
+          <p class="text-equivalent"><strong>Text version:</strong> the element has two classes, card and featured. Rules for both classes can contribute to the same element.</p>
+
+          <div data-slide-break></div>
+
+          <div class="multiple-class-demo lesson-fullrow" data-multiple-class-demo>
+            <div class="class-toggle-controls" role="group" aria-label="Toggle classes on the example element">
+              <button type="button" data-class-toggle="card" aria-pressed="true">Card class: on</button>
+              <button type="button" data-class-toggle="featured" aria-pressed="true">Featured class: on</button>
+            </div>
+            <pre class="selector-code"><code data-class-code>&lt;div class="card featured"&gt;</code></pre>
+            <div class="class-demo-preview has-card-class has-featured-class" data-class-preview>
+              <span>Animal profile</span><strong>Red Panda</strong><small>Watch each class add its own supplied treatment.</small>
+            </div>
+            <p data-class-status aria-live="polite">Both classes apply.</p>
+          </div>
+        </section>
+
+        <section id="class-names" class="lesson-section lesson-section--names panel" data-lesson-section>
+          <p class="eyebrow">Readable Names</p>
+          <h2>Spaces separate classes; hyphens join words in one class name</h2>
+          <div class="class-name-compare lesson-fullrow">
+            <article>
+              <span>TWO CLASSES</span><code>class="product card"</code>
+              <div class="class-token-row"><strong>product</strong><strong>card</strong></div>
+              <p>The browser splits the value at the space.</p>
+            </article>
+            <article>
+              <span>ONE MULTI-WORD CLASS</span><code>class="product-card"</code>
+              <div class="class-token-row"><strong>product-card</strong></div>
+              <p>The hyphen keeps the readable words together as one name.</p>
+            </article>
+          </div>
+          <div class="name-examples"><code>warning-message</code><code>product-card</code><code>profile-image</code></div>
+        </section>
+
+        <section id="ids" class="lesson-section lesson-section--ids panel" data-lesson-section>
+          <p class="eyebrow">Unique Identifiers</p>
+          <h2>ID selectors use a hash</h2>
+          <p class="lesson-section-copy">You have already used IDs for page links and form labels. CSS can select an ID too.</p>
+          <div class="syntax-mapping syntax-mapping--id lesson-fullrow">
+            <article><span>HTML</span><code>id="contact"</code><small>No hash inside the ID value</small></article>
+            <div class="syntax-arrow" aria-hidden="true">→</div>
+            <article><span>CSS</span><code>#contact</code><small>The hash belongs in the CSS selector</small></article>
+          </div>
+          <p class="unique-note"><strong>Unique means one:</strong> an ID should identify one element on a page.</p>
+
+          <div data-slide-break></div>
+
+          <div class="class-id-guidance lesson-fullrow">
+            <article><span>CLASS</span><h3>Usually best for styling</h3><ul><li>Reusable</li><li>Works for groups or roles</li><li>Can be combined with other classes</li></ul></article>
+            <article><span>ID</span><h3>Identifies one element</h3><ul><li>Should be unique</li><li>Useful for more than styling</li><li>Can make later CSS conflicts harder to manage</li></ul></article>
+          </div>
+          <p class="future-note">ID selectors are not forbidden, but they should not be your routine styling tool. Later, you will learn exactly how the browser decides which rule wins.</p>
+        </section>
+
+        <section id="elements" class="lesson-section lesson-section--elements panel" data-lesson-section>
+          <p class="eyebrow">Broad Selection</p>
+          <h2>Element selectors use the HTML tag name with no prefix</h2>
+          <div class="element-selector-grid lesson-fullrow">
+            <article><code>p { ... }</code><span>matches paragraphs</span></article>
+            <article><code>h1 { ... }</code><span>matches level-one headings</span></article>
+            <article><code>body { ... }</code><span>matches the page body</span></article>
+          </div>
+          <p class="prefix-note"><strong>No dot. No hash.</strong> Just the element's tag name.</p>
+
+          <div data-slide-break></div>
+
+          <div class="base-style-explainer lesson-fullrow">
+            <div><span>BASE / DEFAULT STYLING</span><h3>How elements start</h3><p>Sometimes most or all elements of one type should start with the same general styling. Normal paragraphs might share a basic text appearance and spacing. Pages might share a starting treatment through <code>body</code>.</p></div>
+            <p><strong>Meaning:</strong> how we want those elements to start unless we deliberately style particular ones differently later.</p>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="selector-decision lesson-fullrow">
+            <h3>Ask what you genuinely mean</h3>
+            <div><span>Every paragraph?</span><code>p</code><strong>Element selector may be sensible</strong></div>
+            <div><span>Only warning paragraphs?</span><code>.warning</code><strong>Use a class</strong></div>
+            <p>Element selectors are useful when the intention really applies to that whole element type. Use a class when only particular elements need the role.</p>
+          </div>
+        </section>
+
+        <section id="explorer" class="lesson-section lesson-section--explorer panel" data-lesson-section>
+          <p class="eyebrow">Selector Explorer</p>
+          <h2>Choose a selector and reveal every match</h2>
+          <p class="lesson-section-copy">Use the buttons to test one simple selector at a time. Every match receives a written MATCH label as well as a visual outline.</p>
+          <div class="selector-explorer lesson-fullrow" data-selector-explorer>
+            <div class="selector-choice-list" role="group" aria-label="Choose a CSS selector">
+              <button type="button" data-selector-choice=".card" aria-pressed="false"><code>.card</code></button>
+              <button type="button" data-selector-choice=".featured" aria-pressed="false"><code>.featured</code></button>
+              <button type="button" data-selector-choice=".intro" aria-pressed="false"><code>.intro</code></button>
+              <button type="button" data-selector-choice="p" aria-pressed="false"><code>p</code></button>
+              <button type="button" data-selector-choice="h2" aria-pressed="false"><code>h2</code></button>
+              <button type="button" data-selector-choice="#animal-title" aria-pressed="false"><code>#animal-title</code></button>
+            </div>
+            <div class="selector-example-page" aria-label="Animal World example page">
+              <h3 data-example-element="animal-title"><span data-match-label></span>Animal World <small>h1 · id="animal-title"</small></h3>
+              <p data-example-element="intro-paragraph"><span data-match-label></span>Welcome to our website. <small>p · class="intro"</small></p>
+              <article data-example-element="panda-card"><span data-match-label></span><h4 data-example-element="panda-heading"><span data-match-label></span>Red Panda <small>h2</small></h4><p data-example-element="panda-copy"><span data-match-label></span>Learn about red pandas. <small>p</small></p><small>div · class="card featured"</small></article>
+              <article data-example-element="otter-card"><span data-match-label></span><h4 data-example-element="otter-heading"><span data-match-label></span>Otter <small>h2</small></h4><p data-example-element="otter-copy"><span data-match-label></span>Learn about otters. <small>p</small></p><small>div · class="card"</small></article>
+            </div>
+            <div class="selector-explorer-report" aria-live="polite" aria-atomic="true"><strong data-selector-count>2 elements matched</strong><p data-selector-summary>.card matches both animal cards.</p></div>
+          </div>
+          <p class="text-equivalent"><strong>Without the interaction:</strong> .card matches both cards; .featured matches the Red Panda card; .intro matches the introduction; p matches all three paragraphs; h2 matches both animal headings; #animal-title matches the unique page title.</p>
+        </section>
+
+        <section id="comparison" class="lesson-section lesson-section--comparison panel" data-lesson-section>
+          <p class="eyebrow">Syntax Memory</p>
+          <h2>Class: dot. ID: hash. Element: no prefix.</h2>
+          <div class="selector-memory lesson-fullrow">
+            <article><span>CLASS</span><code>.warning</code><strong>↑ DOT</strong><small>class="warning"</small></article>
+            <article><span>ID</span><code>#contact</code><strong>↑ HASH / #</strong><small>id="contact"</small></article>
+            <article><span>ELEMENT</span><code>p</code><strong>NO PREFIX</strong><small>&lt;p&gt;</small></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="selector-compare-table lesson-fullrow" role="table" aria-label="Class, ID, and element selector comparison">
+            <div class="selector-compare-row selector-compare-row--head" role="row"><span role="columnheader">Type</span><span role="columnheader">CSS and HTML</span><span role="columnheader">Main use</span><span role="columnheader">Course guidance</span></div>
+            <div class="selector-compare-row" role="row"><strong role="cell">Class</strong><span role="cell"><code>.card</code><small>class="card"</small></span><span role="cell">Reusable styling for specific elements</span><span role="cell">Use most often for specific styling</span></div>
+            <div class="selector-compare-row" role="row"><strong role="cell">ID</strong><span role="cell"><code>#hero</code><small>id="hero"</small></span><span role="cell">Uniquely identify one element</span><span role="cell">Avoid as the normal styling mechanism</span></div>
+            <div class="selector-compare-row" role="row"><strong role="cell">Element</strong><span role="cell"><code>p</code><small>&lt;p&gt;</small></span><span role="cell">Broad or base styling for an element type</span><span role="cell">Use when you genuinely mean that type</span></div>
+          </div>
+        </section>
+
+        <section id="debug-labs-one" class="lesson-section lesson-section--debug panel" data-lesson-section>
+          <p class="eyebrow">Guided Debugging</p>
+          <h2>Observe, locate, repair, test, understand</h2>
+          <p class="lesson-section-copy">These are code investigations, not typing tests. Select a suspicious code region, check it, then choose and test a repair.</p>
+          <div class="lesson-fullrow" data-debug-lab-id="dot-inside-html-class"></div>
+
+          <div data-slide-break></div>
+
+          <div class="lesson-fullrow" data-debug-lab-id="missing-css-dot"></div>
+        </section>
+
+        <section id="debug-labs-two" class="lesson-section lesson-section--debug panel" data-lesson-section>
+          <p class="eyebrow">More Debugging</p>
+          <h2>Match the selector type to the HTML</h2>
+          <div class="lesson-fullrow" data-debug-lab-id="id-class-mismatch"></div>
+
+          <div data-slide-break></div>
+
+          <div class="lesson-fullrow" data-debug-lab-id="multiple-class-meaning"></div>
+
+          <div data-slide-break></div>
+
+          <div class="lesson-fullrow" data-debug-lab-id="repeated-ids"></div>
+        </section>
+
+        <section id="summary" class="lesson-section lesson-section--summary panel" data-lesson-section>
+          <p class="eyebrow">Memory Hooks</p>
+          <h2>Choose the selector that matches your intention</h2>
+          <div class="summary-selector-grid lesson-fullrow">
+            <article><span>SELECTOR</span><p>Tells CSS which HTML element or elements to affect.</p></article>
+            <article><span>CLASS · <code>.card</code></span><p>Reusable, combinable, and the usual choice for specific styling. Spaces separate class names.</p></article>
+            <article><span>ID · <code>#hero</code></span><p>Identifies one unique element. Do not make it your routine styling tool.</p></article>
+            <article><span>ELEMENT · <code>p</code></span><p>Useful for broad or default styling when you genuinely mean that element type.</p></article>
+          </div>
+          <p class="summary-line"><strong>Memory:</strong> class → dot · ID → hash · element → nothing before the name.</p>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p><h2>Check your understanding</h2>
+          <p class="quiz-intro">Answer all fifteen questions, then check your score. Your choices and best score save in this browser.</p>
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. A selector identifies the HTML element or elements a CSS rule should affect." data-feedback="Think about the connection between a CSS rule and HTML elements."><legend>1. What does a CSS selector do?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>Connects the HTML file to the stylesheet</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>Identifies which HTML element or elements a rule should affect</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>Creates a new HTML element</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q2" data-answer="a" data-success="Correct. A class selector begins with a dot." data-feedback="Class means dot in CSS."><legend>2. Which is a class selector?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span><code>.card</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span><code>#card</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span><code>card.</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q3" data-answer="b" data-success="Correct. class=\"card\" is matched by .card." data-feedback="The dot belongs in CSS, not inside the HTML class value."><legend>3. Which CSS selector matches <code>class="card"</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span><code>card</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span><code>.card</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span><code>#card</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q4" data-answer="c" data-success="Correct. A class can be reused on many elements, even different element types." data-feedback="Classes describe reusable groups or roles."><legend>4. Which statement about classes is correct?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>A class can appear on only one element</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>A class works only on paragraphs</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>A class can be reused on many elements</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q5" data-answer="b" data-success="Correct. The element has the two classes card and featured." data-feedback="Spaces separate class names."><legend>5. How many classes are in <code>class="card featured"</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>One</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>Two</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>Three</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q6" data-answer="b" data-success="Correct. A space separates one class name from the next." data-feedback="The browser splits the class value at spaces."><legend>6. What does a space do inside <code>class="..."</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span>Joins words into one class name</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span>Separates different class names</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span>Turns the class into an ID</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q7" data-answer="c" data-success="Correct. product-card is one readable multi-word class name." data-feedback="Use a hyphen to keep readable words inside one class name."><legend>7. Which is a sensible single multi-word class name?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span><code>product card</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span><code>product card item</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span><code>product-card</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q8" data-answer="a" data-success="Correct. An ID selector begins with a hash." data-feedback="ID means hash in CSS."><legend>8. Which selector matches <code>id="hero"</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span><code>#hero</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span><code>.hero</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span><code>hero#</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q9" data-answer="c" data-success="Correct. An ID should uniquely identify one element on the page." data-feedback="ID stands for a unique identifier here."><legend>9. How should an ID normally be used on one page?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q9" value="a" /><span>Repeated on every paragraph</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="b" /><span>Combined as many times as a class</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="c" /><span>To uniquely identify one element</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q10" data-answer="b" data-success="Correct. A shared card role should normally use a reusable class." data-feedback="Several elements need the same reusable styling role."><legend>10. Six product items need the same card styling. What is the best starting choice?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span>Give every item the same ID</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span>Give every item the same class</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>Create six different tag names</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q11" data-answer="c" data-success="Correct. An element selector is just the tag name with no prefix." data-feedback="No dot and no hash are used for a simple element selector."><legend>11. Which is an element selector for paragraphs?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q11" value="a" /><span><code>.p</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="b" /><span><code>#p</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="c" /><span><code>p</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q12" data-answer="b" data-success="Correct. Use p when the intention genuinely applies to all paragraphs." data-feedback="Choose a broad selector only when your intention is broad."><legend>12. When is <code>p</code> a sensible selector?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q12" value="a" /><span>Only one warning paragraph needs a special role</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="b" /><span>All normal paragraphs should start with the same general styling</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="c" /><span>You need to identify one unique paragraph</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q13" data-answer="a" data-success="Correct. Base styling describes how matching elements start." data-feedback="It is a broad starting point, not a rule that every element must remain identical."><legend>13. What does base or default styling mean?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q13" value="a" /><span>How matching elements should start before particular ones are deliberately styled differently later</span></label></li><li><label class="quiz-answer"><input type="radio" name="q13" value="b" /><span>A style that can never change</span></label></li><li><label class="quiz-answer"><input type="radio" name="q13" value="c" /><span>A stylesheet that is not connected to HTML</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q14" data-answer="b" data-success="Correct. The HTML class value should be warning without the dot." data-feedback="The dot belongs in the CSS selector."><legend>14. CSS uses <code>.warning</code>. Which HTML is correct?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q14" value="a" /><span><code>&lt;p class=".warning"&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q14" value="b" /><span><code>&lt;p class="warning"&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q14" value="c" /><span><code>&lt;p id=".warning"&gt;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q15" data-answer="c" data-success="Correct. Without a dot, CSS looks for an element named warning." data-feedback="Compare the selector kind with class=\"warning\" in the HTML."><legend>15. HTML uses <code>class="warning"</code>, but CSS uses <code>warning</code>. Why does it not match?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q15" value="a" /><span>The HTML needs a hash</span></label></li><li><label class="quiz-answer"><input type="radio" name="q15" value="b" /><span>CSS class names must end with a dot</span></label></li><li><label class="quiz-answer"><input type="radio" name="q15" value="c" /><span>CSS interprets warning as an element selector because the dot is missing</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p><h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item"><dt>Selector</dt><dd>The part of a CSS rule that identifies which HTML element or elements should be affected.</dd></div>
+            <div class="glossary-item"><dt>Class</dt><dd>A reusable name that can group elements by a shared role.</dd></div>
+            <div class="glossary-item"><dt>ID</dt><dd>A name that should uniquely identify one element on a page.</dd></div>
+            <div class="glossary-item"><dt>Element selector</dt><dd>A selector using an HTML tag name, such as p or h1.</dd></div>
+            <div class="glossary-item"><dt>Base styling</dt><dd>A broad starting appearance for matching elements.</dd></div>
+          </dl>
+        </section>
+        <section class="lesson-rail-card panel revision-card"><p class="eyebrow">Remember</p><h2>Match the prefix</h2><ul class="memory-list"><li>Class → dot</li><li>ID → hash</li><li>Element → no prefix</li><li>Spaces separate classes</li><li>Hyphens join words in one class name</li></ul></section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading"><p class="eyebrow">Keep Going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div></section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden><button type="button" class="slide-button" data-action="prev-slide">Previous</button><p class="slide-status" data-role="slide-status">Slide 1</p><button type="button" class="slide-button" data-action="next-slide">Next</button><button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button></div>
+</body>
+
+</html>

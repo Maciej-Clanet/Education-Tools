@@ -66,6 +66,12 @@ export const webDevelopmentProgressData = {
           href: "../topics/linking-and-organising-css-files.html?context=web-development",
           quiz: { version: 1, totalQuestions: 12, passScore: 9 },
         },
+        {
+          id: "css-selectors",
+          title: "CSS selectors",
+          href: "../topics/css-selectors.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 15, passScore: 12 },
+        },
       ],
     },
   ],

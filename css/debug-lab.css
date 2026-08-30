@@ -1,0 +1,445 @@
+.debug-lab {
+  --debug-accent: #1f7189;
+  --debug-accent-soft: rgba(105, 200, 232, 0.16);
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 2px solid rgba(31, 113, 137, 0.28);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(232, 246, 255, 0.74), transparent 38%),
+    rgba(255, 255, 255, 0.94);
+}
+
+.debug-lab.is-complete {
+  --debug-accent: #397b45;
+  border-color: rgba(57, 123, 69, 0.5);
+}
+
+.debug-lab__header,
+.debug-lab__preview-heading,
+.debug-lab__file-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.debug-lab__header :is(h3, p),
+.debug-lab__goal :is(strong, p),
+.debug-lab__file-heading :is(strong, span),
+.debug-lab__preview-heading :is(strong, span),
+.debug-lab__selection-status,
+.debug-lab__feedback,
+.debug-lab__understanding :is(p, h4),
+.debug-lab__interpretation :is(p, ul) {
+  margin: 0;
+}
+
+.debug-lab__mode,
+.debug-lab__complete-label {
+  color: var(--debug-accent);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.debug-lab__count,
+.debug-lab__language,
+.debug-lab__preview-state {
+  flex: 0 0 auto;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: var(--debug-accent-soft);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.debug-lab__process {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.debug-lab__process-step {
+  position: relative;
+  padding: 0.55rem 0.4rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.16);
+  border-radius: 10px;
+  color: var(--muted-ink);
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.debug-lab__process-step.is-done::before {
+  content: "✓ ";
+}
+
+.debug-lab__process-step.is-current {
+  border-width: 3px;
+  border-color: var(--debug-accent);
+  color: var(--page-ink);
+}
+
+.debug-lab__process-step.is-current::before {
+  content: "→ ";
+}
+
+.debug-lab__process-step.is-skipped {
+  text-decoration: line-through;
+}
+
+.debug-lab__goal,
+.debug-lab__feedback,
+.debug-lab__understanding,
+.debug-lab__interpretation {
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+}
+
+.debug-lab__goal {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.debug-lab__workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.debug-lab__code-area,
+.debug-lab__side-area,
+.debug-lab__files,
+.debug-lab__repair-options {
+  display: grid;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.debug-lab__file,
+.debug-lab__preview,
+.debug-lab__repair-panel {
+  min-width: 0;
+  margin: 0;
+  padding: 0.8rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.debug-lab__file-heading,
+.debug-lab__preview-heading {
+  margin-bottom: 0.6rem;
+}
+
+.debug-lab__code {
+  overflow-x: auto;
+  margin: 0;
+  padding: 0.75rem 0;
+  border-radius: 12px;
+  background: #24313b;
+  color: #f8fbfc;
+  font: 0.9rem/1.6 Consolas, "Courier New", monospace;
+  tab-size: 2;
+}
+
+.debug-lab__code-line {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(max-content, 1fr);
+  min-height: 1.6em;
+}
+
+.debug-lab__line-number {
+  padding-right: 0.7rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  color: #b9c8cf;
+  text-align: right;
+  user-select: none;
+}
+
+.debug-lab__line-content {
+  padding: 0 0.8rem;
+  white-space: pre;
+}
+
+.debug-lab__region {
+  display: inline;
+  margin: 0;
+  padding: 0.08rem 0.12rem;
+  border: 1px dashed #f5cf62;
+  border-radius: 4px;
+  background: rgba(245, 207, 98, 0.1);
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+button.debug-lab__region:hover,
+button.debug-lab__region:focus-visible,
+.debug-lab__region.is-selected {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+  background: #f5cf62;
+  color: #182229;
+  text-decoration: underline double;
+}
+
+.debug-lab__region.is-located {
+  border-style: solid;
+  border-width: 3px;
+  background: #f5cf62;
+  color: #182229;
+  text-decoration: underline wavy;
+}
+
+.debug-lab__region--repaired {
+  border-style: solid;
+  border-color: #9ee2a6;
+  background: rgba(158, 226, 166, 0.2);
+  text-decoration: underline double;
+}
+
+.debug-lab__selection-status {
+  color: var(--muted-ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.debug-lab__preview.is-broken {
+  border-left: 6px solid #c66855;
+}
+
+.debug-lab__preview.is-fixed {
+  border-left: 6px solid #5fa86c;
+}
+
+.debug-lab__preview-content {
+  min-height: 7rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #f7f4eb;
+}
+
+.debug-lab__result-comparison {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.debug-lab__result-comparison div {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.8rem;
+}
+
+.debug-lab__result-comparison :is(dt, dd) {
+  margin: 0;
+}
+
+.debug-lab__result-comparison dt {
+  font-weight: 800;
+}
+
+.debug-lab__repair-panel legend {
+  padding: 0 0.35rem;
+  font-weight: 900;
+}
+
+.debug-lab__repair-option {
+  display: grid;
+  gap: 0.2rem;
+  width: 100%;
+  padding: 0.7rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.2);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--page-ink);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.debug-lab__repair-option code {
+  font-weight: 900;
+}
+
+.debug-lab__repair-option span {
+  color: var(--muted-ink);
+  font-size: 0.86rem;
+}
+
+.debug-lab__repair-option:hover,
+.debug-lab__repair-option:focus-visible,
+.debug-lab__repair-option.is-selected {
+  border-color: var(--debug-accent);
+  outline: 3px solid rgba(31, 113, 137, 0.24);
+  outline-offset: 2px;
+}
+
+.debug-lab__repair-option.is-selected::before {
+  content: "Selected repair";
+  color: var(--debug-accent);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.debug-lab__primary-action {
+  display: inline-flex;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: 12px;
+  background: var(--debug-accent);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.debug-lab__primary-action:hover,
+.debug-lab__primary-action:focus-visible {
+  outline: 3px solid rgba(31, 113, 137, 0.28);
+  outline-offset: 3px;
+  filter: brightness(0.92);
+}
+
+.debug-lab__feedback {
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  background: rgba(247, 244, 235, 0.9);
+  font-weight: 700;
+}
+
+.debug-lab__feedback::before {
+  content: "Status: ";
+  font-weight: 900;
+}
+
+.debug-lab__feedback.is-success {
+  border-left: 6px solid #5fa86c;
+}
+
+.debug-lab__feedback.is-error {
+  border-left: 6px solid #c66855;
+}
+
+.debug-lab__feedback.is-warning,
+.debug-lab__feedback.is-hint {
+  border-left: 6px solid #d59b32;
+}
+
+.debug-lab__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.debug-lab__understanding {
+  display: grid;
+  gap: 0.55rem;
+  border: 2px solid rgba(57, 123, 69, 0.34);
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.debug-lab__interpretation {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.debug-lab__interpretation ul {
+  padding-left: 1.3rem;
+}
+
+body.teacher-mode-active .debug-lab {
+  gap: 0.65rem;
+  padding: 0.8rem;
+}
+
+body.teacher-mode-active .debug-lab__process-step {
+  padding: 0.35rem 0.2rem;
+  font-size: 0.68rem;
+}
+
+body.teacher-mode-active .debug-lab__code {
+  max-height: 15rem;
+  font-size: 0.78rem;
+}
+
+body.teacher-mode-active .debug-lab__preview-content {
+  min-height: 5.5rem;
+  padding: 0.7rem;
+}
+
+body.teacher-mode-active .debug-lab__repair-option {
+  padding: 0.5rem;
+}
+
+body.a11y-simplify-visuals .debug-lab,
+body.a11y-simplify-visuals :is(.debug-lab__goal, .debug-lab__preview-content, .debug-lab__understanding),
+body.a11y-low-distraction .debug-lab {
+  background: var(--paper, #ffffff);
+  box-shadow: none;
+}
+
+body.a11y-high-contrast .debug-lab,
+body.a11y-high-contrast :is(.debug-lab__file, .debug-lab__preview, .debug-lab__repair-panel, .debug-lab__repair-option, .debug-lab__goal, .debug-lab__feedback, .debug-lab__understanding) {
+  border-color: currentColor !important;
+  box-shadow: none !important;
+}
+
+body.a11y-high-contrast .debug-lab__code {
+  border: 2px solid currentColor;
+}
+
+body.a11y-high-contrast .debug-lab__region {
+  border: 3px solid currentColor;
+}
+
+@media (max-width: 900px) {
+  .debug-lab__workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .debug-lab__header,
+  .debug-lab__goal {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .debug-lab__process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .debug-lab__process-step:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .debug-lab *,
+  .debug-lab *::before,
+  .debug-lab *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
