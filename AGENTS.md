@@ -93,12 +93,18 @@ Before making major UI, content, or structure changes, read:
 - `pages/units/btec-level-3-unit-2.html` is the first live unit hub.
 - `pages/resources/web-development.html` is the first non-unit resource hub.
 - `pages/topics/what-is-html.html` is the first Web Development topic lesson.
+- `pages/topics/styling-text-with-css.html` is the first lesson to use the
+  reusable Live Code Example component extensively.
 - `pages/topics/linking-and-organising-css-files.html` is the first CSS Basics lesson.
 - `javascript/core/code-preview.js` is the shared component for code versus
   preview, step-change, and cycling code examples.
 - `javascript/core/debug-lab.js` and `css/debug-lab.css` provide the shared,
   data-driven guided debugging activity for HTML, CSS, and JavaScript lessons;
   its configuration contract is documented in `docs/debug_lab.md`.
+- `javascript/core/live-code-example.js` and `css/live-code-example.css`
+  provide isolated, temporary HTML/CSS playgrounds with real generated iframe
+  previews; its contract and security model are documented in
+  `docs/live_code_example.md`.
 - Unit quiz progress metadata lives in `javascript/data/unit-progress-data.js`
   and shared rendering logic lives in `javascript/core/unit-progress.js`.
 

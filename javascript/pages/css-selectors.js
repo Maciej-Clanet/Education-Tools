@@ -18,10 +18,11 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "CSS declarations and text styling",
+        title: "Styling text with CSS",
+        href: "styling-text-with-css.html",
         description:
-          "Next, learn how declarations change text using carefully chosen CSS properties and values.",
-        status: "Planned",
+          "Next, use declarations to change text with carefully chosen CSS properties and values.",
+        status: "Live",
       },
     },
   },

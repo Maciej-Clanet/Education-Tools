@@ -72,6 +72,12 @@ export const webDevelopmentProgressData = {
           href: "../topics/css-selectors.html?context=web-development",
           quiz: { version: 1, totalQuestions: 15, passScore: 12 },
         },
+        {
+          id: "styling-text-with-css",
+          title: "Styling text with CSS",
+          href: "../topics/styling-text-with-css.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 20, passScore: 16 },
+        },
       ],
     },
   ],

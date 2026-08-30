@@ -160,6 +160,10 @@ function renderCode(output, currentCode, previousCode) {
   )
 }
 
+export function renderHighlightedCode(output, code) {
+  renderCode(output, normalizeCode(code), null)
+}
+
 function createDiffRow(kind, line) {
   const row = document.createElement("div")
   row.className = `code-preview__diff-row code-preview__diff-row--${kind}`

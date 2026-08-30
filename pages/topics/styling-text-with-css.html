@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Styling Text with CSS Lesson | Education Tools</title>
+  <meta name="description" content="Learn how to style readable text with beginner CSS properties, editable live examples, guided debugging, and a quiz." />
+  <meta property="og:title" content="Styling Text with CSS Lesson | Education Tools" />
+  <meta property="og:description" content="A beginner CSS lesson on colour, text size, weight, style, decoration, alignment, line spacing, and readable rule writing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/debug-lab.css" />
+  <link rel="stylesheet" href="../../css/live-code-example.css" />
+  <link rel="stylesheet" href="../../css/pages/styling-text-with-css.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/styling-text-with-css.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">CSS Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#css-basics" data-role="breadcrumb-unit-link">Web Development</a></li>
+          <li aria-current="page">Styling text with CSS</li>
+        </ol>
+      </nav>
+      <div class="lesson-header-row"><div>
+        <h1>Styling text with CSS</h1>
+        <p class="lesson-hero-text">Selectors choose the HTML. Declarations now tell the browser how that text should look and read.</p>
+        <p class="lesson-hero-support">In the current lesson context, this sits inside <span data-role="context-label">Web Development</span>.</p>
+      </div></div>
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Resource area</strong><span>CSS basics</span></article>
+        <article class="lesson-meta-card"><strong>Main focus</strong><span>Text properties and values</span></article>
+        <article class="lesson-meta-card"><strong>Practice</strong><span>Five Live Code examples and five Debug Labs</span></article>
+        <article class="lesson-meta-card"><strong>Quiz</strong><span>20 understanding questions</span></article>
+      </div>
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit" href="../resources/web-development.html#css-basics">Back to Web Development resources</a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher slides</button>
+      </div>
+    </header>
+
+    <noscript><p class="panel lesson-sequence">The lesson notes and displayed code still work without JavaScript, but Live Code editing, Debug Labs, the saved quiz, and teacher slides need JavaScript.</p></noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#recap" data-section-link>Selector recap</a>
+          <a href="#anatomy" data-section-link>Rule anatomy</a>
+          <a href="#colour-size" data-section-link>Colour and size</a>
+          <a href="#emphasis" data-section-link>Text emphasis</a>
+          <a href="#alignment" data-section-link>Alignment and spacing</a>
+          <a href="#progressive" data-section-link>Build a rule</a>
+          <a href="#workshop" data-section-link>Live workshop</a>
+          <a href="#selector-choice" data-section-link>Choose a selector</a>
+          <a href="#matching-rules" data-section-link>Matching rules</a>
+          <a href="#fonts-formatting" data-section-link>Fonts and formatting</a>
+          <a href="#misconceptions" data-section-link>Common mistakes</a>
+          <a href="#debug-labs-one" data-section-link>Debug Labs 1–2</a>
+          <a href="#debug-labs-two" data-section-link>Debug Labs 3–5</a>
+          <a href="#summary" data-section-link>Summary</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="recap" class="lesson-section lesson-section--recap panel" data-lesson-section>
+          <p class="eyebrow">Selector Recap</p>
+          <h2>A selector decides which elements receive a rule</h2>
+          <div class="selector-recap-grid lesson-fullrow">
+            <article><code>p</code><strong>Element selector</strong><span>Matches every paragraph</span></article>
+            <article><code>.featured-text</code><strong>Class selector</strong><span>Matches elements with that class</span></article>
+          </div>
+          <p class="lesson-section-copy">Move the class in this example. The hidden styling stays locked so you can focus on the HTML-to-selector match.</p>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-live-code-example-id="selector-recap-live"></div>
+        </section>
+
+        <section id="anatomy" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">CSS Rule Anatomy</p>
+          <h2>A rule contains a selector and declarations</h2>
+          <div class="rule-anatomy lesson-fullrow" aria-label="Annotated CSS rule">
+            <div class="rule-anatomy__code"><span class="part-selector">.featured-text</span> <span>{</span><br />
+              <span class="indent"></span><span class="part-property">color</span><span>:</span> <span class="part-value">purple</span><span class="part-semicolon">;</span><br />
+              <span class="indent"></span><span class="part-property">font-weight</span><span>:</span> <span class="part-value">bold</span><span class="part-semicolon">;</span><br /><span>}</span>
+            </div>
+            <dl class="rule-anatomy__labels">
+              <div><dt>Selector</dt><dd><code>.featured-text</code> identifies the elements.</dd></div>
+              <div><dt>Property</dt><dd><code>color</code> names what should change.</dd></div>
+              <div><dt>Value</dt><dd><code>purple</code> says how it should change.</dd></div>
+              <div><dt>Declaration</dt><dd><code>color: purple;</code> is one complete instruction.</dd></div>
+            </dl>
+          </div>
+          <div class="punctuation-row lesson-fullrow">
+            <article><strong>Colon <code>:</code></strong><span>Separates a property from its value.</span></article>
+            <article><strong>Semicolon <code>;</code></strong><span>Ends a declaration before the next one begins.</span></article>
+          </div>
+        </section>
+
+        <section id="colour-size" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Colour and Size</p>
+          <h2>Start with two visible text changes</h2>
+          <div class="property-cards lesson-fullrow">
+            <article><code>color: purple;</code><h3>Text colour</h3><p>The property uses the American spelling <code>color</code>. Begin with simple named colours such as purple, red, green, or blue. A future colour lesson will explore other ways to describe colours.</p></article>
+            <article><code>font-size: 24px;</code><h3>Text size</h3><p><code>24</code> is the value and <code>px</code> means pixels. The next lesson focuses on choosing between CSS units; today, use px values for simple experiments.</p></article>
+          </div>
+          <aside class="meaning-note"><strong>Keep HTML meaningful.</strong> Use heading elements because content is a heading, not merely to obtain larger text. CSS controls appearance.</aside>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-live-code-example-id="colour-size-live"></div>
+        </section>
+
+        <section id="emphasis" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Emphasis Tools</p>
+          <h2>Weight, style, and decoration affect the shape of text</h2>
+          <div class="property-strip lesson-fullrow">
+            <article><code>font-weight: bold;</code><span class="sample-bold">Changes thickness</span></article>
+            <article><code>font-style: italic;</code><span class="sample-italic">Slants the text</span></article>
+            <article><code>text-decoration</code><span class="sample-underline">underline adds a line below</span><span class="sample-strike">line-through crosses out</span><span>none removes the decoration</span></article>
+          </div>
+          <p class="lesson-section-copy"><code>normal</code> can return weight or style to its normal appearance. <code>none</code> removes a text decoration.</p>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-live-code-example-id="text-tools-live"></div>
+        </section>
+
+        <section id="alignment" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Alignment and Spacing</p>
+          <h2>Control the line as well as each character</h2>
+          <div class="alignment-grid lesson-fullrow">
+            <article><code>text-align: center;</code><h3>Horizontal alignment</h3><p>Use <code>left</code>, <code>center</code>, or <code>right</code>. This aligns inline content inside the selected element; it does not move the element itself.</p></article>
+            <article><code>line-height: 1.5;</code><h3>Space between lines</h3><p>A unitless value of <code>1.5</code> gives each line one-and-a-half times the current text size.</p></article>
+          </div>
+          <div class="line-height-compare lesson-fullrow">
+            <p class="line-tight"><strong>line-height: 1;</strong><br />Closely packed lines can make longer text harder to scan. Compare the vertical gap between these lines.</p>
+            <p class="line-readable"><strong>line-height: 1.5;</strong><br />More breathing room can make a paragraph easier to follow without changing the words.</p>
+          </div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-live-code-example-id="alignment-spacing-live"></div>
+        </section>
+
+        <section id="progressive" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Progressive Example</p>
+          <h2>Build one readable rule a declaration at a time</h2>
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header"><h3>Follow each addition</h3><p class="code-preview__copy">Use the steps to see exactly which declaration was added.</p><p class="code-preview__status" data-code-preview-status></p></div>
+            <div class="code-preview__controls" data-code-preview-controls></div><p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage"><div class="code-preview__panel"><p class="code-preview__panel-title">common.css</p><div class="code-preview__code" data-code-preview-code aria-label="Progressive CSS rule"></div></div><div class="code-preview__panel"><p class="code-preview__panel-title">Authored preview</p><div class="code-preview__preview" data-code-preview-output></div></div></div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="1. Colour" data-step-note="Begin with one declaration and check its result."><div data-code-content><pre><code>.featured-text {
+  color: purple;
+}</code></pre></div><div data-preview-content><p class="progressive-text is-purple">Red pandas are excellent climbers.</p></div></template>
+            <template data-code-step data-step-label="2. Size" data-step-note="Add font-size inside the same pair of braces."><div data-code-content><pre><code>.featured-text {
+  color: purple;
+  font-size: 24px;
+}</code></pre></div><div data-preview-content><p class="progressive-text is-purple is-large">Red pandas are excellent climbers.</p></div></template>
+            <template data-code-step data-step-label="3. Weight" data-step-note="Add bold weight without removing the earlier declarations."><div data-code-content><pre><code>.featured-text {
+  color: purple;
+  font-size: 24px;
+  font-weight: bold;
+}</code></pre></div><div data-preview-content><p class="progressive-text is-purple is-large is-bold">Red pandas are excellent climbers.</p></div></template>
+            <template data-code-step data-step-label="4. Line height" data-step-note="Finish with comfortable line spacing."><div data-code-content><pre><code>.featured-text {
+  color: purple;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+}</code></pre></div><div data-preview-content><p class="progressive-text is-purple is-large is-bold is-spaced">Red pandas are excellent climbers.<br />Their long tails help them balance.</p></div></template>
+          </article>
+        </section>
+
+        <section id="workshop" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Live Code Workshop</p>
+          <h2>Change the code and observe the real result</h2>
+          <ol class="workshop-prompts lesson-fullrow">
+            <li>Activate <strong>Try it</strong> and change <code>purple</code> to <code>green</code>.</li>
+            <li>Change <code>24px</code> to <code>40px</code>.</li>
+            <li>Change <code>bold</code> to <code>normal</code>, then try <code>italic</code>.</li>
+            <li>Try <code>underline</code>, <code>center</code>, and <code>line-height: 2</code>.</li>
+            <li>Switch to HTML and move the class to a different paragraph.</li>
+          </ol>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-live-code-example-id="text-property-workshop"></div>
+        </section>
+
+        <section id="selector-choice" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Choosing a Selector</p>
+          <h2>Do you mean every paragraph or a particular paragraph?</h2>
+          <div class="selector-choice-grid lesson-fullrow">
+            <article><span>REPETITIVE</span><pre><code>&lt;p class="normal-text"&gt;...&lt;/p&gt;
+&lt;p class="normal-text"&gt;...&lt;/p&gt;
+&lt;p class="normal-text"&gt;...&lt;/p&gt;</code></pre><p>Adding the same class everywhere is unnecessary when every paragraph genuinely needs the same starting style.</p></article>
+            <article><span>SIMPLER</span><pre><code>p {
+  font-size: 18px;
+  line-height: 1.5;
+}</code></pre><p>The element selector expresses “every paragraph” directly.</p></article>
+          </div>
+          <p class="course-rule"><strong>Choose by meaning:</strong> use <code>p</code> for a broad paragraph rule and a class such as <code>.featured-text</code> for a particular reusable role.</p>
+        </section>
+
+        <section id="matching-rules" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Rules Working Together</p>
+          <h2>A featured paragraph can match both rules</h2>
+          <div class="matching-rules lesson-fullrow">
+            <div class="matching-rule"><code>p {<br />&nbsp;&nbsp;line-height: 1.5;<br />}</code><span>Every paragraph</span></div>
+            <div class="matching-plus" aria-hidden="true">+</div>
+            <div class="matching-rule"><code>.featured-text {<br />&nbsp;&nbsp;color: purple;<br />}</code><span>The featured element</span></div>
+            <div class="matching-arrow" aria-hidden="true">→</div>
+            <div class="matching-result"><strong>Featured paragraph</strong><span>comfortable line spacing</span><span>purple text</span></div>
+          </div>
+          <p class="text-equivalent"><strong>Text version:</strong> a featured paragraph is a paragraph and has the featured-text class, so it matches both selectors. Each rule contributes a different property.</p>
+        </section>
+
+        <section id="fonts-formatting" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Readable CSS</p>
+          <h2>Use clear formatting and learn one more property name</h2>
+          <div class="font-format-grid lesson-fullrow">
+            <article><h3><code>font-family: Arial;</code></h3><p>This property chooses the typeface. A later lesson will properly cover fonts installed on a system, fallback and generic families, and loading external web fonts.</p></article>
+            <article><h3>One declaration per line</h3><pre><code>.featured-text {
+  color: purple;
+  font-weight: bold;
+  line-height: 1.5;
+}</code></pre><p>Indent declarations and keep the closing brace easy to find.</p></article>
+          </div>
+        </section>
+
+        <section id="misconceptions" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Common Mistakes</p>
+          <h2>Keep these distinctions clear</h2>
+          <div class="misconception-grid lesson-fullrow">
+            <article><strong>Property ≠ value</strong><p><code>font-weight</code> is the property; <code>bold</code> is its value.</p></article>
+            <article><strong>Alignment ≠ movement</strong><p><code>text-align</code> aligns content inside an element. It does not reposition the element.</p></article>
+            <article><strong>Size ≠ meaning</strong><p>Making a paragraph large does not turn it into a heading.</p></article>
+            <article><strong>Spelling matters</strong><p>CSS uses <code>color</code>, and an unrecognised property is ignored.</p></article>
+            <article><strong>Punctuation matters</strong><p>The colon separates property and value; the semicolon ends the declaration.</p></article>
+            <article><strong>Classes are purposeful</strong><p>Use a class for a particular role, not automatically on every element.</p></article>
+            <article><strong>CSS stays in the stylesheet</strong><p>Do not place a declaration such as <code>color: purple;</code> inside normal HTML text or attributes.</p></article>
+          </div>
+        </section>
+
+        <section id="debug-labs-one" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Debug Labs 1–2</p><h2>Find and repair two declaration errors</h2>
+          <p class="lesson-section-copy">First locate the faulty region, then choose the repair that creates valid CSS.</p>
+          <div class="lesson-fullrow" data-debug-lab-id="property-typo"></div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-debug-lab-id="missing-colon"></div>
+        </section>
+
+        <section id="debug-labs-two" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Debug Labs 3–5</p><h2>Repair punctuation, scope, and order</h2>
+          <div class="lesson-fullrow" data-debug-lab-id="missing-semicolon"></div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-debug-lab-id="every-paragraph-selector"></div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-debug-lab-id="property-value-order"></div>
+        </section>
+
+        <section id="summary" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Summary</p><h2>Selectors choose; declarations describe</h2>
+          <div class="summary-grid lesson-fullrow">
+            <article><span>1</span><strong>Choose</strong><p>Select the intended elements with <code>p</code> or a class.</p></article>
+            <article><span>2</span><strong>Name</strong><p>Write the property that describes what should change.</p></article>
+            <article><span>3</span><strong>Set</strong><p>Add a colon, a suitable value, and a semicolon.</p></article>
+            <article><span>4</span><strong>Check</strong><p>Observe the result and debug spelling or punctuation if needed.</p></article>
+          </div>
+          <div class="property-memory lesson-fullrow">
+            <code>color</code><span>text colour</span><code>font-size</code><span>text size</span>
+            <code>font-weight</code><span>boldness or heaviness</span><code>font-style</code><span>normal or italic style</span>
+            <code>text-decoration</code><span>decorative lines</span><code>text-align</code><span>text alignment inside its area</span>
+            <code>line-height</code><span>space between lines</span><code>font-family</code><span>typeface, explored later</span>
+          </div>
+          <p class="summary-line">You can now use <code>color</code>, <code>font-size</code>, <code>font-weight</code>, <code>font-style</code>, <code>text-decoration</code>, <code>text-align</code>, and <code>line-height</code> in readable CSS rules.</p>
+        </section>
+
+        <section id="quiz" class="lesson-section quiz-section panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p><h2>Check your understanding</h2>
+          <p class="quiz-intro">Answer all twenty questions, then check your score. Your choices and best score save in this browser.</p>
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. The selector identifies which elements the rule affects." data-feedback="Think about the part before the opening brace."><legend>1. What does the selector do in a CSS rule?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>Ends each declaration</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>Identifies the elements to affect</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>Stores the property value</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q2" data-answer="a" data-success="Correct. A property names what should change." data-feedback="The value describes the chosen setting."><legend>2. In <code>color: purple;</code>, what is <code>color</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>The property</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>The value</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>The selector</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q3" data-answer="c" data-success="Correct. Purple is the value assigned to color." data-feedback="Look after the colon."><legend>3. In <code>color: purple;</code>, what is <code>purple</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>The selector</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>The property</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span>The value</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q4" data-answer="b" data-success="Correct. That complete property-value instruction is one declaration." data-feedback="A declaration contains a property, colon, value, and usually its ending semicolon."><legend>4. Which is one complete CSS declaration?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span><code>.featured-text</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span><code>font-weight: bold;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span><code>{ bold }</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q5" data-answer="a" data-success="Correct. The colon separates property and value." data-feedback="It appears directly after the property name."><legend>5. What does the colon do?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>Separates a property from its value</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>Closes the whole CSS rule</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>Creates a class selector</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q6" data-answer="c" data-success="Correct. A semicolon ends the declaration before another begins." data-feedback="This punctuation separates neighbouring declarations."><legend>6. Why is the semicolon important between declarations?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span>It selects every paragraph</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span>It makes the value bold</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span>It ends one declaration before the next</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q7" data-answer="b" data-success="Correct. CSS uses the American spelling color." data-feedback="Check the exact CSS property spelling."><legend>7. Which property changes text colour?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span><code>colour</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span><code>color</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span><code>text-color</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q8" data-answer="a" data-success="Correct. font-size changes text size." data-feedback="Choose the property that names size directly."><legend>8. Which declaration makes text 24 pixels high?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span><code>font-size: 24px;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span><code>text-size: 24;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span><code>font: px24;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q9" data-answer="c" data-success="Correct. px means pixels." data-feedback="This is the brief unit introduced beside font-size."><legend>9. What does <code>px</code> mean here?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q9" value="a" /><span>Paragraph extension</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="b" /><span>Page scale</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="c" /><span>Pixels</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q10" data-answer="b" data-success="Correct. font-weight controls thickness such as bold." data-feedback="Weight refers to the thickness of the text strokes."><legend>10. Which declaration makes text bold?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span><code>font-style: bold;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span><code>font-weight: bold;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span><code>text-decoration: bold;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q11" data-answer="a" data-success="Correct. font-style can apply italic text." data-feedback="This property describes normal or italic styling."><legend>11. Which declaration makes text italic?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q11" value="a" /><span><code>font-style: italic;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="b" /><span><code>font-weight: italic;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="c" /><span><code>text-align: italic;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q12" data-answer="c" data-success="Correct. text-decoration applies an underline." data-feedback="Decoration adds or removes lines such as an underline."><legend>12. Which declaration underlines text?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q12" value="a" /><span><code>font-style: underline;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="b" /><span><code>text-align: underline;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="c" /><span><code>text-decoration: underline;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q13" data-answer="b" data-success="Correct. text-align centres inline content inside the selected element." data-feedback="Alignment describes where the text sits within its element."><legend>13. What does <code>text-align: center;</code> do?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q13" value="a" /><span>Moves the selected element to the page centre</span></label></li><li><label class="quiz-answer"><input type="radio" name="q13" value="b" /><span>Centres its inline content inside the selected element</span></label></li><li><label class="quiz-answer"><input type="radio" name="q13" value="c" /><span>Makes the text larger</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q14" data-answer="a" data-success="Correct. line-height controls vertical spacing between lines." data-feedback="Think about the distance from one line of a paragraph to the next."><legend>14. What does <code>line-height</code> control?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q14" value="a" /><span>Vertical spacing between lines of text</span></label></li><li><label class="quiz-answer"><input type="radio" name="q14" value="b" /><span>The number of letters on a line</span></label></li><li><label class="quiz-answer"><input type="radio" name="q14" value="c" /><span>The width of the selected element</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q15" data-answer="c" data-success="Correct. HTML should describe meaning; CSS controls its appearance." data-feedback="Choose the HTML element from the content's role, not its default size."><legend>15. You need a section heading. What should decide the HTML element?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q15" value="a" /><span>Whichever element happens to look largest</span></label></li><li><label class="quiz-answer"><input type="radio" name="q15" value="b" /><span>The text colour you plan to use</span></label></li><li><label class="quiz-answer"><input type="radio" name="q15" value="c" /><span>The meaning and heading structure of the content</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q16" data-answer="b" data-success="Correct. Use p when the intention genuinely applies to every paragraph." data-feedback="A broad intention is expressed by a broad element selector."><legend>16. Every paragraph needs the same starting line height. Which selector is simplest?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q16" value="a" /><span><code>.featured-text</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q16" value="b" /><span><code>p</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q16" value="c" /><span><code>#paragraph</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q17" data-answer="a" data-success="Correct. It matches p because it is a paragraph and .featured-text because it has that class." data-feedback="One element can match more than one selector."><legend>17. A <code>p</code> has <code>class="featured-text"</code>. Which rules can affect it?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q17" value="a" /><span>Both <code>p</code> and <code>.featured-text</code> rules</span></label></li><li><label class="quiz-answer"><input type="radio" name="q17" value="b" /><span>Only the rule written first</span></label></li><li><label class="quiz-answer"><input type="radio" name="q17" value="c" /><span>Only the class rule</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q18" data-answer="c" data-success="Correct. font-family chooses the typeface." data-feedback="This property was introduced briefly and will be explored further later."><legend>18. Which property chooses a typeface?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q18" value="a" /><span><code>font-style</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q18" value="b" /><span><code>text-decoration</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q18" value="c" /><span><code>font-family</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q19" data-answer="b" data-success="Correct. A class is appropriate for a particular reusable role." data-feedback="Only selected paragraphs need the special role."><legend>19. Only some paragraphs should use a featured treatment. Which selector is the best starting choice?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q19" value="a" /><span><code>p</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q19" value="b" /><span><code>.featured-text</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q19" value="c" /><span>Give every paragraph the same ID</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q20" data-answer="a" data-success="Correct. The colon is missing between color and purple." data-feedback="A valid declaration follows property: value;."><legend>20. What is wrong with <code>color purple;</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q20" value="a" /><span>It is missing the colon between property and value</span></label></li><li><label class="quiz-answer"><input type="radio" name="q20" value="b" /><span>It needs a dot before purple</span></label></li><li><label class="quiz-answer"><input type="radio" name="q20" value="c" /><span>color must be written after the value</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card"><p class="eyebrow">Glossary</p><h2>Quick glossary</h2><dl class="glossary-list">
+          <div class="glossary-item"><dt>Property</dt><dd>The part of a declaration that names what should change.</dd></div>
+          <div class="glossary-item"><dt>Value</dt><dd>The setting assigned to a property.</dd></div>
+          <div class="glossary-item"><dt>Declaration</dt><dd>A property and value instruction, normally ending with a semicolon.</dd></div>
+          <div class="glossary-item"><dt>px</dt><dd>A CSS unit meaning pixels.</dd></div>
+          <div class="glossary-item"><dt>Line height</dt><dd>The vertical space used by each line of text.</dd></div>
+        </dl></section>
+        <section class="lesson-rail-card panel revision-card"><p class="eyebrow">Remember</p><h2>The pattern</h2><ul class="memory-list"><li>Selector opens the rule</li><li>Property comes before the colon</li><li>Value comes after the colon</li><li>Semicolon ends the declaration</li><li>Closing brace ends the rule</li></ul></section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading"><p class="eyebrow">Keep Going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div></section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden><button type="button" class="slide-button" data-action="prev-slide">Previous</button><p class="slide-status" data-role="slide-status">Slide 1</p><button type="button" class="slide-button" data-action="next-slide">Next</button><button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button></div>
+</body>
+
+</html>
