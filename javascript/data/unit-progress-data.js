@@ -36,6 +36,36 @@ export const webDevelopmentProgressData = {
           href: "../topics/parent-child-relationships-in-html.html?context=web-development",
           quiz: { version: 2, totalQuestions: 10, passScore: 8 },
         },
+        {
+          id: "file-paths-folders-and-linking-pages",
+          title: "File paths, folders, and linking pages",
+          href: "../topics/file-paths-folders-and-linking-pages.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 11, passScore: 9 },
+        },
+        {
+          id: "forms-1-inputs-labels-and-submitting-data",
+          title: "Forms 1: Inputs, labels, and submitting data",
+          href: "../topics/forms-1-inputs-labels-and-submitting-data.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 12, passScore: 10 },
+        },
+        {
+          id: "forms-2-choices-larger-inputs-and-grouping",
+          title: "Forms 2: Choices, larger inputs, and grouping",
+          href: "../topics/forms-2-choices-larger-inputs-and-grouping.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 15, passScore: 12 },
+        },
+      ],
+    },
+    {
+      id: "css-basics",
+      title: "CSS basics",
+      lessons: [
+        {
+          id: "linking-and-organising-css-files",
+          title: "Linking and organising CSS files",
+          href: "../topics/linking-and-organising-css-files.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 12, passScore: 9 },
+        },
       ],
     },
   ],

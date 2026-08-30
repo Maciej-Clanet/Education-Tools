@@ -93,6 +93,7 @@ Before making major UI, content, or structure changes, read:
 - `pages/units/btec-level-3-unit-2.html` is the first live unit hub.
 - `pages/resources/web-development.html` is the first non-unit resource hub.
 - `pages/topics/what-is-html.html` is the first Web Development topic lesson.
+- `pages/topics/linking-and-organising-css-files.html` is the first CSS Basics lesson.
 - `javascript/core/code-preview.js` is the shared component for code versus
   preview, step-change, and cycling code examples.
 - Unit quiz progress metadata lives in `javascript/data/unit-progress-data.js`

@@ -17,10 +17,11 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "HTML form practice project",
+        title: "Linking and organising CSS files",
+        href: "linking-and-organising-css-files.html",
         description:
-          "Next, combine the HTML basics lessons into a small accessible form page.",
-        status: "Planned",
+          "Begin CSS Basics by connecting HTML pages to external stylesheets and organising CSS files.",
+        status: "Live",
       },
     },
   },

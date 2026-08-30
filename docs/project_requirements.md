@@ -97,8 +97,8 @@ the browser with `localStorage` where useful.
   blanking the screen, but it should stay compact when those tools are not in
   use.
 - The current content focus is BTEC Level 3 Computing Unit 2.
-- Web development teaching resources are starting as a separate non-unit
-  resource hub, beginning with HTML basics and JavaScript basics.
+- Web development teaching resources are a separate non-unit resource hub,
+  beginning with HTML basics, CSS basics, and JavaScript basics.
 - When the homepage is not filtered by search, it should prioritise real live
   pages. Planned lesson topics can still appear through search, but should not
   be presented as if they are already finished live pages by default.
@@ -184,7 +184,8 @@ the browser with `localStorage` where useful.
   `pages/topics/parent-child-relationships-in-html.html`, and
   `pages/topics/file-paths-folders-and-linking-pages.html`, and
   `pages/topics/forms-1-inputs-labels-and-submitting-data.html`, and
-  `pages/topics/forms-2-choices-larger-inputs-and-grouping.html`.
+  `pages/topics/forms-2-choices-larger-inputs-and-grouping.html`, and
+  `pages/topics/linking-and-organising-css-files.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,
@@ -243,8 +244,8 @@ the browser with `localStorage` where useful.
 ## Next Likely Steps
 
 - Build more Unit 2 lessons on top of the shared lesson shell.
-- Add more Web Development topic lessons under the HTML basics and JavaScript
-  basics sections.
+- Add more Web Development topic lessons under the HTML basics, CSS basics,
+  and JavaScript basics sections.
 - Decide when lesson content should move from page HTML into structured
   `content/lessons/` data.
 - Decide what a short spec page should include beyond description + unit links.

@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linking and Organising CSS Files Lesson | Education Tools</title>
+  <meta name="description"
+    content="Learn how to connect HTML pages to external CSS files, use relative stylesheet paths, organise shared and page-specific CSS, and debug broken links." />
+  <meta property="og:title" content="Linking and Organising CSS Files Lesson | Education Tools" />
+  <meta property="og:description"
+    content="A beginner CSS lesson on external stylesheets, link elements, relative paths, multiple CSS files, stylesheet order, and debugging." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/pages/linking-and-organising-css-files.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/linking-and-organising-css-files.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">CSS Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#css-basics" data-role="breadcrumb-unit-link">Web Development</a></li>
+          <li aria-current="page">Linking and organising CSS files</li>
+        </ol>
+      </nav>
+
+      <div class="lesson-header-row">
+        <div>
+          <h1>Linking and organising CSS files</h1>
+          <p class="lesson-hero-text">
+            HTML describes a page's content and structure. A separate CSS file controls how that content looks. Learn
+            how the HTML file finds its CSS and how to keep stylesheets organised across a website.
+          </p>
+          <p class="lesson-hero-support">
+            In the current lesson context, this sits inside <span data-role="context-label">Web Development</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Resource area</strong><span>CSS basics</span></article>
+        <article class="lesson-meta-card"><strong>Main focus</strong><span>External CSS files, paths, and organisation</span></article>
+        <article class="lesson-meta-card"><strong>Practice</strong><span>Page-to-CSS map and link debugger</span></article>
+        <article class="lesson-meta-card"><strong>Quiz</strong><span>12 understanding questions</span></article>
+      </div>
+
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit" href="../resources/web-development.html#css-basics">
+          Back to Web Development resources
+        </a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher slides</button>
+      </div>
+    </header>
+
+    <noscript>
+      <p class="panel lesson-sequence">
+        The lesson notes and worked examples still work without JavaScript, but the code previews, page-to-CSS map,
+        link debugger, saved practice, quiz scoring, and teacher slides need JavaScript.
+      </p>
+    </noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#overview" data-section-link>Head and CSS files</a>
+          <a href="#linking" data-section-link>The link element</a>
+          <a href="#paths" data-section-link>Stylesheet paths</a>
+          <a href="#testing" data-section-link>Test the connection</a>
+          <a href="#multiple-files" data-section-link>Multiple stylesheets</a>
+          <a href="#organisation" data-section-link>Organise CSS</a>
+          <a href="#order" data-section-link>Stylesheet order</a>
+          <a href="#debugging" data-section-link>Debug broken links</a>
+          <a href="#practice" data-section-link>Link debugger</a>
+          <a href="#summary" data-section-link>Summary</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
+          <p class="eyebrow">Document Recap</p>
+          <h2>The CSS connection belongs in the HTML head</h2>
+          <p class="lesson-section-copy">
+            The <code>&lt;body&gt;</code> contains the page content people normally see. The <code>&lt;head&gt;</code>
+            contains information and resources the page needs—including its connection to CSS.
+          </p>
+
+          <div class="document-role-grid">
+            <article class="document-role-card document-role-card--head">
+              <strong>&lt;head&gt;</strong><span>Information and resources the page needs</span>
+            </article>
+            <article class="document-role-card document-role-card--body">
+              <strong>&lt;body&gt;</strong><span>Headings, paragraphs, images, forms, and other visible content</span>
+            </article>
+          </div>
+
+          <pre class="lesson-code lesson-code--large"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- The CSS connection will go here --&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Our website&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+          <div data-slide-break></div>
+
+          <div class="css-file-intro lesson-fullrow">
+            <div class="folder-tree folder-tree--compact" role="img" aria-label="Website folder containing index.html and a css folder. The css folder contains common.css.">
+              <strong>website/</strong>
+              <ul><li><span class="file-badge file-badge--html">HTML</span> index.html</li><li><span class="folder-badge">folder</span> css/<ul><li><span class="file-badge file-badge--css">CSS</span> common.css</li></ul></li></ul>
+            </div>
+            <div>
+              <h3>CSS lives in a separate <code>.css</code> file</h3>
+              <p><code>index.html</code> describes the content and structure. <code>common.css</code> contains styling for the page.</p>
+              <p>The filenames are examples, not special required names. The important clue is the <code>.css</code> extension.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="linking" class="lesson-section lesson-section--linking panel" data-lesson-section>
+          <p class="eyebrow">Make the Connection</p>
+          <h2>Link the stylesheet from inside head</h2>
+          <p class="lesson-section-copy">One void element connects the HTML document to the CSS file:</p>
+
+          <div class="link-breakdown lesson-fullrow" aria-label="Breakdown of link rel stylesheet href css slash common dot css">
+            <code class="link-breakdown__whole">&lt;link rel="stylesheet" href="css/common.css"&gt;</code>
+            <div class="link-part-grid">
+              <article><code>&lt;link&gt;</code><strong>Connect a resource</strong><p>This is a void element, so there is no closing link tag.</p></article>
+              <article><code>rel="stylesheet"</code><strong>Explain the relationship</strong><p>This tells the browser the resource is a stylesheet for this page.</p></article>
+              <article><code>href="css/common.css"</code><strong>Give its location</strong><p>This tells the browser where to find the CSS file.</p></article>
+            </div>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview>
+            <div class="code-preview__header">
+              <h3>Two files, two different jobs</h3>
+              <p class="code-preview__copy">Choose a file tab. The HTML file contains the link; the CSS file contains CSS rules directly.</p>
+              <p class="code-preview__status" data-code-preview-status></p>
+            </div>
+            <div class="code-preview__controls" data-code-preview-controls></div>
+            <p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage">
+              <div class="code-preview__panel"><p class="code-preview__panel-title">Selected file</p><div class="code-preview__code" data-code-preview-code aria-label="Selected HTML or CSS file"></div></div>
+              <div class="code-preview__panel"><p class="code-preview__panel-title">What this file does</p><div class="code-preview__preview" data-code-preview-output></div></div>
+            </div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="index.html" data-step-note="The link belongs inside head in the HTML file.">
+              <div data-code-content><pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel="stylesheet" href="css/common.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Our website&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+              <div data-preview-content><div class="file-role-preview"><span class="file-badge file-badge--html">HTML file</span><strong>Connects to common.css</strong><p>The browser reads the link from the document head.</p></div></div>
+            </template>
+            <template data-code-step data-step-label="common.css" data-step-note="This pre-written rule gives us an obvious connection test. You will learn how to write rules in later lessons.">
+              <div data-code-content><pre><code>body {
+  background-color: lightblue;
+}</code></pre></div>
+              <div data-preview-content><div class="file-role-preview file-role-preview--css"><span class="file-badge file-badge--css">CSS file</span><strong>Supplies styling</strong><p>The rule is written directly in the CSS file.</p></div></div>
+            </template>
+          </article>
+        </section>
+
+        <section id="paths" class="lesson-section lesson-section--paths panel" data-lesson-section>
+          <p class="eyebrow">Same Path Rules</p>
+          <h2>CSS paths work like the image and page paths you already know</h2>
+          <p class="lesson-section-copy">The attribute changes, but the path question stays the same: <strong>Where am I starting from?</strong></p>
+
+          <div class="attribute-path-grid">
+            <article><span class="file-badge">Image</span><code>&lt;img src="images/panda.jpg" alt="A panda"&gt;</code><p><code>src</code> points to an image file.</p></article>
+            <article><span class="file-badge file-badge--css">CSS</span><code>&lt;link rel="stylesheet" href="css/common.css"&gt;</code><p><code>href</code> points to a CSS file.</p></article>
+          </div>
+
+          <div class="path-route-card lesson-fullrow">
+            <div class="folder-tree" role="img" aria-label="Website folder. index.html is the current file. common.css is inside the css folder and is the target file.">
+              <strong>website/</strong><ul><li><span class="tree-label">CURRENT</span> index.html</li><li>css/<ul><li><span class="tree-label">TARGET</span> common.css</li></ul></li><li>images/<ul><li>panda.jpg</li></ul></li></ul>
+            </div>
+            <div class="route-steps-card"><h3>From index.html</h3><ol><li>Start beside the <code>css</code> folder.</li><li>Go into <code>css/</code>.</li><li>Find <code>common.css</code>.</li></ol><code class="generated-path">css/common.css</code></div>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="path-route-card lesson-fullrow">
+            <div class="folder-tree" role="img" aria-label="Website folder. sales.html is inside pages and is the current file. common.css is inside the separate css folder and is the target file.">
+              <strong>website/</strong><ul><li>index.html</li><li>css/<ul><li><span class="tree-label">TARGET</span> common.css</li></ul></li><li>pages/<ul><li><span class="tree-label">CURRENT</span> sales.html</li></ul></li></ul>
+            </div>
+            <div class="route-steps-card"><h3>From pages/sales.html</h3><ol><li>Start inside <code>pages/</code>.</li><li>Use <code>../</code> to go up to <code>website/</code>.</li><li>Go into <code>css/</code>.</li><li>Find <code>common.css</code>.</li></ol><code class="generated-path">../css/common.css</code></div>
+          </div>
+
+          <div class="wrong-lookup-note">
+            <strong>Why <code>css/common.css</code> is wrong here:</strong>
+            <p>Starting from <code>pages/sales.html</code>, it sends the browser towards <code>pages/css/common.css</code>. That folder does not exist in this project.</p>
+          </div>
+        </section>
+
+        <section id="testing" class="lesson-section lesson-section--testing panel" data-lesson-section>
+          <p class="eyebrow">Connection Test</p>
+          <h2>Use an obvious visual change to check the link</h2>
+          <p class="lesson-section-copy">
+            You do not need to understand the pre-written CSS rule yet. For now, its obvious background change tells
+            us whether the HTML page successfully loaded the CSS file.
+          </p>
+
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header"><h3>Broken path, then fixed path</h3><p class="code-preview__copy">If CSS seems to do nothing, first check whether the file is connected.</p><p class="code-preview__status" data-code-preview-status></p></div>
+            <div class="code-preview__controls" data-code-preview-controls></div><p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage"><div class="code-preview__panel"><p class="code-preview__panel-title">index.html</p><div class="code-preview__code" data-code-preview-code aria-label="Broken and corrected stylesheet path"></div></div><div class="code-preview__panel"><p class="code-preview__panel-title">Page result</p><div class="code-preview__preview" data-code-preview-output></div></div></div>
+            <div class="code-preview__diff" data-code-preview-diff aria-label="Changed stylesheet path" hidden></div>
+            <template data-code-step data-step-label="Broken link" data-step-note="The browser looks beside index.html for common.css, so the stylesheet is not found."><div data-code-content><pre><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="common.css"&gt;
+&lt;/head&gt;</code></pre></div><div data-preview-content><div class="connection-preview connection-preview--broken"><span>NOT CONNECTED</span><strong>Plain page background</strong><p>The expected CSS change is missing.</p></div></div></template>
+            <template data-code-step data-step-label="Fixed link" data-step-note="The path now goes into css and finds common.css."><div data-code-content><pre><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="css/common.css"&gt;
+&lt;/head&gt;</code></pre></div><div data-preview-content><div class="connection-preview connection-preview--connected"><span>CONNECTED</span><strong>Light blue page background</strong><p>The visible test change confirms the file loaded.</p></div></div></template>
+          </article>
+        </section>
+
+        <section id="multiple-files" class="lesson-section lesson-section--multiple panel" data-lesson-section>
+          <p class="eyebrow">More Than One File</p>
+          <h2>One HTML page can link multiple stylesheets</h2>
+          <p class="lesson-section-copy">Link multiple CSS files when the split makes the project easier to organise.</p>
+
+          <div class="multiple-file-grid">
+            <pre class="lesson-code"><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="css/common.css"&gt;
+  &lt;link rel="stylesheet" href="css/home.css"&gt;
+&lt;/head&gt;</code></pre>
+            <div class="file-purpose-stack">
+              <article><code>common.css</code><p>Shared header, navigation, footer, buttons, and other site-wide styling.</p></article>
+              <article><code>home.css</code><p>Styling only needed by the home page.</p></article>
+            </div>
+          </div>
+
+          <div class="organisation-note"><strong>Useful split, not a fixed rule:</strong><span>Filenames such as common.css and home.css describe one sensible approach. Choose names that make the project understandable.</span></div>
+        </section>
+
+        <section id="organisation" class="lesson-section lesson-section--organisation panel" data-lesson-section>
+          <p class="eyebrow">Project Organisation</p>
+          <h2>Choose a page to see which CSS files it loads</h2>
+          <p class="lesson-section-copy">Shared CSS can be reused, while page and feature files are linked only where they are useful.</p>
+
+          <div class="css-load-explorer lesson-fullrow" data-css-load-explorer>
+            <div class="css-page-choices" role="group" aria-label="Choose an HTML page">
+              <button type="button" data-page-choice="home" aria-pressed="false">Home page</button>
+              <button type="button" data-page-choice="sales" aria-pressed="false">Sales page</button>
+              <button type="button" data-page-choice="gallery" aria-pressed="false">Gallery page</button>
+            </div>
+            <div class="css-load-map">
+              <article class="selected-page-card"><span>SELECTED HTML PAGE</span><strong data-selected-page>Home page</strong><small data-selected-filename>index.html</small></article>
+              <div class="load-arrow" aria-hidden="true">loads -></div>
+              <div class="stylesheet-list" aria-label="Available stylesheets">
+                <article data-css-file="common.css"><code>common.css</code><span data-load-state>Loaded</span></article>
+                <article data-css-file="home.css"><code>home.css</code><span data-load-state>Loaded</span></article>
+                <article data-css-file="sales.css"><code>sales.css</code><span data-load-state>Not loaded</span></article>
+                <article data-css-file="gallery.css"><code>gallery.css</code><span data-load-state>Not loaded</span></article>
+                <article data-css-file="gallery-grid.css"><code>gallery-grid.css</code><span data-load-state>Not loaded</span></article>
+              </div>
+            </div>
+            <p class="css-load-summary" data-css-load-summary aria-live="polite">Home page loads common.css and home.css. It does not load sales.css, gallery.css, or gallery-grid.css.</p>
+            <p class="feature-file-note"><code>gallery-grid.css</code> is a feature-specific example. Only a page that uses that gallery-grid feature needs to link it.</p>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="split-guidance-grid">
+            <article class="split-card split-card--sensible"><span class="decision-label">Purposeful</span><h3>A small, clear set</h3><pre><code>common.css
+home.css
+gallery.css
+contact.css</code></pre><p>Shared styling plus a few page or feature files can be easy to navigate.</p></article>
+            <article class="split-card split-card--excessive"><span class="decision-label">Hard to manage</span><h3>Too many tiny files</h3><pre><code>header.css
+footer.css
+heading.css
+paragraph.css
+button.css
+home-top.css
+home-middle.css
+home-bottom.css</code></pre><p>More files do not automatically mean better organisation. Split CSS when the separation has a useful purpose.</p></article>
+          </div>
+
+          <div class="relevance-note">
+            <h3>Why not load every file on every page?</h3>
+            <p>The Sales page usually needs <code>common.css</code> and <code>sales.css</code>, not <code>home.css</code>. This keeps the page's links relevant and can avoid loading page-specific styling it does not use. Organisation is the main benefit; splitting files does not automatically make a website faster.</p>
+          </div>
+        </section>
+
+        <section id="order" class="lesson-section lesson-section--order panel" data-lesson-section>
+          <p class="eyebrow">Stylesheet Order</p>
+          <h2>Shared CSS usually comes before page-specific CSS</h2>
+          <p class="lesson-section-copy">If two stylesheets try to change the same thing, their order can sometimes affect which style you see.</p>
+
+          <div class="provided-rules-grid">
+            <article><span>common.css</span><pre><code>body {
+  background-color: lightblue;
+}</code></pre></article>
+            <article><span>home.css</span><pre><code>body {
+  background-color: lightyellow;
+}</code></pre></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header"><h3>Change the link order</h3><p class="code-preview__copy">Both files use the same kind of pre-written rule so the effect of order is easy to see.</p><p class="code-preview__status" data-code-preview-status></p></div>
+            <div class="code-preview__controls" data-code-preview-controls></div><p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage"><div class="code-preview__panel"><p class="code-preview__panel-title">index.html</p><div class="code-preview__code" data-code-preview-code aria-label="Stylesheet link order"></div></div><div class="code-preview__panel"><p class="code-preview__panel-title">Page result</p><div class="code-preview__preview" data-code-preview-output></div></div></div>
+            <div class="code-preview__diff" data-code-preview-diff aria-label="Changed stylesheet order" hidden></div>
+            <template data-code-step data-step-label="Common then home" data-step-note="In this equal-conflict example, the later home.css rule is the one we see."><div data-code-content><pre><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="css/common.css"&gt;
+  &lt;link rel="stylesheet" href="css/home.css"&gt;
+&lt;/head&gt;</code></pre></div><div data-preview-content><div class="order-result order-result--yellow"><strong>Light yellow result</strong><span>home.css was linked second</span></div></div></template>
+            <template data-code-step data-step-label="Home then common" data-step-note="After reversing the links, the later common.css rule is the one we see."><div data-code-content><pre><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="css/home.css"&gt;
+  &lt;link rel="stylesheet" href="css/common.css"&gt;
+&lt;/head&gt;</code></pre></div><div data-preview-content><div class="order-result order-result--blue"><strong>Light blue result</strong><span>common.css was linked second</span></div></div></template>
+          </article>
+          <p class="future-note">Later, you will learn exactly how the browser decides which CSS rule wins. For now, remember the useful convention: shared/general CSS first, then page-specific CSS.</p>
+        </section>
+
+        <section id="debugging" class="lesson-section lesson-section--debugging panel" data-lesson-section>
+          <p class="eyebrow">Problem Solving</p>
+          <h2>Trace the link from the current HTML file</h2>
+          <div class="debug-problem-grid">
+            <article class="debug-problem"><span>Problem 1 · wrong folder</span><pre><code>&lt;link rel="stylesheet" href="common.css"&gt;</code></pre><p>From <code>index.html</code>, this looks beside the HTML file. The real file is inside <code>css/</code>.</p><strong>Fix: <code>href="css/common.css"</code></strong></article>
+            <article class="debug-problem"><span>Problem 2 · missing ../</span><pre><code>&lt;link rel="stylesheet" href="css/common.css"&gt;</code></pre><p>From <code>pages/sales.html</code>, this looks for <code>pages/css/common.css</code>.</p><strong>Fix: <code>href="../css/common.css"</code></strong></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="debug-problem-grid debug-problem-grid--three">
+            <article class="debug-problem"><span>Problem 3 · wrong rel</span><pre><code>&lt;link rel="style" href="css/common.css"&gt;</code></pre><p>The browser needs <code>rel="stylesheet"</code> to understand the resource's relationship to the page.</p></article>
+            <article class="debug-problem"><span>Problem 4 · wrong location</span><pre><code>&lt;body&gt;
+  &lt;link rel="stylesheet" href="css/common.css"&gt;
+  &lt;h1&gt;Sales&lt;/h1&gt;
+&lt;/body&gt;</code></pre><p>Move the stylesheet link into the document <code>&lt;head&gt;</code>.</p></article>
+            <article class="debug-problem"><span>Problem 5 · wrong filename</span><pre><code>&lt;link rel="stylesheet" href="css/commons.css"&gt;</code></pre><p>The folder contains <code>common.css</code>. Paths and filenames must match the real file.</p></article>
+          </div>
+
+          <div data-slide-break></div>
+
+          <div class="debug-checklist lesson-fullrow">
+            <h3>CSS link checklist</h3>
+            <ol><li>Is the <code>&lt;link&gt;</code> inside <code>&lt;head&gt;</code>?</li><li>Is <code>rel="stylesheet"</code> correct?</li><li>Does the filename match?</li><li>Is the path correct from this HTML file?</li><li>If the page is inside another folder, do you need <code>../</code>?</li><li>Are you editing the CSS file this page actually links?</li></ol>
+          </div>
+
+          <div data-slide-break></div>
+
+          <article class="exam-card lesson-fullrow">
+            <p class="eyebrow">Practice</p><h3>Repair and explain</h3>
+            <p><code>pages/contact.html</code> must load <code>css/common.css</code>. Write the complete link element and explain how the path travels.</p>
+            <label class="exam-response-label" for="css-link-response">Your answer</label>
+            <textarea id="css-link-response" class="exam-response exam-response--code" data-exam-response="nested-css-link" placeholder="&lt;link ...&gt;&#10;The path starts..."></textarea>
+            <details class="exam-guidance"><summary>Show answer guidance</summary><pre><code>&lt;link rel="stylesheet" href="../css/common.css"&gt;</code></pre><p>Start inside pages, go up one folder with <code>../</code>, enter <code>css/</code>, then find <code>common.css</code>.</p></details>
+          </article>
+        </section>
+
+        <section id="practice" class="lesson-section lesson-section--practice panel" data-lesson-section>
+          <p class="eyebrow">Interactive Practice</p>
+          <h2>Diagnose the CSS link</h2>
+          <p class="lesson-section-copy">Read the project tree, current file, target stylesheet, and existing link. Then choose the best diagnosis.</p>
+
+          <div class="css-link-debugger lesson-fullrow" data-css-link-debugger>
+            <div class="debugger-heading"><span data-debug-count>Scenario 1 of 6</span><h3 data-debug-title>Same-folder stylesheet</h3></div>
+            <div class="debugger-grid">
+              <pre class="debugger-tree" data-debug-tree aria-label="Folder tree"></pre>
+              <div class="debugger-details">
+                <dl><div><dt>Current HTML file</dt><dd><code data-debug-current></code></dd></div><div><dt>Target CSS file</dt><dd><code data-debug-target></code></dd></div><div><dt>Existing link</dt><dd><code data-debug-link></code></dd></div><div><dt>Browser looks for</dt><dd><code data-debug-lookup></code></dd></div></dl>
+                <p data-debug-prompt></p>
+                <div class="debugger-options" data-debug-options role="group" aria-label="Choose a diagnosis"></div>
+                <p class="debugger-feedback" data-debug-feedback aria-live="polite">Choose the best diagnosis.</p>
+                <button type="button" class="lesson-secondary-action" data-debug-next>Next scenario</button>
+              </div>
+            </div>
+          </div>
+          <p class="non-interactive-note"><strong>Remember:</strong> start from the current HTML file. Check the location, exact filename, <code>rel="stylesheet"</code>, and whether the link sits inside head.</p>
+        </section>
+
+        <section id="summary" class="lesson-section lesson-section--summary panel" data-lesson-section>
+          <p class="eyebrow">Memory Hooks</p>
+          <h2>Connect, trace, organise, test</h2>
+          <div class="memory-grid">
+            <article><strong>CSS file</strong><span>uses the .css extension</span></article>
+            <article><strong>Connect from</strong><span>the HTML head</span></article>
+            <article><strong>rel</strong><span>says stylesheet</span></article>
+            <article><strong>href</strong><span>gives the file path</span></article>
+            <article><strong>CSS paths</strong><span>follow familiar relative-path rules</span></article>
+            <article><strong>common.css</strong><span>can hold shared styling</span></article>
+            <article><strong>More files</strong><span>only when the split has a useful purpose</span></article>
+            <article><strong>Usual order</strong><span>shared first, page-specific second</span></article>
+          </div>
+          <pre class="summary-code"><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="css/common.css"&gt;
+  &lt;link rel="stylesheet" href="css/home.css"&gt;
+&lt;/head&gt;</code></pre>
+          <p class="summary-line"><strong>If CSS does nothing:</strong> check the link and path first.</p>
+        </section>
+
+        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p><h2>Check your understanding</h2>
+          <p class="quiz-intro">Answer all twelve questions, then check your score. Your choices and best score save in this browser.</p>
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. The stylesheet link belongs inside the document head." data-feedback="The head contains information and resources the page needs."><legend>1. Where should the stylesheet link normally be placed?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>Inside the visible page footer</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>Inside <code>&lt;head&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>After <code>&lt;/html&gt;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q2" data-answer="c" data-success="Correct. It tells the browser the resource is a stylesheet for this page." data-feedback="Rel describes the relationship between the page and linked resource."><legend>2. What does <code>rel="stylesheet"</code> tell the browser?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>The CSS filename</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>The current HTML folder</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>The linked resource is a stylesheet for the page</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q3" data-answer="a" data-success="Correct. Href gives the location of the CSS file." data-feedback="The path is written as the href value."><legend>3. What is the purpose of <code>href</code> in the link element?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>It tells the browser where to find the CSS file</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>It contains the page heading</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span>It closes the link element</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q4" data-answer="b" data-success="Correct. Link is a void element, so it has no closing link tag." data-feedback="Link does not wrap content between opening and closing tags."><legend>4. Which statement about <code>&lt;link&gt;</code> is correct?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>It must end with <code>&lt;/link&gt;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>It is a void element</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>It belongs only inside body</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q5" data-answer="c" data-success="Correct. From index.html, go into css and find common.css." data-feedback="Start beside the css folder, then travel into it."><legend>5. <code>index.html</code> is beside the <code>css</code> folder. Which path reaches <code>css/common.css</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span><code>common.css</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span><code>../css/common.css</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span><code>css/common.css</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q6" data-answer="a" data-success="Correct. Go up from pages, then into css." data-feedback="The current HTML file starts one folder deeper than index.html."><legend>6. Which path should <code>pages/sales.html</code> use for <code>css/common.css</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span><code>../css/common.css</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span><code>css/common.css</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span><code>pages/css/common.css</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q7" data-answer="b" data-success="Correct. It looks inside pages for a css folder." data-feedback="Relative paths start from the folder containing the current HTML file."><legend>7. From <code>pages/sales.html</code>, where does <code>href="css/common.css"</code> make the browser look?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span><code>css/common.css</code> from the project root</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span><code>pages/css/common.css</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span><code>pages/common.css</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q8" data-answer="c" data-success="Correct. A page can link multiple useful stylesheets." data-feedback="Multiple link elements can connect a page to shared and page-specific CSS."><legend>8. Can one HTML page link both <code>common.css</code> and <code>home.css</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>No, HTML permits exactly one CSS file</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>Only if both files have the same name</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>Yes, when the split helps organise the project</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q9" data-answer="a" data-success="Correct. Common CSS is a sensible place for site-wide styling." data-feedback="Shared styling should be available to the pages that reuse it."><legend>9. Which file is the most sensible place for a header and footer shared by every page?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q9" value="a" /><span><code>common.css</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="b" /><span><code>sales.css</code> only</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="c" /><span><code>gallery-grid.css</code> only</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q10" data-answer="b" data-success="Correct. Load the shared file and the file relevant to Sales." data-feedback="The Sales page does not normally need styling that only the Home page uses."><legend>10. Which pair should the Sales page normally load?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span><code>home.css</code> and <code>gallery.css</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span><code>common.css</code> and <code>sales.css</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>Every CSS file in the project</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q11" data-answer="c" data-success="Correct. Shared/general CSS usually comes first." data-feedback="This order lets a later page-specific file adjust the shared foundation in simple equal-conflict cases."><legend>11. What is the usual link order?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q11" value="a" /><span>Page-specific CSS, then shared CSS</span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="b" /><span>Alphabetical order is required</span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="c" /><span>Shared/general CSS, then page-specific CSS</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q12" data-answer="a" data-success="Correct. The rel value must be stylesheet." data-feedback="The path is correct, but the browser has not been told that the resource is a stylesheet."><legend>12. What is wrong with <code>&lt;link rel="style" href="css/common.css"&gt;</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q12" value="a" /><span><code>rel</code> should be <code>stylesheet</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="b" /><span>The path must start with <code>../</code> on every page</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="c" /><span>Link needs a closing tag</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p><h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item"><dt>CSS</dt><dd>A language used to control how web content looks.</dd></div>
+            <div class="glossary-item"><dt>Stylesheet</dt><dd>A CSS file that supplies styling to a page.</dd></div>
+            <div class="glossary-item"><dt>Link</dt><dd>A void element that connects the HTML document to another resource.</dd></div>
+            <div class="glossary-item"><dt>Rel</dt><dd>The attribute describing the linked resource's relationship to the page.</dd></div>
+            <div class="glossary-item"><dt>Href</dt><dd>The attribute containing the CSS file's location.</dd></div>
+            <div class="glossary-item"><dt>Shared CSS</dt><dd>Styling reused by multiple pages.</dd></div>
+          </dl>
+        </section>
+        <section class="lesson-rail-card panel revision-card"><p class="eyebrow">Remember</p><h2>Start from the HTML file</h2><ul class="memory-list"><li>Link from head.</li><li>Use rel="stylesheet".</li><li>Trace href from this HTML file.</li><li>Use ../ when you need to go up.</li><li>Check the link first if CSS does nothing.</li></ul></section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading"><p class="eyebrow">Keep Going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div></section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden><button type="button" class="slide-button" data-action="prev-slide">Previous</button><p class="slide-status" data-role="slide-status">Slide 1</p><button type="button" class="slide-button" data-action="next-slide">Next</button><button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button></div>
+</body>
+
+</html>
