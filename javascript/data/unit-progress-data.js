@@ -78,6 +78,12 @@ export const webDevelopmentProgressData = {
           href: "../topics/styling-text-with-css.html?context=web-development",
           quiz: { version: 1, totalQuestions: 20, passScore: 16 },
         },
+        {
+          id: "colours-backgrounds-and-borders",
+          title: "Colours, backgrounds, and borders",
+          href: "../topics/colours-backgrounds-and-borders.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 21, passScore: 17 },
+        },
       ],
     },
   ],

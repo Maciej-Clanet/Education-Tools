@@ -19,10 +19,11 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "CSS units",
+        title: "Colours, backgrounds, and borders",
+        href: "colours-backgrounds-and-borders.html",
         description:
-          "Next, compare common CSS units and choose suitable units for different measurements.",
-        status: "Planned",
+          "Next, fill element backgrounds, draw and round borders, and compare named, RGB, RGBA, and HEX colours.",
+        status: "Live",
       },
     },
   },
@@ -135,7 +136,7 @@ const liveCodeExamples = [
     id: "text-property-workshop",
     title: "Try the text properties",
     description:
-      "Switch between HTML and CSS. Change one value at a time and compare the real generated result.",
+      "Try changing the text colour, size, weight, style, alignment, and line spacing.",
     defaultSplit: 55,
     sources: [
       {

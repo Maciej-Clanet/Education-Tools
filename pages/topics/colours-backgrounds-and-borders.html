@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colours, Backgrounds, and Borders Lesson | Education Tools</title>
+  <meta name="description" content="Learn CSS text and background colours, border properties and shorthand, rounded corners, RGB, RGBA, HEX, and accessible colour choices." />
+  <meta property="og:title" content="Colours, Backgrounds, and Borders Lesson | Education Tools" />
+  <meta property="og:description" content="A beginner CSS lesson with editable card examples, a colour explorer, a four-corner shorthand visualiser, guided debugging, and a quiz." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/debug-lab.css" />
+  <link rel="stylesheet" href="../../css/live-code-example.css" />
+  <link rel="stylesheet" href="../../css/shorthand-visualizer.css" />
+  <link rel="stylesheet" href="../../css/pages/colours-backgrounds-and-borders.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/colours-backgrounds-and-borders.js"></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">CSS Basics</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol class="breadcrumb-list">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../resources/web-development.html#css-basics" data-role="breadcrumb-unit-link">Web Development</a></li>
+        <li aria-current="page">Colours, backgrounds, and borders</li>
+      </ol></nav>
+      <div class="lesson-header-row"><div>
+        <h1>Colours, backgrounds, and borders</h1>
+        <p class="lesson-hero-text">Move beyond styling the words: fill an element's visible area, draw its edges, round its corners, and choose precise colours.</p>
+        <p class="lesson-hero-support">In the current lesson context, this sits inside <span data-role="context-label">Web Development</span>.</p>
+      </div></div>
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Resource area</strong><span>CSS basics</span></article>
+        <article class="lesson-meta-card"><strong>Main focus</strong><span>Backgrounds, borders, radii, and colour formats</span></article>
+        <article class="lesson-meta-card"><strong>Practice</strong><span>Live Code, colour explorer, and five Debug Labs</span></article>
+        <article class="lesson-meta-card"><strong>Quiz</strong><span>21 understanding questions</span></article>
+      </div>
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" data-role="back-to-unit" href="../resources/web-development.html#css-basics">Back to Web Development resources</a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher slides</button>
+      </div>
+    </header>
+
+    <noscript><p class="panel lesson-sequence">The lesson notes and displayed examples still work without JavaScript, but Live Code, the colour explorer, shorthand visualiser, Debug Labs, saved quiz, and teacher slides need JavaScript.</p></noscript>
+
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections">
+          <a href="#recap" data-section-link>Text styling recap</a>
+          <a href="#colour-background" data-section-link>Text vs background</a>
+          <a href="#background-area" data-section-link>Element area</a>
+          <a href="#borders" data-section-link>Border parts and styles</a>
+          <a href="#border-shorthand" data-section-link>Border shorthand</a>
+          <a href="#radius" data-section-link>Rounded corners</a>
+          <a href="#corners" data-section-link>Four corners</a>
+          <a href="#colour-formats" data-section-link>Colour formats</a>
+          <a href="#rgb" data-section-link>RGB channels</a>
+          <a href="#colour-explorer" data-section-link>Colour explorer</a>
+          <a href="#rgba" data-section-link>RGBA transparency</a>
+          <a href="#hex" data-section-link>HEX colours</a>
+          <a href="#workshop" data-section-link>Live card workshop</a>
+          <a href="#accessibility" data-section-link>Accessible colour</a>
+          <a href="#misconceptions" data-section-link>Common mistakes</a>
+          <a href="#debug-labs-one" data-section-link>Debug Labs 1–2</a>
+          <a href="#debug-labs-two" data-section-link>Debug Labs 3–5</a>
+          <a href="#summary" data-section-link>Summary</a>
+          <a href="#quiz" data-section-link>Quick quiz</a>
+        </nav>
+      </aside>
+
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="recap" class="lesson-section lesson-section--recap panel" data-lesson-section>
+          <p class="eyebrow">Previous Lesson Recap</p>
+          <h2>CSS properties already control the text</h2>
+          <div class="recap-bridge lesson-fullrow">
+            <pre class="colour-code"><code>.featured-text {
+  color: purple;
+  font-size: 24px;
+  font-weight: bold;
+}</code></pre>
+            <div class="recap-arrow" aria-hidden="true">→</div>
+            <article><span>NOW EXPAND THE IDEA</span><strong>Style the visible area and edges around the content.</strong></article>
+          </div>
+        </section>
+
+        <section id="colour-background" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Two Different Jobs</p>
+          <h2><code>color</code> changes text; <code>background-color</code> changes what sits behind it</h2>
+          <div class="colour-job-grid lesson-fullrow">
+            <article><code>color: navy;</code><div class="job-sample job-sample--text">Navy text</div><p>The letters change colour.</p></article>
+            <article><code>background-color: lightblue;</code><div class="job-sample job-sample--background">Background area</div><p>The area behind the content changes colour.</p></article>
+          </div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-live-code-example-id="colour-background-live"></div>
+        </section>
+
+        <section id="background-area" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Visible Area</p>
+          <h2>A background fills the area occupied by the element</h2>
+          <div class="background-area-demo lesson-fullrow">
+            <div class="background-area-demo__outside"><span>Page around the element</span><article><strong>Card element</strong><p>The light blue area belongs to this element.</p></article></div>
+            <div class="background-area-demo__explanation"><code>background-color: lightblue;</code><p>The fill makes the element's occupied area easy to see. A later Box Model lesson will explain exactly how its size and surrounding spacing are calculated.</p></div>
+          </div>
+        </section>
+
+        <section id="borders" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Drawing an Edge</p>
+          <h2>A border has width, style, and colour</h2>
+          <div class="border-anatomy lesson-fullrow">
+            <pre class="colour-code"><code>.card {
+  border-width: 3px;
+  border-style: solid;
+  border-color: purple;
+}</code></pre>
+            <div class="border-part-list">
+              <article><code>border-width</code><span>How thick?</span><strong>3px</strong></article>
+              <article><code>border-style</code><span>What kind of line?</span><strong>solid</strong></article>
+              <article><code>border-color</code><span>Which colour?</span><strong>purple</strong></article>
+            </div>
+          </div>
+          <div data-slide-break></div>
+          <div class="border-style-strip lesson-fullrow">
+            <div class="border-style-sample is-solid"><strong>solid</strong><span>continuous line</span></div>
+            <div class="border-style-sample is-dashed"><strong>dashed</strong><span>short line segments</span></div>
+            <div class="border-style-sample is-dotted"><strong>dotted</strong><span>series of dots</span></div>
+            <div class="border-style-sample is-double"><strong>double</strong><span>two parallel lines</span></div>
+          </div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-live-code-example-id="border-style-live"></div>
+        </section>
+
+        <section id="border-shorthand" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Common Shorthand</p>
+          <h2>Combine the three border parts in one declaration</h2>
+          <div class="border-needs-style lesson-fullrow">
+            <article><span>INCOMPLETE</span><pre><code>border-width: 3px;
+border-color: purple;</code></pre><strong>No visible line style supplied</strong></article>
+            <div class="recap-arrow" aria-hidden="true">+</div>
+            <article><span>ADD THE STYLE</span><pre><code>border-style: solid;</code></pre><strong>The browser can draw the border</strong></article>
+          </div>
+          <div data-slide-break></div>
+          <div class="border-shorthand-map lesson-fullrow">
+            <code>border: <strong>3px</strong> <strong>solid</strong> <strong>purple</strong>;</code>
+            <div><span>width</span><span>style</span><span>colour</span></div>
+            <p><strong>Memory hook:</strong> WIDTH + STYLE + COLOUR</p>
+          </div>
+          <article class="code-preview lesson-fullrow" data-code-preview data-show-diff>
+            <div class="code-preview__header"><h3>Separate properties and shorthand</h3><p class="code-preview__copy">Both versions describe the same border.</p><p class="code-preview__status" data-code-preview-status></p></div>
+            <div class="code-preview__controls" data-code-preview-controls></div><p class="code-preview__note" data-code-preview-note hidden></p>
+            <div class="code-preview__stage"><div class="code-preview__panel"><p class="code-preview__panel-title">common.css</p><div class="code-preview__code" data-code-preview-code aria-label="Separate and shorthand border declarations"></div></div><div class="code-preview__panel"><p class="code-preview__panel-title">Authored preview</p><div class="code-preview__preview" data-code-preview-output></div></div></div>
+            <div class="code-preview__diff" data-code-preview-diff hidden></div>
+            <template data-code-step data-step-label="Separate" data-step-note="Each border part has its own property."><div data-code-content><pre><code>.card {
+  border-width: 3px;
+  border-style: solid;
+  border-color: purple;
+}</code></pre></div><div data-preview-content><div class="equivalent-border-card"><strong>3px solid purple</strong><span>separate properties</span></div></div></template>
+            <template data-code-step data-step-label="Shorthand" data-step-note="The border shorthand combines the same three parts."><div data-code-content><pre><code>.card {
+  border: 3px solid purple;
+}</code></pre></div><div data-preview-content><div class="equivalent-border-card"><strong>3px solid purple</strong><span>one shorthand declaration</span></div></div></template>
+          </article>
+        </section>
+
+        <section id="radius" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Rounded Corners</p>
+          <h2><code>border-radius</code> changes the shape of the corners</h2>
+          <div class="radius-step-grid lesson-fullrow">
+            <article class="radius-zero"><code>0px</code><span>square corners</span></article>
+            <article class="radius-small"><code>4px</code><span>slight rounding</span></article>
+            <article class="radius-medium"><code>16px</code><span>clear rounding</span></article>
+            <article class="radius-large"><code>40px</code><span>strong rounding</span></article>
+          </div>
+          <div data-slide-break></div>
+          <div class="circle-shape-grid lesson-fullrow">
+            <article><div class="shape-visual shape-visual--square">square</div><code>border-radius: 50%;</code><strong>Perfect circle</strong><p>Equal width and height give the same starting distance in both directions.</p></article>
+            <article><div class="shape-visual shape-visual--rectangle">rectangle</div><code>border-radius: 50%;</code><strong>Oval / elliptical shape</strong><p>Different width and height do not produce a perfect circle.</p></article>
+          </div>
+          <p class="future-note"><strong>The starting shape matters.</strong> A later lesson will teach element sizing properly; detailed unit choice comes in the CSS Units lesson.</p>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-live-code-example-id="radius-shapes-live"></div>
+        </section>
+
+        <section id="corners" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Individual Corners</p>
+          <h2>Each corner has its own radius property</h2>
+          <div class="corner-property-map lesson-fullrow">
+            <span class="corner-label corner-label--tl"><code>border-top-left-radius</code><strong>↘</strong></span>
+            <span class="corner-label corner-label--tr"><code>border-top-right-radius</code><strong>↙</strong></span>
+            <div class="corner-property-card">Card</div>
+            <span class="corner-label corner-label--bl"><code>border-bottom-left-radius</code><strong>↗</strong></span>
+            <span class="corner-label corner-label--br"><code>border-bottom-right-radius</code><strong>↖</strong></span>
+          </div>
+          <div data-slide-break></div>
+          <div class="clockwise-rule lesson-fullrow"><strong>Four-value order</strong><code>border-radius: 10px 20px 30px 40px;</code><p>Start at the <strong>top-left</strong>, then move <strong>clockwise</strong>.</p></div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-shorthand-visualizer-id="corner-radius-clockwise"></div>
+        </section>
+
+        <section id="colour-formats" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Precise Colours</p>
+          <h2>One colour can be represented in different formats</h2>
+          <p class="lesson-section-copy">Named colours are readable and convenient, but designers often need a more precise choice. This lesson uses four formats only.</p>
+          <div class="format-overview lesson-fullrow">
+            <article><span>NAMED</span><code>purple</code><div class="format-swatch is-purple"></div></article>
+            <article><span>RGB</span><code>rgb(128, 0, 128)</code><div class="format-swatch is-purple"></div></article>
+            <article><span>RGBA</span><code>rgba(128, 0, 128, 0.5)</code><div class="format-swatch is-purple-alpha"></div></article>
+            <article><span>HEX</span><code>#800080</code><div class="format-swatch is-purple"></div></article>
+          </div>
+          <p class="representation-note"><strong>Named, RGB, and HEX can describe the same visible colour.</strong> They are representations, not different categories of colour. You do not need to memorise every named colour.</p>
+        </section>
+
+        <section id="rgb" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">RGB Channels</p>
+          <h2>RGB mixes red, green, and blue values from 0 to 255</h2>
+          <div class="rgb-anatomy lesson-fullrow">
+            <code>rgb(<strong>128</strong>, <strong>0</strong>, <strong>128</strong>)</code>
+            <div><span><b>R</b> red</span><span><b>G</b> green</span><span><b>B</b> blue</span></div>
+            <p><strong>0</strong> means none of that channel. <strong>255</strong> means its maximum amount.</p>
+          </div>
+          <div data-slide-break></div>
+          <div class="rgb-example-grid lesson-fullrow">
+            <article class="rgb-red"><code>rgb(255, 0, 0)</code><strong>red</strong></article>
+            <article class="rgb-green"><code>rgb(0, 255, 0)</code><strong>green</strong></article>
+            <article class="rgb-blue"><code>rgb(0, 0, 255)</code><strong>blue</strong></article>
+            <article class="rgb-white"><code>rgb(255, 255, 255)</code><strong>white</strong></article>
+            <article class="rgb-black"><code>rgb(0, 0, 0)</code><strong>black</strong></article>
+            <article class="rgb-purple"><code>rgb(128, 0, 128)</code><strong>mixed purple</strong></article>
+          </div>
+        </section>
+
+        <section id="colour-explorer" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Interactive Colour Explorer</p>
+          <h2>Mix channels and compare RGB, RGBA, and HEX</h2>
+          <div class="colour-explorer lesson-fullrow" data-colour-explorer data-no-slide-advance>
+            <div class="colour-control-list">
+              <label class="colour-control colour-control--red" for="colour-red"><span><strong>Red</strong><output for="colour-red" data-colour-value="red">128</output></span><input id="colour-red" type="range" min="0" max="255" value="128" data-colour-channel="red" /></label>
+              <label class="colour-control colour-control--green" for="colour-green"><span><strong>Green</strong><output for="colour-green" data-colour-value="green">60</output></span><input id="colour-green" type="range" min="0" max="255" value="60" data-colour-channel="green" /></label>
+              <label class="colour-control colour-control--blue" for="colour-blue"><span><strong>Blue</strong><output for="colour-blue" data-colour-value="blue">190</output></span><input id="colour-blue" type="range" min="0" max="255" value="190" data-colour-channel="blue" /></label>
+              <label class="colour-control colour-control--alpha" for="colour-alpha"><span><strong>Alpha</strong><output for="colour-alpha" data-colour-value="alpha">0.5</output></span><input id="colour-alpha" type="range" min="0" max="1" step="0.1" value="0.5" data-colour-channel="alpha" /></label>
+              <button class="lesson-secondary-action" type="button" data-action="reset-colour-explorer">Reset mixer</button>
+            </div>
+            <div class="colour-explorer__result">
+              <div class="checker-stage" aria-hidden="true"><div class="checker-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="colour-swatch" data-colour-swatch></div></div>
+              <dl class="colour-format-output">
+                <div><dt>RGB</dt><dd><code data-colour-format="rgb">rgb(128, 60, 190)</code></dd></div>
+                <div><dt>HEX</dt><dd><code data-colour-format="hex">#803cbe</code></dd></div>
+                <div><dt>Alpha</dt><dd><code data-colour-value="alpha">0.5</code></dd></div>
+                <div><dt>RGBA</dt><dd><code data-colour-format="rgba">rgba(128, 60, 190, 0.5)</code></dd></div>
+              </dl>
+            </div>
+            <p class="colour-explorer__status" data-colour-status aria-live="polite">Move a slider to mix the channels.</p>
+          </div>
+        </section>
+
+        <section id="rgba" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Alpha Transparency</p>
+          <h2>RGBA adds a fourth value for transparency</h2>
+          <div class="alpha-scale lesson-fullrow">
+            <article><code>rgba(255, 0, 0, 0)</code><div class="alpha-demo alpha-zero"></div><strong>0 · fully transparent</strong></article>
+            <article><code>rgba(255, 0, 0, 0.5)</code><div class="alpha-demo alpha-half"></div><strong>0.5 · partly transparent</strong></article>
+            <article><code>rgba(255, 0, 0, 1)</code><div class="alpha-demo alpha-full"></div><strong>1 · fully opaque</strong></article>
+          </div>
+          <p class="alpha-note"><code>background-color: rgba(255, 0, 0, 0.5);</code> makes the <strong>background colour</strong> partly transparent. The text inside does not automatically become transparent.</p>
+        </section>
+
+        <section id="hex" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Six-Digit HEX</p>
+          <h2>HEX uses three pairs for red, green, and blue</h2>
+          <div class="hex-anatomy lesson-fullrow">
+            <code># <strong>FF</strong> <strong>00</strong> <strong>00</strong></code>
+            <div><span>red</span><span>green</span><span>blue</span></div>
+            <p><strong>00</strong> is the minimum. <strong>FF</strong> is the maximum. HEX uses digits 0–9 and letters A–F.</p>
+          </div>
+          <div class="hex-example-grid lesson-fullrow">
+            <article class="hex-red"><code>#ff0000</code><strong>red</strong></article>
+            <article class="hex-green"><code>#00ff00</code><strong>green</strong></article>
+            <article class="hex-blue"><code>#0000ff</code><strong>blue</strong></article>
+            <article class="hex-white"><code>#ffffff</code><strong>white</strong></article>
+            <article class="hex-black"><code>#000000</code><strong>black</strong></article>
+          </div>
+          <p class="picker-note"><strong>You do not calculate HEX colours by hand.</strong> Design tools and colour pickers normally provide the six-digit value for you.</p>
+        </section>
+
+        <section id="workshop" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Live Card Workshop</p>
+          <h2>Edit the CSS and observe the card</h2>
+          <div class="lesson-fullrow" data-live-code-example-id="card-workshop-live"></div>
+        </section>
+
+        <section id="accessibility" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Accessible Colour Choices</p>
+          <h2>Make text clearly distinguishable from its background</h2>
+          <div class="contrast-compare lesson-fullrow">
+            <article class="contrast-good"><span>GOOD CONTRAST · READABLE</span><strong>Dark text on a light background</strong><p>The words remain clear and easy to distinguish.</p></article>
+            <article class="contrast-poor"><span>POOR CONTRAST · HARD TO READ</span><strong>Very light text on a light background</strong><p>The label explains the problem even if the colour difference is not visible.</p></article>
+          </div>
+          <div data-slide-break></div>
+          <div class="signal-compare lesson-fullrow">
+            <article><span>COLOUR ONLY · NOT ENOUGH</span><div class="field-example field-example--colour-only"><strong>Email address</strong><span>Red outline only</span></div><p>“Fields shown in red contain errors” depends on recognising one colour.</p></article>
+            <article><span>COLOUR + TEXT + SYMBOL</span><div class="field-example field-example--explained"><strong>Email address</strong><span aria-hidden="true">!</span><p>Error: enter a valid email address.</p></div><p>The message remains understandable with colour-vision differences or high-contrast settings.</p></article>
+          </div>
+          <p class="accessibility-rule"><strong>Important meaning needs more than colour.</strong> Add a message, label, symbol, or another clear cue.</p>
+        </section>
+
+        <section id="misconceptions" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Common Mistakes</p>
+          <h2>Check the property, structure, shape, and readability</h2>
+          <div class="misconception-grid lesson-fullrow">
+            <article><strong>Text vs background</strong><p><code>color</code> changes text; <code>background-color</code> fills behind it.</p></article>
+            <article><strong>CSS spelling</strong><p>Write <code>color</code>, not the UK spelling colour, in property names.</p></article>
+            <article><strong>Visible borders</strong><p>A border needs a style such as <code>solid</code>.</p></article>
+            <article><strong>Complete shorthand</strong><p>Remember WIDTH + STYLE + COLOUR.</p></article>
+            <article><strong>50% is not magic</strong><p>It forms a circle only when the starting element is square.</p></article>
+            <article><strong>Clockwise corners</strong><p>Four values start top-left and move clockwise.</p></article>
+            <article><strong>RGB channels</strong><p>In today's syntax, each channel uses 0–255, not a percentage.</p></article>
+            <article><strong>HEX punctuation</strong><p>Six-digit HEX values begin with <code>#</code>; use a picker rather than manual conversion.</p></article>
+            <article><strong>Accessible meaning</strong><p>An attractive colour may still be hard to read, and colour alone may hide important meaning.</p></article>
+          </div>
+        </section>
+
+        <section id="debug-labs-one" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Debug Labs 1–2</p><h2>Repair spelling and a missing border part</h2>
+          <div class="lesson-fullrow" data-debug-lab-id="uk-background-spelling"></div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-debug-lab-id="border-missing-style"></div>
+        </section>
+
+        <section id="debug-labs-two" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Debug Labs 3–5</p><h2>Repair shorthand, HEX, and RGB</h2>
+          <div class="lesson-fullrow" data-debug-lab-id="broken-border-shorthand"></div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-debug-lab-id="hex-missing-hash"></div>
+          <div data-slide-break></div>
+          <div class="lesson-fullrow" data-debug-lab-id="malformed-rgb"></div>
+        </section>
+
+        <section id="summary" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Summary</p><h2>Fill, edge, shape, and colour</h2>
+          <div class="summary-memory lesson-fullrow">
+            <article><span>TEXT</span><code>color: purple;</code></article>
+            <article><span>BACKGROUND</span><code>background-color: lightblue;</code></article>
+            <article><span>BORDER</span><code>border: 3px solid purple;</code></article>
+            <article><span>CORNERS</span><code>border-radius: 20px;</code></article>
+          </div>
+          <div class="summary-format-row lesson-fullrow"><code>red</code><code>rgb(255, 0, 0)</code><code>rgba(255, 0, 0, 0.5)</code><code>#ff0000</code></div>
+          <p class="summary-line"><strong>Four corners:</strong> start top-left and move clockwise. <strong>Accessibility:</strong> keep text readable and never rely on colour alone for important meaning.</p>
+        </section>
+
+        <section id="quiz" class="lesson-section quiz-section panel" data-lesson-section>
+          <p class="eyebrow">Quiz</p><h2>Check your understanding</h2>
+          <p class="quiz-intro">Answer all twenty-one questions, then check your score. Your choices and best score save in this browser.</p>
+          <form id="lesson-quiz" class="quiz-form">
+            <fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. color changes the text colour." data-feedback="Distinguish the letters from the area behind them."><legend>1. Which property changes the text colour?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span><code>background-color</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span><code>color</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span><code>border-color</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q2" data-answer="a" data-success="Correct. background-color fills the element area behind its content." data-feedback="This property controls the fill behind the content."><legend>2. What does <code>background-color</code> change?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>The colour behind the element's content</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>Only the text colour</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>The thickness of the edge</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q3" data-answer="c" data-success="Correct. Width, style, and colour form the border." data-feedback="Think about thickness, line kind, and visible colour."><legend>3. What are the three main border parts?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>Top, middle, bottom</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>Text, background, radius</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span>Width, style, colour</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q4" data-answer="a" data-success="Correct. border-width controls thickness." data-feedback="Width answers how thick the border should be."><legend>4. What does <code>border-width</code> control?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>The border thickness</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>The corner shape</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>The element width</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q5" data-answer="b" data-success="Correct. border-style chooses the kind of line." data-feedback="Examples include solid, dashed, dotted, and double."><legend>5. What does <code>border-style</code> control?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>The text style</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>The kind of border line</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>The background area</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q6" data-answer="c" data-success="Correct. border-color sets the edge colour." data-feedback="This property controls the visible colour of the border line."><legend>6. What does <code>border-color</code> control?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span>The text colour</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span>The fill colour</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span>The border line colour</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q7" data-answer="a" data-success="Correct. This shorthand contains width, style, and colour." data-feedback="Look for all three required parts."><legend>7. Which is a complete border shorthand?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span><code>border: 3px solid purple;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span><code>border: 3px purple;</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span><code>border: solid;</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q8" data-answer="b" data-success="Correct. A visible border needs a line style." data-feedback="Width and colour do not say what kind of line to draw."><legend>8. A border has width and colour but is not visible. What is most likely missing?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>A font size</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>A border style</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>A text alignment</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q9" data-answer="c" data-success="Correct. border-radius rounds corners." data-feedback="Radius changes corner shape."><legend>9. What does <code>border-radius</code> do?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q9" value="a" /><span>Makes a border thicker</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="b" /><span>Changes text colour</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="c" /><span>Rounds the element's corners</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q10" data-answer="a" data-success="Correct. A square has equal width and height, allowing 50% to form a circle." data-feedback="The starting shape matters."><legend>10. When does <code>border-radius: 50%;</code> make a perfect circle?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span>When the element is square</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span>For every element</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>Only when the border is red</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q11" data-answer="b" data-success="Correct. The four-value order begins top-left, then top-right." data-feedback="Start top-left and move clockwise."><legend>11. In <code>border-radius: 10px 20px 30px 40px;</code>, which corner receives <code>20px</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q11" value="a" /><span>Top-left</span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="b" /><span>Top-right</span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="c" /><span>Bottom-left</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q12" data-answer="c" data-success="Correct. The values move clockwise from the top-left." data-feedback="Follow the corners around the element."><legend>12. What is the four-value border-radius order?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q12" value="a" /><span>Top-left, bottom-left, top-right, bottom-right</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="b" /><span>Top-right, top-left, bottom-left, bottom-right</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="c" /><span>Top-left, top-right, bottom-right, bottom-left</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q13" data-answer="a" data-success="Correct. RGB means red, green, blue." data-feedback="Each letter names one colour channel."><legend>13. What does RGB stand for?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q13" value="a" /><span>Red, green, blue</span></label></li><li><label class="quiz-answer"><input type="radio" name="q13" value="b" /><span>Right, gold, bottom</span></label></li><li><label class="quiz-answer"><input type="radio" name="q13" value="c" /><span>Red, grey, black</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q14" data-answer="b" data-success="Correct. The taught RGB syntax contains three channel values." data-feedback="RGB needs red, green, and blue values."><legend>14. Which is valid RGB syntax for red?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q14" value="a" /><span><code>rgb(255, 0)</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q14" value="b" /><span><code>rgb(255, 0, 0)</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q14" value="c" /><span><code>rgb(red)</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q15" data-answer="c" data-success="Correct. Alpha controls transparency or opacity of the colour." data-feedback="The A in RGBA adds a transparency channel."><legend>15. What does alpha control in RGBA?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q15" value="a" /><span>The border thickness</span></label></li><li><label class="quiz-answer"><input type="radio" name="q15" value="b" /><span>The red channel</span></label></li><li><label class="quiz-answer"><input type="radio" name="q15" value="c" /><span>How transparent or opaque the colour is</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q16" data-answer="a" data-success="Correct. Six-digit HEX begins with # followed by three pairs." data-feedback="Look for the opening hash and six hexadecimal digits."><legend>16. Which is a valid six-digit HEX colour?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q16" value="a" /><span><code>#ff0000</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q16" value="b" /><span><code>ff0000</code></span></label></li><li><label class="quiz-answer"><input type="radio" name="q16" value="c" /><span><code>hex(ff0000)</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q17" data-answer="b" data-success="Correct. The # begins the HEX colour value in this declaration." data-feedback="Context tells you whether # belongs to a selector or a value."><legend>17. What is the <code>#</code> in <code>color: #ff0000;</code>?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q17" value="a" /><span>An ID selector</span></label></li><li><label class="quiz-answer"><input type="radio" name="q17" value="b" /><span>Part of the HEX colour value</span></label></li><li><label class="quiz-answer"><input type="radio" name="q17" value="c" /><span>A comment marker</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q18" data-answer="c" data-success="Correct. RGB and HEX can represent the same colour." data-feedback="The notation changes, not the category of colour."><legend>18. How are RGB and HEX related?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q18" value="a" /><span>RGB is only for text and HEX is only for backgrounds</span></label></li><li><label class="quiz-answer"><input type="radio" name="q18" value="b" /><span>They always create different colours</span></label></li><li><label class="quiz-answer"><input type="radio" name="q18" value="c" /><span>They are different ways to represent colours</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q19" data-answer="a" data-success="Correct. Strong contrast keeps the words clearly distinguishable." data-feedback="Consider whether the text stands out from its background."><legend>19. Which choice usually makes body text easier to read?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q19" value="a" /><span>Dark text on a light background with a clear difference</span></label></li><li><label class="quiz-answer"><input type="radio" name="q19" value="b" /><span>Very light text on a nearly identical light background</span></label></li><li><label class="quiz-answer"><input type="radio" name="q19" value="c" /><span>Any attractive pair, regardless of readability</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q20" data-answer="b" data-success="Correct. Text and a symbol preserve the meaning when colour is not perceived." data-feedback="Important information needs a cue beyond colour alone."><legend>20. How should a form communicate an error accessibly?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q20" value="a" /><span>Use only a red border</span></label></li><li><label class="quiz-answer"><input type="radio" name="q20" value="b" /><span>Use colour plus a clear error message or symbol</span></label></li><li><label class="quiz-answer"><input type="radio" name="q20" value="c" /><span>Remove every label</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <fieldset class="quiz-question" data-question="q21" data-answer="c" data-success="Correct. CSS property names use the American spelling color." data-feedback="This is a common mistake for UK students."><legend>21. Why is <code>background-colour: blue;</code> ignored?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q21" value="a" /><span>Blue cannot be a background</span></label></li><li><label class="quiz-answer"><input type="radio" name="q21" value="b" /><span>The declaration needs an ID</span></label></li><li><label class="quiz-answer"><input type="radio" name="q21" value="c" /><span>The CSS property is spelled <code>background-color</code></span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+            <div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+            <p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p>
+          </form>
+        </section>
+      </main>
+
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card"><p class="eyebrow">Glossary</p><h2>Quick glossary</h2><dl class="glossary-list">
+          <div class="glossary-item"><dt>Background colour</dt><dd>The colour filling the visible area behind an element's content.</dd></div>
+          <div class="glossary-item"><dt>Border</dt><dd>A line drawn around an element using a width, style, and colour.</dd></div>
+          <div class="glossary-item"><dt>Border radius</dt><dd>A value that rounds one or more corners.</dd></div>
+          <div class="glossary-item"><dt>RGB</dt><dd>A colour representation using red, green, and blue channels.</dd></div>
+          <div class="glossary-item"><dt>Alpha</dt><dd>The RGBA value controlling colour transparency.</dd></div>
+          <div class="glossary-item"><dt>HEX</dt><dd>A colour representation beginning with # and using red, green, and blue pairs.</dd></div>
+        </dl></section>
+        <section class="lesson-rail-card panel revision-card"><p class="eyebrow">Remember</p><h2>Fast memory hooks</h2><ul class="memory-list"><li>Border = width + style + colour</li><li>Radius rounds corners</li><li>Four values move clockwise</li><li>RGB channels run 0–255</li><li>HEX begins with #</li><li>Meaning needs more than colour</li></ul></section>
+      </aside>
+    </div>
+
+    <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading"><p class="eyebrow">Keep Going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div></section>
+  </div>
+
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden><button type="button" class="slide-button" data-action="prev-slide">Previous</button><p class="slide-status" data-role="slide-status">Slide 1</p><button type="button" class="slide-button" data-action="next-slide">Next</button><button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button></div>
+</body>
+
+</html>

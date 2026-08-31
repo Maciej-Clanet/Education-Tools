@@ -187,7 +187,8 @@ the browser with `localStorage` where useful.
   `pages/topics/forms-2-choices-larger-inputs-and-grouping.html`, and
   `pages/topics/linking-and-organising-css-files.html`, and
   `pages/topics/css-selectors.html`, and
-  `pages/topics/styling-text-with-css.html`.
+  `pages/topics/styling-text-with-css.html`, and
+  `pages/topics/colours-backgrounds-and-borders.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,
@@ -234,6 +235,10 @@ the browser with `localStorage` where useful.
   `javascript/core/live-code-example.js`, with shared styling in
   `css/live-code-example.css`. It keeps literal editable HTML/CSS iframe
   previews separate from the existing authored teaching-preview system.
+- A shared four-value shorthand visualiser now exists at
+  `javascript/core/shorthand-visualizer.js`, with shared styling in
+  `css/shorthand-visualizer.css`. It supports keyboard, pointer, and touch
+  mappings for clockwise corners and future side-based CSS shorthands.
 - The Unit 2 hub now shows per-bucket quiz progress bars and lesson status
   indicators using `javascript/core/unit-progress.js` and
   `javascript/data/unit-progress-data.js`.

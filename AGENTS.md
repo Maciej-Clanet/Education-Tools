@@ -105,6 +105,9 @@ Before making major UI, content, or structure changes, read:
   provide isolated, temporary HTML/CSS playgrounds with real generated iframe
   previews; its contract and security model are documented in
   `docs/live_code_example.md`.
+- `javascript/core/shorthand-visualizer.js` and
+  `css/shorthand-visualizer.css` provide reusable four-value CSS shorthand
+  mappings; its contract is documented in `docs/shorthand_visualizer.md`.
 - Unit quiz progress metadata lives in `javascript/data/unit-progress-data.js`
   and shared rendering logic lives in `javascript/core/unit-progress.js`.
 
