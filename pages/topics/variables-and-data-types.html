@@ -1,0 +1,1381 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Variables and Data Types | Education Tools</title>
+    <meta
+      name="description"
+      content="A beginner JavaScript lesson on variables, const, let, prompt input, strings, numbers, booleans, and typeof."
+    />
+    <meta
+      property="og:title"
+      content="Variables and Data Types | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Learn how JavaScript stores values with const and let, accepts prompt input, and represents strings, numbers, and booleans."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/debug-lab.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/live-code-example.css?v=20260904-9"
+    />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/variables-and-data-types.css"
+    />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/variables-and-data-types.js?v=20260904-1"
+    ></script>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">JavaScript Basics · Lesson 2</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../resources/web-development.html#javascript-basics"
+                data-role="breadcrumb-unit-link"
+                >Web Development</a
+              >
+            </li>
+            <li aria-current="page">Variables and data types</li>
+          </ol>
+        </nav>
+        <div class="lesson-header-row">
+          <div>
+            <h1>Variables and data types</h1>
+            <p class="lesson-hero-text">
+              Give values useful names, accept text from a user, and recognise
+              strings, numbers, and booleans in JavaScript.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">Web Development</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Resource area</strong><span>JavaScript basics</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong
+            ><span>Store and identify simple values</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Practice</strong
+            ><span>8 Live Code examples and 4 Debug Labs</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Quiz</strong><span>16 understanding questions</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../resources/web-development.html#javascript-basics"
+            >Back to Web Development resources</a
+          >
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          The lesson notes and displayed code still work without JavaScript, but
+          Live Code editing, Debug Labs, the saved quiz, and teacher slides need
+          JavaScript.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#recap" data-section-link>Console recap</a>
+            <a href="#variables" data-section-link>What is a variable?</a>
+            <a href="#const" data-section-link>Using const</a>
+            <a href="#names" data-section-link>Variable names</a>
+            <a href="#let" data-section-link>Using let</a>
+            <a href="#choose" data-section-link>const or let?</a>
+            <a href="#var" data-section-link>Older var code</a>
+            <a href="#input-output" data-section-link>Input and prompt</a>
+            <a href="#data-types" data-section-link>Data types</a>
+            <a href="#numbers-booleans" data-section-link
+              >Numbers and booleans</a
+            >
+            <a href="#typeof" data-section-link>typeof and future values</a>
+            <a href="#live-practice" data-section-link>Live practice</a>
+            <a href="#debug-lab" data-section-link>Debug Lab</a>
+            <a href="#final-practice" data-section-link>Final practice</a>
+            <a href="#summary" data-section-link>Summary</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="recap"
+            class="lesson-section lesson-section--recap panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Console Recap</p>
+            <h2>So far, we have displayed values directly</h2>
+            <div class="recap-grid lesson-fullrow">
+              <article class="code-card">
+                <pre><code>console.log("Hello");</code></pre>
+              </article>
+              <article class="idea-card">
+                <strong>Next step</strong>
+                <p>
+                  Real programs need a way to store values and refer to them
+                  later.
+                </p>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="console-recap-live"
+            ></div>
+          </section>
+
+          <section
+            id="variables"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Named Values</p>
+            <h2>
+              A variable gives a value a name so the program can refer to it
+              later
+            </h2>
+            <figure class="variable-visual lesson-fullrow">
+              <img
+                src="../../assets/images/variable-box.svg"
+                alt="An open box in angled perspective. A card showing 10 sits inside, and a score label is attached to the front side."
+                width="800"
+                height="520"
+              />
+              <figcaption>
+                The name <code>score</code> lets the program find and use the
+                stored value <code>10</code>.
+              </figcaption>
+            </figure>
+            <p class="text-equivalent">
+              The box is a memory picture. The definition to remember is: a
+              variable gives a value a name so the program can refer to it later.
+            </p>
+            <div data-slide-break></div>
+            <div class="store-grid lesson-fullrow">
+              <article>
+                <strong>playerName</strong><span>Who is playing?</span>
+              </article>
+              <article>
+                <strong>score</strong><span>How many points?</span>
+              </article>
+              <article>
+                <strong>price</strong><span>How much does it cost?</span>
+              </article>
+              <article>
+                <strong>isEnabled</strong><span>Is a feature on?</span>
+              </article>
+              <article>
+                <strong>userInput</strong><span>What did the user enter?</span>
+              </article>
+            </div>
+          </section>
+
+          <section id="const" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Modern Default</p>
+            <h2>
+              Start with <code>const</code> when the value will not be
+              reassigned
+            </h2>
+            <pre class="feature-code"><code>const studentName = "Alex";
+
+console.log(studentName);</code></pre>
+            <div class="code-breakdown lesson-fullrow">
+              <article>
+                <code>const</code>
+                <p>declares the variable</p>
+              </article>
+              <article>
+                <code>studentName</code>
+                <p>is the variable name</p>
+              </article>
+              <article>
+                <code>=</code>
+                <p>assigns the value</p>
+              </article>
+              <article>
+                <code>"Alex"</code>
+                <p>is the stored value</p>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="const-output-live"
+            ></div>
+          </section>
+
+          <section id="names" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Clear Names</p>
+            <h2>A variable name should describe the value</h2>
+            <div class="naming-grid lesson-fullrow">
+              <article>
+                <code>studentName</code><span>clear and descriptive</span>
+              </article>
+              <article>
+                <code>score</code><span>short but meaningful</span>
+              </article>
+              <article>
+                <code>gameTitle</code><span>uses camelCase</span>
+              </article>
+              <article>
+                <code>isLoggedIn</code><span>reads like a yes/no question</span>
+              </article>
+            </div>
+            <div class="rule-strip lesson-fullrow">
+              <p>
+                <strong>No normal spaces:</strong> use <code>studentName</code>,
+                not <code>student name</code>.
+              </p>
+              <p>
+                <strong>camelCase:</strong> begin with a lower-case word, then
+                capitalise each new word.
+              </p>
+            </div>
+          </section>
+
+          <section id="let" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Changing Values</p>
+            <h2>
+              Use <code>let</code> when the variable needs a different value
+              later
+            </h2>
+            <pre class="feature-code"><code>let score = 10;
+
+console.log(score);
+
+score = 15;
+
+console.log(score);</code></pre>
+            <div
+              class="before-after lesson-fullrow"
+              aria-label="The value of score changes from 10 to 15"
+            >
+              <article>
+                <span>Before</span><strong>score &rarr; 10</strong>
+              </article>
+              <span class="change-arrow" aria-hidden="true">&rarr;</span>
+              <article>
+                <span>After</span><strong>score &rarr; 15</strong>
+              </article>
+            </div>
+            <p class="memory-callout">
+              The second assignment is <code>score = 15;</code>. Do not repeat
+              <code>let</code>, because the variable already exists.
+            </p>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="let-reassignment-live"
+            ></div>
+          </section>
+
+          <section id="choose" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Decision Guide</p>
+            <h2>Will this variable need a different assigned value later?</h2>
+            <div class="choice-flow lesson-fullrow">
+              <article class="choice-card choice-card--const">
+                <span>No</span><strong><code>const</code></strong>
+                <p>Use when value will not change.</p>
+              </article>
+              <article class="choice-card choice-card--let">
+                <span>Yes</span><strong><code>let</code></strong>
+                <p>Use this when reassignment is needed.</p>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <h3>Reassigning a <code>const</code> produces an error</h3>
+            <p class="lesson-section-copy">
+              A variable declared with <code>const</code> cannot later be
+              assigned a different value.
+            </p>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="const-error-live"
+            ></div>
+          </section>
+
+          <section id="var" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Code You May See</p>
+            <h2><code>var</code> is an older way to declare a variable</h2>
+            <pre class="feature-code"><code>var message = "Hello";</code></pre>
+            <div class="var-note lesson-fullrow">
+              <p>You may meet <code>var</code> in older code and tutorials.</p>
+              <p>
+                This course normally uses <code>const</code> and
+                <code>let</code>, which are easier to reason about.
+              </p>
+            </div>
+          </section>
+
+          <section
+            id="input-output"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Input · Processing · Output</p>
+            <h2>Programs receive data, work with it, and produce a result</h2>
+            <div
+              class="ipo-flow lesson-fullrow"
+              aria-label="Input then processing then output"
+            >
+              <article>
+                <span>Input</span>
+                <p>Data or instructions enter the system.</p>
+              </article>
+              <span aria-hidden="true">&rarr;</span>
+              <article>
+                <span>Processing</span>
+                <p>The program does something with the data.</p>
+              </article>
+              <span aria-hidden="true">&rarr;</span>
+              <article>
+                <span>Output</span>
+                <p>The system produces information or a result.</p>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <h3><code>prompt()</code> asks the user for text input</h3>
+            <pre
+              class="feature-code"
+            ><code>const name = prompt("What is your name?");
+
+console.log(name);</code></pre>
+            <div class="prompt-flow lesson-fullrow">
+              <article>
+                <span>Input</span><strong>User types: Jamie</strong>
+              </article>
+              <span aria-hidden="true">&darr;</span>
+              <article>
+                <span>Variable</span><strong>name &rarr; "Jamie"</strong>
+              </article>
+              <span aria-hidden="true">&darr;</span>
+              <article>
+                <span>Output</span><strong>console: Jamie</strong>
+              </article>
+            </div>
+            <p class="memory-callout">
+              <code>prompt()</code> gives us text input. If the learner types
+              <code>20</code>, it is still initially treated as text. Later, we
+              will learn how to convert input when it must be treated as a
+              number.
+            </p>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="prompt-flow-live"
+            ></div>
+          </section>
+
+          <section
+            id="data-types"
+            class="lesson-section lesson-section--data-types panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Kinds of Value</p>
+            <h2>JavaScript values can represent different types of data</h2>
+            <div class="type-grid lesson-fullrow">
+              <article class="type-card type-card--string">
+                <span>String</span><code>"Alex"</code>
+                <p>Text inside quotation marks.</p>
+              </article>
+              <article class="type-card type-card--number">
+                <span>Number</span><code>17</code>
+                <p>A numeric value without quotation marks.</p>
+              </article>
+              <article class="type-card type-card--boolean">
+                <span>Boolean</span><code>true</code>
+                <p>One of two values: true or false.</p>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <h3>Strings represent text</h3>
+            <pre class="feature-code"><code>const name = "Alex";
+const game = "Space Adventure";
+const grade = "A";</code></pre>
+            <p class="lesson-section-copy">
+              Quotation marks show that a value is text. JavaScript has no
+              separate primitive <code>char</code> type: even one character such
+              as <code>"A"</code> is simply a string.
+            </p>
+          </section>
+
+          <section
+            id="numbers-booleans"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Numbers</p>
+            <h2>
+              Whole and decimal values normally share the
+              <code>number</code> type
+            </h2>
+            <div class="number-pair lesson-fullrow">
+              <article>
+                <code>const age = 17;</code><span>whole number</span>
+              </article>
+              <article>
+                <code>const price = 4.99;</code><span>decimal number</span>
+              </article>
+            </div>
+            <p class="memory-callout">
+              Both values are JavaScript <code>number</code> values. At this
+              level, JavaScript does not split them into separate integer and
+              float primitive types.
+            </p>
+            <div data-slide-break></div>
+            <p class="eyebrow">Booleans</p>
+            <h2>
+              Boolean values are either <code>true</code> or <code>false</code>
+            </h2>
+            <pre class="feature-code"><code>const isLoggedIn = true;
+const hasPremium = false;</code></pre>
+            <div class="boolean-contrast lesson-fullrow">
+              <article>
+                <code>true</code><strong>boolean</strong>
+                <p>No quotation marks.</p>
+              </article>
+              <article>
+                <code>"true"</code><strong>string</strong>
+                <p>Quotation marks make it text.</p>
+              </article>
+            </div>
+            <p class="lesson-section-copy">
+              Booleans become especially useful when we later learn comparisons
+              and decisions.
+            </p>
+          </section>
+
+          <section id="typeof" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Type Check</p>
+            <h2><code>typeof</code> can report the type of a value</h2>
+            <div class="typeof-grid lesson-fullrow">
+              <article>
+                <code>typeof "Alex"</code><strong>string</strong>
+              </article>
+              <article><code>typeof 17</code><strong>number</strong></article>
+              <article>
+                <code>typeof true</code><strong>boolean</strong>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="data-types-live"
+            ></div>
+            <aside class="future-awareness lesson-fullrow">
+              <h3>You will also encounter...</h3>
+              <p>
+                <code>undefined</code> often means a value has not been provided
+                or assigned.
+              </p>
+              <p><code>null</code> can deliberately represent no value.</p>
+              <p>
+                For now, just recognise these names. We will study them properly
+                when they are useful.
+              </p>
+            </aside>
+          </section>
+
+          <section
+            id="live-practice"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Live Practice</p>
+            <h2>Change the values in a player profile</h2>
+            <p class="lesson-section-copy">
+              Open the instructions, work through every change, and use the real
+              console to check each result.
+            </p>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="guided-practice-live"
+            ></div>
+          </section>
+
+          <section
+            id="debug-lab"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Debug Lab</p>
+            <h2>Find and repair four variable mistakes</h2>
+            <p class="lesson-section-copy">
+              Use each requirement to decide what the code must store or allow.
+            </p>
+            <div class="debug-stack lesson-fullrow">
+              <div data-debug-lab-id="reassigning-const"></div>
+              <div data-debug-lab-id="string-without-quotes"></div>
+              <div data-debug-lab-id="variable-name-typo"></div>
+              <div data-debug-lab-id="boolean-as-string"></div>
+            </div>
+            <div data-slide-break></div>
+            <h3>Common mistakes checklist</h3>
+            <div class="mistake-grid lesson-fullrow">
+              <article>
+                <strong>Reassigning a const</strong>
+                <p>
+                  Use <code>let</code> if the requirement says the value must
+                  change.
+                </p>
+              </article>
+              <article>
+                <strong>Missing quotation marks</strong>
+                <p>
+                  Literal text such as <code>"Alex"</code> needs quotation
+                  marks.
+                </p>
+              </article>
+              <article>
+                <strong>Name does not match</strong>
+                <p>
+                  <code>score</code> and <code>socre</code> are different
+                  identifiers.
+                </p>
+              </article>
+              <article>
+                <strong>Quoted boolean</strong>
+                <p>
+                  <code>true</code> is a boolean; <code>"true"</code> is a
+                  string.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="final-practice"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Final Practice</p>
+            <h2>Build a player profile from the requirements</h2>
+            <p class="lesson-section-copy">
+              This task uses variables, prompt input, three data types, output,
+              and one reassignment—nothing from a future lesson is required.
+            </p>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="player-profile-live"
+            ></div>
+            <div data-slide-break></div>
+            <article class="exam-card lesson-fullrow">
+              <p class="eyebrow">Explain Your Choice · 2 marks</p>
+              <h3>
+                Why should a changing score use <code>let</code> rather than
+                <code>const</code>?
+              </h3>
+              <div class="exam-response-wrap">
+                <label class="exam-response-label" for="score-explanation"
+                  >Write your answer</label
+                >
+                <textarea
+                  id="score-explanation"
+                  class="exam-response"
+                  rows="4"
+                  data-exam-response="score-explanation"
+                  placeholder="Explain what the program needs to do and connect that requirement to let."
+                ></textarea>
+              </div>
+              <details class="exam-guidance">
+                <summary>Show answer guidance</summary>
+                <div class="exam-guidance-body">
+                  <p>
+                    A strong answer says that the program must assign a
+                    different value to <code>score</code> later, so
+                    <code>let</code> is suitable. A <code>const</code> variable
+                    cannot be reassigned.
+                  </p>
+                </div>
+              </details>
+            </article>
+          </section>
+
+          <section
+            id="summary"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Summary</p>
+            <h2>Name the value, choose the declaration, recognise the type</h2>
+            <div class="summary-memory lesson-fullrow">
+              <article>
+                <span>Variable</span>
+                <p>
+                  Gives a value a name so the program can refer to it later.
+                </p>
+              </article>
+              <article>
+                <span>const</span><code>const name = "Alex";</code>
+              </article>
+              <article>
+                <span>let</span><code>let score = 0;</code>
+                <p>Use when reassignment is needed.</p>
+              </article>
+              <article>
+                <span>var</span>
+                <p>
+                  Older declaration style that this course does not normally
+                  use.
+                </p>
+              </article>
+              <article>
+                <span>Input</span><code>prompt("Your name?")</code>
+              </article>
+              <article>
+                <span>Output</span><code>console.log(name)</code>
+              </article>
+              <article><span>String</span><code>"Hello"</code></article>
+              <article><span>Number</span><code>17 · 4.99</code></article>
+              <article><span>Boolean</span><code>true · false</code></article>
+            </div>
+            <p class="summary-line">
+              <strong>Course rule:</strong> <code>const</code> by default &rarr;
+              <code>let</code> when reassignment is needed.
+            </p>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section quiz-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all sixteen questions, then check your score. Your choices
+              and best score save in this browser.
+            </p>
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. A variable gives a value a useful name."
+                data-feedback="Think about why programs name stored values."
+              >
+                <legend>1. What is the main purpose of a variable?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="a" /><span
+                        >To colour a web page</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="b" /><span
+                        >To give a value a name so it can be referred to
+                        later</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="c" /><span
+                        >To erase console errors</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. Use const by default when reassignment is not needed."
+                data-feedback="Use the course rule."
+              >
+                <legend>
+                  2. Which declaration fits a game title that will not be
+                  reassigned?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="a" /><span
+                        ><code>const gameTitle = "Orbit";</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="b" /><span
+                        ><code>let gameTitle = "Orbit";</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="c" /><span
+                        ><code>game title = "Orbit";</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. let allows the score to be reassigned."
+                data-feedback="The value needs to change later."
+              >
+                <legend>
+                  3. A score starts at 0 and later changes to 10. Which
+                  declaration should it use?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="a" /><span
+                        >Neither</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="b" /><span
+                        ><code>const</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="c" /><span
+                        ><code>let</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. var is older syntax that you may encounter."
+                data-feedback="It is not one of the course's normal choices."
+              >
+                <legend>
+                  4. Which statement about <code>var</code> is most accurate?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="a" /><span
+                        >It is the recommended default for this course</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="b" /><span
+                        >It is older syntax seen in existing code; this course
+                        normally uses const and let</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="c" /><span
+                        >It is a data type</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. That line declares and assigns a variable."
+                data-feedback="Look for a declaration keyword, name, and value."
+              >
+                <legend>5. Which line declares a variable?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="a" /><span
+                        ><code>const playerName = "Mina";</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="b" /><span
+                        ><code>console.log(playerName);</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="c" /><span
+                        ><code>"Mina"</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="c"
+                data-success="Correct. The latest assigned value is 8."
+                data-feedback="Follow the assignments from top to bottom."
+              >
+                <legend>
+                  6. What is the current value of <code>score</code> after this
+                  code?<br /><code>let score = 3;</code><br /><code
+                    >score = 8;</code
+                  >
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="a" /><span
+                        >3</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="b" /><span
+                        >score</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="c" /><span
+                        >8</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="b"
+                data-success="Correct. The first output is 2 and the second is 5."
+                data-feedback="Each console.log reads the current value at that point."
+              >
+                <legend>
+                  7. What does this output?<br /><code
+                    >let score = 2; console.log(score); score = 5;
+                    console.log(score);</code
+                  >
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="a" /><span
+                        >5 then 2</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="b" /><span
+                        >2 then 5</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="c" /><span
+                        >Only 2</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="a"
+                data-success="Correct. prompt asks for and returns user input."
+                data-feedback="Think about the Input stage."
+              >
+                <legend>8. What does <code>prompt()</code> provide?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="a" /><span
+                        >User input</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="b" /><span
+                        >A CSS colour</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="c" /><span
+                        >A new browser account</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q9"
+                data-answer="c"
+                data-success="Correct. The prompt result is stored in name, then logged."
+                data-feedback="Follow input to variable to output."
+              >
+                <legend>
+                  9. What happens here?<br /><code
+                    >const name = prompt("Name?"); console.log(name);</code
+                  >
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="a" /><span
+                        >The word name is always displayed</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="b" /><span
+                        >The prompt is ignored</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="c" /><span
+                        >The user's input is stored in name and then
+                        displayed</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q10"
+                data-answer="b"
+                data-success="Correct. Quotation marks make Space Adventure a string."
+                data-feedback="Strings represent text."
+              >
+                <legend>10. Which value is a string?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="a" /><span
+                        ><code>17</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="b" /><span
+                        ><code>"Space Adventure"</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="c" /><span
+                        ><code>false</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q11"
+                data-answer="a"
+                data-success="Correct. Both are JavaScript number values."
+                data-feedback="JavaScript normally uses one number type for both at this level."
+              >
+                <legend>
+                  11. How does JavaScript normally classify <code>17</code> and
+                  <code>4.99</code>?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="a" /><span
+                        >Both are number values</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="b" /><span
+                        >17 is a string and 4.99 is a boolean</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="c" /><span
+                        >Both are strings</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q12"
+                data-answer="c"
+                data-success="Correct. false without quotation marks is a boolean."
+                data-feedback="A boolean does not use quotation marks."
+              >
+                <legend>12. Which value is a boolean?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="a" /><span
+                        ><code>"false"</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="b" /><span
+                        ><code>0</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="c" /><span
+                        ><code>false</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q13"
+                data-answer="b"
+                data-success="Correct. true is a boolean; quoted true is text."
+                data-feedback="Quotation marks change how the value is treated."
+              >
+                <legend>
+                  13. What is the difference between <code>true</code> and
+                  <code>"true"</code>?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q13" value="a" /><span
+                        >There is no difference</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q13" value="b" /><span
+                        >The first is a boolean and the second is a string</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q13" value="c" /><span
+                        >The first is a number and the second is a boolean</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q14"
+                data-answer="a"
+                data-success="Correct. Alex needs quotation marks to be literal text."
+                data-feedback="Without quotes, JavaScript looks for a variable named Alex."
+              >
+                <legend>
+                  14. How should <code>const name = Alex;</code> be repaired to
+                  store text?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q14" value="a" /><span
+                        ><code>const name = "Alex";</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q14" value="b" /><span
+                        ><code>const "name" = Alex;</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q14" value="c" /><span
+                        ><code>const name = true;</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q15"
+                data-answer="c"
+                data-success="Correct. socre is a typo, so it does not match score."
+                data-feedback="Variable names must match exactly."
+              >
+                <legend>
+                  15. Why does this fail?<br /><code
+                    >const score = 10; console.log(socre);</code
+                  >
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q15" value="a" /><span
+                        >10 cannot be stored</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q15" value="b" /><span
+                        >console.log cannot output variables</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q15" value="c" /><span
+                        >The variable name is misspelled in the output
+                        line</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q16"
+                data-answer="b"
+                data-success="Correct. prompt input is initially text in this lesson."
+                data-feedback="Recall the prompt scope note."
+              >
+                <legend>
+                  16. A user types <code>20</code> into <code>prompt()</code>.
+                  How should we treat it for now?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q16" value="a" /><span
+                        >It is automatically a boolean</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q16" value="b" /><span
+                        >It is initially text</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q16" value="c" /><span
+                        >It is automatically a decimal-only type</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>Variable</dt>
+                <dd>A name that lets a program refer to a value.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Declare</dt>
+                <dd>Create a variable with a keyword such as const or let.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Assign</dt>
+                <dd>Give a variable a value.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Reassign</dt>
+                <dd>Assign a different value to an existing variable.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>String</dt>
+                <dd>Text written inside quotation marks.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Number</dt>
+                <dd>
+                  JavaScript's normal type for whole and decimal numeric values.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Boolean</dt>
+                <dd>One of the two values true or false.</dd>
+              </div>
+            </dl>
+          </section>
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>The course rule</h2>
+            <ul class="memory-list">
+              <li>Use <code>const</code> by default.</li>
+              <li>Use <code>let</code> when reassignment is needed.</li>
+              <li>Put text inside quotation marks.</li>
+              <li>Write booleans without quotation marks.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

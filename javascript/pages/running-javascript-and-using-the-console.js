@@ -18,10 +18,11 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "Variables and simple values",
+        title: "Variables and data types",
+        href: "variables-and-data-types.html",
         description:
-          "Next, store simple values so later instructions can reuse them.",
-        status: "Planned",
+          "Next, store values with const and let and recognise strings, numbers, and booleans.",
+        status: "Live",
       },
     },
   },
