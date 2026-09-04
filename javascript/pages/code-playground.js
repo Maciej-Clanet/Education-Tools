@@ -1,4 +1,4 @@
-import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260904-5"
+import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260904-6"
 import {
   readSessionStorage,
   readStorage,
@@ -109,6 +109,21 @@ function isObject(value) {
   return Boolean(value && typeof value === "object" && !Array.isArray(value))
 }
 
+function cloneInstructionContent(value, fallback = "") {
+  const source = value ?? fallback
+
+  if (Array.isArray(source) || isObject(source)) {
+    try {
+      return JSON.parse(JSON.stringify(source))
+    } catch (error) {
+      console.warn("Unable to clone playground instructions.", error)
+      return ""
+    }
+  }
+
+  return String(source ?? "")
+}
+
 function normaliseMode(mode) {
   if (mode === "javascript" || mode === "javascript-console" || mode === "js") {
     return "javascript"
@@ -140,7 +155,7 @@ function normaliseSnapshot(snapshot, fallbackMode = "html-css") {
   return {
     schemaVersion: SCHEMA_VERSION,
     title: String(snapshot?.title ?? starter.title),
-    instructions: String(snapshot?.instructions ?? starter.instructions),
+    instructions: cloneInstructionContent(snapshot?.instructions, starter.instructions),
     executionMode: mode,
     sources: normaliseSources(snapshot?.sources, mode),
     scaffold: isObject(snapshot?.scaffold) ? snapshot.scaffold : starter.scaffold ?? {},

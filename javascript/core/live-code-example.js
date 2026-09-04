@@ -482,6 +482,104 @@ function copySerializable(value) {
   return JSON.parse(JSON.stringify(value ?? null))
 }
 
+function isPlainObject(value) {
+  return Boolean(value && typeof value === "object" && !Array.isArray(value))
+}
+
+function getInstructionContent(example) {
+  return example.instructions ?? example.description ?? ""
+}
+
+function hasInstructionContent(content) {
+  if (typeof content === "string") {
+    return content.trim() !== ""
+  }
+
+  if (Array.isArray(content)) {
+    return content.length > 0
+  }
+
+  if (isPlainObject(content)) {
+    return Object.keys(content).length > 0
+  }
+
+  return content !== null && content !== undefined
+}
+
+function appendInlineInstruction(parent, content) {
+  if (Array.isArray(content)) {
+    content.forEach((part) => appendInlineInstruction(parent, part))
+    return
+  }
+
+  if (!isPlainObject(content)) {
+    parent.append(document.createTextNode(String(content ?? "")))
+    return
+  }
+
+  if (content.type === "code" || content.code !== undefined) {
+    parent.append(createElement("code", "", String(content.code ?? content.text ?? "")))
+    return
+  }
+
+  if (content.type === "strong" || content.strong !== undefined) {
+    const strong = createElement("strong")
+    appendInlineInstruction(strong, content.strong ?? content.content ?? content.text ?? "")
+    parent.append(strong)
+    return
+  }
+
+  if (content.type === "em" || content.em !== undefined) {
+    const emphasis = createElement("em")
+    appendInlineInstruction(emphasis, content.em ?? content.content ?? content.text ?? "")
+    parent.append(emphasis)
+    return
+  }
+
+  appendInlineInstruction(parent, content.content ?? content.text ?? "")
+}
+
+function createInstructionBlock(block) {
+  if (!isPlainObject(block)) {
+    const paragraph = createElement("p")
+    appendInlineInstruction(paragraph, block)
+    return paragraph
+  }
+
+  const type = block.type ?? (block.items ? "ul" : block.code !== undefined ? "pre" : "p")
+
+  if (type === "ol" || type === "ul") {
+    const list = document.createElement(type)
+
+    ;(block.items ?? []).forEach((item) => {
+      const listItem = document.createElement("li")
+      appendInlineInstruction(listItem, isPlainObject(item) ? item.content ?? item.text ?? item : item)
+      list.append(listItem)
+    })
+
+    return list
+  }
+
+  if (type === "pre" || type === "code-block") {
+    const pre = createElement("pre")
+    const code = createElement("code", "", String(block.code ?? block.text ?? ""))
+    if (block.language) {
+      code.dataset.language = String(block.language)
+    }
+    pre.append(code)
+    return pre
+  }
+
+  const paragraph = createElement("p")
+  appendInlineInstruction(paragraph, block.content ?? block.text ?? "")
+  return paragraph
+}
+
+function renderInstructionContent(root, content) {
+  const blocks = Array.isArray(content) ? content : [content]
+  root.replaceChildren(...blocks.filter(hasInstructionContent).map(createInstructionBlock))
+}
+
 function getGeneratedId(prefix = "live-code") {
   return `${prefix}-${Math.random().toString(36).slice(2, 10)}`
 }
@@ -877,7 +975,7 @@ function createInstructionDisclosure(example, open, options = {}) {
   )
   const summary = createElement("summary")
   const body = createElement("div", "live-code-task__instruction-copy")
-  const text = example.instructions ?? example.description ?? ""
+  const instructions = getInstructionContent(example)
 
   details.open = Boolean(open)
 
@@ -890,7 +988,7 @@ function createInstructionDisclosure(example, open, options = {}) {
     summary.textContent = "Instructions"
   }
 
-  body.textContent = text
+  renderInstructionContent(body, instructions)
   details.append(summary, body)
 
   return details
@@ -945,12 +1043,13 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
   const task = createElement("section", "live-code-task")
   const taskHeader = createElement("div", "live-code-task__header")
   const titleInsideInstructions = Boolean(options.titleInsideInstructions)
-  const instructionsText = example.instructions ?? example.description ?? ""
+  const instructionsContent = getInstructionContent(example)
+  const hasInstructions = hasInstructionContent(instructionsContent)
   const taskTitle =
-    titleInsideInstructions && instructionsText
+    titleInsideInstructions && hasInstructions
       ? null
       : createElement("h3", "live-code-task__title", example.title ?? "Try the code")
-  const instructions = instructionsText
+  const instructions = hasInstructions
     ? createInstructionDisclosure(
         example,
         options.instructionsDefaultOpen ??
@@ -1521,7 +1620,7 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
     return {
       schemaVersion: 1,
       title: example.title ?? "Code Playground",
-      instructions: example.instructions ?? example.description ?? "",
+      instructions: copySerializable(getInstructionContent(example)),
       executionMode: mode,
       sources: sources.map((source) => ({
         id: source.id,

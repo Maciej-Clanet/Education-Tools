@@ -1,6 +1,6 @@
 import { initDebugLabs } from "../core/debug-lab.js"
 import { initLessonPage } from "../core/lesson-shell.js"
-import { initLiveCodeExamples } from "../core/live-code-example.js?v=20260904-5"
+import { initLiveCodeExamples } from "../core/live-code-example.js?v=20260904-6"
 
 const lessonConfig = {
   lessonId: "running-javascript-and-using-the-console",
@@ -35,6 +35,10 @@ const lessonConfig = {
 const javascriptExecution = {
   timeoutMs: 3000,
   network: { mode: "disabled" },
+}
+
+function inlineCode(code) {
+  return { type: "code", code }
 }
 
 const liveCodeExamples = [
@@ -155,8 +159,22 @@ console.log("The previous messages were cleared.");`,
   {
     id: "practice-live",
     title: "Console practice",
-    description:
-      "Try the challenge list above. Run the code after each small change.",
+    instructions: [
+      {
+        type: "p",
+        text: "Try these small changes. Run the code again after each one so you can see what changed in the console.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Change the normal message.",
+          ["Add another ", inlineCode("console.log()"), " line."],
+          "Move the warning to the top.",
+          "Add a comment above one line.",
+          ["Add ", inlineCode("console.clear();"), " before the final message."],
+        ],
+      },
+    ],
     executionMode: "javascript",
     defaultSplit: 55,
     sources: [

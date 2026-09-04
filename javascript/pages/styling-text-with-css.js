@@ -1,7 +1,7 @@
 import { initCodePreviews } from "../core/code-preview.js"
 import { initDebugLabs } from "../core/debug-lab.js"
 import { initLessonPage } from "../core/lesson-shell.js"
-import { initLiveCodeExamples } from "../core/live-code-example.js?v=20260904-5"
+import { initLiveCodeExamples } from "../core/live-code-example.js?v=20260904-6"
 
 const lessonConfig = {
   lessonId: "styling-text-with-css",
@@ -32,6 +32,10 @@ const lessonConfig = {
     passScore: 16,
     version: 1,
   },
+}
+
+function inlineCode(code) {
+  return { type: "code", code }
 }
 
 const liveCodeExamples = [
@@ -135,8 +139,22 @@ const liveCodeExamples = [
   {
     id: "text-property-workshop",
     title: "Try the text properties",
-    description:
-      "Try changing the text colour, size, weight, style, alignment, and line spacing.",
+    instructions: [
+      {
+        type: "p",
+        text: "Try changing the text colour, size, weight, style, alignment, and line spacing. Check the preview after each change.",
+      },
+      {
+        type: "ol",
+        items: [
+          ["Open the editor if needed, then change ", inlineCode("purple"), " to ", inlineCode("green"), "."],
+          ["Change ", inlineCode("24px"), " to ", inlineCode("40px"), "."],
+          ["Change ", inlineCode("bold"), " to ", inlineCode("normal"), ", then try ", inlineCode("italic"), "."],
+          ["Try ", inlineCode("underline"), ", ", inlineCode("center"), ", and ", inlineCode("line-height: 2"), "."],
+          "Switch to HTML and move the class to a different paragraph.",
+        ],
+      },
+    ],
     defaultSplit: 55,
     sources: [
       {

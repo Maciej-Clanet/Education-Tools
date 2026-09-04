@@ -45,7 +45,19 @@ controller that autosaves to `localStorage`.
 {
   id: "featured-text",
   title: "Try the text properties",
-  description: "Change a value and observe the generated preview.",
+  instructions: [
+    {
+      type: "p",
+      text: "Change a value and observe the generated preview.",
+    },
+    {
+      type: "ol",
+      items: [
+        ["Change ", { type: "code", code: "purple" }, " to green."],
+        "Check the generated preview.",
+      ],
+    },
+  ],
   debounce: 300,
   defaultSplit: 55,
   sources: [
@@ -75,6 +87,13 @@ controller that autosaves to `localStorage`.
 
 Only entries in `sources` appear as tabs. Scaffolding is locked and never shown
 as an editable source.
+
+`instructions` can be a plain string or authored structured content. Structured
+instructions are rendered with DOM APIs, not arbitrary HTML, and travel with the
+example when it is opened in the standalone Playground. Supported blocks are
+paragraphs, ordered lists, unordered lists, inline code, emphasis, strong text,
+and short code blocks. `description` remains a plain-text fallback for older
+examples.
 
 Supported source arrangements:
 
@@ -203,7 +222,8 @@ lesson has a specific allowlist need.
 
 - The example title and instructions render above the tool. Instructions are a
   disclosure; they default open in normal lessons and collapsed when the
-  component mounts inside restored Teacher Slides. Standalone pages can pass
+  component mounts inside restored Teacher Slides. Structured instructions use
+  semantic paragraphs, lists, and code elements. Standalone pages can pass
   `titleInsideInstructions: true` to place the tool title inside the disclosure
   summary.
 - `Try it` switches HTML/CSS embedded examples between highlighted read-only
