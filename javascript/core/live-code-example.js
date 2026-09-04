@@ -1448,6 +1448,15 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
     options.onChange?.(api)
   }
 
+  function syncActiveEditorSource(shouldNotify = false) {
+    getActiveSource().currentCode = editor.value
+    updateEditorHighlight()
+
+    if (shouldNotify) {
+      notifyChange()
+    }
+  }
+
   function startRunTimer() {
     if (state.runTimer) {
       window.clearTimeout(state.runTimer)
@@ -1674,6 +1683,21 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
       code: sources.find((source) => source.type === "javascript")?.currentCode ?? "",
       policy: execution.network,
     })
+  }
+
+  function applyCurrentEditorContents() {
+    syncActiveEditorSource(true)
+
+    if (mode === "javascript") {
+      if (!runButton.disabled) {
+        runButton.click()
+      }
+      return
+    }
+
+    if (mode === "html-css") {
+      updatePreview(true)
+    }
   }
 
   function updateTabs() {
@@ -2259,8 +2283,7 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
   })
 
   editor.addEventListener("input", () => {
-    getActiveSource().currentCode = editor.value
-    updateEditorHighlight()
+    syncActiveEditorSource()
 
     if (mode === "html-css") {
       updatePreview()
@@ -2273,6 +2296,11 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
   editor.addEventListener("keydown", (event) => {
     const toggleCommentShortcut =
       event.key === "/" && (event.ctrlKey || event.metaKey) && !event.altKey
+    const applyShortcut =
+      event.key === "Enter" &&
+      (event.ctrlKey || event.metaKey) &&
+      !event.altKey &&
+      !event.shiftKey
     const moveLineDirection =
       event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey
         ? event.key === "ArrowUp"
@@ -2282,7 +2310,12 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
             : ""
         : ""
 
-    if (!toggleCommentShortcut && !moveLineDirection && event.key !== "Tab") {
+    if (
+      !toggleCommentShortcut &&
+      !applyShortcut &&
+      !moveLineDirection &&
+      event.key !== "Tab"
+    ) {
       return
     }
 
@@ -2292,6 +2325,9 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
 
     if (toggleCommentShortcut) {
       toggleEditorComment(editor, getActiveSource().type)
+    } else if (applyShortcut) {
+      applyCurrentEditorContents()
+      shouldNotify = false
     } else if (moveLineDirection) {
       shouldNotify = moveSelectedLines(editor, moveLineDirection)
     } else if (event.shiftKey) {

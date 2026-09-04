@@ -233,6 +233,7 @@ lesson has a specific allowlist need.
 - Tab inserts two spaces; Shift+Tab removes indentation.
 - Ctrl+/ toggles comments for the current source language.
 - Alt+Up and Alt+Down move the current line or selected lines.
+- Ctrl+Enter runs JavaScript examples or immediately refreshes HTML/CSS previews.
 - Source tabs support arrow, Home, and End keys.
 - The layout menu supports side-by-side, code above result, and result above
   code. The selected state is text-labelled and exposed with ARIA.
