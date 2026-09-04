@@ -231,6 +231,7 @@ lesson has a specific allowlist need.
 - JavaScript examples are editable and use `Run`, `Stop`, and `Reset code`.
 - HTML/CSS changes update after a 200–400 ms debounce.
 - Tab inserts two spaces; Shift+Tab removes indentation.
+- Ctrl+/ toggles comments for the current source language.
 - Source tabs support arrow, Home, and End keys.
 - The layout menu supports side-by-side, code above result, and result above
   code. The selected state is text-labelled and exposed with ARIA.

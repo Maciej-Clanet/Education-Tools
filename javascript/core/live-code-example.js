@@ -967,6 +967,174 @@ function removeIndentation(textarea) {
   )
 }
 
+function getSelectedLineRange(value, selectionStart, selectionEnd) {
+  const lineStart = value.lastIndexOf("\n", selectionStart - 1) + 1
+  const adjustedEnd =
+    selectionEnd > selectionStart && value[selectionEnd - 1] === "\n"
+      ? selectionEnd - 1
+      : selectionEnd
+  const nextLineBreak = value.indexOf("\n", adjustedEnd)
+  const lineEnd = nextLineBreak === -1 ? value.length : nextLineBreak
+
+  return { lineStart, lineEnd }
+}
+
+function getCommentSyntax(type) {
+  if (type === "css") {
+    return { kind: "block", prefix: "/* ", suffix: " */" }
+  }
+
+  if (type === "html") {
+    return { kind: "block", prefix: "<!-- ", suffix: " -->" }
+  }
+
+  return { kind: "line", prefix: "// " }
+}
+
+function updateSelectionForChanges(position, changes) {
+  let delta = 0
+
+  changes.forEach((change) => {
+    const removalEnd = change.length < 0 ? change.index - change.length : change.index
+
+    if (position <= change.index) {
+      return
+    }
+
+    if (change.length < 0 && position < removalEnd) {
+      delta += change.index - position
+      return
+    }
+
+    delta += change.length
+  })
+
+  return position + delta
+}
+
+function toggleLineComments(textarea, syntax) {
+  const value = textarea.value
+  const start = textarea.selectionStart
+  const end = textarea.selectionEnd
+  const { lineStart, lineEnd } = getSelectedLineRange(value, start, end)
+  const selectedText = value.slice(lineStart, lineEnd)
+  const lines = selectedText.split("\n")
+  const commentableLines = lines.filter((line) => line.trim() !== "")
+  const shouldUncomment =
+    commentableLines.length > 0 &&
+    commentableLines.every((line) => /^\s*\/\//.test(line))
+  const changes = []
+  const transformed = lines
+    .map((line, index) => {
+      const lineOffset =
+        lines.slice(0, index).reduce((total, item) => total + item.length + 1, 0)
+
+      if (line.trim() === "" && (commentableLines.length > 0 || shouldUncomment)) {
+        return line
+      }
+
+      if (shouldUncomment) {
+        const match = line.match(/^(\s*)\/\/ ?/)
+
+        if (!match) {
+          return line
+        }
+
+        changes.push({
+          index: lineStart + lineOffset + match[1].length,
+          length: -match[0].slice(match[1].length).length,
+        })
+
+        return `${match[1]}${line.slice(match[0].length)}`
+      }
+
+      const indentation = line.match(/^\s*/)?.[0] ?? ""
+      const insertIndex = lineStart + lineOffset + indentation.length
+
+      changes.push({
+        index: insertIndex,
+        length: syntax.prefix.length,
+      })
+
+      return `${indentation}${syntax.prefix}${line.slice(indentation.length)}`
+    })
+    .join("\n")
+
+  const nextValue = `${value.slice(0, lineStart)}${transformed}${value.slice(lineEnd)}`
+
+  textarea.value = nextValue
+  textarea.setSelectionRange(
+    updateSelectionForChanges(start, changes),
+    updateSelectionForChanges(end, changes)
+  )
+}
+
+function getBlockCommentBounds(text) {
+  const leadingWhitespace = text.match(/^\s*/)?.[0] ?? ""
+  const trailingWhitespace = text.match(/\s*$/)?.[0] ?? ""
+  const contentStart = leadingWhitespace.length
+  const contentEnd = Math.max(
+    contentStart,
+    text.length - trailingWhitespace.length
+  )
+
+  return {
+    contentStart,
+    contentEnd,
+  }
+}
+
+function toggleBlockComment(textarea, syntax) {
+  const value = textarea.value
+  const start = textarea.selectionStart
+  const end = textarea.selectionEnd
+  const { lineStart, lineEnd } = getSelectedLineRange(value, start, end)
+  const selectedText = value.slice(lineStart, lineEnd)
+  const { contentStart, contentEnd } = getBlockCommentBounds(selectedText)
+  const content = selectedText.slice(contentStart, contentEnd)
+  let transformed = selectedText
+  const changes = []
+
+  if (content.startsWith(syntax.prefix) && content.endsWith(syntax.suffix)) {
+    const removePrefixAt = lineStart + contentStart
+    const removeSuffixAt = lineStart + contentEnd - syntax.suffix.length
+
+    transformed = `${selectedText.slice(0, contentStart)}${content.slice(
+      syntax.prefix.length,
+      content.length - syntax.suffix.length
+    )}${selectedText.slice(contentEnd)}`
+    changes.push(
+      { index: removePrefixAt, length: -syntax.prefix.length },
+      { index: removeSuffixAt, length: -syntax.suffix.length }
+    )
+  } else {
+    const insertPrefixAt = lineStart + contentStart
+    const insertSuffixAt = lineStart + contentEnd
+
+    transformed = `${selectedText.slice(0, contentStart)}${syntax.prefix}${content}${syntax.suffix}${selectedText.slice(contentEnd)}`
+    changes.push(
+      { index: insertPrefixAt, length: syntax.prefix.length },
+      { index: insertSuffixAt, length: syntax.suffix.length }
+    )
+  }
+
+  textarea.value = `${value.slice(0, lineStart)}${transformed}${value.slice(lineEnd)}`
+  textarea.setSelectionRange(
+    updateSelectionForChanges(start, changes),
+    updateSelectionForChanges(end, changes)
+  )
+}
+
+function toggleEditorComment(textarea, type) {
+  const syntax = getCommentSyntax(type)
+
+  if (syntax.kind === "line") {
+    toggleLineComments(textarea, syntax)
+  } else {
+    toggleBlockComment(textarea, syntax)
+  }
+}
+
 function createInstructionDisclosure(example, open, options = {}) {
   const hasTitle = Boolean(options.title)
   const details = createElement(
@@ -2032,13 +2200,18 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
   editor.addEventListener("scroll", syncEditorHighlightScroll)
 
   editor.addEventListener("keydown", (event) => {
-    if (event.key !== "Tab") {
+    const toggleCommentShortcut =
+      event.key === "/" && (event.ctrlKey || event.metaKey) && !event.altKey
+
+    if (!toggleCommentShortcut && event.key !== "Tab") {
       return
     }
 
     event.preventDefault()
 
-    if (event.shiftKey) {
+    if (toggleCommentShortcut) {
+      toggleEditorComment(editor, getActiveSource().type)
+    } else if (event.shiftKey) {
       removeIndentation(editor)
     } else {
       insertIndentation(editor)

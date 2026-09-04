@@ -1,4 +1,4 @@
-import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260904-6"
+import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260904-7"
 import {
   readSessionStorage,
   readStorage,
