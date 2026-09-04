@@ -154,9 +154,17 @@ the component after reviewing its impact.
 
 JavaScript-only mode runs learner code inside a dedicated Web Worker created
 from the shared component. It captures `console.log`, `console.warn`, and
-`console.error`, displays runtime and syntax errors in the console pane, and
-terminates the worker when the user chooses `Stop` or when the configured
-timeout is reached.
+`console.error`, supports `console.clear()`, displays runtime and syntax errors
+in the console pane, and terminates the worker when the user chooses `Stop` or
+when the configured timeout is reached.
+
+The console heading includes a small clear button for manually clearing output.
+
+`prompt()` is supported in JavaScript mode. The worker pauses and shows an
+inline prompt form in the console pane, then resumes the learner code with the
+submitted value. Cancelling returns `null`, matching browser prompt behaviour.
+Simple `prompt(...)` calls are transformed so beginner code does not need to
+write `await prompt(...)`.
 
 The default timeout is 3000 ms. Keep examples small enough for that budget, or
 raise `execution.timeoutMs` only for a clear teaching reason.
@@ -185,6 +193,11 @@ execution: {
 If enabled later, worker `fetch()` omits credentials and rejects destinations
 outside the configured HTTP(S) allowlist. Other network-style APIs are not
 enabled.
+
+The standalone JavaScript Playground allows `fetch()` to
+`https://jsonplaceholder.typicode.com` by default for beginner API experiments.
+Lesson-authored JavaScript examples should keep network disabled unless the
+lesson has a specific allowlist need.
 
 ## Layout, interaction, and accessibility
 
@@ -216,10 +229,10 @@ enabled.
 
 ## Open in Playground
 
-Embedded HTML/CSS examples show `Open in Playground`. The component opens the
-playground in a new tab with only an opaque handoff ID in the URL. Source code,
-instructions, scaffolding, and execution configuration are not encoded into a
-shareable URL.
+Embedded examples show `Open in Playground`. The component opens the
+playground in a new tab with only an opaque handoff ID in the URL and does not
+navigate the current lesson tab. Source code, instructions, scaffolding, and
+execution configuration are not encoded into a shareable URL.
 
 The handoff transfers the current edited code as well as each source's authored
 starting code, layout, split, and code zoom so the playground can continue the

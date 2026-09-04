@@ -1,0 +1,307 @@
+.role-grid,
+.future-list,
+.execution-grid,
+.run-flow,
+.console-purpose-grid,
+.comment-grid,
+.command-grid,
+.clear-sequence,
+.error-pair,
+.summary-memory {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.role-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.future-list,
+.execution-grid,
+.console-purpose-grid,
+.comment-grid,
+.error-pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.run-flow,
+.clear-sequence {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.command-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.summary-memory {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.role-card,
+.future-list article,
+.console-card,
+.run-flow article,
+.console-purpose-grid article,
+.comment-grid article,
+.command-grid article,
+.clear-sequence article,
+.error-pair article,
+.quote-note,
+.error-note,
+.reassurance-note,
+.practice-prompts,
+.summary-memory article,
+.summary-line,
+.text-equivalent {
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.role-card,
+.future-list article,
+.console-purpose-grid article,
+.comment-grid article,
+.command-grid article,
+.summary-memory article {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.role-card :is(strong, span, p),
+.future-list :is(h3, p),
+.console-card h3,
+.run-flow :is(strong, span),
+.console-purpose-grid :is(h3, p),
+.comment-grid p,
+.command-grid :is(span, p),
+.clear-sequence :is(strong, span),
+.error-pair :is(span, p),
+.quote-note,
+.error-note,
+.reassurance-note,
+.summary-memory :is(span, p),
+.summary-line,
+.text-equivalent {
+  margin: 0;
+}
+
+.role-card {
+  border-top-width: 6px;
+}
+
+.role-card--html {
+  border-top-color: #69c8e8;
+}
+
+.role-card--css {
+  border-top-color: #8bcf88;
+}
+
+.role-card--js {
+  border-top-color: #f2bf5e;
+}
+
+.role-card strong,
+.future-list h3,
+.console-purpose-grid h3 {
+  color: #24313b;
+  font-size: 1.08rem;
+}
+
+.role-card span,
+.command-grid span,
+.error-pair span,
+.summary-memory span {
+  color: #195e73;
+  font-weight: 900;
+}
+
+.workflow-hook {
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: #24313b;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.tick-list,
+.practice-prompts {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.instruction-path {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.instruction-path li {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  padding: 0.75rem;
+  border: 1.5px solid rgba(31, 113, 137, 0.2);
+  border-radius: 12px;
+  background: rgba(232, 246, 255, 0.82);
+  text-align: center;
+}
+
+.instruction-path li:not(:last-child)::after {
+  content: "down";
+  color: #195e73;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.instruction-path span {
+  color: #195e73;
+  font-weight: 900;
+}
+
+.console-card,
+.error-pair article:first-child {
+  background: #24313b;
+  color: #f4f8f8;
+}
+
+.console-card pre,
+.error-pair pre {
+  overflow-x: auto;
+  margin: 0;
+  padding: 0.85rem;
+  border-radius: 10px;
+  background: rgba(10, 20, 28, 0.78);
+  color: #ffffff;
+  font: 0.96rem/1.6 Consolas, "Courier New", monospace;
+}
+
+.console-card h3 {
+  color: #ffffff;
+}
+
+.run-flow article,
+.clear-sequence article {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+}
+
+.run-flow span,
+.clear-sequence span {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 50%;
+  background: #1f7189;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.quote-note {
+  margin-top: 1rem;
+  border-left: 6px solid #f2bf5e;
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.comment-grid article:first-child {
+  border-top: 6px solid #a58bd8;
+}
+
+.comment-grid article:last-child {
+  border-top: 6px solid #69c8e8;
+}
+
+.comment-grid code,
+.command-grid code,
+.clear-sequence code,
+.summary-memory code {
+  overflow-wrap: anywhere;
+  color: #195e73;
+  font-weight: 900;
+}
+
+.command-grid article:nth-child(1) {
+  border-top: 6px solid #69c8e8;
+}
+
+.command-grid article:nth-child(2) {
+  border-top: 6px solid #f2bf5e;
+}
+
+.command-grid article:nth-child(3) {
+  border-top: 6px solid #d86d6d;
+}
+
+.error-note,
+.reassurance-note,
+.summary-line {
+  margin-top: 1rem;
+  border-left: 6px solid #8bcf88;
+  background: rgba(238, 248, 231, 0.9);
+}
+
+.clear-sequence article:nth-child(2) {
+  background: rgba(255, 249, 227, 0.9);
+}
+
+.error-pair article:first-child span {
+  color: #f2bf5e;
+}
+
+.error-pair article:last-child {
+  border-top: 6px solid #8bcf88;
+}
+
+.practice-prompts {
+  margin-bottom: 1rem;
+  padding-left: 2.2rem;
+}
+
+.summary-memory article {
+  align-content: start;
+}
+
+.debug-lab .debug-lab-preview,
+.js-debug-preview {
+  color: #24313b;
+}
+
+body.teacher-mode-active .role-grid,
+body.teacher-mode-active .future-list,
+body.teacher-mode-active .execution-grid,
+body.teacher-mode-active .run-flow,
+body.teacher-mode-active .console-purpose-grid,
+body.teacher-mode-active .comment-grid,
+body.teacher-mode-active .command-grid,
+body.teacher-mode-active .clear-sequence,
+body.teacher-mode-active .error-pair,
+body.teacher-mode-active .summary-memory {
+  grid-template-columns: 1fr;
+}
+
+body.teacher-mode-active .summary-memory {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .role-grid,
+  .future-list,
+  .execution-grid,
+  .run-flow,
+  .console-purpose-grid,
+  .comment-grid,
+  .command-grid,
+  .clear-sequence,
+  .error-pair,
+  .summary-memory {
+    grid-template-columns: 1fr;
+  }
+}

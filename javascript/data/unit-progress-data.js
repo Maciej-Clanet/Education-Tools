@@ -86,6 +86,18 @@ export const webDevelopmentProgressData = {
         },
       ],
     },
+    {
+      id: "javascript-basics",
+      title: "JavaScript basics",
+      lessons: [
+        {
+          id: "running-javascript-and-using-the-console",
+          title: "Running JavaScript and using the console",
+          href: "../topics/running-javascript-and-using-the-console.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 15, passScore: 12 },
+        },
+      ],
+    },
   ],
 }
 

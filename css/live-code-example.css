@@ -392,6 +392,11 @@
   border-left: 1px solid rgba(36, 49, 59, 0.1);
 }
 
+.live-code-example--javascript .live-code__result-pane {
+  grid-template-rows: auto auto minmax(0, 1fr);
+  background: #1f2930;
+}
+
 .live-code-example[data-effective-layout="code-top"] .live-code__code-pane,
 .live-code-example[data-effective-layout="result-top"] .live-code__code-pane {
   border-right: 0;
@@ -412,6 +417,13 @@
   background: rgba(255, 255, 255, 0.88);
 }
 
+.live-code__result-title-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  min-width: 0;
+}
+
 .live-code__result-heading strong {
   color: var(--page-ink);
   font-size: 0.78rem;
@@ -424,6 +436,31 @@
   color: var(--muted-ink);
   font-size: 0.76rem;
   font-weight: 700;
+}
+
+.live-code__console-clear {
+  display: inline-grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  place-items: center;
+  padding: 0;
+  border: 1.5px solid rgba(36, 49, 59, 0.16);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--page-ink);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.live-code__console-clear:hover,
+.live-code__console-clear:focus-visible {
+  border-color: #1f7189;
+  outline: 3px solid rgba(31, 113, 137, 0.2);
+  outline-offset: 2px;
+  background: rgba(232, 246, 255, 0.96);
 }
 
 .live-code-example .code-preview__code,
@@ -607,8 +644,90 @@
   background: #fffdf8;
 }
 
+.live-code__prompt-panel {
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.55rem;
+  align-items: end;
+  padding: 0.62rem;
+  border-bottom: 1px solid rgba(36, 49, 59, 0.12);
+  background: rgba(232, 246, 255, 0.74);
+}
+
+.live-code__prompt-panel[hidden] {
+  display: none;
+}
+
+.live-code__prompt-label {
+  display: grid;
+  gap: 0.28rem;
+  min-width: 0;
+  color: var(--page-ink);
+  font-weight: 800;
+}
+
+.live-code__prompt-message {
+  font-size: 0.82rem;
+}
+
+.live-code__prompt-input {
+  width: 100%;
+  min-height: 2.25rem;
+  padding: 0.42rem 0.55rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.18);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--page-ink);
+  font: inherit;
+}
+
+.live-code__prompt-input:focus-visible {
+  border-color: #1f7189;
+  outline: 3px solid rgba(31, 113, 137, 0.2);
+  outline-offset: 2px;
+}
+
+.live-code__prompt-actions {
+  display: flex;
+  gap: 0.42rem;
+}
+
+.live-code__prompt-submit,
+.live-code__prompt-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0.42rem 0.62rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.16);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--page-ink);
+  font: inherit;
+  font-weight: 800;
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.live-code__prompt-submit {
+  border-color: #1f7189;
+  background: #1f7189;
+  color: #ffffff;
+}
+
+.live-code__prompt-submit:hover,
+.live-code__prompt-submit:focus-visible,
+.live-code__prompt-cancel:hover,
+.live-code__prompt-cancel:focus-visible {
+  outline: 3px solid rgba(31, 113, 137, 0.2);
+  outline-offset: 2px;
+}
+
 .live-code__console-output {
-  min-height: 100%;
+  grid-row: 3;
+  height: 100%;
+  min-height: 0;
   padding: 0.85rem;
   overflow: auto;
   background: #1f2930;
@@ -695,11 +814,15 @@ body.a11y-high-contrast .live-code-example,
 body.a11y-high-contrast :is(
   .live-code-task__instructions summary,
   .live-code__toolbar .lesson-secondary-action,
+  .live-code__console-clear,
   .live-code__tab,
   .live-code__menu-button,
   .live-code__layout-menu,
   .live-code__layout-item,
-  .live-code__icon-button
+  .live-code__icon-button,
+  .live-code__prompt-input,
+  .live-code__prompt-submit,
+  .live-code__prompt-cancel
 ) {
   border-color: currentColor !important;
   box-shadow: none !important;
@@ -764,6 +887,15 @@ body.a11y-high-contrast .live-code__editor {
   .live-code__layout-menu {
     right: auto;
     left: 0;
+  }
+
+  .live-code__prompt-panel,
+  .live-code__prompt-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .live-code__prompt-actions {
+    display: grid;
   }
 
   .live-code__console-entry {

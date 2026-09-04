@@ -1,4 +1,4 @@
-import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260904-2"
+import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260904-5"
 import {
   readSessionStorage,
   readStorage,
@@ -57,7 +57,7 @@ const STARTERS = {
     id: DIRECT_WORKSPACE_IDS.javascript,
     title: "JavaScript Console Playground",
     instructions:
-      "Write JavaScript, choose Run, then read the console output. Use console.log() to show values.",
+      "Write JavaScript, choose Run, then read the console output.",
     executionMode: "javascript",
     defaultSplit: 56,
     sources: [
@@ -74,7 +74,9 @@ console.log("Score:", score + bonus)`,
     execution: {
       timeoutMs: 3000,
       network: {
-        mode: "disabled",
+        mode: "allowlist",
+        allowedOrigins: ["https://jsonplaceholder.typicode.com"],
+        allowedUrls: [],
       },
     },
   },
@@ -183,13 +185,35 @@ function getStarterSnapshot(mode) {
   return normaliseSnapshot(STARTERS[mode], mode)
 }
 
+function upgradeDirectWorkspaceSnapshot(workspaceId, snapshot) {
+  if (workspaceId !== DIRECT_WORKSPACE_IDS.javascript) {
+    return snapshot
+  }
+
+  return {
+    ...snapshot,
+    title: STARTERS.javascript.title,
+    instructions: STARTERS.javascript.instructions,
+    execution: {
+      ...snapshot.execution,
+      timeoutMs: snapshot.execution.timeoutMs ?? STARTERS.javascript.execution.timeoutMs,
+      network: STARTERS.javascript.execution.network,
+    },
+  }
+}
+
 function getWorkspace(workspaceId, mode) {
   const storedWorkspace = state.workspaces[workspaceId]
 
   if (isObject(storedWorkspace) && isObject(storedWorkspace.snapshot)) {
+    const snapshot = normaliseSnapshot(storedWorkspace.snapshot, mode)
+
     return {
       ...storedWorkspace,
-      snapshot: normaliseSnapshot(storedWorkspace.snapshot, mode),
+      snapshot:
+        (storedWorkspace.source ?? "direct") === "direct"
+          ? upgradeDirectWorkspaceSnapshot(workspaceId, snapshot)
+          : snapshot,
     }
   }
 
@@ -311,12 +335,12 @@ function resetWorkspace() {
   const starter =
     state.workspaces[activeWorkspaceId]?.source === "lesson"
       ? {
-          ...currentSnapshot,
-          sources: currentSnapshot.sources.map((source) => ({
-            ...source,
-            code: source.initialCode,
-          })),
-        }
+        ...currentSnapshot,
+        sources: currentSnapshot.sources.map((source) => ({
+          ...source,
+          code: source.initialCode,
+        })),
+      }
       : getStarterSnapshot(activeMode)
 
   storeWorkspace(activeWorkspaceId, starter, state.workspaces[activeWorkspaceId]?.source ?? "direct")

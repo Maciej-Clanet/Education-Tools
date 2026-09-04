@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Running JavaScript and Using the Console | Education Tools</title>
+    <meta
+      name="description"
+      content="A first JavaScript Basics lesson on running code, reading console output, comments, console.log, console.warn, console.error, and console.clear."
+    />
+    <meta
+      property="og:title"
+      content="Running JavaScript and Using the Console | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Introduce JavaScript with editable console examples, top-to-bottom execution, comments, basic console commands, a Debug Lab, and a short quiz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/debug-lab.css" />
+    <link rel="stylesheet" href="../../css/live-code-example.css?v=20260904-5" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/running-javascript-and-using-the-console.css"
+    />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/running-javascript-and-using-the-console.js?v=20260904-5"
+    ></script>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">JavaScript Basics</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../resources/web-development.html#javascript-basics"
+                data-role="breadcrumb-unit-link"
+                >Web Development</a
+              >
+            </li>
+            <li aria-current="page">Running JavaScript and using the console</li>
+          </ol>
+        </nav>
+        <div class="lesson-header-row">
+          <div>
+            <h1>Running JavaScript and using the console</h1>
+            <p class="lesson-hero-text">
+              Start programming in JavaScript by changing small instructions,
+              pressing Run, and reading what appears in the console.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">Web Development</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Resource area</strong>
+            <span>JavaScript basics</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong>
+            <span>Run code, read output, and use the console</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Practice</strong>
+            <span>Editable JavaScript console examples and one Debug Lab</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Quiz</strong>
+            <span>15 understanding questions</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../resources/web-development.html#javascript-basics"
+            >Back to Web Development resources</a
+          >
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          The lesson notes and displayed code still work without JavaScript, but
+          Live Code editing, Debug Labs, the saved quiz, and teacher slides need
+          JavaScript.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#what-is-javascript" data-section-link>What JavaScript does</a>
+            <a href="#execution-order" data-section-link>Instruction order</a>
+            <a href="#playground-workflow" data-section-link>The playground</a>
+            <a href="#console-purpose" data-section-link>The console</a>
+            <a href="#comments" data-section-link>Comments</a>
+            <a href="#console-commands" data-section-link>Log, warn, error</a>
+            <a href="#clear-console" data-section-link>Clear output</a>
+            <a href="#first-error" data-section-link>First error message</a>
+            <a href="#debug-lab" data-section-link>Debug Lab</a>
+            <a href="#practice" data-section-link>Practice</a>
+            <a href="#summary" data-section-link>Summary</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="what-is-javascript"
+            class="lesson-section lesson-section--recap panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">New Language</p>
+            <h2>JavaScript gives the computer instructions</h2>
+            <p class="lesson-section-copy">
+              You have already used HTML to describe content and CSS to control
+              appearance. JavaScript is the language we use to give instructions
+              that can make things happen.
+            </p>
+            <div class="role-grid lesson-fullrow">
+              <article class="role-card role-card--html">
+                <strong>HTML</strong>
+                <span>Content and structure</span>
+                <p>Headings, paragraphs, links, images, and forms.</p>
+              </article>
+              <article class="role-card role-card--css">
+                <strong>CSS</strong>
+                <span>Appearance and layout</span>
+                <p>Colours, spacing, borders, fonts, and positioning.</p>
+              </article>
+              <article class="role-card role-card--js">
+                <strong>JavaScript</strong>
+                <span>Instructions and behaviour</span>
+                <p>Code that can run, make choices, handle data, and react.</p>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <div class="future-list lesson-fullrow">
+              <article>
+                <h3>What JavaScript can do later</h3>
+                <ul class="tick-list">
+                  <li>Perform calculations</li>
+                  <li>Make decisions</li>
+                  <li>Repeat tasks</li>
+                  <li>Work with data</li>
+                  <li>Respond when someone interacts with a page</li>
+                </ul>
+              </article>
+              <article>
+                <h3>Where we begin today</h3>
+                <p>
+                  We will start with the console so you can focus on the
+                  JavaScript instructions themselves.
+                </p>
+                <p class="workflow-hook">
+                  Edit code -> press Run -> read the Console.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section
+            id="execution-order"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Execution Order</p>
+            <h2>JavaScript normally runs from top to bottom</h2>
+            <div class="execution-grid lesson-fullrow">
+              <ol class="instruction-path" aria-label="Execution order example">
+                <li><span>Top</span></li>
+                <li><code>console.log("First");</code></li>
+                <li><code>console.log("Second");</code></li>
+                <li><code>console.log("Third");</code></li>
+                <li><span>Bottom</span></li>
+              </ol>
+              <article class="console-card">
+                <h3>Expected console output</h3>
+                <pre><code>First
+Second
+Third</code></pre>
+              </article>
+            </div>
+            <p class="text-equivalent">
+              Text version: the first instruction runs first, then the second,
+              then the third.
+            </p>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="execution-order-live"
+            ></div>
+          </section>
+
+          <section
+            id="playground-workflow"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">JavaScript Playground</p>
+            <h2>The basic workflow is edit, run, output</h2>
+            <div class="run-flow lesson-fullrow" aria-label="Playground workflow">
+              <article><span>1</span><strong>Read or change the code</strong></article>
+              <article><span>2</span><strong>Press Run</strong></article>
+              <article><span>3</span><strong>JavaScript executes</strong></article>
+              <article><span>4</span><strong>Read the Console</strong></article>
+            </div>
+            <p class="lesson-section-copy">
+              The Run button executes the JavaScript currently in the editor.
+              If you change the code, press Run again to see the new result.
+            </p>
+            <div data-slide-break></div>
+            <div class="lesson-fullrow" data-live-code-example-id="hello-world-live"></div>
+          </section>
+
+          <section
+            id="console-purpose"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Console Output</p>
+            <h2>The console helps programmers see messages, results, and errors</h2>
+            <div class="console-purpose-grid lesson-fullrow">
+              <article>
+                <h3>The console is for development</h3>
+                <p>
+                  Programmers use it while building and testing code. It is not
+                  normally the final screen ordinary website visitors use.
+                </p>
+              </article>
+              <article>
+                <h3><code>console.log()</code> sends information there</h3>
+                <p>
+                  For now, the content between quotation marks is simply the
+                  text we want to output.
+                </p>
+              </article>
+            </div>
+            <p class="quote-note">
+              When we write text directly in JavaScript like this, we put it
+              inside quotation marks.
+            </p>
+          </section>
+
+          <section id="comments" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Code Notes</p>
+            <h2>Comments are notes for people reading the code</h2>
+            <div class="comment-grid lesson-fullrow">
+              <article>
+                <code>// This is a comment</code>
+                <p>
+                  JavaScript ignores a single-line comment when it runs the
+                  program.
+                </p>
+              </article>
+              <article>
+                <code>console.log("Program started");</code>
+                <p>
+                  This line is an instruction, so it can send output to the
+                  console.
+                </p>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <div class="lesson-fullrow" data-live-code-example-id="comments-live"></div>
+          </section>
+
+          <section
+            id="console-commands"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Console Commands</p>
+            <h2>Use different console messages for different purposes</h2>
+            <div class="command-grid lesson-fullrow">
+              <article>
+                <span>Normal message</span>
+                <code>console.log("Program started");</code>
+                <p>Use this for ordinary output, results, and checks.</p>
+              </article>
+              <article>
+                <span>Warning message</span>
+                <code>console.warn("Battery is low");</code>
+                <p>Use this when something may need attention.</p>
+              </article>
+              <article>
+                <span>Error-style message</span>
+                <code>console.error("Could not load the file");</code>
+                <p>Use this to display a message about something going wrong.</p>
+              </article>
+            </div>
+            <p class="error-note">
+              <code>console.error()</code> displays an error-style message, but
+              it does not by itself stop the program.
+            </p>
+            <div data-slide-break></div>
+            <div class="lesson-fullrow" data-live-code-example-id="console-types-live"></div>
+          </section>
+
+          <section
+            id="clear-console"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Clear Output</p>
+            <h2><code>console.clear()</code> clears earlier console messages</h2>
+            <div class="clear-sequence lesson-fullrow">
+              <article><span>1</span><strong>Messages are added</strong></article>
+              <article><span>2</span><strong><code>console.clear();</code> runs</strong></article>
+              <article><span>3</span><strong>Earlier messages are removed</strong></article>
+              <article><span>4</span><strong>The next instruction still runs</strong></article>
+            </div>
+            <p class="lesson-section-copy">
+              If code appears after <code>console.clear();</code>, JavaScript
+              carries on and can add new output.
+            </p>
+            <div data-slide-break></div>
+            <div class="lesson-fullrow" data-live-code-example-id="clear-console-live"></div>
+          </section>
+
+          <section
+            id="first-error"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">First Error Message</p>
+            <h2>The console can help when JavaScript cannot understand code</h2>
+            <div class="error-pair lesson-fullrow">
+              <article>
+                <span>Broken</span>
+                <pre><code>console.log("Hello";</code></pre>
+                <p>The command is not complete, so JavaScript reports an error.</p>
+              </article>
+              <article>
+                <span>Fixed</span>
+                <pre><code>console.log("Hello");</code></pre>
+                <p>The command is complete, so the console can display Hello.</p>
+              </article>
+            </div>
+            <p class="reassurance-note">
+              Error messages are useful information. They can help you find the
+              part of the code that needs attention.
+            </p>
+            <div data-slide-break></div>
+            <div class="lesson-fullrow" data-live-code-example-id="first-error-live"></div>
+          </section>
+
+          <section id="debug-lab" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Debug Lab</p>
+            <h2>Fix one small console command</h2>
+            <p class="lesson-section-copy">
+              Locate the broken part, then choose the repair that lets the
+              program display Hello.
+            </p>
+            <div class="lesson-fullrow" data-debug-lab-id="missing-console-bracket"></div>
+          </section>
+
+          <section id="practice" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Experiment</p>
+            <h2>Make a few changes and run the code after each one</h2>
+            <ol class="practice-prompts lesson-fullrow">
+              <li>Change the normal message.</li>
+              <li>Add another <code>console.log()</code> line.</li>
+              <li>Move the warning to the top.</li>
+              <li>Add a comment above one line.</li>
+              <li>Add <code>console.clear();</code> before the final message.</li>
+            </ol>
+            <div data-slide-break></div>
+            <div class="lesson-fullrow" data-live-code-example-id="practice-live"></div>
+          </section>
+
+          <section id="summary" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Summary</p>
+            <h2>Run the code, then read the console</h2>
+            <div class="summary-memory lesson-fullrow">
+              <article><span>JavaScript</span><p>Gives instructions to execute.</p></article>
+              <article><span>Run</span><p>Executes the JavaScript program.</p></article>
+              <article><span>Console</span><p>Shows output, messages, and errors while developing.</p></article>
+              <article><span>Normal output</span><code>console.log("Hello");</code></article>
+              <article><span>Warning</span><code>console.warn("Be careful");</code></article>
+              <article><span>Error style</span><code>console.error("Something went wrong");</code></article>
+              <article><span>Clear</span><code>console.clear();</code></article>
+              <article><span>Comment</span><code>// JavaScript ignores this line</code></article>
+            </div>
+            <p class="summary-line">
+              JavaScript normally runs instructions from top to bottom. If code
+              cannot run correctly, the console can give you useful information.
+            </p>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section quiz-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all fifteen questions, then check your score. Your choices
+              and best score save in this browser.
+            </p>
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. JavaScript gives instructions that can execute."
+                data-feedback="Think about which language makes things happen."
+              >
+                <legend>1. At a beginner level, what is JavaScript used for?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>Only describing page content</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>Giving instructions that can execute</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>Only choosing colours and borders</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="c"
+                data-success="Correct. HTML describes content, CSS styles it, and JavaScript gives instructions."
+                data-feedback="Match each language to its broad role."
+              >
+                <legend>2. Which match is most accurate?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>HTML = appearance, CSS = instructions, JavaScript = content</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>HTML = instructions, CSS = content, JavaScript = appearance</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>HTML = content, CSS = appearance, JavaScript = instructions</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="a"
+                data-success="Correct. Run executes the current JavaScript."
+                data-feedback="Think about the edit, run, output workflow."
+              >
+                <legend>3. What does the Run button do in the JavaScript Playground?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>Executes the JavaScript currently in the editor</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>Deletes every line of code</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span>Changes HTML into CSS</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. The console shows output, messages, and errors while developing."
+                data-feedback="The console helps programmers inspect what happened."
+              >
+                <legend>4. What is the console used for in this lesson?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>Choosing the final website layout</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>Seeing output, messages, and errors while testing code</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>Saving images for a website</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="a"
+                data-success="Correct. console.log() sends information to the console."
+                data-feedback="Look for the command that shows ordinary output."
+              >
+                <legend>5. What does <code>console.log()</code> do here?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>Sends information to the console</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>Connects a CSS file</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>Creates a heading element</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="c"
+                data-success="Correct. The text is placed inside quotation marks."
+                data-feedback="Check the characters around Hello."
+              >
+                <legend>6. In <code>console.log("Hello");</code>, where is the direct text placed?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span>Inside square brackets</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span>Inside angle brackets</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span>Inside quotation marks</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="b"
+                data-success="Correct. A line that starts with // is a comment."
+                data-feedback="Find the line marker introduced for comments."
+              >
+                <legend>7. Which line is a JavaScript comment?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span><code>console.log("Hello");</code></span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span><code>// Display a message</code></span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span><code>&lt;p&gt;Hello&lt;/p&gt;</code></span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="a"
+                data-success="Correct. JavaScript normally runs these instructions from top to bottom."
+                data-feedback="Read the code in order from the top line."
+              >
+                <legend>8. Which message appears first?</legend>
+                <pre><code>console.log("One");
+console.log("Two");</code></pre>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>One</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>Two</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>Both appear before the code runs</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q9"
+                data-answer="c"
+                data-success="Correct. A warning is for something that may need attention."
+                data-feedback="A warning does not always mean the whole program has failed."
+              >
+                <legend>9. When is <code>console.warn()</code> a suitable choice?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q9" value="a" /><span>When you want to clear all earlier messages</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q9" value="b" /><span>When you want to write an HTML paragraph</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q9" value="c" /><span>When something may need attention</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q10"
+                data-answer="b"
+                data-success="Correct. console.error() displays an error-style message but does not itself stop the next line."
+                data-feedback="Remember the line after console.error() can still run."
+              >
+                <legend>10. What happens in this code?</legend>
+                <pre><code>console.error("Something went wrong");
+console.log("Still running");</code></pre>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span>The second line can never run</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span>An error-style message appears, then Still running can appear</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>The console automatically changes the code</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q11"
+                data-answer="a"
+                data-success="Correct. console.clear() removes earlier console messages."
+                data-feedback="Think about what clear means for the console output area."
+              >
+                <legend>11. What does <code>console.clear()</code> do?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q11" value="a" /><span>Clears previous console output</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q11" value="b" /><span>Stops JavaScript from ever running again</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q11" value="c" /><span>Adds a CSS border</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q12"
+                data-answer="c"
+                data-success="Correct. Earlier messages are cleared, then the final message is added."
+                data-feedback="Follow the instructions in order."
+              >
+                <legend>12. What remains visible after this code runs?</legend>
+                <pre><code>console.log("Message one");
+console.clear();
+console.log("Message two");</code></pre>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q12" value="a" /><span>Message one only</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q12" value="b" /><span>Both messages</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q12" value="c" /><span>Message two only</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q13"
+                data-answer="a"
+                data-success="Correct. The first version is complete."
+                data-feedback="Look for the version with matching punctuation around Hello."
+              >
+                <legend>13. Which line is complete?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q13" value="a" /><span><code>console.log("Hello");</code></span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q13" value="b" /><span><code>console.log("Hello";</code></span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q13" value="c" /><span><code>console.log "Hello";</code></span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q14"
+                data-answer="b"
+                data-success="Correct. Error messages can help you find what needs attention."
+                data-feedback="Errors are information, not a reason to panic."
+              >
+                <legend>14. What should you do when the console shows an error message?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q14" value="a" /><span>Ignore it every time</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q14" value="b" /><span>Use it as information to help find the problem</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q14" value="c" /><span>Delete the whole lesson</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q15"
+                data-answer="c"
+                data-success="Correct. Moving a console line changes when its message appears."
+                data-feedback="The order of instructions controls the order of these messages."
+              >
+                <legend>15. What usually changes if you move <code>console.log("Three");</code> above <code>console.log("Two");</code>?</legend>
+                <ul class="quiz-answer-list">
+                  <li><label class="quiz-answer"><input type="radio" name="q15" value="a" /><span>The messages disappear from the console forever</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q15" value="b" /><span>The code becomes HTML</span></label></li>
+                  <li><label class="quiz-answer"><input type="radio" name="q15" value="c" /><span>Three appears before Two</span></label></li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>JavaScript</dt>
+                <dd>A programming language that gives instructions to execute.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Run</dt>
+                <dd>Execute the JavaScript currently in the editor.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Console</dt>
+                <dd>A place to see output, messages, and errors while developing.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Comment</dt>
+                <dd>A note for people reading code. JavaScript ignores it.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Output</dt>
+                <dd>Information the program sends somewhere, such as the console.</dd>
+              </div>
+            </dl>
+          </section>
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>The pattern</h2>
+            <ul class="memory-list">
+              <li>Read or change the JavaScript.</li>
+              <li>Press Run.</li>
+              <li>Watch the Console.</li>
+              <li>Use errors as clues.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

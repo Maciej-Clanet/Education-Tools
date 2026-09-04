@@ -91,6 +91,9 @@ const JAVASCRIPT_WORKER_SOURCE = `
   const originalFetch = typeof self.fetch === "function" ? self.fetch.bind(self) : null;
   const blockedNetworkMessage = "Network requests are not available in this exercise.";
   const pendingTasks = new Set();
+  const pendingPrompts = new Map();
+  const templateTick = String.fromCharCode(96);
+  let promptCounter = 0;
 
   function trackPromise(promise) {
     pendingTasks.add(promise);
@@ -125,6 +128,27 @@ const JAVASCRIPT_WORKER_SOURCE = `
     );
   }
 
+  function wrapFetchResponse(response) {
+    ["arrayBuffer", "blob", "formData", "json", "text"].forEach((methodName) => {
+      if (typeof response?.[methodName] !== "function") {
+        return;
+      }
+
+      const originalMethod = response[methodName].bind(response);
+
+      try {
+        Object.defineProperty(response, methodName, {
+          configurable: true,
+          value: (...args) => trackPromise(originalMethod(...args)),
+        });
+      } catch {
+        response[methodName] = (...args) => trackPromise(originalMethod(...args));
+      }
+    });
+
+    return response;
+  }
+
   function createFetch(policy) {
     const normalisedPolicy = normalisePolicy(policy);
 
@@ -147,8 +171,125 @@ const JAVASCRIPT_WORKER_SOURCE = `
       return trackPromise(originalFetch(input, {
         ...init,
         credentials: "omit",
-      }));
+      }).then(wrapFetchResponse));
     };
+  }
+
+  function isIdentifierCharacter(character) {
+    return /[A-Za-z0-9_$]/.test(character);
+  }
+
+  function previousWord(code, index) {
+    let cursor = index - 1;
+
+    while (cursor >= 0 && /\\s/.test(code[cursor])) {
+      cursor -= 1;
+    }
+
+    const end = cursor + 1;
+
+    while (cursor >= 0 && isIdentifierCharacter(code[cursor])) {
+      cursor -= 1;
+    }
+
+    return code.slice(cursor + 1, end);
+  }
+
+  function shouldTransformPrompt(code, index) {
+    if (code.slice(index, index + 6) !== "prompt") {
+      return false;
+    }
+
+    const before = code[index - 1] ?? "";
+
+    if (before === "." || isIdentifierCharacter(before)) {
+      return false;
+    }
+
+    let afterIndex = index + 6;
+
+    while (/\\s/.test(code[afterIndex] ?? "")) {
+      afterIndex += 1;
+    }
+
+    return code[afterIndex] === "(" && previousWord(code, index) !== "await";
+  }
+
+  function copyQuotedText(code, start, quote) {
+    let index = start + 1;
+
+    while (index < code.length) {
+      if (code[index] === "\\\\") {
+        index += 2;
+      } else if (code[index] === quote) {
+        index += 1;
+        break;
+      } else {
+        index += 1;
+      }
+    }
+
+    return code.slice(start, index);
+  }
+
+  function copyLineComment(code, start) {
+    const end = code.indexOf("\\n", start + 2);
+
+    return code.slice(start, end === -1 ? code.length : end);
+  }
+
+  function copyBlockComment(code, start) {
+    const end = code.indexOf("*/", start + 2);
+
+    return code.slice(start, end === -1 ? code.length : end + 2);
+  }
+
+  function transformPromptCalls(code) {
+    let output = "";
+    let index = 0;
+
+    while (index < code.length) {
+      const current = code[index];
+      const next = code[index + 1] ?? "";
+
+      if (current === '"' || current === "'" || current === templateTick) {
+        const copied = copyQuotedText(code, index, current);
+        output += copied;
+        index += copied.length;
+      } else if (current === "/" && next === "/") {
+        const copied = copyLineComment(code, index);
+        output += copied;
+        index += copied.length;
+      } else if (current === "/" && next === "*") {
+        const copied = copyBlockComment(code, index);
+        output += copied;
+        index += copied.length;
+      } else if (shouldTransformPrompt(code, index)) {
+        output += "await prompt";
+        index += 6;
+      } else {
+        output += current;
+        index += 1;
+      }
+    }
+
+    return output;
+  }
+
+  function requestPrompt(message = "", defaultValue = "") {
+    const id = "prompt-" + String((promptCounter += 1));
+    const promptPromise = new Promise((resolve) => {
+      pendingPrompts.set(id, resolve);
+    });
+
+    self.postMessage({
+      type: "prompt",
+      id,
+      message: String(message ?? ""),
+      defaultValue: defaultValue == null ? "" : String(defaultValue),
+    });
+
+    return trackPromise(promptPromise);
   }
 
   async function settleTrackedTasks() {
@@ -220,7 +361,7 @@ const JAVASCRIPT_WORKER_SOURCE = `
       return "";
     }
 
-    return "line " + match[1];
+    return "line " + Math.max(1, Number(match[1]) - 1);
   }
 
   function formatError(error) {
@@ -241,6 +382,7 @@ const JAVASCRIPT_WORKER_SOURCE = `
 
   function configureRuntime(policy) {
     self.fetch = createFetch(policy);
+    self.prompt = requestPrompt;
     self.XMLHttpRequest = undefined;
     self.WebSocket = undefined;
     self.EventSource = undefined;
@@ -252,6 +394,7 @@ const JAVASCRIPT_WORKER_SOURCE = `
       info: (...values) => postConsole("log", values),
       warn: (...values) => postConsole("warn", values),
       error: (...values) => postConsole("error", values),
+      clear: () => self.postMessage({ type: "clear" }),
     };
   }
 
@@ -275,10 +418,25 @@ const JAVASCRIPT_WORKER_SOURCE = `
 
   self.onmessage = async (event) => {
     const payload = event.data ?? {};
+
+    if (payload.type === "prompt-result") {
+      const resolve = pendingPrompts.get(payload.id);
+
+      if (resolve) {
+        pendingPrompts.delete(payload.id);
+        resolve(payload.value === null ? null : String(payload.value ?? ""));
+      }
+
+      return;
+    }
+
     configureRuntime(payload.policy);
 
     try {
-      const result = (0, eval)(String(payload.code ?? "") + "\\n//# sourceURL=learner-code.js");
+      const transformedCode = transformPromptCalls(String(payload.code ?? ""));
+      const result = (0, eval)(
+        "(async () => {\\n" + transformedCode + "\\n})()\\n//# sourceURL=learner-code.js"
+      );
 
       if (result && typeof result.then === "function") {
         await result;
@@ -765,7 +923,7 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
   const alwaysEditing = Boolean(options.alwaysEditing ?? isPlayground)
   const showTaskChrome = options.showTaskChrome !== false
   const showOpenInPlayground =
-    mode === "html-css" && !isPlayground && options.showOpenInPlayground !== false
+    !isPlayground && options.showOpenInPlayground !== false
   const showResetCode = options.showResetCodeButton ?? !isPlayground
   const showResetViewInMenu = options.showResetViewInMenu ?? !isPlayground
   const resultLabel = getResultPaneLabel(mode)
@@ -781,6 +939,7 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
     runTimer: null,
     running: false,
     consoleEntries: [],
+    promptRequest: null,
   }
 
   const task = createElement("section", "live-code-task")
@@ -843,9 +1002,26 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
   const separator = createElement("div", "live-code__separator")
   const resultPane = createElement("section", "live-code__result-pane")
   const resultHeading = createElement("div", "live-code__result-heading")
+  const resultTitleGroup = createElement("div", "live-code__result-title-group")
   const resultTitle = createElement("strong", "", resultLabel)
+  const clearConsoleButton = createElement(
+    "button",
+    "live-code__console-clear",
+    "🧹"
+  )
   const resultStatus = createElement("span", "live-code__result-status")
   const iframe = document.createElement("iframe")
+  const promptPanel = createElement("form", "live-code__prompt-panel")
+  const promptLabel = createElement("label", "live-code__prompt-label")
+  const promptMessage = createElement("span", "live-code__prompt-message")
+  const promptInput = createElement("input", "live-code__prompt-input")
+  const promptActions = createElement("div", "live-code__prompt-actions")
+  const promptSubmitButton = createElement("button", "live-code__prompt-submit", "OK")
+  const promptCancelButton = createElement(
+    "button",
+    "live-code__prompt-cancel",
+    "Cancel"
+  )
   const consoleOutput = createElement("div", "live-code__console-output")
   const announcer = createElement("p", "sr-only")
   let instructionsTouched = false
@@ -934,6 +1110,42 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
     options.onChange?.(api)
   }
 
+  function startRunTimer() {
+    if (state.runTimer) {
+      window.clearTimeout(state.runTimer)
+    }
+
+    state.runTimer = window.setTimeout(() => {
+      terminateWorker(
+        "Execution was stopped because the program ran for too long. Check whether a loop can ever finish."
+      )
+      resultStatus.textContent = "Stopped"
+    }, execution.timeoutMs)
+  }
+
+  function hidePrompt() {
+    state.promptRequest = null
+    promptPanel.hidden = true
+    promptInput.value = ""
+  }
+
+  function sendPromptResult(value) {
+    if (!state.worker || !state.promptRequest) {
+      hidePrompt()
+      return
+    }
+
+    state.worker.postMessage({
+      type: "prompt-result",
+      id: state.promptRequest.id,
+      value,
+    })
+    hidePrompt()
+    resultStatus.textContent = "Running..."
+    startRunTimer()
+    editor.focus()
+  }
+
   function terminateWorker(message = "") {
     if (state.worker) {
       state.worker.terminate()
@@ -946,6 +1158,7 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
     }
 
     state.running = false
+    hidePrompt()
     updateRunControls()
 
     if (message) {
@@ -965,6 +1178,34 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
     }
 
     renderConsole()
+  }
+
+  function clearConsole(status = "Console cleared") {
+    state.consoleEntries = []
+    renderConsole()
+    resultStatus.textContent = status
+    announce(status)
+  }
+
+  function showPrompt(request) {
+    state.promptRequest = {
+      id: request.id,
+      message: request.message ?? "",
+    }
+
+    if (state.runTimer) {
+      window.clearTimeout(state.runTimer)
+      state.runTimer = null
+    }
+
+    promptMessage.textContent =
+      state.promptRequest.message || "Enter a value for prompt()."
+    promptInput.value = request.defaultValue ?? ""
+    promptPanel.hidden = false
+    resultStatus.textContent = "Waiting for input..."
+    announce("Your code is waiting for input.")
+    promptInput.focus()
+    promptInput.select()
   }
 
   function renderConsole() {
@@ -1043,12 +1284,7 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
 
     const worker = new Worker(getJavaScriptWorkerUrl())
     state.worker = worker
-    state.runTimer = window.setTimeout(() => {
-      terminateWorker(
-        "Execution was stopped because the program ran for too long. Check whether a loop can ever finish."
-      )
-      resultStatus.textContent = "Stopped"
-    }, execution.timeoutMs)
+    startRunTimer()
 
     worker.addEventListener("message", (event) => {
       if (worker !== state.worker) {
@@ -1059,6 +1295,16 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
 
       if (message.type === "console") {
         addConsoleEntry(message.severity ?? "log", message.text ?? "")
+        return
+      }
+
+      if (message.type === "clear") {
+        clearConsole()
+        return
+      }
+
+      if (message.type === "prompt") {
+        showPrompt(message)
         return
       }
 
@@ -1311,15 +1557,13 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
     writeSessionStorage(storageKey, payload)
     writeStorage(storageKey, payload)
     url.searchParams.set("handoff", handoffId)
-    const opened = window.open(url.href, "_blank", "noopener")
+    window.open(url.href, "_blank", "noopener")
 
     window.setTimeout(() => {
       removeStorage(storageKey)
     }, 60000)
 
-    if (!opened) {
-      window.location.href = url.href
-    }
+    announce("Opened Playground in a new tab.")
   }
 
   const api = {
@@ -1481,14 +1725,35 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
 
   resultStatus.textContent =
     mode === "javascript" ? "Ready" : "Updates automatically"
-  resultHeading.append(resultTitle, resultStatus)
+  resultTitleGroup.append(resultTitle)
+
+  if (mode === "javascript") {
+    clearConsoleButton.type = "button"
+    clearConsoleButton.setAttribute("aria-label", "Clear console")
+    clearConsoleButton.setAttribute("title", "Clear console")
+    resultTitleGroup.append(clearConsoleButton)
+  }
+
+  resultHeading.append(resultTitleGroup, resultStatus)
   resultPane.append(resultHeading)
 
   if (mode === "javascript") {
+    promptPanel.hidden = true
+    promptInput.id = `${componentId}-prompt-input`
+    promptInput.type = "text"
+    promptInput.autocomplete = "off"
+    promptInput.spellcheck = false
+    promptLabel.htmlFor = promptInput.id
+    promptLabel.append(promptMessage, promptInput)
+    promptSubmitButton.type = "submit"
+    promptCancelButton.type = "button"
+    promptActions.append(promptSubmitButton, promptCancelButton)
+    promptPanel.append(promptLabel, promptActions)
     consoleOutput.setAttribute("role", "log")
     consoleOutput.setAttribute("aria-live", "polite")
     consoleOutput.setAttribute("aria-relevant", "additions text")
     consoleOutput.setAttribute("aria-label", "Console output")
+    resultPane.append(promptPanel)
     resultPane.append(consoleOutput)
   } else {
     iframe.className = "live-code__iframe"
@@ -1639,9 +1904,21 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
     terminateWorker("Execution stopped.")
     resultStatus.textContent = "Stopped"
   })
+  clearConsoleButton.addEventListener("click", () => {
+    clearConsole()
+  })
   resetCodeButton.addEventListener("click", resetCode)
   openPlaygroundButton.addEventListener("click", openInPlayground)
   fullscreenButton.addEventListener("click", toggleFullscreen)
+
+  promptPanel.addEventListener("submit", (event) => {
+    event.preventDefault()
+    sendPromptResult(promptInput.value)
+  })
+
+  promptCancelButton.addEventListener("click", () => {
+    sendPromptResult(null)
+  })
 
   editor.addEventListener("input", () => {
     getActiveSource().currentCode = editor.value
