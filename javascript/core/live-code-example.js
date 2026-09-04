@@ -1135,6 +1135,77 @@ function toggleEditorComment(textarea, type) {
   }
 }
 
+function getLineIndexAtPosition(lineStarts, position) {
+  let index = 0
+
+  lineStarts.forEach((start, candidateIndex) => {
+    if (start <= position) {
+      index = candidateIndex
+    }
+  })
+
+  return index
+}
+
+function getLineStarts(value) {
+  const starts = [0]
+
+  for (let index = 0; index < value.length; index += 1) {
+    if (value[index] === "\n") {
+      starts.push(index + 1)
+    }
+  }
+
+  return starts
+}
+
+function moveSelectedLines(textarea, direction) {
+  const value = textarea.value
+  const start = textarea.selectionStart
+  const end = textarea.selectionEnd
+  const lineStarts = getLineStarts(value)
+  const adjustedEnd =
+    end > start && value[end - 1] === "\n"
+      ? Math.max(start, end - 1)
+      : end
+  const startLine = getLineIndexAtPosition(lineStarts, start)
+  const endLine = getLineIndexAtPosition(lineStarts, adjustedEnd)
+  const lines = value.split("\n")
+
+  if (direction === "up") {
+    if (startLine === 0) {
+      return false
+    }
+
+    const previousLine = lines[startLine - 1]
+    const selectedLines = lines.slice(startLine, endLine + 1)
+    const shift = previousLine.length + 1
+
+    lines.splice(
+      startLine - 1,
+      selectedLines.length + 1,
+      ...selectedLines,
+      previousLine
+    )
+    textarea.value = lines.join("\n")
+    textarea.setSelectionRange(start - shift, end - shift)
+    return true
+  }
+
+  if (endLine >= lines.length - 1) {
+    return false
+  }
+
+  const nextLine = lines[endLine + 1]
+  const selectedLines = lines.slice(startLine, endLine + 1)
+  const shift = nextLine.length + 1
+
+  lines.splice(startLine, selectedLines.length + 1, nextLine, ...selectedLines)
+  textarea.value = lines.join("\n")
+  textarea.setSelectionRange(start + shift, end + shift)
+  return true
+}
+
 function createInstructionDisclosure(example, open, options = {}) {
   const hasTitle = Boolean(options.title)
   const details = createElement(
@@ -2202,22 +2273,36 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
   editor.addEventListener("keydown", (event) => {
     const toggleCommentShortcut =
       event.key === "/" && (event.ctrlKey || event.metaKey) && !event.altKey
+    const moveLineDirection =
+      event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey
+        ? event.key === "ArrowUp"
+          ? "up"
+          : event.key === "ArrowDown"
+            ? "down"
+            : ""
+        : ""
 
-    if (!toggleCommentShortcut && event.key !== "Tab") {
+    if (!toggleCommentShortcut && !moveLineDirection && event.key !== "Tab") {
       return
     }
 
     event.preventDefault()
 
+    let shouldNotify = true
+
     if (toggleCommentShortcut) {
       toggleEditorComment(editor, getActiveSource().type)
+    } else if (moveLineDirection) {
+      shouldNotify = moveSelectedLines(editor, moveLineDirection)
     } else if (event.shiftKey) {
       removeIndentation(editor)
     } else {
       insertIndentation(editor)
     }
 
-    editor.dispatchEvent(new Event("input", { bubbles: true }))
+    if (shouldNotify) {
+      editor.dispatchEvent(new Event("input", { bubbles: true }))
+    }
   })
 
   zoomDown.addEventListener("click", () => {
