@@ -1,0 +1,1291 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Working with Strings | Education Tools</title>
+    <meta
+      name="description"
+      content="A beginner JavaScript lesson on concatenation, spaces, backticks, template literals, interpolation, and dynamic messages."
+    />
+    <meta
+      property="og:title"
+      content="Working with Strings | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Join JavaScript strings with plus, insert values with template literals, and practise building readable dynamic messages."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/live-code-example.css?v=20260904-9"
+    />
+    <link rel="stylesheet" href="../../css/pages/working-with-strings.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/working-with-strings.js?v=20260904-1"
+    ></script>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">JavaScript Basics · Lesson 3</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../resources/web-development.html#javascript-basics"
+                data-role="breadcrumb-unit-link"
+                >Web Development</a
+              >
+            </li>
+            <li aria-current="page">Working with strings</li>
+          </ol>
+        </nav>
+        <div class="lesson-header-row">
+          <div>
+            <h1>Working with strings</h1>
+            <p class="lesson-hero-text">
+              Join pieces of text and insert stored values into clear, readable
+              messages.
+            </p>
+            <p class="lesson-hero-support">
+              In the current lesson context, this sits inside
+              <span data-role="context-label">Web Development</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Resource area</strong><span>JavaScript basics</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong
+            ><span>Concatenation and template literals</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Practice</strong
+            ><span>14 editable JavaScript activities</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Quiz</strong><span>15 understanding questions</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../resources/web-development.html#javascript-basics"
+            >Back to Web Development resources</a
+          >
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          The lesson notes and displayed code still work without JavaScript, but
+          Live Code editing, the saved quiz, and teacher slides need JavaScript.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a href="#debug-recap" data-section-link>Debug recap</a>
+            <a href="#strings-recap" data-section-link>Strings recap</a>
+            <a href="#concatenation" data-section-link>Joining with +</a>
+            <a href="#spaces" data-section-link>Adding spaces</a>
+            <a href="#long-message" data-section-link>Longer messages</a>
+            <a href="#backticks" data-section-link>Finding backticks</a>
+            <a href="#template-literals" data-section-link>Template literals</a>
+            <a href="#compare" data-section-link>Compare approaches</a>
+            <a href="#quotes-vs-backticks" data-section-link
+              >Quotes vs backticks</a
+            >
+            <a href="#live-practice" data-section-link>Live practice</a>
+            <a href="#independent-debugging" data-section-link
+              >Independent debugging</a
+            >
+            <a href="#final-practice" data-section-link>Final practice</a>
+            <a href="#summary" data-section-link>Summary</a>
+            <a href="#quiz" data-section-link>Quick quiz</a>
+          </nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+          <section
+            id="debug-recap"
+            class="lesson-section lesson-section--recap panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Independent Debug Recap</p>
+            <h2>Read the code, run it, and decide what to repair</h2>
+            <p class="lesson-section-copy">
+              These two programs use ideas from Variables and Data Types. Try
+              each repair before opening its solution.
+            </p>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="recap-name-typo-live"
+            ></div>
+            <details class="solution-reveal lesson-fullrow">
+              <summary>Show solution for debug recap 1</summary>
+              <pre><code>const name = prompt("What is your name?");
+
+console.log(name);</code></pre>
+              <p>
+                The variable was declared as <code>name</code>, so the output
+                line must use the same spelling.
+              </p>
+            </details>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="recap-changing-value-live"
+            ></div>
+            <details class="solution-reveal lesson-fullrow">
+              <summary>Show solution for debug recap 2</summary>
+              <pre><code>let score = 0;
+
+score = 10;
+
+console.log(score);</code></pre>
+              <p>
+                The requirement says the score needs reassignment, so
+                <code>let</code> fits.
+              </p>
+            </details>
+          </section>
+
+          <section
+            id="strings-recap"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Strings Recap</p>
+            <h2>Strings are text values</h2>
+            <pre class="feature-code"><code>const firstName = "Alex";
+const surname = "Smith";</code></pre>
+            <div class="question-hook lesson-fullrow">
+              <strong>New problem</strong>
+              <p>
+                What if we want to combine several pieces of text into one
+                message?
+              </p>
+            </div>
+          </section>
+
+          <section
+            id="concatenation"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Joining Text</p>
+            <h2>The <code>+</code> symbol can join strings together</h2>
+            <pre class="feature-code"><code>const name = "Alex";
+
+console.log("Hello " + name);</code></pre>
+            <div
+              class="join-visual lesson-fullrow"
+              aria-label="The string Hello joins with the value of name"
+            >
+              <code>"Hello "</code><span aria-hidden="true">+</span
+              ><code>name</code><span aria-hidden="true">&rarr;</span
+              ><strong>Hello Alex</strong>
+            </div>
+            <div class="definition-card lesson-fullrow">
+              <span>Concatenation</span>
+              <p>Joining strings together.</p>
+            </div>
+            <p class="future-note">
+              The <code>+</code> symbol can also be used for calculations. We
+              will cover that properly in the next lesson.
+            </p>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="join-with-plus-live"
+            ></div>
+          </section>
+
+          <section id="spaces" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Exact Joining</p>
+            <h2>JavaScript does not automatically add a space</h2>
+            <div class="output-comparison lesson-fullrow">
+              <article>
+                <span>Code</span>
+                <pre><code>firstName + surname</code></pre>
+              </article>
+              <article class="console-card">
+                <span>Output</span>
+                <strong>AlexSmith</strong>
+                <p>What is missing?</p>
+              </article>
+            </div>
+            <p class="lesson-section-copy">
+              JavaScript joins exactly what we tell it to join.
+            </p>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="missing-space-live"
+            ></div>
+            <div data-slide-break></div>
+            <h3>Add a one-character string containing a space</h3>
+            <div
+              class="token-breakdown lesson-fullrow"
+              aria-label="firstName plus a one-space string plus surname"
+            >
+              <code>firstName</code><span>+</span
+              ><code class="space-token">" "</code><span>+</span
+              ><code>surname</code>
+            </div>
+            <p class="memory-callout">
+              <code>" "</code> may look blank, but it is a string containing one
+              space character.
+            </p>
+          </section>
+
+          <section
+            id="long-message"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">A Longer Greeting</p>
+            <h2>Concatenation still works when input changes the values</h2>
+            <pre
+              class="feature-code feature-code--wrap"
+            ><code>const firstName = prompt("What is your first name?");
+const surname = prompt("What is your surname?");
+
+console.log(
+  "Hello " + firstName + " " + surname + ", welcome to the website!"
+);</code></pre>
+            <div class="punctuation-focus lesson-fullrow">
+              <code>"Hello "</code><b>+</b><code>firstName</code><b>+</b
+              ><code>" "</code><b>+</b><code>surname</code><b>+</b
+              ><code>", welcome..."</code>
+            </div>
+            <p class="memory-callout">
+              This works. With several values, however, all the quotation marks
+              and <code>+</code> symbols can make the code harder to read.
+            </p>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="long-concatenation-live"
+            ></div>
+          </section>
+
+          <section
+            id="backticks"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">A Different Character</p>
+            <h2>A backtick is not an ordinary quotation mark</h2>
+            <div class="delimiter-grid lesson-fullrow">
+              <article><span>Double quote</span><code>"</code></article>
+              <article>
+                <span>Single quote / apostrophe</span><code>'</code>
+              </article>
+              <article class="delimiter-grid__backtick">
+                <span>Backtick</span><code>`</code>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <h3>Usually found here on a UK keyboard</h3>
+            <div class="keyboard-wrap lesson-fullrow">
+              <div
+                class="keyboard-visual"
+                role="img"
+                aria-label="A simplified UK keyboard showing the backtick key immediately to the left of 1 and below Esc"
+              >
+                <div class="keyboard-row">
+                  <kbd class="key key--esc">Esc</kbd>
+                </div>
+                <div class="keyboard-row">
+                  <kbd class="key key--target"
+                    ><span>¬</span><strong>`</strong></kbd
+                  >
+                  <kbd class="key"><strong>1</strong><span>!</span></kbd>
+                  <kbd class="key"><strong>2</strong><span>"</span></kbd>
+                  <kbd class="key"><strong>3</strong><span>£</span></kbd>
+                </div>
+              </div>
+              <p>
+                On many UK keyboards, the backtick key is immediately to the
+                left of <kbd>1</kbd>, below or near <kbd>Esc</kbd>, and often
+                shares a key with <code>¬</code>. Keyboard layouts vary.
+              </p>
+            </div>
+          </section>
+
+          <section
+            id="template-literals"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Template Literals</p>
+            <h2>Text surrounded by backticks is a template literal</h2>
+            <pre class="feature-code"><code>`Hello`</code></pre>
+            <p class="lesson-section-copy">
+              A template literal can include ordinary text and places where
+              JavaScript inserts values.
+            </p>
+            <div data-slide-break></div>
+            <div
+              class="template-anatomy lesson-fullrow"
+              aria-label="Annotated template literal Hello name"
+            >
+              <div class="template-line">
+                <span class="backtick-mark">`</span><span>Hello </span
+                ><span class="insertion-mark">${name}</span><span>!</span
+                ><span class="backtick-mark">`</span>
+              </div>
+              <div class="anatomy-labels">
+                <p>
+                  <strong>Backticks</strong> surround the complete template
+                  literal.
+                </p>
+                <p>
+                  <strong><code>${name}</code></strong> means: insert the value
+                  of <code>name</code> here.
+                </p>
+              </div>
+            </div>
+            <p class="memory-callout">
+              <code>${...}</code> lets JavaScript insert a value or expression
+              into a template literal. We will keep the contents simple in this
+              lesson.
+            </p>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="template-literal-live"
+            ></div>
+          </section>
+
+          <section
+            id="compare"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Same Result, Two Approaches</p>
+            <h2>Both can work; one is often easier to read</h2>
+            <div class="approach-grid lesson-fullrow">
+              <article>
+                <span>Concatenation with +</span>
+                <pre><code>"Hello " + firstName + " " + surname +
+", welcome to the website!"</code></pre>
+                <p>Useful for simple joining.</p>
+              </article>
+              <article class="approach-grid__template">
+                <span>Template literal</span>
+                <pre><code>`Hello ${firstName} ${surname},
+welcome to the website!`</code></pre>
+                <p>Often clearer when several values are inserted.</p>
+              </article>
+            </div>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="multiple-values-live"
+            ></div>
+          </section>
+
+          <section
+            id="quotes-vs-backticks"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Common Mistake</p>
+            <h2>Ordinary quotation marks do not insert <code>${...}</code></h2>
+            <div class="quote-bug-grid lesson-fullrow">
+              <article class="quote-bug-grid__wrong">
+                <span>Ordinary quotes</span>
+                <pre><code>"Hello ${name}"</code></pre>
+                <strong>Output: Hello ${name}</strong>
+              </article>
+              <article class="quote-bug-grid__right">
+                <span>Backticks</span>
+                <pre><code>`Hello ${name}`</code></pre>
+                <strong>Output: Hello Alex</strong>
+              </article>
+            </div>
+            <p class="memory-callout">
+              <code>${...}</code> interpolation only works inside a template
+              literal that uses backticks.
+            </p>
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="ordinary-quotes-live"
+            ></div>
+          </section>
+
+          <section
+            id="live-practice"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Live Playground</p>
+            <h2>Experiment with three pieces of user input</h2>
+            <p class="lesson-section-copy">
+              Open the instructions and explore how the message changes when you
+              move text and insertions.
+            </p>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="message-experiment-live"
+            ></div>
+          </section>
+
+          <section
+            id="independent-debugging"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Independent Debugging</p>
+            <h2>Repair four string-building mistakes</h2>
+            <p class="lesson-section-copy">
+              Run each broken program, inspect its output or error, and make
+              your own repair before revealing the solution.
+            </p>
+
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="debug-ordinary-quotes-live"
+            ></div>
+            <details class="solution-reveal lesson-fullrow">
+              <summary>Show solution for debug 1</summary>
+              <pre><code>const name = "Alex";
+
+console.log(`Hello ${name}`);</code></pre>
+              <p>Interpolation needs backticks around the template literal.</p>
+            </details>
+
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="debug-missing-braces-live"
+            ></div>
+            <details class="solution-reveal lesson-fullrow">
+              <summary>Show solution for debug 2</summary>
+              <pre><code>const name = "Alex";
+
+console.log(`Hello ${name}`);</code></pre>
+              <p>
+                The value to insert belongs between the braces in
+                <code>${name}</code>.
+              </p>
+            </details>
+
+            <div data-slide-break></div>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="debug-mismatched-delimiters-live"
+            ></div>
+            <details class="solution-reveal lesson-fullrow">
+              <summary>Show solution for debug 3</summary>
+              <pre><code>const name = "Alex";
+
+console.log(`Hello ${name}`);</code></pre>
+              <p>
+                The template literal begins and ends with the same delimiter: a
+                backtick.
+              </p>
+            </details>
+
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="debug-concatenation-space-live"
+            ></div>
+            <details class="solution-reveal lesson-fullrow">
+              <summary>Show solution for debug 4</summary>
+              <pre><code>const firstName = "Alex";
+const surname = "Smith";
+
+console.log(firstName + " " + surname);</code></pre>
+              <p>
+                The <code>" "</code> string inserts the required space while
+                keeping the solution as concatenation.
+              </p>
+            </details>
+          </section>
+
+          <section
+            id="final-practice"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Final Practice</p>
+            <h2>Build one complete profile message</h2>
+            <p class="lesson-section-copy">
+              Use prompts, const variables, a template literal, three
+              insertions, and console output.
+            </p>
+            <div
+              class="lesson-fullrow"
+              data-live-code-example-id="profile-message-live"
+            ></div>
+            <div data-slide-break></div>
+            <article class="exam-card lesson-fullrow">
+              <p class="eyebrow">Explain · 3 marks</p>
+              <h3>
+                Why might a template literal be clearer than concatenation for a
+                long profile message?
+              </h3>
+              <div class="exam-response-wrap">
+                <label
+                  class="exam-response-label"
+                  for="string-choice-explanation"
+                  >Write your answer</label
+                >
+                <textarea
+                  id="string-choice-explanation"
+                  class="exam-response"
+                  rows="4"
+                  data-exam-response="string-choice-explanation"
+                  placeholder="Compare the punctuation needed and explain how values are inserted."
+                ></textarea>
+              </div>
+              <details class="exam-guidance">
+                <summary>Show answer guidance</summary>
+                <div class="exam-guidance-body">
+                  <p>
+                    A strong answer explains that concatenation can need many
+                    quotation marks and <code>+</code> symbols. A template
+                    literal keeps the message together and marks each inserted
+                    value with <code>${...}</code>, which can make a longer
+                    message easier to read. Both approaches can work.
+                  </p>
+                </div>
+              </details>
+            </article>
+          </section>
+
+          <section
+            id="summary"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Summary</p>
+            <h2>Join text, include spaces, and insert values clearly</h2>
+            <div class="summary-memory lesson-fullrow">
+              <article>
+                <span>String</span><code>"Hello"</code>
+                <p>A text value.</p>
+              </article>
+              <article>
+                <span>Concatenation</span><code>"Hello " + name</code>
+                <p>Joining strings together.</p>
+              </article>
+              <article>
+                <span>Space</span><code>firstName + " " + surname</code>
+                <p>JavaScript does not add it automatically.</p>
+              </article>
+              <article>
+                <span>Template literal</span><code>`Hello`</code>
+                <p>Uses backticks.</p>
+              </article>
+              <article>
+                <span>Insert a value</span><code>${name}</code>
+                <p>Places a value or expression inside a template literal.</p>
+              </article>
+              <article>
+                <span>Working example</span><code>`Hello ${name}!`</code>
+              </article>
+            </div>
+            <div class="final-contrast lesson-fullrow">
+              <p>
+                <code>"Hello ${name}"</code
+                ><strong>does not insert the value</strong>
+              </p>
+              <p>
+                <code>`Hello ${name}`</code
+                ><strong>does insert the value</strong>
+              </p>
+            </div>
+          </section>
+
+          <section
+            id="quiz"
+            class="lesson-section quiz-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">Quiz</p>
+            <h2>Check your understanding</h2>
+            <p class="quiz-intro">
+              Answer all fifteen questions, then check your score. Your choices
+              and best score save in this browser.
+            </p>
+            <form id="lesson-quiz" class="quiz-form">
+              <fieldset
+                class="quiz-question"
+                data-question="q1"
+                data-answer="b"
+                data-success="Correct. Concatenation means joining strings together."
+                data-feedback="Think about what happens to separate pieces of text."
+              >
+                <legend>1. What does concatenation mean?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="a" /><span
+                        >Deleting a string</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="b" /><span
+                        >Joining strings together</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="c" /><span
+                        >Changing text into a boolean</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q2"
+                data-answer="a"
+                data-success="Correct. The string Hello, including its space, joins with Alex."
+                data-feedback="Join the two pieces exactly as written."
+              >
+                <legend>
+                  2. If <code>name</code> stores <code>"Alex"</code>, what does
+                  <code>"Hello " + name</code> produce?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="a" /><span
+                        >Hello Alex</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="b" /><span
+                        >HelloAlex</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="c" /><span
+                        >name</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q3"
+                data-answer="c"
+                data-success="Correct. JavaScript does not insert spaces automatically."
+                data-feedback="JavaScript joins exactly what the code supplies."
+              >
+                <legend>
+                  3. Why does <code>firstName + surname</code> produce
+                  <code>AlexSmith</code>?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="a" /><span
+                        >Variables cannot store spaces</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="b" /><span
+                        >The console removes all spaces</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="c" /><span
+                        >No space string was included</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q4"
+                data-answer="b"
+                data-success="Correct. The middle string contains one literal space."
+                data-feedback="Look for a quoted blank between the two values."
+              >
+                <legend>
+                  4. Which expression produces <code>Alex Smith</code>?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="a" /><span
+                        ><code>firstName + surname</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="b" /><span
+                        ><code>firstName + " " + surname</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="c" /><span
+                        ><code>"firstName surname"</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q5"
+                data-answer="c"
+                data-success="Correct. The third character is a backtick."
+                data-feedback="It is different from both kinds of ordinary quote."
+              >
+                <legend>5. Which character is a backtick?</legend>
+                <ul class="quiz-answer-list delimiter-answers">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="a" /><span
+                        ><code>"</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="b" /><span
+                        ><code>'</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="c" /><span
+                        ><code>`</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q6"
+                data-answer="a"
+                data-success="Correct. A template literal is surrounded by backticks."
+                data-feedback="Check the character at both ends."
+              >
+                <legend>6. Which example is a template literal?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="a" /><span
+                        ><code>`Hello`</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="b" /><span
+                        ><code>"Hello"</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="c" /><span
+                        ><code>'Hello'</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q7"
+                data-answer="b"
+                data-success="Correct. ${...} marks a value or expression to insert."
+                data-feedback="Think about the insertion marker inside the template literal."
+              >
+                <legend>
+                  7. What is the purpose of <code>${...}</code> inside a
+                  template literal?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="a" /><span
+                        >To create a comment</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="b" /><span
+                        >To insert a value or expression</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="c" /><span
+                        >To clear the console</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="c"
+                data-success="Correct. Backticks surround the message and ${name} marks the insertion."
+                data-feedback="Interpolation needs both backticks and braces."
+              >
+                <legend>
+                  8. Which line correctly inserts the value of
+                  <code>name</code>?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="a" /><span
+                        ><code>console.log("Hello ${name}");</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="b" /><span
+                        ><code>console.log(`Hello $name`);</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="c" /><span
+                        ><code>console.log(`Hello ${name}`);</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q9"
+                data-answer="a"
+                data-success="Correct. Ordinary quotes make ${name} literal text."
+                data-feedback="Only a template literal performs this interpolation."
+              >
+                <legend>
+                  9. If <code>name</code> stores Alex, what does
+                  <code>"Hello ${name}"</code> produce?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="a" /><span
+                        >Hello ${name}</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="b" /><span
+                        >Hello Alex</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="c" /><span
+                        >Alex only</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q10"
+                data-answer="b"
+                data-success="Correct. Both approaches are valid for joining strings."
+                data-feedback="The lesson compares readability, not right against wrong."
+              >
+                <legend>
+                  10. Which statement best compares concatenation and template
+                  literals?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="a" /><span
+                        >Concatenation is always wrong</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="b" /><span
+                        >Both can work; template literals are often clearer with
+                        several inserted values</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="c" /><span
+                        >Template literals cannot contain variables</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q11"
+                data-answer="c"
+                data-success="Correct. The template literal keeps the longer message together."
+                data-feedback="Choose the version with fewer joining symbols and quoted fragments."
+              >
+                <legend>
+                  11. Which is usually more readable for a long message
+                  containing three values?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="a" /><span
+                        >Three separate comments</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="b" /><span
+                        >Many unrelated console commands</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="c" /><span
+                        >One template literal with clearly marked
+                        insertions</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q12"
+                data-answer="a"
+                data-success="Correct. The stored name is inserted between Hello and the exclamation mark."
+                data-feedback="Replace ${name} with its stored value."
+              >
+                <legend>
+                  12. If <code>name</code> stores Sam, what does
+                  <code>`Hello ${name}!`</code> produce?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="a" /><span
+                        >Hello Sam!</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="b" /><span
+                        >Hello name!</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="c" /><span
+                        >${Sam}</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q13"
+                data-answer="b"
+                data-success="Correct. The braces complete ${name}."
+                data-feedback="The dollar sign should be followed by braces around the value to insert."
+              >
+                <legend>
+                  13. How should <code>`Hello $name`</code> be repaired?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q13" value="a" /><span
+                        ><code>`Hello name`</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q13" value="b" /><span
+                        ><code>`Hello ${name}`</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q13" value="c" /><span
+                        ><code>"Hello ${name}"</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q14"
+                data-answer="c"
+                data-success="Correct. The same backtick delimiter must appear at both ends."
+                data-feedback="Match the character that starts the template literal."
+              >
+                <legend>
+                  14. Which line fixes the mismatched delimiters in
+                  <code>console.log(`Hello ${name}");</code>?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q14" value="a" /><span
+                        ><code>console.log("Hello ${name}");</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q14" value="b" /><span
+                        ><code>console.log('Hello ${name}');</code></span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q14" value="c" /><span
+                        ><code>console.log(`Hello ${name}`);</code></span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <fieldset
+                class="quiz-question"
+                data-question="q15"
+                data-answer="a"
+                data-success="Correct. Prompt results can be stored and inserted into one template literal."
+                data-feedback="Use const for the stored text and one clear template literal for output."
+              >
+                <legend>
+                  15. Which approach best builds a profile message from three
+                  prompt answers?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q15" value="a" /><span
+                        >Store each answer in a const and insert all three into
+                        one template literal</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q15" value="b" /><span
+                        >Put the variable names inside ordinary quotation
+                        marks</span
+                      ></label
+                    >
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q15" value="c" /><span
+                        >Use only console.clear()</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button class="primary-link" type="submit">Check score</button>
+                <button
+                  class="lesson-secondary-action"
+                  type="button"
+                  data-action="reset-quiz"
+                >
+                  Reset quiz
+                </button>
+              </div>
+              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
+                Your answers save automatically on this device once you start.
+              </p>
+            </form>
+          </section>
+        </main>
+
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Glossary</p>
+            <h2>Quick glossary</h2>
+            <dl class="glossary-list">
+              <div class="glossary-item">
+                <dt>String</dt>
+                <dd>A text value.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Concatenation</dt>
+                <dd>Joining strings together.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Backtick</dt>
+                <dd>
+                  The <code>`</code> character used around a template literal.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Template literal</dt>
+                <dd>
+                  Text surrounded by backticks that can include inserted values.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Interpolation</dt>
+                <dd>
+                  Inserting a value or expression into a template literal with
+                  <code>${...}</code>.
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="lesson-rail-card panel revision-card">
+            <p class="eyebrow">Remember</p>
+            <h2>The readable pattern</h2>
+            <ul class="memory-list">
+              <li>Backticks surround the message.</li>
+              <li><code>${...}</code> marks each insertion.</li>
+              <li>Write spaces and punctuation where they should appear.</li>
+              <li>Ordinary quotes do not interpolate.</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>

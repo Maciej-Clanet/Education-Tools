@@ -98,6 +98,7 @@ Before making major UI, content, or structure changes, read:
 - `pages/topics/linking-and-organising-css-files.html` is the first CSS Basics lesson.
 - `pages/topics/running-javascript-and-using-the-console.html` is the first JavaScript Basics lesson.
 - `pages/topics/variables-and-data-types.html` is the second JavaScript Basics lesson.
+- `pages/topics/working-with-strings.html` is the third JavaScript Basics lesson.
 - `javascript/core/code-preview.js` is the shared component for code versus
   preview, step-change, and cycling code examples.
 - `javascript/core/debug-lab.js` and `css/debug-lab.css` provide the shared,

@@ -96,6 +96,18 @@ export const webDevelopmentProgressData = {
           href: "../topics/running-javascript-and-using-the-console.html?context=web-development",
           quiz: { version: 1, totalQuestions: 15, passScore: 12 },
         },
+        {
+          id: "variables-and-data-types",
+          title: "Variables and data types",
+          href: "../topics/variables-and-data-types.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 16, passScore: 13 },
+        },
+        {
+          id: "working-with-strings",
+          title: "Working with strings",
+          href: "../topics/working-with-strings.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 15, passScore: 12 },
+        },
       ],
     },
   ],

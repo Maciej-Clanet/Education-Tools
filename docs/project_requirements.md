@@ -189,8 +189,9 @@ the browser with `localStorage` where useful.
   `pages/topics/css-selectors.html`, and
   `pages/topics/styling-text-with-css.html`, and
   `pages/topics/colours-backgrounds-and-borders.html`,
-  `pages/topics/running-javascript-and-using-the-console.html`, and
-  `pages/topics/variables-and-data-types.html`.
+  `pages/topics/running-javascript-and-using-the-console.html`,
+  `pages/topics/variables-and-data-types.html`, and
+  `pages/topics/working-with-strings.html`.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,

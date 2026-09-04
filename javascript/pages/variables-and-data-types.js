@@ -19,9 +19,10 @@ const lessonConfig = {
       },
       next: {
         title: "Working with strings",
+        href: "working-with-strings.html",
         description:
           "Next, learn how to combine text and include stored values in messages.",
-        status: "Planned",
+        status: "Live",
       },
     },
   },
