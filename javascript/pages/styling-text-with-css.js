@@ -1,7 +1,7 @@
 import { initCodePreviews } from "../core/code-preview.js"
 import { initDebugLabs } from "../core/debug-lab.js"
 import { initLessonPage } from "../core/lesson-shell.js"
-import { initLiveCodeExamples } from "../core/live-code-example.js"
+import { initLiveCodeExamples } from "../core/live-code-example.js?v=20260904-2"
 
 const lessonConfig = {
   lessonId: "styling-text-with-css",

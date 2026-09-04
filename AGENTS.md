@@ -102,9 +102,12 @@ Before making major UI, content, or structure changes, read:
   data-driven guided debugging activity for HTML, CSS, and JavaScript lessons;
   its configuration contract is documented in `docs/debug_lab.md`.
 - `javascript/core/live-code-example.js` and `css/live-code-example.css`
-  provide isolated, temporary HTML/CSS playgrounds with real generated iframe
-  previews; its contract and security model are documented in
+  provide isolated, temporary HTML/CSS previews and JavaScript-only console
+  examples for lessons; its contract and security model are documented in
   `docs/live_code_example.md`.
+- `pages/tools/code-playground.html`, `javascript/pages/code-playground.js`,
+  and `css/pages/code-playground.css` provide the standalone Code Playground
+  that reuses the Live Code editor/runtime and autosaves local workspaces.
 - `javascript/core/shorthand-visualizer.js` and
   `css/shorthand-visualizer.css` provide reusable four-value CSS shorthand
   mappings; its contract is documented in `docs/shorthand_visualizer.md`.

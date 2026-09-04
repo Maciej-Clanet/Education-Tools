@@ -234,7 +234,14 @@ the browser with `localStorage` where useful.
 - A shared Live Code Example component now exists at
   `javascript/core/live-code-example.js`, with shared styling in
   `css/live-code-example.css`. It keeps literal editable HTML/CSS iframe
-  previews separate from the existing authored teaching-preview system.
+  previews separate from the existing authored teaching-preview system, and now
+  also supports JavaScript-only console examples through an isolated worker.
+- A standalone Code Playground now exists at
+  `pages/tools/code-playground.html`, with page logic in
+  `javascript/pages/code-playground.js` and page styling in
+  `css/pages/code-playground.css`. It reuses the Live Code editor/runtime,
+  supports HTML/CSS preview and JavaScript console workspaces, and autosaves
+  local workspace state with a versioned `localStorage` structure.
 - A shared four-value shorthand visualiser now exists at
   `javascript/core/shorthand-visualizer.js`, with shared styling in
   `css/shorthand-visualizer.css`. It supports keyboard, pointer, and touch
