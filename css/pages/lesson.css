@@ -248,8 +248,48 @@ body.teacher-mode-active .slide-fullrow {
 }
 
 .lesson-sidebar {
+  --sidebar-viewport-gap: 1rem;
+  display: flex;
+  flex-direction: column;
   position: sticky;
-  top: 1rem;
+  top: var(--sidebar-viewport-gap);
+  max-height: calc(100vh - 2 * var(--sidebar-viewport-gap));
+  max-height: calc(100dvh - 2 * var(--sidebar-viewport-gap));
+}
+
+.lesson-sidebar > .eyebrow {
+  flex-shrink: 0;
+}
+
+.lesson-sidebar .section-nav {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  grid-auto-rows: max-content;
+  padding: 0.4rem;
+  margin: -0.4rem;
+  scroll-padding-block: 0.4rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) transparent;
+}
+
+.lesson-sidebar .section-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lesson-sidebar .section-nav::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+.lesson-sidebar .section-nav::-webkit-scrollbar-thumb:hover {
+  background-color: var(--teal-deep);
+}
+
+.lesson-sidebar .section-nav::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .section-nav {
