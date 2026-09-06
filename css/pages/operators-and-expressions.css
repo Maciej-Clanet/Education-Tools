@@ -1,0 +1,99 @@
+.feature-code,
+.solution-reveal pre {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 14px;
+  background: #24313b;
+  color: #fff;
+  font: 1em/1.65 Consolas, "Courier New", monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.feature-code code { white-space: inherit; }
+
+.expression-flow,
+.operator-comparison,
+.summary-memory {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.expression-flow {
+  padding: 0;
+  list-style: none;
+  counter-reset: expression-step;
+}
+
+.expression-flow li,
+.operator-comparison article,
+.summary-memory article,
+.definition-card,
+.expression-anatomy,
+.lesson-note {
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid rgba(36, 49, 59, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.expression-flow li {
+  counter-increment: expression-step;
+  border-top: 5px solid #69c8e8;
+}
+
+.expression-flow li::before {
+  content: counter(expression-step) ". ";
+  font-weight: 800;
+}
+
+.expression-flow code,
+.summary-memory code {
+  display: block;
+  margin-top: 0.6rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 1.15em;
+  font-weight: 800;
+}
+
+.operator-comparison h3,
+.summary-memory h3,
+.definition-card h3 { margin-top: 0; }
+
+.expression-anatomy > code { font-size: 1.35em; overflow-wrap: anywhere; }
+.expression-anatomy mark { background: #ffe09a; color: #24313b; border-bottom: 3px solid currentColor; }
+.assignment-visual {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  font-size: 1.35em;
+  font-weight: 800;
+}
+.assignment-visual code { padding: 0.65rem; border: 2px solid currentColor; border-radius: 12px; }
+.operator-table-wrap { overflow-x: auto; }
+.operator-table { width: 100%; border-collapse: collapse; }
+.operator-table caption { text-align: left; padding: 0.6rem; font-weight: 800; }
+.operator-table :is(th, td) { padding: 0.8rem; border-bottom: 1px solid currentColor; text-align: left; }
+.operator-table th code { font-size: 1.5em; }
+.remainder-groups { display: flex; flex-wrap: wrap; gap: 1rem; margin-block: 1rem; }
+.remainder-groups > * { padding: 1rem; border: 2px solid currentColor; border-radius: 14px; }
+.remainder-groups small { display: block; font-size: 0.8em; }
+.solution-reveal { margin-top: 1rem; }
+.solution-reveal summary { cursor: pointer; font-weight: 800; }
+.lesson-note { border-left: 6px solid #f2bf5e; }
+body.teacher-mode-active .expression-flow,
+body.teacher-mode-active .operator-comparison,
+body.teacher-mode-active .summary-memory { font-size: inherit; }
+@media (max-width: 720px) {
+  .expression-flow,
+  .operator-comparison,
+  .summary-memory { grid-template-columns: 1fr; }
+}

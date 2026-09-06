@@ -516,6 +516,27 @@ export const catalogItems = [
     href: "pages/topics/working-with-strings.html?context=web-development",
   },
   {
+    id: "topic-operators-and-expressions",
+    status: "live",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "JavaScript basics",
+    title: "Operators and expressions",
+    summary:
+      "Learn assignment, arithmetic, number input, remainder, calculation order, and expressions in template literals, with calculator and shopping-total practice.",
+    badges: ["Subject area: Web development"],
+    keywords: [
+      "javascript basics", "operators and expressions", "assignment",
+      "arithmetic", "addition", "subtraction", "multiplication", "division",
+      "remainder", "modulo", "number conversion", "Number()", "prompt input",
+      "strings and numbers", "order of operations", "parentheses", "BIDMAS",
+      "compound assignment", "template literals", "calculator", "shopping total",
+      "javascript debugging", "code playground", "web development",
+    ],
+    actionLabel: "Open lesson",
+    href: "pages/topics/operators-and-expressions.html?context=web-development",
+  },
+  {
     id: "exam-btec-level-3-unit-2-jun-2024",
     status: "live",
     type: "exam",

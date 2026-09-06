@@ -18,9 +18,10 @@ const lessonConfig = {
       },
       next: {
         title: "Operators and expressions",
+        href: "operators-and-expressions.html",
         description:
           "Next, use operators to create results from values and expressions.",
-        status: "Planned",
+        status: "Live",
       },
     },
   },

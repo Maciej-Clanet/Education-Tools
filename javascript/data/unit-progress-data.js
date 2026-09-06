@@ -108,6 +108,12 @@ export const webDevelopmentProgressData = {
           href: "../topics/working-with-strings.html?context=web-development",
           quiz: { version: 1, totalQuestions: 15, passScore: 12 },
         },
+        {
+          id: "operators-and-expressions",
+          title: "Operators and expressions",
+          href: "../topics/operators-and-expressions.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 20, passScore: 16 },
+        },
       ],
     },
   ],

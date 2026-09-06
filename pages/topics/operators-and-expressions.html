@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operators and Expressions | Education Tools</title>
+    <meta
+      name="description"
+      content="Learn JavaScript operators, expressions, assignment, arithmetic, Number() input conversion, remainder, and calculation order with editable practice."
+    />
+    <meta
+      property="og:title"
+      content="Operators and Expressions | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Turn expressions into values, calculate with numeric input, and build a shopping-total program."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/live-code-example.css?v=20260904-9"
+    />
+    <link rel="stylesheet" href="../../css/pages/operators-and-expressions.css" />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/operators-and-expressions.js?v=20260906-1"
+    ></script>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">JavaScript Basics · Lesson 4</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li>
+              <a
+                href="../resources/web-development.html#javascript-basics"
+                data-role="breadcrumb-unit-link"
+                >Web Development</a
+              >
+            </li>
+            <li aria-current="page">Operators and expressions</li>
+          </ol>
+        </nav>
+        <div class="lesson-header-row">
+          <div>
+            <h1>Operators and expressions</h1>
+            <p class="lesson-hero-text">
+              Turn familiar JavaScript symbols into useful calculations, numeric input, and clear messages.
+            </p>
+            <p class="lesson-hero-support">
+              Build on Working with Strings in
+              <span data-role="context-label">Web Development</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card">
+            <strong>Resource area</strong><span>JavaScript basics</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Main focus</strong
+            ><span>Operators, expressions, and arithmetic</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Practice</strong
+            ><span>13 editable JavaScript activities</span>
+          </article>
+          <article class="lesson-meta-card">
+            <strong>Quiz</strong><span>20 understanding questions</span>
+          </article>
+        </div>
+
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html"
+            >Back to home search</a
+          >
+          <a
+            class="lesson-secondary-action"
+            data-role="back-to-unit"
+            href="../resources/web-development.html#javascript-basics"
+            >Back to Web Development resources</a
+          >
+          <button
+            class="teacher-toggle"
+            type="button"
+            data-action="toggle-teacher-mode"
+            aria-pressed="false"
+          >
+            Teacher slides
+          </button>
+        </div>
+      </header>
+
+      <noscript>
+        <p class="panel lesson-sequence">
+          The lesson notes and displayed code still work without JavaScript, but
+          Live Code editing, the saved quiz, and teacher slides need JavaScript.
+        </p>
+      </noscript>
+
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel">
+          <p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections">
+<a href="#recap" data-section-link>Template literal recap</a>
+<a href="#operators" data-section-link>Familiar operators</a>
+<a href="#expressions" data-section-link>Expressions</a>
+<a href="#assignment" data-section-link>Assignment</a>
+<a href="#arithmetic" data-section-link>Arithmetic</a>
+<a href="#numbers-and-strings" data-section-link>Numbers vs strings</a>
+<a href="#prompt-input" data-section-link>Prompt input</a>
+<a href="#number-conversion" data-section-link>Number conversion</a>
+<a href="#variable-expressions" data-section-link>Using variables</a>
+<a href="#template-expressions" data-section-link>Expressions in messages</a>
+<a href="#remainder" data-section-link>Remainder</a>
+<a href="#order" data-section-link>Calculation order</a>
+<a href="#updating" data-section-link>Update a variable</a>
+<a href="#compound-assignment" data-section-link>Shorter updates</a>
+<a href="#independent-debugging" data-section-link>Independent debugging</a>
+<a href="#calculator" data-section-link>Live calculator</a>
+<a href="#final-practice" data-section-link>Shopping total</a>
+<a href="#summary" data-section-link>Summary</a>
+<a href="#common-mistakes" data-section-link>Common mistakes</a>
+<a href="#quiz" data-section-link>Quick quiz</a>
+<a href="#explain" data-section-link>Explain your reasoning</a>
+</nav>
+        </aside>
+
+        <main class="lesson-main" data-role="lesson-main">
+<section id="recap" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Template literal recap</p><h2>Start with a message you already know</h2>
+<pre class="feature-code lesson-fullrow"><code>const name = &quot;Alex&quot;;
+const score = 10;
+
+console.log(`${name} has a score of ${score}.`);</code></pre><p class="lesson-section-copy lesson-fullrow">Output: <strong>Alex has a score of 10.</strong> Template literals use backticks. <code>${...}</code> inserts a value into the string.</p><p class="lesson-section-copy lesson-fullrow">Now learn how operators make expressions, how expressions produce values, and how to use those values in calculations and messages.</p>
+</section>
+
+<section id="operators" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Familiar operators</p><h2>You have already used operators</h2>
+<pre class="feature-code lesson-fullrow"><code>const name = &quot;Alex&quot;;
+
+const firstName = &quot;Alex&quot;;
+const surname = &quot;Smith&quot;;
+console.log(firstName + &quot; &quot; + surname);</code></pre><p class="lesson-section-copy lesson-fullrow">You have used <code>=</code> when giving a variable its starting value, and <code>+</code> when joining text.</p><div data-slide-break></div><div class="definition-card lesson-fullrow"><h3>Operator</h3><p>An operator is a symbol that tells JavaScript to perform an operation on one or more values.</p></div><div class="operator-comparison lesson-fullrow"><article><h3>Assignment</h3><pre class="feature-code lesson-fullrow"><code>=</code></pre><p>Gives a variable a value.</p></article><article><h3>Joining strings</h3><pre class="feature-code lesson-fullrow"><code>+</code></pre><p>Joins pieces of text, as in the name example.</p></article></div>
+</section>
+
+<section id="expressions" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Expressions</p><h2>An expression is code that produces a value</h2>
+<ol class="expression-flow lesson-fullrow"><li><span>Expression</span><code>5 + 3</code></li><li><span>Produces the value</span><code>8</code></li></ol><p class="lesson-section-copy lesson-fullrow">The expression <code>5 + 3</code> produces the number <code>8</code>. You can use that result wherever you need a value.</p><div data-slide-break></div><div class="expression-anatomy lesson-fullrow"><code>const total = <mark>5 + 3</mark>;</code><p>The highlighted <code>5 + 3</code> is the expression on the right.</p></div><ol class="expression-flow lesson-fullrow"><li><span>Work out the expression</span><code>5 + 3</code></li><li><span>Result</span><code>8</code></li><li><span>Assign that result to the variable</span><code>total stores 8</code></li></ol><p class="lesson-section-copy lesson-fullrow">An expression does not need to print anything. Here its result becomes the value stored in <code>total</code>.</p>
+</section>
+
+<section id="assignment" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Assignment</p><h2>Work out the right; assign to the left</h2>
+<pre class="feature-code lesson-fullrow"><code>const score = 10;</code></pre><p class="lesson-section-copy lesson-fullrow"><code>=</code> is the <strong>assignment operator</strong>. In this declaration, it gives <code>score</code> its starting value.</p><pre class="feature-code lesson-fullrow"><code>let score = 10;
+score = 20;</code></pre><div class="assignment-visual lesson-fullrow"><code>score</code><span>receives &larr;</span><code>20</code></div><p class="lesson-section-copy lesson-fullrow">JavaScript works out the value on the right and assigns it to the variable on the left. Here <code>score</code> now stores <code>20</code>.</p><p class="lesson-section-copy lesson-fullrow"><code>score = 20</code> is assigning a value, not asking “Is score equal to 20?” In the next lesson we will learn the operators JavaScript uses to compare values.</p>
+</section>
+
+<section id="arithmetic" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Arithmetic</p><h2>Four familiar calculations</h2>
+<div class="operator-table-wrap lesson-fullrow"><table class="operator-table"><caption>JavaScript arithmetic with numbers</caption><thead><tr><th scope="col">Operator</th><th scope="col">Operation</th><th scope="col">Expression</th><th scope="col">Result</th></tr></thead><tbody><tr><th scope="row"><code>+</code></th><td>Addition</td><td><code>10 + 5</code></td><td>15</td></tr><tr><th scope="row"><code>-</code></th><td>Subtraction</td><td><code>10 - 5</code></td><td>5</td></tr><tr><th scope="row"><code>*</code></th><td>Multiplication</td><td><code>10 * 5</code></td><td>50</td></tr><tr><th scope="row"><code>/</code></th><td>Division</td><td><code>10 / 5</code></td><td>2</td></tr></tbody></table></div><div data-slide-break></div><h3>Use the programming symbols on your keyboard</h3><div class="operator-comparison lesson-fullrow"><article><h3>Multiplication</h3><pre class="feature-code lesson-fullrow"><code>5 * 4</code></pre><p>On paper you may write ×. In JavaScript, type the asterisk <code>*</code>.</p></article><article><h3>Division</h3><pre class="feature-code lesson-fullrow"><code>10 / 5</code></pre><p>On paper you may write ÷. In JavaScript, type the forward slash <code>/</code>.</p></article></div><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="arithmetic-live"></div>
+</section>
+
+<section id="numbers-and-strings" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Numbers vs strings</p><h2>The type of value changes what + does</h2>
+<div class="operator-comparison lesson-fullrow"><article><h3>Numbers</h3><pre class="feature-code lesson-fullrow"><code>5 + 3 → 8</code></pre><p>With numbers, <code>+</code> performs addition.</p></article><article><h3>Strings</h3><pre class="feature-code lesson-fullrow"><code>&quot;5&quot; + &quot;3&quot; → &quot;53&quot;</code></pre><p>With strings, <code>+</code> performs concatenation: it joins the text.</p></article></div><p class="lesson-section-copy lesson-fullrow">Quotation marks matter: <code>5</code> is a number; <code>"5"</code> is a string. The text joining is the same idea as <code>firstName + " " + surname</code>.</p><p class="lesson-section-copy lesson-fullrow"><strong>If we need a number, we should deliberately work with a number.</strong></p><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="types-live"></div>
+</section>
+
+<section id="prompt-input" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Prompt input</p><h2>Input that looks like a number can still be text</h2>
+<pre class="feature-code lesson-fullrow"><code>const number = prompt(&quot;Enter a number:&quot;);
+console.log(number + 5);</code></pre><ol class="expression-flow lesson-fullrow"><li><span>User types and submits</span><code>10</code></li><li><span>prompt() returns text</span><code>&quot;10&quot;</code></li><li><span>The expression</span><code>&quot;10&quot; + 5</code></li><li><span>Joined text result</span><code>&quot;105&quot;</code></li></ol><p class="lesson-section-copy lesson-fullrow">When you submit a prompt, its answer is text. In this example, <code>+</code> joins that text with <code>5</code>, so the console displays <code>105</code>. Cancelling a prompt returns <code>null</code>; for these activities, type a value and submit it.</p><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="prompt-text-live"></div>
+</section>
+
+<section id="number-conversion" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Number conversion</p><h2>Convert suitable input with Number()</h2>
+<pre class="feature-code lesson-fullrow"><code>const input = prompt(&quot;Enter a number:&quot;);
+const number = Number(input);
+
+console.log(number + 5);</code></pre><ol class="expression-flow lesson-fullrow"><li><span>Submitted input</span><code>&quot;10&quot;</code></li><li><span>Convert</span><code>Number(input)</code></li><li><span>Number value</span><code>10</code></li><li><span>Add 5</span><code>15</code></li></ol><p class="lesson-section-copy lesson-fullrow"><code>Number(...)</code> converts a suitable value into a JavaScript number. Now both values in the addition are numbers.</p><div data-slide-break></div><h3>Two readable forms</h3><div class="operator-comparison lesson-fullrow"><article><h3>Separate steps</h3><pre class="feature-code lesson-fullrow"><code>const input = prompt(&quot;Enter a number:&quot;);
+const number = Number(input);</code></pre><p>Store the text first, then convert it.</p></article><article><h3>A shorter form</h3><pre class="feature-code lesson-fullrow"><code>const number = Number(prompt(&quot;Enter a number:&quot;));</code></pre><p>Read from the inside out: ask for input, then convert the answer.</p></article></div><p class="lesson-section-copy lesson-fullrow">Both forms are fine. Use the one you find easier to read.</p><aside class="lesson-note lesson-fullrow"><strong>You may see NaN</strong><p>Text such as <code>"hello"</code> cannot sensibly be converted to a number. <code>Number("hello")</code> gives <code>NaN</code>: “Not a Number”. The conversion did not produce a usable number.</p></aside><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="number-conversion-live"></div>
+</section>
+
+<section id="variable-expressions" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Using variables</p><h2>Expressions can use stored values</h2>
+<pre class="feature-code lesson-fullrow"><code>const price = 4;
+const quantity = 3;
+
+const total = price * quantity;
+console.log(total);</code></pre><ol class="expression-flow lesson-fullrow"><li><span>Expression</span><code>price * quantity</code></li><li><span>Use the stored values</span><code>4 * 3</code></li><li><span>Calculate</span><code>12</code></li><li><span>Assign the result</span><code>total stores 12</code></li></ol><p class="lesson-section-copy lesson-fullrow">JavaScript uses the values stored in <code>price</code> and <code>quantity</code>. The result is a value too, so it can be stored in <code>total</code>.</p>
+</section>
+
+<section id="template-expressions" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Expressions in messages</p><h2>Put an expression inside ${...}</h2>
+<pre class="feature-code lesson-fullrow"><code>const score = 10;
+console.log(`Your next score will be ${score + 5}.`);</code></pre><ol class="expression-flow lesson-fullrow"><li><span>Insertion</span><code>${score + 5}</code></li><li><span>Use the stored value</span><code>10 + 5</code></li><li><span>Evaluate the expression</span><code>15</code></li><li><span>Insert its result</span><code>&quot;Your next score will be 15.&quot;</code></li></ol><p class="lesson-section-copy lesson-fullrow">Previously you inserted <code>${score}</code>. You can also insert the result of an expression such as <code>${score + 5}</code>. This prints a calculated value; it does not change <code>score</code>.</p><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="template-expression-live"></div>
+</section>
+
+<section id="remainder" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Remainder</p><h2>% gives what is left over after division</h2>
+<div class="remainder-groups lesson-fullrow" role="img" aria-label="Ten counters: three groups of three counters, with one counter left over."><span>● ● ●</span><span>● ● ●</span><span>● ● ●</span><strong>●<small>1 left over</small></strong></div><ol class="expression-flow lesson-fullrow"><li><span>Share 10 into groups of 3</span><code>3 groups of 3</code></li><li><span>One is left over</span><code>10 % 3 → 1</code></li></ol><p class="lesson-section-copy lesson-fullrow"><code>%</code> is the <strong>remainder operator</strong>. It gives the amount left over after division, not a percentage. <code>8 % 2</code> gives <code>0</code> because 8 divides evenly into groups of 2.</p><p class="lesson-section-copy lesson-fullrow">Later, remainder will help us work out whether numbers divide evenly.</p>
+</section>
+
+<section id="order" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Calculation order</p><h2>Parentheses can change which calculation happens first</h2>
+<div class="operator-comparison lesson-fullrow"><article><h3>Multiplication first</h3><pre class="feature-code lesson-fullrow"><code>2 + 3 * 4
+2 + 12
+14</code></pre><p>Multiply 3 by 4, then add 2.</p></article><article><h3>Parentheses first</h3><pre class="feature-code lesson-fullrow"><code>(2 + 3) * 4
+5 * 4
+20</code></pre><p>Add 2 and 3, then multiply the result by 4.</p></article></div><p class="lesson-section-copy lesson-fullrow">Like familiar BIDMAS/BODMAS rules, multiplication and division happen before addition and subtraction. Parentheses make a calculation happen first. Operators at the same level are worked out from left to right; <code>%</code> is at the same level as multiplication and division.</p><div data-slide-break></div><h3>Parentheses can also make your intention clearer</h3><pre class="feature-code lesson-fullrow"><code>const price = 4;
+const quantity = 3;
+const delivery = 2;
+
+const total = (price * quantity) + delivery;</code></pre><p class="lesson-section-copy lesson-fullrow">This produces <code>14</code>. The parentheses show “items cost, then delivery”. Multiplication would happen first anyway, but the grouping can make the expression easier to read.</p><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="order-live"></div>
+</section>
+
+<section id="updating" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Update a variable</p><h2>Calculate using the old value, then store the new one</h2>
+<pre class="feature-code lesson-fullrow"><code>let score = 10;
+score = score + 5;
+console.log(score);</code></pre><ol class="expression-flow lesson-fullrow"><li><span>Before</span><code>score stores 10</code></li><li><span>Calculate on the right</span><code>score + 5 → 10 + 5 → 15</code></li><li><span>Assign to the left</span><code>score stores 15</code></li></ol><p class="lesson-section-copy lesson-fullrow">The expression uses the old score. Then <code>=</code> replaces it with the result. Use <code>let</code> because this variable needs to be reassigned.</p>
+</section>
+
+<section id="compound-assignment" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Shorter updates</p><h2>+= is a shorter form of this update</h2>
+<div class="operator-comparison lesson-fullrow"><article><h3>Expanded form</h3><pre class="feature-code lesson-fullrow"><code>score = score + 5;</code></pre><p>Read the current numeric score, add 5, and store the result.</p></article><article><h3>Compound assignment</h3><pre class="feature-code lesson-fullrow"><code>score += 5;</code></pre><p>The same update in this situation.</p></article></div><pre class="feature-code lesson-fullrow"><code>score -= 5; // subtract 5 from the score
+score *= 2; // multiply the score by 2
+score /= 2; // divide the score by 2</code></pre><p class="lesson-section-copy lesson-fullrow">These are called <strong>compound assignment</strong> operators. The expanded form is still fine to use.</p><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="update-live"></div>
+</section>
+
+<section id="independent-debugging" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Independent debugging</p><h2>Read, run, and repair</h2>
+<p class="lesson-section-copy lesson-fullrow">Try each repair before revealing its solution. Use the instructions in each editor to check the intended result.</p><div class="lesson-fullrow" data-live-code-example-id="debug-symbol-live"></div><details class="solution-reveal lesson-fullrow"><summary>Show solution for debug 1</summary><pre class="feature-code lesson-fullrow"><code>const total = 5 * 4;
+console.log(total);</code></pre><p>JavaScript uses the asterisk for multiplication. The output is 20.</p></details><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="debug-input-live"></div><details class="solution-reveal lesson-fullrow"><summary>Show solution for debug 2</summary><pre class="feature-code lesson-fullrow"><code>const number = Number(prompt(&quot;Enter a number:&quot;));
+console.log(number + 10);</code></pre><p>Convert the submitted input to a number. Entering 5 now produces 15. A separate conversion step is also fine.</p></details><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="debug-order-live"></div><details class="solution-reveal lesson-fullrow"><summary>Show solution for debug 3</summary><pre class="feature-code lesson-fullrow"><code>const result = (5 + 3) * 2;
+console.log(result);</code></pre><p>Parentheses make the addition happen first, producing 16.</p></details><div data-slide-break></div><div class="lesson-fullrow" data-live-code-example-id="debug-update-live"></div><details class="solution-reveal lesson-fullrow"><summary>Show solution for debug 4</summary><pre class="feature-code lesson-fullrow"><code>let score = 10;
+score = score + 5;
+console.log(score);</code></pre><p>Use let so score can be reassigned. The output is 15.</p></details>
+</section>
+
+<section id="calculator" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Live calculator</p><h2>Use two numbers in several expressions</h2>
+<div class="lesson-fullrow" data-live-code-example-id="calculator-live"></div>
+</section>
+
+<section id="final-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Shopping total</p><h2>Build a shopping-total program</h2>
+<p class="lesson-section-copy lesson-fullrow">Combine input, numeric conversion, variables, multiplication, and a template literal. Open the editor instructions for the complete task.</p><div class="lesson-fullrow" data-live-code-example-id="shopping-total-live"></div><div data-slide-break></div><details class="solution-reveal lesson-fullrow"><summary>Show one possible shopping-total solution</summary><pre class="feature-code lesson-fullrow"><code>const price = Number(prompt(&quot;Enter the product price:&quot;));
+const quantity = Number(prompt(&quot;Enter the quantity:&quot;));
+
+const total = price * quantity;
+console.log(`Total: £${total}`);</code></pre><p>With a price of 4 and a quantity of 3, the output is Total: £12. You can also convert each input in a separate step.</p></details>
+</section>
+
+<section id="summary" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Summary</p><h2>Remember the journey from code to value</h2>
+<div class="summary-memory lesson-fullrow"><article><h3>Operator</h3><p>A symbol that performs an operation.</p><code>+ - * / % =</code></article><article><h3>Expression</h3><p>Code that produces a value.</p><code>5 + 3 → 8</code></article><article><h3>Assignment</h3><p>The result on the right goes to the variable on the left.</p><code>score = 10;</code></article><article><h3>Arithmetic</h3><p>Add, subtract, multiply, divide, or find the remainder.</p><code>10 % 3 → 1</code></article></div><div data-slide-break></div><div class="summary-memory lesson-fullrow"><article><h3>Types matter</h3><p>Number addition and string concatenation give different results.</p><code>5 + 3 → 8
+&quot;5&quot; + &quot;3&quot; → &quot;53&quot;</code></article><article><h3>Numeric input</h3><p>Convert suitable submitted text into a number.</p><code>Number(prompt(&quot;Enter a number:&quot;))</code></article><article><h3>Stored values</h3><p>An expression can use variables.</p><code>const total = price * quantity;</code></article></div><div data-slide-break></div><div class="summary-memory lesson-fullrow"><article><h3>Messages</h3><p>Insert the result of an expression.</p><code>`${score + 5}`</code></article><article><h3>Order</h3><p>Parentheses can change what happens first.</p><code>2 + 3 * 4 → 14
+(2 + 3) * 4 → 20</code></article><article><h3>Updates</h3><p>Calculate, then reassign. The shorter form is equivalent here.</p><code>score = score + 5;
+score += 5;</code></article></div>
+</section>
+
+<section id="common-mistakes" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Common mistakes</p><h2>Check the symbol, the type, and the order</h2>
+<ul class="memory-list lesson-fullrow"><li><code>=</code> assigns a value; it does not compare two values.</li><li>Type <code>*</code> for multiplication and <code>/</code> for division.</li><li>Quoted digits and submitted prompt answers are text. Use <code>Number()</code> when you need numeric input.</li><li><code>%</code> gives a remainder, not a percentage.</li><li>Use parentheses when the addition needs to happen before multiplication.</li><li>Use <code>let</code> when a variable needs reassignment.</li></ul>
+</section>
+
+<section id="quiz" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Quick quiz</p><h2>Check your understanding</h2>
+<p class="lesson-section-copy lesson-fullrow">Answer these 20 questions, then check your score. Aim for 16 correct answers.</p>
+<form id="lesson-quiz" class="quiz-form">
+<fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. An operator is a symbol that performs an operation on values." data-feedback="An operator is a symbol that performs an operation on values.">
+<legend>1. What is an operator?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>A name for a stored value</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>A symbol that tells JavaScript to perform an operation</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>A message printed in the console</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q2" data-answer="a" data-success="Correct. An expression is code that produces a value, such as 5 + 3." data-feedback="An expression is code that produces a value, such as 5 + 3.">
+<legend>2. What is an expression?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>Code that produces a value</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>Only a complete program</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>Only text inside quotation marks</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q3" data-answer="c" data-success="Correct. The numeric addition 5 + 3 produces 8." data-feedback="The numeric addition 5 + 3 produces 8.">
+<legend>3. Which expression produces the number 8?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>5 * 3</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>&quot;5&quot; + &quot;3&quot;</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span>5 + 3</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q4" data-answer="b" data-success="Correct. Assignment gives the variable its value." data-feedback="Assignment gives the variable its value.">
+<legend>4. What does = do in const score = 10;?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>Asks whether score equals 10</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>Assigns the value 10 to score</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>Prints the value 10</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q5" data-answer="a" data-success="Correct. JavaScript evaluates the expression on the right and assigns its result to the variable on the left." data-feedback="JavaScript evaluates the expression on the right and assigns its result to the variable on the left.">
+<legend>5. What happens in const total = 5 + 3;?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>5 + 3 is evaluated, then 8 is assigned to total</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>total is added to both 5 and 3</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>The characters 5 + 3 are stored as text</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q6" data-answer="c" data-success="Correct. JavaScript uses the asterisk, *, for multiplication." data-feedback="JavaScript uses the asterisk, *, for multiplication.">
+<legend>6. Which symbol multiplies numbers in JavaScript?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span>×</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span>x</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span>*</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q7" data-answer="b" data-success="Correct. The forward slash, /, divides. % gives a remainder." data-feedback="The forward slash, /, divides. % gives a remainder.">
+<legend>7. Which symbol divides numbers in JavaScript?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span>÷</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span>/</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span>%</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q8" data-answer="a" data-success="Correct. Adding gives 15, subtracting gives 5, multiplying gives 50, and dividing gives 2." data-feedback="Adding gives 15, subtracting gives 5, multiplying gives 50, and dividing gives 2.">
+<legend>8. What are the results of 10 + 5, 10 - 5, 10 * 5, and 10 / 5, in that order?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>15, 5, 50, 2</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>15, 5, 15, 5</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>105, 5, 50, 2</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q9" data-answer="c" data-success="Correct. Both values are strings, so + joins their text into the string 53." data-feedback="Both values are strings, so + joins their text into the string 53.">
+<legend>9. What does &quot;5&quot; + &quot;3&quot; produce?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q9" value="a" /><span>The number 8</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q9" value="b" /><span>The number 53</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q9" value="c" /><span>The string &quot;53&quot;</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q10" data-answer="b" data-success="Correct. With numbers, + adds; with strings, it concatenates." data-feedback="With numbers, + adds; with strings, it concatenates.">
+<legend>10. Why do 5 + 3 and &quot;5&quot; + &quot;3&quot; give different results?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q10" value="a" /><span>+ always joins the printed digits</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q10" value="b" /><span>The value types determine whether + adds numbers or joins strings</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q10" value="c" /><span>Quotation marks make a number larger</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q11" data-answer="a" data-success="Correct. The submitted prompt answer is the text 10, so + joins it with 5." data-feedback="The submitted prompt answer is the text 10, so + joins it with 5.">
+<legend>11. After const number = prompt(&quot;Enter a number:&quot;);, the user submits 10. What does console.log(number + 5); display?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q11" value="a" /><span>105</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q11" value="b" /><span>15</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q11" value="c" /><span>5</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q12" data-answer="c" data-success="Correct. Number() deliberately converts suitable input into a number." data-feedback="Number() deliberately converts suitable input into a number.">
+<legend>12. Which converts suitable prompt input into a number?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q12" value="a" /><span>const number = prompt(&quot;Enter a number:&quot;);</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q12" value="b" /><span>const number = &quot;10&quot;;</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q12" value="c" /><span>const number = Number(prompt(&quot;Enter a number:&quot;));</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q13" data-answer="b" data-success="Correct. Three groups of 3 use 9, leaving a remainder of 1." data-feedback="Three groups of 3 use 9, leaving a remainder of 1.">
+<legend>13. What does 10 % 3 produce?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q13" value="a" /><span>3</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q13" value="b" /><span>1</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q13" value="c" /><span>0</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q14" data-answer="a" data-success="Correct. 8 divides evenly by 2, so nothing is left over." data-feedback="8 divides evenly by 2, so nothing is left over.">
+<legend>14. What does 8 % 2 produce?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q14" value="a" /><span>0</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q14" value="b" /><span>4</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q14" value="c" /><span>2</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q15" data-answer="c" data-success="Correct. The expression uses the stored numeric values: 4 * 3 produces 12." data-feedback="The expression uses the stored numeric values: 4 * 3 produces 12.">
+<legend>15. With price = 4 and quantity = 3, what value does price * quantity produce?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q15" value="a" /><span>7</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q15" value="b" /><span>43</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q15" value="c" /><span>12</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q16" data-answer="b" data-success="Correct. JavaScript evaluates score + 5 first, then inserts 15 into the message." data-feedback="JavaScript evaluates score + 5 first, then inserts 15 into the message.">
+<legend>16. With const score = 10;, what does `Your next score will be ${score + 5}.` produce?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q16" value="a" /><span>Your next score will be 10.</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q16" value="b" /><span>Your next score will be 15.</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q16" value="c" /><span>Your next score will be score + 5.</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q17" data-answer="a" data-success="Correct. Multiplication happens first in the first expression. Parentheses make addition happen first in the second." data-feedback="Multiplication happens first in the first expression. Parentheses make addition happen first in the second.">
+<legend>17. What are the results of 2 + 3 * 4 and (2 + 3) * 4?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q17" value="a" /><span>14 and 20</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q17" value="b" /><span>20 and 14</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q17" value="c" /><span>20 and 20</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q18" data-answer="c" data-success="Correct. Parentheses group the addition so it happens first." data-feedback="Parentheses group the addition so it happens first.">
+<legend>18. Which expression adds 5 and 3 first, then multiplies by 2?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q18" value="a" /><span>5 + 3 * 2</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q18" value="b" /><span>5 * (3 + 2)</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q18" value="c" /><span>(5 + 3) * 2</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q19" data-answer="b" data-success="Correct. The right-hand expression uses the old value 10 and produces 15, which is then assigned to score." data-feedback="The right-hand expression uses the old value 10 and produces 15, which is then assigned to score.">
+<legend>19. After let score = 10; and score = score + 5;, what does score store?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q19" value="a" /><span>10</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q19" value="b" /><span>15</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q19" value="c" /><span>5</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q20" data-answer="a" data-success="Correct. += adds to the current value and assigns the result back to score." data-feedback="+= adds to the current value and assigns the result back to score.">
+<legend>20. For a numeric score, which is a shorter equivalent of score = score + 5;?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q20" value="a" /><span>score += 5;</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q20" value="b" /><span>score = 5;</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q20" value="c" /><span>score + 5;</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div>
+<p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p></form>
+</section>
+
+<section id="explain" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Explain your reasoning</p><h2>Explain what the program does</h2>
+<article class="exam-card lesson-fullrow">
+<p class="eyebrow">Exam-style practice · 3 marks</p>
+<h3>A student enters 5, but the output is 510. Explain why and describe a repair.</h3>
+<pre class="feature-code"><code>const number = prompt("Enter a number:");
+console.log(number + 10);</code></pre>
+<div class="exam-response-wrap"><label class="exam-response-label" for="input-explanation">Write your explanation</label>
+<textarea id="input-explanation" class="exam-response" rows="4" data-exam-response="input-explanation" placeholder="Explain the input type, the operation, and your repair."></textarea></div>
+<details class="exam-guidance"><summary>Show answer guidance</summary><div class="exam-guidance-body"><p>Award one mark for each idea: the submitted prompt answer is the string <code>"5"</code>; <code>+</code> joins that text with 10 to produce <code>"510"</code>; converting the input with <code>Number()</code> before adding makes the result 15.</p></div></details></article>
+</section>
+</main>
+
+        <aside class="lesson-rail"><section class="lesson-rail-card panel glossary-card"><p class="eyebrow">Glossary</p><h2>Quick glossary</h2><dl class="glossary-list">
+<div class="glossary-item"><dt>Operator</dt><dd>A symbol that performs an operation.</dd></div>
+<div class="glossary-item"><dt>Expression</dt><dd>Code that produces a value.</dd></div>
+<div class="glossary-item"><dt>Assignment</dt><dd>Giving a variable a value, using =.</dd></div>
+<div class="glossary-item"><dt>Concatenation</dt><dd>Joining strings together.</dd></div>
+<div class="glossary-item"><dt>Number()</dt><dd>Converts a suitable value into a number.</dd></div>
+<div class="glossary-item"><dt>Remainder</dt><dd>The amount left over after division, found with %.</dd></div>
+<div class="glossary-item"><dt>Compound assignment</dt><dd>An operation and reassignment combined, such as +=.</dd></div>
+</dl></section><section class="lesson-rail-card panel revision-card"><p class="eyebrow">Remember</p><h2>Work out, then assign</h2><ul class="memory-list"><li>An expression produces a value.</li><li>Assignment stores that value.</li><li>For calculations, deliberately work with numbers.</li><li>Parentheses make your intended order clear.</li></ul></section></aside>
+      </div>
+
+      <section
+        class="lesson-sequence panel"
+        aria-labelledby="lesson-sequence-heading"
+      >
+        <p class="eyebrow">Keep Going</p>
+        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
+        <div class="sequence-grid" data-role="lesson-sequence"></div>
+      </section>
+    </div>
+
+    <div
+      class="teacher-controls panel"
+      data-role="teacher-controls"
+      data-no-slide-advance
+      hidden
+    >
+      <button type="button" class="slide-button" data-action="prev-slide">
+        Previous
+      </button>
+      <p class="slide-status" data-role="slide-status">Slide 1</p>
+      <button type="button" class="slide-button" data-action="next-slide">
+        Next
+      </button>
+      <button
+        type="button"
+        class="slide-button slide-button--exit"
+        data-action="exit-teacher-mode"
+      >
+        Exit slides
+      </button>
+    </div>
+  </body>
+</html>
