@@ -149,7 +149,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "raid-and-nas-storage-systems",
           title: "RAID and NAS storage systems",
           href: "../topics/raid-and-nas-storage-systems.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 8, passScore: 6 },
+          quiz: { version: 2, totalQuestions: 14, passScore: 10 },
         },
       ],
     },

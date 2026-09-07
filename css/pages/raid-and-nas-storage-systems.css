@@ -1,338 +1,68 @@
-.raid-overview-visual,
-.raid-pattern-grid,
-.raid-level-card-grid,
-.error-method-grid,
-.choice-path-grid {
-  display: grid;
-  gap: 1rem;
+.raid-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:1rem; margin:1rem 0; }
+.raid-card,.raid-enclosure,.raid-pair,.raid-scenario-brief { padding:1rem; border:1.5px solid #a3b5bc; border-radius:16px; background:var(--panel-bg,#fffdf7); color:var(--page-ink); }
+.raid-card h3 { margin:0 0 .5rem; } .raid-card p { margin:0; }
+.raid-array { display:grid; grid-template-columns:repeat(var(--drive-count),minmax(0,1fr)); gap:.65rem; margin:1rem 0; }
+.raid-drive { display:grid; align-content:start; gap:.4rem; padding:.65rem; border:2px solid #426976; border-radius:12px; background:#edf5f6; color:#24313b; text-align:center; min-width:0; }
+.raid-drive small { min-height:1.5em; font-size:.75em; }
+.raid-block { display:grid; place-items:center; min-height:2.4rem; padding:.3rem; border:1px solid #70969e; border-radius:5px; background:#d4eaf1; font-weight:700; overflow-wrap:anywhere; }
+.raid-block.is-parity,.raid-card.is-parity { background:#fae7b5; color:#503b11; border-style:dashed; }
+.raid-drive.is-failed,.raid-card.is-failed { border:3px dashed #9c302b; background:#fce5e1; color:#782722; }
+.raid-drive.is-failed .raid-block { background:repeating-linear-gradient(135deg,#fae6e3 0 8px,#f4d4d0 8px 10px); color:#782722; }
+[data-raid10] .is-failed .raid-block { text-decoration:line-through; }
+.raid-drive.is-replacement { border-style:dashed; border-color:#7c641b; }
+.raid-flow,.raid-bit-row { display:flex; align-items:stretch; justify-content:center; flex-wrap:wrap; gap:.8rem; margin:1.2rem 0; }
+.raid-flow > b { align-self:center; font-size:1.8rem; }
+.raid-flow .raid-card { flex:1; min-width:130px; text-align:center; }
+.raid-bit-row > span { padding:.8rem; border-radius:12px; background:#edf5f6; color:#24313b; text-align:center; align-self:center; }
+.raid-bit-row b { font-size:2rem; }
+.raid-equation { padding:.9rem; border-left:5px solid var(--lesson-accent,#426976); background:#edf5f6; color:#24313b; font-size:1.25em; }
+.raid-key,.raid-stages { margin:1rem 0; }
+.raid-stage-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.7rem; margin:.8rem 0; }
+.raid-stage-controls [data-stage-count] { flex:1; min-width:10rem; font-size:.85em; }
+.raid-stage-controls button { min-height:44px; }
+.raid-stage-controls button:disabled { opacity:.55; cursor:default; }
+.raid-stage { padding:.8rem; border:1px solid #a3b5bc; border-radius:12px; }
+.raid-stage h3 { margin-top:0; }
+.raid-stages [hidden],.raid-fail-controls[hidden] { display:none; }
+.raid-binary { padding:1rem; overflow-x:auto; background:#edf5f6; color:#24313b; border-radius:12px; line-height:1.6; font-size:1.1em; }
+.raid-process { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; padding-left:1.5rem; }
+.raid-process li { padding:.8rem; background:#edf5f6; color:#24313b; border-radius:10px; }
+.raid-process strong,.raid-process span { display:block; } .raid-process span { margin-top:.5rem; }
+.raid-pairs { display:grid; grid-template-columns:1fr 1fr; gap:1rem; } .raid-pair h3 { margin:0; }
+.raid-fail-controls { display:flex; flex-wrap:wrap; gap:.75rem; border:1px solid #a3b5bc; border-radius:10px; }
+.raid-fail-controls label { padding:.5rem; cursor:pointer; }
+.raid-table-scroll { overflow-x:auto; max-width:100%; margin:1rem 0; }
+.raid-table-scroll table { width:100%; border-collapse:collapse; font-size:.9em; }
+.raid-table-scroll th,.raid-table-scroll td { padding:.7rem; border:1px solid #a3b5bc; vertical-align:top; text-align:left; }
+.raid-table-scroll th { background:#e1eef0; color:#24313b; }
+.raid-table-scroll caption { text-align:left; margin-bottom:.7rem; font-size:.9em; }
+.raid-reference { min-width:1050px; }
+.raid-figure { margin:1rem 0; }
+.raid-figure img { width:100%; max-height:420px; display:block; object-fit:contain; background:#fffdf7; border-radius:14px; }
+.raid-mini-path { display:flex; align-items:center; gap:.3rem; margin-bottom:1rem; }
+.raid-mini-path img { width:24%; min-width:0; }
+.raid-lookup { margin:1rem 0; border:2px solid #426976; border-radius:12px; padding:.7rem; }
+.raid-lookup summary { cursor:pointer; padding:.4rem; font-weight:800; min-height:44px; }
+.raid-lookup-button { position:sticky; top:.5rem; z-index:3; margin-bottom:1rem; min-height:44px; }
+.raid-reference-dialog { width:min(1300px,94vw); max-height:85vh; border:2px solid #426976; border-radius:14px; padding:1rem; background:var(--panel-bg,#fffdf7); color:var(--page-ink); }
+.raid-reference-dialog::backdrop { background:#15252bb3; }
+.raid-reference-dialog form { position:sticky; top:0; text-align:right; }
+.raid-lookup[hidden] { display:none; }
+.raid-choice-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:.6rem; }
+.raid-choice { display:block; padding:.7rem; border:1px solid #a3b5bc; border-radius:10px; cursor:pointer; }
+.raid-choice:has(input:checked) { border:2px solid #294c50; background:#e4f0e8; color:#24313b; }
+.raid-choice span { display:block; font-size:.8em; margin-top:.4rem; }
+[data-raid-scenarios] select,[data-raid-scenarios] textarea { display:block; width:100%; padding:.75rem; margin:.5rem 0 1rem; font:inherit; color:var(--page-ink); background:var(--panel-bg,#fffdf7); border:1px solid #71858d; border-radius:8px; }
+[data-raid-scenarios] fieldset { border:0; padding:0; margin:1rem 0; }
+[data-scenario-feedback]:not(:empty) { padding:1rem; background:#edf5f6; color:#24313b; border-left:5px solid #426976; }
+.raid-teacher-note { display:none; }
+body.teacher-mode-active .raid-teacher-note { display:block; border:1px dashed #71858d; padding:.7rem; border-radius:10px; font-size:.85em; }
+body.teacher-mode-active .raid-figure img { max-height:40vh; }
+body.teacher-mode-active .raid-cards { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+@media(max-width:600px) {
+  .raid-array { gap:.25rem; } .raid-drive { padding:.3rem; font-size:.78rem; }
+  .raid-drive small { font-size:.7rem; } .raid-block { padding:.2rem; }
+  .raid-pairs { grid-template-columns:1fr; } .raid-equation { font-size:1.05em; }
+  .raid-reference { min-width:950px; }
 }
-
-.raid-overview-visual {
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: stretch;
-  margin: 1rem 0;
-}
-
-.raid-overview-card,
-.raid-pattern-card,
-.raid-level-card,
-.error-method-card,
-.choice-path-card,
-.nas-node,
-.nas-client {
-  padding: 1rem;
-  border-radius: 18px;
-  border: 1.5px solid rgba(37, 52, 66, 0.12);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.92),
-    rgba(247, 251, 253, 0.82)
-  );
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
-}
-
-.raid-overview-card,
-.raid-pattern-card,
-.raid-level-card,
-.error-method-card,
-.choice-path-card,
-.nas-node,
-.nas-client {
-  display: grid;
-  gap: 0.6rem;
-  align-content: start;
-}
-
-.raid-overview-card {
-  justify-items: center;
-  text-align: center;
-}
-
-.raid-overview-card h3,
-.raid-pattern-card h3,
-.raid-level-card h3,
-.error-method-card h3,
-.choice-path-card h3,
-.nas-node strong,
-.nas-client strong {
-  margin: 0;
-  color: var(--page-ink);
-}
-
-.raid-overview-card p,
-.raid-pattern-card p,
-.raid-level-card p,
-.error-method-card p,
-.choice-path-card p,
-.nas-node p {
-  margin: 0;
-  color: var(--muted-ink);
-}
-
-.raid-overview-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--lesson-accent-heading);
-  font-weight: 900;
-}
-
-.raid-overview-icon {
-  position: relative;
-  display: inline-block;
-  width: 3.7rem;
-  height: 3.7rem;
-  border-radius: 16px;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.raid-overview-icon--raid {
-  background:
-    repeating-linear-gradient(90deg, rgba(21, 91, 117, 0.22) 0 0.42rem, transparent 0.42rem 0.74rem),
-    rgba(232, 246, 255, 0.96);
-}
-
-.raid-overview-icon--nas {
-  background:
-    radial-gradient(circle at 50% 22%, #29523b 0 0.15rem, transparent 0.17rem),
-    radial-gradient(circle at 28% 70%, #29523b 0 0.15rem, transparent 0.17rem),
-    radial-gradient(circle at 72% 70%, #29523b 0 0.15rem, transparent 0.17rem),
-    linear-gradient(135deg, transparent 45%, rgba(41, 82, 59, 0.28) 46% 52%, transparent 53%),
-    linear-gradient(45deg, transparent 45%, rgba(41, 82, 59, 0.28) 46% 52%, transparent 53%),
-    rgba(238, 248, 231, 0.96);
-}
-
-.raid-overview-icon--backup {
-  background:
-    linear-gradient(135deg, transparent 44%, #785e16 45% 52%, transparent 53%),
-    linear-gradient(45deg, transparent 52%, #785e16 53% 60%, transparent 61%),
-    rgba(255, 249, 227, 0.96);
-}
-
-.raid-pattern-grid {
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  margin: 1rem 0;
-}
-
-.raid-disks {
-  display: grid;
-  gap: 0.5rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.raid-disks--mirrored {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.raid-disk {
-  display: grid;
-  gap: 0.35rem;
-  padding: 0.55rem;
-  border-radius: 14px;
-  border: 1px solid rgba(37, 52, 66, 0.13);
-  background: rgba(255, 255, 255, 0.86);
-}
-
-.raid-disk::before {
-  content: "Disk";
-  color: var(--muted-ink);
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.raid-disk span,
-.ecc-blocks span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.1rem;
-  border-radius: 0.48rem;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  background: rgba(232, 246, 255, 0.9);
-  color: #155b75;
-  font-size: 0.82rem;
-  font-weight: 900;
-}
-
-.raid-disks--mirrored .raid-disk span {
-  background: rgba(238, 248, 231, 0.92);
-  color: #29523b;
-}
-
-.raid-disks--parity .raid-disk:nth-child(1) span:nth-child(3),
-.raid-disks--parity .raid-disk:nth-child(2) span:nth-child(2),
-.raid-disks--parity .raid-disk:nth-child(3) span:nth-child(1) {
-  background: rgba(255, 249, 227, 0.96);
-  color: #785e16;
-}
-
-.raid-level-card-grid {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  margin: 1rem 0;
-}
-
-.raid-level-pill {
-  width: fit-content;
-  padding: 0.32rem 0.68rem;
-  border-radius: 999px;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--lesson-accent-heading);
-  font-size: 0.8rem;
-  font-weight: 900;
-}
-
-.error-method-grid {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  margin: 1rem 0;
-}
-
-.ecc-blocks {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.35rem;
-}
-
-.ecc-blocks span:nth-last-child(-n + 2) {
-  background: rgba(255, 240, 241, 0.94);
-  color: #8b4831;
-}
-
-.ecc-blocks--parity span:nth-child(3),
-.ecc-blocks--parity span:nth-child(5) {
-  background: rgba(255, 249, 227, 0.96);
-  color: #785e16;
-}
-
-.nas-network-visual {
-  display: grid;
-  grid-template-areas:
-    "client1 nas client2"
-    ". nas client3";
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 1.1fr) minmax(0, 1fr);
-  gap: 1rem;
-  margin: 1rem 0;
-  align-items: stretch;
-}
-
-.nas-network-visual .nas-client:nth-of-type(1) {
-  grid-area: client1;
-}
-
-.nas-network-visual .nas-client:nth-of-type(2) {
-  grid-area: client2;
-}
-
-.nas-network-visual .nas-client:nth-of-type(4) {
-  grid-area: client3;
-}
-
-.nas-node {
-  grid-area: nas;
-  justify-items: center;
-  text-align: center;
-  border-color: rgba(55, 129, 53, 0.2);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(238, 248, 231, 0.82)
-  );
-}
-
-.nas-client {
-  justify-items: center;
-  text-align: center;
-}
-
-.nas-client span {
-  width: 3.2rem;
-  height: 2.4rem;
-  border-radius: 0.42rem;
-  border: 2px solid #155b75;
-  background: rgba(232, 246, 255, 0.96);
-  box-shadow: 0 0.38rem 0 -0.22rem #155b75;
-}
-
-.nas-node__drives {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.35rem;
-  width: min(100%, 13rem);
-}
-
-.nas-node__drives span {
-  min-height: 4rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  background:
-    radial-gradient(circle at 50% 86%, #29523b 0 0.12rem, transparent 0.14rem),
-    rgba(255, 255, 255, 0.86);
-}
-
-.choice-path-grid {
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  margin: 1rem 0;
-}
-
-.choice-path-card {
-  border-left: 5px solid var(--lesson-accent);
-}
-
-body.teacher-mode-active .raid-overview-visual {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-body.teacher-mode-active .raid-overview-arrow {
-  display: none;
-}
-
-body.teacher-mode-active .raid-pattern-grid,
-body.teacher-mode-active .raid-level-card-grid,
-body.teacher-mode-active .error-method-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-body.teacher-mode-active .nas-network-visual {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-@media (max-width: 900px) {
-  .raid-overview-visual {
-    grid-template-columns: 1fr;
-  }
-
-  .raid-overview-arrow {
-    display: none;
-  }
-
-  .nas-network-visual {
-    grid-template-areas:
-      "nas"
-      "client1"
-      "client2"
-      "client3";
-    grid-template-columns: 1fr;
-  }
-
-  body.teacher-mode-active .raid-pattern-grid,
-  body.teacher-mode-active .raid-level-card-grid,
-  body.teacher-mode-active .error-method-grid,
-  body.teacher-mode-active .nas-network-visual {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 700px) {
-  .raid-disks,
-  .raid-disks--mirrored,
-  .ecc-blocks {
-    grid-template-columns: 1fr;
-  }
-
-  body.teacher-mode-active .raid-overview-visual {
-    grid-template-columns: 1fr;
-  }
-}
+@media(forced-colors:active) { .raid-drive,.raid-block,.raid-card,.raid-choice { border-color:CanvasText; } }

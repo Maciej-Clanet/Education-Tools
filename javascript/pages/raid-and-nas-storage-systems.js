@@ -1,4 +1,5 @@
 import { initLessonPage } from "../core/lesson-shell.js"
+import { initRaidActivities } from "./raid-storage-activities.js"
 
 const lessonConfig = {
   lessonId: "raid-and-nas-storage-systems",
@@ -23,8 +24,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-raid-and-nas-storage-systems-quiz",
-    passScore: 6,
+    storageKey: "lesson-raid-and-nas-storage-systems-quiz-v2",
+    version: 2,
+    totalQuestions: 14,
+    passScore: 10,
   },
   examPractice: {
     storageKey: "lesson-raid-and-nas-storage-systems-exam-practice",
@@ -32,3 +35,4 @@ const lessonConfig = {
 }
 
 initLessonPage(lessonConfig)
+initRaidActivities()
