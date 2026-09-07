@@ -23,8 +23,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-computer-system-types-and-internal-components-quiz",
-    passScore: 5,
+    storageKey: "lesson-computer-system-types-and-internal-components-quiz-v2",
+    version: 2,
+    totalQuestions: 10,
+    passScore: 7,
   },
   examPractice: {
     storageKey:
@@ -33,3 +35,23 @@ const lessonConfig = {
 }
 
 initLessonPage(lessonConfig)
+
+// Native controls use the lesson shell's existing keyboard and slide interaction rules.
+document.querySelectorAll("[data-scenario]").forEach((card) => {
+  const feedback = card.querySelector("[data-scenario-feedback]")
+  const type = card.querySelector('[data-choice="type"]')
+  const priority = card.querySelector('[data-choice="priority"]')
+  card.querySelector("[data-check-scenario]").addEventListener("click", () => {
+    if (!type.value || !priority.value) {
+      feedback.textContent = "Choose both a system type and a design priority first."
+      return
+    }
+    const typeCorrect = type.value === card.dataset.type
+    const priorityCorrect = priority.value === card.dataset.priority
+    feedback.textContent = `${typeCorrect && priorityCorrect ? "Correct match." :
+      `System type: ${typeCorrect ? "correct" : "try again"}. Priority: ${priorityCorrect ? "correct" : "try again"}.`} ${card.dataset.feedback}`
+  })
+  card.querySelectorAll("select").forEach((select) => {
+    select.addEventListener("change", () => { feedback.textContent = "" })
+  })
+})

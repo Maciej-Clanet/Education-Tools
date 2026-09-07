@@ -88,6 +88,9 @@ saved progress should be shown as needing a fresh attempt.
 
 ### A1 Computer hardware in a computer system
 - [x] Computer system types and internal components
+  - Expanded for first teaching: 20 slides, local device/component SVGs, six
+    scenario matches and a 10-question quiz (version 2, pass score 7).
+    Detailed hardware performance and compatibility remain in later lessons.
 - [x] Input, output, and storage devices
 - [x] Hardware performance and component choice
 - [x] RAID and NAS storage systems

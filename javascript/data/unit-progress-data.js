@@ -131,7 +131,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "computer-system-types-and-internal-components",
           title: "Computer system types and internal components",
           href: "../topics/computer-system-types-and-internal-components.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 7, passScore: 5 },
+          quiz: { version: 2, totalQuestions: 10, passScore: 7 },
         },
         {
           id: "input-output-and-storage-devices",
