@@ -96,6 +96,10 @@ saved progress should be shown as needing a fresh attempt.
     diagrams, fragmentation sequences and five storage-choice activities.
     Quiz version 2 has 12 questions with a pass score of 9.
 - [x] Hardware performance and component choice
+  - Rebuilt as 53 first-teaching slides on one page, with a Part 2 divider,
+    teacher-only demonstration prompts, fictional specification cards and
+    a persisted office/design system builder with budget/compatibility checks.
+    Quiz version 2: 16 questions, pass score 12.
 - [x] RAID and NAS storage systems
 
 ### A2 Computer software in a computer system

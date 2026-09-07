@@ -1,3 +1,4 @@
+import { initHardwareBuilder } from "./hardware-system-builder.js"
 import { initLessonPage } from "../core/lesson-shell.js"
 
 const lessonConfig = {
@@ -23,8 +24,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-hardware-performance-and-component-choice-quiz",
-    passScore: 7,
+    storageKey: "lesson-hardware-performance-and-component-choice-quiz-v2",
+    version: 2,
+    totalQuestions: 16,
+    passScore: 12,
   },
   examPractice: {
     storageKey: "lesson-hardware-performance-and-component-choice-exam-practice",
@@ -32,3 +35,5 @@ const lessonConfig = {
 }
 
 initLessonPage(lessonConfig)
+
+initHardwareBuilder(document.querySelector("[data-hardware-builder]"))

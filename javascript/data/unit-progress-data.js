@@ -143,7 +143,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "hardware-performance-and-component-choice",
           title: "Hardware performance and component choice",
           href: "../topics/hardware-performance-and-component-choice.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 9, passScore: 7 },
+          quiz: { version: 2, totalQuestions: 16, passScore: 12 },
         },
         {
           id: "raid-and-nas-storage-systems",
