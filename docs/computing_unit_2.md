@@ -92,6 +92,9 @@ saved progress should be shown as needing a fresh attempt.
     scenario matches and a 10-question quiz (version 2, pass score 7).
     Detailed hardware performance and compatibility remain in later lessons.
 - [x] Input, output, and storage devices
+  - Expanded for first teaching: 29 slides, device illustrations, labelled HDD
+    diagrams, fragmentation sequences and five storage-choice activities.
+    Quiz version 2 has 12 questions with a pass score of 9.
 - [x] Hardware performance and component choice
 - [x] RAID and NAS storage systems
 

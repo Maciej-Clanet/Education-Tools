@@ -137,7 +137,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "input-output-and-storage-devices",
           title: "Input, output, and storage devices",
           href: "../topics/input-output-and-storage-devices.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 8, passScore: 6 },
+          quiz: { version: 2, totalQuestions: 12, passScore: 9 },
         },
         {
           id: "hardware-performance-and-component-choice",
