@@ -1,4 +1,6 @@
 import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260904-9"
+import { findChallenge, challengeKinds } from "../data/web-challenges.js"
+import { readChallenge, saveChallenge } from "../core/challenge-storage.js"
 import {
   readSessionStorage,
   readStorage,
@@ -95,6 +97,7 @@ let activeApi = null
 let activeWorkspaceId = null
 let activeMode = "html-css"
 let saveTimer = null
+let activeChallenge = null
 let state = readPlaygroundState()
 
 function createEmptyState() {
@@ -267,6 +270,11 @@ function saveNow() {
 
   window.clearTimeout(saveTimer)
   saveTimer = null
+  if (activeChallenge) {
+    const saved = saveChallenge(activeChallenge.id, activeApi.getSnapshot())
+    setSaveStatus(saved ? "Challenge saved on this device" : "Unable to save — keep this page open")
+    return
+  }
   storeWorkspace(
     activeWorkspaceId,
     activeApi.getSnapshot(),
@@ -335,6 +343,14 @@ function resetWorkspace() {
     return
   }
 
+  if (activeChallenge) {
+    if (!window.confirm("Start this challenge again? Your saved code for this challenge will be replaced.")) return
+    window.clearTimeout(saveTimer)
+    renderChallenge(activeChallenge, false)
+    saveNow()
+    return
+  }
+
   const currentSnapshot = activeApi.getSnapshot()
   const shouldConfirm =
     hasChangedFromStart(currentSnapshot) ||
@@ -375,6 +391,41 @@ function handleModeChange(mode) {
   renderWorkspace(DIRECT_WORKSPACE_IDS[nextMode], nextMode, "direct")
 }
 
+function renderChallenge(challenge, restore = true) {
+  const saved = restore ? readChallenge(challenge.id) : null
+  const starter = normaliseSnapshot(challenge.workspace)
+  // Restore editable work and view preferences, keeping authored instructions current.
+  const snapshot = saved ? {
+    ...starter,
+    sources: starter.sources.map((source) => ({
+      ...source,
+      code: saved.snapshot.sources.find((item) => item.id === source.id)?.code ?? source.code,
+    })),
+    layout: saved.snapshot.layout ?? starter.layout,
+    split: saved.snapshot.split ?? starter.split,
+    codeZoom: saved.snapshot.codeZoom ?? starter.codeZoom,
+  } : starter
+  activeApi?.destroy()
+  activeChallenge = challenge
+  activeWorkspaceId = `challenge-${challenge.id}`
+  activeMode = starter.executionMode
+  document.querySelector(".playground-mode").hidden = true
+  document.querySelector("h1").textContent = `Challenge ${challenge.number}`
+  document.title = `${challenge.workspace.title} | Education Tools`
+  sourceContext.textContent = `${challengeKinds[challenge.kind]} · ${challenge.skills.join(" · ")}`
+  const back = document.querySelector("[data-role='challenge-back']")
+  back.hidden = false
+  back.href = `../resources/web-development.html?challenges=${challenge.section}#${challenge.section}`
+  resetWorkspaceButton.textContent = "Restart challenge"
+  setSaveStatus(saved ? "Challenge saved on this device" : "Edits save on this device for each challenge")
+  activeApi = createLiveCodeWorkspace(mount, snapshot, {
+    variant: "playground", alwaysEditing: true,
+    showOpenInPlayground: false, showResetCodeButton: false,
+    showResetViewInMenu: false, instructionsDefaultOpen: true,
+    titleInsideInstructions: true, onChange: scheduleSave,
+  })
+}
+
 function consumeHandoff() {
   const url = new URL(window.location.href)
   const handoffId = url.searchParams.get("handoff")
@@ -407,6 +458,24 @@ function consumeHandoff() {
 }
 
 function init() {
+  const challengeId = new URL(window.location.href).searchParams.get("challenge")
+  if (challengeId !== null) {
+    const challenge = findChallenge(challengeId)
+    if (!challenge) {
+      sourceContext.textContent = "This challenge could not be found. Return to Web Development to choose a challenge."
+      document.querySelector(".playground-controls").hidden = true
+      return
+    }
+    renderChallenge(challenge)
+    resetWorkspaceButton?.addEventListener("click", resetWorkspace)
+    resetViewButton?.addEventListener("click", () => activeApi?.resetView())
+    window.addEventListener("pagehide", saveNow)
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") saveNow()
+    })
+    window.addEventListener("beforeunload", saveNow)
+    return
+  }
   const handoff = consumeHandoff()
 
   if (handoff) {

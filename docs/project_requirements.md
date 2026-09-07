@@ -99,6 +99,16 @@ the browser with `localStorage` where useful.
 - The current content focus is BTEC Level 3 Computing Unit 2.
 - Web development teaching resources are a separate non-unit resource hub,
   beginning with HTML basics, CSS basics, and JavaScript basics.
+- Each Web Development basics section can switch between lessons and a compact
+  numbered challenge grid. Challenges identify debugging or programming tasks,
+  expose skills on hover/focus or tap, and open in the existing Code Playground.
+  Each challenge saves independently in localStorage for classroom review, with
+  an individual restart action. See `docs/web_challenges.md` for authoring.
+- JavaScript challenges cover the existing lessons and the planned sequence
+  through arrays, loops, functions, return values, scope, objects, nested data,
+  debugging, and console mini projects. The bank currently has 37 exercises;
+  `docs/javascript_basics.md` records the supplied plan and coverage. These
+  future-topic challenges do not imply that their lesson pages are live.
 - When the homepage is not filtered by search, it should prioritise real live
   pages. Planned lesson topics can still appear through search, but should not
   be presented as if they are already finished live pages by default.

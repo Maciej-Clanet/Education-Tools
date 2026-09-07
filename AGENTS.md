@@ -112,6 +112,12 @@ Before making major UI, content, or structure changes, read:
 - `pages/tools/code-playground.html`, `javascript/pages/code-playground.js`,
   and `css/pages/code-playground.css` provide the standalone Code Playground
   that reuses the Live Code editor/runtime and autosaves local workspaces.
+- `javascript/data/web-challenges.js` defines the Web Development hub challenges.
+  Challenge links open the existing playground with independent local saves;
+  authoring and persistence are documented in `docs/web_challenges.md`.
+- The JavaScript challenge bank is in `javascript/data/challenges/javascript-challenges.js`.
+  `docs/javascript_basics.md` records the console-first 15-stage plan and
+  challenge coverage, retaining the existing extra Working with Strings lesson.
 - `javascript/core/shorthand-visualizer.js` and
   `css/shorthand-visualizer.css` provide reusable four-value CSS shorthand
   mappings; its contract is documented in `docs/shorthand_visualizer.md`.
