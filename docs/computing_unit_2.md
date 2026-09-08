@@ -104,6 +104,9 @@ saved progress should be shown as needing a fresh attempt.
 
 ### A2 Computer software in a computer system
 - [x] Operating system types
+  - Reworked into 21 first-teaching slides: definitions and examples before
+    the users/tasks versus timing map, modern overlap and exam classification.
+    Eight paired scenario/clue activities; quiz version 2, 12 questions, pass 9.
 - [x] Kernel functions and system management
 - [x] User interfaces and software choice
 - [x] Utility, application, and open source software

@@ -23,8 +23,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-operating-system-types-quiz",
-    passScore: 6,
+    storageKey: "lesson-operating-system-types-quiz-v2",
+    version: 2,
+    totalQuestions: 12,
+    passScore: 9,
   },
   examPractice: {
     storageKey: "lesson-operating-system-types-exam-practice",
@@ -32,3 +34,23 @@ const lessonConfig = {
 }
 
 initLessonPage(lessonConfig)
+
+// Reuse the paired native-selection pattern used by the hardware lesson.
+document.querySelectorAll("[data-os-scenario]").forEach((card) => {
+  const type = card.querySelector('[data-choice="type"]')
+  const clue = card.querySelector('[data-choice="clue"]')
+  const feedback = card.querySelector("[data-os-feedback]")
+  card.querySelector("[data-check-os]").addEventListener("click", () => {
+    if (!type.value || !clue.value) {
+      feedback.textContent = "Choose both an OS classification and its supporting clue."
+      return
+    }
+    const typeCorrect = type.value === card.dataset.type
+    const clueCorrect = clue.value === card.dataset.clue
+    feedback.textContent = `${typeCorrect && clueCorrect ? "Correct classification and evidence." :
+      `Classification: ${typeCorrect ? "correct" : "try again"}. Clue: ${clueCorrect ? "correct" : "try again"}.`} ${card.dataset.explanation}`
+  })
+  card.querySelectorAll("select").forEach((select) => {
+    select.addEventListener("change", () => { feedback.textContent = "" })
+  })
+})

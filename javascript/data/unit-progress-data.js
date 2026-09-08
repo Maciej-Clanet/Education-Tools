@@ -161,7 +161,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "operating-system-types",
           title: "Operating system types",
           href: "../topics/operating-system-types.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 8, passScore: 6 },
+          quiz: { version: 2, totalQuestions: 12, passScore: 9 },
         },
         {
           id: "kernel-functions-and-system-management",
