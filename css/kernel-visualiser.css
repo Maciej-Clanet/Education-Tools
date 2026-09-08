@@ -1,0 +1,34 @@
+.kernel-visualiser { margin: 1rem 0; padding: clamp(.7rem, 2vw, 1.2rem); border: 2px solid var(--lesson-accent, #29534b); border-radius: 18px; background: var(--surface, #fffdf8); color: var(--page-ink, #253442); }
+.kv-heading { margin: 0 0 .7rem; }
+.kv-controls { display: flex; flex-wrap: wrap; gap: .5rem; }
+.kv-controls button { min-height: 44px; padding: .5rem .85rem; border: 2px solid currentColor; border-radius: 9px; background: transparent; color: inherit; font: inherit; font-weight: 700; cursor: pointer; }
+.kv-controls button:disabled { opacity: .5; cursor: default; }
+.kv-controls button:focus-visible { outline: 3px solid var(--lesson-accent, #29534b); outline-offset: 3px; }
+.kv-report { margin: .8rem 0; padding: .8rem; border-left: 5px solid var(--lesson-accent, #29534b); background: var(--soft-surface, #edf5f0); }
+.kv-detail { margin: .35rem 0 0; }
+.kv-board { display: grid; gap: .6rem; }
+.kv-layer { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: .6rem; align-items: center; padding: .6rem; border: 1px solid #79918d; border-radius: 10px; }
+.kv-layer[data-layer="Kernel"] { border: 2px dashed currentColor; }
+.kv-layer-name { font-size: .85em; }
+.kv-nodes { display: flex; flex-wrap: wrap; gap: .5rem; }
+.kv-node { flex: 1 1 140px; min-width: 0; padding: .5rem .65rem; border: 2px solid #9baca8; border-radius: 8px; transition: background-color .18s, border-color .18s; }
+.kv-node-status { display: block; font-size: .75em; margin-top: .25rem; }
+.kv-node.is-active { border: 2px solid #245a4e; background: #dcefe8; color: #193e35; box-shadow: inset 0 0 0 1px #245a4e; }
+.kv-resources { display: grid; gap: .8rem; margin-top: .8rem; }
+.kv-resource > strong { font-size: .85em; }
+.kv-ram { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .35rem; margin: .6rem 0; }
+.kv-ram span { display: grid; place-items: center; min-height: 2.5rem; padding: .3rem; border: 1px solid #647d77; border-radius: 5px; font-size: .78em; font-weight: 700; }
+.kv-timeline { display: flex; list-style: none; gap: .35rem; margin: .6rem 0; padding: 0; }
+.kv-timeline li { flex: 1; min-width: 0; padding: .65rem .2rem; border: 1px solid #647d77; border-radius: 5px; text-align: center; font-size: .78em; font-weight: 700; overflow-wrap: anywhere; }
+.kv-timeline li.is-active { outline: 3px solid currentColor; outline-offset: 1px; text-decoration: underline; text-underline-offset: .3em; }
+[data-owner="Kernel"] { background: #eee3db; color: #4a3326; }
+[data-owner="Browser"] { background: #ddecf8; color: #21415c; }
+[data-owner="Music"] { background: #e6dff3; color: #493466; }
+[data-owner="Editor"] { background: #dcefe8; color: #245347; }
+[data-owner="Game"] { background: #f8e8c4; color: #5d4815; }
+[data-owner="Download"] { background: #f2dedb; color: #6b3730; }
+[data-owner="Free"] { background: #fff; color: #46524e; border-style: dashed !important; }
+.kv-model-note { font-size: .8em; margin: .5rem 0 0; }
+@media (max-width: 600px) { .kv-layer { grid-template-columns: 1fr; } .kv-ram { grid-template-columns: repeat(3, minmax(0, 1fr)); } .kv-node { flex-basis: 100px; } }
+@media (prefers-reduced-motion: reduce) { .kernel-visualiser * { transition: none !important; animation: none !important; } }
+@media (forced-colors: active) { .kv-node.is-active, .kv-timeline li.is-active { outline: 3px solid Highlight; } }

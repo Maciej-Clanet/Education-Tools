@@ -1451,7 +1451,7 @@ function initTeacherMode(config) {
     }
   }
 
-  function goToSlide(index, behavior = "auto") {
+  function goToSlide(index, behavior = "auto", forceScroll = false) {
     const previousSlide = getSlide()
 
     activeSlideIndex = clamp(index, 0, slides.length - 1)
@@ -1469,7 +1469,7 @@ function initTeacherMode(config) {
 
     if (
       activeSection &&
-      (!previousSlide || previousSection !== activeSection || !isTeacherMode)
+      (forceScroll || !previousSlide || previousSection !== activeSection || !isTeacherMode)
     ) {
       slideScrollTargetSection = isTeacherMode ? activeSection : null
       scrollSlideSectionIntoView(activeSection, behavior)
@@ -1498,7 +1498,7 @@ function initTeacherMode(config) {
     updatePresentationOverlay()
 
     requestAnimationFrame(() => {
-      goToSlide(activeSlideIndex, "auto")
+      goToSlide(activeSlideIndex, "auto", true)
     })
   }
 
@@ -1517,7 +1517,7 @@ function initTeacherMode(config) {
     document.body.classList.add("teacher-mode-active")
 
     requestAnimationFrame(() => {
-      goToSlide(activeSlideIndex, "auto")
+      goToSlide(activeSlideIndex, "auto", true)
     })
   }
 

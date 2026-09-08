@@ -1,4 +1,6 @@
 import { initLessonPage } from "../core/lesson-shell.js"
+import { initKernelVisualisers, initKernelScenarios } from "../core/kernel-visualiser.js"
+import { kernelSequences } from "../data/kernel-visualiser-data.js"
 
 const lessonConfig = {
   lessonId: "kernel-functions-and-system-management",
@@ -23,12 +25,16 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-kernel-functions-and-system-management-quiz",
-    passScore: 6,
+    storageKey: "lesson-kernel-functions-and-system-management-quiz-v2",
+    version: 2,
+    totalQuestions: 16,
+    passScore: 12,
   },
   examPractice: {
     storageKey: "lesson-kernel-functions-and-system-management-exam-practice",
   },
 }
 
+initKernelVisualisers(kernelSequences)
+initKernelScenarios()
 initLessonPage(lessonConfig)

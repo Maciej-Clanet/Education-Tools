@@ -167,7 +167,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "kernel-functions-and-system-management",
           title: "Kernel functions and system management",
           href: "../topics/kernel-functions-and-system-management.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 8, passScore: 6 },
+          quiz: { version: 2, totalQuestions: 16, passScore: 12 },
         },
         {
           id: "user-interfaces-and-software-choice",
