@@ -30,3 +30,11 @@ Entering from student mode ignores hidden dividers when finding the nearest slid
 
 Styles live in `css/pages/lesson.css`. Shared behaviour is covered by
 `node --test tests/teacher-dividers.test.mjs`.
+
+## Small teacher-only cues
+
+Use `<p data-teacher-note>Optional live demo: …</p>` inside a normal section.
+The shared stylesheet hides the cue from student content, reading tools and
+printing, and reveals it in Teacher Slides without creating another slide.
+Keep cues brief. Do not apply `data-teacher-only` to notes: that attribute is
+reserved for generated full presentation sections.

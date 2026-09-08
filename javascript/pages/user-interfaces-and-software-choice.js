@@ -1,4 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
+import { initSimulatedTerminals } from "../core/simulated-terminal.js"
+import { initPairedScenarios } from "../core/paired-scenarios.js"
+import { interfaceTerminals, interfaceScenarios } from "../data/user-interface-activities.js"
 
 const lessonConfig = {
   lessonId: "user-interfaces-and-software-choice",
@@ -23,12 +26,19 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-user-interfaces-and-software-choice-quiz",
-    passScore: 5,
+    storageKey: "lesson-user-interfaces-and-software-choice-quiz-v2",
+    version: 2,
+    totalQuestions: 12,
+    passScore: 9,
   },
   examPractice: {
     storageKey: "lesson-user-interfaces-and-software-choice-exam-practice",
   },
 }
 
+// Preserve old topic bookmarks after the curriculum split.
+const previousSections = { '#software-choice': '#interface-suitability', '#performance-use': '#interface-suitability' }
+if (previousSections[location.hash]) history.replaceState(null, '', previousSections[location.hash])
+initSimulatedTerminals(interfaceTerminals)
+initPairedScenarios(interfaceScenarios)
 initLessonPage(lessonConfig)

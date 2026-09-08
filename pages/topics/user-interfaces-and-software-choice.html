@@ -3,20 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      User Interfaces and Software Choice Revision Lesson | Education Tools
-    </title>
+    <title>User Interfaces Lesson | Education Tools</title>
     <meta
       name="description"
-      content="Revise user interfaces and software choice for BTEC Level 3 Computing Unit 2, including graphical, command line, and menu-based interfaces with real examples such as desktops, terminals, ATMs, ticket machines, server administration, and software selection factors."
+      content="Learn GUI, CLI and menu-based interfaces, explore a simulated PowerShell terminal, and justify interface suitability for real scenarios."
     />
     <meta
       property="og:title"
-      content="User Interfaces and Software Choice Revision Lesson | Education Tools"
+      content="User Interfaces Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise user interfaces and software choice for BTEC Level 3 Computing Unit 2, including graphical, command line, and menu-based interfaces with real examples such as desktops, terminals, ATMs, ticket machines, server administration, and software selection factors."
+      content="Learn GUI, CLI and menu-based interfaces, explore a simulated PowerShell terminal, and justify interface suitability for real scenarios."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -30,6 +28,7 @@
       rel="stylesheet"
       href="../../css/pages/user-interfaces-and-software-choice.css"
     />
+    <link rel="stylesheet" href="../../css/simulated-terminal.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -51,17 +50,17 @@
                 >Unit 2: Computer Systems</a
               >
             </li>
-            <li aria-current="page">User interfaces and software choice</li>
+            <li aria-current="page">User interfaces</li>
           </ol>
         </nav>
 
         <div class="lesson-header-row">
           <div>
-            <h1>User interfaces and software choice</h1>
+            <h1>User interfaces</h1>
             <p class="lesson-hero-text">
-              Compare graphical, command line, and menu-based interfaces using
-              real contexts, then practise choosing suitable software by
-              matching it to users, tasks, devices, performance, and risk.
+              Explore graphical, command-line and menu-based interfaces. Try a
+              simulated terminal, compare real workflows and justify the best
+              interface for each task.
             </p>
             <p class="lesson-hero-support">
               In the current lesson context, this sits inside
@@ -79,7 +78,9 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Main focus</strong>
-            <span>Interface suitability and justified software choices</span>
+            <span
+              >GUI, CLI, menu-based workflows and interface suitability</span
+            >
           </article>
         </div>
 
@@ -107,8 +108,9 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, and teacher slides need JavaScript, but
-          the lesson notes still work without it.
+          Simulated terminal controls, activities, quiz scoring, answer saving,
+          and teacher slides need JavaScript, but the lesson notes still work
+          without it.
         </p>
       </noscript>
 
@@ -116,14 +118,78 @@
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#interface-types" data-section-link>Interface comparison</a>
-            <a href="#command-line" data-section-link>Command line examples</a>
-            <a href="#menu-based" data-section-link>Menu-based examples</a>
-            <a href="#software-choice" data-section-link>Software choice</a>
-            <a href="#performance-use" data-section-link>Use and performance</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
-            <a href="#quiz" data-section-link>Quick quiz</a>
+            <a href="#overview" data-section-link>What is a user interface?</a>
+            <a href="#interface-types" data-section-link
+              >Three interface styles to know</a
+            >
+            <a href="#gui" data-section-link>Graphical User Interface</a>
+            <a href="#discoverability" data-section-link
+              >Why GUIs are easy to learn</a
+            >
+            <a href="#gui-tradeoffs" data-section-link
+              >GUI strengths and limitations</a
+            >
+            <a href="#command-line" data-section-link
+              >What is a command-line interface?</a
+            >
+            <a href="#prompt-command-output" data-section-link
+              >Prompt, command and output</a
+            >
+            <a href="#current-location" data-section-link
+              >Where am I working?</a
+            >
+            <a href="#directory-listing" data-section-link
+              >Inspect a folder without File Explorer</a
+            >
+            <a href="#process-list" data-section-link
+              >Inspect running processes</a
+            >
+            <a href="#command-help" data-section-link>CLI users use help</a>
+            <a href="#pipelines" data-section-link
+              >Combine commands into a pipeline</a
+            >
+            <a href="#why-cli" data-section-link
+              >Why use a CLI when GUIs exist?</a
+            >
+            <a href="#automation" data-section-link
+              >Repetition and automation</a
+            >
+            <a href="#software-engineering" data-section-link
+              >CLI in software engineering</a
+            >
+            <a href="#cybersecurity" data-section-link>CLI in cybersecurity</a>
+            <a href="#ai-data" data-section-link>CLI in AI and data science</a>
+            <a href="#remote-systems" data-section-link
+              >Servers, cloud and DevOps</a
+            >
+            <a href="#cli-tradeoffs" data-section-link
+              >CLI strengths and limitations</a
+            >
+            <a href="#menu-based" data-section-link
+              >What is a menu-based interface?</a
+            >
+            <a href="#limited-choices" data-section-link
+              >Why can limiting choices be useful?</a
+            >
+            <a href="#menu-examples" data-section-link
+              >Real menu-based examples</a
+            >
+            <a href="#menu-tradeoffs" data-section-link
+              >Menu-based strengths and limitations</a
+            >
+            <a href="#combined-styles" data-section-link
+              >Real systems can use more than one interface</a
+            >
+            <a href="#comparison" data-section-link>GUI vs CLI vs menu-based</a>
+            <a href="#interface-suitability" data-section-link
+              >What makes an interface suitable?</a
+            >
+            <a href="#worked-scenarios" data-section-link>Worked scenarios</a>
+            <a href="#choose-interface" data-section-link
+              >Choose the best interface</a
+            >
+            <a href="#mistakes" data-section-link>Common exam mistakes</a>
+            <a href="#quiz" data-section-link>Check your understanding</a>
             <a href="#exam-practice" data-section-link>Exam-style practice</a>
           </nav>
         </aside>
@@ -131,821 +197,1914 @@
         <main class="lesson-main" data-role="lesson-main">
           <section
             id="overview"
-            class="lesson-section lesson-section--overview panel"
+            class="lesson-section panel"
             data-lesson-section
           >
-            <p class="eyebrow">Overview</p>
-            <h2>Good interface choices fit the user, not just the software</h2>
-            <p class="lesson-section-copy">
-              Interface questions ask you to match people, tasks, devices, and
-              environments. A GUI may be best for broad everyday use, a command
-              line may be best for expert control, and a menu-based interface
-              may be best where users need a short guided path.
+            <p class="eyebrow">01 · User interfaces</p>
+            <h2>What is a user interface?</h2>
+            <p class="ui-key">
+              A user interface is the way a person interacts with a computer
+              system or software.
             </p>
-
-            <div
-              class="interface-choice-compass"
-              aria-label="Four clues for choosing an interface"
-            >
-              <article class="choice-compass-card">
-                <span class="choice-compass-icon choice-compass-icon--user" aria-hidden="true"></span>
-                <strong>User</strong>
-                <span>Beginner, expert, public user, administrator</span>
+            <img
+              class="ui-visual"
+              src="../../assets/images/interfaces/three-styles.svg"
+              alt="Three familiar interfaces: a graphical desktop, a PowerShell terminal and a ticket machine."
+            />
+            <p class="lesson-section-copy">
+              Opening a document, typing an instruction and choosing a ticket
+              all involve giving input and receiving feedback.
+            </p>
+          </section>
+          <section
+            id="interface-types"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">02 · User interfaces</p>
+            <h2>Three interface styles to know</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>Graphical User Interface · GUI</h3>
+                <p>
+                  Interact with visual controls using a pointer, touch or
+                  keyboard.
+                </p>
               </article>
-              <article class="choice-compass-card">
-                <span class="choice-compass-icon choice-compass-icon--task" aria-hidden="true"></span>
-                <strong>Task</strong>
-                <span>Routine choices, creative work, automation, repair</span>
+              <article class="ui-card">
+                <h3>Command-Line Interface · CLI</h3>
+                <p>Type commands and read their output in a terminal.</p>
               </article>
-              <article class="choice-compass-card">
-                <span class="choice-compass-icon choice-compass-icon--device" aria-hidden="true"></span>
-                <strong>Device</strong>
-                <span>Touch screen, desktop, server, embedded system</span>
-              </article>
-              <article class="choice-compass-card">
-                <span class="choice-compass-icon choice-compass-icon--setting" aria-hidden="true"></span>
-                <strong>Setting</strong>
-                <span>Public, remote, time-limited, secure, low resource</span>
+              <article class="ui-card">
+                <h3>Menu-based interface</h3>
+                <p>Choose from predefined options in a guided workflow.</p>
               </article>
             </div>
-
-            <div class="lesson-intro-grid">
-              <article class="lesson-card lesson-wide">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>
-                    Compare graphical, command line, and menu-based
-                    interfaces.
-                  </li>
-                  <li>
-                    Explain where command line interfaces are used, such as
-                    server administration, scripting, Git, and diagnostics.
-                  </li>
-                  <li>
-                    Explain where menu-based interfaces are used, such as ATMs,
-                    ticket machines, tills, printers, and setup screens.
-                  </li>
-                  <li>
-                    Justify software choices using user needs, compatibility,
-                    cost, training, accessibility, security, and performance.
-                  </li>
-                </ul>
-              </article>
-
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>GUI:</strong> visual discovery and ease of use.</li>
-                  <li><strong>CLI:</strong> precise commands and automation.</li>
-                  <li><strong>Menu:</strong> guided fixed choices.</li>
-                  <li><strong>Choice:</strong> suit the scenario, not personal preference.</li>
-                </ul>
-              </article>
-
-              <article class="lesson-card fullrow">
-                <h3>The exam habit</h3>
+            <p class="ui-key">
+              These are interface styles. Real systems can combine them.
+            </p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Graphical interfaces</h2>
+          </template>
+          <section id="gui" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">03 · User interfaces</p>
+            <h2>Graphical User Interface</h2>
+            <img
+              class="ui-visual"
+              src="../../assets/images/interfaces/gui-editor.svg"
+              alt="An image editor window with labelled menus, toolbar buttons, an image canvas and a layers panel."
+            />
+            <p class="lesson-section-copy">
+              A GUI presents
+              <strong>windows or panels, icons, buttons and menus</strong>. You
+              select or manipulate items with a pointer or touch; keyboard
+              navigation and shortcuts can also work. Visual feedback shows the
+              effect of your action.
+            </p>
+          </section>
+          <section
+            id="discoverability"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">04 · User interfaces</p>
+            <h2>Why GUIs are easy to learn</h2>
+            <img
+              class="ui-visual"
+              src="../../assets/images/interfaces/gui-editor.svg"
+              alt="Visible Crop, Undo and Zoom controls help users discover possible actions in an image editor."
+            />
+            <p class="ui-key">
+              Discoverability means being able to find available actions.
+            </p>
+            <p class="lesson-section-copy">
+              A labelled Crop button suggests what you can do. An Undo control
+              offers a visible way back. You can explore menus rather than first
+              remembering a command. Unclear icons and hidden controls can still
+              be confusing.
+            </p>
+            <p class="ui-key">GUIs reduce the need to memorise commands.</p>
+          </section>
+          <section
+            id="gui-tradeoffs"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">05 · User interfaces</p>
+            <h2>GUI strengths and limitations</h2>
+            <h3>Strengths</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h4>Explore and learn</h4>
                 <p>
-                  Do not say "GUI is easier" and stop. Say who it is easier for,
-                  what task they are doing, and what trade-off follows. That is
-                  where the marks usually live.
+                  Visible controls often lower the learning barrier. Labels,
+                  keyboard focus and screen-reader support can make a
+                  well-designed GUI accessible.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h4>Work visually</h4>
+                <p>
+                  Drag a crop boundary on a photograph and see the result
+                  immediately. Pointer and touch interaction suit direct
+                  manipulation.
+                </p>
+              </article>
+            </div>
+            <h3>Limitations</h3>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h4>Repeat a task</h4>
+                <p>
+                  Inspecting hundreds of files through dialogs can require many
+                  clicks. Advanced options may be hidden; automation can be
+                  harder than using scriptable commands.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h4>Consider resources</h4>
+                <p>
+                  Graphical desktops can need more screen space, memory and
+                  processing than a text interface. The actual overhead depends
+                  on the software and task.
+                </p>
+              </article>
+
+            </div>
+          </section>
+          <template data-teacher-divider>
+            <h2>Command-line interfaces</h2>
+          </template>
+          <section
+            id="command-line"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">06 · User interfaces</p>
+            <h2>What is a command-line interface?</h2>
+            <p class="ui-key">
+              In a CLI, the user types commands rather than primarily clicking
+              graphical controls.
+            </p>
+            <div class="ui-terminal-example">
+              <p>
+                <strong>Prompt:</strong> <code>PS C:\Users\Student&gt;</code>
+              </p>
+              <p><strong>Command:</strong> <code>Get-Process</code></p>
+              <pre>
+Process       ID
+browser       124
+editor        248</pre
+              >
+              <p>
+                <strong>Output:</strong> a simplified list of running processes.
+              </p>
+            </div>
+            <p class="lesson-section-copy">
+              PowerShell is our Windows classroom example. A terminal is the
+              window for text interaction; PowerShell interprets the commands.
+              Focus on what the interaction achieves, not memorising syntax.
+            </p>
+          </section>
+          <section
+            id="prompt-command-output"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">07 · User interfaces</p>
+            <h2>Prompt, command and output</h2>
+            <ol class="ui-flow">
+              <li>
+                <strong>Prompt</strong><br />The environment is ready for your
+                next instruction.
+              </li>
+              <li>
+                <strong>Command</strong><br />You type the instruction and press
+                Enter.
+              </li>
+              <li>
+                <strong>Output</strong><br />The command returns a result;
+                another prompt lets you continue.
+              </li>
+            </ol>
+            <div
+              class="simulated-terminal"
+              data-simulated-terminal="powershell"
+              data-no-slide-advance
+            >
+              <h3>Simulated PowerShell</h3>
+              <p class="terminal-hint">
+                Fictional example data. This teaching terminal does not access
+                your computer. Load an example or type it, then press Enter.
+              </p>
+              <div class="terminal-screen">
+                <strong>Prompt and command</strong>
+                <pre data-terminal-command>
+PS C:\Users\Student&gt; Get-Date</pre
+                >
+                <strong>Output</strong>
+                <pre
+                  data-terminal-output
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+08 September 2026 10:15:00
+Example date and time — fixed for this simulation.</pre
+                >
+              </div>
+              <form>
+                <label for="terminal-date"
+                  >Command · prompt: PS C:\Users\Student&gt;</label
+                ><input
+                  id="terminal-date"
+                  type="text"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  maxlength="200"
+                  aria-describedby="hint-date"
+                />
+                <button type="submit">Run simulation</button>
+                <button type="button" data-terminal-reset>
+                  Reset terminal
+                </button>
+              </form>
+              <p id="hint-date" class="terminal-hint">
+                Up/Down recalls commands entered here. Example buttons fill the
+                command box.
+              </p>
+              <div>
+                <button type="button" data-terminal-example="Get-Date">
+                  Get-Date
+                </button>
+              </div>
+            </div>
+            <p data-teacher-note>
+              <strong>Optional live demo:</strong> Run <code>Get-Date</code> in
+              PowerShell and compare with the fixed example date.
+            </p>
+          </section>
+          <section
+            id="current-location"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">08 · User interfaces</p>
+            <h2>Where am I working?</h2>
+            <p class="lesson-section-copy">
+              The <strong>current working location</strong> is where commands
+              look by default when you do not give another path. Here it is the
+              fictional Student folder.
+            </p>
+            <div
+              class="simulated-terminal"
+              data-simulated-terminal="powershell"
+              data-no-slide-advance
+            >
+              <h3>Simulated PowerShell</h3>
+              <p class="terminal-hint">
+                Fictional example data. This teaching terminal does not access
+                your computer. Load an example or type it, then press Enter.
+              </p>
+              <div class="terminal-screen">
+                <strong>Prompt and command</strong>
+                <pre data-terminal-command>
+PS C:\Users\Student&gt; Get-Location</pre
+                >
+                <strong>Output</strong>
+                <pre
+                  data-terminal-output
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+Path
+----
+C:\Users\Student</pre
+                >
+              </div>
+              <form>
+                <label for="terminal-location"
+                  >Command · prompt: PS C:\Users\Student&gt;</label
+                ><input
+                  id="terminal-location"
+                  type="text"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  maxlength="200"
+                  aria-describedby="hint-location"
+                />
+                <button type="submit">Run simulation</button>
+                <button type="button" data-terminal-reset>
+                  Reset terminal
+                </button>
+              </form>
+              <p id="hint-location" class="terminal-hint">
+                Up/Down recalls commands entered here. Example buttons fill the
+                command box.
+              </p>
+              <div>
+                <button type="button" data-terminal-example="Get-Location">
+                  Get-Location
+                </button>
+              </div>
+            </div>
+            <p data-teacher-note>
+              <strong>Optional live demo:</strong> Run
+              <code>Get-Location</code> and compare the real path with the
+              fictional Student folder.
+            </p>
+          </section>
+          <section
+            id="directory-listing"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">09 · User interfaces</p>
+            <h2>Inspect a folder without File Explorer</h2>
+            <p class="lesson-section-copy">
+              A directory is a folder. A listing lets you inspect its files and
+              subfolders without opening a graphical file manager. Reading a
+              listing does not change those files.
+            </p>
+            <div
+              class="simulated-terminal"
+              data-simulated-terminal="powershell"
+              data-no-slide-advance
+            >
+              <h3>Simulated PowerShell</h3>
+              <p class="terminal-hint">
+                Fictional example data. This teaching terminal does not access
+                your computer. Load an example or type it, then press Enter.
+              </p>
+              <div class="terminal-screen">
+                <strong>Prompt and command</strong>
+                <pre data-terminal-command>
+PS C:\Users\Student&gt; Get-ChildItem</pre
+                >
+                <strong>Output</strong>
+                <pre
+                  data-terminal-output
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+Name             Type
+----             ----
+Documents        Folder
+Pictures         Folder
+assignment.txt   File
+notes.txt        File</pre
+                >
+              </div>
+              <form>
+                <label for="terminal-listing"
+                  >Command · prompt: PS C:\Users\Student&gt;</label
+                ><input
+                  id="terminal-listing"
+                  type="text"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  maxlength="200"
+                  aria-describedby="hint-listing"
+                />
+                <button type="submit">Run simulation</button>
+                <button type="button" data-terminal-reset>
+                  Reset terminal
+                </button>
+              </form>
+              <p id="hint-listing" class="terminal-hint">
+                Up/Down recalls commands entered here. Example buttons fill the
+                command box.
+              </p>
+              <div>
+                <button type="button" data-terminal-example="Get-ChildItem">
+                  Get-ChildItem
+                </button>
+              </div>
+            </div>
+            <p data-teacher-note>
+              <strong>Optional live demo:</strong> If permitted, use
+              <code>Get-ChildItem</code> in a suitable classroom folder.
+            </p>
+          </section>
+          <section
+            id="process-list"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">10 · User interfaces</p>
+            <h2>Inspect running processes</h2>
+            <p class="lesson-section-copy">
+              A <strong>process</strong> is a running instance of a program, as
+              in the kernel lesson. A CLI can report processes as a table. The
+              ID identifies a process; CPU here is accumulated processor time in
+              seconds, not current CPU percentage.
+            </p>
+            <div
+              class="simulated-terminal"
+              data-simulated-terminal="powershell"
+              data-no-slide-advance
+            >
+              <h3>Simulated PowerShell</h3>
+              <p class="terminal-hint">
+                Fictional example data. This teaching terminal does not access
+                your computer. Load an example or type it, then press Enter.
+              </p>
+              <div class="terminal-screen">
+                <strong>Prompt and command</strong>
+                <pre data-terminal-command>
+PS C:\Users\Student&gt; Get-Process</pre
+                >
+                <strong>Output</strong>
+                <pre
+                  data-terminal-output
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+Process       ID    CPU (seconds)
+browser       124   42.8
+editor        248   18.2
+music         372   6.1
+system        4     95.0
+filemanager   510   3.4
+notes         624   1.2</pre
+                >
+              </div>
+              <form>
+                <label for="terminal-process"
+                  >Command · prompt: PS C:\Users\Student&gt;</label
+                ><input
+                  id="terminal-process"
+                  type="text"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  maxlength="200"
+                  aria-describedby="hint-process"
+                />
+                <button type="submit">Run simulation</button>
+                <button type="button" data-terminal-reset>
+                  Reset terminal
+                </button>
+              </form>
+              <p id="hint-process" class="terminal-hint">
+                Up/Down recalls commands entered here. Example buttons fill the
+                command box.
+              </p>
+              <div>
+                <button type="button" data-terminal-example="Get-Process">
+                  Get-Process
+                </button>
+              </div>
+            </div>
+            <p data-teacher-note>
+              <strong>Optional live demo:</strong> Run
+              <code>Get-Process</code> and compare the real output with this
+              simplified table.
+            </p>
+          </section>
+          <section
+            id="command-help"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">11 · User interfaces</p>
+            <h2>CLI users use help</h2>
+            <p class="ui-key">
+              Professionals do not memorise every possible command.
+            </p>
+            <p class="lesson-section-copy">
+              Built-in help explains a command’s purpose, options and examples.
+              Reading help is part of using a CLI confidently.
+            </p>
+            <div
+              class="simulated-terminal"
+              data-simulated-terminal="powershell"
+              data-no-slide-advance
+            >
+              <h3>Simulated PowerShell</h3>
+              <p class="terminal-hint">
+                Fictional example data. This teaching terminal does not access
+                your computer. Load an example or type it, then press Enter.
+              </p>
+              <div class="terminal-screen">
+                <strong>Prompt and command</strong>
+                <pre data-terminal-command>
+PS C:\Users\Student&gt; Get-Help Get-Process</pre
+                >
+                <strong>Output</strong>
+                <pre
+                  data-terminal-output
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+NAME
+    Get-Process
+PURPOSE
+    Shows running processes.
+EXAMPLE
+    Get-Process
+This is a shortened teaching help entry.</pre
+                >
+              </div>
+              <form>
+                <label for="terminal-help"
+                  >Command · prompt: PS C:\Users\Student&gt;</label
+                ><input
+                  id="terminal-help"
+                  type="text"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  maxlength="200"
+                  aria-describedby="hint-help"
+                />
+                <button type="submit">Run simulation</button>
+                <button type="button" data-terminal-reset>
+                  Reset terminal
+                </button>
+              </form>
+              <p id="hint-help" class="terminal-hint">
+                Up/Down recalls commands entered here. Example buttons fill the
+                command box.
+              </p>
+              <div>
+                <button
+                  type="button"
+                  data-terminal-example="Get-Help Get-Process"
+                >
+                  Get-Help Get-Process
+                </button>
+              </div>
+            </div>
+            <p data-teacher-note>
+              <strong>Optional live demo:</strong> Try
+              <code>Get-Help Get-Process</code>; installed help may vary between
+              college machines.
+            </p>
+          </section>
+          <section
+            id="pipelines"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">12 · User interfaces</p>
+            <h2>Combine commands into a pipeline</h2>
+            <ol class="ui-flow">
+              <li><strong>Get</strong><br />Collect process information.</li>
+              <li>
+                <strong>Sort</strong><br />Order it by accumulated CPU time,
+                largest first.
+              </li>
+              <li><strong>Select</strong><br />Keep the first five results.</li>
+            </ol>
+            <p class="lesson-section-copy">
+              The pipe symbol <code>|</code> passes results to the next command.
+              PowerShell passes structured objects, so the next tool can use a
+              property such as CPU. You do not need to memorise this syntax.
+            </p>
+            <div
+              class="simulated-terminal"
+              data-simulated-terminal="powershell"
+              data-no-slide-advance
+            >
+              <h3>Simulated PowerShell</h3>
+              <p class="terminal-hint">
+                Fictional example data. This teaching terminal does not access
+                your computer. Load an example or type it, then press Enter.
+              </p>
+              <div class="terminal-screen">
+                <strong>Prompt and command</strong>
+                <pre data-terminal-command>
+PS C:\Users\Student&gt; Get-Process | Sort-Object CPU -Descending</pre
+                >
+                <strong>Output</strong>
+                <pre
+                  data-terminal-output
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+Process       ID    CPU (seconds)
+system        4     95.0
+browser       124   42.8
+editor        248   18.2
+music         372   6.1
+filemanager   510   3.4
+notes         624   1.2</pre
+                >
+              </div>
+              <form>
+                <label for="terminal-pipeline"
+                  >Command · prompt: PS C:\Users\Student&gt;</label
+                ><input
+                  id="terminal-pipeline"
+                  type="text"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  maxlength="200"
+                  aria-describedby="hint-pipeline"
+                />
+                <button type="submit">Run simulation</button>
+                <button type="button" data-terminal-reset>
+                  Reset terminal
+                </button>
+              </form>
+              <p id="hint-pipeline" class="terminal-hint">
+                Up/Down recalls commands entered here. Example buttons fill the
+                command box.
+              </p>
+              <div>
+                <button
+                  type="button"
+                  data-terminal-example="Get-Process | Sort-Object CPU -Descending"
+                >
+                  Get-Process | Sort-Object CPU -Descending
+                </button>
+                <button
+                  type="button"
+                  data-terminal-example="Get-Process | Sort-Object CPU -Descending | Select-Object -First 5"
+                >
+                  Get-Process | Sort-Object CPU -Descending | Select-Object
+                  -First 5
+                </button>
+              </div>
+            </div>
+            <p data-teacher-note>
+              <strong>Optional live demo:</strong> If useful, compare the two
+              pipeline examples in PowerShell after checking them on the
+              classroom machine.
+            </p>
+            <p class="ui-key">
+              CLI tools become powerful because commands can be combined.
+            </p>
+          </section>
+          <section
+            id="why-cli"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">13 · User interfaces</p>
+            <h2>Why use a CLI when GUIs exist?</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>Precision and repetition</h3>
+                <p>
+                  Describe exactly which information you want, then repeat the
+                  same instruction reliably.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Automation and scripting</h3>
+                <p>
+                  Save a sequence of commands as a script so a repeated task
+                  needs less manual work.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Remote administration</h3>
+                <p>
+                  Work with a server through a text connection without needing a
+                  full graphical desktop.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Combining tools</h3>
+                <p>
+                  Collect, sort and select data using tools that each do a
+                  focused job.
                 </p>
               </article>
             </div>
           </section>
-
           <section
-            id="interface-types"
-            class="lesson-section lesson-section--interface-types panel"
+            id="automation"
+            class="lesson-section panel"
             data-lesson-section
           >
-            <p class="eyebrow">Interfaces</p>
-            <h2>Graphical, command line, and menu-based interfaces solve different problems</h2>
-            <p class="lesson-section-copy">
-              These interface types can overlap in real systems, but the labels
-              help you explain the main interaction style. The examples below
-              show what a learner should picture when they see each term.
+            <p class="eyebrow">14 · User interfaces</p>
+            <h2>Repetition and automation</h2>
+            <p class="ui-key">
+              A technician needs to inspect 500 files using the same rule.
             </p>
-
-            <div class="interface-showcase">
-              <article class="interface-demo interface-demo--gui">
-                <div class="mock-window" aria-hidden="true">
-                  <div class="mock-window-bar">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div class="mock-desktop">
-                    <span class="desktop-icon">Docs</span>
-                    <span class="desktop-icon">Web</span>
-                    <span class="desktop-icon">Files</span>
-                    <div class="mock-app-panel">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                </div>
-                <h3>Graphical user interface</h3>
+            <ol class="ui-flow">
+              <li>
+                <strong>GUI workflow</strong><br />Open properties, inspect,
+                close, repeat for each file.
+              </li>
+              <li>
+                <strong>CLI/script workflow</strong><br />Describe the
+                inspection rule once; apply it to the collection.
+              </li>
+              <li>
+                <strong>Result</strong><br />Less repeated input and a
+                consistent report to check.
+              </li>
+            </ol>
+            <p class="lesson-section-copy">
+              The same principle can apply to bulk renaming. Scripts need
+              checking before use: a mistaken rule can be repeated too. Some GUI
+              tools also offer batch actions, so compare the actual tools and
+              task.
+            </p>
+          </section>
+          <section
+            id="software-engineering"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">15 · User interfaces</p>
+            <h2>CLI in software engineering</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3><code>git status</code></h3>
                 <p>
-                  Uses windows, icons, menus, buttons, and pointer or touch
-                  input. Common on laptops, desktops, tablets, and phones.
+                  Source control: inspect the state of work in a repository.
                 </p>
-                <strong>Good for</strong>
-                <span>General users, visual editing, browsing, office work</span>
               </article>
-
-              <article class="interface-demo interface-demo--cli">
-                <div class="terminal-mock" aria-label="Command line example">
-                  <span class="terminal-line">admin@server:~$ cd sites</span>
-                  <span class="terminal-line">admin@server:~/sites$ ls</span>
-                  <span class="terminal-line terminal-output">app  logs  public</span>
-                  <span class="terminal-line">admin@server:~/sites$ systemctl status web</span>
-                  <span class="terminal-line terminal-output">active and running</span>
-                </div>
-                <h3>Command line interface</h3>
-                <p>
-                  Uses typed commands. It is often chosen by skilled users who
-                  need speed, precision, scripting, or remote control.
-                </p>
-                <strong>Good for</strong>
-                <span>Servers, automation, diagnostics, developer tools</span>
+              <article class="ui-card">
+                <h3><code>npm test</code></h3>
+                <p>Run a project’s configured test task.</p>
               </article>
-
-              <article class="interface-demo interface-demo--menu">
-                <div class="menu-mock" aria-label="Menu-based ticket machine example">
-                  <div class="menu-screen">
-                    <strong>Buy Ticket</strong>
-                    <button type="button" tabindex="-1">Single</button>
-                    <button type="button" tabindex="-1">Return</button>
-                    <button type="button" tabindex="-1">Travelcard</button>
-                    <span class="menu-progress">Step 1 of 4</span>
-                  </div>
-                </div>
-                <h3>Menu-based interface</h3>
+              <article class="ui-card">
+                <h3><code>python -m pytest</code></h3>
+                <p>Run Python tests with the pytest tool.</p>
+              </article>
+              <article class="ui-card">
+                <h3><code>docker compose up</code></h3>
                 <p>
-                  Presents fixed choices. It guides the user through a limited
-                  workflow and reduces the need to remember commands.
+                  Start the services described by a development environment
+                  configuration.
                 </p>
-                <strong>Good for</strong>
-                <span>ATMs, ticket machines, tills, kiosks, device settings</span>
               </article>
             </div>
-
-            <div data-slide-break></div>
-
-            <div class="compare-table-wrap">
-              <table class="compare-table">
+            <p class="lesson-section-copy">
+              These illustrate professional tools, not commands to learn or run
+              in this simulator. A developer may edit visually in an IDE, then
+              use repeatable CLI tasks for testing and source control.
+            </p>
+          </section>
+          <section
+            id="cybersecurity"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">16 · User interfaces</p>
+            <h2>CLI in cybersecurity</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3><code>Get-Process</code></h3>
+                <p>
+                  Inspect running processes when investigating unexpected
+                  activity.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3><code>Get-FileHash</code></h3>
+                <p>
+                  Calculate a file’s hash for comparison with a trusted
+                  reference. A hash alone does not prove a file is safe.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3><code>ipconfig</code></h3>
+                <p>View local network configuration.</p>
+              </article>
+              <article class="ui-card">
+                <h3>
+                  <code>Resolve-DnsName</code> / <code>Test-NetConnection</code>
+                </h3>
+                <p>
+                  Inspect name resolution or connectivity when diagnosing an
+                  authorised system.
+                </p>
+              </article>
+            </div>
+            <p class="lesson-section-copy">
+              The value is precise, repeatable inspection. These are use-case
+              examples, not a security tools exercise.
+            </p>
+            <p data-teacher-note>
+              Network examples are conceptual only. Check college permissions
+              and network rules before considering any real demonstration.
+            </p>
+          </section>
+          <section
+            id="ai-data"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">17 · User interfaces</p>
+            <h2>CLI in AI and data science</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3><code>python model.py</code></h3>
+                <p>Run a prepared modelling script.</p>
+              </article>
+              <article class="ui-card">
+                <h3><code>python --version</code></h3>
+                <p>Check which Python version a workflow will use.</p>
+              </article>
+              <article class="ui-card">
+                <h3><code>python -m pip list</code></h3>
+                <p>
+                  Inspect the installed packages in that Python environment.
+                </p>
+              </article>
+            </div>
+            <p class="lesson-section-copy">
+              Teams use command-line tools to launch workflows and manage
+              environments, including package installation when needed.
+              Repeating a recorded command can help reproduce work. Python and
+              package management belong in later lessons.
+            </p>
+          </section>
+          <section
+            id="remote-systems"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">18 · User interfaces</p>
+            <h2>Servers, cloud and DevOps</h2>
+            <ol class="ui-flow">
+              <li>
+                <strong>Administrator’s laptop</strong><br />Terminal sends
+                instructions.
+              </li>
+              <li>
+                <strong>Remote connection</strong><br /><code
+                  >ssh admin@server</code
+                >
+              </li>
+              <li>
+                <strong>Server</strong><br />Commands run on the authorised
+                remote system.
+              </li>
+            </ol>
+            <p class="lesson-section-copy">
+              Many servers do not need a local graphical desktop. Text-based
+              administration can have low graphical overhead, and scripts can
+              repeat work across systems. GUI management tools may also be
+              available. This connection example is conceptual; SSH setup is
+              outside this lesson.
+            </p>
+          </section>
+          <section
+            id="cli-tradeoffs"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">19 · User interfaces</p>
+            <h2>CLI strengths and limitations</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>When it helps</h3>
+                <p>
+                  Precise instructions, repeatable scripts, combined tools and
+                  efficient remote work. Experienced users can complete familiar
+                  tasks quickly.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>What takes practice</h3>
+                <p>
+                  Command names and syntax must be learned or looked up.
+                  Available actions are less visible than in a GUI; typing
+                  errors can change the result.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Where it is less suitable</h3>
+                <p>
+                  Directly drawing an image or arranging a page is usually
+                  easier with visual controls.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Why care matters</h3>
+                <p>
+                  Powerful commands used incorrectly can cause damage. Help,
+                  checking and appropriate permissions matter in real systems.
+                </p>
+              </article>
+            </div>
+            <p class="ui-key">
+              CLI is better for some tasks; suitability depends on the user and
+              work.
+            </p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Menu-based interfaces</h2>
+          </template>
+          <section
+            id="menu-based"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">20 · User interfaces</p>
+            <h2>What is a menu-based interface?</h2>
+            <img
+              class="ui-visual"
+              src="../../assets/images/interfaces/kiosk.svg"
+              alt="Cash machine screen offering Withdraw cash, Check balance and Change PIN as predefined options."
+            />
+            <p class="ui-key">
+              The user chooses from a limited set of predefined options.
+            </p>
+            <p class="lesson-section-copy">
+              An ATM guides the customer through choices. It does not expect
+              them to invent a command to withdraw money. The options may be
+              drawn graphically and selected by touch or physical buttons.
+            </p>
+          </section>
+          <section
+            id="limited-choices"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">21 · User interfaces</p>
+            <h2>Why can limiting choices be useful?</h2>
+            <ol class="ui-flow">
+              <li>
+                <strong>Choose a destination</strong><br />Only supported
+                stations are offered.
+              </li>
+              <li>
+                <strong>Choose a ticket</strong><br />Relevant ticket types are
+                shown.
+              </li>
+              <li>
+                <strong>Confirm and pay</strong><br />Check the journey before
+                completing it.
+              </li>
+            </ol>
+            <p class="lesson-section-copy">
+              Occasional users need little training. A predictable sequence
+              reduces invalid actions and some input errors, making it useful
+              for public or shared systems. Clear labels, a Back option and
+              accessible controls still matter.
+            </p>
+            <p class="ui-key">More flexibility is not always better.</p>
+          </section>
+          <section
+            id="menu-examples"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">22 · User interfaces</p>
+            <h2>Real menu-based examples</h2>
+            <img
+              class="ui-visual"
+              src="../../assets/images/interfaces/menu-examples.svg"
+              alt="Three guided screens: ticket machine with ticket types, restaurant till with food choices, and printer panel with print settings."
+            />
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>Public tasks</h3>
+                <p>
+                  Train tickets, parking payments, self-checkout and kiosks
+                  guide occasional users through a fixed task.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Workplace tasks</h3>
+                <p>
+                  Restaurant tills and printer control panels expose a known set
+                  of actions.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Device setup</h3>
+                <p>
+                  BIOS/UEFI setup often uses predefined configuration menus; the
+                  appearance varies by device.
+                </p>
+              </article>
+            </div>
+          </section>
+          <section
+            id="menu-tradeoffs"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">23 · User interfaces</p>
+            <h2>Menu-based strengths and limitations</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>Strengths</h3>
+                <p>
+                  Guided, predictable choices can reduce training and errors for
+                  constrained tasks.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Limitations</h3>
+                <p>
+                  Only exposed actions are available. Deep menu levels can be
+                  slow and confusing, especially for expert or repetitive work.
+                </p>
+              </article>
+            </div>
+            <p class="ui-key">
+              Menu-based does not simply mean “a GUI that contains a menu.”
+            </p>
+            <p class="lesson-section-copy">
+              The exam concept is a workflow dominated by predefined guided
+              choices. A general desktop editor can contain a File menu while
+              its dominant interaction remains graphical editing.
+            </p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Comparing interface styles</h2>
+          </template>
+          <section
+            id="combined-styles"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">24 · User interfaces</p>
+            <h2>Real systems can use more than one interface</h2>
+            <img
+              class="ui-visual"
+              src="../../assets/images/interfaces/combined.svg"
+              alt="A graphical code editor with an integrated terminal below the code panel."
+            />
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>VS Code and Windows</h3>
+                <p>
+                  A graphical editor can contain a terminal. A graphical Windows
+                  desktop also offers command-line tools.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Servers and restaurant tills</h3>
+                <p>
+                  Server administration can use a web GUI and SSH CLI. A
+                  touch-based restaurant till is graphical in appearance but
+                  strongly menu-driven in workflow.
+                </p>
+              </article>
+            </div>
+            <p class="ui-key">
+              Classify the dominant interaction in the scenario, then explain
+              why it suits the task.
+            </p>
+          </section>
+          <section
+            id="comparison"
+            class="lesson-section panel"
+            data-lesson-section
+          >
+            <p class="eyebrow">25 · User interfaces</p>
+            <h2>GUI vs CLI vs menu-based</h2>
+            <div
+              class="ui-table-wrap"
+              tabindex="0"
+              role="region"
+              aria-label="Interface comparison table"
+            >
+              <table class="ui-table">
                 <thead>
                   <tr>
-                    <th>Interface</th>
-                    <th>Main feature</th>
-                    <th>Strength</th>
-                    <th>Trade-off</th>
+                    <th scope="col">Factor</th>
+                    <th scope="col">GUI</th>
+                    <th scope="col">CLI</th>
+                    <th scope="col">Menu-based</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Graphical user interface</td>
-                    <td>Icons, windows, menus, pointer or touch control</td>
-                    <td>Easy for many users to learn and explore</td>
-                    <td>Can use more memory, storage, and processing power</td>
+                    <th scope="row">Interaction</th>
+                    <td>Visual controls; pointer, touch or keyboard</td>
+                    <td>Typed commands</td>
+                    <td>Predefined guided options</td>
                   </tr>
                   <tr>
-                    <td>Command line interface</td>
-                    <td>Text commands typed directly</td>
-                    <td>Fast, precise, scriptable, and efficient for experts</td>
-                    <td>Requires command knowledge and can be unforgiving</td>
+                    <th scope="row">Discoverability</th>
+                    <td>Actions often visible</td>
+                    <td>Help needed to discover commands</td>
+                    <td>Available choices shown at each step</td>
                   </tr>
                   <tr>
-                    <td>Menu-based interface</td>
-                    <td>Users choose from fixed options</td>
-                    <td>Simple, consistent, and useful for public or routine tasks</td>
-                    <td>Less flexible when the user needs an unusual action</td>
+                    <th scope="row">Flexibility</th>
+                    <td>Depends on exposed tools</td>
+                    <td>Often high through commands and scripts</td>
+                    <td>Limited to the designed workflow</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Expert speed</th>
+                    <td>Shortcuts and visual tools can be efficient</td>
+                    <td>Fast for familiar, repeatable tasks</td>
+                    <td>Deep menus may slow frequent tasks</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Automation</th>
+                    <td>May offer batch tools; varies</td>
+                    <td>Often strong scripting and pipelines</td>
+                    <td>Usually limited</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Training</th>
+                    <td>Often easier to explore</td>
+                    <td>Syntax and commands need practice</td>
+                    <td>Often low for simple workflows</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Suitable tasks</th>
+                    <td>Image editing, everyday visual work</td>
+                    <td>Repeated tests, remote administration</td>
+                    <td>Tickets, tills, public kiosks</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Limitations</th>
+                    <td>Hidden options, many clicks, graphical overhead</td>
+                    <td>Lower discoverability; mistakes can matter</td>
+                    <td>Limited actions; nested menus</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-
-            <article class="lesson-card">
-              <h3>A useful distinction</h3>
-              <p>
-                A GUI helps users discover actions by seeing them. A command
-                line helps expert users express exact actions quickly. A
-                menu-based interface narrows the available actions so occasional
-                users can complete a safe, predictable workflow.
-              </p>
-            </article>
+            <p class="lesson-section-copy">
+              These are typical trade-offs, not rules that one interface is
+              always faster or easier.
+            </p>
           </section>
-
           <section
-            id="command-line"
-            class="lesson-section lesson-section--command-line panel"
+            id="interface-suitability"
+            class="lesson-section panel"
             data-lesson-section
           >
-            <p class="eyebrow">Command Line</p>
-            <h2>Command line interfaces are common where control and automation matter</h2>
-            <p class="lesson-section-copy">
-              A command line interface is not just an old-fashioned screen. It
-              is still widely used because typed commands can be repeated,
-              scripted, copied, logged, and run over a remote connection.
+            <p class="eyebrow">26 · User interfaces</p>
+            <h2>What makes an interface suitable?</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>User and frequency</h3>
+                <p>
+                  What skills does the person have? Are they an occasional
+                  visitor or a frequent expert user?
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Task and flexibility</h3>
+                <p>
+                  Do they need direct visual control, repeatable automation or a
+                  small set of guided choices?
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Environment and hardware</h3>
+                <p>
+                  Public kiosk, touch screen, keyboard workstation or remote
+                  server? How much screen space and graphical overhead is
+                  practical?
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Accessibility and risk</h3>
+                <p>
+                  Can the user perceive and operate the controls? Consider
+                  keyboard access, readable labels, assistive technology and the
+                  consequences of mistakes.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Speed and productivity</h3>
+                <p>
+                  Which method helps this user complete this task accurately?
+                  Include learning time and repeated steps.
+                </p>
+              </article>
+            </div>
+            <p class="ui-key">
+              Interface feature → benefit for this user/task → limitation or
+              trade-off.
             </p>
-
-            <div class="cli-context-grid">
-              <article class="cli-context-card">
-                <span class="cli-context-icon cli-context-icon--server" aria-hidden="true"></span>
-                <h3>Server administration</h3>
-                <p>
-                  Technicians often connect to Linux servers through SSH and run
-                  commands to update software, inspect logs, restart services,
-                  or check storage use.
-                </p>
-                <code>ssh admin@web-server</code>
-              </article>
-
-              <article class="cli-context-card">
-                <span class="cli-context-icon cli-context-icon--script" aria-hidden="true"></span>
-                <h3>Automation and scripts</h3>
-                <p>
-                  Repeated jobs can be scripted, such as copying backup files,
-                  renaming many files, or deploying an application.
-                </p>
-                <code>robocopy work backup /MIR</code>
-              </article>
-
-              <article class="cli-context-card">
-                <span class="cli-context-icon cli-context-icon--diagnostic" aria-hidden="true"></span>
-                <h3>Diagnostics</h3>
-                <p>
-                  Support staff use commands to test networks, display
-                  configuration, and find faults quickly.
-                </p>
-                <code>ping 8.8.8.8</code>
-              </article>
-
-              <article class="cli-context-card">
-                <span class="cli-context-icon cli-context-icon--developer" aria-hidden="true"></span>
-                <h3>Developer tools</h3>
-                <p>
-                  Programmers often use command line tools for Git, package
-                  managers, tests, builds, and cloud deployment.
-                </p>
-                <code>git status</code>
-              </article>
-            </div>
-
-            <div class="cli-judgement-strip">
-              <article>
-                <strong>Why choose it?</strong>
-                <span>Efficient for skilled users, remote access, automation, low overhead, exact control.</span>
-              </article>
-              <article>
-                <strong>Why avoid it?</strong>
-                <span>High learning curve, easy to mistype, less friendly for occasional or public users.</span>
-              </article>
-            </div>
-
-            <article class="lesson-card">
-              <h3>Scenario sentence</h3>
-              <p>
-                A network administrator maintaining remote servers may prefer a
-                command line because it works well over low-bandwidth
-                connections, can automate repeated tasks, and gives precise
-                control once the user knows the commands.
-              </p>
-            </article>
           </section>
-
           <section
-            id="menu-based"
-            class="lesson-section lesson-section--menu-based panel"
+            id="worked-scenarios"
+            class="lesson-section panel"
             data-lesson-section
           >
-            <p class="eyebrow">Menu-Based</p>
-            <h2>Menu-based interfaces are common where the task path is limited</h2>
-            <p class="lesson-section-copy">
-              A menu-based interface gives users a set of choices instead of an
-              open input area. This is useful when the system must guide many
-              different users through the same safe sequence.
-            </p>
-
-            <div class="menu-context-board">
-              <article class="menu-context-card">
-                <div class="atm-mock" aria-hidden="true">
-                  <span class="atm-screen-title">Cash Machine</span>
-                  <span>Withdraw cash</span>
-                  <span>Check balance</span>
-                  <span>Change PIN</span>
-                </div>
-                <h3>ATMs</h3>
+            <p class="eyebrow">27 · User interfaces</p>
+            <h2>Worked scenarios</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>Graphic designer editing an image · GUI</h3>
                 <p>
-                  Customers need clear secure choices and should not need to
-                  type commands to access banking functions.
+                  Direct manipulation and immediate visual feedback help judge
+                  the image.
                 </p>
               </article>
-
-              <article class="menu-context-card">
-                <div class="ticket-mock" aria-hidden="true">
-                  <span class="ticket-route">Station A to Station B</span>
-                  <span>Adult</span>
-                  <span>Child</span>
-                  <span>Railcard</span>
-                </div>
-                <h3>Ticket machines</h3>
+              <article class="ui-card">
+                <h3>Analyst checking many authorised remote systems · CLI</h3>
                 <p>
-                  Travellers are guided through destination, ticket type,
-                  payment, and receipt choices.
+                  Repeatable commands and scripts reduce repeated manual work.
                 </p>
               </article>
-
-              <article class="menu-context-card">
-                <div class="device-menu-mock" aria-hidden="true">
-                  <span>Printer setup</span>
-                  <span>Wi-Fi</span>
-                  <span>Paper size</span>
-                  <span>Maintenance</span>
-                </div>
-                <h3>Device settings</h3>
+              <article class="ui-card">
+                <h3>Developer repeatedly running tests · CLI</h3>
                 <p>
-                  Printers, routers, microwaves, cameras, and BIOS or UEFI
-                  setup screens often use menus because the options are known in
-                  advance.
+                  The same test command can be rerun or automated, alongside a
+                  graphical IDE.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Tourist buying a train ticket · Menu-based</h3>
+                <p>
+                  Guided ticket choices need little training and reduce invalid
+                  selections.
+                </p>
+              </article>
+              <article class="ui-card">
+                <h3>Restaurant worker entering an order · Menu-driven GUI</h3>
+                <p>
+                  Touch targets suit fast selection; predefined dishes and
+                  options constrain the order workflow.
                 </p>
               </article>
             </div>
-
-            <div data-slide-break></div>
-
-            <div class="menu-flow" aria-label="Menu-based checkout flow">
-              <article class="menu-flow-step">
-                <span class="menu-flow-number">1</span>
-                <strong>Choose</strong>
-                <span>The system offers valid options.</span>
-              </article>
-              <span class="flow-arrow">then</span>
-              <article class="menu-flow-step">
-                <span class="menu-flow-number">2</span>
-                <strong>Confirm</strong>
-                <span>The user checks the selected option.</span>
-              </article>
-              <span class="flow-arrow">then</span>
-              <article class="menu-flow-step">
-                <span class="menu-flow-number">3</span>
-                <strong>Continue</strong>
-                <span>The next screen only shows relevant choices.</span>
-              </article>
-              <span class="flow-arrow">then</span>
-              <article class="menu-flow-step">
-                <span class="menu-flow-number">4</span>
-                <strong>Finish</strong>
-                <span>The task completes with fewer invalid inputs.</span>
-              </article>
-            </div>
-
-            <article class="lesson-card">
-              <h3>Scenario sentence</h3>
-              <p>
-                A public ticket machine suits a menu-based interface because
-                users may be unfamiliar with the system, only need a small set
-                of fixed actions, and benefit from a step-by-step flow that
-                reduces input errors.
-              </p>
-            </article>
           </section>
-
+          <template data-teacher-divider>
+            <h2>Practice and exam technique</h2>
+          </template>
           <section
-            id="software-choice"
-            class="lesson-section lesson-section--software-choice panel"
+            id="choose-interface"
+            class="lesson-section panel"
             data-lesson-section
           >
-            <p class="eyebrow">Selection</p>
-            <h2>Software choice depends on purpose, users, and constraints</h2>
-            <p class="lesson-section-copy">
-              Choosing an operating system or application means more than
-              checking features. Strong answers balance user needs,
-              compatibility, cost, accessibility, implementation, security, and
-              performance.
-            </p>
-
-            <div class="software-decision-path">
-              <article class="decision-step">
-                <span class="decision-number">1</span>
-                <h3>Task fit</h3>
-                <p>Does it do the work the user actually needs?</p>
-              </article>
-              <article class="decision-step">
-                <span class="decision-number">2</span>
-                <h3>User fit</h3>
-                <p>Can the intended users learn and use it effectively?</p>
-              </article>
-              <article class="decision-step">
-                <span class="decision-number">3</span>
-                <h3>System fit</h3>
-                <p>Is it compatible with hardware, OS, files, and other tools?</p>
-              </article>
-              <article class="decision-step">
-                <span class="decision-number">4</span>
-                <h3>Organisation fit</h3>
-                <p>Can the organisation afford, secure, support, and migrate to it?</p>
-              </article>
-            </div>
-
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>User needs</strong>
-                <span>The software must help users complete their actual tasks effectively.</span>
-              </article>
-              <article class="term-card">
-                <strong>Compatibility</strong>
-                <span>It should work with current hardware, operating systems, file formats, and other tools.</span>
-              </article>
-              <article class="term-card">
-                <strong>Training</strong>
-                <span>Some interfaces take longer to learn, which affects time, support, and productivity.</span>
-              </article>
-              <article class="term-card">
-                <strong>Accessibility</strong>
-                <span>The interface should be usable by the intended audience, including users with additional needs.</span>
-              </article>
-              <article class="term-card">
-                <strong>Cost</strong>
-                <span>Cost includes licences, maintenance, upgrades, support, and migration time.</span>
-              </article>
-              <article class="term-card">
-                <strong>Security</strong>
-                <span>The software should protect data and avoid creating unnecessary system risk.</span>
-              </article>
-              <article class="term-card">
-                <strong>Implementation</strong>
-                <span>Testing, migration, installation time, and disruption affect whether the choice is practical.</span>
-              </article>
-              <article class="term-card">
-                <strong>Productivity</strong>
-                <span>A good choice helps users work faster or with fewer errors once it is in place.</span>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="performance-use"
-            class="lesson-section lesson-section--performance-use panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Impact</p>
-            <h2>Interface and software choices affect performance, errors, and productivity</h2>
-            <p class="lesson-section-copy">
-              A richer interface can be easier to use but may need more memory
-              or processing power. A simpler interface may be faster or more
-              reliable on limited hardware, but it may require more skill or
-              give users less flexibility.
-            </p>
-
-            <div class="performance-balance" aria-label="Interface trade-offs">
-              <article class="balance-card balance-card--gui">
-                <h3>GUI-heavy software</h3>
-                <div class="balance-meter" aria-hidden="true">
-                  <span style="--value: 78%">Ease of use</span>
-                  <span style="--value: 66%">Resource use</span>
-                  <span style="--value: 38%">Automation</span>
-                </div>
-                <p>
-                  Good for general productivity, visual work, and lower
-                  training, but can need stronger hardware.
-                </p>
-              </article>
-
-              <article class="balance-card balance-card--cli">
-                <h3>CLI-heavy workflow</h3>
-                <div class="balance-meter" aria-hidden="true">
-                  <span style="--value: 46%">Ease of use</span>
-                  <span style="--value: 28%">Resource use</span>
-                  <span style="--value: 84%">Automation</span>
-                </div>
-                <p>
-                  Good for experts, remote work, scripts, and repeatable
-                  processes, but training demand is higher.
-                </p>
-              </article>
-
-              <article class="balance-card balance-card--menu">
-                <h3>Menu-driven workflow</h3>
-                <div class="balance-meter" aria-hidden="true">
-                  <span style="--value: 72%">Ease of use</span>
-                  <span style="--value: 40%">Resource use</span>
-                  <span style="--value: 30%">Flexibility</span>
-                </div>
-                <p>
-                  Good for routine public tasks because it guides users and
-                  limits mistakes, but unusual tasks may not be available.
-                </p>
-              </article>
-            </div>
-
-            <article class="lesson-card">
-              <h3>Worked judgement</h3>
-              <p>
-                A library self-service station may be better with a menu-based
-                or touch-friendly graphical interface because most users need a
-                clear guided flow. A network administrator maintaining remote
-                servers may prefer a command line because it is fast,
-                scriptable, and efficient over remote connections.
+            <p class="eyebrow">28 · User interfaces</p>
+            <h2>Choose the best interface</h2>
+            <div class="ui-activity">
+              <p class="lesson-section-copy">
+                Choose an interface and its strongest reason. Feedback explains
+                alternatives where the scenario permits them.
               </p>
-            </article>
+              <article
+                class="ui-card ui-scenario"
+                data-paired-scenario="files"
+                data-no-slide-advance
+              >
+                <h3>Rename 500 files using one naming rule.</h3>
+                <label for="type-files">Interface</label>
+                <select id="type-files" data-choice="type">
+                  <option value="">Choose an interface</option>
+                  <option value="gui">GUI</option>
+                  <option value="cli">CLI</option>
+                  <option value="menu">Menu-based</option>
+                </select>
+                <label for="reason-files">Best reason</label>
+                <select id="reason-files" data-choice="reason">
+                  <option value="">Choose a reason</option>
+                  <option value="automation">Automation and repetition</option>
+                  <option value="guided">
+                    Guided choices with little training
+                  </option>
+                  <option value="visual">Direct visual manipulation</option>
+                  <option value="remote">
+                    Remote control with low graphical overhead
+                  </option>
+                </select>
+                <button type="button" data-check-pair>Check choices</button>
+                <button type="button" data-reset-pair>Reset</button>
+                <p data-pair-feedback role="status"></p>
+              </article>
+              <article
+                class="ui-card ui-scenario"
+                data-paired-scenario="ticket"
+                data-no-slide-advance
+              >
+                <h3>A tourist needs a ticket from a public machine.</h3>
+                <label for="type-ticket">Interface</label>
+                <select id="type-ticket" data-choice="type">
+                  <option value="">Choose an interface</option>
+                  <option value="gui">GUI</option>
+                  <option value="cli">CLI</option>
+                  <option value="menu">Menu-based</option>
+                </select>
+                <label for="reason-ticket">Best reason</label>
+                <select id="reason-ticket" data-choice="reason">
+                  <option value="">Choose a reason</option>
+                  <option value="automation">Automation and repetition</option>
+                  <option value="guided">
+                    Guided choices with little training
+                  </option>
+                  <option value="visual">Direct visual manipulation</option>
+                  <option value="remote">
+                    Remote control with low graphical overhead
+                  </option>
+                </select>
+                <button type="button" data-check-pair>Check choices</button>
+                <button type="button" data-reset-pair>Reset</button>
+                <p data-pair-feedback role="status"></p>
+              </article>
+              <article
+                class="ui-card ui-scenario"
+                data-paired-scenario="image"
+                data-no-slide-advance
+              >
+                <h3>A designer needs to crop and retouch a complex image.</h3>
+                <label for="type-image">Interface</label>
+                <select id="type-image" data-choice="type">
+                  <option value="">Choose an interface</option>
+                  <option value="gui">GUI</option>
+                  <option value="cli">CLI</option>
+                  <option value="menu">Menu-based</option>
+                </select>
+                <label for="reason-image">Best reason</label>
+                <select id="reason-image" data-choice="reason">
+                  <option value="">Choose a reason</option>
+                  <option value="automation">Automation and repetition</option>
+                  <option value="guided">
+                    Guided choices with little training
+                  </option>
+                  <option value="visual">Direct visual manipulation</option>
+                  <option value="remote">
+                    Remote control with low graphical overhead
+                  </option>
+                </select>
+                <button type="button" data-check-pair>Check choices</button>
+                <button type="button" data-reset-pair>Reset</button>
+                <p data-pair-feedback role="status"></p>
+              </article>
+              <article
+                class="ui-card ui-scenario"
+                data-paired-scenario="server"
+                data-no-slide-advance
+              >
+                <h3>
+                  An experienced administrator checks remote servers over a
+                  limited connection.
+                </h3>
+                <label for="type-server">Interface</label>
+                <select id="type-server" data-choice="type">
+                  <option value="">Choose an interface</option>
+                  <option value="gui">GUI</option>
+                  <option value="cli">CLI</option>
+                  <option value="menu">Menu-based</option>
+                </select>
+                <label for="reason-server">Best reason</label>
+                <select id="reason-server" data-choice="reason">
+                  <option value="">Choose a reason</option>
+                  <option value="automation">Automation and repetition</option>
+                  <option value="guided">
+                    Guided choices with little training
+                  </option>
+                  <option value="visual">Direct visual manipulation</option>
+                  <option value="remote">
+                    Remote control with low graphical overhead
+                  </option>
+                </select>
+                <button type="button" data-check-pair>Check choices</button>
+                <button type="button" data-reset-pair>Reset</button>
+                <p data-pair-feedback role="status"></p>
+              </article>
+              <article
+                class="ui-card ui-scenario"
+                data-paired-scenario="tests"
+                data-no-slide-advance
+              >
+                <h3>A developer repeatedly runs the same project tests.</h3>
+                <label for="type-tests">Interface</label>
+                <select id="type-tests" data-choice="type">
+                  <option value="">Choose an interface</option>
+                  <option value="gui">GUI</option>
+                  <option value="cli">CLI</option>
+                  <option value="menu">Menu-based</option>
+                </select>
+                <label for="reason-tests">Best reason</label>
+                <select id="reason-tests" data-choice="reason">
+                  <option value="">Choose a reason</option>
+                  <option value="automation">Automation and repetition</option>
+                  <option value="guided">
+                    Guided choices with little training
+                  </option>
+                  <option value="visual">Direct visual manipulation</option>
+                  <option value="remote">
+                    Remote control with low graphical overhead
+                  </option>
+                </select>
+                <button type="button" data-check-pair>Check choices</button>
+                <button type="button" data-reset-pair>Reset</button>
+                <p data-pair-feedback role="status"></p>
+              </article>
+              <article
+                class="ui-card ui-scenario"
+                data-paired-scenario="till"
+                data-no-slide-advance
+              >
+                <h3>
+                  A restaurant till shows large dish buttons and guides staff
+                  through order options.
+                </h3>
+                <label for="type-till">Interface</label>
+                <select id="type-till" data-choice="type">
+                  <option value="">Choose an interface</option>
+                  <option value="gui">GUI</option>
+                  <option value="cli">CLI</option>
+                  <option value="menu">Menu-based</option>
+                </select>
+                <label for="reason-till">Best reason</label>
+                <select id="reason-till" data-choice="reason">
+                  <option value="">Choose a reason</option>
+                  <option value="automation">Automation and repetition</option>
+                  <option value="guided">
+                    Guided choices with little training
+                  </option>
+                  <option value="visual">Direct visual manipulation</option>
+                  <option value="remote">
+                    Remote control with low graphical overhead
+                  </option>
+                </select>
+                <button type="button" data-check-pair>Check choices</button>
+                <button type="button" data-reset-pair>Reset</button>
+                <p data-pair-feedback role="status"></p>
+              </article>
+            </div>
           </section>
-
           <section
             id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
+            class="lesson-section panel"
             data-lesson-section
           >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with interfaces and software choice</h2>
-            <p class="lesson-section-copy">
-              These questions often go wrong when answers focus on personal
-              preference instead of suitability for a scenario.
-            </p>
-
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Saying GUI is always best</h3>
+            <p class="eyebrow">29 · User interfaces</p>
+            <h2>Common exam mistakes</h2>
+            <div class="ui-cards">
+              <article class="ui-card">
+                <h3>“CLI is old-fashioned”</h3>
                 <p>
-                  GUIs are often easier to learn, but specialists, servers, and
-                  low-resource systems may benefit from a command line.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Match the interface to the user, task,
-                  and hardware.
+                  Modern software engineering, cybersecurity, cloud and AI/data
+                  workflows use CLI tools for precise, repeatable tasks.
                 </p>
               </article>
-
-              <article class="trap-card">
-                <h3>Treating command line as outdated</h3>
+              <article class="ui-card">
+                <h3>“GUI is always easier”</h3>
                 <p>
-                  CLIs are still used heavily in server administration,
-                  diagnostics, software development, and automation.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Give a real expert-use context such as
-                  SSH, Git, scripts, or network troubleshooting.
+                  Visible actions can help beginners; familiar commands may suit
+                  repetitive or advanced work better.
                 </p>
               </article>
-
-              <article class="trap-card">
-                <h3>Forgetting why menus help public users</h3>
+              <article class="ui-card">
+                <h3>“Any program with menus is menu-based”</h3>
                 <p>
-                  A menu is not just "easy"; it restricts choices to valid
-                  actions.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Mention guidance, fixed options,
-                  reduced training, and fewer invalid inputs.
+                  Look for a dominant workflow of constrained predefined
+                  choices.
                 </p>
               </article>
-
-              <article class="trap-card">
-                <h3>Only talking about price</h3>
+              <article class="ui-card">
+                <h3>“CLI rules out graphical tools”</h3>
                 <p>
-                  Cheap software may cost more later if it is hard to support,
-                  incompatible, insecure, or slow.
+                  A graphical IDE and its terminal can support different parts
+                  of one task.
                 </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Consider total suitability, not just
-                  initial purchase cost.
+              </article>
+              <article class="ui-card">
+                <h3>Naming without justifying</h3>
+                <p>
+                  “Use CLI” is weak. Explain that scripts can repeat checks
+                  across many remote systems, reducing manual repetition.
                 </p>
               </article>
             </div>
           </section>
-
-          <section
-            id="quiz"
-            class="lesson-section lesson-section--quiz panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Quiz</p>
+          <section id="quiz" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">30 · User interfaces</p>
             <h2>Check your understanding</h2>
-            <p class="quiz-intro">
-              Answer all seven questions, then check your score. Your choices
-              and best score save in this browser so you can revisit the lesson
-              later.
+            <p class="lesson-section-copy">
+              Answer all 12 questions. Aim for 9 correct. The commands are
+              examples; you do not need to memorise their syntax.
             </p>
-
             <form id="lesson-quiz" class="quiz-form">
               <fieldset
                 class="quiz-question"
                 data-question="q1"
-                data-answer="b"
-                data-success="Correct. A GUI uses visual controls such as icons, windows, and menus."
-                data-feedback="Graphical user interfaces rely on visual elements rather than typed commands alone."
+                data-answer="a"
+                data-success="Correct. An interface provides the interaction between a person and a system."
+                data-feedback="An interface provides the interaction between a person and a system."
               >
-                <legend>1. What is a graphical user interface mainly based on?</legend>
+                <legend>1. What is the purpose of a user interface?</legend>
                 <ul class="quiz-answer-list">
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="a" />
-                      <span>Binary machine code entry</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="a" /><span
+                        >Let a person interact with a system</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="b" />
-                      <span>Visual items such as icons, windows, and menus</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="b" /><span
+                        >Allocate CPU time to processes</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="c" />
-                      <span>Only spoken commands with no visual controls</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q1" value="c" /><span
+                        >Translate source code into machine instructions</span
+                      >
                     </label>
                   </li>
                 </ul>
                 <p class="quiz-feedback-note" data-question-feedback></p>
               </fieldset>
-
               <fieldset
                 class="quiz-question"
                 data-question="q2"
-                data-answer="a"
-                data-success="Correct. A command line interface is often efficient for expert users and scripting."
-                data-feedback="CLI use is strong where precision, automation, or fast text-based control matters."
+                data-answer="b"
+                data-success="Correct. Direct visual manipulation is characteristic of a GUI."
+                data-feedback="Direct visual manipulation is characteristic of a GUI."
               >
-                <legend>2. Which interface is often preferred by expert users for scripting and precise control?</legend>
+                <legend>
+                  2. A user drags a crop boundary on an image. Which style
+                  dominates?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="a" />
-                      <span>Command line interface</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="a" /><span
+                        >CLI</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="b" />
-                      <span>Menu-only kiosk screen</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="b" /><span
+                        >GUI</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="c" />
-                      <span>Projector output</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q2" value="c" /><span
+                        >Menu-based</span
+                      >
                     </label>
                   </li>
                 </ul>
                 <p class="quiz-feedback-note" data-question-feedback></p>
               </fieldset>
-
               <fieldset
                 class="quiz-question"
                 data-question="q3"
                 data-answer="c"
-                data-success="Correct. Menu-based systems guide users through fixed choices."
-                data-feedback="Menu-based interfaces are useful where a small set of clear actions is needed."
+                data-success="Correct. Discoverability reduces the need to memorise commands; good design still matters."
+                data-feedback="Discoverability reduces the need to memorise commands; good design still matters."
               >
-                <legend>3. Which interface type best suits a simple public kiosk with limited choices?</legend>
+                <legend>
+                  3. Why can visible, labelled controls help a novice?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="a" />
-                      <span>Advanced command shell</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="a" /><span
+                        >They remove every possible user error</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="b" />
-                      <span>Low-level debugging console</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="b" /><span
+                        >They guarantee the fastest workflow</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="c" />
-                      <span>Menu-based interface</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q3" value="c" /><span
+                        >They make available actions easier to discover</span
+                      >
                     </label>
                   </li>
                 </ul>
                 <p class="quiz-feedback-note" data-question-feedback></p>
               </fieldset>
-
               <fieldset
                 class="quiz-question"
                 data-question="q4"
-                data-answer="b"
-                data-success="Correct. Compatibility is a key factor in software choice."
-                data-feedback="Software must work properly with the existing operating system, hardware, or file formats."
+                data-answer="a"
+                data-success="Correct. Typed commands are the main interaction, even inside a graphical terminal window."
+                data-feedback="Typed commands are the main interaction, even inside a graphical terminal window."
               >
-                <legend>4. Which factor asks whether software will work properly with the current system?</legend>
+                <legend>4. What mainly distinguishes a CLI?</legend>
                 <ul class="quiz-answer-list">
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="a" />
-                      <span>Wallpaper preference</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="a" /><span
+                        >Typing instructions and receiving results</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="b" />
-                      <span>Compatibility</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="b" /><span
+                        >Choosing only from fixed ticket options</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="c" />
-                      <span>Desk height</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q4" value="c" /><span
+                        >Dragging graphical objects</span
+                      >
                     </label>
                   </li>
                 </ul>
                 <p class="quiz-feedback-note" data-question-feedback></p>
               </fieldset>
-
               <fieldset
                 class="quiz-question"
                 data-question="q5"
-                data-answer="a"
-                data-success="Correct. A good software choice matches the users, tasks, and environment."
-                data-feedback="The strongest choice considers usability, compatibility, cost, accessibility, and purpose."
+                data-answer="c"
+                data-success="Correct. Output is the result returned by the command; the prompt indicates readiness for another instruction."
+                data-feedback="Output is the result returned by the command; the prompt indicates readiness for another instruction."
               >
-                <legend>5. What makes software choice well justified?</legend>
+                <legend>
+                  5. After an instruction runs, the terminal displays a process
+                  table. What is the table?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="a" />
-                      <span>It fits the users and task requirements well</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="a" /><span
+                        >The prompt</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="b" />
-                      <span>It has the brightest icon set available</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="b" /><span
+                        >The command</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="c" />
-                      <span>It is chosen without thinking about training or accessibility</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q5" value="c" /><span
+                        >The output</span
+                      >
                     </label>
                   </li>
                 </ul>
                 <p class="quiz-feedback-note" data-question-feedback></p>
               </fieldset>
-
               <fieldset
                 class="quiz-question"
                 data-question="q6"
-                data-answer="c"
-                data-success="Correct. SSH server work is a realistic command line use."
-                data-feedback="A command line is commonly used for remote server administration, diagnostics, scripting, and development tools."
+                data-answer="b"
+                data-success="Correct. Repetition can be automated, but a mistaken rule can also be repeated."
+                data-feedback="Repetition can be automated, but a mistaken rule can also be repeated."
               >
-                <legend>6. Which is the strongest real example of command line use?</legend>
+                <legend>
+                  6. Why might a script suit checking hundreds of files?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q6" value="a" />
-                      <span>A tourist choosing a ticket type from three large buttons</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="a" /><span
+                        >It avoids the need to check the rule</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q6" value="b" />
-                      <span>A home user dragging a file icon into a folder</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="b" /><span
+                        >It repeats a defined operation consistently</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q6" value="c" />
-                      <span>An administrator using SSH commands to maintain a web server</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q6" value="c" /><span
+                        >It always uses fewer resources than every GUI
+                        tool</span
+                      >
                     </label>
                   </li>
                 </ul>
                 <p class="quiz-feedback-note" data-question-feedback></p>
               </fieldset>
-
               <fieldset
                 class="quiz-question"
                 data-question="q7"
-                data-answer="b"
-                data-success="Correct. Menu-based interfaces restrict users to valid choices."
-                data-feedback="Menu-based interfaces are strong when users need fixed, guided, low-error choices."
+                data-answer="a"
+                data-success="Correct. Repeatable test commands can be run again or included in automation."
+                data-feedback="Repeatable test commands can be run again or included in automation."
               >
-                <legend>7. Why can a menu-based interface reduce errors?</legend>
+                <legend>
+                  7. Which professional task strongly suits a CLI?
+                </legend>
                 <ul class="quiz-answer-list">
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q7" value="a" />
-                      <span>It lets users type any command they can remember</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="a" /><span
+                        >Repeatedly running project tests</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q7" value="b" />
-                      <span>It limits users to clear valid options</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="b" /><span
+                        >Choosing a photograph’s crop by eye</span
+                      >
                     </label>
                   </li>
                   <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q7" value="c" />
-                      <span>It removes the need for any input or decision</span>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q7" value="c" /><span
+                        >Selecting a single ticket at a public machine</span
+                      >
                     </label>
                   </li>
                 </ul>
                 <p class="quiz-feedback-note" data-question-feedback></p>
               </fieldset>
-
+              <fieldset
+                class="quiz-question"
+                data-question="q8"
+                data-answer="c"
+                data-success="Correct. The dominant workflow matters, not simply the presence of a menu."
+                data-feedback="The dominant workflow matters, not simply the presence of a menu."
+              >
+                <legend>8. What makes a workflow primarily menu-based?</legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="a" /><span
+                        >It has any File menu</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="b" /><span
+                        >Its options use a particular colour</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q8" value="c" /><span
+                        >It is driven by predefined guided choices</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+              <fieldset
+                class="quiz-question"
+                data-question="q9"
+                data-answer="b"
+                data-success="Correct. Constrained choices can reduce invalid selections; accessibility still needs deliberate design."
+                data-feedback="Constrained choices can reduce invalid selections; accessibility still needs deliberate design."
+              >
+                <legend>
+                  9. Why might guided menus suit an occasional ticket-machine
+                  user?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="a" /><span
+                        >They offer unrestricted system control</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="b" /><span
+                        >They expose relevant options with little training</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q9" value="c" /><span
+                        >They eliminate every accessibility need</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+              <fieldset
+                class="quiz-question"
+                data-question="q10"
+                data-answer="a"
+                data-success="Correct. Real systems can combine styles; classify the interaction described in the question."
+                data-feedback="Real systems can combine styles; classify the interaction described in the question."
+              >
+                <legend>
+                  10. An IDE has visual editing panels and an integrated
+                  terminal. How should it be described?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="a" /><span
+                        >A combination of interface styles</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="b" /><span
+                        >A CLI only, because it includes a terminal</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q10" value="c" /><span
+                        >Menu-based only, because it includes a File menu</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+              <fieldset
+                class="quiz-question"
+                data-question="q11"
+                data-answer="c"
+                data-success="Correct. Text-based remote commands can support efficient repeated administration; the context drives the choice."
+                data-feedback="Text-based remote commands can support efficient repeated administration; the context drives the choice."
+              >
+                <legend>
+                  11. An administrator repeats checks on remote servers over a
+                  limited connection. Which is the strongest fit?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="a" /><span
+                        >A full graphical desktop in every case</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="b" /><span
+                        >A public kiosk workflow</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q11" value="c" /><span
+                        >CLI commands with low graphical overhead</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
+              <fieldset
+                class="quiz-question"
+                data-question="q12"
+                data-answer="b"
+                data-success="Correct. A strong answer links a characteristic to the user and task, rather than making an absolute claim."
+                data-feedback="A strong answer links a characteristic to the user and task, rather than making an absolute claim."
+              >
+                <legend>
+                  12. Which is the strongest justification for a designer’s
+                  interface?
+                </legend>
+                <ul class="quiz-answer-list">
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="a" /><span
+                        >GUI, because it is always easiest</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="b" /><span
+                        >GUI, because visual controls give immediate feedback
+                        while editing</span
+                      >
+                    </label>
+                  </li>
+                  <li>
+                    <label class="quiz-answer"
+                      ><input type="radio" name="q12" value="c" /><span
+                        >CLI, because all professionals prefer it</span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <p class="quiz-feedback-note" data-question-feedback></p>
+              </fieldset>
               <div class="quiz-actions">
                 <button class="primary-link" type="submit">Check score</button>
                 <button
@@ -956,171 +2115,193 @@
                   Reset quiz
                 </button>
               </div>
-
               <p class="quiz-result" data-role="quiz-result" aria-live="polite">
-                Your answers save automatically on this device once you start.
+                Answers save on this device.
               </p>
             </form>
           </section>
-
           <section
             id="exam-practice"
-            class="lesson-section lesson-section--exam-practice panel"
+            class="lesson-section panel"
             data-lesson-section
           >
-            <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Try longer answers like the ones used in written papers</h2>
+            <p class="eyebrow">31 · User interfaces</p>
+            <h2>Exam-style practice</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers straight into the page, then compare your ideas
-              with the answer guide.
+              Link interface characteristics to the scenario, explain benefits
+              and limitations, then justify suitability. These practice tasks
+              have indicative answer guidance.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
             </p>
-
             <div class="exam-grid">
               <article class="exam-card">
                 <div class="exam-meta">
-                  <span class="exam-pill">4 marks</span>
-                  <span class="exam-pill">Explain</span>
+                  <span class="exam-pill">4 marks</span
+                  ><span class="exam-pill">Explain</span>
                 </div>
                 <h3>Question 1</h3>
                 <p>
-                  Explain why a menu-based interface may be better than a
-                  command line for a public self-service ticket machine.
+                  Explain two reasons why a GUI may be appropriate for a novice
+                  user.
                 </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-1">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-1"
-                    class="exam-response"
-                    data-exam-response="question-1"
-                    placeholder="Think about guidance, training, and error reduction."
-                  ></textarea>
-                </div>
+                <label class="exam-response-label" for="ui-answer-1"
+                  >Your answer</label
+                >
+                <textarea
+                  class="exam-response"
+                  id="ui-answer-1"
+                  data-exam-response="ui-v2-question-1"
+                  placeholder="Link the interface to the user, task and trade-offs."
+                ></textarea>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>A public user should not need to memorise commands.</li>
-                      <li>A menu-based interface offers clear guided choices.</li>
+                    <ul>
                       <li>
-                        The interface can restrict users to valid destinations,
-                        ticket types, and payment options.
+                        Visible labelled controls help the user discover actions
+                        without first learning command names.
                       </li>
-                      <li>It reduces input errors and training needs.</li>
                       <li>
-                        It is more suitable for quick occasional use by many
-                        different people.
+                        Direct feedback lets the user see whether an action
+                        achieved the intended result.
+                      </li>
+                      <li>
+                        Develop each reason by linking the feature to a novice’s
+                        learning or confidence; a list of GUI elements is
+                        insufficient.
                       </li>
                     </ul>
                   </div>
                 </details>
               </article>
-
               <article class="exam-card">
                 <div class="exam-meta">
-                  <span class="exam-pill">6 marks</span>
-                  <span class="exam-pill">Discuss</span>
+                  <span class="exam-pill">4 marks</span
+                  ><span class="exam-pill">Explain</span>
                 </div>
                 <h3>Question 2</h3>
                 <p>
-                  A small business wants new accounting software. Discuss the
-                  factors that should affect the final software choice.
+                  Explain why a CLI may be appropriate for a system
+                  administrator.
                 </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-2">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-2"
-                    class="exam-response"
-                    data-exam-response="question-2"
-                    placeholder="Consider compatibility, training, support, cost, and user needs."
-                  ></textarea>
-                </div>
+                <label class="exam-response-label" for="ui-answer-2"
+                  >Your answer</label
+                >
+                <textarea
+                  class="exam-response"
+                  id="ui-answer-2"
+                  data-exam-response="ui-v2-question-2"
+                  placeholder="Link the interface to the user, task and trade-offs."
+                ></textarea>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>The software must meet the business's accounting needs.</li>
+                    <ul>
                       <li>
-                        Compatibility with current operating systems, hardware,
-                        and file formats matters.
+                        A script can repeat checks across systems, reducing
+                        manual repetition and improving consistency.
                       </li>
                       <li>
-                        Ease of use and training needs affect day-to-day
-                        productivity.
+                        Remote text-based control can avoid the overhead of a
+                        full graphical desktop.
                       </li>
                       <li>
-                        Cost includes licensing, updates, support, and possible
-                        migration time.
-                      </li>
-                      <li>
-                        Security and access control may be important for
-                        financial data.
-                      </li>
-                      <li>
-                        The best answer reaches a balanced judgement instead of
-                        focusing on only one factor.
+                        Link these benefits to skilled administrators; commands
+                        require knowledge and errors can affect many systems.
                       </li>
                     </ul>
                   </div>
                 </details>
               </article>
-
               <article class="exam-card">
                 <div class="exam-meta">
-                  <span class="exam-pill">8 marks</span>
-                  <span class="exam-pill">Evaluate</span>
+                  <span class="exam-pill">6 marks</span
+                  ><span class="exam-pill">Discuss</span>
                 </div>
                 <h3>Question 3</h3>
                 <p>
-                  A college has a public library kiosk and a server maintained
-                  by technicians. Evaluate which interface type is most suitable
-                  for each system.
+                  Discuss the suitability of a menu-based interface for a public
+                  ticket machine.
                 </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-3">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-3"
-                    class="exam-response"
-                    data-exam-response="question-3"
-                    placeholder="Compare public users with technicians, then justify each interface."
-                  ></textarea>
-                </div>
+                <label class="exam-response-label" for="ui-answer-3"
+                  >Your answer</label
+                >
+                <textarea
+                  class="exam-response"
+                  id="ui-answer-3"
+                  data-exam-response="ui-v2-question-3"
+                  placeholder="Link the interface to the user, task and trade-offs."
+                ></textarea>
                 <details class="exam-guidance">
                   <summary>Show answer guide</summary>
                   <div class="exam-guidance-body">
-                    <ul class="exam-points">
+                    <ul>
                       <li>
-                        The public kiosk would suit a menu-based or simple
-                        touch-friendly graphical interface.
+                        Guided destinations and ticket types help occasional
+                        users who have little training.
                       </li>
                       <li>
-                        Public users may be unfamiliar with the system and need
-                        clear fixed choices.
+                        Restricting options reduces invalid entries, and
+                        confirmation can help catch mistakes.
                       </li>
                       <li>
-                        Menus reduce invalid inputs and guide users through
-                        tasks such as searching, borrowing, or printing.
+                        Deep menus or missing ticket options can be frustrating;
+                        labels, language choice and accessible controls matter.
                       </li>
                       <li>
-                        The server may suit a command line interface for
-                        technicians.
+                        Reach a reasoned judgement for public users,
+                        acknowledging that the menu workflow may be graphical.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+              </article>
+              <article class="exam-card">
+                <div class="exam-meta">
+                  <span class="exam-pill">8 marks</span
+                  ><span class="exam-pill">Analyse</span>
+                </div>
+                <h3>Question 4</h3>
+                <p>
+                  A developer uses a graphical IDE but opens a terminal to run
+                  tests and manage source control. Analyse why combining styles
+                  may improve productivity.
+                </p>
+                <label class="exam-response-label" for="ui-answer-4"
+                  >Your answer</label
+                >
+                <textarea
+                  class="exam-response"
+                  id="ui-answer-4"
+                  data-exam-response="ui-v2-question-4"
+                  placeholder="Link the interface to the user, task and trade-offs."
+                ></textarea>
+                <details class="exam-guidance">
+                  <summary>Show answer guide</summary>
+                  <div class="exam-guidance-body">
+                    <ul>
+                      <li>
+                        Visual editing, navigation and debugging help the
+                        developer inspect and change code.
                       </li>
                       <li>
-                        A CLI allows remote administration, scripting,
-                        diagnostics, and precise control with low overhead.
+                        CLI tests and source-control commands can be repeated
+                        precisely or included in scripts.
                       </li>
                       <li>
-                        The answer should recognise that the best interface is
-                        different because the users and tasks are different.
+                        An integrated terminal reduces switching between
+                        separate applications and keeps work close to the code.
+                      </li>
+                      <li>
+                        Evaluate trade-offs: learning commands takes time and
+                        some actions may also be available in IDE buttons.
+                      </li>
+                      <li>
+                        Connect both styles to the tasks and explain their
+                        combined benefit rather than declaring one universally
+                        superior.
                       </li>
                     </ul>
                   </div>
@@ -1136,29 +2317,51 @@
             <h2>Quick glossary</h2>
             <dl class="glossary-list">
               <div class="glossary-item">
+                <dt>User interface</dt>
+                <dd>The way a person interacts with a system or software.</dd>
+              </div>
+              <div class="glossary-item">
                 <dt>GUI</dt>
                 <dd>A graphical user interface with visual controls.</dd>
               </div>
               <div class="glossary-item">
                 <dt>CLI</dt>
                 <dd>
-                  A command line interface based on typed commands, often used
-                  by skilled users.
+                  An interface primarily based on typed commands and their
+                  results.
                 </dd>
               </div>
               <div class="glossary-item">
                 <dt>Menu-based interface</dt>
-                <dd>An interface where users choose from preset options.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Compatibility</dt>
-                <dd>Whether software works with the current system.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Implementation</dt>
                 <dd>
-                  The work needed to introduce software, including testing,
-                  migration, setup, and support.
+                  Interaction primarily through predefined guided choices.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Discoverability</dt>
+                <dd>How easily a user can find available actions.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Prompt</dt>
+                <dd>
+                  An indication that a command environment is ready for input.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Output</dt>
+                <dd>A result returned by a command.</dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Pipeline</dt>
+                <dd>
+                  A sequence passing results from one command to the next.
+                </dd>
+              </div>
+              <div class="glossary-item">
+                <dt>Automation</dt>
+                <dd>
+                  Using instructions to perform work with less repeated manual
+                  input.
                 </dd>
               </div>
             </dl>
@@ -1168,10 +2371,11 @@
             <p class="eyebrow">Remember</p>
             <h2>Match the context</h2>
             <ul class="memory-list">
-              <li>Public fixed task: menu-based.</li>
-              <li>General everyday work: GUI.</li>
-              <li>Expert remote control or automation: CLI.</li>
-              <li>Software choice must balance cost, fit, risk, and performance.</li>
+              <li>Visual manipulation often suits GUI.</li>
+              <li>Repetition and remote work often suit CLI.</li>
+              <li>Constrained public tasks often suit menus.</li>
+              <li>Real systems can combine styles.</li>
+              <li>Always link the interface to the user and task.</li>
             </ul>
           </section>
         </aside>
@@ -1196,7 +2400,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 11</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 36</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

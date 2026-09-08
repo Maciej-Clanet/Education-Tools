@@ -9,7 +9,7 @@ const lessonConfig = {
       backHref: "../units/btec-level-3-unit-2.html#section-a",
       backLabel: "Back to Unit 2 content",
       previous: {
-        title: "User interfaces and software choice",
+        title: "User interfaces",
         description: "Previous in A2 Computer software in a computer system.",
         status: "Live",
         href: "../topics/user-interfaces-and-software-choice.html",

@@ -11,6 +11,11 @@ the browser with `localStorage` where useful.
 
 ## Core Product Goals
 
+- The A2 User interfaces lesson focuses on GUI, CLI, menu-based styles and
+  interface suitability. Its existing URL remains stable. Generic software
+  selection belongs in Utility, application, and open source software; OS choice
+  and OS use/performance are reserved for an operating-system refinement.
+
 - Teacher slide decks support optional teacher-only section-divider templates.
   These pace classroom delivery without adding student content or Jump To links.
   Authoring and hash behaviour are documented in `docs/teacher_section_dividers.md`.

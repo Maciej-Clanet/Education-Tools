@@ -17,7 +17,7 @@ const lessonConfig = {
         href: "../topics/operating-system-types.html",
       },
       next: {
-        title: "User interfaces and software choice",
+        title: "User interfaces",
         description: "Next in A2 Computer software in a computer system.",
         status: "Live",
         href: "../topics/user-interfaces-and-software-choice.html",

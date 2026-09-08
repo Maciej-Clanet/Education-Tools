@@ -69,6 +69,9 @@ Before making major UI, content, or structure changes, read:
   sections and works well with swipe and tap navigation on touch displays.
 - Teacher-only section dividers use inert `template[data-teacher-divider]`
   markup before a teaching section; see `docs/teacher_section_dividers.md`.
+- Small optional live-demo cues use `data-teacher-note` and appear only in
+  Teacher Slides. User interfaces retains its existing URL; generic software
+  selection belongs in the utility/application/open-source lesson.
 - Teacher slide mode can include a collapsible presentation tools shelf for
   temporary slide-only teaching aids such as highlighting, spotlighting, or
   blanking the screen, but it should stay unobtrusive when those tools are not
@@ -87,6 +90,9 @@ Before making major UI, content, or structure changes, read:
 
 - Shared styles belong in `css/`, with page-specific styling in `css/pages/`.
 - Reusable browser logic belongs in `javascript/core/`.
+- `javascript/core/simulated-terminal.js` provides deterministic whitelist-only
+  teaching terminals; `javascript/core/paired-scenarios.js` supports interface
+  and reason activities. See `docs/user_interfaces_lesson.md`.
 - Local catalogue or structured content data belongs in `javascript/data/` or
   `content/`.
 - Future page shells belong in `pages/`.

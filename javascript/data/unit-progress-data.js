@@ -171,9 +171,9 @@ export const btecLevel3Unit2ProgressData = {
         },
         {
           id: "user-interfaces-and-software-choice",
-          title: "User interfaces and software choice",
+          title: "User interfaces",
           href: "../topics/user-interfaces-and-software-choice.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 7, passScore: 5 },
+          quiz: { version: 2, totalQuestions: 12, passScore: 9 },
         },
         {
           id: "utility-application-and-open-source-software",

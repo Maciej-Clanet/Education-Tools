@@ -2285,6 +2285,17 @@ body.teacher-mode-active .lesson-section h2 {
 
 .teacher-section-divider[hidden] { display: none !important; }
 
+/* Small presentation cues remain out of student content and read-aloud. */
+[data-teacher-note] { display: none !important; }
+body.teacher-mode-active [data-teacher-note] {
+  display: block !important;
+  border-inline-start: 3px solid var(--lesson-accent);
+  padding-inline-start: .8rem;
+  margin-top: 1rem;
+  font-size: .85em;
+}
+@media print { body.teacher-mode-active [data-teacher-note] { display: none !important; } }
+
 body.teacher-mode-active .teacher-section-divider {
   display: flex;
   flex-direction: column;
