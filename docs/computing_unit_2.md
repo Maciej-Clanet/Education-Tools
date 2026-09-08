@@ -108,7 +108,7 @@ saved progress should be shown as needing a fresh attempt.
     the users/tasks versus timing map, modern overlap and exam classification.
     Eight paired scenario/clue activities; quiz version 2, 12 questions, pass 9.
 - [x] Kernel functions and system management
-  - Redesigned as 35 first-teaching slides with a reusable stepped Kernel Visualiser, multi-answer scenarios and five written tasks. Quiz version 2: 16 questions, pass 12. See `docs/kernel_functions_lesson.md`.
+  - 35 teaching sections with a reusable stepped Kernel Visualiser, clarified processor privilege modes, one interrupt sequence, and nine teacher-only dividers (44 teacher slides). Multi-answer scenarios and five written tasks. Quiz version 2: 16 questions, pass 12. See `docs/kernel_functions_lesson.md`.
 - [x] User interfaces and software choice
 - [x] Utility, application, and open source software
 

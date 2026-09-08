@@ -2283,6 +2283,25 @@ body.teacher-mode-active .lesson-section h2 {
   text-wrap: balance;
 }
 
+.teacher-section-divider[hidden] { display: none !important; }
+
+body.teacher-mode-active .teacher-section-divider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background: var(--surface, #fff);
+}
+
+body.teacher-mode-active .teacher-section-divider h2 {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  max-width: 20ch;
+}
+
+body.teacher-mode-active .teacher-section-divider > p:not(.eyebrow) {
+  max-width: 48ch;
+}
+
 body.teacher-mode-active .lesson-section::before {
   top: 0.8rem;
   left: auto;

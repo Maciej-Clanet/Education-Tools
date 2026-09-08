@@ -11,6 +11,10 @@ the browser with `localStorage` where useful.
 
 ## Core Product Goals
 
+- Teacher slide decks support optional teacher-only section-divider templates.
+  These pace classroom delivery without adding student content or Jump To links.
+  Authoring and hash behaviour are documented in `docs/teacher_section_dividers.md`.
+
 - Make it easy to find a unit, topic, course, or spec from the home page.
 - Include a search bar on the main page.
 - Support topic pages with an easy sidebar for navigating within a unit or

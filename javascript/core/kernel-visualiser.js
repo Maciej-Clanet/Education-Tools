@@ -68,7 +68,9 @@ export function initKernelVisualisers(configs, root = document) {
     report.setAttribute('aria-atomic', 'true')
     const status = element('strong', 'kv-status')
     const detail = element('p', 'kv-detail')
-    report.append(status, detail)
+    const execution = element('p', 'kv-execution')
+    execution.hidden = !config.execution
+    report.append(status, execution, detail)
     const board = element('div', 'kv-board')
     const nodeViews = new Map()
     for (const layer of [...new Set(config.nodes.map(node => node.layer))]) {
@@ -110,7 +112,7 @@ export function initKernelVisualisers(configs, root = document) {
       panel.append(strip); resources.append(panel)
     }
     const motionNote = element('p', 'kv-model-note')
-    const modelNote = element('p', 'kv-model-note', 'Conceptual model: highlights show the current focus, not every operation happening in a real OS.')
+    const modelNote = element('p', 'kv-model-note', config.execution ? 'Conceptual execution model: the highlight identifies the code executing, not an application moving through the computer.' : 'Conceptual model: highlights show the current focus, not every operation happening in a real OS.')
     shell.append(heading, controls, report, board, resources, motionNote, modelNote)
     host.querySelector('[data-kernel-mount]').replaceChildren(shell)
 
@@ -120,10 +122,11 @@ export function initKernelVisualisers(configs, root = document) {
       host.dataset.kvPlaying = String(state.playing)
       status.textContent = `${state.index + 1} / ${config.frames.length} — ${frame.title}`
       detail.textContent = frame.detail
+      execution.textContent = config.execution ? `Processor privilege mode: ${frame.mode}` : ''
       for (const [id, view] of nodeViews) {
         const active = frame.active.includes(id)
         view.classList.toggle('is-active', active)
-        view.querySelector('.kv-node-status').textContent = active ? '● Current focus' : '○ In this model'
+        view.querySelector('.kv-node-status').textContent = config.execution ? (active ? '● Currently executing' : '○ Not executing in this step') : (active ? '● Current focus' : '○ In this model')
       }
       ramBlocks.forEach((block, index) => {
         const owner = frame.ram?.[index] ?? (index < 2 ? 'Kernel' : 'Free')

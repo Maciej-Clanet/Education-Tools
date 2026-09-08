@@ -1,4 +1,5 @@
 import { readStorage, removeStorage, writeStorage } from "./storage.js"
+import { initTeacherDividers, studentSlideTarget } from "./teacher-dividers.js"
 import {
   getQuizId,
   removeLessonQuizProgress,
@@ -443,7 +444,7 @@ function initExamPractice(config) {
   })
 }
 
-function buildTeacherSlideDeck(sections) {
+export function buildTeacherSlideDeck(sections) {
   const sectionSlides = []
   const slides = []
   const firstSlideIndexBySection = new Map()
@@ -521,7 +522,8 @@ function buildTeacherSlideDeck(sections) {
 
 function initTeacherMode(config) {
   const main = document.querySelector("[data-role='lesson-main']")
-  const sections = Array.from(document.querySelectorAll("[data-lesson-section]"))
+  initTeacherDividers()
+  const sections = Array.from(document.querySelectorAll("[data-lesson-section], [data-teacher-only]"))
   const { sectionSlides, slides, firstSlideIndexBySection } =
     buildTeacherSlideDeck(sections)
   const sectionIndexBySection = new Map(
@@ -1374,6 +1376,7 @@ function initTeacherMode(config) {
     let nearestDistance = Number.MAX_SAFE_INTEGER
 
     sections.forEach((section) => {
+      if (section.hasAttribute('data-teacher-only')) return
       const distance = Math.abs(section.getBoundingClientRect().top - 150)
 
       if (distance < nearestDistance) {
@@ -1489,8 +1492,10 @@ function initTeacherMode(config) {
 
     if (!isTeacherMode) {
       resetTeacherTools()
+      activeSlideIndex = firstSlideIndexBySection.get(studentSlideTarget(getActiveSlide(), sections)) ?? activeSlideIndex
     }
 
+    sections.filter(section => section.hasAttribute('data-teacher-only')).forEach(section => { section.hidden = !isTeacherMode })
     document.body.classList.toggle("teacher-mode-active", isTeacherMode)
     syncSectionChunkVisibility()
     writeStorage(storageKey, isTeacherMode)
@@ -1507,13 +1512,18 @@ function initTeacherMode(config) {
   )
 
   if (initialHashSection) {
-    activeSlideIndex = firstSlideIndexBySection.get(initialHashSection) ?? 0
+    activeSlideIndex = firstSlideIndexBySection.get(isTeacherMode ? initialHashSection : studentSlideTarget(initialHashSection, sections)) ?? 0
+    if (!isTeacherMode && initialHashSection.hasAttribute('data-teacher-only')) {
+      syncHash()
+      requestAnimationFrame(() => goToSlide(activeSlideIndex, 'auto', true))
+    }
   }
 
   syncSectionChunkVisibility()
   updateControls()
 
   if (isTeacherMode) {
+    sections.filter(section => section.hasAttribute('data-teacher-only')).forEach(section => { section.hidden = false })
     document.body.classList.add("teacher-mode-active")
 
     requestAnimationFrame(() => {

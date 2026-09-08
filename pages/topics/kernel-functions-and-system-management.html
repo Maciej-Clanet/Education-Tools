@@ -127,10 +127,10 @@
 <a href="#process-life" data-section-link>Running and ending a process</a>
 <a href="#restrictions" data-section-link>Why can’t programs control everything?</a>
 <a href="#user-mode" data-section-link>User mode: useful work within limits</a>
-<a href="#kernel-mode" data-section-link>Kernel mode and system calls</a>
+<a href="#kernel-mode" data-section-link>Kernel mode</a>
+<a href="#system-calls" data-section-link>System calls</a>
 <a href="#interrupts-modes" data-section-link>What is an interrupt?</a>
 <a href="#interrupt-sequence" data-section-link>Interrupt handling, step by step</a>
-<a href="#interrupt-lab" data-section-link>Send a keyboard interrupt</a>
 <a href="#memory-multitasking" data-section-link>Why manage memory?</a>
 <a href="#allocate-ram" data-section-link>Allocating RAM</a>
 <a href="#protect-reclaim" data-section-link>Protecting and reclaiming memory</a>
@@ -184,7 +184,7 @@
 </details>
 <details class="kernel-teacher-note">
 <summary>Teacher prompt</summary>
-<p>Ask what could go wrong if every application took any resource it wanted. Keep the detailed map hidden until slide 28.</p>
+<p>Ask what could go wrong if every application took any resource it wanted. Keep the detailed map hidden until the full kernel map section.</p>
 </details>
 </section>
 <section id="layers" class="lesson-section panel" data-lesson-section>
@@ -286,6 +286,9 @@
 </details>
 </div>
 </section>
+<template data-teacher-divider>
+<h2>Processor privilege modes</h2>
+</template>
 <section id="restrictions" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">07 · Kernel functions</p>
 <h2>Why can’t programs control everything?</h2>
@@ -293,7 +296,7 @@
 <div class="kernel-grid">
 <article class="kernel-card">
 <h3>Overwrite RAM</h3>
-<p>Destroy the editor’s unsaved assignment.</p>
+<p>Destroy the editor’s unsaved assignment or freely access protected kernel memory.</p>
 </article>
 <article class="kernel-card">
 <h3>Rewrite storage</h3>
@@ -314,53 +317,43 @@
 <section id="user-mode" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">08 · Kernel functions</p>
 <h2>User mode: useful work within limits</h2>
-<div class="kernel-stack">
-<div class="kernel-layer kernel-apps">
-<strong>Application in user mode</strong>
-<div>Uses its permitted memory and ordinary instructions</div>
+<p class="lesson-section-copy">User mode and kernel mode are <strong>processor privilege modes under which code executes</strong>. They describe what the currently executing code is permitted to do, rather than physical places inside a computer.</p>
+<p class="kernel-question">User mode describes the restricted privilege level under which normal application code executes.</p>
+<div class="kernel-grid">
+<article class="kernel-card"><h3>Application code executing · USER MODE</h3><p>Can calculate, edit text and perform ordinary application work using memory and resources the OS permits it to access.</p></article>
+<article class="kernel-card"><h3>Restricted privileges</h3><p>Cannot execute certain privileged operations, freely access kernel memory, overwrite another process’s protected memory or directly control arbitrary hardware.</p></article>
 </div>
-<p class="kernel-arrow" aria-hidden="true">↓</p>
-<div class="kernel-layer kernel-boundary">
-<strong>Protected boundary</strong>
-<div>Direct unauthorised access blocked</div>
-</div>
-<p class="kernel-arrow" aria-hidden="true">↓</p>
-<div class="kernel-layer ">
-<strong>Protected resources</strong>
-<div>Other processes’ memory · hardware control · kernel data</div>
-</div>
-</div>
-<p class="lesson-section-copy">Normal applications run with restricted privileges. OS and processor protections help isolate processes.</p>
 </section>
 <section id="kernel-mode" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">09 · Kernel functions</p>
-<h2>Kernel mode and system calls</h2>
-<p class="lesson-section-copy">
-<strong>Kernel mode</strong> permits privileged code to manage memory, control hardware and perform protected operations.</p>
-<div data-kernel-visualiser="call" data-no-slide-advance>
-<div data-kernel-mount>
-</div>
-<details class="kernel-transcript">
-<summary>Read the full sequence: A protected request</summary>
-<ol>
-<li>
-<strong>Restricted application.</strong> Normal application code runs in user mode. It cannot simply perform protected hardware operations.</li>
-<li>
-<strong>Request an OS service.</strong> A system call provides a controlled entry to privileged OS code; the application does not gain unrestricted access.</li>
-<li>
-<strong>Handle the operation.</strong> Kernel code checks the request and performs the permitted protected work.</li>
-<li>
-<strong>Return a result.</strong> The application receives success, data or an error and continues in user mode. Real calls may wait or complete asynchronously.</li>
-</ol>
-</details>
-</div>
-<details class="kernel-teacher-note">
-<summary>Teacher prompt</summary>
-<p>A system call is a controlled request, not permission for the application to do anything it likes.</p>
-</details>
+<h2>Kernel mode: trusted code with privileges</h2>
+<p class="kernel-question">Kernel mode is a privileged processor mode used while trusted operating-system/kernel code is executing.</p>
+<p class="lesson-section-copy">Kernel code can perform protected operations to manage memory, hardware, processes, interrupts, storage and other system resources.</p>
+<div class="compare-table-wrap"><table class="compare-table"><thead><tr><th scope="col">User mode</th><th scope="col">Kernel mode</th></tr></thead><tbody>
+<tr><td>Restricted privileges</td><td>Privileged execution</td></tr>
+<tr><td>Normal application code</td><td>Trusted kernel/OS code</td></tr>
+<tr><td>Cannot perform arbitrary protected operations</td><td>Can perform privileged operations</td></tr>
+<tr><td>Failures are normally contained to the process</td><td>Kernel failures can affect the entire system</td></tr>
+</tbody></table></div>
 </section>
-<section id="interrupts-modes" class="lesson-section panel" data-lesson-section>
+<section id="system-calls" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">10 · Kernel functions</p>
+<h2>System calls: request, trusted handling, return</h2>
+<p class="kernel-question">The application itself does not gain unrestricted kernel privileges. Execution transfers to trusted kernel code instead.</p>
+<div data-kernel-visualiser="call" data-no-slide-advance><div data-kernel-mount></div>
+<details class="kernel-transcript"><summary>Read the system-call sequence</summary><ol><li><strong>Application code is executing — USER MODE.</strong> The editor prepares a file to save. Its code cannot directly perform arbitrary protected storage operations.</li>
+<li><strong>Application makes a system call — USER MODE · SYSTEM CALL requested.</strong> The editor deliberately requests an OS save service through the system-call mechanism.</li>
+<li><strong>Controlled transition — KERNEL MODE · trusted code begins.</strong> Execution transfers to an approved entry point in trusted kernel code. The CPU now executes that code with kernel privileges.</li>
+<li><strong>Kernel code handles the operation — KERNEL MODE.</strong> Kernel code validates the request, checks permissions and works with OS subsystems and drivers to perform permitted storage work on behalf of the editor.</li>
+<li><strong>Return to application code — USER MODE · RETURN to application.</strong> The kernel returns data, success or an error. Execution resumes in the editor’s code with restricted privileges. Real requests may wait or complete asynchronously.</li></ol></details></div>
+<p class="lesson-section-copy"><strong>System call:</strong> an application deliberately requests an OS service. <strong>Interrupt:</strong> an event requires CPU/OS attention. Both may cause privileged kernel code to execute before ordinary application work continues. We explore interrupts next.</p>
+</section>
+<template data-teacher-divider>
+<h2>Interrupts</h2>
+<p>How the CPU responds when an event needs attention</p>
+</template>
+<section id="interrupts-modes" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">11 · Kernel functions</p>
 <h2>What is an interrupt?</h2>
 <p class="lesson-section-copy">The CPU is busy playing music. Then you press a key. How does the event get attention?</p>
 <ol class="kernel-flow">
@@ -377,40 +370,9 @@
 <strong>An interrupt is a signal that causes the CPU to temporarily deal with an event.</strong> Interrupt does not mean error. Signals can originate from hardware, including internal timers; software can also trigger interrupt mechanisms.</p>
 </section>
 <section id="interrupt-sequence" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">11 · Kernel functions</p>
-<h2>Interrupt handling, step by step</h2>
-<div data-kernel-visualiser="interrupt" data-no-slide-advance>
-<div data-kernel-mount>
-</div>
-<details class="kernel-transcript">
-<summary>Read the full sequence: Handle a keyboard interrupt</summary>
-<ol>
-<li>
-<strong>Process running.</strong> The CPU is executing work from the music process.</li>
-<li>
-<strong>Interrupt received.</strong> A key press is reported through the input hardware. The signal requests CPU attention.</li>
-<li>
-<strong>Save the current state.</strong> Enough state is preserved to resume the interrupted work later; the whole program is not reloaded.</li>
-<li>
-<strong>Run the handler.</strong> The CPU executes the appropriate interrupt handler.</li>
-<li>
-<strong>Deal with the event.</strong> The input event is acknowledged and passed on for processing. Some work may be deferred.</li>
-<li>
-<strong>Restore state.</strong> The saved state is restored for the interrupted work in this simplified sequence.</li>
-<li>
-<strong>Resume work.</strong> The music process continues. An interrupt is a normal event, not necessarily an error.</li>
-</ol>
-</details>
-</div>
-<details class="kernel-teacher-note">
-<summary>Teacher prompt</summary>
-<p>Pause at saved state: why must the CPU remember where it was? Register detail belongs in the later architecture lesson.</p>
-</details>
-</section>
-<section id="interrupt-lab" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">12 · Kernel functions</p>
-<h2>Send a keyboard interrupt</h2>
-<p class="lesson-section-copy">Start with music running. Send an interrupt, then use Step to follow the handler and the return to the process.</p>
+<h2>Interrupt handling, step by step</h2>
+<p class="lesson-section-copy">Send a keyboard interrupt, then use Step to follow the handler and return to the process. This model resumes the original work; a real scheduler may choose other ready work.</p>
 <div data-kernel-visualiser="interrupt" data-no-slide-advance>
 <div data-kernel-mount>
 </div>
@@ -434,11 +396,12 @@
 </ol>
 </details>
 </div>
-<details class="kernel-teacher-note">
-<summary>Teacher prompt</summary>
-<p>Ask students to predict each next state before pressing Step. This model resumes the original work; a real scheduler may select other ready work.</p>
-</details>
+
 </section>
+<template data-teacher-divider>
+<h2>Memory management</h2>
+<p>How processes safely share RAM</p>
+</template>
 <section id="memory-multitasking" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">13 · Kernel functions</p>
 <h2>Why manage memory?</h2>
@@ -505,6 +468,10 @@
 </details>
 </div>
 </section>
+<template data-teacher-divider>
+<h2>Multitasking</h2>
+<p>How several processes share CPU time</p>
+</template>
 <section id="multitasking" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">16 · Kernel functions</p>
 <h2>What is multitasking?</h2>
@@ -607,6 +574,10 @@
 <strong>Multitasking requires coordination of several resources at once.</strong>
 </p>
 </section>
+<template data-teacher-divider>
+<h2>Disk access</h2>
+<p>How applications request storage operations</p>
+</template>
 <section id="storage-drivers" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">20 · Kernel functions</p>
 <h2>Applications request storage access</h2>
@@ -650,6 +621,10 @@
 </details>
 </div>
 </section>
+<template data-teacher-divider>
+<h2>File systems</h2>
+<p>How the operating system organises and locates stored data</p>
+</template>
 <section id="file-systems" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">22 · Kernel functions</p>
 <h2>Why do file systems exist?</h2>
@@ -775,6 +750,10 @@
 </div>
 <p class="lesson-section-copy">FAT32 and NTFS are examples, not the definition of a file system. Journaling does not replace a backup.</p>
 </section>
+<template data-teacher-divider>
+<h2>Device drivers</h2>
+<p>How the OS communicates with different hardware</p>
+</template>
 <section id="why-drivers" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">26 · Kernel functions</p>
 <h2>Why do we need drivers?</h2>
@@ -864,6 +843,10 @@
 <p>Ask students to trace one familiar event through the map. Networking and security follow as wider OS responsibilities.</p>
 </details>
 </section>
+<template data-teacher-divider>
+<h2>Wider OS management</h2>
+<p>Networking and security</p>
+</template>
 <section id="system-management" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">29 · Wider operating system</p>
 <h2>Wider OS management: networking</h2>
@@ -906,8 +889,11 @@
 </div>
 <p class="lesson-section-copy">Security is a wider OS responsibility, supported by mechanisms already taught: modes, memory protection and file permissions.</p>
 </section>
+<template data-teacher-divider>
+<h2>Putting it all together</h2>
+</template>
 <section id="save-image" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">31 · Kernel functions</p>
+<p class="eyebrow">29 · Kernel functions</p>
 <h2>What happens when you save an image?</h2>
 <p class="lesson-section-copy">The image editor is open, music is playing, and you click Save. Connect the mechanisms you have learned.</p>
 <div data-kernel-visualiser="save-image" data-no-slide-advance>
@@ -948,7 +934,7 @@
 </details>
 </section>
 <section id="control-room" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">32 · Kernel functions</p>
+<p class="eyebrow">30 · Kernel functions</p>
 <h2>Kernel control room</h2>
 <p class="lesson-section-copy">Select the mechanism(s) requested by each event, then check. Some events need two answers; the feedback connects other supporting mechanisms.</p>
 <fieldset class="kernel-scenario" data-kernel-scenario data-expected="interrupt" data-explanation="An interrupt requests attention. Scheduling also keeps music progressing, but the signal is the focus here." data-no-slide-advance>
@@ -1091,7 +1077,7 @@
 </fieldset>
 </section>
 <section id="mistakes" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">33 · Kernel functions</p>
+<p class="eyebrow">31 · Kernel functions</p>
 <h2>Common mistakes</h2>
 <div class="kernel-grid">
 <article class="kernel-card">
@@ -1125,7 +1111,7 @@
 </div>
 </section>
 <section id="quiz" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">34 · Kernel functions</p>
+<p class="eyebrow">32 · Kernel functions</p>
 <h2>Check your understanding</h2>
 <p class="lesson-section-copy">Answer all 16 questions, then check your score. Aim for 12/16. Choices and your best score save in this browser.</p>
 <form id="lesson-quiz" class="quiz-form">
@@ -1538,7 +1524,7 @@
 </form>
 </section>
 <section id="exam-practice" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">35 · Kernel functions</p>
+<p class="eyebrow">33 · Kernel functions</p>
 <h2>Exam-style practice</h2>
 <p class="lesson-section-copy">Build explanations as <strong>mechanism → what it does → why it matters in this scenario</strong>. These are practice questions with indicative guidance, not an official mark scheme.</p>
 <p class="exam-response-note">Draft answers save automatically in this browser.</p>
@@ -1700,11 +1686,11 @@
               </div>
               <div class="glossary-item">
                 <dt>User mode</dt>
-                <dd>A restricted mode used by ordinary applications.</dd>
+                <dd>The restricted processor privilege level under which normal application code executes.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Kernel mode</dt>
-                <dd>A privileged mode used for low-level OS operations.</dd>
+                <dd>A privileged processor mode used while trusted kernel/OS code executes.</dd>
               </div>
               <div class="glossary-item">
                 <dt>File system</dt>

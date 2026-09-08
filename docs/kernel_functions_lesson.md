@@ -10,10 +10,10 @@
 6. Running and ending a process
 7. Why can’t programs control everything?
 8. User mode: useful work within limits
-9. Kernel mode and system calls
-10. What is an interrupt?
-11. Interrupt handling, step by step
-12. Send a keyboard interrupt
+9. Kernel mode: trusted code with privileges
+10. System calls: request, trusted handling, return
+11. What is an interrupt?
+12. Interrupt handling, step by step
 13. Why manage memory?
 14. Allocating RAM
 15. Protecting and reclaiming memory
@@ -42,7 +42,18 @@
 
 `javascript/core/kernel-visualiser.js` renders labelled snapshots from `javascript/data/kernel-visualiser-data.js`; shared appearance is in `css/kernel-visualiser.css`. Native Play/Pause, Previous, Step and Reset controls use a finite state reducer. Playback ends at the last frame and pauses when hidden/offscreen. Reduced motion disables timed playback; every snapshot remains available through Step. No emulator, libraries, canvas or continuously running loop. Readable sequence transcripts remain without JavaScript.
 
-Reused on slides 5, 6, 9, 11, 12, 14, 15, 17, 19, 21, 24 (open and save), 27 and 31. Interrupt instances are independent; both reuse the same seven snapshots. RAM has 12 labelled illustrative blocks; CPU strips show labelled illustrative time slices.
+Reused on teaching sections 5, 6, 10, 12, 14, 15, 17, 19, 21, 24 (open and save), 27 and 31. One interrupt player provides seven snapshots and a keyboard trigger. RAM has 12 labelled illustrative blocks; CPU strips show labelled illustrative time slices.
+
+The system-call sequence uses optional `execution: true` configuration and a
+`mode` string on each frame. Its active nodes identify executing code rather than
+resources or spatial movement. Other sequences keep their existing focus labels.
+User and kernel modes are defined as processor privilege modes, with a comparison
+table, a five-stage file-save example and an explicit application-privilege warning.
+
+Nine teacher-only dividers precede processor privilege modes, interrupts, memory
+management, multitasking, disk access, file systems, device drivers, wider OS
+management and the integrated recap. There are 35 student teaching sections and
+44 teacher slides. See `teacher_section_dividers.md` for the reusable contract.
 
 ## Components and scope
 
@@ -60,6 +71,13 @@ Deferred: scheduling algorithms, paging/page tables and virtual-memory architect
 - [Microsoft: file-system comparison](https://learn.microsoft.com/en-us/windows/win32/fileio/filesystem-functionality-comparison)
 
 ## Verification
+
+### Focused refinement pass
+
+- Six focused tests pass: four existing visualiser tests and two shared divider tests.
+- Browser runtime reported no available browsers in this session; manual layout,
+  control interaction and console checks for this refinement remain unverified.
+- Earlier browser checks below describe the preceding redesign, not this refinement.
 
 - Four focused state/answer-set tests pass (`node tests/kernel-visualiser.test.mjs` and Node test runner).
 - JavaScript syntax and `git diff --check` pass.

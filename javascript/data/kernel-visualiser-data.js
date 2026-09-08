@@ -180,58 +180,60 @@ export const kernelSequences = {
     "ram": true
   },
   "call": {
-    "title": "A protected request",
+    "title": "Save a file: which code is executing?",
+    "execution": true,
     "nodes": [
       {
         "id": "app",
-        "label": "Application: user mode",
-        "layer": "Applications"
+        "label": "Word / editor code · USER MODE",
+        "layer": "Code the CPU can execute"
       },
       {
-        "id": "gate",
-        "label": "System call: checked request",
-        "layer": "Kernel"
-      },
-      {
-        "id": "operation",
-        "label": "Protected operation",
-        "layer": "Kernel"
-      },
-      {
-        "id": "device",
-        "label": "Hardware resource",
-        "layer": "Hardware"
+        "id": "kernel",
+        "label": "Trusted kernel code · KERNEL MODE",
+        "layer": "Code the CPU can execute"
       }
     ],
     "frames": [
       {
-        "title": "Restricted application",
-        "detail": "Normal application code runs in user mode. It cannot simply perform protected hardware operations.",
+        "title": "Application code is executing",
+        "detail": "The editor prepares a file to save. Its code cannot directly perform arbitrary protected storage operations.",
         "active": [
           "app"
-        ]
+        ],
+        "mode": "USER MODE"
       },
       {
-        "title": "Request an OS service",
-        "detail": "A system call provides a controlled entry to privileged OS code; the application does not gain unrestricted access.",
-        "active": [
-          "gate"
-        ]
-      },
-      {
-        "title": "Handle the operation",
-        "detail": "Kernel code checks the request and performs the permitted protected work.",
-        "active": [
-          "operation",
-          "device"
-        ]
-      },
-      {
-        "title": "Return a result",
-        "detail": "The application receives success, data or an error and continues in user mode. Real calls may wait or complete asynchronously.",
+        "title": "Application makes a system call",
+        "detail": "The editor deliberately requests an OS save service through the system-call mechanism.",
         "active": [
           "app"
-        ]
+        ],
+        "mode": "USER MODE · SYSTEM CALL requested"
+      },
+      {
+        "title": "Controlled transition",
+        "detail": "Execution transfers to an approved entry point in trusted kernel code. The CPU now executes that code with kernel privileges.",
+        "active": [
+          "kernel"
+        ],
+        "mode": "KERNEL MODE · trusted code begins"
+      },
+      {
+        "title": "Kernel code handles the operation",
+        "detail": "Kernel code validates the request, checks permissions and works with OS subsystems and drivers to perform permitted storage work on behalf of the editor.",
+        "active": [
+          "kernel"
+        ],
+        "mode": "KERNEL MODE"
+      },
+      {
+        "title": "Return to application code",
+        "detail": "The kernel returns data, success or an error. Execution resumes in the editor’s code with restricted privileges. Real requests may wait or complete asynchronously.",
+        "active": [
+          "app"
+        ],
+        "mode": "USER MODE · RETURN to application"
       }
     ]
   },

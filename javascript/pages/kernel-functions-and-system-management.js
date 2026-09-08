@@ -35,6 +35,11 @@ const lessonConfig = {
   },
 }
 
+// Keep bookmarks to the consolidated activity working in either lesson mode.
+if (window.location.hash === '#interrupt-lab') {
+  history.replaceState(null, '', '#interrupt-sequence')
+}
+
 initKernelVisualisers(kernelSequences)
 initKernelScenarios()
 initLessonPage(lessonConfig)
