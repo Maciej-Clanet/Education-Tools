@@ -115,6 +115,10 @@ saved progress should be shown as needing a fresh attempt.
     dividers. Quiz version 2: 12 questions, pass 9. Generic software selection
     merged into the next lesson. See `docs/user_interfaces_lesson.md`.
 - [x] Utility, application, and open source software
+  - Rebuilt as 34 first-teaching sections with a purpose/licence matrix, utility
+    process visuals, paired classification and a conditional software-choice
+    activity. Five teacher-only dividers. Quiz version 2: 14 questions, pass 10.
+    See `docs/software_lesson.md`.
 
 ### A3 Data processing
 - [x] Collecting and processing data

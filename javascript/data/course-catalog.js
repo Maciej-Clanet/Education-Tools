@@ -856,7 +856,7 @@ export const catalogItems = [
     kicker: "A2 Computer software in a computer system",
     title: "Utility, application, and open source software",
     summary:
-      "A live revision lesson on utility software, application software, software selection factors, and the principles and implications of open source and proprietary software.",
+      "Explore utility and application purposes, source-code rights, open-source/proprietary trade-offs and software suitability through visual examples and justified choices.",
     badges: ["Subject area: Computer systems"],
     keywords: [
       "utility software",

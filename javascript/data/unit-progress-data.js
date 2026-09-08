@@ -179,7 +179,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "utility-application-and-open-source-software",
           title: "Utility, application, and open source software",
           href: "../topics/utility-application-and-open-source-software.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 8, passScore: 6 },
+          quiz: { version: 2, totalQuestions: 14, passScore: 10 },
         },
       ],
     },

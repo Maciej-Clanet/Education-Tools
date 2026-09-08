@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { resolveTeachingCommand, initSimulatedTerminals } from '../javascript/core/simulated-terminal.js'
-import { evaluateScenarioPair } from '../javascript/core/paired-scenarios.js'
+import { evaluateScenarioPair, initPairedScenarios } from '../javascript/core/paired-scenarios.js'
 
 const commands = [{ command: 'Get-Item | Select-Object Name', output: 'Example item' }]
 
@@ -34,6 +34,40 @@ function control(textContent = '') {
     focus() {},
   }
 }
+
+test('paired scenarios support configurable feedback, conditional explanations and reset', () => {
+  const type = control(), reason = control(), feedback = control(), check = control(), reset = control()
+  const nodes = { '[data-choice="type"]': type, '[data-choice="reason"]': reason, '[data-pair-feedback]': feedback, '[data-check-pair]': check, '[data-reset-pair]': reset }
+  const card = { dataset: { pairedScenario: 'choice' }, querySelector: selector => nodes[selector], querySelectorAll: () => [type, reason] }
+  initPairedScenarios({ choice: {
+    acceptedPairs: [['a', 'fit'], ['b', 'price']], incompleteMessage: 'Incomplete',
+    successMessage: 'Supported priority', retryMessage: 'Check evidence', explanation: 'Fallback',
+    explanationsByChoice: { a: 'Check recurring costs.', b: 'Check migration costs.' },
+  } }, { querySelectorAll: () => [card] })
+  check.fire('click')
+  assert.equal(feedback.textContent, 'Incomplete')
+  type.value = 'b'; reason.value = 'price'; check.fire('click')
+  assert.equal(feedback.textContent, 'Supported priority Check migration costs.')
+  reason.value = 'fit'; reason.fire('change')
+  assert.equal(feedback.textContent, '')
+  check.fire('click')
+  assert.equal(feedback.textContent, 'Check evidence Check migration costs.')
+  reset.fire('click')
+  assert.equal(type.value, '')
+  assert.equal(reason.value, '')
+  assert.equal(feedback.textContent, '')
+})
+
+test('existing interface scenario defaults remain available without new configuration', () => {
+  const type = control(), reason = control(), feedback = control(), check = control(), reset = control()
+  const nodes = { '[data-choice="type"]': type, '[data-choice="reason"]': reason, '[data-pair-feedback]': feedback, '[data-check-pair]': check, '[data-reset-pair]': reset }
+  const card = { dataset: { pairedScenario: 'original' }, querySelector: selector => nodes[selector], querySelectorAll: () => [type, reason] }
+  initPairedScenarios({ original: { acceptedPairs: [['gui', 'visual']], explanation: 'Visual work.' } }, { querySelectorAll: () => [card] })
+  check.fire('click')
+  assert.match(feedback.textContent, /interface and a reason/)
+  type.value = 'gui'; reason.value = 'visual'; check.fire('click')
+  assert.equal(feedback.textContent, 'Suitable interface and reason. Visual work.')
+})
 
 test('terminal submit, history draft restoration and reset stay local to each instance', () => {
   function fixture() {

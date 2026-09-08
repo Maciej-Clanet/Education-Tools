@@ -13,10 +13,15 @@ export function initPairedScenarios(configs, root = document) {
     const feedback = card.querySelector('[data-pair-feedback]')
     card.querySelector('[data-check-pair]').addEventListener('click', () => {
       if (!type.value || !reason.value) {
-        feedback.textContent = 'Choose both an interface and a reason.'
+        feedback.textContent = config.incompleteMessage ?? 'Choose both an interface and a reason.'
         return
       }
-      feedback.textContent = `${evaluateScenarioPair(type.value, reason.value, config.acceptedPairs) ? 'Suitable interface and reason.' : 'Reconsider the interface and the reason together.'} ${config.explanation}`
+      const suitable = evaluateScenarioPair(type.value, reason.value, config.acceptedPairs)
+      const verdict = suitable
+        ? (config.successMessage ?? 'Suitable interface and reason.')
+        : (config.retryMessage ?? 'Reconsider the interface and the reason together.')
+      const explanation = config.explanationsByChoice?.[type.value] ?? config.explanation
+      feedback.textContent = `${verdict} ${explanation}`
     })
     card.querySelectorAll('select').forEach(select => select.addEventListener('change', () => { feedback.textContent = '' }))
     card.querySelector('[data-reset-pair]').addEventListener('click', () => {

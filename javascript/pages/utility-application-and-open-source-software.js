@@ -1,4 +1,6 @@
 import { initLessonPage } from "../core/lesson-shell.js"
+import { initPairedScenarios } from "../core/paired-scenarios.js"
+import { softwareScenarios } from "../data/software-scenarios.js"
 
 const lessonConfig = {
   lessonId: "utility-application-and-open-source-software",
@@ -23,8 +25,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-utility-application-and-open-source-software-quiz",
-    passScore: 6,
+    storageKey: "lesson-utility-application-and-open-source-software-quiz-v2",
+    version: 2,
+    totalQuestions: 14,
+    passScore: 10,
   },
   examPractice: {
     storageKey:
@@ -32,4 +36,5 @@ const lessonConfig = {
   },
 }
 
+initPairedScenarios(softwareScenarios)
 initLessonPage(lessonConfig)
