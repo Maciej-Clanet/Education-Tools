@@ -110,7 +110,8 @@ saved progress should be shown as needing a fresh attempt.
 - [x] Kernel functions and system management
   - 35 teaching sections with a reusable stepped Kernel Visualiser, clarified processor privilege modes, one interrupt sequence, and nine teacher-only dividers (44 teacher slides). Multi-answer scenarios and five written tasks. Quiz version 2: 16 questions, pass 12. See `docs/kernel_functions_lesson.md`.
 - [x] User interfaces
-  - Refocused into 31 teaching sections with six simulated PowerShell stages,
+  - Refocused into 31 teaching sections with a static PowerShell introduction and
+    five progressively introduced simulated terminals,
     professional CLI examples, six paired scenarios and five teacher-only
     dividers. Quiz version 2: 12 questions, pass 9. Generic software selection
     merged into the next lesson. See `docs/user_interfaces_lesson.md`.

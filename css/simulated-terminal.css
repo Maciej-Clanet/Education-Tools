@@ -6,4 +6,13 @@
 .simulated-terminal button { min-height: 44px; padding: .55rem .8rem; margin: .3rem .3rem .3rem 0; border: 1.5px solid currentColor; border-radius: 6px; background: var(--surface, #fff); color: var(--text, #263740); font: inherit; overflow-wrap: anywhere; max-width: 100%; }
 .simulated-terminal :focus-visible { outline: 3px solid var(--lesson-accent, #345f58); outline-offset: 3px; }
 .simulated-terminal .terminal-hint { font-size: .9em; }
+.simulated-terminal [data-terminal-output] { max-height: 19rem; overflow-y: auto; margin: 0; }
+.simulated-terminal button[type="submit"] { background: #294f49; color: #fff; border-color: #294f49; font-weight: 750; padding-inline: 1.3rem; }
+.simulated-terminal [data-terminal-reset] { background: transparent; border-color: transparent; text-decoration: underline; }
+.simulated-terminal .terminal-learned { margin-top: 1.1rem; padding-top: .8rem; border-top: 1px solid #78948b; }
+.simulated-terminal .terminal-learned h4 { margin: 0 0 .4rem; }
+.simulated-terminal .terminal-learned ul { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0; list-style: none; }
+.simulated-terminal .terminal-learned li { min-width: 0; max-width: 100%; }
+.simulated-terminal [data-current] { border-width: 3px; font-weight: 750; }
+.simulated-terminal .terminal-current { display: inline-block; font-family: sans-serif; font-size: .8em; margin-left: .4rem; }
 @media (forced-colors: active) { .simulated-terminal .terminal-screen { border: 1px solid CanvasText; } }

@@ -8,7 +8,7 @@ export function resolveTeachingCommand(command, commands) {
   const entry = commands.find(item => normaliseTeachingCommand(item.command) === key)
   return entry ? { supported: true, output: entry.output } : {
     supported: false,
-    output: 'This teaching terminal only supports the commands used in this lesson. Choose an example below and try again.',
+    output: 'This teaching terminal only supports the commands used in this lesson. Choose a learned command below and try again.',
   }
 }
 
@@ -20,19 +20,28 @@ export function initSimulatedTerminals(configs, root = document) {
     const form = host.querySelector('form')
     const input = host.querySelector('input')
     const output = host.querySelector('[data-terminal-output]')
-    const echo = host.querySelector('[data-terminal-command]')
+    const announcement = host.querySelector('[data-terminal-status]')
+    const currentCommand = host.dataset.currentCommand ?? ''
+    const transcript = []
     const history = []
     let cursor = 0
     let draft = ''
-    const initialOutput = output.textContent
-    const initialCommand = echo.textContent
+    function reset() {
+      history.length = 0; transcript.length = 0; cursor = 0; draft = ''
+      input.value = currentCommand
+      output.textContent = config.prompt
+    }
+    reset()
     form.addEventListener('submit', event => {
       event.preventDefault()
       const command = input.value.trim()
       if (!command) { input.focus(); return }
       const result = resolveTeachingCommand(command, config.commands)
-      echo.textContent = `${config.prompt} ${command}`
-      output.textContent = result.output
+      transcript.push(`${config.prompt} ${command}\n${result.output}`)
+      if (transcript.length > 30) transcript.shift()
+      output.textContent = `${transcript.join('\n\n')}\n\n${config.prompt}`
+      announcement.textContent = `${command}\n${result.output}\nReady for another command.`
+      output.scrollTop = output.scrollHeight
       history.push(command)
       if (history.length > 30) history.shift()
       cursor = history.length
@@ -55,10 +64,8 @@ export function initSimulatedTerminals(configs, root = document) {
       })
     })
     host.querySelector('[data-terminal-reset]').addEventListener('click', () => {
-      history.length = 0; cursor = 0; draft = ''
-      input.value = ''
-      output.textContent = initialOutput
-      echo.textContent = initialCommand
+      reset()
+      announcement.textContent = 'Terminal reset. The current command is ready to run.'
       input.focus()
     })
   })

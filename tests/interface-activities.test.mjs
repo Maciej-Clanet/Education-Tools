@@ -69,28 +69,45 @@ test('existing interface scenario defaults remain available without new configur
   assert.equal(feedback.textContent, 'Suitable interface and reason. Visual work.')
 })
 
-test('terminal submit, history draft restoration and reset stay local to each instance', () => {
+test('terminal starts ready, appends runs, loads learned commands and resets independently', () => {
   function fixture() {
-    const form = control(), input = control(), output = control('Initial output'), echo = control('Initial command'), reset = control()
-    const elements = { form, input, '[data-terminal-output]': output, '[data-terminal-command]': echo, '[data-terminal-reset]': reset }
-    return { form, input, output, echo, reset, host: {
-      dataset: { simulatedTerminal: 'demo' }, querySelector: selector => elements[selector], querySelectorAll: () => [],
+    const form = control(), input = control(), output = control(), status = control(), reset = control(), example = control()
+    example.dataset.terminalExample = commands[0].command
+    const elements = { form, input, '[data-terminal-output]': output, '[data-terminal-status]': status, '[data-terminal-reset]': reset }
+    return { form, input, output, status, reset, example, host: {
+      dataset: { simulatedTerminal: 'demo', currentCommand: commands[0].command },
+      querySelector: selector => elements[selector], querySelectorAll: () => [example],
     } }
   }
   const first = fixture(), second = fixture()
   initSimulatedTerminals({ demo: { prompt: 'PS>', commands } }, { querySelectorAll: () => [first.host, second.host] })
-  first.input.value = commands[0].command
+  assert.equal(first.input.value, commands[0].command)
+  assert.equal(first.output.textContent, 'PS>')
+  first.example.fire('click')
+  assert.equal(first.input.value, commands[0].command)
+  assert.equal(first.output.textContent, 'PS>')
   first.form.fire('submit')
-  assert.equal(first.output.textContent, 'Example item')
-  assert.equal(second.output.textContent, 'Initial output')
+  const firstRun = `PS> ${commands[0].command}\nExample item\n\nPS>`
+  assert.equal(first.output.textContent, firstRun)
+  assert.equal(first.input.value, '')
+  assert.equal(second.output.textContent, 'PS>')
   first.input.value = 'unfinished'
   first.input.fire('keydown', { key: 'ArrowUp' })
   assert.equal(first.input.value, commands[0].command)
   first.input.fire('keydown', { key: 'ArrowDown' })
   assert.equal(first.input.value, 'unfinished')
+  first.example.fire('click')
+  assert.equal(first.output.textContent, firstRun)
+  first.form.fire('submit')
+  assert.equal(first.output.textContent, firstRun.slice(0, -3) + firstRun)
+  first.input.value = '<script>arbitrary()</script>'
+  first.form.fire('submit')
+  assert.match(first.status.textContent, /only supports/)
+  assert.ok(first.output.textContent.endsWith('PS>'))
   first.reset.fire('click')
-  assert.equal(first.output.textContent, 'Initial output')
-  assert.equal(first.echo.textContent, 'Initial command')
+  assert.equal(first.output.textContent, 'PS>')
+  assert.equal(first.input.value, commands[0].command)
+  first.input.value = ''
   first.input.fire('keydown', { key: 'ArrowUp' })
   assert.equal(first.input.value, '')
 })

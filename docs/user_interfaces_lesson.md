@@ -55,16 +55,26 @@ cue pattern; five inert divider templates reuse the existing divider runtime.
 `data-simulated-terminal` value, with a prompt and a list of `{command, output}`
 entries. It performs a whole-entry lookup after case/space normalisation. It
 does not interpret shell syntax, evaluate code, access files or make requests.
-Output and echoed input are assigned with `textContent`. History is temporary,
-bounded to 30 entries per terminal, and cleared by Reset. Example buttons fill
-the labelled input; Enter runs it; Up/Down traverses history and restores a draft.
-Static example output remains readable without JavaScript.
+Output and echoed input are assigned with `textContent`. Each host declares
+`data-current-command` and supplies the same initial input value in its HTML.
+Initial state is a fresh prompt with that command prefilled but unexecuted.
+Run command appends the command, output and a fresh prompt, then clears the input.
+Transcript and history are bounded to 30 entries per terminal. Reset clears both
+and restores the current command. Up/Down history still works without visible
+shortcut instructions. A separate live status announces only the latest result;
+the scrollable transcript remains keyboard-accessible for reviewing earlier runs.
+
+The prompt/command/output slide uses a static Get-Date sequence. Five interactive
+terminals begin at Get-Location. Their authored “Commands learned so far” buttons
+accumulate earlier commands and fill the input without running it. A Current badge
+and stronger border identify the slide's command; the pipeline slide also exposes
+its introduced top-five extension. Run command is filled; Reset is secondary.
 
 Supported examples: `Get-Date`, `Get-Location`, `Get-ChildItem`, `Get-Process`,
 `Get-Help Get-Process`, `Get-Process | Sort-Object CPU -Descending`, and the latter
 with `| Select-Object -First 5`. All use fictional fixed data. CPU values are
-accumulated seconds, not current utilisation percentages. Six short terminal
-stages introduce the examples, each with a minimal teacher-only live-demo cue.
+accumulated seconds, not current utilisation percentages. One static and five
+interactive stages introduce the examples, retaining their teacher-only live-demo cues.
 Network-related career examples are conceptual, with a teacher-check-first cue.
 
 `javascript/core/paired-scenarios.js` generalises the existing native select-pair
@@ -81,7 +91,9 @@ use cases without requiring commands to be memorised or executed.
 
 ## Verification and limits
 
-- Six focused tests pass: four terminal/scenario tests and two shared divider tests.
+- Six existing activity tests pass after the terminal UX refinement. The terminal
+  regression covers fresh/prefilled state, runs, transcript accumulation, picker
+  clicks without execution, reset, instance isolation and unsupported input.
 - Changed JavaScript syntax, local links, unique IDs, labels and SVG parsing pass.
 - No package manifest or configured lint/build pipeline exists for this static site.
 - Browser connection reported no available browser. Layout, real keyboard/click

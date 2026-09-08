@@ -351,14 +351,12 @@
               <p>
                 <strong>Prompt:</strong> <code>PS C:\Users\Student&gt;</code>
               </p>
-              <p><strong>Command:</strong> <code>Get-Process</code></p>
+              <p><strong>Command:</strong> <code>Get-Date</code></p>
               <pre>
-Process       ID
-browser       124
-editor        248</pre
+08 September 2026 10:15:00</pre
               >
               <p>
-                <strong>Output:</strong> a simplified list of running processes.
+                <strong>Output:</strong> an example date and time.
               </p>
             </div>
             <p class="lesson-section-copy">
@@ -374,73 +372,19 @@ editor        248</pre
           >
             <p class="eyebrow">07 · User interfaces</p>
             <h2>Prompt, command and output</h2>
-            <ol class="ui-flow">
-              <li>
-                <strong>Prompt</strong><br />The environment is ready for your
-                next instruction.
-              </li>
-              <li>
-                <strong>Command</strong><br />You type the instruction and press
-                Enter.
-              </li>
-              <li>
-                <strong>Output</strong><br />The command returns a result;
-                another prompt lets you continue.
-              </li>
-            </ol>
-            <div
-              class="simulated-terminal"
-              data-simulated-terminal="powershell"
-              data-no-slide-advance
-            >
-              <h3>Simulated PowerShell</h3>
-              <p class="terminal-hint">
-                Fictional example data. This teaching terminal does not access
-                your computer. Load an example or type it, then press Enter.
-              </p>
-              <div class="terminal-screen">
-                <strong>Prompt and command</strong>
-                <pre data-terminal-command>
-PS C:\Users\Student&gt; Get-Date</pre
-                >
-                <strong>Output</strong>
-                <pre
-                  data-terminal-output
-                  role="status"
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
+            <div class="ui-terminal-example">
+              <pre><code>PS C:\Users\Student&gt; Get-Date
 08 September 2026 10:15:00
-Example date and time — fixed for this simulation.</pre
-                >
-              </div>
-              <form>
-                <label for="terminal-date"
-                  >Command · prompt: PS C:\Users\Student&gt;</label
-                ><input
-                  id="terminal-date"
-                  type="text"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="false"
-                  maxlength="200"
-                  aria-describedby="hint-date"
-                />
-                <button type="submit">Run simulation</button>
-                <button type="button" data-terminal-reset>
-                  Reset terminal
-                </button>
-              </form>
-              <p id="hint-date" class="terminal-hint">
-                Up/Down recalls commands entered here. Example buttons fill the
-                command box.
-              </p>
-              <div>
-                <button type="button" data-terminal-example="Get-Date">
-                  Get-Date
-                </button>
-              </div>
+
+PS C:\Users\Student&gt;</code></pre>
             </div>
+            <ol class="ui-flow">
+              <li><strong>Prompt</strong><br /><code>PS C:\Users\Student&gt;</code> shows the shell is ready for input.</li>
+              <li><strong>Command</strong><br /><code>Get-Date</code> is the instruction entered by the user.</li>
+              <li><strong>Output</strong><br />The example date and time is the result returned by the command.</li>
+              <li><strong>New prompt</strong><br />The shell is ready for the next instruction.</li>
+            </ol>
+            <p class="lesson-section-copy">Prompt → Command → Output → Prompt. This is a static example with a fixed date.</p>
             <p data-teacher-note>
               <strong>Optional live demo:</strong> Run <code>Get-Date</code> in
               PowerShell and compare with the fixed example date.
@@ -458,58 +402,25 @@ Example date and time — fixed for this simulation.</pre
               look by default when you do not give another path. Here it is the
               fictional Student folder.
             </p>
-            <div
-              class="simulated-terminal"
-              data-simulated-terminal="powershell"
-              data-no-slide-advance
-            >
+            <div class="simulated-terminal" data-simulated-terminal="powershell" data-current-command="Get-Location" data-no-slide-advance>
               <h3>Simulated PowerShell</h3>
-              <p class="terminal-hint">
-                Fictional example data. This teaching terminal does not access
-                your computer. Load an example or type it, then press Enter.
-              </p>
+              <p class="terminal-hint">This teaching terminal uses fictional example data and does not access your computer.</p>
               <div class="terminal-screen">
-                <strong>Prompt and command</strong>
-                <pre data-terminal-command>
-PS C:\Users\Student&gt; Get-Location</pre
-                >
-                <strong>Output</strong>
-                <pre
-                  data-terminal-output
-                  role="status"
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
-Path
-----
-C:\Users\Student</pre
-                >
+                <pre data-terminal-output tabindex="0" aria-label="Terminal transcript">PS C:\Users\Student&gt;</pre>
               </div>
+              <p class="sr-only" data-terminal-status role="status" aria-live="polite" aria-atomic="true"></p>
               <form>
-                <label for="terminal-location"
-                  >Command · prompt: PS C:\Users\Student&gt;</label
-                ><input
-                  id="terminal-location"
-                  type="text"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="false"
-                  maxlength="200"
-                  aria-describedby="hint-location"
-                />
-                <button type="submit">Run simulation</button>
-                <button type="button" data-terminal-reset>
-                  Reset terminal
-                </button>
+                <label for="terminal-current-location">Command</label>
+                <input id="terminal-current-location" type="text" value="Get-Location" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="200" />
+                <button type="submit">Run command</button>
+                <button type="button" data-terminal-reset>Reset terminal</button>
               </form>
-              <p id="hint-location" class="terminal-hint">
-                Up/Down recalls commands entered here. Example buttons fill the
-                command box.
-              </p>
-              <div>
-                <button type="button" data-terminal-example="Get-Location">
-                  Get-Location
-                </button>
+              <div class="terminal-learned">
+                <h4>Commands learned so far</h4>
+                <ul>
+                  <li><button type="button" data-terminal-example="Get-Date"><code>Get-Date</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Location" data-current><code>Get-Location</code><span class="terminal-current">Current</span></button></li>
+                </ul>
               </div>
             </div>
             <p data-teacher-note>
@@ -530,61 +441,26 @@ C:\Users\Student</pre
               subfolders without opening a graphical file manager. Reading a
               listing does not change those files.
             </p>
-            <div
-              class="simulated-terminal"
-              data-simulated-terminal="powershell"
-              data-no-slide-advance
-            >
+            <div class="simulated-terminal" data-simulated-terminal="powershell" data-current-command="Get-ChildItem" data-no-slide-advance>
               <h3>Simulated PowerShell</h3>
-              <p class="terminal-hint">
-                Fictional example data. This teaching terminal does not access
-                your computer. Load an example or type it, then press Enter.
-              </p>
+              <p class="terminal-hint">This teaching terminal uses fictional example data and does not access your computer.</p>
               <div class="terminal-screen">
-                <strong>Prompt and command</strong>
-                <pre data-terminal-command>
-PS C:\Users\Student&gt; Get-ChildItem</pre
-                >
-                <strong>Output</strong>
-                <pre
-                  data-terminal-output
-                  role="status"
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
-Name             Type
-----             ----
-Documents        Folder
-Pictures         Folder
-assignment.txt   File
-notes.txt        File</pre
-                >
+                <pre data-terminal-output tabindex="0" aria-label="Terminal transcript">PS C:\Users\Student&gt;</pre>
               </div>
+              <p class="sr-only" data-terminal-status role="status" aria-live="polite" aria-atomic="true"></p>
               <form>
-                <label for="terminal-listing"
-                  >Command · prompt: PS C:\Users\Student&gt;</label
-                ><input
-                  id="terminal-listing"
-                  type="text"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="false"
-                  maxlength="200"
-                  aria-describedby="hint-listing"
-                />
-                <button type="submit">Run simulation</button>
-                <button type="button" data-terminal-reset>
-                  Reset terminal
-                </button>
+                <label for="terminal-directory-listing">Command</label>
+                <input id="terminal-directory-listing" type="text" value="Get-ChildItem" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="200" />
+                <button type="submit">Run command</button>
+                <button type="button" data-terminal-reset>Reset terminal</button>
               </form>
-              <p id="hint-listing" class="terminal-hint">
-                Up/Down recalls commands entered here. Example buttons fill the
-                command box.
-              </p>
-              <div>
-                <button type="button" data-terminal-example="Get-ChildItem">
-                  Get-ChildItem
-                </button>
+              <div class="terminal-learned">
+                <h4>Commands learned so far</h4>
+                <ul>
+                  <li><button type="button" data-terminal-example="Get-Date"><code>Get-Date</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Location"><code>Get-Location</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-ChildItem" data-current><code>Get-ChildItem</code><span class="terminal-current">Current</span></button></li>
+                </ul>
               </div>
             </div>
             <p data-teacher-note>
@@ -605,62 +481,27 @@ notes.txt        File</pre
               ID identifies a process; CPU here is accumulated processor time in
               seconds, not current CPU percentage.
             </p>
-            <div
-              class="simulated-terminal"
-              data-simulated-terminal="powershell"
-              data-no-slide-advance
-            >
+            <div class="simulated-terminal" data-simulated-terminal="powershell" data-current-command="Get-Process" data-no-slide-advance>
               <h3>Simulated PowerShell</h3>
-              <p class="terminal-hint">
-                Fictional example data. This teaching terminal does not access
-                your computer. Load an example or type it, then press Enter.
-              </p>
+              <p class="terminal-hint">This teaching terminal uses fictional example data and does not access your computer.</p>
               <div class="terminal-screen">
-                <strong>Prompt and command</strong>
-                <pre data-terminal-command>
-PS C:\Users\Student&gt; Get-Process</pre
-                >
-                <strong>Output</strong>
-                <pre
-                  data-terminal-output
-                  role="status"
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
-Process       ID    CPU (seconds)
-browser       124   42.8
-editor        248   18.2
-music         372   6.1
-system        4     95.0
-filemanager   510   3.4
-notes         624   1.2</pre
-                >
+                <pre data-terminal-output tabindex="0" aria-label="Terminal transcript">PS C:\Users\Student&gt;</pre>
               </div>
+              <p class="sr-only" data-terminal-status role="status" aria-live="polite" aria-atomic="true"></p>
               <form>
-                <label for="terminal-process"
-                  >Command · prompt: PS C:\Users\Student&gt;</label
-                ><input
-                  id="terminal-process"
-                  type="text"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="false"
-                  maxlength="200"
-                  aria-describedby="hint-process"
-                />
-                <button type="submit">Run simulation</button>
-                <button type="button" data-terminal-reset>
-                  Reset terminal
-                </button>
+                <label for="terminal-process-list">Command</label>
+                <input id="terminal-process-list" type="text" value="Get-Process" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="200" />
+                <button type="submit">Run command</button>
+                <button type="button" data-terminal-reset>Reset terminal</button>
               </form>
-              <p id="hint-process" class="terminal-hint">
-                Up/Down recalls commands entered here. Example buttons fill the
-                command box.
-              </p>
-              <div>
-                <button type="button" data-terminal-example="Get-Process">
-                  Get-Process
-                </button>
+              <div class="terminal-learned">
+                <h4>Commands learned so far</h4>
+                <ul>
+                  <li><button type="button" data-terminal-example="Get-Date"><code>Get-Date</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Location"><code>Get-Location</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-ChildItem"><code>Get-ChildItem</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Process" data-current><code>Get-Process</code><span class="terminal-current">Current</span></button></li>
+                </ul>
               </div>
             </div>
             <p data-teacher-note>
@@ -683,65 +524,28 @@ notes         624   1.2</pre
               Built-in help explains a command’s purpose, options and examples.
               Reading help is part of using a CLI confidently.
             </p>
-            <div
-              class="simulated-terminal"
-              data-simulated-terminal="powershell"
-              data-no-slide-advance
-            >
+            <div class="simulated-terminal" data-simulated-terminal="powershell" data-current-command="Get-Help Get-Process" data-no-slide-advance>
               <h3>Simulated PowerShell</h3>
-              <p class="terminal-hint">
-                Fictional example data. This teaching terminal does not access
-                your computer. Load an example or type it, then press Enter.
-              </p>
+              <p class="terminal-hint">This teaching terminal uses fictional example data and does not access your computer.</p>
               <div class="terminal-screen">
-                <strong>Prompt and command</strong>
-                <pre data-terminal-command>
-PS C:\Users\Student&gt; Get-Help Get-Process</pre
-                >
-                <strong>Output</strong>
-                <pre
-                  data-terminal-output
-                  role="status"
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
-NAME
-    Get-Process
-PURPOSE
-    Shows running processes.
-EXAMPLE
-    Get-Process
-This is a shortened teaching help entry.</pre
-                >
+                <pre data-terminal-output tabindex="0" aria-label="Terminal transcript">PS C:\Users\Student&gt;</pre>
               </div>
+              <p class="sr-only" data-terminal-status role="status" aria-live="polite" aria-atomic="true"></p>
               <form>
-                <label for="terminal-help"
-                  >Command · prompt: PS C:\Users\Student&gt;</label
-                ><input
-                  id="terminal-help"
-                  type="text"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="false"
-                  maxlength="200"
-                  aria-describedby="hint-help"
-                />
-                <button type="submit">Run simulation</button>
-                <button type="button" data-terminal-reset>
-                  Reset terminal
-                </button>
+                <label for="terminal-command-help">Command</label>
+                <input id="terminal-command-help" type="text" value="Get-Help Get-Process" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="200" />
+                <button type="submit">Run command</button>
+                <button type="button" data-terminal-reset>Reset terminal</button>
               </form>
-              <p id="hint-help" class="terminal-hint">
-                Up/Down recalls commands entered here. Example buttons fill the
-                command box.
-              </p>
-              <div>
-                <button
-                  type="button"
-                  data-terminal-example="Get-Help Get-Process"
-                >
-                  Get-Help Get-Process
-                </button>
+              <div class="terminal-learned">
+                <h4>Commands learned so far</h4>
+                <ul>
+                  <li><button type="button" data-terminal-example="Get-Date"><code>Get-Date</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Location"><code>Get-Location</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-ChildItem"><code>Get-ChildItem</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Process"><code>Get-Process</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Help Get-Process" data-current><code>Get-Help Get-Process</code><span class="terminal-current">Current</span></button></li>
+                </ul>
               </div>
             </div>
             <p data-teacher-note>
@@ -770,72 +574,30 @@ This is a shortened teaching help entry.</pre
               PowerShell passes structured objects, so the next tool can use a
               property such as CPU. You do not need to memorise this syntax.
             </p>
-            <div
-              class="simulated-terminal"
-              data-simulated-terminal="powershell"
-              data-no-slide-advance
-            >
+            <div class="simulated-terminal" data-simulated-terminal="powershell" data-current-command="Get-Process | Sort-Object CPU -Descending" data-no-slide-advance>
               <h3>Simulated PowerShell</h3>
-              <p class="terminal-hint">
-                Fictional example data. This teaching terminal does not access
-                your computer. Load an example or type it, then press Enter.
-              </p>
+              <p class="terminal-hint">This teaching terminal uses fictional example data and does not access your computer.</p>
               <div class="terminal-screen">
-                <strong>Prompt and command</strong>
-                <pre data-terminal-command>
-PS C:\Users\Student&gt; Get-Process | Sort-Object CPU -Descending</pre
-                >
-                <strong>Output</strong>
-                <pre
-                  data-terminal-output
-                  role="status"
-                  aria-live="polite"
-                  aria-atomic="true"
-                >
-Process       ID    CPU (seconds)
-system        4     95.0
-browser       124   42.8
-editor        248   18.2
-music         372   6.1
-filemanager   510   3.4
-notes         624   1.2</pre
-                >
+                <pre data-terminal-output tabindex="0" aria-label="Terminal transcript">PS C:\Users\Student&gt;</pre>
               </div>
+              <p class="sr-only" data-terminal-status role="status" aria-live="polite" aria-atomic="true"></p>
               <form>
-                <label for="terminal-pipeline"
-                  >Command · prompt: PS C:\Users\Student&gt;</label
-                ><input
-                  id="terminal-pipeline"
-                  type="text"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="false"
-                  maxlength="200"
-                  aria-describedby="hint-pipeline"
-                />
-                <button type="submit">Run simulation</button>
-                <button type="button" data-terminal-reset>
-                  Reset terminal
-                </button>
+                <label for="terminal-pipelines">Command</label>
+                <input id="terminal-pipelines" type="text" value="Get-Process | Sort-Object CPU -Descending" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="200" />
+                <button type="submit">Run command</button>
+                <button type="button" data-terminal-reset>Reset terminal</button>
               </form>
-              <p id="hint-pipeline" class="terminal-hint">
-                Up/Down recalls commands entered here. Example buttons fill the
-                command box.
-              </p>
-              <div>
-                <button
-                  type="button"
-                  data-terminal-example="Get-Process | Sort-Object CPU -Descending"
-                >
-                  Get-Process | Sort-Object CPU -Descending
-                </button>
-                <button
-                  type="button"
-                  data-terminal-example="Get-Process | Sort-Object CPU -Descending | Select-Object -First 5"
-                >
-                  Get-Process | Sort-Object CPU -Descending | Select-Object
-                  -First 5
-                </button>
+              <div class="terminal-learned">
+                <h4>Commands learned so far</h4>
+                <ul>
+                  <li><button type="button" data-terminal-example="Get-Date"><code>Get-Date</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Location"><code>Get-Location</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-ChildItem"><code>Get-ChildItem</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Process"><code>Get-Process</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Help Get-Process"><code>Get-Help Get-Process</code></button></li>
+                  <li><button type="button" data-terminal-example="Get-Process | Sort-Object CPU -Descending" data-current><code>Get-Process | Sort-Object CPU -Descending</code><span class="terminal-current">Current</span></button></li>
+                  <li><button type="button" data-terminal-example="Get-Process | Sort-Object CPU -Descending | Select-Object -First 5"><code>Get-Process | Sort-Object CPU -Descending | Select-Object -First 5</code></button></li>
+                </ul>
               </div>
             </div>
             <p data-teacher-note>
