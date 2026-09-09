@@ -1,0 +1,35 @@
+/* The same local CPU/input/output frame is used in every machine view. */
+.machine-figure { margin: 1rem 0; }
+.machine-viewport { overflow-x: auto; background: #fffdf7; border-radius: 16px; border: 1px solid var(--panel-border); }
+.machine-svg { display: block; width: 100%; min-width: 650px; height: auto; }
+.machine-svg text { font: 20px sans-serif; fill: #24313b; text-anchor: middle; }
+.machine-svg .machine-heading { font-size: 23px; font-weight: 700; }
+.machine-svg .machine-path-label { font-size: 17px; font-weight: 700; }
+.machine-svg .machine-signal { font-size: 15px; }
+.machine-svg .machine-working { font-size: 20px; }
+.machine-svg .memory-box { fill: #f5e4bd; stroke: #87611f; stroke-width: 3; }
+.machine-svg .data-memory { fill: #e0edf2; }
+.machine-path { stroke: #476c69; stroke-width: 4; fill: none; }
+.machine-focus { display: none; fill: none; stroke: #b34d27; stroke-width: 6; stroke-dasharray: 10 5; }
+.machine-figure[data-mode=von] .machine-harvard, .machine-figure[data-mode=harvard] .machine-von { display: none; }
+.machine-figure[data-focus=cu] .focus-cu, .machine-figure[data-focus=alu] .focus-alu, .machine-figure[data-focus=registers] .focus-registers { display: block; }
+.machine-figure[data-focus=memory] .memory-box { stroke: #b34d27; stroke-width: 6; stroke-dasharray: 12 4; }
+.machine-figure[data-transfer=instruction] .shared-path, .machine-figure[data-transfer=data] .shared-path,
+.machine-figure[data-transfer=instruction] .instruction-path, .machine-figure[data-transfer=data] .data-path,
+.machine-figure[data-transfer=both] .instruction-path, .machine-figure[data-transfer=both] .data-path,
+.machine-figure[data-transfer=output] .output-path { stroke: #b34d27; stroke-width: 9; stroke-dasharray: 14 6; }
+.machine-overlay rect { fill: #fffdf7; stroke: #b34d27; }
+.machine-overlay text { font-size: 15px; font-weight: 700; }
+.machine-figure[data-transfer=none] .machine-overlay { display: none; }
+.machine-figure figcaption { margin-top: .6rem; }
+.architecture-demo { padding: 1rem; background: var(--panel-soft); border: 1px solid var(--panel-border); border-radius: 16px; }
+.architecture-demo .quiz-actions { margin-block: .7rem; }
+.architecture-demo button { min-height: 44px; }
+.architecture-demo button:disabled { opacity: .5; cursor: default; }
+.machine-mode-controls { display: flex; flex-wrap: wrap; gap: .7rem; }
+.machine-mode-controls [aria-pressed=true] { outline: 3px solid var(--teal); outline-offset: 2px; }
+[data-architecture-status] { min-height: 3em; }
+@media (prefers-reduced-motion: no-preference) {
+ .machine-figure:not([data-transfer=none]) .machine-path { animation: path-flow 1.5s linear 1; }
+ @keyframes path-flow { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
+}

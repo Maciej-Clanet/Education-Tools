@@ -1,6 +1,6 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
-import { initMemoryAccessLabs } from "../core/memory-access-lab.js"
+import { initArchitectureVisualisers } from "../core/architecture-visualiser.js"
 import { initPairedScenarios } from "../core/paired-scenarios.js"
 import { architectureScenarios } from "../data/architecture-scenarios.js"
 
@@ -27,8 +27,8 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-stored-program-architecture-von-neumann-and-harvard-quiz-v2",
-    version: 2,
+    storageKey: "lesson-stored-program-architecture-von-neumann-and-harvard-quiz-v3",
+    version: 3,
     totalQuestions: 12,
     passScore: 9,
   },
@@ -38,6 +38,6 @@ const lessonConfig = {
   },
 }
 
-initMemoryAccessLabs()
+initArchitectureVisualisers()
 initPairedScenarios(architectureScenarios)
 initLessonPage(lessonConfig)

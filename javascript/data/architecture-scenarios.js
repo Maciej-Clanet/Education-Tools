@@ -1,38 +1,38 @@
 export const architectureScenarios = {
-  "shared": {
+  "a": {
     "acceptedPairs": [
       [
         "von",
-        "flexible"
+        "shared"
       ]
     ],
-    "incompleteMessage": "Choose a model and a reason.",
+    "incompleteMessage": "Choose a model and its architectural evidence.",
     "successMessage": "Supported reasoning.",
-    "retryMessage": "Reconsider the evidence and the selected reason.",
-    "explanation": "A shared memory space supports flexible use of that pool. Explain the potential access bottleneck as the trade-off."
+    "retryMessage": "Reconsider the memory and pathways shown.",
+    "explanation": "The shared store and pathway identify the classic Von Neumann arrangement; instruction/data traffic may compete."
   },
-  "stream": {
+  "b": {
     "acceptedPairs": [
       [
         "harvard",
-        "overlap"
+        "separate"
       ]
     ],
-    "incompleteMessage": "Choose a model and a reason.",
+    "incompleteMessage": "Choose a model and its architectural evidence.",
     "successMessage": "Supported reasoning.",
-    "retryMessage": "Reconsider the evidence and the selected reason.",
-    "explanation": "Separate paths can serve these different transfer types together. Actual throughput still depends on the rest of the design."
+    "retryMessage": "Reconsider the memory and pathways shown.",
+    "explanation": "The separate memories and paths identify Harvard, allowing instruction and data accesses to use independent routes."
   },
-  "unknown": {
+  "c": {
     "acceptedPairs": [
       [
-        "unknown",
-        "evidence"
+        "modified",
+        "mixed"
       ]
     ],
-    "incompleteMessage": "Choose a model and a reason.",
+    "incompleteMessage": "Choose a model and its architectural evidence.",
     "successMessage": "Supported reasoning.",
-    "retryMessage": "Reconsider the evidence and the selected reason.",
-    "explanation": "A device\u2019s purpose alone does not establish its architecture. Ask about its memory organisation and access requirements."
+    "retryMessage": "Reconsider the memory and pathways shown.",
+    "explanation": "Shared main memory combined with separate instruction/data caches is a modified-Harvard or hybrid arrangement. Explain the level being described."
   }
 }

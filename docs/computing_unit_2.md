@@ -142,10 +142,11 @@ saved progress should be shown as needing a fresh attempt.
 
 ### B1 Approaches to computer architecture
 - [x] Stored program architecture: Von Neumann and Harvard
-  - Rebuilt into 22 first-teaching sections with four teacher-only dividers,
-    labelled memory/path diagrams and a step-through Memory Access Lab. Three
-    evidence/reason scenarios; quiz version 2: 12 questions, pass 9; four written
-    tasks. See `docs/stored_program_lesson.md`.
+  - Rebuilt into 26 teaching sections with five teacher-only dividers: historical
+    motivation, one recurring machine schematic, CPU component highlights, a
+    shared-path/tiny-program stepper and Von Neumann-to-Harvard transformation.
+    Quiz version 3: 12 questions, pass 9; six written tasks.
+    See `docs/stored_program_lesson.md`.
 - [x] Cluster computing, UMA, and NUMA
 - [x] Emulation
 
