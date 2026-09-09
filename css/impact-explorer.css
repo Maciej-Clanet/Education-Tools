@@ -1,0 +1,13 @@
+/* Reusable multi-factor consequence activity; uses shared quiz-answer cards. */
+.impact-explorer { padding: 1rem; border: 1px solid var(--panel-border); border-radius: 16px; background: var(--panel-soft); }
+.impact-explorer fieldset { min-width: 0; margin: 1rem 0; padding: 0; border: 0; }
+.impact-explorer legend { margin-bottom: .7rem; font-weight: 700; }
+.impact-factor-grid, .impact-tone-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: .6rem; }
+.impact-explorer .quiz-answer { height: 100%; align-items: start; cursor: pointer; }
+.impact-explorer .quiz-answer:has(input:checked) { outline: 2px solid var(--teal); outline-offset: 1px; }
+.impact-explorer input { flex-shrink: 0; accent-color: var(--teal-deep); }
+.impact-explorer button { min-height: 44px; }
+.impact-explorer button:disabled { opacity: .55; cursor: default; }
+[data-impact-feedback] { min-height: 1.5em; }
+[data-impact-progress] { color: var(--muted-ink); font-weight: 700; }
+[data-impact-statement]:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }

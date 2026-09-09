@@ -1,5 +1,10 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
+import { initBackupVisualisers } from "../core/backup-visualiser.js"
+import { backupExample } from "../data/backup-example.js"
+import { initPairedScenarios } from "../core/paired-scenarios.js"
+import { backupStrategyScenarios } from "../data/backup-strategy-scenarios.js"
+
 const lessonConfig = {
   lessonId: "backup-and-data-recovery",
   defaultContext: "btec-level-3-unit-2",
@@ -23,12 +28,16 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-backup-and-data-recovery-quiz",
-    passScore: 4,
+    storageKey: "lesson-backup-and-data-recovery-quiz-v2",
+    version: 2,
+    totalQuestions: 14,
+    passScore: 10,
   },
   examPractice: {
     storageKey: "lesson-backup-and-data-recovery-exam-practice",
   },
 }
 
+initBackupVisualisers(backupExample)
+initPairedScenarios(backupStrategyScenarios)
 initLessonPage(lessonConfig)

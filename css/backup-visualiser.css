@@ -1,0 +1,32 @@
+/* Whole-file backup sets and restore chains, usable in notes and demonstrations. */
+.backup-days { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 155px), 1fr)); gap: .8rem; margin-block: 1rem; }
+.backup-day { padding: .85rem; border: 2px solid var(--panel-border); border-radius: 14px; background: var(--panel-soft); min-width: 0; }
+.backup-day h3 { margin-top: 0; }
+.backup-files { display: grid; gap: .5rem; list-style: none; padding: 0; margin: .6rem 0; }
+.backup-files li { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; padding: .45rem; border: 1px solid var(--panel-border); border-radius: 7px; background: var(--panel); }
+.backup-files code { font-size: .83rem; overflow-wrap: anywhere; }
+.backup-version { font-weight: 700; font-size: .8rem; border-radius: 5px; padding: .15rem .3rem; background: var(--panel-soft); border: 1px solid var(--panel-border); }
+.backup-visualiser { border: 1px solid var(--panel-border); border-radius: 16px; padding: 1rem; background: var(--panel-soft); }
+.backup-visualiser fieldset { border: 0; padding: 0; min-width: 0; }
+.backup-visualiser legend { font-weight: 700; margin-bottom: .7rem; }
+.backup-type-choices { display: flex; flex-wrap: wrap; gap: .6rem; }
+.backup-type-choices label { flex: 1 1 130px; cursor: pointer; }
+.backup-type-choices label:has(input:checked) { outline: 2px solid var(--teal); }
+.backup-day[data-required=true] { border-color: var(--teal); }
+.backup-required { font-weight: 700; }
+.backup-kind { font-weight: 700; }
+.backup-change { font-size: .9rem; overflow-wrap: anywhere; }
+.backup-restore-chain { display: flex; flex-wrap: wrap; gap: .7rem; list-style: none; padding: 0; }
+.backup-restore-chain li { padding: .75rem; border: 2px solid var(--teal); border-radius: 10px; background: var(--panel); }
+.backup-restore-chain li:not(:last-child)::after { content: ' →'; font-weight: 700; }
+[data-backup-recovery] { border-top: 1px solid var(--panel-border); margin-top: 1rem; }
+[data-backup-recovery][hidden] { display: none !important; }
+[data-backup-status] { min-height: 1.5em; }
+@media (max-width: 600px) {
+  .backup-restore-chain { flex-direction: column; }
+  .backup-restore-chain li:not(:last-child)::after { content: ' ↓'; }
+}
+.backup-day p { margin: .6rem 0; }
+.backup-day h3 { margin: 0 0 .5rem; }
+.backup-day .backup-required { font-size: .9rem; }
+body.teacher-mode-active .backup-visualiser .backup-files code { font-size: .95rem; }

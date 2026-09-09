@@ -1,5 +1,8 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
+import { initImpactExplorers } from "../core/impact-explorer.js"
+import { collegeImpacts } from "../data/college-impacts.js"
+
 const lessonConfig = {
   lessonId: "data-across-multiple-systems",
   defaultContext: "btec-level-3-unit-2",
@@ -23,12 +26,15 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-data-across-multiple-systems-quiz",
-    passScore: 4,
+    storageKey: "lesson-data-across-multiple-systems-quiz-v2",
+    version: 2,
+    totalQuestions: 12,
+    passScore: 9,
   },
   examPractice: {
     storageKey: "lesson-data-across-multiple-systems-exam-practice",
   },
 }
 
+initImpactExplorers(collegeImpacts)
 initLessonPage(lessonConfig)

@@ -128,7 +128,15 @@ saved progress should be shown as needing a fresh attempt.
     transformation activities. Quiz version 2: 14 questions, pass 10; five applied
     written tasks. See `docs/data_processing_lesson.md`.
 - [x] Data across multiple systems
+  - Expanded into 20 teaching sections around a college scenario, with four
+    teacher-only dividers, connected-factor trade-offs and a reusable multi-factor
+    Impact Explorer. Quiz version 2: 12 questions, pass 9; five applied written
+    tasks. See `docs/multiple_systems_lesson.md`.
 - [x] Backup and data recovery
+  - Expanded into 24 teaching sections with five teacher-only dividers, a
+    deterministic full/incremental/differential backup and restore visualiser,
+    location diagrams and paired strategy reasoning. Quiz version 2: 14 questions,
+    pass 10; six applied written tasks. See `docs/backup_recovery_lesson.md`.
 
 ## B Computer architecture
 
