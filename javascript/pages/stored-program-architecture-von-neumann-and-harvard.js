@@ -1,5 +1,9 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
+import { initMemoryAccessLabs } from "../core/memory-access-lab.js"
+import { initPairedScenarios } from "../core/paired-scenarios.js"
+import { architectureScenarios } from "../data/architecture-scenarios.js"
+
 const lessonConfig = {
   lessonId: "stored-program-architecture-von-neumann-and-harvard",
   defaultContext: "btec-level-3-unit-2",
@@ -23,8 +27,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-stored-program-architecture-von-neumann-and-harvard-quiz",
-    passScore: 4,
+    storageKey: "lesson-stored-program-architecture-von-neumann-and-harvard-quiz-v2",
+    version: 2,
+    totalQuestions: 12,
+    passScore: 9,
   },
   examPractice: {
     storageKey:
@@ -32,4 +38,6 @@ const lessonConfig = {
   },
 }
 
+initMemoryAccessLabs()
+initPairedScenarios(architectureScenarios)
 initLessonPage(lessonConfig)

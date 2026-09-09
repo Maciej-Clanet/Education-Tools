@@ -215,7 +215,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "stored-program-architecture-von-neumann-and-harvard",
           title: "Stored program architecture: Von Neumann and Harvard",
           href: "../topics/stored-program-architecture-von-neumann-and-harvard.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 2, totalQuestions: 12, passScore: 9 },
         },
         {
           id: "cluster-computing-uma-and-numa",
