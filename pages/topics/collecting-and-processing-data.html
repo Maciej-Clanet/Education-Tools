@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Collecting and Processing Data Revision Lesson | Education Tools</title>
+  <title>Collecting and Processing Data Lesson | Education Tools</title>
   <meta name="description"
     content="Revise collecting and processing data for BTEC Level 3 Computing Unit 2, including hardware and software roles plus aggregation, analysis, conversion, reporting, sorting, and validation." />
-  <meta property="og:title" content="Collecting and Processing Data Revision Lesson | Education Tools" />
+  <meta property="og:title" content="Collecting and Processing Data Lesson | Education Tools" />
   <meta property="og:description"
     content="Revise collecting and processing data for BTEC Level 3 Computing Unit 2, including hardware and software roles plus aggregation, analysis, conversion, reporting, sorting, and validation." />
   <meta property="og:type" content="website" />
@@ -30,7 +30,8 @@
       <p class="eyebrow">Data Processing</p>
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol class="breadcrumb-list">
-          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../index.html">Home</a>
+</li>
           <li>
             <a href="../units/btec-level-3-unit-2.html#section-a" data-role="breadcrumb-unit-link">Unit 2: Computer
               Systems</a>
@@ -88,550 +89,1362 @@
       <aside class="lesson-sidebar panel">
         <p class="eyebrow">Jump To</p>
         <nav class="section-nav" aria-label="Lesson sections">
-          <a href="#overview" data-section-link>Overview</a>
-          <a href="#data-collection" data-section-link>Data collection</a>
-          <a href="#processing-functions" data-section-link>Processing functions</a>
-          <a href="#using-results" data-section-link>Using the results</a>
-          <a href="#mistakes" data-section-link>Common mistakes</a>
-          <a href="#quiz" data-section-link>Quick quiz</a>
+          <a href="#overview" data-section-link>Why collect data?</a>
+          <a href="#data-information" data-section-link>Data vs information</a>
+          <a href="#where-used" data-section-link>Where is collection used?</a>
+          <a href="#data-collection" data-section-link>How is data collected?</a>
+          <a href="#manual" data-section-link>Manual data collection</a>
+          <a href="#automatic" data-section-link>Automatic hardware collection</a>
+          <a href="#system-generated" data-section-link>Software/system-generated collection</a>
+          <a href="#hardware-software" data-section-link>Hardware and software work together</a>
+          <a href="#collection-example" data-section-link>Collection worked example</a>
+          <a href="#processing-functions" data-section-link>Raw data needs processing</a>
+          <a href="#validation" data-section-link>What is validation?</a>
+          <a href="#validation-tool" data-section-link>Try a validation rule</a>
+          <a href="#sorting" data-section-link>What is sorting?</a>
+          <a href="#sorting-tool" data-section-link>Try sorting weather records</a>
+          <a href="#conversion" data-section-link>What is conversion?</a>
+          <a href="#conversion-tool" data-section-link>Try converting a temperature</a>
+          <a href="#aggregation" data-section-link>What is aggregation?</a>
+          <a href="#aggregation-tool" data-section-link>Try aggregating readings</a>
+          <a href="#analysis" data-section-link>What is analysis?</a>
+          <a href="#analysis-tool" data-section-link>Explore the weather trend</a>
+          <a href="#reporting" data-section-link>What is reporting?</a>
+          <a href="#using-results" data-section-link>Report view vs raw data</a>
+          <a href="#recap" data-section-link>Six processing functions</a>
+          <a href="#journey" data-section-link>Complete data-processing journey</a>
+          <a href="#identify" data-section-link>Which processing function happened?</a>
+          <a href="#mistakes" data-section-link>Common exam mistakes</a>
+          <a href="#quiz" data-section-link>Check your understanding</a>
           <a href="#exam-practice" data-section-link>Exam-style practice</a>
         </nav>
       </aside>
 
       <main class="lesson-main" data-role="lesson-main">
-        <section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
-          <p class="eyebrow">Overview</p>
-          <h2>What you should know by the end of this lesson</h2>
-          <p class="lesson-section-copy">
-            Data processing questions usually start with raw input and end
-            with decisions. You need to explain how data is captured, how the
-            system transforms it, and why each step matters.
-          </p>
+<section id="overview" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">01 · Collecting and processing data</p>
+<h2>Why collect data?</h2>
+<div class="data-grid">
+<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/college-register.svg" alt="" width="140" height="100">
+<h3>College register</h3>
+<p>Absent today: <strong>Sam, Jo</strong><br>Who needs a catch-up? Are absences recurring?</p>
+</article>
+<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/supermarket-stock.svg" alt="" width="140" height="100">
+<h3>Supermarket stock</h3>
+<p>Milk sold: <strong>48 cartons</strong><br>What sold, and what needs restocking?</p>
+</article>
+<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/weather-station.svg" alt="" width="140" height="100">
+<h3>Weather station</h3>
+<p>Temperature: <strong>14°C → 22°C</strong><br>Is it getting warmer? Was a reading unusual?</p>
+</article>
+<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/fitness-device.svg" alt="" width="140" height="100">
+<h3>Fitness device</h3>
+<p><strong>Steps · heart rate · activity</strong><br>How active have I been today?</p>
+</article>
+<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/website-app.svg" alt="" width="140" height="100">
+<h3>Website or app</h3>
+<p><strong>Pages visited · errors · usage</strong><br>Where are users running into problems?</p>
+</article>
+</div>
+<p class="data-note">Computer systems collect data because it can later be processed to support actions and decisions.</p>
+</section>
 
-          <div class="lesson-intro-grid">
-            <article class="lesson-card wide">
-              <h3>Learning goals</h3>
-              <ul class="lesson-list">
-                <li>Explain how hardware and software collect data.</li>
-                <li>Define the major data processing functions clearly.</li>
-                <li>Link processing steps to useful outputs and decisions.</li>
-                <li>Apply data-processing ideas to real scenarios.</li>
-              </ul>
-            </article>
+<section id="data-information" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">02 · Collecting and processing data</p>
+<h2>Data vs information</h2>
+<ol class="data-flow">
+<li><strong>Raw data</strong><br><code>14, 16, 18, 19, 22</code>
+</li>
+<li><strong>Add context and interpret</strong><br>Temperature readings in time order</li>
+<li><strong>Information</strong><br>Temperature increased during the observed day.</li>
+</ol>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Data</h3>
+<p>Raw facts or recorded values.</p>
+</article>
+<article class="lesson-card">
+<h3>Information</h3>
+<p>Data that has been processed or presented so that it has meaning or supports a decision.</p>
+</article>
+</div>
+</section>
 
-            <article class="lesson-card slide-wide">
-              <h3>Quick memory hooks</h3>
-              <ul class="memory-list">
-                <li><strong>Collect:</strong> gather the raw data.</li>
-                <li><strong>Validate:</strong> check it follows rules.</li>
-                <li><strong>Process:</strong> turn it into something useful.</li>
-                <li><strong>Report:</strong> present the outcome clearly.</li>
-              </ul>
-            </article>
+<section id="where-used" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">03 · Collecting and processing data</p>
+<h2>Where is collection used?</h2>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Education</h3>
+<p>Attendance → identify pupils needing support.</p>
+</article>
+<article class="lesson-card">
+<h3>Retail</h3>
+<p>Sales and stock → plan restocking.</p>
+</article>
+<article class="lesson-card">
+<h3>Healthcare</h3>
+<p>Patient observations → flag changes for staff.</p>
+</article>
+<article class="lesson-card">
+<h3>Transport</h3>
+<p>GPS and journey times → monitor delays.</p>
+</article>
+<article class="lesson-card">
+<h3>Websites and apps</h3>
+<p>Errors and usage telemetry → locate software problems.</p>
+</article>
+<article class="lesson-card">
+<h3>Environmental monitoring</h3>
+<p>Rainfall and temperature → compare conditions.</p>
+</article>
+<article class="lesson-card">
+<h3>Manufacturing</h3>
+<p>Product measurements → flag items outside tolerances.</p>
+</article>
+<article class="lesson-card">
+<h3>Cybersecurity</h3>
+<p>Login and network activity logs → investigate unusual access.</p>
+</article>
+</div>
+<p class="data-note">Data science uses collected datasets to look for patterns. Useful analysis starts with relevant data.</p>
+</section>
 
-            <article class="lesson-card fullrow">
-              <h3>Where this appears</h3>
-              <p>
-                These ideas appear in tills, sensors, school registers,
-                online forms, business dashboards, and any system that turns
-                raw inputs into information people can act on.
-              </p>
-            </article>
-          </div>
-        </section>
+<template data-teacher-divider>
+<h2>Collecting data</h2></template>
+<section id="data-collection" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">04 · Collecting and processing data</p>
+<h2>How is data collected?</h2>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>01 · Manual</h3>
+<p>A person enters data.<br><strong>Person → form</strong>
+</p>
+</article>
+<article class="lesson-card">
+<h3>02 · Automatic hardware</h3>
+<p>A device or sensor captures data.<br><strong>World → input device</strong>
+</p>
+</article>
+<article class="lesson-card">
+<h3>03 · Software/system-generated</h3>
+<p>A computer system records data as it operates.<br><strong>System event → log</strong>
+</p>
+</article>
+</div>
+</section>
 
-        <section id="data-collection" class="lesson-section lesson-section--data-collection panel" data-lesson-section>
-          <p class="eyebrow">Collection</p>
-          <h2>Data can be collected by people, devices, or automated systems</h2>
-          <p class="lesson-section-copy">
-            Collection is the first stage. Hardware captures the raw data,
-            while software controls forms, rules, timing, and how that data
-            enters the system.
-          </p>
+<section id="manual" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">05 · Collecting and processing data</p>
+<h2>Manual data collection</h2>
+<ol class="data-flow">
+<li>Person</li>
+<li>Keyboard or touchscreen</li>
+<li>Form or application</li>
+<li>Stored data</li>
+</ol>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Examples</h3>
+<p>An online survey, a teacher entering attendance, an employee entering order details, or a till operator typing an item quantity.</p>
+</article>
+<article class="lesson-card">
+<h3>Strengths</h3>
+<p>Flexible: a person can record opinions or details that are not automatically measurable.</p>
+</article>
+<article class="lesson-card">
+<h3>Limitations</h3>
+<p>Entry takes time and effort. A person may mistype a value or choose the wrong option.</p>
+</article>
+</div>
+</section>
 
-          <div class="term-grid">
-            <article class="term-card">
-              <strong>Hardware role</strong>
-              <span>
-                Devices such as keyboards, scanners, cameras, sensors, and
-                barcode readers capture raw input.
-              </span>
-            </article>
-            <article class="term-card">
-              <strong>Software role</strong>
-              <span>
-                Software prompts users, accepts values, applies rules, and
-                sends data onward for processing.
-              </span>
-            </article>
-            <article class="term-card">
-              <strong>Manual collection</strong>
-              <span>
-                A user types or selects information, which can be flexible
-                but may introduce mistakes.
-              </span>
-            </article>
-            <article class="term-card">
-              <strong>Automatic collection</strong>
-              <span>
-                Sensors or system logs can gather data continuously or on a
-                schedule with little human input.
-              </span>
-            </article>
-          </div>
-          <br>
-          <article class="lesson-card">
-            <h3>Example</h3>
-            <p>
-              In a school canteen, a barcode scanner collects the item code,
-              the till software checks the product table, and the system then
-              processes the sale into stock and revenue data.
-            </p>
-          </article>
-        </section>
+<section id="automatic" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">06 · Collecting and processing data</p>
+<h2>Automatic hardware collection</h2>
+<ol class="data-flow">
+<li>Real-world signal or object</li>
+<li>Input hardware captures it</li>
+<li>Digital value or data</li>
+</ol>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Codes and identity</h3>
+<p>Barcode scanner → product code<br>RFID/contactless reader → tag identifier</p>
+</article>
+<article class="lesson-card">
+<h3>Sound and images</h3>
+<p>Camera → image data<br>Microphone → audio data</p>
+</article>
+<article class="lesson-card">
+<h3>Environment and location</h3>
+<p>Temperature sensor → reading<br>GPS receiver → location</p>
+</article>
+</div>
+<p class="data-note">Hardware captures data from the world. A person may aim a scanner, but the device captures the code without someone typing it.</p>
+<p>Recall the <a href="input-output-and-storage-devices.html?context=btec-level-3-unit-2">input-device lesson</a>: match the device to what must be captured.</p>
+</section>
 
-        <section id="processing-functions" class="lesson-section lesson-section--processing-functions panel"
-          data-lesson-section>
-          <p class="eyebrow">Functions</p>
-          <h2>Processing functions turn raw data into useful information</h2>
-          <p class="lesson-section-copy">
-            Unit 2 expects you to know the main processing functions and what
-            they achieve inside a system. In exam answers, name the function,
-            describe the change it makes to the data, and link that change to
-            the output the user needs.
-          </p>
+<section id="system-generated" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">07 · Collecting and processing data</p>
+<h2>Software/system-generated collection</h2>
+<ol class="data-flow">
+<li>A user requests a web page</li>
+<li>The server handles the request</li>
+<li><code>09:04 | /courses | GET | 200 OK</code>
+</li>
+</ol>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>System records its own activity</h3>
+<p>Web access logs, login timestamps, sales transactions and file access history.</p>
+</article>
+<article class="lesson-card">
+<h3>Software records how it runs</h3>
+<p>Error logs, application telemetry and system performance measurements.</p>
+</article>
+</div>
+<p class="data-note">No person needs to type each record, and no dedicated physical input device is needed to capture a software event. The software still runs on hardware.</p>
+</section>
 
-          <div class="processing-flow-map" aria-label="Data processing function flow">
-            <article class="processing-flow-card processing-flow-card--input">
-              <span class="processing-flow-icon processing-flow-icon--input" aria-hidden="true"></span>
-              <strong>Raw input</strong>
-              <span>Values arrive from forms, scanners, sensors, or logs.</span>
-            </article>
-            <span class="processing-flow-arrow" aria-hidden="true">then</span>
-            <article class="processing-flow-card processing-flow-card--prepare">
-              <span class="processing-flow-icon processing-flow-icon--prepare" aria-hidden="true"></span>
-              <strong>Prepare</strong>
-              <span>Validate, convert, and sort so the data is usable.</span>
-            </article>
-            <span class="processing-flow-arrow" aria-hidden="true">then</span>
-            <article class="processing-flow-card processing-flow-card--meaning">
-              <span class="processing-flow-icon processing-flow-icon--meaning" aria-hidden="true"></span>
-              <strong>Find meaning</strong>
-              <span>Aggregate and analyse to reveal useful patterns.</span>
-            </article>
-            <span class="processing-flow-arrow" aria-hidden="true">then</span>
-            <article class="processing-flow-card processing-flow-card--output">
-              <span class="processing-flow-icon processing-flow-icon--output" aria-hidden="true"></span>
-              <strong>Share output</strong>
-              <span>Report the result in a form people can act on.</span>
-            </article>
-          </div>
+<section id="hardware-software" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">08 · Collecting and processing data</p>
+<h2>Hardware and software work together</h2>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Hardware · temperature sensor</h3>
+<p>Responds to temperature and supplies a reading.</p>
+</article>
+<article class="lesson-card">
+<h3>Software · weather application</h3>
+<p>Reads the value, adds a timestamp and sensor ID, validates and stores it; it may trigger an alert.</p>
+</article>
+</div>
+<ol class="data-flow">
+<li>Sensor captures <strong>14.2°C</strong>
+</li>
+<li>Software records <strong>when, where and what</strong>
+</li>
+<li>Staff can compare readings later</li>
+</ol>
+<p class="data-note">For physical inputs, hardware captures the signal and software controls, records and processes it. Software can also generate records about its own operation.</p>
+</section>
 
-          <div data-slide-break></div>
+<section id="collection-example" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">09 · Collecting and processing data</p>
+<h2>Collection worked example</h2>
+<ol class="data-flow">
+<li><img class="data-illustration" src="../../assets/illustrations/data-processing/weather-station.svg" alt="" width="140" height="100"><strong>Temperature sensor</strong>
+</li>
+<li><strong>14.2°C</strong>
+</li>
+<li>Software adds timestamp and sensor ID</li>
+<li><code>09:00 | sensor_03 | 14.2°C</code>
+</li>
+</ol>
+<p>A single value becomes a record with context. Repeating collection gives us a dataset to process.</p>
+</section>
 
-          <article class="processing-function-card processing-function-card--validation">
-            <div class="processing-function-header">
-              <span class="processing-function-icon processing-function-icon--validation" aria-hidden="true"></span>
-              <div>
-                <p class="processing-function-kicker">Function 1</p>
-                <h3>Validation checks data against rules</h3>
-              </div>
-            </div>
-            <p>
-              Validation happens during or just after collection. It checks
-              whether data is sensible enough to process, such as a required
-              field being filled in, a number being within range, or a date
-              following the expected format.
-            </p>
-            <div class="function-visual function-visual--validation" aria-label="Validation rule check example">
-              <span>Age: 16</span>
-              <strong>range 0-120</strong>
-              <span class="function-visual-result">accepted</span>
-            </div>
-            <p class="processing-exam-line">
-              Exam phrase: validation improves data quality, but it does not
-              prove that the data is true.
-            </p>
-          </article>
+<template data-teacher-divider>
+<h2>Processing functions</h2></template>
+<section id="processing-functions" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">10 · Collecting and processing data</p>
+<h2>Raw data needs processing</h2>
+<div class="data-table-wrap">
+<table><caption>Weather station · sensor_03 · 8 September 2026</caption>
+<thead>
+<tr><th scope="col">Time</th><th scope="col">Temperature (°C)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>09:00</td><td>14</td>
+</tr>
+<tr><td>11:00</td><td>18</td>
+</tr>
+<tr><td>10:00</td><td>16</td>
+</tr>
+<tr><td>12:00</td><td>19</td>
+</tr>
+<tr><td>13:00</td><td>91 · outside rule</td>
+</tr>
+<tr><td>14:00</td><td>22</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Validation</h3>
+<p>Does it follow the rules?</p>
+</article>
+<article class="lesson-card">
+<h3>Sorting</h3>
+<p>What order should records appear in?</p>
+</article>
+<article class="lesson-card">
+<h3>Conversion</h3>
+<p>What form or unit should it use?</p>
+</article>
+<article class="lesson-card">
+<h3>Aggregation</h3>
+<p>How can many values be summarised?</p>
+</article>
+<article class="lesson-card">
+<h3>Analysis</h3>
+<p>What does the data tell us?</p>
+</article>
+<article class="lesson-card">
+<h3>Reporting</h3>
+<p>How should information be presented?</p>
+</article>
+</div>
+<ol class="data-flow">
+<li>Raw data</li>
+<li>Choose appropriate processing functions</li>
+<li>Useful information</li>
+</ol>
+<p class="data-note">This is a toolbox: a system may use some or all of these functions, and the order depends on the task.</p>
+</section>
 
-          <div data-slide-break></div>
+<section id="validation" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">11 · Collecting and processing data</p>
+<h2>What is validation?</h2>
+<p>Validation checks whether data follows predefined rules before it is accepted or processed.</p>
+<ol class="data-flow">
+<li>Rule: <strong>−30°C to 55°C inclusive</strong>
+</li>
+<li><strong>20°C → valid</strong>
+</li>
+<li><strong>91°C → invalid</strong>
+</li>
+</ol>
+<p class="data-note">Validation does NOT prove the data is true. A recorded 20°C passes this rule even if the real temperature was 17°C.</p>
+<p>This is a rule for our teaching weather station, not a universal limit for every sensor. A failed reading needs investigation; we do not invent a replacement.</p>
+</section>
 
-          <article class="processing-function-card processing-function-card--sorting">
-            <div class="processing-function-header">
-              <span class="processing-function-icon processing-function-icon--sorting" aria-hidden="true"></span>
-              <div>
-                <p class="processing-function-kicker">Function 2</p>
-                <h3>Sorting places records into a useful order</h3>
-              </div>
-            </div>
-            <p>
-              Sorting changes the order of records without changing their
-              meaning. A system might sort students by surname, orders by
-              date, products by price, or help desk tickets by priority.
-            </p>
-            <div class="function-visual function-visual--sorting" aria-label="Sorting example">
-              <span>Delta</span>
-              <span>Alpha</span>
-              <span>Charlie</span>
-              <strong>A-Z</strong>
-              <span>Alpha</span>
-              <span>Charlie</span>
-              <span>Delta</span>
-            </div>
-            <p class="processing-exam-line">
-              Exam phrase: sorting makes records easier to search, compare,
-              prioritise, or present.
-            </p>
-          </article>
+<section id="validation-tool" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">12 · Collecting and processing data</p>
+<h2>Try a validation rule</h2>
+<form class="data-tool" data-tool="validation" data-no-slide-advance>
+<label for="validation-value">Temperature to check (°C)</label>
+<input id="validation-value" name="value" type="number" step="any" value="20">
+<p>Rule: temperature must be between <strong>−30°C and 55°C</strong>, inclusive. Try 91, then 20. Does passing prove it is true?</p>
+<div class="quiz-actions">
+<button class="primary-link" type="submit">Check value</button>
+<button class="lesson-secondary-action" type="reset">Reset defaults</button>
+</div>
+<p data-result role="status">
+</p>
+</form>
+</section>
 
-          <div data-slide-break></div>
+<section id="sorting" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">13 · Collecting and processing data</p>
+<h2>What is sorting?</h2>
+<p>Sorting changes the order of records using a chosen field.</p>
+<ol class="data-flow">
+<li><strong>Before</strong><br>11:00 · 09:00 · 14:00 · 10:00</li>
+<li>Sort by time, ascending</li>
+<li><strong>After</strong><br>09:00 · 10:00 · 11:00 · 14:00</li>
+</ol>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Ascending</h3>
+<p>Earlier to later; smaller to larger; A to Z.</p>
+</article>
+<article class="lesson-card">
+<h3>Descending</h3>
+<p>Later to earlier; larger to smaller; Z to A.</p>
+</article>
+</div>
+<p class="data-note">Sorting changes record order, not the actual data values. Keep each temperature with its own timestamp.</p>
+</section>
 
-          <article class="processing-function-card processing-function-card--conversion">
-            <div class="processing-function-header">
-              <span class="processing-function-icon processing-function-icon--conversion" aria-hidden="true"></span>
-              <div>
-                <p class="processing-function-kicker">Function 3</p>
-                <h3>Conversion changes data into a different form</h3>
-              </div>
-            </div>
-            <p>
-              Conversion is used when data has been collected in one format,
-              unit, encoding, or type but another part of the system needs
-              something different. It can convert units, file formats, data
-              types, or coded values.
-            </p>
-            <div class="function-visual function-visual--conversion" aria-label="Conversion example">
-              <span>19.5 C</span>
-              <strong>convert</strong>
-              <span>67.1 F</span>
-            </div>
-            <p class="processing-exam-line">
-              Exam phrase: conversion keeps data compatible with the next
-              process, database, output, or user need.
-            </p>
-          </article>
+<section id="sorting-tool" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">14 · Collecting and processing data</p>
+<h2>Try sorting weather records</h2>
+<form class="data-tool" data-tool="sorting" data-no-slide-advance>
+<div class="data-controls">
+<label>Sort by<select name="field">
+<option value="time">Time</option>
+<option value="temperature">Temperature</option>
+</select>
+</label>
+<label>Direction<select name="direction">
+<option value="ascending">Ascending</option>
+<option value="descending">Descending</option>
+</select>
+</label>
+</div>
+<div data-sorted-table>
+<div class="data-table-wrap">
+<table><caption>Weather station · sensor_03 · 8 September 2026</caption>
+<thead>
+<tr><th scope="col">Time</th><th scope="col">Temperature (°C)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>09:00</td><td>14</td>
+</tr>
+<tr><td>11:00</td><td>18</td>
+</tr>
+<tr><td>10:00</td><td>16</td>
+</tr>
+<tr><td>12:00</td><td>19</td>
+</tr>
+<tr><td>13:00</td><td>91 · outside rule</td>
+</tr>
+<tr><td>14:00</td><td>22</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="primary-link" type="submit">Sort records</button>
+<button class="lesson-secondary-action" type="reset">Reset defaults</button>
+</div>
+<p data-result role="status">
+</p>
+</form>
+<p>The suspicious 91°C stays in its record. Sorting does not validate or correct it.</p>
+</section>
 
-          <div data-slide-break></div>
+<section id="conversion" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">15 · Collecting and processing data</p>
+<h2>What is conversion?</h2>
+<p>Conversion changes data from one representation, format or unit into another.</p>
+<ol class="data-flow">
+<li><strong>20°C</strong>
+</li>
+<li>Convert the unit</li>
+<li><strong>68°F</strong>
+</li>
+</ol>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Data types</h3>
+<p>Text <code>"42"</code> → numeric <code>42</code>, ready for arithmetic.</p>
+</article>
+<article class="lesson-card">
+<h3>Dates and files</h3>
+<p><code>2026-09-08</code> → <code>08/09/2026</code> (DD/MM/YYYY); CSV records → JSON records.</p>
+</article>
+<article class="lesson-card">
+<h3>Readable categories</h3>
+<p>Code <code>P</code> → category <code>Present</code>.</p>
+</article>
+</div>
+</section>
 
-          <article class="processing-function-card processing-function-card--aggregation">
-            <div class="processing-function-header">
-              <span class="processing-function-icon processing-function-icon--aggregation" aria-hidden="true"></span>
-              <div>
-                <p class="processing-function-kicker">Function 4</p>
-                <h3>Aggregation combines records into summaries</h3>
-              </div>
-            </div>
-            <p>
-              Aggregation takes many individual values and produces a grouped
-              result, such as a total, count, average, minimum, or maximum.
-              This reduces detail so the overall picture is easier to see.
-            </p>
-            <div class="function-visual function-visual--aggregation" aria-label="Aggregation example">
-              <span>4</span>
-              <span>7</span>
-              <span>6</span>
-              <strong>sum</strong>
-              <span class="function-visual-result">17</span>
-            </div>
-            <p class="processing-exam-line">
-              Exam phrase: aggregation is useful when managers need totals or
-              summaries rather than every raw record.
-            </p>
-          </article>
+<section id="conversion-tool" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">16 · Collecting and processing data</p>
+<h2>Try converting a temperature</h2>
+<form class="data-tool" data-tool="conversion" data-no-slide-advance>
+<label for="conversion-value">Temperature in Celsius (°C)</label>
+<input id="conversion-value" name="value" type="number" step="any" value="20">
+<p>Fahrenheit = (Celsius × 9 ÷ 5) + 32. The same temperature is represented using a different unit.</p>
+<div class="quiz-actions">
+<button class="primary-link" type="submit">Convert</button>
+<button class="lesson-secondary-action" type="reset">Reset defaults</button>
+</div>
+<p data-result role="status">
+</p>
+</form>
+</section>
 
-          <div data-slide-break></div>
+<section id="aggregation" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">17 · Collecting and processing data</p>
+<h2>What is aggregation?</h2>
+<p>Aggregation combines many individual records into summary values.</p>
+<p class="data-note">Set aside the 91°C reading because it failed our rule. The five remaining values are 14, 16, 18, 19 and 22°C.</p>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Count</h3>
+<p>5 readings</p>
+</article>
+<article class="lesson-card">
+<h3>Total</h3>
+<p>89 (sum of the Celsius values)</p>
+</article>
+<article class="lesson-card">
+<h3>Average</h3>
+<p>17.8°C</p>
+</article>
+<article class="lesson-card">
+<h3>Minimum</h3>
+<p>14°C</p>
+</article>
+<article class="lesson-card">
+<h3>Maximum</h3>
+<p>22°C</p>
+</article>
+</div>
+<p class="data-note">Aggregation reduces many records into useful summaries. An average temperature is useful here; the total demonstrates summing but is not a temperature for the day.</p>
+</section>
 
-          <article class="processing-function-card processing-function-card--analysis">
-            <div class="processing-function-header">
-              <span class="processing-function-icon processing-function-icon--analysis" aria-hidden="true"></span>
-              <div>
-                <p class="processing-function-kicker">Function 5</p>
-                <h3>Analysis looks for patterns and meaning</h3>
-              </div>
-            </div>
-            <p>
-              Analysis interprets processed data to find trends, exceptions,
-              relationships, or likely causes. It helps a user move from
-              knowing what happened to understanding why it may have happened.
-            </p>
-            <div class="function-visual function-visual--analysis" aria-label="Analysis trend example">
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <strong>rising trend</strong>
-            </div>
-            <p class="processing-exam-line">
-              Exam phrase: analysis supports decisions because it explains
-              patterns, unusual values, or changes over time.
-            </p>
-          </article>
+<section id="aggregation-tool" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">18 · Collecting and processing data</p>
+<h2>Try aggregating readings</h2>
+<form class="data-tool" data-tool="aggregation" data-no-slide-advance>
+<label for="aggregation-values">Temperature readings (°C), separated by commas</label>
+<textarea id="aggregation-values" name="values" rows="2">14, 16, 18, 19, 22</textarea>
+<p>Use 1–24 numbers. The 91°C reading has been set aside for investigation, not silently corrected.</p>
+<label for="aggregate-operation">Summary</label>
+<select id="aggregate-operation" name="operation">
+<option value="count">Count</option>
+<option value="total">Total</option>
+<option value="average">Average</option>
+<option value="minimum">Minimum</option>
+<option value="maximum">Maximum</option>
+</select>
+<div class="quiz-actions">
+<button class="primary-link" type="submit">Calculate summary</button>
+<button class="lesson-secondary-action" type="reset">Reset defaults</button>
+</div>
+<p data-result role="status">
+</p>
+</form>
+</section>
 
-          <div data-slide-break></div>
+<section id="analysis" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">19 · Collecting and processing data</p>
+<h2>What is analysis?</h2>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Aggregation asks…</h3>
+<p><strong>What is the average?</strong><br>The five accepted readings average 17.8°C.</p>
+</article>
+<article class="lesson-card">
+<h3>Analysis asks…</h3>
+<p><strong>What does the data appear to tell us?</strong><br>The accepted readings rise; the highest accepted value is later in the day. The excluded 91°C is unusual.</p>
+</article>
+</div>
+<p class="data-note">Analysis looks for patterns, relationships, trends or anomalies.</p>
+<p>“Sales dropped on Tuesday” is an observation. “Sales dropped because it rained” requires additional evidence. A pattern alone does not establish a cause.</p>
+</section>
 
-          <article class="processing-function-card processing-function-card--reporting">
-            <div class="processing-function-header">
-              <span class="processing-function-icon processing-function-icon--reporting" aria-hidden="true"></span>
-              <div>
-                <p class="processing-function-kicker">Function 6</p>
-                <h3>Reporting presents the result clearly</h3>
-              </div>
-            </div>
-            <p>
-              Reporting turns processed data into an output for a person or
-              organisation. It might be a dashboard, chart, exception report,
-              printed statement, alert, or management summary.
-            </p>
-            <div class="function-visual function-visual--reporting" aria-label="Reporting output example">
-              <span></span>
-              <span></span>
-              <span></span>
-              <strong>summary sent</strong>
-            </div>
-            <p class="processing-exam-line">
-              Exam phrase: reporting matters because the information must be
-              understandable, timely, and suited to the audience.
-            </p>
-          </article>
-        </section>
+<section id="analysis-tool" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">20 · Collecting and processing data</p>
+<h2>Explore the weather trend</h2>
+<form class="data-tool" data-tool="analysis" data-no-slide-advance>
+<div class="data-table-wrap">
+<table><caption>Edit the weather readings</caption>
+<thead>
+<tr><th scope="col">Time</th><th scope="col">Temperature (°C)</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">
+<label for="reading-0">09:00</label></th><td>
+<input id="reading-0" name="reading" type="number" step="any" value="14" data-time="09:00"></td>
+</tr>
+<tr><th scope="row">
+<label for="reading-1">11:00</label></th><td>
+<input id="reading-1" name="reading" type="number" step="any" value="18" data-time="11:00"></td>
+</tr>
+<tr><th scope="row">
+<label for="reading-2">10:00</label></th><td>
+<input id="reading-2" name="reading" type="number" step="any" value="16" data-time="10:00"></td>
+</tr>
+<tr><th scope="row">
+<label for="reading-3">12:00</label></th><td>
+<input id="reading-3" name="reading" type="number" step="any" value="19" data-time="12:00"></td>
+</tr>
+<tr><th scope="row">
+<label for="reading-4">13:00</label></th><td>
+<input id="reading-4" name="reading" type="number" step="any" value="91" data-time="13:00"></td>
+</tr>
+<tr><th scope="row">
+<label for="reading-5">14:00</label></th><td>
+<input id="reading-5" name="reading" type="number" step="any" value="22" data-time="14:00"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Readings are plotted in time order. All entered values are shown; anything outside −30 to 55°C is flagged. Observations describe a pattern, not its cause.</p>
+<div class="quiz-actions">
+<button class="primary-link" type="submit">Update graph</button>
+<button class="lesson-secondary-action" type="reset">Reset defaults</button>
+</div>
+<p data-result role="status">
+</p>
+</form>
+<div data-analysis-chart>
+</div>
+</section>
 
-        <section id="using-results" class="lesson-section lesson-section--using-results panel" data-lesson-section>
-          <p class="eyebrow">Output</p>
-          <h2>Processed results are useful because they support action and decision-making</h2>
-          <p class="lesson-section-copy">
-            Raw data on its own often has limited value. Processing helps
-            users understand what is happening and what to do next.
-          </p>
+<section id="reporting" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">21 · Collecting and processing data</p>
+<h2>What is reporting?</h2>
+<p>Reporting presents processed information in a form suitable for a user or purpose.</p>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>Compare conditions</h3>
+<p>A labelled chart helps weather staff see changes over time.</p>
+</article>
+<article class="lesson-card">
+<h3>Find details</h3>
+<p>A table or printed statement lets someone look up exact values.</p>
+</article>
+<article class="lesson-card">
+<h3>Take action</h3>
+<p>An alert or exception report draws attention to readings needing investigation.</p>
+</article>
+<article class="lesson-card">
+<h3>See an overview</h3>
+<p>A dashboard or summary gives a manager key figures.</p>
+</article>
+</div>
+<p class="data-note">The right format depends on the audience and the decision they need to make.</p>
+</section>
 
-          <div class="example-strip" aria-label="Typical data processing flow">
-            <span class="example-chip"><strong>Input</strong> raw values</span>
-            <span class="example-chip"><strong>Processing</strong> checks and transforms</span>
-            <span class="example-chip"><strong>Output</strong> useful information</span>
-          </div>
+<template data-teacher-divider>
+<h2>From raw data to information</h2></template>
+<section id="using-results" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">22 · Collecting and processing data</p>
+<h2>Report view vs raw data</h2>
+<p>Compare two views of the same six records. Edits in the trend tool update both views here.</p>
+<div class="data-tool" data-no-slide-advance>
+<div class="quiz-actions" role="group" aria-label="Weather data view">
+<button type="button" class="lesson-secondary-action" data-view="report" aria-pressed="true" aria-controls="weather-report">Report view</button>
+<button type="button" class="lesson-secondary-action" data-view="raw" aria-pressed="false" aria-controls="weather-raw">Raw data</button>
+</div>
+<div id="weather-report">
+<h3>Weather station · 8 September 2026</h3>
+<p data-report-summary>
+</p>
+<div data-report-chart>
+</div>
+<p data-report-exceptions>
+</p>
+</div>
+<div id="weather-raw" hidden>
+<h3>Original records · sensor_03</h3><pre data-raw-records></pre>
+</div>
+<p data-view-status role="status">Report view selected.</p>
+</div>
+<p class="data-note">The graph uses the underlying records, not different data. This report plots accepted readings and lists rejected readings separately. The raw view retains every original record, in its original order.</p>
+</section>
 
-          <article class="lesson-card">
-            <h3>Worked judgement</h3>
-            <p>
-              A weather station may collect temperature readings every minute,
-              validate that the values fall within realistic limits, sort the
-              readings by time, analyse trends across the day, and report the
-              results in a graph for staff to review.
-            </p>
-          </article>
-        </section>
+<section id="recap" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">23 · Collecting and processing data</p>
+<h2>Six processing functions</h2>
+<div class="data-table-wrap">
+<table><caption>Processing toolbox · revision reference</caption>
+<thead>
+<tr><th scope="col">Function</th><th scope="col">Main question</th><th scope="col">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">Validation</th><td>Does it follow the rules?</td><td>91°C fails a −30 to 55°C range check.</td>
+</tr>
+<tr><th scope="row">Sorting</th><td>What order should records appear in?</td><td>Put readings in timestamp order.</td>
+</tr>
+<tr><th scope="row">Conversion</th><td>What form or unit should it use?</td><td>20°C becomes 68°F.</td>
+</tr>
+<tr><th scope="row">Aggregation</th><td>How can many values be summarised?</td><td>Five accepted readings average 17.8°C.</td>
+</tr>
+<tr><th scope="row">Analysis</th><td>What does the data tell us?</td><td>Accepted readings rise through the observed day.</td>
+</tr>
+<tr><th scope="row">Reporting</th><td>How should information be presented?</td><td>Show staff a chart and exception summary.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 
-        <section id="mistakes" class="lesson-section lesson-section--mistakes panel" data-lesson-section>
-          <p class="eyebrow">Exam Traps</p>
-          <h2>Common mistakes with data collection and processing</h2>
-          <p class="lesson-section-copy">
-            Most lost marks come from mixing up the stages or using the wrong
-            technical word for the job the system is doing.
-          </p>
+<section id="journey" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">24 · Collecting and processing data</p>
+<h2>Complete data-processing journey</h2>
+<ol class="data-flow">
+<li><strong>Sensor → collect</strong><br>Record temperature readings</li>
+<li><strong>Validate</strong><br>Set aside 91°C, outside our rule</li>
+<li><strong>Sort</strong><br>Order by timestamp</li>
+<li><strong>Convert, if required</strong><br>°C → °F for the audience</li>
+<li><strong>Aggregate</strong><br>Average accepted readings</li>
+<li><strong>Analyse</strong><br>Describe the rise and unusual reading</li>
+<li><strong>Report</strong><br>Chart, summary and exception</li>
+</ol>
+<p class="data-note">This is one worked example. Not every data-processing task uses every function, and they do not always occur in this exact order.</p>
+</section>
 
-          <div class="trap-grid">
-            <article class="trap-card">
-              <h3>Confusing validation with verification</h3>
-              <p>
-                Validation checks rules, not whether the data is definitely
-                true.
-              </p>
-              <p class="trap-fix">
-                <strong>Fix:</strong> Describe validation as a rule check
-                such as range, format, or presence.
-              </p>
-            </article>
+<template data-teacher-divider>
+<h2>Practice</h2></template>
+<section id="identify" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">25 · Collecting and processing data</p>
+<h2>Which processing function happened?</h2>
+<div class="data-grid">
+<article class="lesson-card data-tool" data-paired-scenario="sorting" data-no-slide-advance>
+<h3>Transformation 1</h3>
+<ol class="data-flow">
+<li>Charlie, Alice, Bob</li>
+<li>Alice, Bob, Charlie</li>
+</ol>
+<label for="function-0">Processing function</label>
+<select id="function-0" data-choice="type">
+<option value="">Choose a function</option>
+<option value="validation">Validation</option>
+<option value="sorting">Sorting</option>
+<option value="conversion">Conversion</option>
+<option value="aggregation">Aggregation</option>
+<option value="analysis">Analysis</option>
+<option value="reporting">Reporting</option>
+</select>
+<label for="reason-0">Reason</label>
+<select id="reason-0" data-choice="reason">
+<option value="">Choose a reason</option>
+<option value="sorting">Change record order</option>
+<option value="conversion">Change representation or unit</option>
+<option value="aggregation">Combine into a summary</option>
+<option value="analysis">Identify a pattern</option>
+<option value="reporting">Present for an audience</option>
+<option value="validation">Check a rule</option>
+</select>
+<div class="quiz-actions">
+<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
+<button type="button" class="lesson-secondary-action" data-reset-pair>Reset choices</button>
+</div>
+<p data-pair-feedback role="status">
+</p>
+</article>
+<article class="lesson-card data-tool" data-paired-scenario="conversion" data-no-slide-advance>
+<h3>Transformation 2</h3>
+<ol class="data-flow">
+<li>20°C</li>
+<li>68°F</li>
+</ol>
+<label for="function-1">Processing function</label>
+<select id="function-1" data-choice="type">
+<option value="">Choose a function</option>
+<option value="validation">Validation</option>
+<option value="sorting">Sorting</option>
+<option value="conversion">Conversion</option>
+<option value="aggregation">Aggregation</option>
+<option value="analysis">Analysis</option>
+<option value="reporting">Reporting</option>
+</select>
+<label for="reason-1">Reason</label>
+<select id="reason-1" data-choice="reason">
+<option value="">Choose a reason</option>
+<option value="sorting">Change record order</option>
+<option value="conversion">Change representation or unit</option>
+<option value="aggregation">Combine into a summary</option>
+<option value="analysis">Identify a pattern</option>
+<option value="reporting">Present for an audience</option>
+<option value="validation">Check a rule</option>
+</select>
+<div class="quiz-actions">
+<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
+<button type="button" class="lesson-secondary-action" data-reset-pair>Reset choices</button>
+</div>
+<p data-pair-feedback role="status">
+</p>
+</article>
+<article class="lesson-card data-tool" data-paired-scenario="aggregation" data-no-slide-advance>
+<h3>Transformation 3</h3>
+<ol class="data-flow">
+<li>4, 8, 10, 6</li>
+<li>Average = 7</li>
+</ol>
+<label for="function-2">Processing function</label>
+<select id="function-2" data-choice="type">
+<option value="">Choose a function</option>
+<option value="validation">Validation</option>
+<option value="sorting">Sorting</option>
+<option value="conversion">Conversion</option>
+<option value="aggregation">Aggregation</option>
+<option value="analysis">Analysis</option>
+<option value="reporting">Reporting</option>
+</select>
+<label for="reason-2">Reason</label>
+<select id="reason-2" data-choice="reason">
+<option value="">Choose a reason</option>
+<option value="sorting">Change record order</option>
+<option value="conversion">Change representation or unit</option>
+<option value="aggregation">Combine into a summary</option>
+<option value="analysis">Identify a pattern</option>
+<option value="reporting">Present for an audience</option>
+<option value="validation">Check a rule</option>
+</select>
+<div class="quiz-actions">
+<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
+<button type="button" class="lesson-secondary-action" data-reset-pair>Reset choices</button>
+</div>
+<p data-pair-feedback role="status">
+</p>
+</article>
+<article class="lesson-card data-tool" data-paired-scenario="analysis" data-no-slide-advance>
+<h3>Transformation 4</h3>
+<ol class="data-flow">
+<li>Daily sales records</li>
+<li>Sales are consistently highest on Fridays.</li>
+</ol>
+<label for="function-3">Processing function</label>
+<select id="function-3" data-choice="type">
+<option value="">Choose a function</option>
+<option value="validation">Validation</option>
+<option value="sorting">Sorting</option>
+<option value="conversion">Conversion</option>
+<option value="aggregation">Aggregation</option>
+<option value="analysis">Analysis</option>
+<option value="reporting">Reporting</option>
+</select>
+<label for="reason-3">Reason</label>
+<select id="reason-3" data-choice="reason">
+<option value="">Choose a reason</option>
+<option value="sorting">Change record order</option>
+<option value="conversion">Change representation or unit</option>
+<option value="aggregation">Combine into a summary</option>
+<option value="analysis">Identify a pattern</option>
+<option value="reporting">Present for an audience</option>
+<option value="validation">Check a rule</option>
+</select>
+<div class="quiz-actions">
+<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
+<button type="button" class="lesson-secondary-action" data-reset-pair>Reset choices</button>
+</div>
+<p data-pair-feedback role="status">
+</p>
+</article>
+<article class="lesson-card data-tool" data-paired-scenario="reporting" data-no-slide-advance>
+<h3>Transformation 5</h3>
+<ol class="data-flow">
+<li>Raw sales records</li>
+<li>Management dashboard</li>
+</ol>
+<label for="function-4">Processing function</label>
+<select id="function-4" data-choice="type">
+<option value="">Choose a function</option>
+<option value="validation">Validation</option>
+<option value="sorting">Sorting</option>
+<option value="conversion">Conversion</option>
+<option value="aggregation">Aggregation</option>
+<option value="analysis">Analysis</option>
+<option value="reporting">Reporting</option>
+</select>
+<label for="reason-4">Reason</label>
+<select id="reason-4" data-choice="reason">
+<option value="">Choose a reason</option>
+<option value="sorting">Change record order</option>
+<option value="conversion">Change representation or unit</option>
+<option value="aggregation">Combine into a summary</option>
+<option value="analysis">Identify a pattern</option>
+<option value="reporting">Present for an audience</option>
+<option value="validation">Check a rule</option>
+</select>
+<div class="quiz-actions">
+<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
+<button type="button" class="lesson-secondary-action" data-reset-pair>Reset choices</button>
+</div>
+<p data-pair-feedback role="status">
+</p>
+</article>
+<article class="lesson-card data-tool" data-paired-scenario="validation" data-no-slide-advance>
+<h3>Transformation 6</h3>
+<ol class="data-flow">
+<li>Age = 247; rule = 0–120</li>
+<li>Value rejected</li>
+</ol>
+<label for="function-5">Processing function</label>
+<select id="function-5" data-choice="type">
+<option value="">Choose a function</option>
+<option value="validation">Validation</option>
+<option value="sorting">Sorting</option>
+<option value="conversion">Conversion</option>
+<option value="aggregation">Aggregation</option>
+<option value="analysis">Analysis</option>
+<option value="reporting">Reporting</option>
+</select>
+<label for="reason-5">Reason</label>
+<select id="reason-5" data-choice="reason">
+<option value="">Choose a reason</option>
+<option value="sorting">Change record order</option>
+<option value="conversion">Change representation or unit</option>
+<option value="aggregation">Combine into a summary</option>
+<option value="analysis">Identify a pattern</option>
+<option value="reporting">Present for an audience</option>
+<option value="validation">Check a rule</option>
+</select>
+<div class="quiz-actions">
+<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
+<button type="button" class="lesson-secondary-action" data-reset-pair>Reset choices</button>
+</div>
+<p data-pair-feedback role="status">
+</p>
+</article>
+</div>
+</section>
 
-            <article class="trap-card">
-              <h3>Jumping straight to analysis</h3>
-              <p>
-                Many systems need sorting, conversion, or aggregation first.
-              </p>
-              <p class="trap-fix">
-                <strong>Fix:</strong> Explain the sequence from input to
-                processed output.
-              </p>
-            </article>
+<section id="mistakes" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">26 · Collecting and processing data</p>
+<h2>Common exam mistakes</h2>
+<div class="data-grid">
+<article class="lesson-card">
+<h3>“Data = information”</h3>
+<p>Data is raw; information has meaning or supports a decision.</p>
+</article>
+<article class="lesson-card">
+<h3>“Validation proves correctness”</h3>
+<p>It checks rules, not real-world truth.</p>
+</article>
+<article class="lesson-card">
+<h3>“Sorting changes the values”</h3>
+<p>It changes record order. Fields stay together.</p>
+</article>
+<article class="lesson-card">
+<h3>“Aggregation = analysis”</h3>
+<p>Aggregation summarises values; analysis identifies patterns or meaning.</p>
+</article>
+<article class="lesson-card">
+<h3>“Reporting means charts only”</h3>
+<p>Tables, dashboards, alerts and summaries are also reports.</p>
+</article>
+<article class="lesson-card">
+<h3>“Collection always needs a person”</h3>
+<p>Sensors and software systems can collect data automatically.</p>
+</article>
+</div>
+</section>
 
-            <article class="trap-card">
-              <h3>Ignoring hardware and software roles</h3>
-              <p>
-                Collection usually depends on both.
-              </p>
-              <p class="trap-fix">
-                <strong>Fix:</strong> Say what device captures the data and
-                what software manages it.
-              </p>
-            </article>
-          </div>
-        </section>
+<section id="quiz" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">27 · Collecting and processing data</p>
+<h2>Check your understanding</h2>
+<p>Answer all 14 questions, then check your score. Your choices and best score save in this browser. Aim for 10 correct.</p>
+<form id="lesson-quiz" class="quiz-form">
+<fieldset class="quiz-question" data-question="q1" data-answer="a" data-success="Correct. Sales records can be processed to show what needs restocking." data-feedback="Sales records can be processed to show what needs restocking.">
+<legend>1. Why does a supermarket collect sales data?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q1" value="a"><span>To support decisions such as restocking</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q1" value="b"><span>To guarantee every sale is profitable</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q1" value="c"><span>To replace all later processing</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q2" data-answer="b" data-success="Correct. The statement gives the readings meaning by identifying a trend." data-feedback="The statement gives the readings meaning by identifying a trend.">
+<legend>2. Which is information rather than an isolated raw value?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q2" value="a"><span>18</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q2" value="b"><span>Temperature increased during the observed day</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q2" value="c"><span>sensor_03</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q3" data-answer="c" data-success="Correct. A person enters the data, even though the form is digital." data-feedback="A person enters the data, even though the form is digital.">
+<legend>3. Which example is manual collection?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q3" value="a"><span>A sensor records a temperature</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q3" value="b"><span>A server logs a request</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q3" value="c"><span>A teacher enters attendance in a form</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q4" data-answer="a" data-success="Correct. The scanner captures a physical code without someone typing its digits." data-feedback="The scanner captures a physical code without someone typing its digits.">
+<legend>4. Which device can automatically capture a product code?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q4" value="a"><span>A barcode scanner</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q4" value="b"><span>A report printer</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q4" value="c"><span>A display showing stock totals</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q5" data-answer="b" data-success="Correct. The application records an event from its own operation." data-feedback="The application records an event from its own operation.">
+<legend>5. Which is software/system-generated data?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q5" value="a"><span>A user typing their address</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q5" value="b"><span>An application recording an error log</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q5" value="c"><span>A microphone recording sound</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q6" data-answer="c" data-success="Correct. Hardware captures the physical input; software adds context and records it." data-feedback="Hardware captures the physical input; software adds context and records it.">
+<legend>6. Which correctly describes weather-station collection?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q6" value="a"><span>The sensor writes the report and software senses heat</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q6" value="b"><span>Software replaces the need for a temperature reading</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q6" value="c"><span>The sensor captures temperature; software timestamps and stores it</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q7" data-answer="a" data-success="Correct. Validation checks a predefined rule and flags this out-of-range value." data-feedback="Validation checks a predefined rule and flags this out-of-range value.">
+<legend>7. A reading of 91°C fails a −30 to 55°C rule. What happened?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q7" value="a"><span>Validation</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q7" value="b"><span>Sorting</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q7" value="c"><span>Aggregation</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q8" data-answer="b" data-success="Correct. Each temperature stays attached to its timestamp; only record order changes." data-feedback="Each temperature stays attached to its timestamp; only record order changes.">
+<legend>8. When records are sorted by time, what changes?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q8" value="a"><span>The temperature values</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q8" value="b"><span>The order of complete records</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q8" value="c"><span>The number of readings</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q9" data-answer="c" data-success="Correct. Conversion includes data types as well as units and formats." data-feedback="Conversion includes data types as well as units and formats.">
+<legend>9. Changing text &quot;42&quot; into numeric 42 is…</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q9" value="a"><span>Analysis</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q9" value="b"><span>Aggregation</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q9" value="c"><span>Conversion</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q10" data-answer="a" data-success="Correct. Many records are reduced to a summary value." data-feedback="Many records are reduced to a summary value.">
+<legend>10. Calculating an average from many readings is…</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q10" value="a"><span>Aggregation</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q10" value="b"><span>Sorting</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q10" value="c"><span>Validation</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q11" data-answer="b" data-success="Correct. Analysis identifies a pattern; calculating the average is aggregation." data-feedback="Analysis identifies a pattern; calculating the average is aggregation.">
+<legend>11. Which statement demonstrates analysis?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q11" value="a"><span>The average is 17.8°C</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q11" value="b"><span>Readings rise through the observed day</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q11" value="c"><span>The report is displayed as a table</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q12" data-answer="c" data-success="Correct. Reporting presents information in a format suited to the audience." data-feedback="Reporting presents information in a format suited to the audience.">
+<legend>12. A manager receives a dashboard of delays. Which function presents it?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q12" value="a"><span>Sorting</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q12" value="b"><span>Conversion</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q12" value="c"><span>Reporting</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q13" data-answer="a" data-success="Correct. A plausible value can pass a rule even when it differs from reality." data-feedback="A plausible value can pass a rule even when it differs from reality.">
+<legend>13. A recorded 20°C passes validation. What can we conclude?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q13" value="a"><span>It follows the rule, but could still be inaccurate</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q13" value="b"><span>The true temperature must be 20°C</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q13" value="c"><span>The sensor must be working correctly</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q14" data-answer="b" data-success="Correct. Finding an anomaly is analysis; explaining its cause requires more evidence." data-feedback="Finding an anomaly is analysis; explaining its cause requires more evidence.">
+<legend>14. A transport system flags an unusually long journey. Can it conclude traffic caused it?</legend>
+<ul class="quiz-answer-list">
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q14" value="a"><span>Yes, unusual values always identify their cause</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q14" value="b"><span>No, a causal explanation needs additional evidence</span>
+</label>
+</li>
+<li>
+<label class="quiz-answer">
+<input type="radio" name="q14" value="c"><span>Yes, if it sorts the journey records first</span>
+</label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<div class="quiz-actions">
+<button class="primary-link" type="submit">Check score</button>
+<button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button>
+</div>
+<p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p>
+</form>
+</section>
 
-        <section id="quiz" class="lesson-section lesson-section--quiz panel" data-lesson-section>
-          <p class="eyebrow">Quiz</p>
-          <h2>Check your understanding</h2>
-          <p class="quiz-intro">
-            Answer all five questions, then check your score. Your choices
-            and best score save in this browser so you can revisit the lesson
-            later.
-          </p>
-
-          <form id="lesson-quiz" class="quiz-form">
-            <fieldset class="quiz-question" data-question="q1" data-answer="b"
-              data-success="Correct. Hardware devices such as scanners or sensors capture raw data."
-              data-feedback="The device performs the capture, while software manages the data after or during entry.">
-              <legend>1. What is the main hardware role in data collection?</legend>
-              <ul class="quiz-answer-list">
-                <li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>Designing the database
-                      schema</span></label></li>
-                <li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>Capturing raw data into
-                      the system</span></label></li>
-                <li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>Writing management
-                      reports automatically</span></label></li>
-              </ul>
-              <p class="quiz-feedback-note" data-question-feedback></p>
-            </fieldset>
-
-            <fieldset class="quiz-question" data-question="q2" data-answer="a"
-              data-success="Correct. Validation checks that input follows expected rules."
-              data-feedback="Validation tests format, range, type, or presence before processing continues.">
-              <legend>2. What does validation do?</legend>
-              <ul class="quiz-answer-list">
-                <li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>Checks whether input
-                      follows set rules</span></label></li>
-                <li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>Deletes every duplicate
-                      record automatically</span></label></li>
-                <li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>Turns numbers into sound
-                      output</span></label></li>
-              </ul>
-              <p class="quiz-feedback-note" data-question-feedback></p>
-            </fieldset>
-
-            <fieldset class="quiz-question" data-question="q3" data-answer="c"
-              data-success="Correct. Aggregation combines many values into a summary total or grouped result."
-              data-feedback="Aggregation is about combining data, such as totals, averages, or grouped summaries.">
-              <legend>3. Which function combines many values into a summary?</legend>
-              <ul class="quiz-answer-list">
-                <li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>Sorting</span></label>
-                </li>
-                <li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>Conversion</span></label>
-                </li>
-                <li><label class="quiz-answer"><input type="radio" name="q3"
-                      value="c" /><span>Aggregation</span></label></li>
-              </ul>
-              <p class="quiz-feedback-note" data-question-feedback></p>
-            </fieldset>
-
-            <fieldset class="quiz-question" data-question="q4" data-answer="b"
-              data-success="Correct. Reporting presents processed results clearly to users."
-              data-feedback="Reporting is about presenting information in a useful format such as a chart, table, or summary.">
-              <legend>4. Which function is most directly about presenting processed results?</legend>
-              <ul class="quiz-answer-list">
-                <li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>Interrupt
-                      handling</span></label></li>
-                <li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>Reporting</span></label>
-                </li>
-                <li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>Mirroring</span></label>
-                </li>
-              </ul>
-              <p class="quiz-feedback-note" data-question-feedback></p>
-            </fieldset>
-
-            <fieldset class="quiz-question" data-question="q5" data-answer="a"
-              data-success="Correct. A strong answer explains both collection and the later processing steps."
-              data-feedback="Data-processing scenarios usually expect a chain from input through transformation to useful output.">
-              <legend>5. What makes a data-processing explanation strong?</legend>
-              <ul class="quiz-answer-list">
-                <li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>It links input,
-                      processing, and output clearly</span></label></li>
-                <li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>It only lists device
-                      names without saying what happens</span></label></li>
-                <li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>It avoids naming
-                      processing functions</span></label></li>
-              </ul>
-              <p class="quiz-feedback-note" data-question-feedback></p>
-            </fieldset>
-
-            <div class="quiz-actions">
-              <button class="primary-link" type="submit">Check score</button>
-              <button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button>
-            </div>
-
-            <p class="quiz-result" data-role="quiz-result" aria-live="polite">
-              Your answers save automatically on this device once you start.
-            </p>
-          </form>
-        </section>
-
-        <section id="exam-practice" class="lesson-section lesson-section--exam-practice panel" data-lesson-section>
-          <p class="eyebrow">Exam-Style Practice</p>
-          <h2>Try longer answers like the ones used in written papers</h2>
-          <p class="lesson-section-copy">
-            These questions need fuller explanations than the quick quiz.
-            Type your answers straight into the page, then compare your ideas
-            with the answer guide.
-          </p>
-          <p class="exam-response-note">Draft answers save automatically in this browser.</p>
-
-          <div class="exam-grid">
-            <article class="exam-card">
-              <div class="exam-meta">
-                <span class="exam-pill">4 marks</span>
-                <span class="exam-pill">Explain</span>
-              </div>
-              <h3>Question 1</h3>
-              <p>
-                Explain the difference between collecting data and processing
-                data using a supermarket checkout example.
-              </p>
-              <div class="exam-response-wrap">
-                <label class="exam-response-label" for="exam-response-1">Your answer</label>
-                <textarea id="exam-response-1" class="exam-response" data-exam-response="question-1"
-                  placeholder="Describe the input stage and what the system does next."></textarea>
-              </div>
-              <details class="exam-guidance">
-                <summary>Show answer guide</summary>
-                <div class="exam-guidance-body">
-                  <ul class="exam-points">
-                    <li>Collection is the capture of raw data, such as scanning a barcode.</li>
-                    <li>Processing is what the system does with it afterward.</li>
-                    <li>The system may look up the product, price, or stock record.</li>
-                    <li>It may then total the bill or update inventory.</li>
-                  </ul>
-                </div>
-              </details>
-            </article>
-
-            <article class="exam-card">
-              <div class="exam-meta">
-                <span class="exam-pill">6 marks</span>
-                <span class="exam-pill">Discuss</span>
-              </div>
-              <h3>Question 2</h3>
-              <p>
-                A school wants to analyse attendance patterns. Discuss how
-                data could be collected and processed to produce useful
-                reports for staff.
-              </p>
-              <div class="exam-response-wrap">
-                <label class="exam-response-label" for="exam-response-2">Your answer</label>
-                <textarea id="exam-response-2" class="exam-response" data-exam-response="question-2"
-                  placeholder="Think about devices, validation, sorting, aggregation, analysis, and reporting."></textarea>
-              </div>
-              <details class="exam-guidance">
-                <summary>Show answer guide</summary>
-                <div class="exam-guidance-body">
-                  <ul class="exam-points">
-                    <li>Attendance data could be collected through registers, cards, or a digital form.</li>
-                    <li>Software could validate missing or invalid entries.</li>
-                    <li>Records could be sorted by class, date, or student.</li>
-                    <li>Aggregation could total absences or late arrivals.</li>
-                    <li>Analysis could identify patterns across groups or time periods.</li>
-                    <li>Reporting could present charts or summaries for staff action.</li>
-                  </ul>
-                </div>
-              </details>
-            </article>
-          </div>
-        </section>
+<section id="exam-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">28 · Collecting and processing data</p>
+<h2>Exam-style practice</h2>
+<p>Write an applied explanation, then compare it with the guide. These are practice questions, not an official mark scheme.</p>
+<p class="exam-response-note">Draft answers save automatically in this browser.</p>
+<div class="exam-grid">
+<article class="exam-card">
+<div class="exam-meta"><span class="exam-pill">4 marks</span>
+</div>
+<h3>Question 1</h3>
+<p>Explain how hardware and software could work together to collect temperature data.</p>
+<div class="exam-response-wrap">
+<label class="exam-response-label" for="exam-response-1">Your answer</label>
+<textarea id="exam-response-1" class="exam-response" data-exam-response="v2-question-1" placeholder="Link the data, processing function and useful outcome.">
+</textarea>
+</div>
+<details class="exam-guidance">
+<summary>Show answer guide</summary>
+<div class="exam-guidance-body">
+<ul class="exam-points">
+<li>Explain that a sensor captures temperature and supplies a value, rather than simply naming a sensor.</li>
+<li>Explain how software reads that value and attaches a timestamp or sensor ID, making readings comparable.</li>
+<li>Link validation and storing the record to a usable dataset. Develop two linked hardware/software points for up to four marks.</li>
+</ul>
+</div>
+</details>
+</article>
+<article class="exam-card">
+<div class="exam-meta"><span class="exam-pill">4 marks</span>
+</div>
+<h3>Question 2</h3>
+<p>Explain the difference between validation and sorting, using weather records.</p>
+<div class="exam-response-wrap">
+<label class="exam-response-label" for="exam-response-2">Your answer</label>
+<textarea id="exam-response-2" class="exam-response" data-exam-response="v2-question-2" placeholder="Link the data, processing function and useful outcome.">
+</textarea>
+</div>
+<details class="exam-guidance">
+<summary>Show answer guide</summary>
+<div class="exam-guidance-body">
+<ul class="exam-points">
+<li>Validation tests a rule: 91°C fails the station’s range check and is flagged for investigation.</li>
+<li>Sorting orders complete records by a field, such as timestamp, without altering temperatures.</li>
+<li>For four marks, explain each function and apply each to the records. Neither proves a reading is true.</li>
+</ul>
+</div>
+</details>
+</article>
+<article class="exam-card">
+<div class="exam-meta"><span class="exam-pill">6 marks</span>
+</div>
+<h3>Question 3</h3>
+<p>Explain how aggregation and analysis could be used by a supermarket to process sales data.</p>
+<div class="exam-response-wrap">
+<label class="exam-response-label" for="exam-response-3">Your answer</label>
+<textarea id="exam-response-3" class="exam-response" data-exam-response="v2-question-3" placeholder="Link the data, processing function and useful outcome.">
+</textarea>
+</div>
+<details class="exam-guidance">
+<summary>Show answer guide</summary>
+<div class="exam-guidance-body">
+<ul class="exam-points">
+<li>Aggregation could total sales by product and day, turning individual transactions into comparable summaries.</li>
+<li>Analysis could compare these summaries to identify products consistently selling fastest on Fridays.</li>
+<li>Link the pattern to planning stock or staffing. Explain why the total alone does not explain a cause. Develop three applied links for up to six marks.</li>
+</ul>
+</div>
+</details>
+</article>
+<article class="exam-card">
+<div class="exam-meta"><span class="exam-pill">8 marks</span>
+</div>
+<h3>Question 4</h3>
+<p>Analyse how a college could collect and process attendance data to produce useful information.</p>
+<div class="exam-response-wrap">
+<label class="exam-response-label" for="exam-response-4">Your answer</label>
+<textarea id="exam-response-4" class="exam-response" data-exam-response="v2-question-4" placeholder="Link the data, processing function and useful outcome.">
+</textarea>
+</div>
+<details class="exam-guidance">
+<summary>Show answer guide</summary>
+<div class="exam-guidance-body">
+<ul class="exam-points">
+<li>Teachers could enter attendance in a form, or a reader could capture student IDs; software adds lesson and time.</li>
+<li>Validate required IDs/statuses and flag incomplete entries. A valid ID does not prove the student attended.</li>
+<li>Sort by student/date; aggregate absences or attendance percentages over a suitable period. Analyse recurring absence patterns.</li>
+<li>Report a table or exception summary to tutors so they can follow up. For stronger answers, connect collection choices, processing and decisions; explain that attendance records alone cannot establish reasons for absence.</li>
+</ul>
+</div>
+</details>
+</article>
+<article class="exam-card">
+<div class="exam-meta"><span class="exam-pill">10 marks</span>
+</div>
+<h3>Question 5</h3>
+<p>A transport company collects GPS, journey-time and passenger data from hundreds of vehicles. Discuss how processing functions could turn raw data into useful information for managers.</p>
+<div class="exam-response-wrap">
+<label class="exam-response-label" for="exam-response-5">Your answer</label>
+<textarea id="exam-response-5" class="exam-response" data-exam-response="v2-question-5" placeholder="Link the data, processing function and useful outcome.">
+</textarea>
+</div>
+<details class="exam-guidance">
+<summary>Show answer guide</summary>
+<div class="exam-guidance-body">
+<ul class="exam-points">
+<li>GPS receivers capture locations; ticketing/passenger systems record counts; software timestamps and links readings to journeys.</li>
+<li>Validate plausible locations, times and counts. Flag failures; a value passing validation is not necessarily accurate.</li>
+<li>Sort by vehicle and timestamp; convert units or time formats when sources differ so comparisons are meaningful.</li>
+<li>Aggregate journey times and passenger counts by route or period. Analyse repeated delays and busy services, then investigate possible causes using further evidence.</li>
+<li>Choose reports for managers: route comparisons for scheduling and exception alerts for unusual delays. Link each choice to decisions such as allocating vehicles.</li>
+<li>For higher marks, discuss trade-offs: summaries reveal patterns but hide individual journeys; suspect readings can distort averages. Justify selected functions and formats for this purpose rather than listing all six definitions.</li>
+</ul>
+</div>
+</details>
+</article>
+</div>
+</section>
       </main>
 
       <aside class="lesson-rail">
@@ -639,6 +1452,14 @@
           <p class="eyebrow">Glossary</p>
           <h2>Quick glossary</h2>
           <dl class="glossary-list">
+<div class="glossary-item"><dt>Data</dt><dd>Raw facts or values.</dd>
+</div>
+<div class="glossary-item"><dt>Information</dt><dd>Data processed or presented meaningfully.</dd>
+</div>
+<div class="glossary-item"><dt>Sorting</dt><dd>Ordering records by a chosen field.</dd>
+</div>
+<div class="glossary-item"><dt>Analysis</dt><dd>Identifying patterns, trends, relationships or anomalies.</dd>
+</div>
             <div class="glossary-item">
               <dt>Validation</dt>
               <dd>Checking whether data follows set rules.</dd>
@@ -660,7 +1481,7 @@
 
         <section class="lesson-rail-card panel revision-card">
           <p class="eyebrow">Remember</p>
-          <h2>Follow the flow</h2>
+          <h2>Choose the tools</h2>
           <ul class="memory-list">
             <li>Raw data comes first.</li>
             <li>Processing functions each do a different job.</li>
@@ -673,13 +1494,14 @@
     <section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading">
       <p class="eyebrow">Keep Going</p>
       <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
-      <div class="sequence-grid" data-role="lesson-sequence"></div>
+      <div class="sequence-grid" data-role="lesson-sequence">
+</div>
     </section>
   </div>
 
   <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
     <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
-    <p class="slide-status" data-role="slide-status">Slide 1 of 13</p>
+    <p class="slide-status" data-role="slide-status">Slide 1</p>
     <button type="button" class="slide-button" data-action="next-slide">Next</button>
     <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
   </div>

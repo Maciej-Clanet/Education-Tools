@@ -1,5 +1,10 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
+import { initProcessingTools } from "../core/processing-tools.js"
+import { weatherRecords } from "../data/weather-records.js"
+import { initPairedScenarios } from "../core/paired-scenarios.js"
+import { dataProcessingScenarios } from "../data/data-processing-scenarios.js"
+
 const lessonConfig = {
   lessonId: "collecting-and-processing-data",
   defaultContext: "btec-level-3-unit-2",
@@ -23,12 +28,16 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-collecting-and-processing-data-quiz",
-    passScore: 4,
+    storageKey: "lesson-collecting-and-processing-data-quiz-v2",
+    version: 2,
+    totalQuestions: 14,
+    passScore: 10,
   },
   examPractice: {
     storageKey: "lesson-collecting-and-processing-data-exam-practice",
   },
 }
 
+initProcessingTools(weatherRecords)
+initPairedScenarios(dataProcessingScenarios)
 initLessonPage(lessonConfig)

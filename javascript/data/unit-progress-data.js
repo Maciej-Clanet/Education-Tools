@@ -191,7 +191,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "collecting-and-processing-data",
           title: "Collecting and processing data",
           href: "../topics/collecting-and-processing-data.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 2, totalQuestions: 14, passScore: 10 },
         },
         {
           id: "data-across-multiple-systems",
