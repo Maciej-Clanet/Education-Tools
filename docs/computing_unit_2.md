@@ -130,9 +130,10 @@ saved progress should be shown as needing a fresh attempt.
     and six paired transformation activities. Quiz version 2: 14 questions, pass 10; five applied
     written tasks. See `docs/data_processing_lesson.md`.
 - [x] Data across multiple systems
-  - Expanded into 20 teaching sections around a college scenario, with four
-    teacher-only dividers, connected-factor trade-offs and a reusable multi-factor
-    Impact Explorer. Quiz version 2: 12 questions, pass 9; five applied written
+  - Refined into 23 student sections / 28 teacher slides with the shared opener,
+    three dividers, a recurring Alex Smith diagram, progressive cost and migration
+    examples, and separate access/availability, productivity failure and security
+    protection teaching moments. The multi-factor Impact Explorer is preserved. Quiz version 2: 12 questions, pass 9; five applied written
     tasks. See `docs/multiple_systems_lesson.md`.
 - [x] Backup and data recovery
   - Expanded into 24 teaching sections with five teacher-only dividers, a

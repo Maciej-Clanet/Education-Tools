@@ -81,14 +81,24 @@
       <aside class="lesson-sidebar panel">
         <p class="eyebrow">Jump To</p>
         <nav class="section-nav" aria-label="Lesson sections">
-<a href="#why-multiple-systems" data-section-link>Why use data across multiple systems?</a><a href="#disconnected" data-section-link>The problem with disconnected systems</a><a href="#shared-data" data-section-link>Shared and connected data</a><a href="#implications" data-section-link>Five questions to ask</a><a href="#access" data-section-link>Access: the right data for the right people</a><a href="#permissions" data-section-link>Access permissions in our college</a><a href="#cost" data-section-link>Cost: more than the purchase price</a><a href="#implementation" data-section-link>What does implementation mean?</a><a href="#implementation-risks" data-section-link>What can go wrong during implementation?</a><a href="#productivity" data-section-link>Productivity: remove repeated work</a><a href="#security" data-section-link>Security: more routes need protection</a><a href="#sensitivity" data-section-link>Why sensitivity matters</a><a href="#connected-factors" data-section-link>The five factors affect each other</a><a href="#shared-trade-off" data-section-link>Another trade-off: replace separate records</a><a href="#worked-college" data-section-link>Worked college scenario</a><a href="#impact-explorer" data-section-link>Impact Explorer</a><a href="#balanced-judgement" data-section-link>How to write a balanced answer</a><a href="#mistakes" data-section-link>Common exam mistakes</a><a href="#quiz" data-section-link>Check your understanding</a><a href="#exam-practice" data-section-link>Exam-style practice</a>        </nav>
+<a href="#why-multiple-systems" data-section-link>Why use data across multiple systems?</a><a href="#disconnected" data-section-link>The problem with disconnected systems</a><a href="#shared-data" data-section-link>Shared and connected data</a><a href="#implications" data-section-link>Five questions to ask</a><a href="#access" data-section-link>Access: the right data for the right people</a><a href="#permissions" data-section-link>Access permissions in our college</a><a href="#availability" data-section-link>Shared access creates a dependency</a><a href="#cost" data-section-link>Cost: more than the purchase price</a><a href="#implementation" data-section-link>What does implementation mean?</a><a href="#implementation-risks" data-section-link>What can go wrong during implementation?</a><a href="#productivity" data-section-link>Productivity: remove repeated work</a><a href="#sync-failure" data-section-link>When poor integration creates extra work</a><a href="#security" data-section-link>Security: more routes need protection</a><a href="#security-controls" data-section-link>Protect each route</a><a href="#sensitivity" data-section-link>Why sensitivity matters</a><a href="#connected-factors" data-section-link>The five factors affect each other</a><a href="#shared-trade-off" data-section-link>Another trade-off: replace separate records</a><a href="#worked-college" data-section-link>Worked college scenario</a><a href="#impact-explorer" data-section-link>Impact Explorer</a><a href="#balanced-judgement" data-section-link>How to write a balanced answer</a><a href="#mistakes" data-section-link>Common exam mistakes</a><a href="#quiz" data-section-link>Check your understanding</a><a href="#exam-practice" data-section-link>Exam-style practice</a>        </nav>
       </aside>
 
-<main class="lesson-main" data-role="lesson-main"><template data-teacher-divider>
-<h2>Why organisations connect systems</h2></template>
+<main class="lesson-main" data-role="lesson-main"><template data-teacher-opener>
+<h2>Data Across Multiple Systems</h2>
+<p>What changes when several systems need the same data?</p>
+<ul>
+<li>Explain why organisations share data across systems</li>
+<li>Explore access, cost, implementation, productivity and security</li>
+<li>Connect one decision to several factors</li>
+<li>Make balanced judgements about trade-offs</li>
+</ul>
+</template>
 <section id="why-multiple-systems" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">01 · Data across multiple systems</p>
-<h2>Why use data across multiple systems?</h2><span id="overview"></span>
+<h2>Why use data across multiple systems?</h2>
+<span id="overview"></span><div class="college-map "><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>Alex Smith</strong><span>Course · contact details · attendance</span></div><div class="college-endpoint endpoint-0"><strong>Reception</strong><span>Student records</span></div><div class="college-endpoint endpoint-1"><strong>Teacher</strong><span>Attendance</span></div><div class="college-endpoint endpoint-2"><strong>Manager</strong><span>Reporting</span></div><div class="college-endpoint endpoint-3"><strong>Finance/admin</strong><span>Relevant student details</span></div></div><p class="systems-note">Should every department maintain its own separate copy?</p><p>Different people and systems need relevant parts of the same information.</p>
+<details class="systems-revision"><summary>More explanation and examples</summary>
 <p>At our example college, different people need student information for different jobs.</p>
 <div class="systems-grid ">
 <article class="lesson-card">
@@ -113,41 +123,23 @@
 </article>
 </div>
 <p class="systems-note">Should every department keep completely separate copies of the same student information?</p>
-<p>Several people may need the same facts, from different locations. Specialist systems can use shared data for their own tasks and feed reports.</p>
+<p>Several people may need the same facts, from different locations. Specialist systems can use shared data for their own tasks and feed reports.</p></details>
 </section>
 <section id="disconnected" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">02 · Data across multiple systems</p>
 <h2>The problem with disconnected systems</h2>
-<p>Alex Smith changes course and gives reception a new phone number. Separate copies have not all been updated.</p>
-<div class="systems-grid systems-disconnected">
-<article class="lesson-card">
-<h3>Attendance system</h3>
-<p><strong>Alex Smith · 82% attendance</strong><br>Still assigned to the old course.</p>
-</article>
-<article class="lesson-card">
-<h3>Student records</h3>
-<p><strong>Alex Smith · course changed</strong><br>Course updated yesterday.</p>
-</article>
-<article class="lesson-card">
-<h3>Reception spreadsheet</h3>
-<p><strong>Alex Smith · old phone number</strong><br>The new number is still in an email.</p>
-</article>
-<article class="lesson-card">
-<h3>Finance/admin</h3>
-<p><strong>Alex Smith · another copy</strong><br>Staff must check which details are current.</p>
-</article>
-</div>
-<ol class="systems-flow">
-<li>The same student appears in several places</li>
-<li>Staff repeat updates manually</li>
-<li>Copies disagree; staff must check</li>
-</ol>
-<p class="systems-note">Separate systems can create duplication and inconsistency. Alex may receive the wrong message or have to repeat a correction.</p>
+<p>Alex changed course and supplied a new phone number. The copies disagree.</p><div class="college-map is-disconnected"><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>Which copy can staff trust?</strong><span>New phone still in an email</span></div><div class="college-endpoint endpoint-0"><strong>Student records</strong><span>Alex · <b>NEW course</b></span></div><div class="college-endpoint endpoint-1"><strong>Attendance</strong><span>Alex · <b>OLD course</b></span></div><div class="college-endpoint endpoint-2"><strong>Reception copy</strong><span>Alex · <b>OLD phone</b></span></div><div class="college-endpoint endpoint-3"><strong>Finance/admin</strong><span>Alex · another copy</span></div></div><div class="copy-consequences">
+<details class="systems-reveal" name="copy-consequence"><summary>1 · What is repeated?</summary><p>↳ The same facts are duplicated across departments.</p></details>
+<details class="systems-reveal" name="copy-consequence"><summary>2 · What must staff do?</summary><p>↳ Repeat each update in several places.</p></details>
+<details class="systems-reveal" name="copy-consequence"><summary>3 · What can go wrong?</summary><p>↳ Miss an update and copies become inconsistent.</p></details>
+<details class="systems-reveal" name="copy-consequence"><summary>4 · What happens next?</summary><p>↳ Staff must check which copy to trust.</p></details>
+</div><p class="systems-note">Alex may receive the wrong message or have to repeat a correction.</p>
 </section>
 <section id="shared-data" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">03 · Data across multiple systems</p>
 <h2>Shared and connected data</h2>
-<p>Reception checks Alex’s new details and updates the student record.</p>
+<p>Reception verifies Alex’s details and updates the record once.</p><div class="college-map "><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>Current shared information</strong><span>Alex · new course / verified contact</span></div><div class="college-endpoint endpoint-0"><strong>Reception</strong><span>✓ verified contact update</span></div><div class="college-endpoint endpoint-1"><strong>Attendance / teacher</strong><span>✓ current course</span></div><div class="college-endpoint endpoint-2"><strong>Reporting</strong><span>✓ correct course totals</span></div><div class="college-endpoint endpoint-3"><strong>Finance/admin</strong><span>✓ relevant current details</span></div></div><p class="systems-note">Only relevant information reaches each authorised system.</p><p>Connections must carry updates reliably.</p>
+<details class="systems-revision"><summary>More explanation and examples</summary><p>Reception checks Alex’s new details and updates the student record.</p>
 <div class="systems-shared">
 <div class="systems-source"><strong>Current shared student information</strong><br>Alex Smith · course and contact details updated</div>
 <p class="systems-distribution">↓ Relevant information available to authorised systems ↓</p>
@@ -171,40 +163,19 @@
 </div>
 </div>
 <p class="systems-note">Potential gains: current information, less duplicate entry, easier collaboration and wider access.</p>
-<p>Updates must reach the relevant systems reliably. Sharing does not mean every system receives every field, or that all systems use one physical database. Connections also create dependencies, costs and security risks.</p>
+<p>Updates must reach the relevant systems reliably. Sharing does not mean every system receives every field, or that all systems use one physical database. Connections also create dependencies, costs and security risks.</p></details>
 </section><template data-teacher-divider>
 <h2>The five implications</h2></template>
 <section id="implications" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">04 · Data across multiple systems</p>
 <h2>Five questions to ask</h2>
-<div class="systems-grid ">
-<article class="lesson-card">
-<h3>Access</h3>
-<p>Who needs to reach the data, and from where?</p>
-</article>
-<article class="lesson-card">
-<h3>Cost</h3>
-<p>What will it cost to introduce and operate?</p>
-</article>
-<article class="lesson-card">
-<h3>Implementation</h3>
-<p>How do we move safely from the old system to the new one?</p>
-</article>
-<article class="lesson-card">
-<h3>Productivity</h3>
-<p>Will it make work faster and easier, or create friction?</p>
-</article>
-<article class="lesson-card">
-<h3>Security</h3>
-<p>How do we stop unauthorised access, alteration or loss?</p>
-</article>
-</div>
-<p class="systems-note">Use these questions to explain effects on people and the college. A decision can help one factor while making another harder.</p>
+<div class="systems-compass"><div class="compass-core">Connected college<br><strong>Shared student information</strong></div><div><strong>ACCESS</strong><span>Who needs it?</span></div><div><strong>COST</strong><span>What will it require?</span></div><div><strong>IMPLEMENTATION</strong><span>How do we change safely?</span></div><div><strong>PRODUCTIVITY</strong><span>Does it improve work?</span></div><div><strong>SECURITY</strong><span>What must be protected?</span></div></div>
 </section>
 <section id="access" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">05 · Data across multiple systems</p>
 <h2>Access: the right data for the right people</h2>
-<div class="systems-grid ">
+<div class="systems-switch"><div class="systems-before"><p class="systems-label">BEFORE · wait for another department</p><ol class="systems-process"><li>Teacher needs Alex’s record</li><li>Request to reception</li><li>Wait for a current copy</li></ol></div><details class="systems-reveal"><summary>Connect authorised access</summary><p class="systems-label">AFTER · current information where it is needed</p><div class="college-map focus-access"><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>Current student information</strong><span>Relevant fields only</span></div><div class="college-endpoint endpoint-0"><strong>Reception</strong><span>✓ verified contact update</span></div><div class="college-endpoint endpoint-1"><strong>Attendance / teacher</strong><span>✓ current course</span></div><div class="college-endpoint endpoint-2"><strong>Reporting</strong><span>✓ correct course totals</span></div><div class="college-endpoint endpoint-3"><strong>Finance/admin</strong><span>✓ relevant current details</span></div></div></details></div><p class="systems-note">Connected systems can make current information available where authorised users need it.</p>
+<details class="systems-revision"><summary>More explanation and examples</summary><div class="systems-grid ">
 <article class="lesson-card">
 <h3>Potential benefit</h3>
 <p>Authorised staff in different departments can use current records. Remote access can reduce waiting and help staff collaborate.</p>
@@ -218,34 +189,22 @@
 <p>If the shared service is unavailable, several departments may lose access at once. Staff need an agreed fallback for essential work.</p>
 </article>
 </div>
-<p class="systems-note">Better access means making the right information available to the right people—not letting everyone see everything.</p>
+<p class="systems-note">Better access means making the right information available to the right people—not letting everyone see everything.</p></details>
 </section>
 <section id="permissions" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">06 · Data across multiple systems</p>
 <h2>Access permissions in our college</h2>
-<p>Example permissions depend on the job and the information needed. Viewing a record does not automatically allow editing or deleting it.</p>
-<div class="systems-table-wrap">
-<table><caption>Illustrative permissions · a manager does not automatically see every record</caption>
-<thead>
-<tr><th scope="col">Role</th><th scope="col">Attendance</th><th scope="col">Student details</th><th scope="col">Unrelated staff payroll</th>
-</tr>
-</thead>
-<tbody>
-<tr><th scope="row">Teacher</th><td>View and enter own classes</td><td>View relevant contacts where needed</td><td>No access</td>
-</tr>
-<tr><th scope="row">Reception</th><td>View where needed for enquiries</td><td>Update contacts and enrolment</td><td>No access</td>
-</tr>
-<tr><th scope="row">Manager</th><td>View broader reports</td><td>View details needed for their role</td><td>No automatic access</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="systems-note">Access ≠ unrestricted access. Deleting records needs separate authorisation. Safeguarding details require specific need-based access.</p>
+<p>Illustrative roles: access is limited to relevant students and duties.</p><div class="systems-table-wrap"><table class="permissions-matrix"><caption>VIEW · read only &nbsp; / &nbsp; EDIT · view and update &nbsp; / &nbsp; NO ACCESS</caption><thead><tr><th scope="col">Role</th><th scope="col">Attendance</th><th scope="col">Contact details</th><th scope="col">Safeguarding</th><th scope="col">Staff payroll</th></tr></thead><tbody><tr><th scope="row">Teacher</th><td>EDIT</td><td>VIEW</td><td>NO ACCESS</td><td>NO ACCESS</td></tr><tr><th scope="row">Reception</th><td>VIEW</td><td>EDIT</td><td>NO ACCESS</td><td>NO ACCESS</td></tr><tr><th scope="row">Manager</th><td>VIEW</td><td>VIEW</td><td>NO ACCESS</td><td>NO ACCESS</td></tr></tbody></table></div><p class="systems-note">Access should match the user’s job and need.</p><p>Teacher editing covers their own classes. Safeguarding requires separately authorised staff; a manager’s title alone grants no access. Deletion needs separate permission.</p>
+</section>
+<section id="availability" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">07 · Data across multiple systems</p><h2>Shared access creates a dependency</h2>
+<div class="systems-switch"><div class="systems-before"><div class="college-map "><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>✓ Shared service available</strong><span>Current Alex record</span></div><div class="college-endpoint endpoint-0"><strong>Reception</strong><span>✓ verified contact update</span></div><div class="college-endpoint endpoint-1"><strong>Attendance / teacher</strong><span>✓ current course</span></div><div class="college-endpoint endpoint-2"><strong>Reporting</strong><span>✓ correct course totals</span></div><div class="college-endpoint endpoint-3"><strong>Finance/admin</strong><span>✓ relevant current details</span></div></div></div><details class="systems-reveal"><summary>The shared service becomes unavailable</summary><div class="college-map is-outage"><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>✕ Service unavailable</strong><span>Current record cannot be reached</span></div><div class="college-endpoint endpoint-0"><strong>Reception</strong><span>✕ update delayed</span></div><div class="college-endpoint endpoint-1"><strong>Teacher</strong><span>✕ current register unavailable</span></div><div class="college-endpoint endpoint-2"><strong>Manager</strong><span>✕ report delayed</span></div><div class="college-endpoint endpoint-3"><strong>Finance/admin</strong><span>✕ enquiry delayed</span></div></div><p class="systems-note">Several departments lose access together. Agree a fallback for essential work.</p></details></div>
 </section>
 <section id="cost" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">07 · Data across multiple systems</p>
+<p class="eyebrow">08 · Data across multiple systems</p>
 <h2>Cost: more than the purchase price</h2>
-<div class="systems-grid ">
+<p class="systems-lead">“The software costs £20,000. Is that the real cost?”</p><div class="systems-ledger"><p class="purchase"><strong>£20,000</strong><span>Illustrative software/licence price</span></p><details class="systems-reveal"><summary>+ Getting it ready</summary><p>+ migration &nbsp; + integration &nbsp; + testing &nbsp; + staff training</p><details class="systems-reveal"><summary>+ Keeping it running</summary><p>+ hosting/subscriptions &nbsp; + support &nbsp; + maintenance/security</p><p class="systems-note">Whole-life cost = purchase + introduction + ongoing operation</p></details></details></div><details class="systems-reveal"><summary>Possible savings over time</summary><p class="systems-impact">Less duplicate work → less manual processing → quicker reporting</p><p>Savings depend on reliable sharing; they are not guaranteed.</p></details>
+<details class="systems-revision"><summary>More explanation and examples</summary><div class="systems-grid ">
 <article class="lesson-card">
 <h3>Initial costs</h3>
 <p>Infrastructure and software/licences; setup and integration; data migration, testing and staff training.</p>
@@ -265,27 +224,18 @@
 <li>Review savings over time</li>
 </ol>
 <p class="systems-note">Cheap to buy does not necessarily mean cheap to operate. Training uses staff time as well as money.</p>
-<p>As in <a href="utility-application-and-open-source-software.html?context=btec-level-3-unit-2">software choice</a>, judge the whole cost of use. Savings depend on how well the new system works.</p>
+<p>As in <a href="utility-application-and-open-source-software.html?context=btec-level-3-unit-2">software choice</a>, judge the whole cost of use. Savings depend on how well the new system works.</p></details>
 </section>
 <section id="implementation" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">08 · Data across multiple systems</p>
+<p class="eyebrow">09 · Data across multiple systems</p>
 <h2>What does implementation mean?</h2>
-<p>Implementation is the process of moving from the existing system to the new one safely and effectively.</p>
-<ol class="systems-flow">
-<li><strong>Plan</strong><br>Agree needs and responsibilities</li>
-<li><strong>Prepare/migrate</strong><br>Clean and move records</li>
-<li><strong>Connect/integrate</strong><br>Make systems work together</li>
-<li><strong>Test</strong><br>Check records and workflows</li>
-<li><strong>Train</strong><br>Practise staff tasks</li>
-<li><strong>Changeover</strong><br>Move into live use</li>
-<li><strong>Support/fix</strong><br>Resolve early problems</li>
-</ol>
-<p class="systems-note">Installing software is only part of implementation. Some activities repeat or overlap as problems are found.</p>
+<p class="systems-lead">Old working setup → managed change → new system in normal use</p><ol class="systems-timeline"><li><strong>PLAN</strong><span>Needs and responsibilities</span></li><li><strong>PREPARE / MIGRATE</strong><span>Alex’s source record → new fields</span></li><li><strong>CONNECT</strong><span>Attendance ↔ reporting</span></li><li><strong>TEST</strong><span>Source record = migrated record?</span></li><li><strong>TRAIN</strong><span>Staff practise real tasks</span></li><li><strong>CHANGEOVER</strong><span>Move into live use</span></li><li><strong>SUPPORT</strong><span>Resolve problems in normal use</span></li></ol><p class="systems-note">Implementation is the whole move, not merely installation. Activities can overlap or repeat.</p>
 </section>
 <section id="implementation-risks" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">09 · Data across multiple systems</p>
+<p class="eyebrow">10 · Data across multiple systems</p>
 <h2>What can go wrong during implementation?</h2>
-<div class="systems-grid ">
+<p>Alex’s record moves to the new system. What went wrong?</p><div class="migration-example"><dl><dt>Source record · Alex Smith</dt><dd><strong>Date of birth:</strong> 14/02/2008</dd><dd>Course: Computing</dd></dl><span class="migration-arrow">MIGRATE →</span><dl><dt>New record · Alex Smith</dt><dd><strong>Course start date:</strong> 14/02/2008</dd><dd>Course: Computing</dd></dl></div><details class="systems-reveal"><summary>Check the field mapping</summary><p class="systems-lead">Date of birth went into the wrong field.</p><ol class="systems-process"><li>Test a migrated sample</li><li>Compare with the source</li><li>Fix mapping before rollout</li></ol><p>A valid date format does not prove the value belongs in that field.</p></details>
+<details class="systems-revision"><summary>More explanation and examples</summary><div class="systems-grid ">
 <article class="lesson-card">
 <h3>Fields are mapped incorrectly</h3>
 <p>Dates of birth appear in the wrong field.<br><strong>Reduce the risk:</strong> validate formats and compare migrated samples with source records.</p>
@@ -307,12 +257,13 @@
 <p>The new system is unavailable during registration.<br><strong>Reduce the risk:</strong> trial a phased rollout, choose a suitable time and prepare a fallback and protected copy of the original data.</p>
 </article>
 </div>
-<p class="systems-note">A value can pass validation yet still be wrong. Compare migrated data with its source; do not rely on format checks alone.</p>
+<p class="systems-note">A value can pass validation yet still be wrong. Compare migrated data with its source; do not rely on format checks alone.</p></details>
 </section>
 <section id="productivity" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">10 · Data across multiple systems</p>
+<p class="eyebrow">11 · Data across multiple systems</p>
 <h2>Productivity: remove repeated work</h2>
-<div class="systems-grid ">
+<div class="systems-switch"><div class="systems-before"><p class="systems-label">BEFORE · repeated human effort</p><ol class="systems-process"><li><strong>UPDATE</strong><br>Reception changes Alex’s address</li><li><strong>UPDATE</strong><br>Teacher changes another copy</li><li><strong>UPDATE</strong><br>Finance changes another copy</li></ol><p>Manager may still see old details.</p></div><details class="systems-reveal"><summary>Use reliable sharing</summary><p class="systems-label">AFTER · UPDATE ONCE</p><div class="college-map "><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>Alex’s address updated once</strong><span>Relevant current information reused</span></div><div class="college-endpoint endpoint-0"><strong>Reception</strong><span>✓ address verified</span></div><div class="college-endpoint endpoint-1"><strong>Attendance / teacher</strong><span>✓ authorised contact details</span></div><div class="college-endpoint endpoint-2"><strong>Reporting</strong><span>✓ current source information</span></div><div class="college-endpoint endpoint-3"><strong>Finance/admin</strong><span>✓ required contact details</span></div></div><p class="systems-note">Less duplicate entry · fewer inconsistencies · quicker reporting</p></details></div>
+<details class="systems-revision"><summary>More explanation and examples</summary><div class="systems-grid ">
 <article class="lesson-card">
 <h3>Before · separate copies</h3>
 <div>
@@ -345,12 +296,17 @@
 <p>If systems disagree, staff spend time checking and correcting records. An outage or confusing interface can interrupt several jobs.</p>
 </article>
 </div>
-<p class="systems-note">Connected systems improve productivity only if sharing is reliable and the system is well implemented. Initial training can slow work before longer-term gains appear.</p>
+<p class="systems-note">Connected systems improve productivity only if sharing is reliable and the system is well implemented. Initial training can slow work before longer-term gains appear.</p></details>
+</section>
+<section id="sync-failure" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">12 · Data across multiple systems</p><h2>When poor integration creates extra work</h2>
+<div class="college-map is-outage"><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>✕ Updates fail to synchronise</strong><span>Alex’s address changes</span></div><div class="college-endpoint endpoint-0"><strong>Reception</strong><span>✓ new address</span></div><div class="college-endpoint endpoint-1"><strong>Teacher view</strong><span>✕ old address</span></div><div class="college-endpoint endpoint-2"><strong>Reporting</strong><span>✕ stale information</span></div><div class="college-endpoint endpoint-3"><strong>Finance/admin</strong><span>✕ old address</span></div></div><details class="systems-reveal"><summary>What happens to staff time?</summary><ol class="systems-process"><li>Compare copies manually</li><li>Correct records again</li><li>Less time for student support</li></ol></details><p class="systems-note">Connected systems can improve productivity. Poor integration can create extra work.</p>
 </section>
 <section id="security" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">11 · Data across multiple systems</p>
+<p class="eyebrow">13 · Data across multiple systems</p>
 <h2>Security: more routes need protection</h2>
-<div class="systems-grid ">
+<div class="systems-switch"><div class="systems-before"><ol class="systems-process"><li><strong>One office system</strong></li><li><strong>Alex’s student record</strong></li></ol><p>Even one system needs protection.</p></div><details class="systems-reveal"><summary>Expand the access routes</summary><div class="college-map "><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>Student information</strong><span>More ways to reach it</span></div><div class="college-endpoint endpoint-0"><strong>Staff laptops</strong><span>Authorised staff</span></div><div class="college-endpoint endpoint-1"><strong>Classroom PCs</strong><span>Teacher view</span></div><div class="college-endpoint endpoint-2"><strong>Connected applications</strong><span>Relevant shared fields</span></div><div class="college-endpoint endpoint-3"><strong>Remote / mobile devices</strong><span>Authorised access</span></div></div><p class="systems-note">More legitimate access routes → more routes that need protection.</p></details></div>
+<details class="systems-revision"><summary>More explanation and examples</summary><div class="systems-grid ">
 <article class="lesson-card">
 <h3>Before</h3>
 <p>One isolated system offers a limited route to a record. It still needs protection against misuse or loss.</p>
@@ -379,12 +335,17 @@
 <p>Logs support checking who accessed or changed information; they do not prevent every misuse.</p>
 </article>
 </div>
-<p class="systems-note">Connection can also improve control through consistent permissions and monitoring. Security depends on the implementation, not simply the number of systems.</p>
+<p class="systems-note">Connection can also improve control through consistent permissions and monitoring. Security depends on the implementation, not simply the number of systems.</p></details>
+</section>
+<section id="security-controls" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">14 · Data across multiple systems</p><h2>Protect each route</h2>
+<div class="college-map is-protected"><svg class="college-links" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M450 60V300 M145 180H755"/></svg><div class="college-record"><strong>Student information</strong><span>Identity + role checks before access</span></div><div class="college-endpoint endpoint-0"><strong>Staff laptops</strong><span>Authorised staff</span></div><div class="college-endpoint endpoint-1"><strong>Classroom PCs</strong><span>Teacher view</span></div><div class="college-endpoint endpoint-2"><strong>Connected applications</strong><span>Relevant shared fields</span></div><div class="college-endpoint endpoint-3"><strong>Remote / mobile devices</strong><span>Authorised access</span></div></div><div class="security-layers"><details class="systems-reveal" name="security-controls"><summary>SIGN IN → authentication</summary><p>Check the identity attempting to use any route.</p></details><details class="systems-reveal" name="security-controls"><summary>ROLE → permissions</summary><p>Limit the fields and actions available through each route.</p></details><details class="systems-reveal" name="security-controls"><summary>CONNECTION → encryption</summary><p>Protect data travelling between devices and systems.</p></details><details class="systems-reveal" name="security-controls"><summary>DEVICE → updates / security</summary><p>Protect the endpoints and networks used to reach the record.</p></details><details class="systems-reveal" name="security-controls"><summary>ACTIVITY → logging</summary><p>Record access and changes for monitoring and investigation.</p></details></div><details class="systems-reveal"><summary>Can connecting systems improve security?</summary><p class="systems-note">Consistent permissions, central monitoring and policy enforcement can improve control. Security depends on design and implementation.</p></details>
 </section>
 <section id="sensitivity" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">12 · Data across multiple systems</p>
+<p class="eyebrow">15 · Data across multiple systems</p>
 <h2>Why sensitivity matters</h2>
-<div class="systems-grid ">
+<ol class="sensitivity-scale"><li><strong>PUBLIC</strong><span>Course timetable</span></li><li><strong>PERSONAL</strong><span>Phone / address</span></li><li><strong>HIGHLY SENSITIVE</strong><span>Safeguarding / medical information</span></li></ol><p class="systems-label">↓ Increasing potential harm from disclosure, alteration or loss</p><details class="systems-reveal"><summary>Why does the impact change?</summary><p>Exposed contacts affect privacy; exposed safeguarding information could put Alex at serious risk. Changed or missing information can prevent support.</p></details><p class="systems-note">Public does not mean unprotected: altering a timetable can still send students to the wrong lesson.</p>
+<details class="systems-revision"><summary>More explanation and examples</summary><div class="systems-grid ">
 <article class="lesson-card">
 <h3>Lower sensitivity · public timetable</h3>
 <p>A genuinely public course timetable is intended to be shared. Altering it could still send students to the wrong lesson.</p>
@@ -398,69 +359,24 @@
 <p>Unauthorised disclosure could expose a student to serious harm. Alteration or loss may prevent appropriate support.</p>
 </article>
 </div>
-<p class="systems-note">The more sensitive the data, the greater the potential impact of unauthorised access, alteration or loss. Limit access to the information each role actually needs.</p>
+<p class="systems-note">The more sensitive the data, the greater the potential impact of unauthorised access, alteration or loss. Limit access to the information each role actually needs.</p></details>
 </section><template data-teacher-divider>
-<h2>Making a judgement</h2></template>
+<h2>Balancing the trade-offs</h2></template>
 <section id="connected-factors" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">13 · Data across multiple systems</p>
+<p class="eyebrow">16 · Data across multiple systems</p>
 <h2>The five factors affect each other</h2>
-<div class="systems-source"><strong>Decision: enable remote staff access</strong><br>Staff can use relevant student information away from the college.</div>
-<div class="systems-grid ">
-<article class="lesson-card">
-<h3>Access · benefit</h3>
-<p>Staff can work from more locations.</p>
-</article>
-<article class="lesson-card">
-<h3>Productivity · potential benefit</h3>
-<p>Less waiting for office-only systems.</p>
-</article>
-<article class="lesson-card">
-<h3>Security · added responsibility</h3>
-<p>More devices and connections need protection.</p>
-</article>
-<article class="lesson-card">
-<h3>Cost · additional resources</h3>
-<p>Secure access and support may need funding.</p>
-</article>
-<article class="lesson-card">
-<h3>Implementation · preparation</h3>
-<p>Setup, testing and staff training are required.</p>
-</article>
-</div>
-<p class="systems-note">One decision can improve one factor while making another more difficult. Extra spending on protection may make wider access acceptable.</p>
+<div class="systems-decision"><strong>Decision: allow authorised remote work</strong><span>Alex’s relevant record can be used away from college.</span></div><div class="systems-consequences"><details class="systems-reveal" name="remote-consequences"><summary>ACCESS → more locations</summary><p class="systems-impact">↳ Staff can reach current information outside the office.</p></details><details class="systems-reveal" name="remote-consequences"><summary>PRODUCTIVITY → potential gain</summary><p class="systems-impact">↳ Less waiting for office-only systems.</p></details><details class="systems-reveal" name="remote-consequences"><summary>SECURITY → more responsibility</summary><p class="systems-impact">↳ More devices and connections need protection.</p></details><details class="systems-reveal" name="remote-consequences"><summary>COST → possible extra spending</summary><p class="systems-impact">↳ Secure access and support need resources.</p></details><details class="systems-reveal" name="remote-consequences"><summary>IMPLEMENTATION → preparation</summary><p class="systems-impact">↳ Set up, test and train before extending access.</p></details></div><p class="systems-note">One decision affects several factors. Extra protection can make wider access acceptable.</p>
 </section>
 <section id="shared-trade-off" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">14 · Data across multiple systems</p>
+<p class="eyebrow">17 · Data across multiple systems</p>
 <h2>Another trade-off: replace separate records</h2>
-<p>The college considers a shared student-information platform instead of departmental copies.</p>
-<div class="systems-grid ">
-<article class="lesson-card">
-<h3>Access · potential gain</h3>
-<p>Current information can be available across relevant departments.</p>
-</article>
-<article class="lesson-card">
-<h3>Productivity · potential gain</h3>
-<p>Fewer duplicate updates can save staff time.</p>
-</article>
-<article class="lesson-card">
-<h3>Implementation · challenge</h3>
-<p>Migration, testing and training require a managed changeover.</p>
-</article>
-<article class="lesson-card">
-<h3>Cost · time matters</h3>
-<p>Setup costs occur before any savings; ongoing support remains necessary.</p>
-</article>
-<article class="lesson-card">
-<h3>Security and availability · mixed</h3>
-<p>Consistent permissions may improve control. A compromise or shared-service outage can affect many users.</p>
-</article>
-</div>
-<p class="systems-note">These are possible effects, not automatic plus or minus scores. A well-managed changeover can prevent expensive disruption later.</p>
+<ol class="systems-process"><li>Departmental copies</li><li>Shared student-information platform</li></ol><p class="systems-lead">Which two factors could improve? Which two could become harder?</p><details class="systems-reveal"><summary>Compare possible effects</summary><p><strong>Access + productivity:</strong> current records and fewer repeated updates.</p><p><strong>Implementation + cost:</strong> migration, training and support require resources before savings appear.</p></details><details class="systems-reveal"><summary>What about security?</summary><p>Consistent permissions can improve control; a compromise or shared-service outage may affect many users.</p></details>
 </section>
 <section id="worked-college" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">15 · Data across multiple systems</p>
+<p class="eyebrow">18 · Data across multiple systems</p>
 <h2>Worked college scenario</h2>
-<p>The college wants to replace separate spreadsheets and systems with a shared student-information platform.</p>
+<ol class="systems-process"><li>Separate departmental copies</li><li>One reliable update → relevant current information</li></ol><div class="worked-steps"><details class="systems-reveal" name="college-decision"><summary>1 · Access / productivity</summary><p>Current contacts → less duplicate entry → staff reach Alex’s family sooner.</p></details><details class="systems-reveal" name="college-decision"><summary>2 · Implementation / resources</summary><p>Check Alex’s migrated details → test attendance-to-report flow → train staff. Fund migration and ongoing support.</p></details><details class="systems-reveal" name="college-decision"><summary>3 · Security</summary><p>Relevant fields only → appropriate permissions → protected devices.</p></details><details class="systems-reveal" name="college-decision"><summary>4 · Conditional judgement</summary><blockquote>The change is likely to improve access and productivity <strong>if</strong> migration is reliable, access is controlled, and staff training and support are properly funded.</blockquote></details></div><p class="systems-note">The judgement depends on conditions.</p>
+<details class="systems-revision"><summary>More explanation and examples</summary><p>The college wants to replace separate spreadsheets and systems with a shared student-information platform.</p>
 <div class="systems-grid ">
 <article class="lesson-card">
 <h3>Access</h3>
@@ -483,34 +399,34 @@
 <p>Apply appropriate permissions and protect remote devices so convenience does not expose sensitive records.</p>
 </article>
 </div><blockquote class="systems-note">The shared platform is likely to improve access and productivity because staff can use current records instead of checking separate copies. However, migration errors could disrupt registers, and wider access requires protection. Overall, the benefits are likely to outweigh the drawbacks if the college funds ongoing support, tests migration and trains staff before rollout.</blockquote>
-<p>The judgement is conditional: it explains what must go well for the benefits to be realised.</p>
+<p>The judgement is conditional: it explains what must go well for the benefits to be realised.</p></details>
 </section>
 <section id="impact-explorer" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">16 · Data across multiple systems</p>
+<p class="eyebrow">19 · Data across multiple systems</p>
 <h2>Impact Explorer</h2>
 <p>The college introduces a shared student-information system accessible from every classroom and authorised staff device.</p>
 <div class="impact-explorer" data-impact-explorer data-no-slide-advance>
 <p data-impact-progress>Consequence 1 of 6</p>
 <h3 data-impact-statement tabindex="-1">Teachers can see current attendance immediately, without waiting for the office.</h3>
-<p>Select one or more relevant factors, then describe the overall impact in this statement. Other links may also be reasonable if you explain them.</p>
+<p class="systems-revision-text">Select one or more relevant factors, then describe the overall impact in this statement. Other links may also be reasonable if you explain them.</p>
 <form data-impact-form>
 <fieldset>
-<legend>Which factors are directly affected?</legend>
+<legend>Which factors are directly affected? Select one or more.</legend>
 <div class="impact-factor-grid">
 <label class="quiz-answer impact-factor">
-<input type="checkbox" name="factor" value="access"><span><strong>Access</strong><br>Who needs to reach the data, and from where?</span>
+<input type="checkbox" name="factor" value="access"><span><strong>Access</strong><span class="systems-factor-hint">Who needs to reach the data, and from where?</span></span>
 </label>
 <label class="quiz-answer impact-factor">
-<input type="checkbox" name="factor" value="cost"><span><strong>Cost</strong><br>What will it cost to introduce and operate?</span>
+<input type="checkbox" name="factor" value="cost"><span><strong>Cost</strong><span class="systems-factor-hint">What will it cost to introduce and operate?</span></span>
 </label>
 <label class="quiz-answer impact-factor">
-<input type="checkbox" name="factor" value="implementation"><span><strong>Implementation</strong><br>How do we move safely from the old system to the new one?</span>
+<input type="checkbox" name="factor" value="implementation"><span><strong>Implementation</strong><span class="systems-factor-hint">How do we move safely from the old system to the new one?</span></span>
 </label>
 <label class="quiz-answer impact-factor">
-<input type="checkbox" name="factor" value="productivity"><span><strong>Productivity</strong><br>Will it make work faster and easier, or create friction?</span>
+<input type="checkbox" name="factor" value="productivity"><span><strong>Productivity</strong><span class="systems-factor-hint">Will it make work faster and easier, or create friction?</span></span>
 </label>
 <label class="quiz-answer impact-factor">
-<input type="checkbox" name="factor" value="security"><span><strong>Security</strong><br>How do we stop unauthorised access, alteration or loss?</span>
+<input type="checkbox" name="factor" value="security"><span><strong>Security</strong><span class="systems-factor-hint">How do we stop unauthorised access, alteration or loss?</span></span>
 </label>
 </div>
 </fieldset>
@@ -543,9 +459,10 @@
 <p>The Impact Explorer needs JavaScript. Discuss the first consequence above using the five factors.</p></noscript>
 </section>
 <section id="balanced-judgement" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">17 · Data across multiple systems</p>
+<p class="eyebrow">20 · Data across multiple systems</p>
 <h2>How to write a balanced answer</h2>
-<ol class="systems-flow">
+<p>Scenario: the college replaces separate copies with shared records.</p><ol class="answer-build"><li><strong>BENEFIT</strong> Shared records improve access…</li><li><details class="systems-reveal"><summary>IMPACT</summary><p>…so staff can use current details without waiting for another department.</p></details></li><li><details class="systems-reveal"><summary>TRADE-OFF</summary><p>However, unreliable migration could put the wrong course on a register.</p></details></li><li><details class="systems-reveal"><summary>APPLICATION</summary><p>For Alex, this could mean appearing on the wrong class list.</p></details></li><li><details class="systems-reveal"><summary>JUDGEMENT</summary><p>Overall, the change is worthwhile if migration is tested and staff are trained.</p></details></li></ol><p class="systems-note">“Overall, it is good” needs a reason and a condition.</p>
+<details class="systems-revision"><summary>More explanation and examples</summary><ol class="systems-flow">
 <li><strong>1 · Identify a benefit</strong><br>Shared records improve access because…</li>
 <li><strong>2 · Explain the impact</strong><br>This means staff can…</li>
 <li><strong>3 · Add a trade-off</strong><br>However…</li>
@@ -562,41 +479,22 @@
 <p>“Overall, the shared system is likely to improve productivity if permissions, training and migration are managed effectively.”<br>This identifies what the outcome depends on.</p>
 </article>
 </div>
-<p class="systems-note">Weigh the most important effects for the scenario. Five definitions without applied explanations do not make a balanced judgement.</p>
+<p class="systems-note">Weigh the most important effects for the scenario. Five definitions without applied explanations do not make a balanced judgement.</p></details>
 </section><template data-teacher-divider>
 <h2>Practice</h2></template>
 <section id="mistakes" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">18 · Data across multiple systems</p>
+<p class="eyebrow">21 · Data across multiple systems</p>
 <h2>Common exam mistakes</h2>
-<div class="systems-grid ">
-<article class="lesson-card">
-<h3>“Everyone can access everything”</h3>
-<p>Shared access should be controlled by role and need.</p>
-</article>
-<article class="lesson-card">
-<h3>“Cost means purchase price”</h3>
-<p>Include setup, subscriptions, support, maintenance and training time.</p>
-</article>
-<article class="lesson-card">
-<h3>“Implementation means installation”</h3>
-<p>It also includes migration, integration, testing, training and changeover.</p>
-</article>
-<article class="lesson-card">
-<h3>“Connections always improve productivity”</h3>
-<p>Poor reliability or integration can create extra checking and delay.</p>
-</article>
-<article class="lesson-card">
-<h3>“Security only means passwords”</h3>
-<p>Permissions, encryption, logging, updates and device/network protection also matter.</p>
-</article>
-<article class="lesson-card">
-<h3>Listing all five factors</h3>
-<p>Explain effects on this college, its staff and its students, then weigh them.</p>
-</article>
-</div>
+<div class="systems-mistake"><h3>“Everyone can access everything”</h3><details class="systems-reveal" name="mistakes-0"><summary>Reveal correction</summary><p>Shared access should be controlled by role and need.</p></details></div>
+<div class="systems-mistake"><h3>“Cost means purchase price”</h3><details class="systems-reveal" name="mistakes-0"><summary>Reveal correction</summary><p>Include setup, subscriptions, support, maintenance and training time.</p></details></div>
+<div class="systems-mistake"><h3>“Implementation means installation”</h3><details class="systems-reveal" name="mistakes-0"><summary>Reveal correction</summary><p>It also includes migration, integration, testing, training and changeover.</p></details></div>
+<div data-slide-break></div>
+<div class="systems-mistake"><h3>“Connections always improve productivity”</h3><details class="systems-reveal" name="mistakes-1"><summary>Reveal correction</summary><p>Poor reliability or integration can create extra checking and delay.</p></details></div>
+<div class="systems-mistake"><h3>“Security only means passwords”</h3><details class="systems-reveal" name="mistakes-1"><summary>Reveal correction</summary><p>Permissions, encryption, logging, updates and device/network protection also matter.</p></details></div>
+<div class="systems-mistake"><h3>Listing all five factors</h3><details class="systems-reveal" name="mistakes-1"><summary>Reveal correction</summary><p>Explain effects on this college, its staff and its students, then weigh them.</p></details></div>
 </section>
 <section id="quiz" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">19 · Data across multiple systems</p>
+<p class="eyebrow">22 · Data across multiple systems</p>
 <h2>Check your understanding</h2>
 <p>Answer all 12 questions, then check your score. Aim for 9 correct. Your choices and best score save in this browser.</p>
 <form id="lesson-quiz" class="quiz-form">
@@ -872,7 +770,7 @@
 </form>
 </section>
 <section id="exam-practice" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">20 · Data across multiple systems</p>
+<p class="eyebrow">23 · Data across multiple systems</p>
 <h2>Exam-style practice</h2>
 <p>Explain consequences for staff, students and the college. These are practice questions, not an official mark scheme.</p>
 <p class="exam-response-note">Draft answers save automatically in this browser.</p>
