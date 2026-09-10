@@ -87,6 +87,7 @@ export function initProcessingTools(defaultRecords, root = document) {
         } else if (kind === 'sorting') {
           const sorted = sortRecords(defaultRecords, form.elements.field.value, form.elements.direction.value)
           const tbody = form.querySelector('tbody')
+          const oldTops = new Map([...tbody.rows].map(row => [row.cells[0].textContent, row.getBoundingClientRect().top]))
           tbody.replaceChildren(...sorted.map(record => {
             const row = document.createElement('tr')
             for (const value of [record.time, `${record.temperature}${validateTemperature(record.temperature) ? '' : ' · outside rule'}`]) {
@@ -94,6 +95,14 @@ export function initProcessingTools(defaultRecords, root = document) {
             }
             return row
           }))
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            for (const row of tbody.rows) {
+              const offset = oldTops.get(row.cells[0].textContent) - row.getBoundingClientRect().top
+              if (Number.isFinite(offset) && offset) row.animate([
+                { transform: `translateY(${offset}px)` }, { transform: 'translateY(0)' },
+              ], { duration: 650, easing: 'ease-in-out' })
+            }
+          }
           result.textContent = `Sorted by ${form.elements.field.value}, ${form.elements.direction.value}. Values and timestamp–temperature pairs are unchanged.`
         } else if (kind === 'analysis') {
           const next = [...form.querySelectorAll('[name="reading"]')].map(input => ({ time: input.dataset.time, temperature: parseValues(input.value)[0] }))

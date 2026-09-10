@@ -67,6 +67,11 @@ Before making major UI, content, or structure changes, read:
   the accessibility panel.
 - Lesson pages should support a teacher slide mode that reuses the same lesson
   sections and works well with swipe and tap navigation on touch displays.
+- Optional teacher-only lesson openers use `template[data-teacher-opener]` before
+  the first teaching section; title required, subtitle and 2–4 goals optional.
+  They start Teacher Slides and need no per-lesson runtime changes.
+- First-teaching slides should favour one main idea, visual transformations and
+  progressive disclosure; retain detailed revision supplements for students.
 - Teacher-only section dividers use inert `template[data-teacher-divider]`
   markup before a teaching section; see `docs/teacher_section_dividers.md`.
 - Small optional live-demo cues use `data-teacher-note` and appear only in

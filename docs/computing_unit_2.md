@@ -123,9 +123,11 @@ saved progress should be shown as needing a fresh attempt.
 
 ### A3 Data processing
 - [x] Collecting and processing data
-  - Expanded into 28 teaching sections with four teacher-only dividers, a recurring
-    editable weather dataset, six focused processing demonstrations and six paired
-    transformation activities. Quiz version 2: 14 questions, pass 10; five applied
+  - Refined into 40 teacher slides: 28 student sections, one optional shared opener,
+    four dividers, six separately presented transformations and three misconception
+    pairs. Visual flows and native reveals retain fuller student revision examples.
+    Retains the editable weather dataset, six focused processing demonstrations
+    and six paired transformation activities. Quiz version 2: 14 questions, pass 10; five applied
     written tasks. See `docs/data_processing_lesson.md`.
 - [x] Data across multiple systems
   - Expanded into 20 teaching sections around a college scenario, with four

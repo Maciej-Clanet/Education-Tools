@@ -38,3 +38,62 @@ The shared stylesheet hides the cue from student content, reading tools and
 printing, and reveals it in Teacher Slides without creating another slide.
 Keep cues brief. Do not apply `data-teacher-only` to notes: that attribute is
 reserved for generated full presentation sections.
+
+## Teacher-only lesson opener
+
+Use one `<template data-teacher-opener>` per lesson. Put it inside
+`<main class="lesson-main" data-role="lesson-main">`, immediately before the first
+`<section ... data-lesson-section>` (and before its divider template, if present).
+The shared `teacher-dividers.js` renderer inserts the opener ahead of all teaching
+sections/dividers. It uses the same deck, tools, keyboard/touch navigation and
+numbering as section dividers; there is no separate presentation implementation.
+
+Smallest valid declaration:
+
+```html
+<template data-teacher-opener>
+  <h2>Lesson title</h2>
+</template>
+```
+
+The title in `h2` is required. Add an optional `p` for a short subtitle/framing
+question, and an optional `ul` with 2–4 short `li` goals. The shell supplies the
+“Today” eyebrow. Do not add a second h1, IDs, scripts or `data-lesson-section`
+to the template. Keep the declaration to a title, subtitle and goals.
+
+```html
+<template data-teacher-opener>
+  <h2>Backup and Data Recovery</h2>
+  <p>How can we recover when data is lost?</p>
+  <ul>
+    <li>Explain why backups are needed</li>
+    <li>Compare full, incremental and differential backups</li>
+    <li>Choose suitable backup locations</li>
+    <li>Explain how data is restored</li>
+  </ul>
+</template>
+```
+
+No edits to shared JavaScript, CSS, slideshow registration, Jump To links or
+slide numbering are needed in lessons already using `initLessonPage` and
+`css/pages/lesson.css`. These templates are inert without JavaScript and remain
+hidden in student mode, read-aloud discovery and printing.
+
+Opening Teacher Slides always starts at the declared opener, including a reload
+with Teacher Slides saved as active. This intentionally takes precedence over a
+saved content hash for lessons with an opener. Lessons without an opener retain
+their existing nearest-section entry and hash restoration. Only the first opener
+declaration is used. Generated ID: `<first-section-id>--opener`; exiting on the
+opener, or visiting that hash in student mode, maps to the first student section.
+
+Quick check: normal page → no opener; Teacher Slides → opener first; Next → first
+content (or its divider, if declared); Previous → opener; Jump To → no opener link.
+
+## Lightweight teaching composition
+
+`data-slide-break` on an empty direct child of a lesson section splits that
+section into teacher slides while preserving all student content and live form
+nodes. Collecting and processing data uses it for six separate transformation
+questions and three pairs of misconceptions. Native `details`/`summary` reveals
+remain keyboard/touch accessible; its page-scoped `.data-revision` supplements
+retain broader independent-reading examples but are hidden in Teacher Slides.

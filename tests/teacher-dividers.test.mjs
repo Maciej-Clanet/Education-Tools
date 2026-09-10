@@ -45,3 +45,24 @@ test('deck includes dividers in order while preserving ordinary section chunks',
   assert.equal(slides[index + 1].section, after)
   assert.equal(studentSlideTarget(before, [before, divider, after]), before)
 })
+
+test('an opener is inserted before the first teaching section and maps back to it', () => {
+  const target = { id: 'intro', matches: () => true, before(value) { this.created = value } }
+  const template = { dataset: { teacherOpener: '' }, content: { cloneNode: () => node('H2') } }
+  const previousDocument = globalThis.document
+  globalThis.document = { createElement: tag => node(tag.toUpperCase()) }
+  try {
+    const root = { querySelectorAll: () => [template], querySelector: () => target }
+    initTeacherDividers(root)
+    const opener = target.created
+    assert.equal(opener.id, 'intro--opener')
+    assert.equal(opener.hidden, true)
+    assert.equal(opener.dataset.teacherOpenerSlide, '')
+    assert.equal(opener.dataset.lessonSection, undefined)
+    const { slides } = buildTeacherSlideDeck([opener, node()])
+    assert.equal(slides[0].section, opener)
+    assert.equal(studentSlideTarget(opener, [opener, target]), target)
+    initTeacherDividers(root)
+    assert.equal(target.created, opener)
+  } finally { globalThis.document = previousDocument }
+})

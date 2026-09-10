@@ -2534,3 +2534,18 @@ body.teacher-mode-active .teacher-tools-dock {
     animation: none;
   }
 }
+
+/* The opener is a variant of the shared presentation-only divider. */
+body.teacher-mode-active .teacher-lesson-opener h2 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  max-width: 24ch;
+}
+body.teacher-mode-active .teacher-lesson-opener ul {
+  max-width: 58ch;
+  padding-inline-start: 1.3em;
+  line-height: 1.5;
+}
+body.teacher-mode-active .teacher-lesson-opener > p:not(.eyebrow) {
+  font-size: 1.15em;
+}
+@media print { [data-teacher-only] { display: none !important; } }

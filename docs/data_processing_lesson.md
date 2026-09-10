@@ -1,10 +1,10 @@
 # Collecting and processing data
 
 The existing lesson URL and unit context are retained. The first-teaching order
-has 28 student sections and four inert teacher-divider templates (32 teacher
-slides). Long quiz, practice and tool slides use the existing scrolling deck.
+has 28 student sections, one inert teacher-opener template and four
+teacher-divider templates (40 teacher slides after activity/misconception splits). Long quiz, practice and tool slides use the existing scrolling deck.
 
-## Final teaching order
+## Student section order
 
 1. Why collect data?
 2. Data vs information
@@ -87,3 +87,50 @@ Regression checks: `node --test tests/data-processing.test.mjs
 Browser checks cover editable tools/reset, invalid inputs, empty reports, raw/report
 correspondence, paired feedback, quiz scoring/reset/reload, exam drafts, teacher
 navigation and mobile overflow. Syntax and whitespace checks also apply.
+
+## Second-pass presentation sequence
+
+1. Lesson opener: Collecting and Processing Data; “How does raw data become
+   useful information?”; four goals covering collection, distinguishing functions,
+   transforming data and supporting decisions.
+2–4. Why collect?; Data vs information; Where collection is used.
+5. Divider: Collecting data.
+6–11. Collection routes; Manual; Automatic hardware; System-generated;
+   Hardware captures; Software gives the reading context.
+12. Divider: Processing functions.
+13–24. Raw data/toolbox; Validation; Validation tool; Sorting; Sorting tool;
+   Conversion; Conversion tool; Aggregation; Aggregation tool; Analysis;
+   Trend tool; Reporting.
+25. Divider: From raw data to information.
+26–28. Report/raw view; Six-function recap; Complete journey.
+29. Divider: Practice.
+30–35. One transformation question per slide, using the existing Next/Previous.
+36–38. Two misconceptions per slide, with revealable corrections.
+39–40. Existing quiz and exam practice.
+
+All four divider placements are preserved. Native details/summary disclosures
+show decisions, context, validation versus truth, representations, aggregation,
+analysis and reports progressively. Expanded revision supplements are hidden in
+Teacher Slides. The full student page keeps all activity questions. The deck's
+existing chunk mechanism preserves selections and feedback when moving between
+questions; no extra activity state or pagination runtime was added.
+
+Sorting now animates rows from their previous positions into their new order,
+respecting reduced motion; numeric processing, reset semantics and source records
+are unchanged. Hardware/software slides now have distinct jobs: capture first,
+context second. The recap, quiz questions/answers/version/storage keys, exam tasks,
+trend editing and report/raw correspondence remain unchanged.
+
+Shared files: teacher-dividers.js (opener variant), lesson-shell.js (opener entry),
+lesson.css (minimal opener styling), processing-tools.js (row movement only).
+Visual lesson styling remains scoped to collecting-and-processing-data.css.
+Manual opener authoring: see [teacher_section_dividers.md](teacher_section_dividers.md).
+
+Second-pass verification: three relevant Node test files and JavaScript syntax /
+whitespace checks passed. Local Chrome checks passed for all processing widgets,
+resets, invalid/empty reports, report/raw correspondence, paired feedback,
+quiz scoring/reset/reload, exam draft reload, opener entry/reload/exit, keyboard
+navigation, all 40 slides, one-question visibility/student restoration, expanded
+mobile content without page overflow, and a divider-only lesson. Screenshots were
+reviewed for the opener, teaching visuals, journey and activity; no runtime errors.
+No package build or lint command is configured in this static repository.

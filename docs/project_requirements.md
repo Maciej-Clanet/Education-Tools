@@ -16,7 +16,11 @@ the browser with `localStorage` where useful.
   selection belongs in Utility, application, and open source software; OS choice
   and OS use/performance are reserved for an operating-system refinement.
 
-- Teacher slide decks support optional teacher-only section-divider templates.
+- Teacher slide decks support optional teacher-only lesson-opener and section-divider templates.
+  Openers always start Teacher Slides when declared; lessons without one retain
+  their existing entry behaviour. First teaching should favour one main idea,
+  large visual transformations and progressive disclosure; denser revision
+  supplements can remain on student pages.
   These pace classroom delivery without adding student content or Jump To links.
   Authoring and hash behaviour are documented in `docs/teacher_section_dividers.md`.
 

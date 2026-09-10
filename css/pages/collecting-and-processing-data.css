@@ -36,13 +36,56 @@
   .data-table-wrap th, .data-table-wrap td { padding: .45rem; }
   .data-chart text { font-size: 16px; }
 }
-@media (prefers-reduced-motion: no-preference) {
-  [data-sorted-table] tbody tr { animation: data-row-arrive .3s ease-out; }
-  @keyframes data-row-arrive { from { opacity: .4; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-}
 .data-illustration { display: block; width: 100px; height: 72px; margin-bottom: .6rem; }
 @media (max-width: 600px) { .data-chart text { font-size: 28px; } }
 @media (forced-colors: active) {
   .data-chart .chart-line { stroke: CanvasText; }
   .data-chart .chart-point { fill: CanvasText; }
 }
+
+/* Diagrams carry the first explanation; supplementary revision stays available. */
+.data-lead { font-size: 1.35em; font-weight: 700; line-height: 1.35; }
+.data-values, .data-equation { font-size: clamp(1.6rem, 4vw, 3.4rem); font-weight: 750; text-align: center; padding: 1rem; font-variant-numeric: tabular-nums; }
+.data-equation span { color: var(--teal-deep); padding-inline: .5em; }
+.data-reveal { margin-block: .8rem; border-block-end: 1px solid var(--panel-border); padding-block: .6rem; }
+.data-reveal summary, .data-revision summary { cursor: pointer; min-height: 44px; padding: .5rem; font-weight: 650; }
+.data-reveal[open] > :not(summary) { margin-inline: .5rem; }
+.data-revision { margin-block-start: 1.5rem; }
+body.teacher-mode-active .data-revision { display: none !important; }
+.data-process { align-items: center; }
+.data-process li { border: 0; border-radius: 0; background: transparent; font-size: 1.25em; text-align: center; }
+.data-process .data-illustration { margin-inline: auto; width: 140px; height: 100px; }
+.data-routes { display: grid; grid-template-columns: minmax(8rem, 1fr) 3fr; gap: 1rem; align-items: center; }
+.data-routes dt { font-weight: 750; border-inline-end: 4px solid var(--teal); padding: .8rem; }
+.data-routes dd { margin: 0; }
+.data-record { padding: 1rem; border-inline-start: 5px solid var(--teal); font-size: 1.4em; overflow-wrap: anywhere; }
+.data-strip { line-height: 1.8; }
+.data-gate { border-block: 3px solid var(--teal); padding: .5rem 1rem; font-size: 1.3em; }
+.data-mini-chart { max-width: 620px; margin: 1rem auto; }
+.data-mini-chart svg { display: block; width: 100%; color: var(--teal-deep); }
+.data-mini-chart polyline { fill: none; stroke: currentColor; stroke-width: 4; }
+.data-mini-chart circle { fill: currentColor; }
+.data-mini-chart .axis { stroke: var(--page-ink); fill: none; }
+.data-mini-chart text { font: 16px sans-serif; fill: var(--page-ink); }
+.data-mini-chart figcaption { font-size: .8em; }
+.data-journey { list-style: none; padding: 0; display: grid; gap: .3rem; }
+.data-journey li { display: grid; grid-template-columns: minmax(10rem, 1fr) 3fr; gap: 1rem; padding: .55rem; border-inline-start: 4px solid var(--teal); }
+.data-journey li:not(:last-child)::after { content: '↓'; color: var(--teal-deep); }
+.data-journey strong { font-size: .85em; }
+.data-misconception { margin-block: 1rem; border-inline-start: 4px solid var(--teal); padding-inline: 1rem; }
+body.teacher-mode-active #identify > .data-tool { max-width: 65rem; margin-inline: auto; }
+body.teacher-mode-active #identify .data-flow { margin-block: .3rem; }
+body.teacher-mode-active #identify .data-tool { gap: .4rem; }
+@media (max-width: 600px) {
+  .data-routes, .data-journey li { grid-template-columns: 1fr; gap: .4rem; }
+  .data-record { font-size: 1.05em; }
+}
+@media print { .data-revision { display: block !important; } }
+.data-journey li { position: relative; padding-block: .65rem; margin-block-end: .35rem; }
+.data-journey li:not(:last-child)::after { position: absolute; inset-inline-start: -.5rem; bottom: -.65rem; background: var(--panel); line-height: 1; }
+body.teacher-mode-active #processing-functions .data-table-wrap { margin-block: .5rem; }
+body.teacher-mode-active #processing-functions td,
+body.teacher-mode-active #processing-functions th { padding-block: .35rem; }
+body.teacher-mode-active #processing-functions .data-reveal { margin-block: .3rem; }
+
+.data-report-glyph { width: 5rem; height: 1.8rem; vertical-align: middle; color: var(--teal-deep); }

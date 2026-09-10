@@ -1519,6 +1519,8 @@ function initTeacherMode(config) {
     }
   }
 
+  if (isTeacherMode && sections[0]?.hasAttribute('data-teacher-opener-slide')) activeSlideIndex = 0
+
   syncSectionChunkVisibility()
   updateControls()
 
@@ -1535,7 +1537,8 @@ function initTeacherMode(config) {
 
   toggleButton.addEventListener("click", () => {
     if (!isTeacherMode) {
-      activeSlideIndex = findNearestSectionIndex()
+      activeSlideIndex = sections[0]?.hasAttribute('data-teacher-opener-slide')
+        ? 0 : findNearestSectionIndex()
     }
 
     setTeacherMode(!isTeacherMode)

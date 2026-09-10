@@ -121,9 +121,22 @@
       </aside>
 
       <main class="lesson-main" data-role="lesson-main">
+<template data-teacher-opener>
+  <h2>Collecting and Processing Data</h2>
+  <p>How does raw data become useful information?</p>
+  <ul>
+    <li>Explain why and how systems collect data</li>
+    <li>Distinguish the six processing functions</li>
+    <li>Transform data with simple processing tools</li>
+    <li>Explain how processed data supports decisions</li>
+  </ul>
+</template>
 <section id="overview" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">01 · Collecting and processing data</p>
 <h2>Why collect data?</h2>
+<p class="data-lead">Collect data → answer questions → support decisions.</p>
+<div class="data-examples" data-no-slide-advance><details class="data-reveal" open><summary>College register</summary><ol class="data-flow data-process"><li><img class="data-illustration" src="../../assets/illustrations/data-processing/college-register.svg" alt="">Absence records: Sam, Jo</li><li><strong>Who needs support?</strong></li></ol></details><details class="data-reveal"><summary>Supermarket</summary><ol class="data-flow data-process"><li><img class="data-illustration" src="../../assets/illustrations/data-processing/supermarket-stock.svg" alt="">Sales records: 48 cartons of milk</li><li><strong>What needs restocking?</strong></li></ol></details><details class="data-reveal"><summary>Weather station</summary><ol class="data-flow data-process"><li><img class="data-illustration" src="../../assets/illustrations/data-processing/weather-station.svg" alt="">Temperature readings: 14°C → 22°C</li><li><strong>Is the temperature changing?</strong></li></ol></details></div>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <div class="data-grid">
 <article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/college-register.svg" alt="" width="140" height="100">
 <h3>College register</h3>
@@ -147,32 +160,20 @@
 </article>
 </div>
 <p class="data-note">Computer systems collect data because it can later be processed to support actions and decisions.</p>
+</details>
 </section>
 
 <section id="data-information" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">02 · Collecting and processing data</p>
 <h2>Data vs information</h2>
-<ol class="data-flow">
-<li><strong>Raw data</strong><br><code>14, 16, 18, 19, 22</code>
-</li>
-<li><strong>Add context and interpret</strong><br>Temperature readings in time order</li>
-<li><strong>Information</strong><br>Temperature increased during the observed day.</li>
-</ol>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Data</h3>
-<p>Raw facts or recorded values.</p>
-</article>
-<article class="lesson-card">
-<h3>Information</h3>
-<p>Data that has been processed or presented so that it has meaning or supports a decision.</p>
-</article>
-</div>
+<p class="data-lead">DATA → PROCESS → INFORMATION</p><div class="data-values">14 &nbsp; 16 &nbsp; 18 &nbsp; 19 &nbsp; 22</div><details class="data-reveal"><summary>Give the readings context</summary><p>Temperature (°C), ordered by time.</p><figure class="data-mini-chart"><svg viewBox="0 0 440 150" role="img" aria-label="Accepted temperatures rise from 14 to 22 degrees between 09:00 and 14:00; 13:00 is excluded."><path d="M35 15V115H415" class="axis"/><polyline points="35,105 109,85 183,65 257,55 405,25"/><g><circle cx="35" cy="105" r="5"/><circle cx="109" cy="85" r="5"/><circle cx="183" cy="65" r="5"/><circle cx="257" cy="55" r="5"/><circle cx="405" cy="25" r="5"/></g><text x="35" y="140">09:00 · 14°C</text><text x="300" y="140">14:00 · 22°C</text></svg><figcaption>Accepted readings over time · 13:00 excluded</figcaption></figure><p class="data-lead">Temperature increased during the observed period.</p></details><p>Data is recorded facts. Information gives processed data meaning.</p>
 </section>
 
 <section id="where-used" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">03 · Collecting and processing data</p>
 <h2>Where is collection used?</h2>
+<p>Different sources, the same purpose: record something useful to process later.</p><dl class="data-routes"><dt>People</dt><dd>Attendance / patient observations → support and care</dd><dt>Transactions</dt><dd>Retail sales → restocking</dd><dt>Machines / environment</dt><dd>Sensor measurements → monitor conditions</dd><dt>Software activity</dt><dd>Logs and telemetry → investigate problems</dd></dl>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <div class="data-grid">
 <article class="lesson-card">
 <h3>Education</h3>
@@ -208,6 +209,7 @@
 </article>
 </div>
 <p class="data-note">Data science uses collected datasets to look for patterns. Useful analysis starts with relevant data.</p>
+</details>
 </section>
 
 <template data-teacher-divider>
@@ -215,28 +217,14 @@
 <section id="data-collection" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">04 · Collecting and processing data</p>
 <h2>How is data collected?</h2>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>01 · Manual</h3>
-<p>A person enters data.<br><strong>Person → form</strong>
-</p>
-</article>
-<article class="lesson-card">
-<h3>02 · Automatic hardware</h3>
-<p>A device or sensor captures data.<br><strong>World → input device</strong>
-</p>
-</article>
-<article class="lesson-card">
-<h3>03 · Software/system-generated</h3>
-<p>A computer system records data as it operates.<br><strong>System event → log</strong>
-</p>
-</article>
-</div>
+<p class="data-lead">Where did this record originate?</p><dl class="data-routes"><dt>Person</dt><dd>Manual entry → form → record</dd><dt>Physical world</dt><dd>Automatic hardware → sensor value → record</dd><dt>Software event</dt><dd>System-generated data → log → record</dd></dl>
 </section>
 
 <section id="manual" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">05 · Collecting and processing data</p>
 <h2>Manual data collection</h2>
+<ol class="data-flow data-process"><li>Teacher observes attendance</li><li>Touchscreen / form</li><li><code>Sam | Absent</code></li><li>Stored record</li></ol><p class="data-note">Flexible entry · can contain entry errors</p>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <ol class="data-flow">
 <li>Person</li>
 <li>Keyboard or touchscreen</li>
@@ -257,11 +245,14 @@
 <p>Entry takes time and effort. A person may mistype a value or choose the wrong option.</p>
 </article>
 </div>
+</details>
 </section>
 
 <section id="automatic" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">06 · Collecting and processing data</p>
 <h2>Automatic hardware collection</h2>
+<ol class="data-flow data-process"><li>Physical temperature</li><li><img class="data-illustration" src="../../assets/illustrations/data-processing/weather-station.svg" alt="">Sensor captures it</li><li><strong>14.2°C</strong></li></ol><p>A device captures the value without someone manually typing it.</p><details class="data-reveal"><summary>Other physical inputs</summary><p class="data-strip">Barcode → product code · Camera → image · GPS → location</p></details>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <ol class="data-flow">
 <li>Real-world signal or object</li>
 <li>Input hardware captures it</li>
@@ -283,11 +274,14 @@
 </div>
 <p class="data-note">Hardware captures data from the world. A person may aim a scanner, but the device captures the code without someone typing it.</p>
 <p>Recall the <a href="input-output-and-storage-devices.html?context=btec-level-3-unit-2">input-device lesson</a>: match the device to what must be captured.</p>
+</details>
 </section>
 
 <section id="system-generated" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">07 · Collecting and processing data</p>
 <h2>Software/system-generated collection</h2>
+<ol class="data-flow data-process"><li>Request <code>/courses</code></li><li>Web server handles request</li></ol><details class="data-reveal"><summary>See the resulting log record</summary><p class="data-record"><code>09:04 | /courses | GET | 200</code></p></details><p class="data-lead">A system can record its own operation.</p><p>Login events · error logs · transactions · telemetry</p>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <ol class="data-flow">
 <li>A user requests a web page</li>
 <li>The server handles the request</li>
@@ -305,11 +299,14 @@
 </article>
 </div>
 <p class="data-note">No person needs to type each record, and no dedicated physical input device is needed to capture a software event. The software still runs on hardware.</p>
+</details>
 </section>
 
 <section id="hardware-software" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">08 · Collecting and processing data</p>
 <h2>Hardware and software work together</h2>
+<ol class="data-flow data-process"><li>Physical temperature</li><li><strong>Hardware captures</strong><br>Sensor supplies 14.2°C</li></ol><p class="data-note">The sensor captures a value. Software must read and record it.</p>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <div class="data-grid">
 <article class="lesson-card">
 <h3>Hardware · temperature sensor</h3>
@@ -328,21 +325,13 @@
 <li>Staff can compare readings later</li>
 </ol>
 <p class="data-note">For physical inputs, hardware captures the signal and software controls, records and processes it. Software can also generate records about its own operation.</p>
+</details>
 </section>
 
 <section id="collection-example" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">09 · Collecting and processing data</p>
 <h2>Collection worked example</h2>
-<ol class="data-flow">
-<li><img class="data-illustration" src="../../assets/illustrations/data-processing/weather-station.svg" alt="" width="140" height="100"><strong>Temperature sensor</strong>
-</li>
-<li><strong>14.2°C</strong>
-</li>
-<li>Software adds timestamp and sensor ID</li>
-<li><code>09:00 | sensor_03 | 14.2°C</code>
-</li>
-</ol>
-<p>A single value becomes a record with context. Repeating collection gives us a dataset to process.</p>
+<p class="data-lead">Software gives a reading context.</p><div class="data-values">14.2</div><details class="data-reveal"><summary>Add when, where and what</summary><p class="data-record"><code>09:00 | sensor_03 | 14.2°C</code></p><p>Software adds the timestamp, sensor ID and unit, then stores the record.</p></details><p>Repeat collection → a dataset to process.</p>
 </section>
 
 <template data-teacher-divider>
@@ -372,54 +361,13 @@
 </tbody>
 </table>
 </div>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Validation</h3>
-<p>Does it follow the rules?</p>
-</article>
-<article class="lesson-card">
-<h3>Sorting</h3>
-<p>What order should records appear in?</p>
-</article>
-<article class="lesson-card">
-<h3>Conversion</h3>
-<p>What form or unit should it use?</p>
-</article>
-<article class="lesson-card">
-<h3>Aggregation</h3>
-<p>How can many values be summarised?</p>
-</article>
-<article class="lesson-card">
-<h3>Analysis</h3>
-<p>What does the data tell us?</p>
-</article>
-<article class="lesson-card">
-<h3>Reporting</h3>
-<p>How should information be presented?</p>
-</article>
-</div>
-<ol class="data-flow">
-<li>Raw data</li>
-<li>Choose appropriate processing functions</li>
-<li>Useful information</li>
-</ol>
-<p class="data-note">This is a toolbox: a system may use some or all of these functions, and the order depends on the task.</p>
+<p class="data-note">Wrong order · suspicious 91°C · many individual values</p><details class="data-reveal"><summary>Open the processing toolbox</summary><p class="data-strip"><strong>VALIDATE · SORT · CONVERT · AGGREGATE · ANALYSE · REPORT</strong></p><p>Choose functions for the task; raw data is not automatically useful.</p></details>
 </section>
 
 <section id="validation" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">11 · Collecting and processing data</p>
 <h2>What is validation?</h2>
-<p>Validation checks whether data follows predefined rules before it is accepted or processed.</p>
-<ol class="data-flow">
-<li>Rule: <strong>−30°C to 55°C inclusive</strong>
-</li>
-<li><strong>20°C → valid</strong>
-</li>
-<li><strong>91°C → invalid</strong>
-</li>
-</ol>
-<p class="data-note">Validation does NOT prove the data is true. A recorded 20°C passes this rule even if the real temperature was 17°C.</p>
-<p>This is a rule for our teaching weather station, not a universal limit for every sensor. A failed reading needs investigation; we do not invent a replacement.</p>
+<p>Validation checks data against predefined rules.</p><p class="data-lead">Rule: −30 ≤ value ≤ 55</p><div class="data-gate"><p>20°C → <strong>✓ follows rule</strong></p><p>91°C → <strong>✗ fails rule</strong></p></div><details class="data-reveal"><summary>Does valid mean accurate?</summary><p class="data-lead">20°C ✓ valid … actual temperature: 17°C?</p><p class="data-note">Validation does not prove the data is true.</p></details><p>This range is our teaching station’s rule. Investigate failures; do not invent replacements.</p>
 </section>
 
 <section id="validation-tool" class="lesson-section panel" data-lesson-section>
@@ -447,16 +395,7 @@
 <li>Sort by time, ascending</li>
 <li><strong>After</strong><br>09:00 · 10:00 · 11:00 · 14:00</li>
 </ol>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Ascending</h3>
-<p>Earlier to later; smaller to larger; A to Z.</p>
-</article>
-<article class="lesson-card">
-<h3>Descending</h3>
-<p>Later to earlier; larger to smaller; Z to A.</p>
-</article>
-</div>
+<p class="data-strip"><strong>Ascending ↑</strong> A–Z / low–high &nbsp; · &nbsp; <strong>Descending ↓</strong> Z–A / high–low</p>
 <p class="data-note">Sorting changes record order, not the actual data values. Keep each temperature with its own timestamp.</p>
 </section>
 
@@ -513,6 +452,8 @@
 <section id="conversion" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">15 · Collecting and processing data</p>
 <h2>What is conversion?</h2>
+<div class="data-equation">20°C <span>→</span> 68°F</div><p class="data-lead">Same underlying meaning, different representation.</p><details class="data-reveal"><summary>Other representations</summary><p class="data-strip"><code>"42" → 42</code><br><code>2026-09-08 → 08/09/2026</code> (DD/MM/YYYY)<br><code>P → Present</code></p></details>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <p>Conversion changes data from one representation, format or unit into another.</p>
 <ol class="data-flow">
 <li><strong>20°C</strong>
@@ -535,6 +476,7 @@
 <p>Code <code>P</code> → category <code>Present</code>.</p>
 </article>
 </div>
+</details>
 </section>
 
 <section id="conversion-tool" class="lesson-section panel" data-lesson-section>
@@ -556,6 +498,8 @@
 <section id="aggregation" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">17 · Collecting and processing data</p>
 <h2>What is aggregation?</h2>
+<p>Aggregation combines many records into a summary.</p><div class="data-values">14 &nbsp; 16 &nbsp; 18 &nbsp; 19 &nbsp; 22</div><p>91°C is set aside because it fails the rule.</p><details class="data-reveal"><summary>Aggregate: find the average</summary><div class="data-equation">5 readings <span>→</span> 17.8°C</div><p>Other summaries: count · minimum · maximum · total</p></details>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <p>Aggregation combines many individual records into summary values.</p>
 <p class="data-note">Set aside the 91°C reading because it failed our rule. The five remaining values are 14, 16, 18, 19 and 22°C.</p>
 <div class="data-grid">
@@ -581,6 +525,7 @@
 </article>
 </div>
 <p class="data-note">Aggregation reduces many records into useful summaries. An average temperature is useful here; the total demonstrates summing but is not a temperature for the day.</p>
+</details>
 </section>
 
 <section id="aggregation-tool" class="lesson-section panel" data-lesson-section>
@@ -610,6 +555,8 @@
 <section id="analysis" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">19 · Collecting and processing data</p>
 <h2>What is analysis?</h2>
+<p><strong>Aggregation:</strong> 14, 16, 18, 19, 22 → average 17.8°C</p><figure class="data-mini-chart"><svg viewBox="0 0 440 150" role="img" aria-label="Accepted temperatures rise from 14 to 22 degrees between 09:00 and 14:00; 13:00 is excluded."><path d="M35 15V115H415" class="axis"/><polyline points="35,105 109,85 183,65 257,55 405,25"/><g><circle cx="35" cy="105" r="5"/><circle cx="109" cy="85" r="5"/><circle cx="183" cy="65" r="5"/><circle cx="257" cy="55" r="5"/><circle cx="405" cy="25" r="5"/></g><text x="35" y="140">09:00 · 14°C</text><text x="300" y="140">14:00 · 22°C</text></svg><figcaption>Accepted readings over time · 13:00 excluded</figcaption></figure><details class="data-reveal"><summary>Analyse the pattern</summary><p class="data-lead">Accepted readings rise over time.</p><p>Analysis identifies patterns, relationships, trends or anomalies.</p><p class="data-note">A pattern does not establish its cause.</p></details>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <div class="data-grid">
 <article class="lesson-card">
 <h3>Aggregation asks…</h3>
@@ -622,6 +569,7 @@
 </div>
 <p class="data-note">Analysis looks for patterns, relationships, trends or anomalies.</p>
 <p>“Sales dropped on Tuesday” is an observation. “Sales dropped because it rained” requires additional evidence. A pattern alone does not establish a cause.</p>
+</details>
 </section>
 
 <section id="analysis-tool" class="lesson-section panel" data-lesson-section>
@@ -677,6 +625,8 @@
 <section id="reporting" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">21 · Collecting and processing data</p>
 <h2>What is reporting?</h2>
+<p>A manager needs to understand conditions quickly. What should they see?</p><details class="data-reveal"><summary>Show a weather report</summary><figure class="data-mini-chart"><svg viewBox="0 0 440 150" role="img" aria-label="Accepted temperatures rise from 14 to 22 degrees between 09:00 and 14:00; 13:00 is excluded."><path d="M35 15V115H415" class="axis"/><polyline points="35,105 109,85 183,65 257,55 405,25"/><g><circle cx="35" cy="105" r="5"/><circle cx="109" cy="85" r="5"/><circle cx="183" cy="65" r="5"/><circle cx="257" cy="55" r="5"/><circle cx="405" cy="25" r="5"/></g><text x="35" y="140">09:00 · 14°C</text><text x="300" y="140">14:00 · 22°C</text></svg><figcaption>Accepted readings over time · 13:00 excluded</figcaption></figure><p class="data-lead">Average: 17.8°C</p><p class="data-note">Exception: 13:00 reading of 91°C failed the rule.</p></details><p>Same underlying data, presented for its audience.</p><details class="data-reveal"><summary>Other report formats</summary><p>Tables · dashboards · written summaries · exception lists</p></details>
+<details class="data-revision"><summary>More examples and explanation</summary>
 <p>Reporting presents processed information in a form suitable for a user or purpose.</p>
 <div class="data-grid">
 <article class="lesson-card">
@@ -697,6 +647,7 @@
 </article>
 </div>
 <p class="data-note">The right format depends on the audience and the decision they need to make.</p>
+</details>
 </section>
 
 <template data-teacher-divider>
@@ -757,16 +708,15 @@
 <section id="journey" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">24 · Collecting and processing data</p>
 <h2>Complete data-processing journey</h2>
-<ol class="data-flow">
-<li><strong>Sensor → collect</strong><br>Record temperature readings</li>
-<li><strong>Validate</strong><br>Set aside 91°C, outside our rule</li>
-<li><strong>Sort</strong><br>Order by timestamp</li>
-<li><strong>Convert, if required</strong><br>°C → °F for the audience</li>
-<li><strong>Aggregate</strong><br>Average accepted readings</li>
-<li><strong>Analyse</strong><br>Describe the rise and unusual reading</li>
-<li><strong>Report</strong><br>Chart, summary and exception</li>
-</ol>
-<p class="data-note">This is one worked example. Not every data-processing task uses every function, and they do not always occur in this exact order.</p>
+<ol class="data-journey">
+<li><strong>COLLECT</strong><span>Sensor → <code>09:00 | 14°C</code></span></li>
+<li><strong>VALIDATE</strong><span>91°C → ✗ flagged; 5 readings accepted</span></li>
+<li><strong>SORT</strong><span>09, 11, 10… → 09, 10, 11…</span></li>
+<li><strong>CONVERT · if needed</strong><span>14°C → 57.2°F · this report keeps °C</span></li>
+<li><strong>AGGREGATE</strong><span>14, 16, 18, 19, 22 → 17.8°C mean</span></li>
+<li><strong>ANALYSE</strong><span>14 ▁ 16 ▃ 18 ▅ 19 ▆ 22 █ → rising</span></li>
+<li><strong>REPORT</strong><span>Readings → <svg class="data-report-glyph" viewBox="0 0 100 35" role="img" aria-label="Rising trend graph"><polyline points="3,29 23,23 43,17 63,13 97,3" fill="none" stroke="currentColor" stroke-width="3"/></svg> <strong>17.8°C</strong> · 91°C flagged</span></li>
+</ol><p class="data-note">This is one worked example. Not every task uses every function or uses them in this exact order.</p>
 </section>
 
 <template data-teacher-divider>
@@ -774,9 +724,9 @@
 <section id="identify" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">25 · Collecting and processing data</p>
 <h2>Which processing function happened?</h2>
-<div class="data-grid">
+
 <article class="lesson-card data-tool" data-paired-scenario="sorting" data-no-slide-advance>
-<h3>Transformation 1</h3>
+<h3>Transformation 1 of 6</h3>
 <ol class="data-flow">
 <li>Charlie, Alice, Bob</li>
 <li>Alice, Bob, Charlie</li>
@@ -808,8 +758,9 @@
 <p data-pair-feedback role="status">
 </p>
 </article>
+<div data-slide-break></div>
 <article class="lesson-card data-tool" data-paired-scenario="conversion" data-no-slide-advance>
-<h3>Transformation 2</h3>
+<h3>Transformation 2 of 6</h3>
 <ol class="data-flow">
 <li>20°C</li>
 <li>68°F</li>
@@ -841,8 +792,9 @@
 <p data-pair-feedback role="status">
 </p>
 </article>
+<div data-slide-break></div>
 <article class="lesson-card data-tool" data-paired-scenario="aggregation" data-no-slide-advance>
-<h3>Transformation 3</h3>
+<h3>Transformation 3 of 6</h3>
 <ol class="data-flow">
 <li>4, 8, 10, 6</li>
 <li>Average = 7</li>
@@ -874,8 +826,9 @@
 <p data-pair-feedback role="status">
 </p>
 </article>
+<div data-slide-break></div>
 <article class="lesson-card data-tool" data-paired-scenario="analysis" data-no-slide-advance>
-<h3>Transformation 4</h3>
+<h3>Transformation 4 of 6</h3>
 <ol class="data-flow">
 <li>Daily sales records</li>
 <li>Sales are consistently highest on Fridays.</li>
@@ -907,8 +860,9 @@
 <p data-pair-feedback role="status">
 </p>
 </article>
+<div data-slide-break></div>
 <article class="lesson-card data-tool" data-paired-scenario="reporting" data-no-slide-advance>
-<h3>Transformation 5</h3>
+<h3>Transformation 5 of 6</h3>
 <ol class="data-flow">
 <li>Raw sales records</li>
 <li>Management dashboard</li>
@@ -940,8 +894,9 @@
 <p data-pair-feedback role="status">
 </p>
 </article>
+<div data-slide-break></div>
 <article class="lesson-card data-tool" data-paired-scenario="validation" data-no-slide-advance>
-<h3>Transformation 6</h3>
+<h3>Transformation 6 of 6</h3>
 <ol class="data-flow">
 <li>Age = 247; rule = 0–120</li>
 <li>Value rejected</li>
@@ -973,38 +928,20 @@
 <p data-pair-feedback role="status">
 </p>
 </article>
-</div>
+
 </section>
 
 <section id="mistakes" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">26 · Collecting and processing data</p>
 <h2>Common exam mistakes</h2>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>“Data = information”</h3>
-<p>Data is raw; information has meaning or supports a decision.</p>
-</article>
-<article class="lesson-card">
-<h3>“Validation proves correctness”</h3>
-<p>It checks rules, not real-world truth.</p>
-</article>
-<article class="lesson-card">
-<h3>“Sorting changes the values”</h3>
-<p>It changes record order. Fields stay together.</p>
-</article>
-<article class="lesson-card">
-<h3>“Aggregation = analysis”</h3>
-<p>Aggregation summarises values; analysis identifies patterns or meaning.</p>
-</article>
-<article class="lesson-card">
-<h3>“Reporting means charts only”</h3>
-<p>Tables, dashboards, alerts and summaries are also reports.</p>
-</article>
-<article class="lesson-card">
-<h3>“Collection always needs a person”</h3>
-<p>Sensors and software systems can collect data automatically.</p>
-</article>
-</div>
+<div class="data-misconception"><h3>“Data = information”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>Data is raw; information has meaning or supports a decision.</p></details></div>
+<div class="data-misconception"><h3>“Validation proves correctness”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>It checks rules, not real-world truth.</p></details></div>
+<div data-slide-break></div>
+<div class="data-misconception"><h3>“Sorting changes the values”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>It changes record order. Fields stay together.</p></details></div>
+<div class="data-misconception"><h3>“Aggregation = analysis”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>Aggregation summarises values; analysis identifies patterns or meaning.</p></details></div>
+<div data-slide-break></div>
+<div class="data-misconception"><h3>“Reporting means charts only”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>Tables, dashboards, alerts and summaries are also reports.</p></details></div>
+<div class="data-misconception"><h3>“Collection always needs a person”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>Sensors and software systems can collect data automatically.</p></details></div>
 </section>
 
 <section id="quiz" class="lesson-section panel" data-lesson-section>
