@@ -136,9 +136,10 @@ saved progress should be shown as needing a fresh attempt.
     protection teaching moments. The multi-factor Impact Explorer is preserved. Quiz version 2: 12 questions, pass 9; five applied written
     tasks. See `docs/multiple_systems_lesson.md`.
 - [x] Backup and data recovery
-  - Expanded into 24 teaching sections with five teacher-only dividers, a
-    deterministic full/incremental/differential backup and restore visualiser,
-    location diagrams and paired strategy reasoning. Quiz version 2: 14 questions,
+  - Refined into 25 student sections / 42 teacher slides, including the shared
+    opener, five dividers, matching file timelines and restore chains, site-risk
+    incidents, loss windows and five recovery states. The existing visualiser
+    and progressive strategy reasoning retain their underlying logic. Quiz version 2: 14 questions,
     pass 10; six applied written tasks. See `docs/backup_recovery_lesson.md`.
 
 ## B Computer architecture

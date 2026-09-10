@@ -81,69 +81,31 @@
       <aside class="lesson-sidebar panel">
         <p class="eyebrow">Jump To</p>
         <nav class="section-nav" aria-label="Lesson sections">
-<a href="#overview" data-section-link>Something went wrong</a><a href="#backup-recovery" data-section-link>Backup vs recovery</a><a href="#separate-copy" data-section-link>Backup is not just “another copy”</a><a href="#full" data-section-link>Full backup</a><a href="#incremental" data-section-link>Incremental backup</a><a href="#differential" data-section-link>Differential backup</a><a href="#compare-strategies" data-section-link>Compare backup strategies</a><a href="#type-summary" data-section-link>Full vs incremental vs differential</a><a href="#storage-media" data-section-link>Where can backups be stored?</a><a href="#onsite" data-section-link>Onsite backups</a><a href="#offsite" data-section-link>Offsite backups</a><a href="#management" data-section-link>Who manages the backup?</a><a href="#frequency" data-section-link>How often should backups happen?</a><a href="#recovery-planning" data-section-link>The failure happened. What now?</a><a href="#procedure" data-section-link>Recovery procedure</a><a href="#priorities" data-section-link>What should be restored first?</a><a href="#recovery-time" data-section-link>Having a backup is not enough</a><a href="#testing" data-section-link>How do you know a backup works?</a><a href="#backup-vs-resilience" data-section-link>Why RAID is not a backup</a><a href="#complete-strategy" data-section-link>What makes a good backup strategy?</a><a href="#choose-strategy" data-section-link>Choose a backup strategy</a><a href="#mistakes" data-section-link>Common exam mistakes</a><a href="#quiz" data-section-link>Check your understanding</a><a href="#exam-practice" data-section-link>Exam-style practice</a>        </nav>
+<a href="#overview" data-section-link>Something went wrong</a><a href="#causes" data-section-link>Why live data can be lost</a><a href="#backup-recovery" data-section-link>Backup vs recovery</a><a href="#separate-copy" data-section-link>Backup is not just “another copy”</a><a href="#full" data-section-link>Full backup</a><a href="#incremental" data-section-link>Incremental backup</a><a href="#differential" data-section-link>Differential backup</a><a href="#compare-strategies" data-section-link>Compare backup strategies</a><a href="#type-summary" data-section-link>Full vs incremental vs differential</a><a href="#storage-media" data-section-link>Where can backups be stored?</a><a href="#onsite" data-section-link>Onsite backups</a><a href="#offsite" data-section-link>Offsite backups</a><a href="#management" data-section-link>Who manages the backup?</a><a href="#frequency" data-section-link>How often should backups happen?</a><a href="#recovery-planning" data-section-link>The failure happened. What now?</a><a href="#procedure" data-section-link>Recovery procedure</a><a href="#priorities" data-section-link>What should be restored first?</a><a href="#recovery-time" data-section-link>Having a backup is not enough</a><a href="#testing" data-section-link>How do you know a backup works?</a><a href="#backup-vs-resilience" data-section-link>Why RAID is not a backup</a><a href="#complete-strategy" data-section-link>What makes a good backup strategy?</a><a href="#choose-strategy" data-section-link>Choose a backup strategy</a><a href="#mistakes" data-section-link>Common exam mistakes</a><a href="#quiz" data-section-link>Check your understanding</a><a href="#exam-practice" data-section-link>Exam-style practice</a>        </nav>
       </aside>
 
 <main class="lesson-main" data-role="lesson-main">
+<template data-teacher-opener>
+<h2>Backup and Data Recovery</h2>
+<p>What happens when important data is lost?</p>
+<ul><li>Distinguish full, incremental and differential backups</li><li>Explain where and how backups can be stored</li><li>Describe how data is restored after failure</li><li>Design and justify a suitable backup strategy</li></ul>
+</template>
 <section id="overview" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">01 · Backup and data recovery</p>
-<h2>Something went wrong</h2><span id="why-backup"></span>
-<p>It is Friday afternoon. The college’s live student-record system becomes corrupted.</p>
-<div class="backup-grid">
-<article class="lesson-card">
-<h3>Live system · unavailable</h3>
-<div><img class="backup-illustration" src="../../assets/images/hardware/server.svg" alt="" width="180" height="120"><strong>Student records cannot be used.</strong>
-<p>Staff cannot rely on the damaged records for attendance or enquiries.</p>
-</div>
-</article>
-<article class="lesson-card">
-<h3>Thursday backup · available</h3>
-<div><img class="backup-illustration" src="../../assets/images/devices/ssd.svg" alt="" width="180" height="120"><strong>A recoverable copy exists.</strong>
-<p>Today’s attendance changes may not be in it.</p>
-</div>
-</article>
-<article class="lesson-card">
-<h3>Staff need service back</h3>
-<div><strong>What happens now?</strong>
-<p>Which copy is usable? What work is missing? How soon can staff resume work?</p>
-</div>
-</article>
-</div>
-<p class="backup-note">Backups exist because live data can be lost, damaged or made unavailable.</p>
-<p>Possible causes include accidental deletion or overwrite, drive failure, corruption, malware/ransomware, a stolen device, or fire/flood affecting a whole site.</p>
+<h2>Something went wrong</h2>
+<span id="why-backup"></span><p class="backup-label">FRIDAY · 15:40 · college records corrupted</p><div class="backup-incident"><div class="incident-system"><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>STUDENT RECORD SYSTEM</strong><b>✕ UNAVAILABLE</b></div><dl><dt>THURSDAY BACKUP</dt><dd>✓ Available · 23:00</dd><dt>FRIDAY CHANGES</dt><dd>? Attendance may be missing</dd></dl></div><p class="backup-lead">What happens now?</p>
 </section>
+<section id="causes" class="lesson-section panel" data-lesson-section><p class="eyebrow">02 · Backup and data recovery</p><h2>Why live data can be lost</h2><dl class="backup-cause-list"><dt>USER ERROR</dt><dd>Accidental deletion / overwrite</dd><dt>HARDWARE</dt><dd>Drive failure</dd><dt>SOFTWARE / ATTACK</dt><dd>Corruption / ransomware</dd><dt>PHYSICAL LOSS</dt><dd>Theft / fire / flood</dd></dl><p class="backup-note">Live data can become unavailable in many different ways.</p></section>
 <section id="backup-recovery" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">02 · Backup and data recovery</p>
+<p class="eyebrow">03 · Backup and data recovery</p>
 <h2>Backup vs recovery</h2>
-<div class="backup-grid">
-<article class="lesson-card">
-<h3>Backup · prepare before failure</h3>
-<div>
-<ol class="backup-flow">
-<li>Live data</li>
-<li>Create an extra recoverable copy</li>
-<li>Keep the backup separately</li>
-</ol>
-</div>
-</article>
-<article class="lesson-card">
-<h3>Recovery · act after failure</h3>
-<div>
-<ol class="backup-flow">
-<li>Failure or data loss</li>
-<li>Restore from a suitable backup</li>
-<li>Check and return usable data/service</li>
-</ol>
-</div>
-</article>
-</div>
-<p class="backup-note">Backup creates recoverable copies. Recovery uses them to restore usable data or service after loss or failure.</p>
-<p>At the college, Thursday’s backup is a resource. Restoring and checking it on Friday is recovery.</p>
+<p class="backup-label">BEFORE FAILURE · BACKUP</p><ol class="backup-process"><li>Live data</li><li>Create backup</li><li>Recoverable copy</li></ol><p class="failure-line">⚠ FAILURE</p><details class="backup-reveal"><summary>After failure: recover the service</summary><p class="backup-label">AFTER FAILURE · RECOVERY</p><ol class="backup-process"><li>Recoverable copy</li><li>Restore + check</li><li>✓ Usable data / service</li></ol></details><p class="backup-note">Thursday: create the copy. Friday: restore and check it.</p>
 </section>
 <section id="separate-copy" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">03 · Backup and data recovery</p>
+<p class="eyebrow">04 · Backup and data recovery</p>
 <h2>Backup is not just “another copy”</h2>
-<div class="backup-grid">
+<p class="backup-lead">Can I recover an earlier usable version?</p><p class="backup-file-line"><code>students.csv</code> · Monday version A → Tuesday version B → ✕ live file deleted</p><details class="backup-reveal" name="copy-kind"><summary>BACKUP</summary><ol class="backup-process"><li>Protected earlier version A</li><li>Restore</li><li>✓ Earlier usable data</li></ol></details><details class="backup-reveal" name="copy-kind"><summary>SYNCHRONISATION</summary><ol class="backup-process"><li>Live file deleted</li><li>Deletion may synchronise</li><li>? Check version history / retention</li></ol><p>Behaviour depends on the service and settings.</p></details><details class="backup-reveal" name="copy-kind"><summary>RAID / RESILIENCE</summary><ol class="backup-process"><li>One drive fails</li><li>Suitable fault-tolerant RAID</li><li>✓ Current data may remain available</li></ol><p>Deleting the live file still changes the live RAID state; RAID alone supplies no earlier version.</p></details><p class="backup-note">Protect retained versions from the same incident. “Latest” is not always “last usable”.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><div class="backup-grid">
 <article class="lesson-card">
 <h3>Backup</h3>
 <div>Keeps a separate recoverable version that can restore earlier usable data.</div>
@@ -158,139 +120,28 @@
 </article>
 </div>
 <p class="backup-note">Duplication does not automatically mean recoverability. A copy on the same failed drive is not useful; an always-connected copy may also be damaged.</p>
-<p>Keep versions for an appropriate period and protect backups from the same incidents as live data. “Latest” is not always “last usable”.</p>
+<p>Keep versions for an appropriate period and protect backups from the same incidents as live data. “Latest” is not always “last usable”.</p></details>
 </section><template data-teacher-divider>
 <h2>Backup procedures</h2></template>
 <section id="full" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">04 · Backup and data recovery</p>
+<p class="eyebrow">05 · Backup and data recovery</p>
 <h2>Full backup</h2>
-<p>A full backup copies <strong>all selected data</strong> each time.</p>
-<div class="backup-folder">
-<h3>Student Records</h3>
-<ul class="backup-files">
-<li><code>students.csv</code>
-</li>
-<li><code>attendance.csv</code>
-</li>
-<li><code>courses.csv</code>
-</li>
-<li><code>contacts.csv</code>
-</li>
-</ul>
-</div>
-<div class="backup-days">
-<article class="backup-day">
-<h3>Monday · full</h3>
-<ul class="backup-files">
-<li><code>students.csv</code>
-</li>
-<li><code>attendance.csv</code>
-</li>
-<li><code>courses.csv</code>
-</li>
-<li><code>contacts.csv</code>
-</li>
-</ul>
-</article>
-</div>
-<div class="backup-grid">
-<article class="lesson-card">
-<h3>Restore</h3>
-<div>For these selected files, a usable full backup can be restored on its own. A whole service may also need software and configuration.</div>
-</article>
-<article class="lesson-card">
-<h3>Trade-off</h3>
-<div>Straightforward to restore, but copying everything usually takes more time, storage and transfer capacity than copying only changes.</div>
-</article>
-</div>
+<p class="backup-lead">Every selected file is copied each time.</p><div class="backup-days teaching-timeline"><details class="backup-day" open><summary>Monday<span class="backup-kind">Full</span></summary><p class="backup-change">Starting files: all v1</p><ul class="backup-files"><li><code>students.csv</code><span class="backup-version">v1</span></li><li><code>attendance.csv</code><span class="backup-version">v1</span></li><li><code>courses.csv</code><span class="backup-version">v1</span></li><li><code>contacts.csv</code><span class="backup-version">v1</span></li></ul></details><details class="backup-day"><summary>Tuesday<span class="backup-kind">Full</span></summary><p class="backup-change">Changed: attendance.csv</p><ul class="backup-files"><li><code>students.csv</code><span class="backup-version">v1</span></li><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li><li><code>courses.csv</code><span class="backup-version">v1</span></li><li><code>contacts.csv</code><span class="backup-version">v1</span></li></ul></details><details class="backup-day"><summary>Wednesday<span class="backup-kind">Full</span></summary><p class="backup-change">Changed: contacts.csv</p><ul class="backup-files"><li><code>students.csv</code><span class="backup-version">v1</span></li><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li><li><code>courses.csv</code><span class="backup-version">v1</span></li><li class="file-updated"><code>contacts.csv</code><span class="backup-version">v2</span></li></ul></details><details class="backup-day"><summary>Thursday<span class="backup-kind">Full</span></summary><p class="backup-change">Changed: courses.csv</p><ul class="backup-files"><li><code>students.csv</code><span class="backup-version">v1</span></li><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li><li class="file-updated"><code>courses.csv</code><span class="backup-version">v2</span></li><li class="file-updated"><code>contacts.csv</code><span class="backup-version">v2</span></li></ul></details></div><details class="backup-reveal"><summary>Restore Thursday</summary><p class="backup-ready">Thursday full set → all four Thursday file versions</p></details><p>+ Simple file restore &nbsp; − Usually more copying and storage</p><p class="backup-revision-text">A usable full set restores these selected files on its own. Restoring a service may also require software and configuration.</p>
 </section>
 <section id="incremental" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">05 · Backup and data recovery</p>
+<p class="eyebrow">06 · Backup and data recovery</p>
 <h2>Incremental backup</h2>
-<p>An incremental backup stores <strong>changes since the previous backup</strong>.</p>
-<div class="backup-days">
-<article class="backup-day">
-<h3>Monday · full</h3>
-<ul class="backup-files">
-<li><code>students.csv</code>
-</li>
-<li><code>attendance.csv</code>
-</li>
-<li><code>courses.csv</code>
-</li>
-<li><code>contacts.csv</code>
-</li>
-</ul>
-</article>
-<article class="backup-day">
-<h3>Tuesday · incremental</h3>
-<ul class="backup-files">
-<li><code>attendance.csv · changed</code>
-</li>
-</ul>
-</article>
-<article class="backup-day">
-<h3>Wednesday · incremental</h3>
-<ul class="backup-files">
-<li><code>contacts.csv · changed</code>
-</li>
-</ul>
-</article>
-</div>
-<ol class="backup-flow">
-<li>Restore Monday full</li>
-<li>Apply Tuesday incremental</li>
-<li>Apply Wednesday incremental</li>
-</ol>
-<p class="backup-note">Smaller change sets usually make backups quicker to create, but recovery needs the full backup plus every required later incremental in order.</p>
-<p>Wednesday’s incremental does not contain Tuesday’s attendance change. A missing or damaged set can break the restore chain.</p>
+<p class="backup-lead">Changes since the <strong>previous backup</strong>.</p><div class="backup-days teaching-timeline"><details class="backup-day" open><summary>Monday<span class="backup-kind">Full</span></summary><p class="backup-change">Starting files: all v1</p><ul class="backup-files"><li><code>students.csv</code><span class="backup-version">v1</span></li><li><code>attendance.csv</code><span class="backup-version">v1</span></li><li><code>courses.csv</code><span class="backup-version">v1</span></li><li><code>contacts.csv</code><span class="backup-version">v1</span></li></ul></details><details class="backup-day"><summary>Tuesday<span class="backup-kind">Incremental</span></summary><p class="backup-change">Changed: attendance.csv</p><ul class="backup-files"><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li></ul></details><details class="backup-day"><summary>Wednesday<span class="backup-kind">Incremental</span></summary><p class="backup-change">Changed: contacts.csv</p><ul class="backup-files"><li class="file-updated"><code>contacts.csv</code><span class="backup-version">v2</span></li></ul></details><details class="backup-day"><summary>Thursday<span class="backup-kind">Incremental</span></summary><p class="backup-change">Changed: courses.csv</p><ul class="backup-files"><li class="file-updated"><code>courses.csv</code><span class="backup-version">v2</span></li></ul></details></div><p>Monday supplies the full baseline; each later set contains only that day’s changed file.</p><div data-slide-break></div><h3>Recover the Thursday state</h3><ol class="backup-restore-chain teaching-chain"><li><strong>Monday · full</strong><ul class="backup-files"><li><code>students.csv</code><span class="backup-version">v1</span></li><li><code>attendance.csv</code><span class="backup-version">v1</span></li><li><code>courses.csv</code><span class="backup-version">v1</span></li><li><code>contacts.csv</code><span class="backup-version">v1</span></li></ul></li><li><strong>Tuesday · incremental</strong><ul class="backup-files"><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li></ul></li><li><strong>Wednesday · incremental</strong><ul class="backup-files"><li class="file-updated"><code>contacts.csv</code><span class="backup-version">v2</span></li></ul></li><li><strong>Thursday · incremental</strong><ul class="backup-files"><li class="file-updated"><code>courses.csv</code><span class="backup-version">v2</span></li></ul></li></ol><p class="backup-ready">→ Thursday state recovered: students v1 · attendance v2 · courses v2 · contacts v2</p><p class="backup-note">Full + every required later incremental, in order.</p><p>Smaller change sets usually make copying quicker. A missing or damaged set can break recovery.</p>
 </section>
 <section id="differential" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">06 · Backup and data recovery</p>
+<p class="eyebrow">07 · Backup and data recovery</p>
 <h2>Differential backup</h2>
-<p>A differential backup stores <strong>changes since the last full backup</strong>.</p>
-<div class="backup-days">
-<article class="backup-day">
-<h3>Monday · full</h3>
-<ul class="backup-files">
-<li><code>students.csv</code>
-</li>
-<li><code>attendance.csv</code>
-</li>
-<li><code>courses.csv</code>
-</li>
-<li><code>contacts.csv</code>
-</li>
-</ul>
-</article>
-<article class="backup-day">
-<h3>Tuesday · differential</h3>
-<ul class="backup-files">
-<li><code>attendance.csv · changed since Monday</code>
-</li>
-</ul>
-</article>
-<article class="backup-day">
-<h3>Wednesday · differential</h3>
-<ul class="backup-files">
-<li><code>attendance.csv · changed since Monday</code>
-</li>
-<li><code>contacts.csv · changed since Monday</code>
-</li>
-</ul>
-</article>
-</div>
-<ol class="backup-flow">
-<li>Restore Monday full</li>
-<li>Apply latest Wednesday differential</li>
-</ol>
-<p class="backup-note">Differentials usually grow until the next full backup. Recovery generally needs the full backup and the latest suitable differential, not every differential.</p>
-<p>The Wednesday set already includes the latest version of the attendance file changed on Tuesday.</p>
+<p class="backup-lead">Changes since the <strong>last full backup</strong>.</p><div class="backup-days teaching-timeline"><details class="backup-day" open><summary>Monday<span class="backup-kind">Full</span></summary><p class="backup-change">Starting files: all v1</p><ul class="backup-files"><li><code>students.csv</code><span class="backup-version">v1</span></li><li><code>attendance.csv</code><span class="backup-version">v1</span></li><li><code>courses.csv</code><span class="backup-version">v1</span></li><li><code>contacts.csv</code><span class="backup-version">v1</span></li></ul></details><details class="backup-day"><summary>Tuesday<span class="backup-kind">Differential</span></summary><p class="backup-change">Changed: attendance.csv</p><ul class="backup-files"><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li></ul></details><details class="backup-day"><summary>Wednesday<span class="backup-kind">Differential</span></summary><p class="backup-change">Changed: contacts.csv</p><ul class="backup-files"><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li><li class="file-updated"><code>contacts.csv</code><span class="backup-version">v2</span></li></ul></details><details class="backup-day"><summary>Thursday<span class="backup-kind">Differential</span></summary><p class="backup-change">Changed: courses.csv</p><ul class="backup-files"><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li><li class="file-updated"><code>contacts.csv</code><span class="backup-version">v2</span></li><li class="file-updated"><code>courses.csv</code><span class="backup-version">v2</span></li></ul></details></div><p>The changed-since-Monday set grows: one file → two files → three files.</p><div data-slide-break></div><h3>Recover the Thursday state</h3><ol class="backup-restore-chain teaching-chain"><li><strong>Monday · full</strong><ul class="backup-files"><li><code>students.csv</code><span class="backup-version">v1</span></li><li><code>attendance.csv</code><span class="backup-version">v1</span></li><li><code>courses.csv</code><span class="backup-version">v1</span></li><li><code>contacts.csv</code><span class="backup-version">v1</span></li></ul></li><li><strong>Thursday · differential</strong><ul class="backup-files"><li class="file-updated"><code>attendance.csv</code><span class="backup-version">v2</span></li><li class="file-updated"><code>contacts.csv</code><span class="backup-version">v2</span></li><li class="file-updated"><code>courses.csv</code><span class="backup-version">v2</span></li></ul></li></ol><p class="backup-ready">→ Thursday state recovered: students v1 · attendance v2 · courses v2 · contacts v2</p><p class="backup-note">Full + latest suitable differential. Earlier differentials are not needed here.</p><p>Thursday already contains the latest attendance, contact and course changes. Differentials usually grow until the next full backup.</p>
 </section>
 <section id="compare-strategies" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">07 · Backup and data recovery</p>
+<p class="eyebrow">08 · Backup and data recovery</p>
 <h2>Compare backup strategies</h2>
-<p>Monday starts with all four files. Attendance changes Tuesday, contacts Wednesday and courses Thursday. Each backup runs after that day’s changes.</p>
+<p class="backup-revision-text">Monday starts with all four files. Attendance changes Tuesday, contacts Wednesday and courses Thursday. Each backup runs after that day’s changes.</p>
 <div class="backup-visualiser" data-backup-visualiser data-no-slide-advance>
 <fieldset>
 <legend>Backup strategy</legend>
@@ -308,20 +159,21 @@
 </fieldset>
 <p data-backup-description>Full: all selected files are copied each day.</p>
 
+<div data-backup-days></div>
 <div class="quiz-actions">
 <button type="button" class="primary-link" data-backup-restore>Simulate recovery after Thursday</button>
 <button type="button" class="lesson-secondary-action" data-backup-reset>Reset visualiser</button>
 </div>
 <p data-backup-status role="status">Choose a strategy or simulate recovery.</p>
-<div data-backup-days></div>
+
 <div data-backup-recovery hidden>
 </div>
 </div><noscript>
 <p>The interactive comparison needs JavaScript. The full, incremental and differential examples above show the same rules.</p></noscript>
-<p class="backup-note">File badges show which version is stored, not file size. This model uses whole-file changes; it does not access any real files.</p>
+<p class="backup-note backup-revision-text">File badges show which version is stored, not file size. This model uses whole-file changes; it does not access any real files.</p>
 </section>
 <section id="type-summary" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">08 · Backup and data recovery</p>
+<p class="eyebrow">09 · Backup and data recovery</p>
 <h2>Full vs incremental vs differential</h2>
 <div class="backup-table-wrap">
 <table><caption>Typical behaviour for the same selected data and backup schedule</caption>
@@ -345,9 +197,10 @@
 </section><template data-teacher-divider>
 <h2>Where backups are kept</h2></template>
 <section id="storage-media" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">09 · Backup and data recovery</p>
+<p class="eyebrow">10 · Backup and data recovery</p>
 <h2>Where can backups be stored?</h2>
-<div class="backup-grid">
+<p class="backup-lead">Where should this backup live?</p><div class="backup-destinations"><div class="destination-center"><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>College backup</strong></div><div class="destination"><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>External HDD / SSD</strong><span>Fast / local</span></div><div class="destination"><img class="backup-device" src="../../assets/images/storage/nas-enclosure.svg" alt=""><strong>Backup server</strong><span>Central / automatic</span></div><div class="destination"><img class="backup-device" src="../../assets/images/devices/tape.svg" alt=""><strong>Tape</strong><span>High capacity / offline media</span></div><div class="destination"><img class="backup-device" src="../../assets/images/backup/remote-copy.svg" alt=""><strong>Remote / cloud</strong><span>Separate service / site</span></div></div><p class="backup-note">Choose from capacity, cost, automation and required restore speed.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><div class="backup-grid">
 <article class="lesson-card">
 <h3>External HDD/SSD</h3>
 <div><img class="backup-illustration" src="../../assets/images/devices/ssd.svg" alt="" width="180" height="120">Convenient, potentially fast local restores. Can be disconnected and stored separately; capacity and physical handling matter.</div>
@@ -366,12 +219,13 @@
 </article>
 </div>
 <p class="backup-note">Is the storage suitable for the amount of data, the recovery speed needed and the risks?</p>
-<p>Recall <a href="input-output-and-storage-devices.html?context=btec-level-3-unit-2">storage devices</a>: a medium’s features matter because of the task it must perform.</p>
+<p>Recall <a href="input-output-and-storage-devices.html?context=btec-level-3-unit-2">storage devices</a>: a medium’s features matter because of the task it must perform.</p></details>
 </section>
 <section id="onsite" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">10 · Backup and data recovery</p>
+<p class="eyebrow">11 · Backup and data recovery</p>
 <h2>Onsite backups</h2>
-<figure class="backup-location"><img src="../../assets/images/backup/onsite.svg" width="720" height="240" alt="Live records and a local backup are inside the same college building. One site-wide incident can affect both."><figcaption>Two separate devices, one shared building risk.</figcaption>
+<p class="backup-label">INCIDENT 1 · a local drive fails</p><div class="backup-sites"><div class="college-building"><h3>College building</h3><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Live server</strong><span>✕ Drive failed</span></div><div><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>Onsite backup</strong><span>✓ Copy available</span></div></div><div class="separate-site"><h3>Separate physical site</h3><img class="backup-device" src="../../assets/images/devices/tape.svg" alt=""><strong>Offsite backup</strong><span>✓ Copy available</span></div></div><p class="backup-note">An onsite backup can help with a local failure and a quick restore.</p><p>Onsite describes location, not whether a copy is online, offline or protected from malware.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><figure class="backup-location"><img src="../../assets/images/backup/onsite.svg" width="720" height="240" alt="Live records and a local backup are inside the same college building. One site-wide incident can affect both."><figcaption>Two separate devices, one shared building risk.</figcaption>
 </figure>
 <div class="backup-grid">
 <article class="lesson-card">
@@ -383,12 +237,13 @@
 <div>Fire, flood or theft at the college may affect live records and the onsite backup. An onsite copy alone does not cover site-wide loss.</div>
 </article>
 </div>
-<p class="backup-note">Onsite describes location. It does not automatically mean offline or protected from malware.</p>
+<p class="backup-note">Onsite describes location. It does not automatically mean offline or protected from malware.</p></details>
 </section>
 <section id="offsite" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">11 · Backup and data recovery</p>
+<p class="eyebrow">12 · Backup and data recovery</p>
 <h2>Offsite backups</h2>
-<figure class="backup-location"><img src="../../assets/images/backup/offsite.svg" width="720" height="240" alt="A backup is transferred from the college to a separate physical site. Damage confined to the college need not destroy this copy."><figcaption>A separate physical location reduces exposure to the same site incident.</figcaption>
+<p class="backup-label">INCIDENT 2 · the main building becomes unavailable</p><div class="backup-switch"><div class="backup-before"><div class="backup-sites"><div class="college-building"><h3>College building</h3><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Live server</strong><span>✓ Available</span></div><div><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>Onsite backup</strong><span>✓ Available</span></div></div><div class="separate-site"><h3>Separate physical site</h3><img class="backup-device" src="../../assets/images/devices/tape.svg" alt=""><strong>Offsite backup</strong><span>✓ Available</span></div></div></div><details class="backup-reveal"><summary>A site-wide fire or flood affects the college</summary><div class="backup-sites"><div class="college-building"><h3>College building</h3><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Live server</strong><span>✕ Unavailable</span></div><div><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>Onsite backup</strong><span>✕ Potentially affected</span></div></div><div class="separate-site"><h3>Separate physical site</h3><img class="backup-device" src="../../assets/images/devices/tape.svg" alt=""><strong>Offsite backup</strong><span>✓ Outside this site incident</span></div></div><p class="backup-note">A backup should not share every vulnerability of the live data.</p></details></div><p>Offsite ≠ cloud or third-party. Distance alone does not protect against unauthorised changes.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><figure class="backup-location"><img src="../../assets/images/backup/offsite.svg" width="720" height="240" alt="A backup is transferred from the college to a separate physical site. Damage confined to the college need not destroy this copy."><figcaption>A separate physical location reduces exposure to the same site incident.</figcaption>
 </figure>
 <div class="backup-grid">
 <article class="lesson-card">
@@ -400,12 +255,13 @@
 <div>Getting it back may require a download or transport of media. Network capacity, logistics, cost and recovery time matter.</div>
 </article>
 </div>
-<p class="backup-note">A backup should not be vulnerable to exactly the same incident as live data. Offsite copies also need protection from unauthorised changes; distance alone does not stop ransomware.</p>
+<p class="backup-note">A backup should not be vulnerable to exactly the same incident as live data. Offsite copies also need protection from unauthorised changes; distance alone does not stop ransomware.</p></details>
 </section>
 <section id="management" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">12 · Backup and data recovery</p>
+<p class="eyebrow">13 · Backup and data recovery</p>
 <h2>Who manages the backup?</h2>
-<p><strong>Location and management are separate decisions.</strong>
+<p class="backup-lead">WHERE is it? &nbsp; WHO manages it?</p><div class="backup-table-wrap"><table><caption>Location and management are separate decisions</caption><thead><tr><th scope="col">Location ↓ / Managed by →</th><th scope="col">In-house</th><th scope="col">Third-party</th></tr></thead><tbody><tr><th scope="row">Onsite</th><td>College IT · local backup device</td><td>Provider · college backup appliance</td></tr><tr><th scope="row">Offsite</th><td>College IT · second college site</td><td>Provider · separate storage site</td></tr></tbody></table></div><details class="backup-reveal"><summary>Compare responsibilities</summary><p><strong>In-house:</strong> + control / − expertise and responsibility</p><p><strong>Third-party:</strong> + specialist service / − dependency and cost</p></details><p class="backup-note">The college still defines its needs, controls access and checks recovery.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><p><strong>Location and management are separate decisions.</strong>
 </p>
 <div class="backup-grid">
 <article class="lesson-card">
@@ -431,12 +287,13 @@
 <div>A provider manages backups held at a separate location.</div>
 </article>
 </div>
-<p class="backup-note">Outsourcing does not remove the college’s need to define what is backed up, control access and check that recovery meets its needs.</p>
+<p class="backup-note">Outsourcing does not remove the college’s need to define what is backed up, control access and check that recovery meets its needs.</p></details>
 </section>
 <section id="frequency" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">13 · Backup and data recovery</p>
+<p class="eyebrow">14 · Backup and data recovery</p>
 <h2>How often should backups happen?</h2>
-<div class="backup-grid">
+<div class="backup-switch"><div class="backup-before"><p class="backup-label">DAILY · last usable backup at 00:00</p><div class="risk-window"><span style="--risk-width: 96%"></span></div><p>00:00 ✓ backup → 16:00 ✕ failure</p><p class="backup-lead">16 hours of changes potentially at risk</p></div><details class="backup-reveal"><summary>Use an hourly backup schedule</summary><p class="backup-label">HOURLY · last usable backup at 16:00</p><div class="risk-window"><span style="--risk-width: 3.7%"></span></div><p>15:00 ✓ → 16:00 ✓ backup → 16:37 ✕ failure</p><p class="backup-lead">37 minutes potentially at risk</p><p>The highlighted intervals use the same time scale.</p></details></div><details class="backup-reveal"><summary>Why not back up constantly?</summary><p>Storage · bandwidth · processing load · cost</p><p>Active student records may justify frequent backups; a rarely changed archive may need fewer.</p></details><p class="backup-note">Match change rate and acceptable data loss. These examples assume successful, usable backups; failed jobs can make the gap longer.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><div class="backup-grid">
 <article class="lesson-card">
 <h3>Daily backup</h3>
 <div>
@@ -473,13 +330,14 @@
 <h3>Why not continuously?</h3>
 <div>Frequent copying can increase storage use, bandwidth, system load, cost and complexity. The benefit must justify the resources.</div>
 </article>
-</div>
+</div></details>
 </section><template data-teacher-divider>
 <h2>Data recovery</h2></template>
 <section id="recovery-planning" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">14 · Backup and data recovery</p>
+<p class="eyebrow">15 · Backup and data recovery</p>
 <h2>The failure happened. What now?</h2>
-<p>Return to Friday afternoon: the college’s student records are corrupted, and Thursday’s backup exists.</p>
+<p class="backup-label">FRIDAY · 15:40 · return to the college incident</p><div class="backup-incident"><div class="incident-system"><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>STUDENT RECORD SYSTEM</strong><b>✕ UNAVAILABLE</b></div><dl><dt>THURSDAY BACKUP</dt><dd>✓ Available · 23:00</dd><dt>FRIDAY CHANGES</dt><dd>? Attendance may be missing</dd></dl></div><ol class="backup-process"><li>What failed?</li><li>Which usable copy?</li><li>How quickly must we recover?</li></ol><p class="backup-note">Choose a version from before the damage; the newest backup is not automatically usable.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><p>Return to Friday afternoon: the college’s student records are corrupted, and Thursday’s backup exists.</p>
 <div class="backup-grid">
 <article class="lesson-card">
 <h3>Identify the damage</h3>
@@ -494,25 +352,18 @@
 <div>What recent attendance work is missing? How soon must staff regain access? Which safe temporary process can they use?</div>
 </article>
 </div>
-<p class="backup-note">Do not assume the newest backup is usable. Select a version from before the damage and restore into a safe environment.</p>
+<p class="backup-note">Do not assume the newest backup is usable. Select a version from before the damage and restore into a safe environment.</p></details>
 </section>
 <section id="procedure" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">15 · Backup and data recovery</p>
+<p class="eyebrow">16 · Backup and data recovery</p>
 <h2>Recovery procedure</h2>
-<ol class="backup-flow">
-<li><strong>1 · Identify</strong><br>Establish failure, scope and a safe restore destination.</li>
-<li><strong>2 · Select</strong><br>Choose a known usable version and all required backup sets.</li>
-<li><strong>3 · Restore</strong><br>Recover the required data/system in the right order.</li>
-<li><strong>4 · Verify</strong><br>Check files, completeness, version and permissions.</li>
-<li><strong>5 · Return service</strong><br>Let users resume once checks succeed.</li>
-</ol>
-<p class="backup-note">For the college, opening students.csv is not enough: check the expected student records, attendance version and authorised staff access.</p>
-<p>Record missing recent changes for controlled re-entry where a reliable source exists. Restoring Thursday’s copy does not recreate Friday’s unsaved attendance.</p>
+<div class="recovery-stage"><h3>1 · IDENTIFY</h3><div class="recovery-scene"><div><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>Thursday backup</strong><span>✓ Available</span></div><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Recovery environment</strong><span>Not yet restored</span></div><div class="recovery-focus"><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Student-record service</strong><span>✕ Unavailable</span></div></div><ol class="backup-process"><li>Corrupted records</li><li>Check scope and active cause</li><li>Safe recovery destination</li></ol><p>What is damaged, and is the cause still active?</p></div><div data-slide-break></div><div class="recovery-stage"><h3>2 · SELECT</h3><div class="recovery-scene"><div class="recovery-focus"><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>Thursday backup</strong><span>✓ Selected usable copy</span></div><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Recovery environment</strong><span>Ready to receive data</span></div><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Student-record service</strong><span>✕ Unavailable</span></div></div><ol class="backup-process"><li>Before the corruption</li><li>Known usable version</li><li>All required backup sets</li></ol><p>Friday attendance may not be present in this copy.</p></div><div data-slide-break></div><div class="recovery-stage"><h3>3 · RESTORE</h3><div class="recovery-scene"><div><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>Thursday backup</strong><span>✓ Source sets</span></div><div class="recovery-focus"><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Recovery environment</strong><span>↳ Restoring</span></div><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Student-record service</strong><span>✕ Unavailable</span></div></div><ol class="backup-process"><li>Thursday backup sets</li><li>Restore in the right order</li><li>Safe recovery environment</li></ol><p>Recover the required data and supporting system.</p></div><div data-slide-break></div><div class="recovery-stage"><h3>4 · VERIFY</h3><div class="recovery-scene"><div><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>Thursday backup</strong><span>✓ Source retained</span></div><div class="recovery-focus"><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Recovery environment</strong><span>? Verify data / access</span></div><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Student-record service</strong><span>✕ Awaiting checks</span></div></div><ol class="backup-process"><li>Records present?</li><li>Correct version?</li><li>Authorised access works?</li></ol><p>Check students.csv, attendance completeness and permissions.</p></div><div data-slide-break></div><div class="recovery-stage"><h3>5 · RETURN SERVICE</h3><div class="recovery-scene"><div><img class="backup-device" src="../../assets/images/devices/ssd.svg" alt=""><strong>Thursday backup</strong><span>✓ Backup retained</span></div><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Recovery environment</strong><span>✓ Checks passed</span></div><div class="recovery-focus"><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>Student-record service</strong><span>✓ Available</span></div></div><ol class="backup-process"><li>Checks succeed</li><li>Staff regain access</li><li>Monitor resumed work</li></ol><p>Record missing Friday changes for controlled re-entry only where a reliable source exists.</p></div>
 </section>
 <section id="priorities" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">16 · Backup and data recovery</p>
+<p class="eyebrow">17 · Backup and data recovery</p>
 <h2>What should be restored first?</h2>
-<p>A major failure affects several college services. Do all of them need to return at the same time?</p>
+<p class="backup-lead">What comes back first?</p><ol class="outage-board"><li>⏳ Student / safeguarding records</li><li>⏳ Attendance</li><li>⏳ Staff shared work</li><li>⏳ Archived reports / resources</li></ol><details class="backup-reveal"><summary>Agree the order</summary><p>Urgency / criticality · people affected · safety / legal need · dependencies</p><p>Access services may need to return before staff can use restored records.</p></details><p class="backup-note">A large archive is not automatically highest priority. This is an illustrative queue, not a universal order.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><p>A major failure affects several college services. Do all of them need to return at the same time?</p>
 <div class="backup-grid">
 <article class="lesson-card">
 <h3>Safety and urgent work</h3>
@@ -533,12 +384,13 @@
 <li>Agree an order and communicate it</li>
 </ol>
 <p class="backup-note">Priorities depend on criticality, users affected, safety/legal importance, dependencies and time sensitivity—not simply file size.</p>
-<p>For example, essential access services may need to return before staff can use restored student records. There is no universal order for every incident.</p>
+<p>For example, essential access services may need to return before staff can use restored student records. There is no universal order for every incident.</p></details>
 </section>
 <section id="recovery-time" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">17 · Backup and data recovery</p>
+<p class="eyebrow">18 · Backup and data recovery</p>
 <h2>Having a backup is not enough</h2>
-<div class="backup-grid">
+<p>How long would student records be unavailable?</p><div class="recovery-duration"><strong>Strategy A · 36 hours</strong><span style="--duration: 100%"></span><strong>Strategy B · 2 hours</strong><span style="--duration: 5.56%"></span></div><p class="backup-lead">Can the college tolerate the downtime?</p><details class="backup-reveal"><summary>Count more than copying time</summary><ol class="backup-process"><li>Media / retrieval</li><li>Transfer</li><li>Restore</li><li>Verify</li><li>Service ready</li></ol></details><p class="backup-note">A faster strategy may cost more. Measure recovery and judge it against the college’s needs.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><div class="backup-grid">
 <article class="lesson-card">
 <h3>Strategy A · 36 hours</h3>
 <div>Lower cost, but a day and a half without student records.</div>
@@ -563,39 +415,18 @@
 <h3>Beyond copying</h3>
 <div>Verification, permissions, supporting services and reopening access also take time.</div>
 </article>
-</div>
+</div></details>
 </section>
 <section id="testing" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">18 · Backup and data recovery</p>
+<p class="eyebrow">19 · Backup and data recovery</p>
 <h2>How do you know a backup works?</h2>
-<p class="backup-note">A backup is not proven until it has been successfully restored and checked.</p>
-<ol class="backup-flow">
-<li>Backup created</li>
-<li>Test restore in a safe separate location</li>
-<li>Open and check data</li>
-<li>Verify completeness and access</li>
-<li>Document results and fix problems</li>
-</ol>
-<div class="backup-grid">
-<article class="lesson-card">
-<h3>Data problems</h3>
-<div>Corrupt backup, missing files or incomplete backup scope.</div>
-</article>
-<article class="lesson-card">
-<h3>Access problems</h3>
-<div>Wrong permissions or unavailable encryption keys/credentials.</div>
-</article>
-<article class="lesson-card">
-<h3>Process problems</h3>
-<div>Broken instructions or a restore that takes longer than expected.</div>
-</article>
-</div>
-<p>A successful job message is useful evidence, but it is not a restore test. Test representative data and procedures regularly; a successful sample does not guarantee every future restore.</p>
+<p class="recovery-status">BACKUP JOB ✓ SUCCESS</p><p class="backup-lead">Does that prove we can recover?</p><details class="backup-reveal"><summary>Test the claim</summary><p><strong>No — restore and check the data.</strong></p><ol class="backup-process"><li>Backup</li><li>Test restore</li><li>Open / check data</li><li>Verify access</li><li>Measure recovery</li></ol><p>Document results, fix problems and repeat tests.</p></details><div class="restore-failures"><details class="backup-reveal" name="restore-failure"><summary>Data check fails</summary><p>Corrupt backup or missing file.</p></details><details class="backup-reveal" name="restore-failure"><summary>Access check fails</summary><p>Wrong permission or unavailable encryption credential.</p></details><details class="backup-reveal" name="restore-failure"><summary>Time check fails</summary><p>Restore takes longer than the college can tolerate.</p></details></div><p class="backup-note">A successful sample restore provides evidence, not a guarantee of every future recovery.</p>
 </section>
 <section id="backup-vs-resilience" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">19 · Backup and data recovery</p>
+<p class="eyebrow">20 · Backup and data recovery</p>
 <h2>Why RAID is not a backup</h2>
-<div class="backup-grid">
+<div class="raid-incident"><div><img class="backup-device" src="../../assets/images/hardware/server.svg" alt=""><strong>College server · live RAID data</strong></div><div><details class="backup-reveal" name="raid-incident"><summary>1 · A drive fails</summary><ol class="backup-process"><li>✕ One physical drive</li><li>✓ Service may continue with suitable fault-tolerant RAID</li></ol></details><details class="backup-reveal" name="raid-incident"><summary>2 · students.csv is deleted</summary><ol class="backup-process"><li>✕ File deleted from live data</li><li>✕ RAID alone has no earlier version</li></ol></details><details class="backup-reveal" name="raid-incident"><summary>3 · Ransomware encrypts files</summary><ol class="backup-process"><li>✕ Live files encrypted</li><li>✕ RAID stores the encrypted state too</li></ol></details><details class="backup-reveal" name="raid-incident"><summary>4 · Fire destroys the server</summary><ol class="backup-process"><li>✕ Server destroyed</li><li>✕ Drives can be lost together</li></ol></details></div></div><p class="backup-note">RAID → resilience / availability. Backup → historical recovery.</p><p>Not every RAID configuration tolerates drive failure. A protected usable backup solves a different problem.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><div class="backup-grid">
 <article class="lesson-card">
 <h3>Drive fails</h3>
 <div>A suitable fault-tolerant RAID setup may keep service running while a failed drive is replaced.</div>
@@ -614,13 +445,14 @@
 </article>
 </div>
 <p class="backup-note">RAID improves resilience/availability in suitable configurations. It does not replace a separate recoverable backup.</p>
-<p>Recall <a href="raid-and-nas-storage-systems.html?context=btec-level-3-unit-2">RAID and NAS</a>: not every RAID level tolerates a drive failure. Availability and historical recovery solve different problems.</p>
+<p>Recall <a href="raid-and-nas-storage-systems.html?context=btec-level-3-unit-2">RAID and NAS</a>: not every RAID level tolerates a drive failure. Availability and historical recovery solve different problems.</p></details>
 </section><template data-teacher-divider>
 <h2>Designing a backup strategy</h2></template>
 <section id="complete-strategy" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">20 · Backup and data recovery</p>
+<p class="eyebrow">21 · Backup and data recovery</p>
 <h2>What makes a good backup strategy?</h2>
-<div class="backup-grid">
+<div class="strategy-map"><strong class="strategy-center">RECOVERABLE DATA</strong><div><strong>WHAT?</strong><span>Critical data</span></div><div><strong>HOW?</strong><span>Backup type</span></div><div><strong>WHEN?</strong><span>Frequency</span></div><div><strong>WHERE?</strong><span>Location</span></div><div><strong>WHO?</strong><span>Management</span></div><div><strong>HOW FAST?</strong><span>Recovery target</span></div><div><strong>TESTED?</strong><span>Restore evidence</span></div></div><p class="backup-note">Choose a complete recovery route, not just somewhere to store files.</p>
+<details class="backup-revision"><summary>More explanation and examples</summary><div class="backup-grid">
 <article class="lesson-card">
 <h3>What?</h3>
 <div>Critical data and the supporting information needed to restore it.</div>
@@ -650,16 +482,13 @@
 <div>Test restores, check data/access and measure the recovery time.</div>
 </article>
 </div>
-<p class="backup-note">Choose a complete recovery route, not just somewhere to store files.</p>
+<p class="backup-note">Choose a complete recovery route, not just somewhere to store files.</p></details>
 </section>
 <section id="choose-strategy" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">21 · Backup and data recovery</p>
+<p class="eyebrow">22 · Backup and data recovery</p>
 <h2>Choose a backup strategy</h2>
-<p>A small college has student records changing throughout the day, 1 TB of archived teaching resources, one onsite server, reliable fast internet and limited IT staff. Student records cannot be unavailable for long.</p>
-<p>Choose a plan and justify each decision. Feedback reviews the trade-offs; a matching reason does not make the whole strategy suitable.</p>
-<div class="backup-grid">
-<article class="lesson-card backup-choice" data-paired-scenario="type" data-no-slide-advance>
-<h3>Backup type</h3>
+<div><p class="backup-activity-context">College: records change all day · 1 TB archive · one onsite server · fast internet · limited IT staff · short tolerable downtime. Justify trade-offs; there is no universally best plan.</p><article class="lesson-card backup-choice" data-paired-scenario="type" data-no-slide-advance>
+<h3>Step 1 of 4 · Backup type</h3>
 <label for="strategy-type">Your choice</label>
 <select id="strategy-type" data-choice="type">
 <option value="">Choose</option>
@@ -680,9 +509,8 @@
 </div>
 <p data-pair-feedback role="status">
 </p>
-</article>
-<article class="lesson-card backup-choice" data-paired-scenario="frequency" data-no-slide-advance>
-<h3>Student-record frequency</h3>
+</article></div><div data-slide-break></div><div><p class="backup-activity-context">College: records change all day · 1 TB archive · one onsite server · fast internet · limited IT staff · short tolerable downtime. Justify trade-offs; there is no universally best plan.</p><article class="lesson-card backup-choice" data-paired-scenario="frequency" data-no-slide-advance>
+<h3>Step 2 of 4 · Student-record frequency</h3>
 <label for="strategy-frequency">Your choice</label>
 <select id="strategy-frequency" data-choice="type">
 <option value="">Choose</option>
@@ -703,9 +531,8 @@
 </div>
 <p data-pair-feedback role="status">
 </p>
-</article>
-<article class="lesson-card backup-choice" data-paired-scenario="location" data-no-slide-advance>
-<h3>Backup location</h3>
+</article></div><div data-slide-break></div><div><p class="backup-activity-context">College: records change all day · 1 TB archive · one onsite server · fast internet · limited IT staff · short tolerable downtime. Justify trade-offs; there is no universally best plan.</p><article class="lesson-card backup-choice" data-paired-scenario="location" data-no-slide-advance>
+<h3>Step 3 of 4 · Backup location</h3>
 <label for="strategy-location">Your choice</label>
 <select id="strategy-location" data-choice="type">
 <option value="">Choose</option>
@@ -726,9 +553,8 @@
 </div>
 <p data-pair-feedback role="status">
 </p>
-</article>
-<article class="lesson-card backup-choice" data-paired-scenario="management" data-no-slide-advance>
-<h3>Who manages it?</h3>
+</article></div><div data-slide-break></div><div><p class="backup-activity-context">College: records change all day · 1 TB archive · one onsite server · fast internet · limited IT staff · short tolerable downtime. Justify trade-offs; there is no universally best plan.</p><article class="lesson-card backup-choice" data-paired-scenario="management" data-no-slide-advance>
+<h3>Step 4 of 4 · Who manages it?</h3>
 <label for="strategy-management">Your choice</label>
 <select id="strategy-management" data-choice="type">
 <option value="">Choose</option>
@@ -747,9 +573,7 @@
 </div>
 <p data-pair-feedback role="status">
 </p>
-</article>
-</div>
-<article class="exam-card">
+</article></div><div data-slide-break></div><div><p class="backup-activity-context">College: records change all day · 1 TB archive · one onsite server · fast internet · limited IT staff · short tolerable downtime. Justify trade-offs; there is no universally best plan.</p><article class="exam-card">
 <h3>What should your recovery plan include?</h3>
 <label class="exam-response-label" for="strategy-plan">Justify your plan, including a separate approach for the archive</label>
 <textarea id="strategy-plan" class="exam-response" data-exam-response="v2-strategy-plan" placeholder="Identify priorities, usable versions/sets, restore steps, access checks and a realistic test. Explain why your choices suit the college.">
@@ -763,40 +587,22 @@
 </div>
 </details>
 </article>
+</div>
 </section><template data-teacher-divider>
 <h2>Practice</h2></template>
 <section id="mistakes" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">22 · Backup and data recovery</p>
+<p class="eyebrow">23 · Backup and data recovery</p>
 <h2>Common exam mistakes</h2>
-<div class="backup-grid">
-<article class="lesson-card">
-<h3>“RAID is a backup”</h3>
-<div>Resilience does not supply an independent historical copy.</div>
-</article>
-<article class="lesson-card">
-<h3>“Cloud sync is a complete strategy”</h3>
-<div>Deletion/corruption may propagate. Check recoverable versions and their protection.</div>
-</article>
-<article class="lesson-card">
-<h3>“Incremental means since the full”</h3>
-<div>Incremental means since the previous backup. Differential means since the last full.</div>
-</article>
-<article class="lesson-card">
-<h3>“Restore every differential”</h3>
-<div>Normally restore the full plus the latest suitable differential.</div>
-</article>
-<article class="lesson-card">
-<h3>“A backup exists, so recovery is solved”</h3>
-<div>It may fail to restore, omit needed data or take too long.</div>
-</article>
-<article class="lesson-card">
-<h3>“Offsite means third-party”</h3>
-<div>Location and management are separate choices.</div>
-</article>
-</div>
+<div class="backup-mistake"><h3>“RAID is a backup”</h3><details class="backup-reveal" name="backup-mistakes-0"><summary>Reveal correction</summary><p>Resilience does not supply an independent historical copy.</p></details></div>
+<div class="backup-mistake"><h3>“Cloud sync is a complete strategy”</h3><details class="backup-reveal" name="backup-mistakes-0"><summary>Reveal correction</summary><p>Deletion/corruption may propagate. Check recoverable versions and their protection.</p></details></div>
+<div class="backup-mistake"><h3>“Incremental means since the full”</h3><details class="backup-reveal" name="backup-mistakes-0"><summary>Reveal correction</summary><p>Incremental means since the previous backup. Differential means since the last full.</p></details></div>
+<div data-slide-break></div>
+<div class="backup-mistake"><h3>“Restore every differential”</h3><details class="backup-reveal" name="backup-mistakes-1"><summary>Reveal correction</summary><p>Normally restore the full plus the latest suitable differential.</p></details></div>
+<div class="backup-mistake"><h3>“A backup exists, so recovery is solved”</h3><details class="backup-reveal" name="backup-mistakes-1"><summary>Reveal correction</summary><p>It may fail to restore, omit needed data or take too long.</p></details></div>
+<div class="backup-mistake"><h3>“Offsite means third-party”</h3><details class="backup-reveal" name="backup-mistakes-1"><summary>Reveal correction</summary><p>Location and management are separate choices.</p></details></div>
 </section>
 <section id="quiz" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">23 · Backup and data recovery</p>
+<p class="eyebrow">24 · Backup and data recovery</p>
 <h2>Check your understanding</h2>
 <p>Answer all 14 questions, then check your score. Aim for 10 correct. Your answers and best score save in this browser.</p>
 <form id="lesson-quiz" class="quiz-form">
@@ -1116,7 +922,7 @@
 </form>
 </section>
 <section id="exam-practice" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">24 · Backup and data recovery</p>
+<p class="eyebrow">25 · Backup and data recovery</p>
 <h2>Exam-style practice</h2>
 <p>Apply your reasoning to the organisation, then weigh the relevant trade-offs. These are practice questions, not an official mark scheme.</p>
 <p class="exam-response-note">Draft answers save automatically in this browser.</p>

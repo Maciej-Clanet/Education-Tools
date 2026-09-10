@@ -26,3 +26,109 @@
   .backup-flow li:not(:last-child)::after { content: ' ↓'; }
   .backup-table-wrap th, .backup-table-wrap td { padding: .4rem; font-size: .9rem; }
 }
+
+/* Shared college incident, file tokens and time-based teaching compositions. */
+.backup-lead { font-size: 1.4em; font-weight: 750; line-height: 1.3; }
+.backup-label { font-weight: 750; letter-spacing: .03em; }
+.backup-device { display: block; width: 110px; height: 80px; object-fit: contain; margin: .5rem auto; }
+.backup-incident { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; margin: 1.5rem 0; }
+.incident-system { border: 3px solid var(--teal); padding: 1.3rem; text-align: center; }
+.incident-system strong, .incident-system b { display: block; margin: .6rem; }
+.incident-system b { font-size: 1.7em; }
+.incident-system .backup-device { width: 180px; height: 130px; }
+.backup-incident dt { font-weight: 750; border-block-end: 2px solid var(--teal); padding: .6rem 0; }
+.backup-incident dd { margin: .5rem 0 1.5rem; }
+.backup-cause-list { display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; margin: 2rem 0; }
+.backup-cause-list dt { border-inline-start: 4px solid var(--teal); font-weight: 750; padding-inline-start: 1rem; }
+.backup-cause-list dd { margin: 0; }
+.backup-process { display: flex; gap: 1.5rem; align-items: center; padding: 1rem 0; list-style: none; }
+.backup-process li { position: relative; flex: 1; padding: .9rem; border-block-end: 3px solid var(--teal); }
+.backup-process li:not(:last-child)::after { content: '→'; position: absolute; right: -1.3rem; top: 40%; font-weight: 750; color: var(--teal-deep); }
+.failure-line { border-block: 3px dashed var(--muted-ink); font-size: 1.3em; font-weight: 750; padding: .7rem; text-align: center; }
+.backup-reveal { border-block-end: 1px solid var(--panel-border); margin: .5rem 0; }
+.backup-reveal summary, .backup-revision summary { min-height: 44px; cursor: pointer; padding: .5rem; font-weight: 650; }
+.backup-reveal summary:focus-visible, .teaching-timeline summary:focus-visible { outline: 3px solid var(--teal-deep); outline-offset: 2px; }
+.backup-reveal > :not(summary) { margin-inline: .5rem; }
+.backup-revision { margin-block-start: 1.5rem; }
+body.teacher-mode-active .backup-revision, body.teacher-mode-active .backup-revision-text { display: none !important; }
+.backup-switch:has(> .backup-reveal[open]) > .backup-before { display: none; }
+.backup-file-line { padding: 1rem; border-inline-start: 4px solid var(--teal); }
+.teaching-timeline { align-items: start; }
+.teaching-timeline summary { font-size: 1.1em; font-weight: 750; cursor: pointer; min-height: 44px; }
+.teaching-timeline summary .backup-kind { display: block; font-size: .8em; margin-top: .3rem; }
+.teaching-timeline .backup-files code, .teaching-chain .backup-files code { font-size: .9rem; }
+.backup-ready { padding: .8rem; border-inline-start: 4px solid var(--teal); font-weight: 750; }
+.backup-destinations { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 1rem 2rem; align-items: center; }
+.destination-center { grid-area: 1 / 2 / 3 / 3; text-align: center; border: 3px solid var(--teal); padding: 1.5rem; border-radius: 50%; }
+.destination { border-block-end: 3px solid var(--teal); text-align: center; padding: .5rem; }
+.destination strong, .destination span { display: block; }
+.destination::before { content: '↔'; color: var(--teal-deep); font-weight: 750; }
+.backup-sites { display: grid; grid-template-columns: 1.8fr 1fr; gap: 3rem; margin: 1rem 0; align-items: stretch; }
+.college-building { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border: 3px solid var(--teal); border-top-width: 10px; padding: 1rem; }
+.college-building h3 { grid-column: 1 / -1; margin: 0; }
+.college-building > div { border: 1px solid var(--panel-border); padding: .5rem; }
+.separate-site { border: 3px dashed var(--teal); padding: 1rem; text-align: center; }
+.backup-sites strong, .backup-sites span { display: block; margin: .4rem 0; text-align: center; }
+.risk-window { height: 52px; border-block-end: 3px solid var(--muted-ink); background: var(--panel-soft); margin: 1rem 0; }
+.risk-window span { display: block; width: var(--risk-width); height: 100%; background: repeating-linear-gradient(135deg, var(--sand) 0 8px, var(--panel) 8px 12px); border: 2px solid var(--sand-deep); }
+.recovery-status { font-size: 1.6em; font-weight: 750; border-block: 3px solid var(--teal); padding: 1rem; }
+.recovery-stage h3 { margin-block: 1rem; }
+.outage-board { padding-inline-start: 1.8rem; }
+.outage-board li { padding: 1rem; border-block-end: 1px solid var(--panel-border); font-size: 1.1em; }
+.recovery-duration { display: grid; gap: .7rem; padding-block: 1rem; }
+.recovery-duration span { width: var(--duration); height: 35px; background: var(--teal); }
+.restore-failures { display: flex; flex-wrap: wrap; gap: 1rem; }
+.restore-failures > details { flex: 1 1 200px; }
+.raid-incident { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: center; }
+.raid-incident > div:first-child { text-align: center; border: 3px solid var(--teal); padding: 2rem 1rem; }
+.raid-incident .backup-device { width: 160px; height: 120px; }
+.strategy-map { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.3rem; align-items: center; margin: 2rem 0; }
+.strategy-center { grid-area: 2 / 2 / 3 / 4; text-align: center; border: 3px solid var(--teal); padding: 2rem 1rem; }
+.strategy-map > div { border-inline-start: 3px solid var(--teal); padding: .8rem; }
+.strategy-map span { display: block; margin-top: .3rem; }
+.backup-mistake { border-inline-start: 4px solid var(--teal); padding-inline-start: 1rem; margin-block: 1rem; }
+.backup-activity-context { font-size: .95em; border-block-end: 1px solid var(--panel-border); padding-block-end: .6rem; }
+body.teacher-mode-active .backup-reveal > p { margin-block: .35rem .6rem; }
+body.teacher-mode-active #choose-strategy .backup-choice { max-width: 64rem; margin-inline: auto; }
+body.teacher-mode-active .backup-visualiser p { margin-block: .5rem; }
+body.teacher-mode-active .backup-visualiser .backup-day { padding: .6rem; }
+body.teacher-mode-active [data-backup-recovery] > .backup-files { display: flex; flex-wrap: wrap; }
+body.teacher-mode-active [data-backup-recovery] > p { font-size: .85em; }
+@media (max-width: 650px) {
+  .backup-incident, .backup-cause-list, .backup-sites, .raid-incident { grid-template-columns: 1fr; gap: 1rem; }
+  .backup-process { flex-direction: column; align-items: stretch; gap: .5rem; }
+  .backup-process li:not(:last-child)::after { content: '↓'; top: auto; bottom: -.9rem; right: 50%; }
+  .backup-destinations { grid-template-columns: 1fr 1fr; gap: .8rem; }
+  .destination-center { grid-area: 1 / 1 / 2 / 3; border-radius: 12px; }
+  .college-building { grid-template-columns: 1fr; }
+  .strategy-map { grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .strategy-center { grid-area: 1 / 1 / 2 / 3; }
+}
+.recovery-scene { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 1.5rem 0; }
+.recovery-scene > div { position: relative; text-align: center; padding: 1rem; border: 1px solid var(--panel-border); }
+.recovery-scene strong, .recovery-scene span { display: block; margin-top: .5rem; }
+.recovery-scene .recovery-focus { border: 4px solid var(--teal); }
+.recovery-scene > div:not(:last-child)::after { content: '→'; position: absolute; right: -1.5rem; top: 45%; color: var(--teal-deep); font-weight: 750; }
+body:not(.teacher-mode-active) #choose-strategy > div:not(:first-of-type) .backup-activity-context { display: none; }
+body.teacher-mode-active .backup-visualiser .backup-files { gap: .25rem; }
+body.teacher-mode-active .backup-visualiser .backup-files li { padding: .3rem; }
+body.teacher-mode-active .backup-visualiser .backup-kind { font-size: .9em; }
+body.teacher-mode-active #testing .recovery-status { padding: .6rem; margin-block: .6rem; }
+body.teacher-mode-active #testing .backup-process { margin-block: .4rem; padding-block: .4rem; }
+body.teacher-mode-active #testing .backup-note { padding: .6rem; }
+@media (max-width: 650px) {
+  .recovery-scene { grid-template-columns: 1fr; gap: 1.2rem; }
+  .recovery-scene > div:not(:last-child)::after { content: '↓'; top: auto; bottom: -1.3rem; right: 50%; }
+}
+/* Keep recovery sets and the recovered result visible together on the projector. */
+body.teacher-mode-active .backup-visualiser:has([data-backup-recovery]:not([hidden])) [data-backup-description] { display: none; }
+body.teacher-mode-active [data-backup-recovery] { margin-top: .4rem; }
+body.teacher-mode-active [data-backup-recovery] h3 { margin-block: .4rem; }
+body.teacher-mode-active [data-backup-recovery] .backup-restore-chain { margin-block: .5rem; }
+body.teacher-mode-active [data-backup-recovery] .backup-restore-chain > li { padding: .5rem; }
+body.teacher-mode-active [data-backup-recovery] .backup-set-files { gap: .2rem; margin-block: .4rem; }
+body.teacher-mode-active [data-backup-recovery] .backup-set-files li { padding: .2rem; }
+body.teacher-mode-active [data-backup-recovery] > p { margin-block: .35rem; }
+@media (min-width: 900px) {
+  body.teacher-mode-active [data-backup-recovery] .backup-restore-chain > li:only-child .backup-set-files { grid-template-columns: repeat(4, 1fr); }
+}

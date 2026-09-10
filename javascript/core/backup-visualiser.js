@@ -7,10 +7,10 @@ function node(tag, className, text) {
   return element
 }
 
-function fileList(files) {
-  const list = node('ul', 'backup-files')
+function fileList(files, className = 'backup-files') {
+  const list = node('ul', className)
   for (const [file, version] of Object.entries(files)) {
-    const item = node('li', '')
+    const item = node('li', version > 1 ? 'file-updated' : '')
     item.append(node('code', '', file), node('span', 'backup-version', `v${version}`))
     list.append(item)
   }
@@ -56,9 +56,14 @@ export function initBackupVisualisers(example, root = document) {
       recovery.replaceChildren()
       if (state.recovered) {
         const chain = node('ol', 'backup-restore-chain')
-        needed.forEach(index => chain.append(node('li', '', `${sets[index].label} ${sets[index].kind}`)))
-        recovery.append(node('h3', '', 'Restore these sets in order'), chain, node('h3', '', 'Recovered Student Records · Thursday version'), fileList(restoreBackupSets(sets)), node('p', '', 'The same Thursday file versions are recovered with each strategy. Friday’s later changes are not recreated. This simulation assumes every required set is intact and usable.'))
-        status.textContent = `Recovery after Thursday: ${needed.map(index => `${sets[index].label} ${sets[index].kind}`).join(' → ')}. ${needed.length} backup ${needed.length === 1 ? 'set' : 'sets'} required.`
+        needed.forEach(index => {
+          const set = sets[index]
+          const item = node('li', '')
+          item.append(node('strong', '', `${set.label} ${set.kind}`), fileList(set.files, 'backup-set-files'))
+          chain.append(item)
+        })
+        recovery.append(node('h3', '', 'Restore these sets in order'), chain, node('h3', '', 'Recovered Student Records · Thursday version'), fileList(restoreBackupSets(sets)), node('p', '', 'Each strategy recovers the same Thursday versions. Friday’s later changes are not recreated. All required sets must be intact and usable.'))
+        status.textContent = `Recovery after Thursday: ${needed.length} backup ${needed.length === 1 ? 'set' : 'sets'} required.`
       } else status.textContent = `${descriptions[state.strategy]} Backup contents updated. Simulate recovery to see which sets are needed.`
     }
     selectors.forEach(input => input.addEventListener('change', () => {

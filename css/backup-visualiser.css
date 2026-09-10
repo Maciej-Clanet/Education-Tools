@@ -17,16 +17,30 @@
 .backup-kind { font-weight: 700; }
 .backup-change { font-size: .9rem; overflow-wrap: anywhere; }
 .backup-restore-chain { display: flex; flex-wrap: wrap; gap: .7rem; list-style: none; padding: 0; }
-.backup-restore-chain li { padding: .75rem; border: 2px solid var(--teal); border-radius: 10px; background: var(--panel); }
-.backup-restore-chain li:not(:last-child)::after { content: ' →'; font-weight: 700; }
+.backup-restore-chain > li { padding: .75rem; border: 2px solid var(--teal); border-radius: 10px; background: var(--panel); }
+.backup-restore-chain > li:not(:last-child)::after { content: ' →'; font-weight: 700; }
 [data-backup-recovery] { border-top: 1px solid var(--panel-border); margin-top: 1rem; }
 [data-backup-recovery][hidden] { display: none !important; }
 [data-backup-status] { min-height: 1.5em; }
 @media (max-width: 600px) {
   .backup-restore-chain { flex-direction: column; }
-  .backup-restore-chain li:not(:last-child)::after { content: ' ↓'; }
+  .backup-restore-chain > li:not(:last-child)::after { content: ' ↓'; }
 }
 .backup-day p { margin: .6rem 0; }
 .backup-day h3 { margin: 0 0 .5rem; }
 .backup-day .backup-required { font-size: .9rem; }
 body.teacher-mode-active .backup-visualiser .backup-files code { font-size: .95rem; }
+
+/* Restore sets reuse the same labelled file tokens as the daily timeline. */
+.backup-set-files { display: grid; gap: .4rem; list-style: none; padding: 0; margin: .6rem 0; }
+.backup-set-files li { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; padding: .45rem; border: 1px solid var(--panel-border); border-radius: 7px; background: var(--panel); }
+.backup-set-files code { font-size: .83rem; overflow-wrap: anywhere; }
+.backup-restore-chain > li { flex: 1 1 170px; }
+.backup-visualiser:has([data-backup-recovery]:not([hidden])) [data-backup-days] { display: none; }
+.backup-files .file-updated, .backup-set-files .file-updated { border-inline-start: 4px solid var(--teal); }
+.backup-restore-chain { gap: 1.4rem; }
+.backup-restore-chain > li { position: relative; }
+.backup-restore-chain > li:not(:last-child)::after { content: '→'; position: absolute; right: -1.2rem; top: 45%; }
+@media (max-width: 600px) {
+  .backup-restore-chain > li:not(:last-child)::after { content: '↓'; top: auto; bottom: -1.4rem; right: 50%; }
+}
