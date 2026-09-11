@@ -1,379 +1,769 @@
-.cluster-model-map,
-.cluster-node-visual,
-.context-example-grid,
-.memory-access-visual,
-.scenario-choice-grid {
-  display: grid;
-  gap: 1rem;
-  margin: 1rem 0;
+/* A computer boundary contains CPU and RAM; a NUMA region stays inside one system. */
+.arch-lead {
+    font-size: clamp(1.1rem, 1.8vw, 1.65rem);
+    line-height: 1.45;
+    margin: 1rem 0;
 }
 
-.cluster-model-map,
-.context-example-grid,
-.scenario-choice-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.arch-split,
+.arch-nodes,
+.arch-recap {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
 }
 
-.cluster-map-card,
-.cluster-source-card,
-.cluster-node-card,
-.cluster-result-card,
-.context-example-card,
-.processor-box,
-.shared-memory-pool,
-.numa-socket,
-.numa-hop,
-.scenario-choice-card {
-  padding: 1rem;
-  border: 1.5px solid rgba(37, 52, 66, 0.12);
-  border-radius: 18px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.92),
-    rgba(247, 251, 253, 0.84)
-  );
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+.arch-nodes {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
-.cluster-map-card,
-.context-example-card,
-.scenario-choice-card {
-  display: grid;
-  gap: 0.65rem;
-  align-content: start;
+.arch-recap {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.cluster-map-card h3,
-.context-example-card h3,
-.scenario-choice-card h3 {
-  margin: 0;
-  color: var(--page-ink);
-  font-size: 1.08rem;
+.arch-split>*,
+.arch-nodes>*,
+.arch-recap>* {
+    min-width: 0;
 }
 
-.cluster-map-card p,
-.context-example-card p,
-.scenario-choice-card p,
-.cluster-source-card span,
-.cluster-node-card span,
-.cluster-result-card span,
-.processor-box span,
-.shared-memory-pool span,
-.numa-hop span {
-  margin: 0;
-  color: var(--muted-ink);
+.arch-computer,
+.arch-system {
+    border: 2px solid var(--page-ink);
+    border-radius: 14px;
+    padding: 1rem;
+    background: var(--panel-bg, #fff);
+    text-align: center;
 }
 
-.cluster-map-badge,
-.context-example-label,
-.scenario-choice-label,
-.latency-tag {
-  width: fit-content;
-  padding: 0.28rem 0.58rem;
-  border-radius: 999px;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  background: rgba(255, 255, 255, 0.78);
-  color: var(--lesson-accent-heading);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.arch-computer {
+    display: grid;
+    gap: .65rem;
+    align-content: start;
 }
 
-.cluster-map-card--cluster {
-  border-color: rgba(190, 91, 91, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(255, 240, 241, 0.88)
-  );
+.arch-computer>strong,
+.arch-system>strong {
+    display: block;
+    font-size: 1.08em;
 }
 
-.cluster-map-card--uma {
-  border-color: rgba(31, 135, 125, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(232, 246, 255, 0.88)
-  );
+.arch-computer>span {
+    font-size: .85em;
 }
 
-.cluster-map-card--numa {
-  border-color: rgba(185, 140, 25, 0.22);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(255, 249, 227, 0.92)
-  );
+.arch-parts {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
 }
 
-.cluster-map-icon {
-  display: grid;
-  gap: 0.5rem;
-  min-height: 7rem;
-  padding: 0.75rem;
-  border: 1.5px dashed rgba(37, 52, 66, 0.16);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.58);
+.arch-cpu,
+.arch-ram {
+    display: inline-block;
+    padding: .6rem .8rem;
+    border: 2px solid currentColor;
+    border-radius: 5px;
+    font-weight: 750;
 }
 
-.cluster-map-icon span {
-  display: grid;
-  place-items: center;
-  min-height: 2rem;
-  padding: 0.45rem 0.55rem;
-  border-radius: 14px;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  background: rgba(255, 255, 255, 0.84);
-  color: var(--page-ink);
-  font-size: 0.84rem;
-  font-weight: 800;
-  text-align: center;
+.arch-cpu {
+    background: #e1edf8;
+    color: #183f61;
+    border-style: double;
+    border-width: 4px;
 }
 
-.cluster-map-icon--cluster {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: center;
+.arch-cpu.wide {
+    width: 100%;
 }
 
-.cluster-map-icon--cluster span {
-  background: rgba(255, 240, 241, 0.92);
+.arch-ram {
+    background: #f6edca;
+    color: #514014;
 }
 
-.cluster-map-icon--uma {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
-  align-items: center;
+.arch-network {
+    padding: .7rem;
+    text-align: center;
+    border-block: 2px dashed currentColor;
+    margin: .6rem 0;
+    font-weight: 750;
 }
 
-.cluster-map-icon--uma span:nth-child(2) {
-  min-height: 5rem;
-  background: rgba(232, 246, 255, 0.94);
+.arch-cluster>.arch-nodes {
+    margin-top: 0;
 }
 
-.cluster-map-icon--numa {
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
+.arch-cluster>.arch-nodes>.arch-computer {
+    position: relative;
+    margin-top: .6rem;
 }
 
-.cluster-map-icon--numa span:nth-child(2) {
-  min-width: 4.4rem;
-  background: rgba(255, 249, 227, 0.94);
-  color: #785e16;
+.arch-cluster>.arch-nodes>.arch-computer:before {
+    content: '';
+    height: .65rem;
+    border-left: 2px dashed currentColor;
+    position: absolute;
+    top: -.7rem;
+    left: 50%;
 }
 
-.cluster-node-visual {
-  grid-template-columns:
-    minmax(180px, 0.72fr)
-    auto
-    minmax(260px, 1.35fr)
-    minmax(170px, 0.72fr);
-  align-items: stretch;
+.arch-processors {
+    display: flex;
+    gap: .5rem;
+    margin: 1rem 0 0;
 }
 
-.cluster-source-card,
-.cluster-node-card,
-.cluster-result-card,
-.processor-box,
-.shared-memory-pool,
-.numa-socket,
-.numa-hop {
-  display: grid;
-  gap: 0.45rem;
-  align-content: center;
-  justify-items: center;
-  text-align: center;
+.arch-processors>div {
+    flex: 1;
+    min-width: 0;
 }
 
-.cluster-source-card {
-  background: rgba(255, 249, 227, 0.92);
-  border-color: rgba(185, 140, 25, 0.22);
+.arch-processors .arch-cpu {
+    padding: .5rem;
 }
 
-.cluster-result-card {
-  background: rgba(238, 248, 231, 0.92);
-  border-color: rgba(55, 129, 53, 0.18);
+.arch-stem {
+    display: block;
+    font-size: 1.5rem;
 }
 
-.cluster-route-label,
-.memory-bus {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--lesson-accent-heading);
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-align: center;
-  text-transform: uppercase;
+.arch-bus {
+    border-block: 3px solid currentColor;
+    padding: .5rem;
+    font-size: .9em;
 }
 
-.cluster-node-grid {
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.arch-pool {
+    display: block;
+    margin: 1rem auto 0;
+    max-width: 30rem;
 }
 
-.cluster-node-card {
-  min-height: 9rem;
-  background: rgba(232, 246, 255, 0.9);
-  border-color: rgba(31, 135, 125, 0.18);
+.arch-numa svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    overflow: visible;
 }
 
-.cluster-node-card--standby {
-  background: rgba(238, 248, 231, 0.9);
-  border-color: rgba(55, 129, 53, 0.18);
+.arch-numa text {
+    fill: var(--page-ink);
+    text-anchor: middle;
+    font-size: 20px;
+    font-weight: 650;
 }
 
-.context-example-card {
-  border-left: 5px solid var(--lesson-accent);
+.arch-region {
+    fill: transparent;
+    stroke: var(--page-ink);
+    stroke-width: 2;
+    stroke-dasharray: 6 4;
 }
 
-.context-example-card--wide {
-  margin-top: 1rem;
+.arch-wire {
+    fill: none;
+    stroke: var(--page-ink);
+    stroke-width: 3;
 }
 
-.memory-access-visual {
-  padding: 1rem;
-  border-radius: 20px;
-  border: 1.5px dashed rgba(37, 52, 66, 0.16);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.86),
-    rgba(247, 251, 253, 0.82)
-  );
+.arch-svg-cpu {
+    fill: #e1edf8;
+    stroke: #183f61;
+    stroke-width: 2;
 }
 
-.processor-row {
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.arch-svg-ram {
+    fill: #f6edca;
+    stroke: #514014;
+    stroke-width: 2;
 }
 
-.processor-box {
-  min-height: 6rem;
-  background: rgba(232, 246, 255, 0.92);
-  border-color: rgba(31, 135, 125, 0.18);
+.arch-numa .arch-svg-cpu+text,
+.arch-numa .arch-svg-ram+text {
+    fill: #172c3a;
 }
 
-.memory-bus {
-  min-height: 2.4rem;
-  border-radius: 999px;
-  border: 1px dashed rgba(31, 135, 125, 0.28);
-  background: rgba(232, 246, 255, 0.7);
+.arch-active-route {
+    fill: none;
+    stroke: #a63e16;
+    stroke-width: 10;
+    display: none;
 }
 
-.shared-memory-pool {
-  min-height: 6rem;
-  background: rgba(255, 249, 227, 0.92);
-  border-color: rgba(185, 140, 25, 0.22);
+.arch-numa[data-route=local] .arch-active-route,
+.arch-numa[data-route=remote] .arch-active-route {
+    display: block;
 }
 
-.numa-socket-grid {
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(0, 1fr);
-  align-items: stretch;
+.arch-numa[data-route=remote] .arch-active-route {
+    stroke-dasharray: 15 7;
 }
 
-.numa-socket {
-  min-height: 12rem;
-  background: rgba(255, 249, 227, 0.92);
-  border-color: rgba(185, 140, 25, 0.22);
+.arch-numa .arch-link-label {
+    font-size: 18px;
 }
 
-.numa-chip,
-.numa-memory {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: min(100%, 12rem);
-  padding: 0.7rem 0.8rem;
-  border-radius: 15px;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  color: var(--page-ink);
-  font-weight: 800;
+.arch-flow {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    padding: 0;
+    align-items: center;
 }
 
-.numa-chip {
-  background: rgba(232, 246, 255, 0.92);
+.arch-flow li {
+    flex: 1;
+    min-width: 100px;
+    padding: .7rem;
+    border-bottom: 3px solid currentColor;
 }
 
-.numa-memory {
-  background: rgba(238, 248, 231, 0.92);
+.arch-flow li+li:before {
+    content: '→ ';
+    font-weight: 900;
 }
 
-.numa-hop {
-  min-height: 8rem;
-  align-self: center;
-  border-style: dashed;
-  background: rgba(255, 255, 255, 0.82);
+.arch-pressure {
+    display: grid;
+    justify-items: center;
+    gap: .5rem;
 }
 
-.latency-tag--fast {
-  background: rgba(238, 248, 231, 0.92);
-  color: #29523b;
+.arch-frames,
+.arch-task-pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
 }
 
-.latency-tag--slow {
-  background: rgba(255, 240, 241, 0.92);
-  color: #8b4831;
+.arch-frames span,
+.arch-task {
+    border: 1px solid currentColor;
+    padding: .35rem .6rem;
+    border-radius: 4px;
+    background: #f6edca;
+    color: #514014;
 }
 
-.scenario-choice-card {
-  border-top: 6px solid var(--lesson-accent);
+.arch-frames {
+    max-width: 650px;
 }
 
-body.teacher-mode-active .cluster-model-map,
-body.teacher-mode-active .context-example-grid,
-body.teacher-mode-active .scenario-choice-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.arch-big-arrow {
+    font-size: 2rem;
+    text-align: center;
 }
 
-body.teacher-mode-active .cluster-node-visual {
-  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.35fr) minmax(0, 0.75fr);
+.arch-map {
+    text-align: center;
+    padding: 1.2rem;
 }
 
-body.teacher-mode-active .cluster-route-label {
-  display: none;
+.arch-map>strong {
+    display: block;
+    font-size: 1.4em;
+    margin-bottom: 1.7rem;
 }
 
-body.teacher-mode-active .processor-row {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.arch-branches {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    border-top: 3px solid currentColor;
+    gap: 2rem;
 }
 
-body.teacher-mode-active .numa-socket-grid {
-  grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(0, 1fr);
+.arch-branches>div {
+    display: grid;
+    gap: .9rem;
+    position: relative;
+    padding-top: 1.5rem;
 }
 
-@media (max-width: 1080px) {
-  .cluster-node-visual,
-  body.teacher-mode-active .cluster-node-visual {
-    grid-template-columns: 1fr;
-  }
-
-  .cluster-route-label {
-    min-height: 2rem;
-  }
+.arch-branches>div:before {
+    content: '';
+    height: 1rem;
+    border-left: 3px solid currentColor;
+    position: absolute;
+    top: 0;
+    left: 50%;
 }
 
-@media (max-width: 760px) {
-  .cluster-map-icon--cluster,
-  .cluster-map-icon--uma,
-  .cluster-map-icon--numa,
-  .cluster-node-grid,
-  .processor-row,
-  .numa-socket-grid,
-  body.teacher-mode-active .cluster-model-map,
-  body.teacher-mode-active .context-example-grid,
-  body.teacher-mode-active .scenario-choice-grid,
-  body.teacher-mode-active .processor-row,
-  body.teacher-mode-active .numa-socket-grid {
-    grid-template-columns: 1fr;
-  }
+.arch-branches strong {
+    border: 2px solid currentColor;
+    padding: 1rem;
+    border-radius: 10px;
+}
 
-  .cluster-node-card,
-  .processor-box,
-  .numa-socket,
-  .numa-hop {
-    min-height: 0;
-  }
+.arch-map-leaves {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .7rem;
+}
+
+.arch-map small {
+    font-size: .75em;
+    font-weight: 500;
+}
+
+.arch-parallel {
+    display: grid;
+    gap: 1rem;
+}
+
+.arch-parallel span {
+    padding: 1rem;
+    border-bottom: 2px solid currentColor;
+}
+
+.arch-balance {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 5px solid currentColor;
+    padding: 1rem;
+}
+
+.arch-balance>span {
+    font-size: 4rem;
+}
+
+.arch-balance li {
+    margin: .7rem 0;
+}
+
+.arch-reveal,
+.arch-revision {
+    border: 1px solid currentColor;
+    border-radius: 10px;
+    margin: 1rem 0;
+    padding: .8rem 1rem;
+}
+
+.arch-reveal summary,
+.arch-revision summary {
+    cursor: pointer;
+    font-weight: 750;
+}
+
+.arch-transform:has(>.arch-reveal[open])>.arch-before {
+    display: none;
+}
+
+.arch-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    align-items: center;
+    margin: .8rem 0;
+}
+
+.arch-controls label {
+    display: flex;
+    gap: .4rem;
+    align-items: center;
+    font-weight: 650;
+}
+
+.arch-controls select,
+.arch-controls button {
+    font: inherit;
+    color: var(--page-ink);
+    background: var(--panel-bg, #fff);
+    border: 2px solid currentColor;
+    border-radius: 7px;
+    padding: .55rem .7rem;
+    min-height: 44px;
+}
+
+.arch-controls button {
+    cursor: pointer;
+}
+
+.arch-controls input {
+    width: 1.3rem;
+    height: 1.3rem;
+    accent-color: var(--lesson-accent);
+}
+
+.arch-controls :focus-visible,
+.arch-reveal summary:focus-visible {
+    outline: 3px solid var(--lesson-accent);
+    outline-offset: 4px;
+}
+
+.arch-status {
+    border-left: 4px solid var(--lesson-accent);
+    padding: .7rem 1rem;
+    font-weight: 650;
+}
+
+.arch-latencies>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.arch-equal-path {
+    border-bottom: 4px solid currentColor;
+    padding: .7rem;
+}
+
+.arch-funnel {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    text-align: center;
+    font-size: 1.4em;
+    padding: 1rem;
+}
+
+.arch-funnel>div:first-child {
+    width: 100%;
+    border-bottom: 4px solid currentColor;
+    padding: 1rem;
+}
+
+.arch-funnel>div:nth-child(2) {
+    border-inline: 5px solid currentColor;
+    padding: 1rem;
+    width: 75%;
+}
+
+.arch-funnel strong {
+    width: 60%;
+    padding: 1rem;
+    background: #f6edca;
+    color: #514014;
+}
+
+.arch-region-box {
+    display: grid;
+    gap: .5rem;
+    border: 2px dashed currentColor;
+    padding: 1rem;
+    text-align: center;
+}
+
+.arch-decision {
+    display: grid;
+    gap: 1.3rem;
+}
+
+.arch-decision li {
+    padding: 1rem;
+    border-left: 4px solid currentColor;
+}
+
+.arch-decision span {
+    display: block;
+    margin-top: .7rem;
+}
+
+.arch-failure .arch-computer:nth-child(2) {
+    border-style: dashed;
+}
+
+.arch-failure .arch-computer:nth-child(2)>b {
+    text-decoration: underline;
+}
+
+.arch-recap .arch-nodes {
+    grid-template-columns: 1fr 1fr;
+}
+
+.arch-recap .arch-computer {
+    padding: .5rem;
+}
+
+.arch-recap .arch-computer>span,
+.arch-recap .arch-computer>b {
+    display: none;
+}
+
+.arch-recap .arch-parts {
+    flex-direction: column;
+}
+
+[data-classifier-diagram=overlap]>.arch-nodes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+[data-classifier-diagram=overlap] .arch-computer {
+    padding: .4rem;
+}
+
+body.teacher-mode-active .arch-revision {
+    display: none !important;
+}
+
+body.teacher-mode-active .arch-lead {
+    font-size: 1.6rem;
+}
+
+body.teacher-mode-active .arch-system,
+body.teacher-mode-active .arch-computer {
+    padding: .75rem;
+}
+
+body.teacher-mode-active .arch-numa svg {
+    max-height: 300px;
+}
+
+@media(max-width:760px) {
+
+    .arch-split,
+    .arch-recap,
+    .arch-branches {
+        grid-template-columns: 1fr;
+    }
+
+    .arch-nodes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .arch-processors {
+        flex-wrap: wrap;
+    }
+
+    .arch-processors>div {
+        flex: 1 1 20%;
+    }
+
+    .arch-balance {
+        grid-template-columns: 1fr;
+    }
+
+    .arch-balance>span {
+        display: none;
+    }
+
+    .arch-latencies>div {
+        gap: .4rem;
+        font-size: .8rem;
+    }
+
+    .arch-computer {
+        padding: .5rem;
+    }
+
+    .arch-parts {
+        flex-wrap: wrap;
+    }
+
+    .arch-numa svg {
+        min-width: 0;
+    }
+
+    .arch-numa text {
+        font-size: 23px;
+    }
+
+    .arch-numa .arch-link-label {
+        font-size: 19px;
+    }
+
+    [data-classifier-diagram=overlap]>.arch-nodes {
+        grid-template-columns: 1fr;
+    }
+
+    .arch-map {
+        padding: .5rem;
+    }
+
+    .arch-map-leaves {
+        gap: .3rem;
+    }
+
+    .arch-branches strong {
+        padding: .6rem;
+    }
+
+    .arch-controls label {
+        flex-wrap: wrap;
+    }
+
+    .arch-flow li {
+        min-width: 75px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    .arch-numa *,
+    .arch-task {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media(forced-colors:active) {
+    .arch-active-route {
+        stroke: Highlight;
+    }
+
+    .arch-svg-cpu,
+    .arch-svg-ram {
+        fill: Canvas;
+        stroke: CanvasText;
+    }
+
+    .arch-numa text {
+        fill: CanvasText !important;
+    }
+}
+
+.arch-numa-compact {
+    display: none;
+}
+
+.arch-use-compact>svg {
+    display: none;
+}
+
+.arch-use-compact>.arch-numa-compact {
+    display: grid;
+}
+
+.arch-numa-compact {
+    gap: .4rem;
+    margin-top: .6rem;
+    font-size: .9rem;
+}
+
+.arch-compact-region {
+    border: 2px dashed currentColor;
+    padding: .5rem;
+}
+
+.arch-compact-region>strong {
+    display: block;
+    margin-bottom: .3rem;
+}
+
+.arch-compact-link {
+    border-left: 3px dashed currentColor;
+    margin: auto;
+    padding: .3rem .5rem;
+}
+
+.arch-numa-compact>span {
+    font-size: .85em;
+}
+
+#numa-growth .arch-nodes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+}
+
+#numa-growth .arch-reveal {
+    margin: 0;
+    padding: .5rem;
+}
+
+#numa-growth .arch-reveal .arch-region-box {
+    border: 0;
+}
+
+.arch-map-leaves>strong {
+    position: relative;
+}
+
+.arch-map-leaves>strong:before {
+    content: '';
+    position: absolute;
+    top: -.9rem;
+    left: 50%;
+    height: .8rem;
+    border-left: 2px solid currentColor;
+}
+
+@media(max-width:760px) {
+    .arch-numa>svg {
+        display: none;
+    }
+
+    .arch-numa>.arch-numa-compact {
+        display: grid;
+    }
+
+    #numa-growth .arch-nodes {
+        grid-template-columns: 1fr;
+    }
+
+    .arch-nodes:has(.arch-numa) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.arch-numa[data-route=remote] .arch-compact-link {
+    outline: 3px dashed currentColor;
+}
+
+.arch-numa:is([data-route=local], [data-route=remote])[data-cpu=A] [data-region=A] .arch-cpu,
+.arch-numa:is([data-route=local], [data-route=remote])[data-cpu=B] [data-region=B] .arch-cpu,
+.arch-numa:is([data-route=local], [data-route=remote])[data-ram=A] [data-region=A] .arch-ram,
+.arch-numa:is([data-route=local], [data-route=remote])[data-ram=B] [data-region=B] .arch-ram {
+    outline: 3px solid #a63e16;
+    outline-offset: 2px;
+}
+
+.arch-answer-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    align-items: center;
+}
+
+.arch-answer-controls fieldset {
+    flex: 1;
+    min-width: 240px;
+}
+
+[data-classifier-diagram=overlap] .arch-compact-region>strong {
+    display: none;
+}
+
+[data-classifier-diagram=overlap] .arch-compact-region {
+    padding: .3rem;
+}
+
+[data-classifier-diagram=overlap] .arch-numa-compact {
+    gap: .25rem;
+}
+
+[data-classifier-diagram=overlap] .arch-numa-compact>span {
+    display: none;
+}
+
+[data-classifier-diagram=overlap] .arch-system>strong {
+    font-size: 1rem;
+}
+
+/* Keep feedback visible beside the three-server extension diagram. */
+[data-architecture-classifier] .arch-network {
+    padding: .35rem;
+    margin: .4rem 0;
+}
+
+[data-classifier-diagram=overlap] .arch-system {
+    padding: .35rem !important;
+}
+
+[data-classifier-diagram=overlap] .arch-cpu,
+[data-classifier-diagram=overlap] .arch-ram {
+    padding: .3rem .55rem;
+}
+
+[data-architecture-classifier] .arch-status {
+    margin: .4rem 0;
+    padding: .4rem .7rem;
 }

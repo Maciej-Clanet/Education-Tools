@@ -221,7 +221,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "cluster-computing-uma-and-numa",
           title: "Cluster computing, UMA, and NUMA",
           href: "../topics/cluster-computing-uma-and-numa.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 2, totalQuestions: 14, passScore: 10 },
         },
         {
           id: "emulation-in-computer-systems",

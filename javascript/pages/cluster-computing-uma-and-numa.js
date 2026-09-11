@@ -1,5 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
+import { initScalingActivities } from "../core/scaling-activities.js"
+
 const lessonConfig = {
   lessonId: "cluster-computing-uma-and-numa",
   defaultContext: "btec-level-3-unit-2",
@@ -23,8 +25,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-cluster-computing-uma-and-numa-quiz",
-    passScore: 4,
+    storageKey: "lesson-cluster-computing-uma-and-numa-quiz-v2",
+    version: 2,
+    totalQuestions: 14,
+    passScore: 10,
   },
   examPractice: {
     storageKey: "lesson-cluster-computing-uma-and-numa-exam-practice",
@@ -32,3 +36,5 @@ const lessonConfig = {
 }
 
 initLessonPage(lessonConfig)
+
+initScalingActivities()

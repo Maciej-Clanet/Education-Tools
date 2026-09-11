@@ -152,6 +152,11 @@ saved progress should be shown as needing a fresh attempt.
     Quiz version 3: 12 questions, pass 9; six written tasks.
     See `docs/stored_program_lesson.md`.
 - [x] Cluster computing, UMA, and NUMA
+  - Rebuilt around scale out versus shared-memory organisation: 40 student
+    sections, 57 Teacher Slides, shared opener and six dividers. Workload
+    distributor, NUMA locality visualiser, multi-label architecture classifier
+    and seven written tasks. Quiz version 2: 14 questions, pass score 10.
+    See `docs/cluster_computing_lesson.md`.
 - [x] Emulation
 
 ### B2 The concepts of microarchitecture
