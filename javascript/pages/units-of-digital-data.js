@@ -1,5 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 import { readStorage, removeStorage, writeStorage } from "../core/storage.js"
+import { initConversionSteppers } from "../core/conversion-stepper.js"
+import { nextKernelState } from "../core/kernel-visualiser.js"
 
 const lessonConfig = {
   lessonId: "units-of-digital-data",
@@ -24,9 +26,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-units-of-digital-data-quiz",
-    passScore: 4,
-    version: 2,
+    storageKey: "lesson-units-of-digital-data-quiz-v3",
+    passScore: 8,
+    totalQuestions: 11,
+    version: 3,
   },
   examPractice: {
     storageKey: "lesson-units-of-digital-data-exam-practice",
@@ -232,6 +235,17 @@ function createTaskCard(task) {
   feedback.textContent = DEFAULT_FEEDBACK
 
   card.append(top, form, hint, feedback)
+  const steps = document.createElement("button")
+  steps.type = "button"
+  steps.className = "lesson-secondary-action"
+  steps.textContent = "Show me the steps (decimal)"
+  steps.addEventListener("click", () => {
+    const stepper = document.querySelector('#conversion-stepper [data-conversion-stepper]')
+    stepper.dispatchEvent(new CustomEvent('conversion:load', { detail: { ...task, base: 1000 } }))
+    document.querySelector('[data-section-link][href="#conversion-stepper"]').click()
+    stepper.querySelector('[data-convert-action=step]').focus({ preventScroll: true })
+  })
+  card.append(steps)
   return card
 }
 
@@ -343,6 +357,33 @@ function initPracticeZone() {
   }
 
   taskGrid?.replaceChildren(...tasks.map((task) => createTaskCard(task)))
+  // Present one existing question at a time in Teacher Slides; keep all student cards.
+  let presentation = { index: 0, playing: false }
+  const presentationControls = document.createElement('div')
+  presentationControls.className = 'du-controls du-workshop-controls'
+  presentationControls.dataset.noSlideAdvance = ''
+  const previousTask = document.createElement('button')
+  const nextTask = document.createElement('button')
+  const taskStatus = document.createElement('span')
+  previousTask.type = nextTask.type = 'button'
+  previousTask.textContent = 'Previous question'
+  nextTask.textContent = 'Next question'
+  previousTask.dataset.workshopPrevious = ''
+  nextTask.dataset.workshopNext = ''
+  taskStatus.setAttribute('role', 'status')
+  function presentTask() {
+    taskGrid.querySelectorAll('.practice-task-card').forEach((card, index) => {
+      card.toggleAttribute('data-workshop-current', index === presentation.index)
+    })
+    previousTask.disabled = presentation.index === 0
+    nextTask.disabled = presentation.index === tasks.length - 1
+    taskStatus.textContent = `Question ${presentation.index + 1} of ${tasks.length}`
+  }
+  previousTask.addEventListener('click', () => { presentation = nextKernelState(presentation, 'previous', tasks.length); presentTask() })
+  nextTask.addEventListener('click', () => { presentation = nextKernelState(presentation, 'step', tasks.length); presentTask() })
+  presentationControls.append(previousTask, taskStatus, nextTask)
+  taskGrid.before(presentationControls)
+  presentTask()
   restoreState()
   updateProgress()
 
@@ -445,4 +486,29 @@ function initPracticeZone() {
 }
 
 initLessonPage(lessonConfig)
+initConversionSteppers()
 initPracticeZone()
+
+function initBitPatterns() {
+  const host = document.querySelector('[data-bit-patterns]')
+  if (!host) return
+  const counts = [1, 2, 3, 8]
+  let state = { index: 0, playing: false }
+  function render() {
+    const bits = counts[state.index]
+    host.querySelector('[data-pattern-label]').textContent = `${bits} ${bits === 1 ? 'bit' : 'bits'} → ${2 ** bits} possible patterns${bits === 8 ? ' (five more doublings from 3 bits)' : ''}`
+    const patterns = bits === 8 ? ['00000000', '…', '11111111'] : Array.from({ length: 2 ** bits }, (_, i) => i.toString(2).padStart(bits, '0'))
+    host.querySelector('[data-pattern-values]').replaceChildren(...patterns.map(value => {
+      const code = document.createElement('code'); code.textContent = value; return code
+    }))
+    host.querySelector('[data-pattern-previous]').disabled = state.index === 0
+    host.querySelector('[data-pattern-next]').disabled = state.index === counts.length - 1
+  }
+  for (const [selector, action] of [['previous', 'previous'], ['next', 'step'], ['reset', 'reset']]) {
+    host.querySelector(`[data-pattern-${selector}]`).addEventListener('click', () => {
+      state = nextKernelState(state, action, counts.length); render()
+    })
+  }
+  render()
+}
+initBitPatterns()

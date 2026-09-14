@@ -1704,7 +1704,10 @@ function initTeacherMode(config) {
     if (
       ["INPUT", "TEXTAREA", "SELECT"].includes(
         document.activeElement?.tagName ?? ""
-      )
+      ) ||
+      (["ArrowRight", "ArrowLeft", "PageDown", "PageUp", " "].includes(event.key) &&
+        document.activeElement?.closest("[data-no-slide-advance]")) ||
+      (event.key === " " && document.activeElement?.matches("button, a, summary"))
     ) {
       return
     }

@@ -1,197 +1,8 @@
-.data-overview-map,
-.bit-state-visual,
-.bit-pattern-board,
-.unit-ladder-visual,
-.direction-board,
-.unit-system-board,
-.conversion-steps,
-.worked-conversion-grid,
-.unit-practice,
-.capacity-rate-board {
-  display: grid;
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
-.data-overview-map,
-.bit-pattern-board,
-.direction-board,
-.unit-system-board,
-.worked-conversion-grid,
-.capacity-rate-board {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-.bit-state-visual {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.unit-ladder-visual {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.conversion-steps {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.unit-practice {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.unit-practice > .lesson-fullrow {
-  grid-column: 1 / -1;
-}
-
-.data-overview-card,
-.bit-state,
-.pattern-card,
-.ladder-unit,
-.direction-card,
-.unit-system-card,
-.conversion-step,
-.worked-conversion-card,
-.capacity-rate-card,
-.practice-header-card,
-.practice-task-card {
-  display: grid;
-  gap: 0.58rem;
-  min-width: 0;
-  padding: 1rem;
-  border: 1.5px solid rgba(37, 52, 66, 0.12);
-  border-radius: 20px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.92),
-    rgba(247, 251, 253, 0.84)
-  );
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
-}
-
-.data-overview-card,
-.bit-state,
-.ladder-unit {
-  justify-items: center;
-  text-align: center;
-}
-
-.data-overview-card h3,
-.bit-state strong,
-.pattern-card h3,
-.ladder-unit strong,
-.direction-card h3,
-.unit-system-card h3,
-.conversion-step h3,
-.worked-conversion-card h3,
-.capacity-rate-card h3,
-.practice-header-card h3,
-.practice-task-card h3 {
-  margin: 0;
-  color: var(--page-ink);
-}
-
-.data-overview-card p,
-.bit-state span,
-.pattern-card span,
-.ladder-unit span:not(.data-badge),
-.direction-card p,
-.unit-system-card p,
-.conversion-step p,
-.worked-conversion-card p,
-.capacity-rate-card p,
-.practice-header-card p,
-.practice-task-note,
-.practice-task-hint {
-  margin: 0;
-  color: var(--muted-ink);
-}
-
-.data-badge,
-.practice-progress,
-.practice-task-label,
-.practice-unit-pill {
-  width: fit-content;
-  padding: 0.28rem 0.58rem;
-  border-radius: 999px;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  background: rgba(255, 255, 255, 0.78);
-  color: var(--lesson-accent-heading);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.data-icon {
-  display: inline-block;
-  width: 4rem;
-  height: 4rem;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  border-radius: 18px;
-  background-color: rgba(255, 255, 255, 0.86);
-}
-
-.data-icon--bit {
-  border-radius: 50%;
-  background:
-    linear-gradient(90deg, rgba(31, 135, 125, 0.24) 0 50%, transparent 50%),
-    rgba(232, 246, 255, 0.96);
-}
-
-.data-icon--byte {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(120, 94, 22, 0.22) 0 10%,
-      transparent 10% 14%,
-      rgba(120, 94, 22, 0.22) 14% 24%,
-      transparent 24% 28%,
-      rgba(120, 94, 22, 0.22) 28% 38%,
-      transparent 38% 42%,
-      rgba(120, 94, 22, 0.22) 42% 52%,
-      transparent 52% 56%,
-      rgba(120, 94, 22, 0.22) 56% 66%,
-      transparent 66% 70%,
-      rgba(120, 94, 22, 0.22) 70% 80%,
-      transparent 80% 84%,
-      rgba(120, 94, 22, 0.22) 84% 94%,
-      transparent 94%
-    ),
-    rgba(255, 249, 227, 0.96);
-}
-
-.data-icon--systems {
-  background:
-    radial-gradient(circle at 32% 38%, #1f877d 0 0.26rem, transparent 0.28rem),
-    radial-gradient(circle at 68% 62%, #785e16 0 0.26rem, transparent 0.28rem),
-    linear-gradient(
-      135deg,
-      transparent 43%,
-      rgba(55, 129, 53, 0.24) 44% 56%,
-      transparent 57%
-    ),
-    rgba(238, 248, 231, 0.96);
-}
-
-.data-overview-card--bit,
-.bit-state--zero,
-.unit-system-card--decimal,
-.capacity-rate-card--capacity {
-  border-color: rgba(31, 135, 125, 0.2);
-  background: rgba(232, 246, 255, 0.9);
-}
-
-.data-overview-card--byte,
-.bit-state--one,
-.unit-system-card--binary,
-.direction-card--larger,
-.capacity-rate-card--rate {
-  border-color: rgba(185, 140, 25, 0.22);
-  background: rgba(255, 249, 227, 0.9);
-}
-
-.data-overview-card--systems,
-.direction-card--smaller,
-.capacity-rate-card--warning,
+.practice-header-card,.practice-task-card { display:grid; gap:.6rem; min-width:0; padding:1rem; border:1.5px solid rgba(37,52,66,.16); border-radius:20px; background:rgba(255,255,255,.85); }
+.practice-progress,.practice-task-label,.practice-unit-pill { padding:.3rem .6rem; border:1px solid currentColor; border-radius:999px; font-size:.85rem; font-weight:700; width:fit-content; }
+.unit-practice { margin:1rem 0; display:grid; gap:1rem; }
+.practice-task-card p { margin:0; }
+.practice-task-card h3,.practice-header-card h3 { margin:0; }
 .practice-header-card {
   border-color: rgba(55, 129, 53, 0.18);
   background: rgba(238, 248, 231, 0.9);
@@ -342,74 +153,81 @@
   color: #8b4831;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
 
-body.teacher-mode-active .data-overview-map,
-body.teacher-mode-active .bit-pattern-board,
-body.teacher-mode-active .unit-system-board,
-body.teacher-mode-active .worked-conversion-grid,
-body.teacher-mode-active .capacity-rate-board {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-body.teacher-mode-active .unit-ladder-visual {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-body.teacher-mode-active .conversion-steps {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-@media (max-width: 1100px) {
-  .unit-ladder-visual,
-  body.teacher-mode-active .unit-ladder-visual {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .conversion-steps,
-  body.teacher-mode-active .conversion-steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 760px) {
-  .bit-state-visual,
-  .unit-ladder-visual,
-  .conversion-steps,
-  .practice-header-card,
-  body.teacher-mode-active .data-overview-map,
-  body.teacher-mode-active .bit-pattern-board,
-  body.teacher-mode-active .unit-system-board,
-  body.teacher-mode-active .worked-conversion-grid,
-  body.teacher-mode-active .capacity-rate-board,
-  body.teacher-mode-active .unit-ladder-visual,
-  body.teacher-mode-active .conversion-steps {
-    grid-template-columns: 1fr;
-  }
-
-  .byte-visual {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .practice-tools {
-    justify-content: flex-start;
-  }
-
-  .practice-answer-wrap {
-    grid-template-columns: 1fr;
-  }
-
-  .practice-unit-pill {
-    justify-self: start;
-  }
+.du-lead { font-size:clamp(1.1rem,1.8vw,1.5rem); line-height:1.45; }
+.du-caption { font-size:.95rem; }
+.du-scale { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; margin:1.5rem 0; }
+.du-scale figure { margin:0; display:grid; align-items:center; justify-items:center; gap:1rem; text-align:center; }
+.du-scale img { width:100%; height:150px; object-fit:contain; }
+.du-scale figcaption strong { font-size:1.8rem; }
+.du-file { width:100px; height:135px; border:3px solid #294c50; border-radius:4px 24px 4px 4px; background:#e3f0f8; color:#173e50; display:grid; place-items:center; font-size:1.5rem; font-weight:700; }
+.du-photo { width:130px; height:100px; border:7px solid #294c50; background:linear-gradient(145deg,transparent 50%,#51837c 50%),#e3f0f8; color:#785e16; font-size:2.2rem; }
+.du-game { padding:1rem; border:3px solid #294c50; border-radius:50px; background:#f5e9c4; color:#294c50; font-size:1.7rem; white-space:nowrap; }
+.du-bit-states { display:flex; justify-content:center; align-items:center; gap:2rem; margin:2rem 0; }
+.du-bit-states>div { display:grid; justify-items:center; gap:1rem; }
+.du-bit-states strong { display:grid; place-items:center; width:170px; height:170px; font:800 6rem monospace; border:5px solid #294c50; border-radius:50%; background:#e3f0f8; color:#173e50; }
+.du-bit-states>div:last-child strong { background:#f5e9c4; color:#514014; border-style:double; border-width:8px; }
+.du-or { font-size:2rem; }
+.du-pattern-stage { padding:1.5rem; border-block:3px solid currentColor; min-height:240px; margin:1rem 0; }
+.du-pattern-stage>strong { font-size:1.7rem; }
+.du-patterns { display:flex; flex-wrap:wrap; gap:1rem; margin:1.5rem 0; }
+.du-patterns code { padding:.5rem .8rem; border:1px solid currentColor; font-size:1.5rem; }
+.du-byte { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:.5rem; margin:2rem 0 .5rem; padding-bottom:1rem; border-bottom:4px solid currentColor; }
+.du-byte span { padding:1rem .25rem; border:2px solid currentColor; border-radius:6px; text-align:center; font:800 2.2rem monospace; }
+.du-byte-label { text-align:center; margin:.5rem 0; }
+.du-notation,.du-rule-key { display:flex; flex-wrap:wrap; gap:2rem; margin:1.5rem 0; font-size:1.25rem; }
+.du-notation strong { font:800 2rem monospace; }
+.du-rule-key>strong { border-bottom:5px double currentColor; }
+.du-rule-key>span { border-bottom:2px solid currentColor; }
+.du-scale-notes { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:1rem; margin:1.5rem 0; }
+.du-equalities { list-style:none; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; font-size:1.35rem; }
+.du-equalities li { border-left:3px solid currentColor; padding:.7rem; }
+.du-comparison { width:100%; border-collapse:collapse; font-size:1.25rem; margin:1rem 0; }
+.du-comparison :is(th,td) { padding:.85rem; text-align:left; border-bottom:1px solid currentColor; }
+.du-comparison th { border-bottom-width:3px; }
+.du-same-data { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1.2rem; text-align:center; margin:2rem 0; }
+.du-large-container,.du-small-containers { height:210px; border:4px solid #294c50; background:#dcefe8; color:#223c43; }
+.du-large-container { display:grid; place-items:center; font-size:2.5rem; }
+.du-small-containers { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:3px; padding:3px; }
+.du-small-containers span { display:grid; align-items:center; border:1px solid #294c50; font-size:.9rem; }
+.du-equals { font-size:2.5rem; }
+.du-revision,.du-reveal { border:1px solid currentColor; border-radius:9px; padding:.7rem 1rem; margin:.7rem 0; }
+.du-revision summary,.du-reveal summary { cursor:pointer; font-weight:700; }
+.du-reveal p { margin:.7rem 0 .1rem; }
+.du-reveal:focus-within { outline:2px solid var(--lesson-accent); outline-offset:2px; }
+.du-capacity { display:flex; gap:3rem; align-items:center; justify-content:center; margin:2rem 0; }
+.du-capacity .du-file { width:180px; height:235px; }
+.du-transfer { display:grid; grid-template-columns:1fr 2fr 1fr; gap:1rem; align-items:center; margin:2rem 0; text-align:center; }
+.du-endpoint { border:3px solid currentColor; border-radius:10px; padding:2rem 1rem; font-weight:750; }
+.du-connection { display:grid; gap:1rem; padding:1rem 0; border-block:4px solid currentColor; }
+.du-connection strong { font-size:2.1rem; }
+.du-transfer-givens { display:flex; flex-wrap:wrap; justify-content:space-around; font-size:1.6rem; margin:2rem 0; }
+.du-rate-method { padding:1rem; border-left:4px solid currentColor; }
+body.teacher-mode-active .du-revision { display:none!important; }
+body.teacher-mode-active .du-lead { font-size:1.5rem; }
+body.teacher-mode-active .du-reveal { font-size:1.15rem; }
+.du-workshop-controls { display:none; }
+body.teacher-mode-active .du-workshop-controls { display:flex; align-items:center; justify-content:center; }
+body.teacher-mode-active .practice-task-grid { display:block; }
+body.teacher-mode-active .practice-task-card { max-width:850px; margin:0 auto; }
+body.teacher-mode-active .practice-task-card:not([data-workshop-current]) { display:none; }
+body.teacher-mode-active .practice-task-title { font-size:1.3rem; }
+body.teacher-mode-active .practice-header-card { padding:.5rem 1rem; }
+body.teacher-mode-active .practice-header-card h3 { display:none; }
+body.teacher-mode-active .du-workshop-controls { margin:.3rem 0; }
+body.teacher-mode-active .practice-task-form { grid-template-columns:minmax(0,1fr) auto; align-items:center; }
+body.teacher-mode-active .practice-feedback { min-height:0; }
+@media(max-width:760px) {
+ .du-scale { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .du-bit-states { gap:.8rem; }
+ .du-bit-states strong { width:115px; height:115px; font-size:4rem; }
+ .du-byte { gap:.25rem; }
+ .du-byte span { font-size:1.3rem; padding:.7rem .1rem; }
+ .du-scale-notes { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .du-equalities,.du-same-data,.du-transfer { grid-template-columns:1fr; }
+ .du-comparison { font-size:1rem; }
+ .du-comparison :is(th,td) { padding:.55rem .25rem; }
+ .du-capacity { flex-direction:column; gap:1rem; }
+ .practice-header-card { grid-template-columns:1fr; }
+ .practice-tools { justify-content:flex-start; }
 }

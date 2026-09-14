@@ -182,6 +182,13 @@ saved progress should be shown as needing a fresh attempt.
 
 ### C1 Number systems
 - [x] Units of digital data
+  - Visual refinement: 22 student sections / 31 Teacher Slides with the shared
+    opener and four dividers. Recurring unit ladder distinguishes the 8-bit byte
+    boundary from 1000/1024 prefix steps. Guided Conversion Stepper and five
+    worked routes precede the preserved 12-task Workshop, which presents one
+    question at a time in Teacher Slides. Separate capacity, rate and transfer-
+    time examples. Quiz version 3: 11 questions, pass 8; five written tasks.
+    See `docs/digital_data_units_lesson.md`.
 - [x] Binary and BCD
 - [x] Hexadecimal numbers
 - [x] Binary arithmetic

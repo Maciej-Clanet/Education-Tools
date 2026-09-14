@@ -1,0 +1,44 @@
+/* One recurring unit ladder: the byte boundary is double-lined and labelled 8. */
+.du-ladder-scroll { overflow-x:auto; padding:.5rem .35rem; }
+.du-ladder { display:flex; align-items:stretch; min-width:780px; gap:.2rem; margin:.5rem 0; }
+.du-rung { display:flex; flex:1 0 auto; min-width:64px; flex-direction:column; align-items:center; justify-content:center; gap:.25rem; border:2px solid currentColor; border-radius:8px; padding:.7rem .35rem; background:var(--panel-bg,#fff); color:var(--page-ink); text-align:center; }
+.du-rung strong { font:800 1.2rem ui-monospace,monospace; white-space:nowrap; }
+.du-rung small { font-size:.8rem; font-weight:700; }
+.du-link { display:flex; justify-content:center; flex-direction:column; gap:.6rem; white-space:nowrap; text-align:center; font-size:1rem; padding:.3rem; border-bottom:2px solid #294c50; }
+.du-link--eight { border-block:5px double #785e16; color:#594600; background:#fff3ce; }
+.du-rung[data-start] { border-style:dashed; }
+.du-rung[data-target] { border:5px double currentColor; }
+.du-rung[aria-current] { outline:3px solid var(--lesson-accent,#245b73); outline-offset:2px; background:#e3f0f8; color:#173e50; }
+.du-bridge { display:flex; align-items:center; gap:1rem; padding-top:.8rem; }
+.du-bridge .du-rung { flex:none; min-width:100px; }
+.du-bridge>span:last-child { border-bottom:4px double currentColor; }
+.du-bridge:not(.du-bridge--only) .du-rung { flex-direction:row; gap:.4rem; padding:.45rem; }
+.du-bridge--only { justify-content:center; min-height:150px; font-size:1.5rem; }
+.du-bridge--only .du-rung { min-width:140px; padding:1.2rem; }
+.du-bridge--only .du-rung strong { font-size:2rem; }
+.du-convert-form { display:flex; flex-wrap:wrap; gap:.7rem; align-items:end; }
+.du-convert-form label { display:grid; gap:.3rem; font-weight:650; }
+.du-convert-form input { width:10rem; }
+.du-convert-form :is(input,select),.du-controls button { border:1.5px solid currentColor; border-radius:8px; background:var(--panel-bg,#fff); color:var(--page-ink); padding:.55rem .7rem; min-height:44px; font:inherit; }
+.du-controls { display:flex; flex-wrap:wrap; gap:.65rem; margin:1rem 0; }
+.du-controls button { cursor:pointer; }
+.du-controls button:disabled { opacity:.5; cursor:default; }
+.du-stepper :focus-visible,.du-ladder-scroll:focus-visible { outline:3px solid var(--lesson-accent,#245b73); outline-offset:3px; }
+.du-stepper [hidden] { display:none!important; }
+.du-calculation { padding:1rem 1.2rem; border-left:5px solid var(--lesson-accent,#245b73); background:var(--panel-bg,#fff); }
+.du-calculation p { margin:.6rem 0; }
+.du-equation { font-size:clamp(1.5rem,2.7vw,2.2rem); font-weight:750; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.du-route { display:flex; align-items:center; flex-wrap:wrap; gap:.5rem; min-height:1rem; margin:.5rem 0; font-size:1.15rem; font-weight:700; }
+.du-route-segment { padding:.25rem; border-bottom:2px solid currentColor; }
+.du-route-segment--eight { border-bottom:5px double currentColor; }
+.du-route [aria-current] { outline:2px solid currentColor; outline-offset:2px; }
+body.teacher-mode-active .du-stepper { font-size:1.1rem; }
+body.teacher-mode-active .du-stepper .du-equation { font-size:1.9rem; }
+@media(max-width:760px) {
+ .du-convert-form label { flex:1 1 130px; min-width:0; }
+ .du-convert-form :is(input,select) { width:100%; min-width:0; }
+ .du-bridge { flex-wrap:wrap; }
+ .du-calculation { padding:.8rem; }
+}
+@media(prefers-reduced-motion:reduce) { .du-stepper *, .du-ladder * { animation:none!important; transition:none!important; } }
+@media(forced-colors:active) { .du-rung[aria-current] { outline-color:Highlight; } }
