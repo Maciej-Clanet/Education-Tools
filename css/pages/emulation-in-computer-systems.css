@@ -1,318 +1,101 @@
-.emulation-overview-map,
-.emulation-stack,
-.emulation-use-flow,
-.execution-path-visual,
-.emulation-choice-board {
-  display: grid;
-  gap: 1rem;
-  margin: 1rem 0;
+/* Target = warm outline; emulator = double blue border; host = solid green frame. */
+.emu-lead { font-size:clamp(1.1rem,1.7vw,1.6rem); line-height:1.45; margin:1rem 0; }
+.emu-split { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.2rem; margin:1rem 0; }
+.emu-split>* { min-width:0; }
+.emu-illustration { display:block; width:100%; max-height:225px; object-fit:contain; margin:.6rem auto; }
+.emu-system { max-width:860px; margin:1rem auto; }
+.emu-software,.emu-layer,.emu-host { text-align:center; padding:.85rem; border-radius:9px; }
+.emu-software { border:2px dashed #80652a; color:#514014; background:#f5e9c4; }
+.emu-layer { border:4px double #245b73; background:#e3f0f8; color:#173e50; }
+.emu-layer>span { display:block; margin-top:.4rem; }
+.emu-host { border:3px solid #294c50; background:#dcefe8; color:#223c43; }
+.emu-expects,.emu-down { text-align:center; padding:.5rem; }
+.emu-flow { display:flex; gap:1rem; padding:0; list-style:none; margin:1rem 0; align-items:stretch; }
+.emu-flow>li { flex:1; min-width:0; padding:.7rem; border-bottom:3px solid currentColor; }
+.emu-flow>li+li:before { content:'→ '; font-weight:800; }
+.emu-flow.emu-branches>li:before { content:none; }
+.emu-split .emu-flow { flex-direction:column; gap:.45rem; }
+.emu-split .emu-flow>li+li:before { content:'↓ '; }
+.emu-reveal,.emu-revision { border:1px solid currentColor; border-radius:9px; margin:.8rem 0; padding:.7rem 1rem; }
+.emu-reveal summary,.emu-revision summary { cursor:pointer; font-weight:700; }
+.emu-reveal p { margin:.65rem 0 .15rem; }
+.emu-misconceptions .emu-reveal { margin:.45rem 0; }
+.emu-caption { font-size:.95rem; }
+.emu-diagram-scroll { overflow-x:auto; border-radius:8px; }
+.emu-board { display:block; width:100%; height:315px; object-fit:contain; }
+.emu-instructions { display:flex; justify-content:center; gap:1.5rem; margin:2rem 0; }
+.emu-instructions>div { display:grid; gap:.8rem; text-align:center; flex:1; max-width:240px; }
+.emu-instructions b { padding:1.2rem; font:700 1.8rem monospace; border:3px double currentColor; background:#dcefe8; color:#223c43; border-radius:8px; }
+.emu-input-demo,.emu-graphics { display:grid; grid-template-columns:1fr 1.3fr 1fr; align-items:center; gap:1.5rem; margin:1.5rem 0; }
+.emu-key,.emu-gamepad { display:grid; justify-items:center; gap:1rem; text-align:center; }
+.emu-key kbd { display:block; font:700 4rem monospace; border:3px solid currentColor; border-bottom-width:10px; border-radius:12px; padding:.5rem 2rem; }
+.emu-gamepad>span { display:block; background:#e9dfc0; color:#223c43; border:3px solid currentColor; border-radius:45px; padding:1rem 1.3rem; font-size:2rem; }
+.emu-draw-request { display:grid; gap:1rem; text-align:center; padding:1rem; border:2px dashed #80652a; }
+.emu-screen { min-height:170px; border:12px solid #294c50; border-radius:9px; background:linear-gradient(to top,#dcefe8 0 20%,#203b43 20%); color:#fff; position:relative; display:grid; align-content:start; text-align:center; padding:.5rem; }
+.emu-pixel-player { position:absolute; width:24px; height:30px; left:25%; bottom:20%; background:#f0c975; box-shadow:20px 10px 0 -6px #f0c975; }
+.emu-ageing { text-align:center; }
+.emu-ageing>strong { display:block; padding:.5rem; border-bottom:3px dashed currentColor; }
+.emu-work-path { list-style:none; display:grid; grid-template-columns:1fr; gap:.45rem; padding:0; margin:1rem auto; max-width:1000px; }
+.emu-work-path li { display:grid; grid-template-columns:15rem 1fr; gap:1rem; border-left:4px solid #245b73; padding:.65rem 1rem; background:#e3f0f8; color:#173e50; position:relative; }
+.emu-work-path li+li:before { content:'↓'; position:absolute; left:-1.6rem; top:-.7rem; color:var(--page-ink); }
+.emu-illustration-label { padding:.7rem; border:3px solid currentColor; font-weight:800; text-align:center; }
+.emu-work-bar { display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:3px; }
+.emu-work-bar>span { padding:.7rem .2rem; text-align:center; background:#e3f0f8; color:#173e50; border:2px solid currentColor; }
+.emu-work-bar--native>span { background:#dcefe8; }
+.emu-work-bar>[data-work-stage=recreate] { background:#f5e9c4; color:#514014; border-style:dashed; }
+.emu-work-bar>[data-work-stage=execute] { background:#dcefe8; color:#223c43; }
+.emu-work-bar>[data-work-stage=update] { border-style:double; border-width:4px; }
+.emu-work-key { display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; margin:1rem 0; font-weight:650; }
+.emu-balance-side { border-bottom:4px solid currentColor; padding:1rem; }
+.emu-balance-line { text-align:center; border-bottom:4px solid currentColor; padding:.8rem; font-weight:700; }
+.emu-balance-line:after { content:''; display:block; width:0; margin:.7rem auto -.8rem; border-left:1rem solid transparent; border-right:1rem solid transparent; border-bottom:1.4rem solid currentColor; }
+.emu-access-map>strong { display:block; text-align:center; padding:1rem; border-bottom:3px solid currentColor; font-size:1.4rem; }
+.emu-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.7rem; margin:.65rem 0; }
+.emu-controls label { display:flex; align-items:center; gap:.4rem; font-weight:650; min-width:0; }
+.emu-controls select,.emu-controls button { font:inherit; background:var(--panel-bg,#fff); color:var(--page-ink); border:2px solid currentColor; border-radius:7px; padding:.45rem .65rem; min-height:44px; max-width:100%; }
+.emu-controls button { cursor:pointer; }
+.emu-controls button:disabled { opacity:.5; cursor:default; }
+.emu-controls fieldset { display:flex; gap:1rem; border:1px solid currentColor; border-radius:8px; padding:.3rem .7rem .55rem; }
+.emu-controls legend { font-size:.85rem; }
+.emu-controls input { width:1.2rem; height:1.2rem; accent-color:var(--lesson-accent); }
+.emu-controls label:has(input:checked) { text-decoration:underline; text-underline-offset:.3rem; }
+.emu-controls :focus-visible,summary:focus-visible,.emu-diagram-scroll:focus-visible { outline:3px solid var(--lesson-accent); outline-offset:3px; }
+.emu-status { border-left:4px solid var(--lesson-accent); padding:.5rem .8rem; font-weight:650; }
+.emu-status:empty { display:none; }
+.emu-explorer-path { list-style:none; counter-reset:stage; display:flex; gap:1rem; padding:0; margin:1rem 0; }
+.emu-explorer-path li { counter-increment:stage; flex:1; min-width:0; display:grid; gap:.7rem; border:2px dashed currentColor; border-radius:7px; padding:.7rem; position:relative; }
+.emu-explorer-path li:before { content:counter(stage); border:1px solid currentColor; border-radius:50%; width:1.6rem; height:1.6rem; text-align:center; }
+.emu-explorer-path li+li:after { content:'→'; position:absolute; left:-1rem; top:40%; }
+.emu-explorer-path [data-active] { outline:3px solid #245b73; outline-offset:2px; border-style:solid; background:#e3f0f8; color:#173e50; }
+.emu-explorer-path span { font-size:.95rem; }
+.emu-explorer-detail { background:#dcefe8; color:#223c43; border-left:5px solid #294c50; padding:.8rem 1rem; }
+.emu-explorer-detail p { margin:.6rem 0 0; }
+/* The live announcement includes the explanation; the visual panel avoids repeating it. */
+[data-emulation-status] { font-size:.9rem; }
+body.teacher-mode-active .emu-revision { display:none!important; }
+body.teacher-mode-active .emu-lead { font-size:1.5rem; }
+body.teacher-mode-active :is(.emu-system,.emu-flow,.emu-input-demo,.emu-graphics,.emu-work-path,.emu-balance-side,.emu-reveal) { font-size:1.25rem; }
+body.teacher-mode-active .emu-board { height:400px; }
+body.teacher-mode-active :is(#cpu-mapping,#hardware-check,#optimisation)>.emu-flow { margin:2rem 0; min-height:155px; align-items:center; }
+body.teacher-mode-active :is(#cpu-mapping,#hardware-check,#optimisation)>.emu-flow>li { padding:1.5rem 1rem; border-top:1px solid currentColor; }
+body.teacher-mode-active .emu-input-demo,body.teacher-mode-active .emu-graphics { min-height:260px; }
+body.teacher-mode-active .emulation-path-explorer { font-size:1.2rem; }
+body.teacher-mode-active .emu-explorer-path span { font-size:1.1rem; }
+body.teacher-mode-active .emu-explorer-path li { min-height:165px; }
+@media(max-width:760px) {
+ .emu-split,.emu-input-demo,.emu-graphics { grid-template-columns:1fr; }
+ .emu-flow,.emu-explorer-path { flex-direction:column; }
+ .emu-flow>li+li:before { content:'↓ '; }
+ .emu-explorer-path li+li:after { content:'↓'; left:50%; top:-1.2rem; }
+ .emu-explorer-path li { gap:.3rem; }
+ .emu-instructions { gap:.5rem; }
+ .emu-instructions b { font-size:1.2rem; padding:.65rem .2rem; }
+ .emu-work-path li { grid-template-columns:1fr; gap:.3rem; margin-left:1rem; }
+ .emu-controls label { flex-wrap:wrap; width:100%; }
+ .emu-controls fieldset label { width:auto; }
+ .emu-controls select { width:100%; }
+ .emu-board { min-width:610px; height:auto; }
+ .emu-work-bar>span { padding:.5rem 0; font-size:.8rem; }
 }
-
-.emulation-overview-map,
-.emulation-use-flow {
-  grid-template-columns:
-    minmax(0, 1fr)
-    auto
-    minmax(0, 1fr)
-    auto
-    minmax(0, 1fr);
-  align-items: stretch;
-}
-
-.execution-path-visual,
-.emulation-choice-board {
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-}
-
-.emulation-map-card,
-.emulation-use-step,
-.execution-path,
-.emulation-choice-card,
-.emulation-stack-row {
-  display: grid;
-  gap: 0.6rem;
-  align-content: start;
-  min-width: 0;
-  padding: 1rem;
-  border: 1.5px solid rgba(37, 52, 66, 0.12);
-  border-radius: 20px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.92),
-    rgba(247, 251, 253, 0.84)
-  );
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
-}
-
-.emulation-map-card {
-  justify-items: center;
-  text-align: center;
-}
-
-.emulation-map-card h3,
-.emulation-use-step strong,
-.execution-path h3,
-.emulation-choice-card h3,
-.emulation-stack-row strong {
-  margin: 0;
-  color: var(--page-ink);
-}
-
-.emulation-map-card p,
-.emulation-use-step p,
-.execution-path p,
-.emulation-choice-card li,
-.emulation-stack-row span {
-  margin: 0;
-  color: var(--muted-ink);
-}
-
-.emulation-map-badge,
-.emulation-use-label,
-.emulation-choice-label {
-  width: fit-content;
-  padding: 0.28rem 0.58rem;
-  border-radius: 999px;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  background: rgba(255, 255, 255, 0.78);
-  color: var(--lesson-accent-heading);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.emulation-map-icon {
-  display: inline-block;
-  width: 4rem;
-  height: 4rem;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  border-radius: 18px;
-  background-color: rgba(255, 255, 255, 0.86);
-}
-
-.emulation-map-icon--target {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(120, 94, 22, 0.2) 18%,
-      transparent 18% 30%,
-      rgba(120, 94, 22, 0.2) 30% 46%,
-      transparent 46% 58%,
-      rgba(120, 94, 22, 0.2) 58% 74%,
-      transparent 74%
-    ),
-    rgba(255, 249, 227, 0.96);
-}
-
-.emulation-map-icon--emulator {
-  background:
-    radial-gradient(circle at 28% 34%, #155b75 0 0.23rem, transparent 0.25rem),
-    radial-gradient(circle at 70% 66%, #8b4831 0 0.23rem, transparent 0.25rem),
-    linear-gradient(135deg, transparent 43%, rgba(31, 135, 125, 0.24) 44% 56%, transparent 57%),
-    rgba(232, 246, 255, 0.96);
-}
-
-.emulation-map-icon--host {
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, #29523b 0 0.25rem, transparent 0.27rem),
-    repeating-radial-gradient(circle at 50% 50%, transparent 0 0.55rem, rgba(41, 82, 59, 0.24) 0.57rem 0.66rem),
-    rgba(238, 248, 231, 0.96);
-}
-
-.emulation-map-card--target,
-.emulation-use-step--problem,
-.emulation-choice-card--caution {
-  border-color: rgba(185, 140, 25, 0.22);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(255, 249, 227, 0.9)
-  );
-}
-
-.emulation-map-card--emulator,
-.emulation-use-step--solution,
-.execution-path--emulated,
-.emulation-choice-card--suitable {
-  border-color: rgba(31, 135, 125, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(232, 246, 255, 0.88)
-  );
-}
-
-.emulation-map-card--host,
-.emulation-use-step--check,
-.emulation-choice-card--avoid,
-.execution-path--native {
-  border-color: rgba(55, 129, 53, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(238, 248, 231, 0.88)
-  );
-}
-
-.emulation-map-arrow,
-.emulation-use-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--lesson-accent-heading);
-  font-size: 0.78rem;
-  font-weight: 900;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.emulation-stack {
-  padding: 1rem;
-  border-radius: 20px;
-  border: 1.5px dashed rgba(37, 52, 66, 0.16);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.86),
-    rgba(247, 251, 253, 0.82)
-  );
-}
-
-.emulation-stack-row {
-  grid-template-columns: minmax(9rem, 0.45fr) minmax(0, 1fr);
-  align-items: center;
-  border-left: 6px solid var(--stack-accent, var(--lesson-accent));
-}
-
-.emulation-stack-row--software {
-  --stack-accent: #8b4831;
-}
-
-.emulation-stack-row--target {
-  --stack-accent: #785e16;
-}
-
-.emulation-stack-row--emulator {
-  --stack-accent: #155b75;
-}
-
-.emulation-stack-row--host {
-  --stack-accent: #29523b;
-}
-
-.emulation-use-step {
-  border-top: 6px solid var(--lesson-accent);
-}
-
-.execution-path {
-  border-left: 6px solid var(--path-accent, var(--lesson-accent));
-}
-
-.execution-path--native {
-  --path-accent: #29523b;
-}
-
-.execution-path--emulated {
-  --path-accent: #155b75;
-}
-
-.execution-lane {
-  display: grid;
-  gap: 0.55rem;
-}
-
-.execution-lane span {
-  display: grid;
-  min-height: 3rem;
-  place-items: center;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid rgba(37, 52, 66, 0.12);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.86);
-  color: var(--page-ink);
-  font-weight: 800;
-  text-align: center;
-}
-
-.execution-path--emulated .execution-lane span:nth-child(2) {
-  border-color: rgba(31, 135, 125, 0.2);
-  background: rgba(232, 246, 255, 0.9);
-}
-
-.emulation-choice-card {
-  border-top: 6px solid var(--choice-accent, var(--lesson-accent));
-}
-
-.emulation-choice-card--suitable {
-  --choice-accent: #155b75;
-}
-
-.emulation-choice-card--caution {
-  --choice-accent: #785e16;
-}
-
-.emulation-choice-card--avoid {
-  --choice-accent: #8b4831;
-  border-color: rgba(190, 91, 91, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(255, 240, 241, 0.88)
-  );
-}
-
-.choice-list {
-  display: grid;
-  gap: 0.55rem;
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-body.teacher-mode-active .emulation-overview-map,
-body.teacher-mode-active .emulation-use-flow {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-body.teacher-mode-active .emulation-map-arrow,
-body.teacher-mode-active .emulation-use-arrow {
-  display: none;
-}
-
-body.teacher-mode-active .execution-path-visual {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-body.teacher-mode-active .emulation-choice-board {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-@media (max-width: 1080px) {
-  .emulation-overview-map,
-  .emulation-use-flow,
-  body.teacher-mode-active .emulation-overview-map,
-  body.teacher-mode-active .emulation-use-flow {
-    grid-template-columns: 1fr;
-  }
-
-  .emulation-map-arrow,
-  .emulation-use-arrow {
-    min-height: 2rem;
-  }
-}
-
-@media (max-width: 760px) {
-  .emulation-stack-row,
-  body.teacher-mode-active .execution-path-visual,
-  body.teacher-mode-active .emulation-choice-board {
-    grid-template-columns: 1fr;
-  }
-
-  .emulation-map-card,
-  .emulation-use-step,
-  .execution-path,
-  .emulation-choice-card,
-  .emulation-stack-row {
-    border-radius: 18px;
-  }
-}
+@media(prefers-reduced-motion:reduce) { .emulation-path-explorer *, .emu-pixel-player { animation:none!important; transition:none!important; } }
+@media(forced-colors:active) { .emu-explorer-path [data-active] { outline-color:Highlight; } }

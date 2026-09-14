@@ -1,5 +1,9 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
+import { initEmulationPathExplorers } from "../core/emulation-path-explorer.js"
+import { initPairedScenarios } from "../core/paired-scenarios.js"
+import { emulationScenarios } from "../data/emulation-examples.js"
+
 const lessonConfig = {
   lessonId: "emulation-in-computer-systems",
   defaultContext: "btec-level-3-unit-2",
@@ -23,12 +27,17 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-emulation-in-computer-systems-quiz",
-    passScore: 4,
+    storageKey: "lesson-emulation-in-computer-systems-quiz-v2",
+    version: 2,
+    totalQuestions: 14,
+    passScore: 10,
   },
   examPractice: {
-    storageKey: "lesson-emulation-in-computer-systems-exam-practice",
+    storageKey: "lesson-emulation-in-computer-systems-exam-practice-v2",
   },
 }
 
 initLessonPage(lessonConfig)
+
+initEmulationPathExplorers()
+initPairedScenarios(emulationScenarios)

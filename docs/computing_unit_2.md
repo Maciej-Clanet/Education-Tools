@@ -159,6 +159,14 @@ saved progress should be shown as needing a fresh attempt.
     and multi-label classifier retained. Quiz version 3: 14 questions, pass 10.
     Seven written tasks. See `docs/cluster_computing_lesson.md`.
 - [x] Emulation
+  - Rebuilt for first teaching: 27 student sections and 39 Teacher Slides,
+    including the shared opener, five dividers and seven separate written tasks.
+    A missing-platform scenario introduces host/target/emulator roles, then
+    instruction sets, input/graphics recreation and native execution. Dedicated
+    preservation, classroom, legacy-business and ARM development examples lead
+    into overhead, illustrative work units and accuracy. Deterministic Emulation
+    Path Explorer and qualified scenario choices reuse shared activity patterns.
+    Quiz version 2: 14 questions, pass 10. See `docs/emulation_lesson.md`.
 
 ### B2 The concepts of microarchitecture
 - [x] The instruction cycle

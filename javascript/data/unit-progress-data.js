@@ -227,7 +227,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "emulation-in-computer-systems",
           title: "Emulation",
           href: "../topics/emulation-in-computer-systems.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 2, totalQuestions: 14, passScore: 10 },
         },
       ],
     },
