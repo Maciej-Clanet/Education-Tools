@@ -1,164 +1,154 @@
-# Units of digital data: visual refinement
+# Units of digital data
 
-The existing C1 lesson remains at `pages/topics/units-of-digital-data.html`.
-This pass preserves its curriculum, contextual links, independent Conversion
-Workshop, quiz shell and written-answer persistence. Dense sections are
-recomposed into 22 student sections and 31 Teacher Slides, rather than adding
-binary arithmetic or a new curriculum.
+`pages/topics/units-of-digital-data.html` remains the C1 lesson. The focused
+correction separates two teaching models: first byte-prefix scale, then the
+independent bit/byte relationship. It retains the existing lesson shell,
+progressive examples, Workshop, pattern visual, quiz and written practice.
 
-## Teaching changes
+## Teaching sequence
 
-- Four illustrative sizes establish why different units are useful. A conceptual
-  two-state bit precedes progressive 1/2/3/8-bit patterns and a bracketed byte.
-  Lowercase b versus uppercase B appears here, before conversion work.
-- The same ladder layout recurs in the overview, separate decimal/binary
-  explanations and worked conversions. Its double-lined bit/byte boundary
-  always uses 8. Other prefix boundaries use 1000 or 1024, explicitly labelled
-  in both directions. Start, target and current positions have text labels and
-  different border treatments, not just colour.
-- Decimal and binary are taught before the comparison. The KB label is retained
-  from the existing lesson and user brief (also written kB); KiB is separately
-  defined. Explicit question conventions take precedence in calculations.
-- Two equally sized container diagrams show one GB versus 1000 MB. Ten drawn
-  groups each represent 100 MB; the data area stays the same. Smaller pieces need
-  a larger number, giving multiplication/division a reason and a sense check.
-- Five fixed worked examples reuse the new stepper. Learners see each jump and
-  intermediate amount before a multi-step exponent shortcut is offered.
-- Capacity/size, transfer rate and an idealised 800 MB at 80 Mb/s calculation
-  have separate teaching moments. Matching units gives 10 MB/s, then 80 seconds.
-- Misconceptions use exclusive native disclosures. Fuller student revision notes
-  remain available but do not crowd Teacher Slides.
+There are 23 student sections and 32 Teacher Slides. The existing opener, four
+teacher-only dividers and four exam slide-break markers provide the deck.
 
-## Teacher Slide sequence
-
-The opener and four dividers use existing inert templates. The five exam tasks
-use four `data-slide-break` markers; no new slideshow mechanism was introduced.
-The shared keyboard handler now respects `data-no-slide-advance` for navigation
-keys and leaves Space activation to focused buttons/links/summaries. This fixes
-activity buttons advancing the deck; other teacher shortcuts remain available.
-
-1. **Opener:** Units of Digital Data — How do computers measure the amount of data they store and move?
+1. **Opener:** Units of Digital Data
 2. Why do we need different units?
-3. **Divider:** Building the units
-4. One bit stores one binary state
-5. Each extra bit doubles the possible patterns
-6. Eight bits form one byte
-7. One ladder, two types of relationship
-8. Decimal prefix steps use 1000
-9. Binary prefix steps use 1024
-10. Check which convention is intended
-11. **Divider:** Converting units
-12. Same data, different-sized pieces
-13. Walk the route: 3.5 GB → MB
-14. Walk the route: 4096 MiB → GiB
-15. Take each jump before using a shortcut: 2 GiB → KiB
-16. Bits ↔ bytes uses 8: 80 Mb → MB, with the reverse revealed separately
-17. One route can use two different rules: 16 Mb → KB
-18. Conversion Stepper
-19. Conversion Workshop
-20. **Divider:** Capacity and speed
-21. Capacity and size: how much data?
-22. Transfer rate: how much each second?
-23. Match the units before finding the time
-24. **Divider:** Practice
-25. Spot the unit mistake
-26. Quick quiz — 11 questions
-27. Existing question 1: explain bits and bit patterns — 4 marks
-28. Existing question 2: explain conversion strategy — 6 marks
-29. Explain bit/byte distinction; decimal and binary calculations — 6 marks
-30. Multi-step and mixed conversions with method — 6 marks
-31. Interpret size/rate and estimate transfer time — 6 marks
+3. **Divider:** Converting units
+4. Byte units: changing the size prefix
+5. Decimal prefix steps use 1000
+6. Binary prefix steps use 1024
+7. Check which convention is intended
+8. Same data, different-sized pieces
+9. Walk the route: 3.5 GB → MB
+10. Walk the route: 4096 MiB → GiB
+11. Take each jump before using a shortcut: 2 GiB → KiB
+12. Conversion Stepper
+13. Conversion Workshop
+14. **Divider:** Bits and bytes
+15. A different relationship: bits vs bytes
+16. One bit stores one binary state
+17. Each extra bit doubles the possible patterns
+18. Two parts of a unit label
+19. Start simply: 80 bits → bytes
+20. Keep mega; change bits to bytes — with the download-rate application revealed
+21. **Divider:** Capacity and speed
+22. Capacity and size: how much data?
+23. Transfer rate: how much each second?
+24. Match the units before finding the time
+25. **Divider:** Practice
+26. Spot the unit mistake
+27. Quick quiz — 12 questions
+28. Explain bits and patterns — 4 marks
+29. Explain byte-prefix conversion strategy — 6 marks
+30. Bit/byte distinction and separate decimal/binary calculations — 6 marks
+31. Binary multi-step and decimal byte-prefix calculations — 6 marks
+32. Interpret size/rate and estimate transfer time — 6 marks
 
-## Conversion Stepper contract
+The complete byte-prefix conversion block precedes bit/byte teaching. The normal
+student page follows the same order, with fuller revision disclosures. The
+mixed-rule slide and its preset are removed entirely, with no optional extension.
 
-`javascript/core/data-unit-conversion.js` contains the small unit model and pure
-`createConversionPlan(value, from, to, selectedBase)` function. It returns edges
-with `from`, `to`, `factor`, `type`, `operation`, `before` and `after`, plus ordered
-teaching frames and the final result. Each boundary is classified as `bit-byte`
-or `prefix`. There is no expression evaluation or general maths engine.
+## Separate visual models
 
-`javascript/core/conversion-stepper.js` renders `[data-conversion-stepper]`.
-A fixed example key (`decimal`, `binary`, `multi`, `bits`, `mixed`) loads from
-`javascript/data/data-conversion-examples.js`; an empty key provides the editable
-tool. All instances reuse `nextKernelState` for bounded Next/Previous/Reset.
-Styles live in `css/conversion-stepper.css`, with lesson visuals in its page CSS.
+The main decimal ladder is **B ↔ KB ↔ MB ↔ GB ↔ TB**. The binary-prefix version
+is **B ↔ KiB ↔ MiB ↔ GiB ↔ TiB**. Neither contains a bit box or a relationship
+using 8. The overview uses decimal labels; only the explicit comparison table
+puts decimal and binary systems side by side.
 
-The sequence is: locate start/target; explain direction; trace each jump; apply
-each relationship; reveal the answer and sense check. One jump produces five
-frames; two jumps produce seven. Intermediate results appear during calculation,
-but the final result appears only in the last frame. Pure bit/byte conversions
-show a focused 8-based bridge instead of irrelevant prefix steps.
+The later “A different relationship” slide introduces 8 bits = 1 byte and b/B
+notation after the Workshop. The existing bit-state and pattern visuals now sit
+inside this later block. A two-dimensional table separates prefix columns from
+bits/bytes rows, alongside M+B and M+b labels. Horizontal movement changes the
+prefix; vertical movement changes bits/bytes. The simple 80 bits → 10 bytes
+example establishes division by 8 before any prefixed numerical example.
 
-Supported units are b/Kb/Mb/Gb/Tb, B/KB/MB/GB/TB and KiB/MiB/GiB/TiB. The tool
-supports either direction, multiple prefix steps, bits/bytes, mixed routes,
-unchanged units and zero. Native binary prefixes fix the scale at 1024. A
-convention selector appears only for ambiguous ordinary-prefix changes; matching
-bit/byte prefixes require no 1000/1024 choice. The 1024 option is explicitly
-labelled as a question convention, not a formal redefinition of MB.
+The following table highlights only the mega column: 80 Mb → 10 MB. The prefix
+stays mega. A native disclosure shows 80 Mb/s vertically above ÷8 and 10 MB/s,
+linking network-speed notation to download software. No byte-prefix ladder
+appears in either bit/byte example. Capacity and transfer rate follow this block,
+using 800 MB and 80 Mb/s; matching units gives 10 MB/s and an ideal 80 seconds.
 
-Both ends use one prefix system. Selecting a prefix from a different system
-aligns the other prefixed unit and explains that adjustment beside the controls.
-The pure model rejects conflicting explicit systems. Cross-system comparisons
-can be made as two conversions through B. Numeric input is non-negative and
-finite, from 10^-9 to 10^12 (or zero). Display uses up to 12 significant digits,
-marks rounded final values approximately and does not promise arbitrary precision.
+The brief exam-convention note remains: some questions/software use ordinary
+KB/MB/GB labels with 1024-based values. Learners should follow an explicitly
+stated convention. This nuance does not change the main tool's formal labels.
+The lesson retains KB from the brief; the notes also identify the spelling kB.
 
-Changing any input clears the old route. Main-tool Reset restores the initial
-4096 MiB → GiB inputs without starting; fixed demos reset to their first frame.
-State is temporary and remains intact while navigating Teacher Slides. Visible
-focus, labelled controls, a live status region and local ladder scrolling support
-keyboard use. There are no timers or autoplay; reduced motion is respected.
+## Byte-only Conversion Stepper
 
-## Preserved practice and integration
+`javascript/core/data-unit-conversion.js` exports the byte-unit arrays,
+`conversionConvention` and `createConversionPlan(value, from, to, selectedBase)`.
+The model supports only byte-prefix routes. With no explicit base, it infers the
+system from the labels. If a base is supplied, all prefixed labels must match it.
+Unknown units, conflicting systems and invalid numeric values are rejected.
 
-The 12 Workshop tasks, number parsing, accepted decimal/binary answers, rounding,
-feedback and `lesson-units-of-digital-data-practice` storage are retained.
-`Show me the steps (decimal)` loads a task into the main stepper at its first
-frame through a local `conversion:load` event and the existing sidebar navigation.
-It does not reveal the answer. The learner can change the convention and restart.
+`javascript/core/conversion-stepper.js` renders the same staged flow as before:
+locate start/target, reason about direction, count each jump, calculate each step,
+then reveal the answer and sense check. Intermediate amounts appear before the
+final result. Multi-step exponent shortcuts appear only after the full route.
+`nextKernelState` still supplies bounded Previous/Next/Reset behaviour.
 
-Teacher Slides present one existing Workshop card at a time using Previous/Next
-question controls and the shared bounded reducer. The student page retains all
-12 cards; paging does not mutate answers or completion state.
+The main tool always exposes a Unit system selector:
 
-The five existing quiz questions are retained, with the unit-system question
-clarified to say *prefix* steps. Six questions fill coverage gaps: eight-bit byte,
-unit order, decimal calculation, binary multi-step calculation, direction
-reasoning and capacity/rate. Quiz version 3 has 11 questions and pass score 8 in
-both lesson and unit-progress metadata; its new key avoids stale quiz results.
-The two existing exam questions and their draft keys are preserved; three applied
-tasks are appended using new keys under the same exam storage record.
+- Decimal (1000) populates B, KB, MB, GB and TB.
+- Binary prefixes (1024) populates B, KiB, MiB, GiB and TiB.
 
-## Verification and scope
+Changing system preserves the value and prefix positions, maps the labels to the
+chosen family, and clears the old route. Start, current and target remain
+explicitly labelled. The selected system controls all ladder labels and factors.
+No bit-based unit or mixed-rule route is offered. The three fixed examples in
+`javascript/data/data-conversion-examples.js` are decimal, binary and multi-step.
+
+Input remains finite and non-negative, 10^-9 to 10^12 (or zero). Display uses up to
+12 significant digits and marks approximate final values. Main Reset restores
+4096 MiB → GiB without starting; fixed examples reset to the first frame. State
+is temporary and survives slide navigation. Keyboard focus, live stage feedback,
+reduced motion and local horizontal scrolling remain supported.
+
+## Practice and persistence
+
+All 12 existing Workshop questions already use byte prefixes and remain intact.
+Their parser, accepted decimal/binary practice conventions, rounding, feedback,
+completion tracking and storage key are unchanged. The explicitly labelled
+“Show me the steps (decimal)” link still loads a question at the first frame,
+using the existing sidebar navigation. Teacher mode presents one card at a time;
+student mode shows all cards. Paging does not alter answers.
+
+The quiz retains its eleven questions, clarifies prefix terminology and adds a
+simple equivalent-rate question (80 Mb/s = 10 MB/s). Version 4 has 12 questions,
+pass score 9, with matching lesson and unit-progress metadata and a new quiz key.
+There is no mixed bit/prefix quiz question.
+
+The fourth written task replaces the mixed conversion with 2 GiB → KiB and
+4500 MB → GB plus an explanation of direction. Its response key changes to
+`question-4-byte-prefix-v2`, so an old answer is not attached to a new prompt.
+The other four written tasks and draft keys are retained. The written-practice
+storage record remains the same.
+
+## Verification
 
 Passed automated checks:
 
 - `node --test tests/data-unit-conversion.test.mjs tests/teacher-dividers.test.mjs`
-- Syntax checks for the unit model, stepper, example data and lesson initializer.
+- Syntax checks for the model, stepper, example data and page initializer.
 - `git diff --check`.
 
-The conversion tests cover all six requested numerical cases, intermediate units
-and relationship types, explicit conventions, invalid input, zero/unchanged
-units and bounded step navigation. No tests assert static wording, visual
-positioning, exact lesson slide count or diagram decoration.
+Representative model tests cover 3.5 GB → MB, 2 GB → KB, 4096 MiB → GiB,
+2 GiB → KiB and 4500 MB → GB, intermediate byte units, matching system labels,
+invalid input, zero, unchanged units and Previous/Next/Reset. Mixed-route tests
+were removed with the unsupported feature. Static bit/byte teaching needs no
+new calculation runtime or artificial tests.
 
-Passed browser verification covers the six cases, deferred final answers, independent
-demo state, conditional convention controls, pattern progression, Workshop
-handoff, answer/quiz/draft persistence, keyboard operation, Teacher Slides,
-responsive width, reduced motion and browser errors. Screenshots were reviewed at
-1366 × 900 and mobile width 390. All teaching slides and worked-conversion frames
-fit the desktop viewport, including mixed conversions and the Workshop card.
-Space activates the focused activity button; normal arrow navigation and Escape
-still work. There were no browser console, network or runtime errors.
-The quiz deliberately scrolls; wide ladders
-scroll within their own keyboard-focusable containers. These checks do not
-constitute a full screen-reader or physical classroom projection audit.
+Local Chromium checks cover both mode option lists and ladder contents, all
+representative results, deferred final answers, mode-change invalidation,
+Workshop handoff and persistence, quiz/draft reloads, slide sequence, responsive
+width and browser errors. Screenshot review at 1366 × 900 covered all 32 slides,
+including expanded teaching disclosures; teaching slides fit and the long quiz
+intentionally scrolls. Detailed tables/ladders have keyboard-focusable local
+scroll containers on narrow screens. These checks are not a full screen-reader
+or physical classroom projection audit.
 
-The static project has no configured lint/build task and gains no dependency.
-The existing SSD SVG is reused; other visuals are semantic HTML/CSS. No image
-generation or new raster assets are needed. Binary place values, BCD, arithmetic,
-signed numbers and arbitrary cross-system calculator features remain outside
-this focused refinement.
+There is no configured lint/build task and no new dependency. This pass changes
+no shared slideshow or storage logic. Visuals remain HTML/CSS plus the existing
+SSD SVG. Binary arithmetic, mixed bit/prefix challenges and a general-purpose
+conversion calculator remain outside scope.
 
-Reference checked: [NIST binary prefixes](https://pml.nist.gov/cuu/Units/binary.html)
-for the distinction between decimal prefixes, binary prefixes and eight-bit bytes.
+Reference: [NIST binary prefixes](https://pml.nist.gov/cuu/Units/binary.html).

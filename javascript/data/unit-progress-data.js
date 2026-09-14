@@ -287,7 +287,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "units-of-digital-data",
           title: "Units of digital data",
           href: "../topics/units-of-digital-data.html?context=btec-level-3-unit-2",
-          quiz: { version: 3, totalQuestions: 11, passScore: 8 },
+          quiz: { version: 4, totalQuestions: 12, passScore: 9 },
         },
         {
           id: "binary-and-bcd",

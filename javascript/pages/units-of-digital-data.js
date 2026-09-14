@@ -26,10 +26,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-units-of-digital-data-quiz-v3",
-    passScore: 8,
-    totalQuestions: 11,
-    version: 3,
+    storageKey: "lesson-units-of-digital-data-quiz-v4",
+    passScore: 9,
+    totalQuestions: 12,
+    version: 4,
   },
   examPractice: {
     storageKey: "lesson-units-of-digital-data-exam-practice",
