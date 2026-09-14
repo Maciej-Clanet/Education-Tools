@@ -35,11 +35,11 @@ export function initScalingActivities(root = document) {
       if (!distributed) for (let i = 1; i <= 12; i++) pool.append(el('span', 'arch-task', `Task ${i}`))
       board.replaceChildren()
       allocations.forEach((tasks, i) => {
-        const node = el('div', 'arch-computer')
+        const node = el('div', 'arch-computer physical-server')
         node.append(el('strong', '', `Node ${String.fromCharCode(65 + i)} · separate computer`))
         const parts = el('div', 'arch-parts')
         parts.append(el('span', 'arch-cpu', 'CPU'), el('span', 'arch-ram', 'RAM'))
-        node.append(parts)
+        node.append(parts, el('span', '', 'Own operating system'))
         const units = el('div', 'arch-task-pool')
         if (distributed) tasks.forEach(task => units.append(el('span', 'arch-task', `Task ${task}`)))
         node.append(units, el('b', '', `${distributed ? tasks.length : 0} tasks allocated`))
@@ -53,47 +53,6 @@ export function initScalingActivities(root = document) {
     host.querySelector('[data-distribute]').addEventListener('click', () => { distributed = true; render() })
     host.querySelector('[data-cluster-reset]').addEventListener('click', () => { count.value = '1'; distributed = false; render() })
     render()
-  })
-  root.querySelectorAll('[data-numa-lab]').forEach(host => {
-    const cpu = host.querySelector('[data-task-cpu]'), ram = host.querySelector('[data-data-ram]')
-    const diagram = host.querySelector('.arch-numa'), route = host.querySelector('[data-memory-route]')
-    const status = host.querySelector('[data-numa-status]')
-    function clear() {
-      diagram.dataset.route = ''
-      diagram.querySelector('svg').setAttribute('aria-label', 'Two processor regions in one shared-memory system, connected by an interconnect. No access route selected.')
-      route.replaceChildren()
-      status.textContent = `Task on CPU ${cpu.value}; data in RAM ${ram.value}. Choose Access memory to trace the route.`
-    }
-    function access() {
-      const result = memoryRoute(cpu.value, ram.value)
-      diagram.dataset.route = result.local ? 'local' : 'remote'
-      diagram.dataset.cpu = cpu.value
-      diagram.dataset.ram = ram.value
-      const from = cpu.value === 'A' ? 180 : 620, to = ram.value === 'A' ? 180 : 620
-      diagram.querySelector('[data-active-route]').setAttribute('d', result.local ? `M${from} 112 V195` : `M${from} 112 V145 H${to} V195`)
-      diagram.querySelector('svg').setAttribute('aria-label', `${result.local ? 'Local' : 'Remote'} access: ${result.stops.join(' to ')}. One shared-memory system.`)
-      route.replaceChildren(...result.stops.map(stop => el('li', '', stop)))
-      status.textContent = result.local ? 'LOCAL ACCESS · short direct route; generally lower latency than remote access.' : 'REMOTE ACCESS · crosses the interconnect; generally higher latency than local access.'
-    }
-    for (const select of [cpu, ram]) select.addEventListener('change', clear)
-    host.querySelector('[data-access]').addEventListener('click', access)
-    host.querySelector('[data-locality]').addEventListener('click', () => { cpu.value = ram.value; access() })
-    host.querySelector('[data-numa-reset]').addEventListener('click', () => { cpu.value = ram.value = 'A'; clear() })
-    clear()
-  })
-  root.querySelectorAll('[data-uma-growth]').forEach(host => {
-    const select = host.querySelector('[data-processor-count]')
-    select.addEventListener('change', () => {
-      const row = host.querySelector('.arch-processors')
-      row.replaceChildren()
-      for (let i = 1; i <= Number(select.value); i++) {
-        const processor = el('div')
-        const arrow = el('span', 'arch-stem', '↓'); arrow.setAttribute('aria-hidden', 'true')
-        processor.append(el('span', 'arch-cpu', `CPU ${i}`), arrow)
-        row.append(processor)
-      }
-      host.querySelector('[data-uma-status]').textContent = `${select.value} processors can request shared memory. More simultaneous demand can increase contention; no measured timing is shown.`
-    })
   })
   root.querySelectorAll('[data-architecture-classifier]').forEach(host => {
     const select = host.querySelector('[data-classifier-scenario]')

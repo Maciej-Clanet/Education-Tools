@@ -1,154 +1,171 @@
 # Cluster computing, UMA and NUMA
 
-Rebuilt for first teaching at the existing URL. The 40 student sections produce
-57 Teacher Slides: one shared opener, six shared dividers, five separately paced
-misconceptions and seven separately paced exam questions. The quiz remains a
-scrollable activity. Student sections retain optional fuller revision notes.
+## Consolidated physical teaching pass
 
-## Teaching model
+The second pass replaces the expanded abstract sequence with physical computer
+boundaries, local technical illustrations and one Shared-Memory Explorer.
 
-Start with a rendering queue, distinguish scale out from scaling processors
-inside one shared-memory system, and retain that distinction in a branching map.
-Cluster describes separate cooperating computers. UMA and NUMA describe memory
-access within shared-memory multiprocessor systems. A cluster can contain NUMA
-servers; the classifier explicitly accepts Cluster + NUMA.
+| Measure | Previous | Current |
+| --- | ---: | ---: |
+| Student sections, including quiz and written practice | 40 | 22 |
+| Teacher Slides, including opener/dividers/practice chunks | 57 | 33 |
+| Teacher-only dividers | 6 | 4 |
 
-The original overview, cluster, UMA, NUMA and comparison card collections were
-replaced with node diagrams, workload allocations, equivalent memory paths,
-local/remote route traces, placement transformations and applied examples.
-Common mistakes use one reveal per Teacher Slide. The recap retains three compact
-architecture diagrams, with the overlap statement immediately below.
+The 22 sections contain 20 teaching/activity sections and two assessment sections.
+Teacher Slides add the shared opener, four dividers and six additional written
+question chunks. The quiz remains a scrollable assessment. No slide infrastructure
+was changed; the existing template opener, dividers and chunk markers are reused.
 
-Computer boundaries are solid; processor/memory regions inside NUMA systems use
-dashed boundaries. CPU and RAM blocks have distinct labels and borders. Networks
-between computers use dashed links. UMA uses equivalent paths. NUMA local access
-uses a short solid trace; remote access follows a longer dashed trace through the
-interconnect. Narrow screens use readable HTML region diagrams instead of shrinking
-SVG labels. Selected CPU/RAM blocks have outlines; remote links also have dashed
-outlines and an explicit text route.
+## What was merged
 
-## Infrastructure and activities
+- UMA architecture, uniformity, task movement, processor growth and bandwidth
+  contention are now taught in the same explorer. The physical shared-memory
+  introduction supplies the smaller-machine/desktop context, replacing separate
+  theoretical suitability slides. No separate UMA growth tool remains.
+- NUMA architecture, local access, remote access, memory-access lab and general
+  locality repetition are combined in the explorer. The engineering motivation
+  precedes it; one trade-off interpretation follows it. The physical VM example
+  is the main application, with one brief analytics example.
+- Cluster definition and node definition share one rack/pulled-server composition.
+  Rendering uses 240 frames across eight servers; service capacity and qualified
+  failover share one slide. Dependency/coordination trade-offs remain in revision
+  notes and the retained workload activity rather than additional static slides.
+- Three suitability examples use one progressive section. Six misconception
+  disclosures share one section, with one correction open at a time. The compact
+  physical comparison also acts as the revision summary.
 
-- Reuses `initLessonPage`, quiz/progress, exam drafts, accessibility, contextual
-  navigation and the existing teacher deck. No changes to shared slide machinery.
-- Uses one `template[data-teacher-opener]`, matching Collecting and processing
-  data, plus six `template[data-teacher-divider]` declarations. Both remain out
-  of the student page and Jump To. Opening slides starts at the opener.
-- `data-slide-break` paces misconceptions and individual written questions.
-- Native details/summary supplies keyboard-accessible reveals. `arch-revision`
-  supplements remain on the student page and are hidden in Teacher Slides.
-- `javascript/core/scaling-activities.js` contains three small pure models and
-  their DOM adapters. No timers, processes, network calls or benchmark claims.
-- Cluster distributor allocates 12 numbered independent tasks round-robin across
-  1, 2 or 4 nodes. Counts are 12, 6 or 3 per node. Changing node count returns work
-  to the waiting pool; Reset restores one node and 12 waiting tasks.
-- UMA step selector shows 2, 4 or 8 processors converging on the same memory
-  system. It illustrates potential contention, not measured timing.
-- NUMA controls select task CPU A/B and data RAM A/B. Access traces the local or
-  remote route, with a matching accessible description and text route. Changing
-  a selection clears the previous result. Move task near its data selects the
-  matching CPU and demonstrates local access. Reset restores A/A with no trace.
-- Classifier has four diagrams and checkbox labels. Exact applicable sets are
-  Cluster; UMA; NUMA; Cluster + NUMA. Selection changes clear stale feedback;
-  Reset restores diagram A and clears all selections.
-- Activity state is temporary; quiz and written answers persist locally through
-  the existing infrastructure. No backend, new libraries or external assets.
+## Physical model and terminology
 
-Quiz: 14 questions, pass score 10, version 2 in the page config and unit progress
-metadata. A new `lesson-cluster-computing-uma-and-numa-quiz-v2` storage key prevents
-old five-question attempts being restored as new answers. Existing old storage is
-not deleted. New exam field keys prevent old answers appearing under new prompts.
-The existing URL, unit link and catalogue entry are retained.
+The corrected scaling diagram begins with ONE COMPUTER (processor + RAM), then
+branches into adding computers or adding processing/memory resources within that
+computer. The latter is explicitly this lesson's multiprocessor scaling case;
+scale up can include other upgrades.
 
-## Final Teacher Slide sequence
+Rack/server faces show separate machines with their own processor resources,
+RAM and OS. An extracted server defines a cluster node. Two new local SVGs reuse
+the existing Unit 2 hardware palette and visual conventions:
 
-1. Opener — Cluster Computing, UMA and NUMA
-2. When one machine is not enough
-3. Two broad ways to add resources
-4. The architecture map
+- `assets/images/architecture/shared-memory-single-socket.svg`: CPU package,
+  cores, simplified memory system, DIMM modules and motherboard boundary.
+- `assets/images/architecture/shared-memory-dual-socket.svg`: two socket regions,
+  nearby DIMM banks, memory-channel connections and internal interconnect.
+
+The explorer embeds the same drawings to highlight routes, alongside logical
+views. Static detailed diagrams and the explorer allow keyboard-accessible local
+horizontal scrolling on narrow screens, keeping labels readable. The recap uses
+larger compact hardware labels instead of shrinking a whole motherboard.
+
+A NUMA node is a processor/memory locality region inside one shared-memory
+computer. A socket can contain many cores. One socket ≈ one node is explicitly a
+teaching simplification; real processors can expose multiple nodes per socket.
+Shared memory means the processor resources can address overall main memory;
+it does not imply permission for applications to read each other's data.
+
+NUMA is introduced as a scaling solution: each socket region contributes
+processing, RAM capacity, memory channels and local bandwidth. The example grows
+from 256 GB to two 256 GB regions; these are illustrative capacities, not timing
+or performance measurements. Remote accesses and placement are the trade-off.
+
+## Shared-Memory Explorer
+
+`javascript/core/shared-memory-explorer.js` owns one temporary state object and
+uses the existing `memoryRoute` model from `scaling-activities.js`.
+
+- Architecture: UMA / NUMA. Switching clears the previous access result.
+- View: Physical / Logical. Switching retains the chosen access and redraws it.
+- UMA: choose 2/4/8 processing units and unit A onward; Access memory highlights
+  an equivalent main-memory relationship. The physical view represents cores
+  within one package, not a separate socket or DIMM bank for each core.
+- UMA demand: the same view displays the selected number of possible requests;
+  more simultaneous demand can increase contention. No fabricated timings or
+  measured-pressure scale is used.
+- NUMA: choose task node 0/1 and data node 0/1. Matching nodes highlight a direct
+  local route; different nodes trace a longer dashed internal-interconnect route.
+  Text and accessible descriptions report the same route and relative latency.
+- Place task near data changes the task region to match its data. It illustrates
+  locality, not a scheduler.
+- Reset returns UMA / Physical / two units / A / no access trace.
+- Changes to count, selected unit or task/data location clear stale access results;
+  lowering the unit count keeps the selected unit within range.
+- No animation, timing loop, network call or storage is used by the explorer.
+
+The old standalone NUMA and UMA-growth DOM adapters were removed. The workload
+distributor's allocation/reset logic is preserved (12 tasks, 1/2/4 machines), with
+server styling and an OS label. Classifier scoring/reset is preserved; diagrams
+now show physical machines. Its combined scenario still requires Cluster + NUMA.
+
+## Practical application and assessment
+
+The primary NUMA example is a college database VM: eight virtual CPUs and 32 GB
+RAM on a host with 256 GB per node. A disclosure transforms remote placement into
+local placement on the same physical motherboard. Virtual CPUs are scheduled
+processing resources, not physical sockets. The revision explanation states that
+hypervisors/operating systems try to preserve locality subject to capacity.
+
+The overlap rack contains two separate servers, each containing NUMA nodes 0/1.
+Network links are between computers; processor interconnects are inside them.
+A smaller single-socket computer supplies UMA intuition without labelling every
+modern desktop as textbook UMA.
+
+Quiz: 14 questions, pass score 10, version **3**. Eleven existing concepts are retained (one question now uses the same node 0/1
+labels as the explorer); three now assess NUMA-node meaning, why NUMA supports scaling, and VM locality.
+The new `lesson-cluster-computing-uma-and-numa-quiz-v3` key prevents old answers
+being restored under changed questions; older data is not deleted. Unit progress
+metadata matches. Six existing exam questions and draft keys are preserved.
+Question 6 now analyses a virtualisation host and uses its own v3 draft field key.
+
+## Teacher Slide sequence
+
+1. Shared lesson opener
+2. When one computer isn’t enough
+3. One starting point, two ways to grow
+4. Two architectural levels
 5. Next: Cluster computing
-6. What is a node?
-7. What is a cluster?
-8. Split a rendering job
-9. Not every job splits perfectly
-10. Serving lots of users
-11. What if a node fails?
-12. Why use a cluster?
-13. Distribute the workload
-14. Cluster vs multiprocessor system
-15. Next: Shared memory
-16. Why processors need memory
-17. Next: UMA
-18. UMA architecture
-19. What does “uniform” mean?
-20. One task, either processor
-21. Add more processors
-22. Uniform latency ≠ unlimited bandwidth
-23. Where might UMA make sense?
-24. Next: NUMA
-25. Why change the memory layout?
-26. NUMA architecture
-27. Local memory access
-28. Remote memory access
-29. Try local and remote access
-30. Same program, different placement
-31. Virtual machine placement
-32. A large in-memory workload
-33. Add another NUMA region
-34. Next: Comparing architectures
-35. These are not three competing categories
-36. A cluster of NUMA servers
-37. What does the diagram describe?
-38. Identify the architecture
-39. Which approach suits the workload?
-40. Rendering: justify the cluster
-41. A large shared-memory database
-42. A smaller shared-memory system
-43. Misconception: a cluster is one computer with many CPUs
-44. Misconception: NUMA means private memory
-45. Misconception: UMA cannot have contention
-46. Misconception: NUMA is always better
-47. Misconception: the three descriptions are mutually exclusive
-48. Architecture in one picture
-49. Next: Practice
-50. Check your understanding — 14-question quiz
-51. Explain cluster computing — 4 marks
-52. Explain UMA vs NUMA — 4 marks
-53. Explain UMA contention — 6 marks
-54. Explain NUMA locality — 6 marks
-55. Analyse a rendering cluster — 8 marks
-56. Analyse NUMA for a large server — 8 marks
-57. Evaluate architectural factors — 12 marks
+6. A cluster node is a whole computer
+7. A render farm: 240 frames
+8. A busy web service
+9. Try distributing the work
+10. Find the computer boundary
+11. Next: Shared memory
+12. What does “shared memory” mean?
+13. Why build a larger server this way?
+14. “Node” depends on context
+15. Shared-Memory Explorer
+16. What NUMA gains—and what it costs
+17. College database VM: place work near its RAM
+18. Beyond VMs: data and workers together
+19. Next: Putting the architectures together
+20. A rack of NUMA servers
+21. What do these look like physically?
+22. Identify what the physical diagram describes
+23. Which concept matters here—and why?
+24. Check the six common traps
+25. Next: Practice
+26. Check your understanding
+27–33. Seven written questions, from explanation to evaluation
 
-## Accuracy and deliberate simplifications
+## Verification and scope
 
-No linear speedup, automatic failover or fabricated latency benchmarks. Failure
-recovery is a qualified visual explanation, not an interactive failure simulator.
-UMA uniformity does not imply unlimited bandwidth or identical real access times.
-NUMA is shared overall memory, not private RAM or separate computers. Socket and
-NUMA-region correspondence is simplified and explicitly qualified in revision
-notes. VM virtual CPUs are not physical sockets. Locality can help but cannot
-eliminate all contention or remote access.
+Representative explorer state tests cover architecture selection, view changes,
+local/remote access in both directions, count changes, locality action and reset.
+Existing scaling-activity and teacher-divider tests also pass. Local Chrome checks
+cover all four architecture/view combinations, modes/selected controls, all NUMA
+routes, reset, retained distribution and multi-label classifier, quiz scoring and
+quiz/exam persistence. Opener entry, Next, sidebar targets and hidden student
+presentation material checked. All 33 slides reviewed at 1366×900; instructional
+slides fit, while the quiz intentionally scrolls. Responsive checks at 390×844
+show no page-level horizontal overflow. Detailed diagrams may scroll locally.
+Native keyboard radio/disclosure controls, explorer state across slide navigation,
+reduced-motion preference, quiz reset and absence of runtime exceptions checked.
+Relevant model/divider tests, JavaScript syntax checks and `git diff --check` pass.
+There is no configured build or lint command in this static project.
 
-NUMA/locality wording was checked against Microsoft's primary explanations:
+No vendor internals, cache coherence, interconnect standards, scheduling algorithms,
+actual failover simulation or benchmark model introduced. Uniformity is a memory
+access model, not identical wire length or nanosecond performance. NUMA keeps
+memory shared overall and does not guarantee faster execution.
+
+Primary accuracy references:
 - https://learn.microsoft.com/en-us/windows/win32/procthread/numa-support
 - https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/non-uniform-memory-access
-
-No protocols, cache coherence, scheduling algorithms, hypervisor configuration,
-HPC theory or distributed-computing framework introduced.
-
-## Verification
-
-- Three representative model tests in `tests/scaling-activities.test.mjs` cover
-  distribution, local/remote routes in both directions and multi-answer matching.
-- Existing teacher-divider tests passed; JS syntax and whitespace checks passed.
-- Local Chrome: all node counts, activity resets, all four NUMA combinations,
-  locality action, classifier multi-label feedback and reset, 14/14 quiz scoring,
-  saved quiz/exam answers after reload, and quiz reset.
-- Opener hidden in student mode and absent from Jump To; first in slides, Next
-  reaches first content. Sidebar anchors resolve; IDs are unique.
-- All 57 slides reviewed at 1366×900, including teaching reveals. Rendering and
-  region-growth compositions refined after review; revised teaching views fit.
-- Mobile 390×844: no page-level horizontal overflow, readable compact NUMA view.
-  Native keyboard disclosure and reduced-motion preference checked. No runtime
-  exceptions. Full quiz and expanded written guidance may scroll intentionally.
+- https://www.amd.com/content/dam/amd/en/documents/processor-tech-docs/design-guides/56795_1_00-PUB.pdf

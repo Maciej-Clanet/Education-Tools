@@ -2,6 +2,8 @@ import { initLessonPage } from "../core/lesson-shell.js"
 
 import { initScalingActivities } from "../core/scaling-activities.js"
 
+import { initSharedMemoryExplorers } from "../core/shared-memory-explorer.js"
+
 const lessonConfig = {
   lessonId: "cluster-computing-uma-and-numa",
   defaultContext: "btec-level-3-unit-2",
@@ -25,8 +27,8 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-cluster-computing-uma-and-numa-quiz-v2",
-    version: 2,
+    storageKey: "lesson-cluster-computing-uma-and-numa-quiz-v3",
+    version: 3,
     totalQuestions: 14,
     passScore: 10,
   },
@@ -38,3 +40,5 @@ const lessonConfig = {
 initLessonPage(lessonConfig)
 
 initScalingActivities()
+
+initSharedMemoryExplorers()
