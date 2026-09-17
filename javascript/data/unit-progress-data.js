@@ -84,6 +84,12 @@ export const webDevelopmentProgressData = {
           href: "../topics/colours-backgrounds-and-borders.html?context=web-development",
           quiz: { version: 1, totalQuestions: 21, passScore: 17 },
         },
+        {
+          id: "css-units",
+          title: "CSS Units",
+          href: "../topics/css-units.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 10, passScore: 8 },
+        },
       ],
     },
     {

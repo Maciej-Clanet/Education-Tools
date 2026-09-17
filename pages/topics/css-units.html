@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+      <meta charset="utf-8" />
+      <link rel="icon" href="data:," />
+      <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+      <title>
+            CSS Units Lesson | Education Tools
+      </title>
+      <meta content="Learn px, percentages, rem, em, vw and vh by comparing their references, changing visual rulers, choosing units and editing external CSS."
+            name="description" />
+      <meta content="CSS Units Lesson | Education Tools" property="og:title" />
+      <meta content="Learn px, percentages, rem, em, vw and vh by comparing their references, changing visual rulers, choosing units and editing external CSS."
+            property="og:description" />
+      <meta content="website" property="og:type" />
+      <meta content="Education Tools" property="og:site_name" />
+      <meta content="en_GB" property="og:locale" />
+      <meta content="summary" name="twitter:card" />
+      <link href="../../css/base.css" rel="stylesheet" />
+      <link href="../../css/components.css" rel="stylesheet" />
+      <link href="../../css/theme.css" rel="stylesheet" />
+      <link href="../../css/pages/lesson.css" rel="stylesheet" />
+      <link href="../../css/debug-lab.css" rel="stylesheet" />
+      <link href="../../css/live-code-example.css?v=20260904-9" rel="stylesheet" />
+      <link href="../../css/pages/css-units.css" rel="stylesheet" />
+      <link href="../../css/accessibility.css" rel="stylesheet" />
+      <script src="../../javascript/accessibility.js" type="module">
+      </script>
+      <script src="../../javascript/pages/css-units.js" type="module">
+      </script>
+</head>
+
+<body>
+      <div class="page-shell">
+            <header class="lesson-hero panel panel-accent">
+                  <p class="eyebrow">
+                        CSS Basics
+                  </p>
+                  <nav aria-label="Breadcrumb" class="breadcrumb">
+                        <ol class="breadcrumb-list">
+                              <li>
+                                    <a href="../../index.html">
+                                          Home
+                                    </a>
+                              </li>
+                              <li>
+                                    <a data-role="breadcrumb-unit-link"
+                                          href="../resources/web-development.html#css-basics">
+                                          Web Development
+                                    </a>
+                              </li>
+                              <li aria-current="page">
+                                    CSS Units
+                              </li>
+                        </ol>
+                  </nav>
+                  <div class="lesson-header-row">
+                        <div>
+                              <h1>
+                                    CSS Units
+                              </h1>
+                              <p class="lesson-hero-text">
+                                    What should this size respond to? Compare pixels, containers, font references and
+                                    the viewport before choosing a unit.
+                              </p>
+                              <p class="lesson-hero-support">
+                                    In the current lesson context, this sits inside
+                                    <span data-role="context-label">
+                                          Web Development
+                                    </span>
+                                    .
+                              </p>
+                        </div>
+                  </div>
+                  <div class="lesson-meta-grid">
+                        <article class="lesson-meta-card">
+                              <strong>
+                                    Resource area
+                              </strong>
+                              <span>
+                                    CSS Basics
+                              </span>
+                        </article>
+                        <article class="lesson-meta-card">
+                              <strong>
+                                    Main idea
+                              </strong>
+                              <span>
+                                    Relative to what?
+                              </span>
+                        </article>
+                        <article class="lesson-meta-card">
+                              <strong>
+                                    Practice
+                              </strong>
+                              <span>
+                                    Unit choices, Live Code and Debug Labs
+                              </span>
+                        </article>
+                  </div>
+                  <div class="lesson-hero-actions">
+                        <a class="primary-link" href="../../index.html">
+                              Back to home search
+                        </a>
+                        <a class="lesson-secondary-action" data-role="back-to-unit"
+                              href="../resources/web-development.html#css-basics">
+                              Back to Web Development resources
+                        </a>
+                        <button aria-pressed="false" class="teacher-toggle" data-action="toggle-teacher-mode"
+                              type="button">
+                              Teacher slides
+                        </button>
+                  </div>
+            </header>
+            <noscript>
+                  <p class="panel lesson-sequence">
+                        Read the lesson examples without JavaScript. Interactive diagrams, activities, saved answers and
+                        Teacher Slides need JavaScript.
+                  </p>
+            </noscript>
+            <div class="lesson-layout">
+                  <aside class="lesson-sidebar panel">
+                        <p class="eyebrow">
+                              Jump To
+                        </p>
+                        <nav aria-label="Lesson sections" class="section-nav">
+                              <a data-section-link="" href="#same-number">
+                                    Are these all the same width?
+                              </a>
+                              <a data-section-link="" href="#measurements">
+                                    A number usually needs a measurement
+                              </a>
+                              <a data-section-link="" href="#pixels">
+                                    px: a predictable CSS length
+                              </a>
+                              <a data-section-link="" href="#percentages">
+                                    50% follows its containing block
+                              </a>
+                              <a data-section-link="" href="#percentage-uses">
+                                    Same percentage, different actual width
+                              </a>
+                              <a data-section-link="" href="#root-units">
+                                    rem: one shared root ruler
+                              </a>
+                              <a data-section-link="" href="#local-units">
+                                    em: use the relevant font-size context
+                              </a>
+                              <a data-section-link="" href="#font-references">
+                                    rem and em can follow different rulers
+                              </a>
+                              <a data-section-link="" href="#component-spacing">
+                                    Let button padding grow with its text
+                              </a>
+                              <a data-section-link="" href="#viewport">
+                                    The viewport is the visible webpage area
+                              </a>
+                              <a data-section-link="" href="#viewport-width">
+                                    vw: follow the viewport width
+                              </a>
+                              <a data-section-link="" href="#viewport-height">
+                                    vh: follow the viewport height
+                              </a>
+                              <a data-section-link="" href="#percent-vw">
+                                    Half of the parent—or half of the viewport?
+                              </a>
+                              <a data-section-link="" href="#viewport-uses">
+                                    Choose viewport units when the screen is the reference
+                              </a>
+                              <a data-section-link="" href="#unit-choice">
+                                    What should this measurement respond to?
+                              </a>
+                              <a data-section-link="" href="#unit-chooser">
+                                    Choose a unit for the intention
+                              </a>
+                              <a data-section-link="" href="#live-experiment">
+                                    Predict, edit, then compare
+                              </a>
+                              <a data-section-link="" href="#debugging">
+                                    Find the wrong measurement
+                              </a>
+                              <a data-section-link="" href="#mistakes">
+                                    Check the reference before correcting the code
+                              </a>
+                              <a data-section-link="" href="#summary">
+                                    Relative to what?
+                              </a>
+                              <a data-section-link="" href="#quiz">
+                                    Check your unit choices
+                              </a>
+                              <a data-section-link="" href="#practice">
+                                    Explain the reference and apply it
+                              </a>
+                        </nav>
+                  </aside>
+                  <main class="lesson-main" data-role="lesson-main">
+                        <template data-teacher-opener="">
+                              <h2>
+                                    CSS Units
+                              </h2>
+                              <p>
+                                    What does 20px, 50% or 100vh actually measure?
+                              </p>
+                              <ul>
+                                    <li>
+                                          Recognise common CSS units
+                                    </li>
+                                    <li>
+                                          Explain what each unit is relative to
+                                    </li>
+                                    <li>
+                                          Choose suitable units for different situations
+                                    </li>
+                                    <li>
+                                          Use viewport units such as vw and vh
+                                    </li>
+                              </ul>
+                        </template>
+                        <section class="lesson-section panel" data-lesson-section="" id="same-number">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Are these all the same width?
+                              </h2>
+                              <pre class="cu-code"><code>.box-a { width: 50px; }
+.box-b { width: 50%; }
+.box-c { width: 50vw; }</code></pre>
+                              <div class="cu-reference" data-no-slide-advance="" data-unit-visual="">
+                                    <div class="cu-controls">
+                                    </div>
+                                    <p class="cu-caption">
+                                          Scaled model · viewport:
+                                          <b data-measure="viewportWidth">
+                                                800
+                                          </b>
+                                          px · containing block:
+                                          <b data-measure="parentWidth">
+                                                400
+                                          </b>
+                                          px
+                                    </p>
+                                    <svg aria-hidden="true" class="cu-width-diagram" viewbox="0 0 824 224">
+                                          <rect class="cu-viewport-outline" data-measure-width="viewportWidth"
+                                                height="208" width="800" x="8" y="8">
+                                          </rect>
+                                          <text x="20" y="34">
+                                                Viewport
+                                          </text>
+                                          <rect class="cu-parent-outline" data-measure-width="parentWidth" height="156"
+                                                width="400" x="28" y="48">
+                                          </rect>
+                                          <text x="38" y="75">
+                                                Containing block
+                                          </text>
+                                          <rect class="cu-bar cu-bar--px" data-measure-width="px" height="24" width="50"
+                                                x="28" y="90">
+                                          </rect>
+                                          <text x="450" y="108">50px</text>
+                                          <rect class="cu-bar cu-bar--percent" data-measure-width="percent" height="24"
+                                                width="200" x="28" y="130">
+                                          </rect>
+                                          <text x="450" y="148">50%</text>
+                                          <rect class="cu-bar cu-bar--vw" data-measure-width="vw" height="24"
+                                                width="400" x="28" y="170">
+                                          </rect>
+                                          <text x="450" y="188">50vw</text>
+                                    </svg>
+                                    <div aria-atomic="true" aria-live="polite" class="cu-measurements">
+                                          <p>
+                                                <code>
+          50px
+         </code>
+                                                →
+                                                <strong>
+                                                      <span data-measure="px">
+                                                            50
+                                                      </span>
+                                                      px
+                                                </strong>
+                                          </p>
+                                          <p>
+                                                <code>
+          50%
+         </code>
+                                                →
+                                                <strong>
+                                                      <span data-measure="percent">
+                                                            200
+                                                      </span>
+                                                      px
+                                                </strong>
+                                          </p>
+                                          <p>
+                                                <code>
+          50vw
+         </code>
+                                                →
+                                                <strong>
+                                                      <span data-measure="vw">
+                                                            400
+                                                      </span>
+                                                      px
+                                                </strong>
+                                          </p>
+                                    </div>
+                              </div>
+                              <p class="cu-key">
+                                    The number tells us how much. The unit tells us what it is measured against.
+                              </p>
+                              <p class="cu-caption">
+                                    The viewport is the webpage area inside the browser. The containing block is the
+                                    width reference surrounding these boxes.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="measurements">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    A number usually needs a measurement
+                              </h2>
+                              <pre class="cu-code"><code>.card {
+  width: 50px;
+}</code></pre>
+                              <div class="cu-value-parts">
+                                    <span>
+                                          <strong>
+                                                50
+                                          </strong>
+                                          How much?
+                                    </span>
+                                    <span>
+                                          <strong>
+                                                px
+                                          </strong>
+                                          Measured against what?
+                                    </span>
+                              </div>
+                              <p class="cu-key">
+                                    Ask “relative to what?” before choosing the unit.
+                              </p>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          Does every CSS number need a unit?
+                                    </summary>
+                                    <p>
+                                          No. Non-zero lengths normally need a unit:
+                                          <code>
+         width: 50;
+        </code>
+                                          is invalid. A zero length can be written as
+                                          <code>
+         0
+        </code>
+                                          . Some properties accept numbers, such as
+                                          <code>
+         line-height: 1.5;
+        </code>
+                                          .
+                                    </p>
+                              </details>
+                        </section>
+                        <template data-teacher-divider="">
+                              <h2>
+                                    Common CSS units
+                              </h2>
+                        </template>
+                        <section class="lesson-section panel" data-lesson-section="" id="pixels">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    px: a predictable CSS length
+                              </h2>
+                              <div class="cu-border-samples">
+                                    <div class="cu-border-1">
+                                          <strong>
+                                                1px
+                                          </strong>
+                                          <span>
+                                                border thickness
+                                          </span>
+                                    </div>
+                                    <div class="cu-border-2">
+                                          <strong>
+                                                2px
+                                          </strong>
+                                          <span>
+                                                border thickness
+                                          </span>
+                                    </div>
+                                    <div class="cu-border-4">
+                                          <strong>
+                                                4px
+                                          </strong>
+                                          <span>
+                                                border thickness
+                                          </span>
+                                    </div>
+                                    <div class="cu-border-8">
+                                          <strong>
+                                                8px
+                                          </strong>
+                                          <span>
+                                                border thickness
+                                          </span>
+                                    </div>
+                              </div>
+                              <pre class="cu-code"><code>.card {
+  font-size: 20px;
+  border: 2px solid black;
+  border-radius: 8px;
+}</code></pre>
+                              <p class="cu-key">
+                                    px means CSS pixels—not necessarily physical screen pixels.
+                              </p>
+                              <p>
+                                    A small predictable border, corner radius or UI detail can be a good fit for px.
+                                    These are useful choices, not universal rules.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="percentages">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    50% follows its containing block
+                              </h2>
+                              <pre class="cu-code"><code>.card { width: 50%; }</code></pre>
+                              <div class="cu-reference" data-no-slide-advance="" data-unit-visual="">
+                                    <div class="cu-controls">
+                                          <label for="percent-parentWidth">
+                                                Containing block width (CSS px)
+                                                <select data-reference="parentWidth" id="percent-parentWidth">
+                                                      <option value="240">
+                                                            240
+                                                      </option>
+                                                      <option selected="" value="400">
+                                                            400
+                                                      </option>
+                                                </select>
+                                          </label>
+                                    </div>
+                                    <p class="cu-caption">
+                                          Scaled model · viewport:
+                                          <b data-measure="viewportWidth">
+                                                800
+                                          </b>
+                                          px · containing block:
+                                          <b data-measure="parentWidth">
+                                                400
+                                          </b>
+                                          px
+                                    </p>
+                                    <svg aria-hidden="true" class="cu-width-diagram" viewbox="0 0 824 224">
+                                          <rect class="cu-viewport-outline" data-measure-width="viewportWidth"
+                                                height="208" width="800" x="8" y="8">
+                                          </rect>
+                                          <text x="20" y="34">
+                                                Viewport
+                                          </text>
+                                          <rect class="cu-parent-outline" data-measure-width="parentWidth" height="156"
+                                                width="400" x="28" y="48">
+                                          </rect>
+                                          <text x="38" y="75">
+                                                Containing block
+                                          </text>
+                                          <rect class="cu-bar cu-bar--percent" data-measure-width="percent" height="24"
+                                                width="200" x="28" y="90">
+                                          </rect>
+                                          <text x="450" y="108">50%</text>
+                                    </svg>
+                                    <div aria-atomic="true" aria-live="polite" class="cu-measurements">
+                                          <p>
+                                                <code>
+          50%
+         </code>
+                                                →
+                                                <strong>
+                                                      <span data-measure="percent">
+                                                            200
+                                                      </span>
+                                                      px
+                                                </strong>
+                                          </p>
+                                    </div>
+                              </div>
+                              <p class="cu-key">
+                                    Change the parent width. The card stays half as wide.
+                              </p>
+                              <details class="cu-reveal cu-revision" data-no-slide-advance="">
+                                    <summary>
+                                          Percentage accuracy note
+                                    </summary>
+                                    <p>
+                                          What a percentage refers to depends on the CSS property. Here, the card is in
+                                          normal flow and its containing block is its parent’s content box. We mainly
+                                          use percentages for widths in this lesson.
+                                    </p>
+                              </details>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="percentage-uses">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Same percentage, different actual width
+                              </h2>
+                              <div class="cu-parent-pair">
+                                    <div>
+                                          <p>
+                                                Smaller containing block
+                                          </p>
+                                          <div class="cu-demo-parent cu-demo-parent--small">
+                                                <div class="cu-half">
+                                                      50%
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div>
+                                          <p>
+                                                Larger containing block
+                                          </p>
+                                          <div class="cu-demo-parent">
+                                                <div class="cu-half">
+                                                      50%
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                              <p>
+                                    Both children use
+                                    <code>
+        width: 50%;
+       </code>
+                                    . Relative units respond to their reference.
+                              </p>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          A useful application: progress bars
+                                    </summary>
+                                    <div class="cu-progress-bars">
+                                          <div class="cu-progress-track">
+                                                <div class="cu-progress-30">
+                                                      30%
+                                                </div>
+                                          </div>
+                                          <div class="cu-progress-track">
+                                                <div class="cu-progress-50">
+                                                      50%
+                                                </div>
+                                          </div>
+                                          <div class="cu-progress-track">
+                                                <div class="cu-progress-70">
+                                                      70%
+                                                </div>
+                                          </div>
+                                          <div class="cu-progress-track">
+                                                <div class="cu-progress-100">
+                                                      100%
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <pre class="cu-code"><code>.progress { width: 70%; }</code></pre>
+                              </details>
+                              <details class="cu-reveal cu-revision" data-no-slide-advance="">
+                                    <summary>
+                                          Other useful proportions
+                                    </summary>
+                                    <pre class="cu-code"><code>.image { width: 100%; }
+.sidebar { width: 30%; }
+.content { width: 70%; }</code></pre>
+                                    <p>
+                                          An image can fill the available width. The 30/70 split describes proportions;
+                                          arranging columns is a later layout topic.
+                                    </p>
+                              </details>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="root-units">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    rem: one shared root ruler
+                              </h2>
+                              <p>
+                                    The root is the
+                                    <code>
+        &lt;html&gt;
+       </code>
+                                    element.
+                                    <strong>
+                                          rem
+                                    </strong>
+                                    means root em: it uses the root’s font size.
+                              </p>
+                              <div class="cu-reference" data-no-slide-advance="" data-unit-visual="">
+                                    <div class="cu-controls">
+                                          <label for="root-rootSize">
+                                                Root font size (CSS px)
+                                                <select data-reference="rootSize" id="root-rootSize">
+                                                      <option selected="" value="16">
+                                                            16
+                                                      </option>
+                                                      <option value="20">
+                                                            20
+                                                      </option>
+                                                </select>
+                                          </label>
+                                    </div>
+                                    <div class="cu-font-branches">
+                                          <div>
+                                                <strong>
+                                                      Root → 2rem
+                                                </strong>
+                                                <svg aria-hidden="true" viewbox="0 0 260 46">
+                                                      <rect class="cu-bar cu-bar--vw" data-font-ruler="rem" height="32"
+                                                            width="128" x="4" y="5">
+                                                      </rect>
+                                                </svg>
+                                                <p>
+                                                      2 ×
+                                                      <span data-measure="rootSize">
+                                                            16
+                                                      </span>
+                                                      px =
+                                                      <b data-measure="rem">
+                                                            32
+                                                      </b>
+                                                      px
+                                                </p>
+                                          </div>
+                                          <div>
+                                                <strong>
+                                                      Root → 1rem
+                                                </strong>
+                                                <svg aria-hidden="true" viewbox="0 0 260 46">
+                                                      <rect class="cu-bar cu-bar--percent" data-font-ruler="rootSize"
+                                                            height="32" width="64" x="4" y="5">
+                                                      </rect>
+                                                </svg>
+                                                <p>
+                                                      1 × root =
+                                                      <b data-measure="rootSize">
+                                                            16
+                                                      </b>
+                                                      px
+                                                </p>
+                                          </div>
+                                    </div>
+                                    <p class="cu-caption">
+                                          Rulers are enlarged equally to show the relationship.
+                                    </p>
+                                    <p class="cu-font-status" role="status">
+                                          2rem =
+                                          <strong data-measure="rem">
+                                                32
+                                          </strong>
+                                          px · 0.5rem is half the root size.
+                                    </p>
+                              </div>
+                              <pre class="cu-code"><code>.heading { font-size: 2rem; }
+.card { padding: 1rem; }</code></pre>
+                              <p>
+                                    Text and spacing can share the same root reference and respond when the user’s base
+                                    text size changes.
+                              </p>
+                              <details class="cu-reveal cu-revision" data-no-slide-advance="">
+                                    <summary>
+                                          About the assumed root size
+                                    </summary>
+                                    <p>
+                                          At an assumed 16px root: 1rem = 16px, 2rem = 32px and 0.5rem = 8px. The
+                                          controls change a teaching model, not your page settings. Do not routinely
+                                          override the browser’s root font size just to simplify the maths.
+                                    </p>
+                              </details>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="local-units">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    em: use the relevant font-size context
+                              </h2>
+                              <div class="cu-nested-card">
+                                    <span>
+                                          Parent card · font-size: 20px
+                                    </span>
+                                    <div>
+                                          <strong>
+                                                Child text · font-size: 1.5em
+                                          </strong>
+                                          <p>
+                                                20px × 1.5 = 30px
+                                          </p>
+                                    </div>
+                              </div>
+                              <pre class="cu-code"><code>.card { font-size: 20px; }
+.card p { font-size: 1.5em; }</code></pre>
+                              <p class="cu-key">
+                                    For font-size, em uses the inherited font size, usually from the parent.
+                              </p>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          For spacing, the reference is different
+                                    </summary>
+                                    <p>
+                                          For properties such as padding, em uses the element’s own computed font size.
+                                          It does not simply mean “parent size”.
+                                    </p>
+                              </details>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="font-references">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    rem and em can follow different rulers
+                              </h2>
+                              <div class="cu-reference" data-no-slide-advance="" data-unit-visual="">
+                                    <div class="cu-controls">
+                                          <label for="fonts-rootSize">
+                                                Root font size (CSS px)
+                                                <select data-reference="rootSize" id="fonts-rootSize">
+                                                      <option selected="" value="16">
+                                                            16
+                                                      </option>
+                                                      <option value="20">
+                                                            20
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label for="fonts-localSize">
+                                                Parent font size (CSS px)
+                                                <select data-reference="localSize" id="fonts-localSize">
+                                                      <option selected="" value="20">
+                                                            20
+                                                      </option>
+                                                      <option value="30">
+                                                            30
+                                                      </option>
+                                                </select>
+                                          </label>
+                                    </div>
+                                    <div class="cu-font-branches">
+                                          <div>
+                                                <strong>
+                                                      Root → 2rem
+                                                </strong>
+                                                <svg aria-hidden="true" viewbox="0 0 260 46">
+                                                      <rect class="cu-bar cu-bar--vw" data-font-ruler="rem" height="32"
+                                                            width="128" x="4" y="5">
+                                                      </rect>
+                                                </svg>
+                                                <p>
+                                                      2 ×
+                                                      <span data-measure="rootSize">
+                                                            16
+                                                      </span>
+                                                      px =
+                                                      <b data-measure="rem">
+                                                            32
+                                                      </b>
+                                                      px
+                                                </p>
+                                          </div>
+                                          <div>
+                                                <strong>
+                                                      Local parent → child font-size: 2em
+                                                </strong>
+                                                <svg aria-hidden="true" viewbox="0 0 260 46">
+                                                      <rect class="cu-bar cu-bar--percent" data-font-ruler="em"
+                                                            height="32" width="160" x="4" y="5">
+                                                      </rect>
+                                                </svg>
+                                                <p>
+                                                      2 ×
+                                                      <span data-measure="localSize">
+                                                            20
+                                                      </span>
+                                                      px =
+                                                      <b data-measure="em">
+                                                            40
+                                                      </b>
+                                                      px
+                                                </p>
+                                          </div>
+                                    </div>
+                                    <p class="cu-caption">
+                                          Rulers are enlarged equally to show the relationship.
+                                    </p>
+                                    <p class="cu-font-status" role="status">
+                                          2rem =
+                                          <strong data-measure="rem">
+                                                32
+                                          </strong>
+                                          px · child font-size: 2em =
+                                          <strong data-measure="em">
+                                                40
+                                          </strong>
+                                          px
+                                    </p>
+                              </div>
+                              <pre class="cu-code"><code>.local { font-size: 2em; }
+.root-based { font-size: 2rem; }</code></pre>
+                              <p class="cu-key">
+                                    Change the parent font: em responds. Change the root: rem responds.
+                              </p>
+                              <p class="cu-caption">
+                                    In this model the parent has an explicit px font size, so changing the root does not
+                                    change that parent reference.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="component-spacing">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Let button padding grow with its text
+                              </h2>
+                              <pre class="cu-code"><code>.button {
+  font-size: 20px;
+  padding: 0.5em 1em;
+}</code></pre>
+                              <div class="cu-buttons">
+                                    <div>
+                                          <span>
+                                                20px text
+                                          </span>
+                                          <button class="cu-sample-button cu-sample-button--small" disabled=""
+                                                type="button">
+                                                Continue
+                                          </button>
+                                          <p>
+                                                10px above/below · 20px left/right
+                                          </p>
+                                    </div>
+                                    <div>
+                                          <span>
+                                                30px text
+                                          </span>
+                                          <button class="cu-sample-button cu-sample-button--large" disabled=""
+                                                type="button">
+                                                Continue
+                                          </button>
+                                          <p>
+                                                15px above/below · 30px left/right
+                                          </p>
+                                    </div>
+                              </div>
+                              <p class="cu-key">
+                                    The same em padding scales with the button’s own text size.
+                              </p>
+                        </section>
+                        <template data-teacher-divider="">
+                              <h2>
+                                    The viewport
+                              </h2>
+                        </template>
+                        <section class="lesson-section panel" data-lesson-section="" id="viewport">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    The viewport is the visible webpage area
+                              </h2>
+                              <figure class="cu-browser">
+                                    <div class="cu-browser-chrome">
+                                          Browser controls · outside the webpage viewport
+                                    </div>
+                                    <div class="cu-browser-view">
+                                          <strong>
+                                                VIEWPORT
+                                          </strong>
+                                          <p>
+                                                The visible webpage area
+                                          </p>
+                                          <div aria-hidden="true" class="cu-page-lines">
+                                          </div>
+                                    </div>
+                                    <figcaption>
+                                          The document can continue below this window. Scrolling reveals more of it.
+                                    </figcaption>
+                              </figure>
+                              <p class="cu-key">
+                                    vw measures viewport width. vh measures viewport height.
+                              </p>
+                              <p>
+                                    The viewport is not the whole physical monitor or the entire scrollable document.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="viewport-width">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    vw: follow the viewport width
+                              </h2>
+                              <pre class="cu-code"><code>.banner { width: 50vw; }</code></pre>
+                              <div class="cu-reference" data-no-slide-advance="" data-unit-visual="">
+                                    <div class="cu-controls">
+                                          <label for="vw-viewportWidth">
+                                                Viewport width (CSS px)
+                                                <select data-reference="viewportWidth" id="vw-viewportWidth">
+                                                      <option value="600">
+                                                            600
+                                                      </option>
+                                                      <option selected="" value="800">
+                                                            800
+                                                      </option>
+                                                </select>
+                                          </label>
+                                    </div>
+                                    <p class="cu-caption">
+                                          Scaled model · viewport:
+                                          <b data-measure="viewportWidth">
+                                                800
+                                          </b>
+                                          px · containing block:
+                                          <b data-measure="parentWidth">
+                                                400
+                                          </b>
+                                          px
+                                    </p>
+                                    <svg aria-hidden="true" class="cu-width-diagram" viewbox="0 0 824 224">
+                                          <rect class="cu-viewport-outline" data-measure-width="viewportWidth"
+                                                height="208" width="800" x="8" y="8">
+                                          </rect>
+                                          <text x="20" y="34">
+                                                Viewport
+                                          </text>
+                                          <rect class="cu-parent-outline" data-measure-width="parentWidth" height="156"
+                                                width="400" x="28" y="48">
+                                          </rect>
+                                          <text x="38" y="75">
+                                                Containing block
+                                          </text>
+                                          <rect class="cu-bar cu-bar--vw" data-measure-width="vw" height="24"
+                                                width="400" x="28" y="90">
+                                          </rect>
+                                          <text x="450" y="108">50vw</text>
+                                    </svg>
+                                    <div aria-atomic="true" aria-live="polite" class="cu-measurements">
+                                          <p>
+                                                <code>
+          50vw
+         </code>
+                                                →
+                                                <strong>
+                                                      <span data-measure="vw">
+                                                            400
+                                                      </span>
+                                                      px
+                                                </strong>
+                                          </p>
+                                    </div>
+                              </div>
+                              <p class="cu-key">
+                                    1vw = 1% of viewport width. 50vw = half. 100vw = all of it.
+                              </p>
+                              <p>
+                                    Try a different viewport width. The containing block stays the same, but the banner
+                                    changes.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="viewport-height">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    vh: follow the viewport height
+                              </h2>
+                              <div class="cu-reference" data-no-slide-advance="" data-unit-visual="">
+                                    <div class="cu-controls">
+                                          <label for="vh-viewportHeight">
+                                                Viewport height (CSS px)
+                                                <select data-reference="viewportHeight" id="vh-viewportHeight">
+                                                      <option selected="" value="400">
+                                                            400
+                                                      </option>
+                                                      <option value="600">
+                                                            600
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label for="vh-heightPercent">
+                                                Hero height (vh)
+                                                <select data-reference="heightPercent" id="vh-heightPercent">
+                                                      <option selected="" value="50">
+                                                            50
+                                                      </option>
+                                                      <option value="100">
+                                                            100
+                                                      </option>
+                                                </select>
+                                          </label>
+                                    </div>
+                                    <div class="cu-height-layout">
+                                          <svg aria-hidden="true" class="cu-height-diagram" viewbox="0 0 360 630">
+                                                <rect class="cu-viewport-outline" data-measure-height="viewportHeight"
+                                                      height="400" width="332" x="12" y="12">
+                                                </rect>
+                                                <rect class="cu-bar cu-bar--vw" data-measure-height="vh" height="200"
+                                                      width="332" x="12" y="12">
+                                                </rect>
+                                          </svg>
+                                          <div aria-atomic="true" aria-live="polite">
+                                                <p>
+                                                      Scaled viewport:
+                                                      <strong data-measure="viewportHeight">
+                                                            400
+                                                      </strong>
+                                                      px high
+                                                </p>
+                                                <p>
+                                                      Hero:
+                                                      <strong data-measure="heightPercent">
+                                                            50
+                                                      </strong>
+                                                      vh
+                                                </p>
+                                                <p class="cu-result">
+                                                      =
+                                                      <strong data-measure="vh">
+                                                            200
+                                                      </strong>
+                                                      px high
+                                                </p>
+                                                <p>
+                                                      The outlined frame is the viewport. The filled area is the hero.
+                                                </p>
+                                          </div>
+                                    </div>
+                                    <pre
+                                          class="cu-code"><code>.hero { height: <span data-measure="heightPercent">50</span>vh; }</code></pre>
+                              </div>
+                              <p class="cu-key">
+                                    1vh = 1% of viewport height. 100vh uses the full height reference.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="percent-vw">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Half of the parent—or half of the viewport?
+                              </h2>
+                              <div class="cu-reference" data-no-slide-advance="" data-unit-visual="">
+                                    <div class="cu-controls">
+                                          <label for="compare-viewportWidth">
+                                                Viewport width (CSS px)
+                                                <select data-reference="viewportWidth" id="compare-viewportWidth">
+                                                      <option value="600">
+                                                            600
+                                                      </option>
+                                                      <option selected="" value="800">
+                                                            800
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label for="compare-parentWidth">
+                                                Containing block width (CSS px)
+                                                <select data-reference="parentWidth" id="compare-parentWidth">
+                                                      <option value="240">
+                                                            240
+                                                      </option>
+                                                      <option selected="" value="400">
+                                                            400
+                                                      </option>
+                                                </select>
+                                          </label>
+                                    </div>
+                                    <p class="cu-caption">
+                                          Scaled model · viewport:
+                                          <b data-measure="viewportWidth">
+                                                800
+                                          </b>
+                                          px · containing block:
+                                          <b data-measure="parentWidth">
+                                                400
+                                          </b>
+                                          px
+                                    </p>
+                                    <svg aria-hidden="true" class="cu-width-diagram" viewbox="0 0 824 224">
+                                          <rect class="cu-viewport-outline" data-measure-width="viewportWidth"
+                                                height="208" width="800" x="8" y="8">
+                                          </rect>
+                                          <text x="20" y="34">
+                                                Viewport
+                                          </text>
+                                          <rect class="cu-parent-outline" data-measure-width="parentWidth" height="156"
+                                                width="400" x="28" y="48">
+                                          </rect>
+                                          <text x="38" y="75">
+                                                Containing block
+                                          </text>
+                                          <rect class="cu-bar cu-bar--px" data-measure-width="px" height="24" width="50"
+                                                x="28" y="90">
+                                          </rect>
+                                          <text x="450" y="108">50px</text>
+                                          <rect class="cu-bar cu-bar--percent" data-measure-width="percent" height="24"
+                                                width="200" x="28" y="130">
+                                          </rect>
+                                          <text x="450" y="148">50%</text>
+                                          <rect class="cu-bar cu-bar--vw" data-measure-width="vw" height="24"
+                                                width="400" x="28" y="170">
+                                          </rect>
+                                          <text x="450" y="188">50vw</text>
+                                    </svg>
+                                    <div aria-atomic="true" aria-live="polite" class="cu-measurements">
+                                          <p>
+                                                <code>
+          50px
+         </code>
+                                                →
+                                                <strong>
+                                                      <span data-measure="px">
+                                                            50
+                                                      </span>
+                                                      px
+                                                </strong>
+                                          </p>
+                                          <p>
+                                                <code>
+          50%
+         </code>
+                                                →
+                                                <strong>
+                                                      <span data-measure="percent">
+                                                            200
+                                                      </span>
+                                                      px
+                                                </strong>
+                                          </p>
+                                          <p>
+                                                <code>
+          50vw
+         </code>
+                                                →
+                                                <strong>
+                                                      <span data-measure="vw">
+                                                            400
+                                                      </span>
+                                                      px
+                                                </strong>
+                                          </p>
+                                    </div>
+                              </div>
+                              <p class="cu-key">
+                                    50% follows the containing block. 50vw follows the viewport.
+                              </p>
+                              <p>
+                                    Resize just the containing block, then just the viewport. These widths match only
+                                    when their references have the same width.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="viewport-uses">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Choose viewport units when the screen is the reference
+                              </h2>
+                              <pre class="cu-code"><code>.hero { min-height: 100vh; }
+.banner { width: 80vw; }</code></pre>
+                              <div class="cu-use-pair">
+                                    <p>
+                                          <strong>
+                                                vh → hero section
+                                          </strong>
+                                          <br />
+                                          At least the viewport height, with room to grow for content.
+                                    </p>
+                                    <p>
+                                          <strong>
+                                                vw → decorative banner
+                                          </strong>
+                                          <br />
+                                          Explicitly based on browser width, independent of a narrow container.
+                                    </p>
+                              </div>
+                              <p class="cu-key">
+                                    Use % when ordinary content should follow its container. Use vw when the viewport is
+                                    the intended reference.
+                              </p>
+                              <p>
+                                    The next Sizing lesson explains
+                                    <code>
+        min-height
+       </code>
+                                    properly. It allows growth where a fixed height might constrain content.
+                              </p>
+                              <details class="cu-reveal cu-revision" data-no-slide-advance="">
+                                    <summary>
+                                          Mobile viewport note
+                                    </summary>
+                                    <p>
+                                          On mobile, browser controls can change the visible area. Standard vh uses the
+                                          large viewport reference, so 100vh may extend behind visible controls. Units
+                                          such as svh, lvh and dvh provide other viewport references; they are extension
+                                          material, not core quiz content.
+                                    </p>
+                                    <p>
+                                          <a href="https://www.w3.org/TR/css-values-4/#viewport-relative-lengths">
+                                                CSS viewport-unit reference
+                                          </a>
+                                    </p>
+                              </details>
+                        </section>
+                        <template data-teacher-divider="">
+                              <h2>
+                                    Choosing a unit
+                              </h2>
+                        </template>
+                        <section class="lesson-section panel" data-lesson-section="" id="unit-choice">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    What should this measurement respond to?
+                              </h2>
+                              <div class="cu-choice-path">
+                                    <span>
+                                          Intention
+                                    </span>
+                                    <b>
+                                          →
+                                    </b>
+                                    <span>
+                                          Reference
+                                    </span>
+                                    <b>
+                                          →
+                                    </b>
+                                    <span>
+                                          Unit
+                                    </span>
+                              </div>
+                              <div class="cu-use-pair">
+                                    <p>
+                                          <strong>
+                                                “Keep a thin border”
+                                          </strong>
+                                          <br />
+                                          CSS pixel length → px
+                                    </p>
+                                    <p>
+                                          <strong>
+                                                “Follow the site’s text scale”
+                                          </strong>
+                                          <br />
+                                          Root font size → rem
+                                    </p>
+                              </div>
+                              <p class="cu-key">
+                                    There is no universal best CSS unit.
+                              </p>
+                              <p>
+                                    Choose a reference that matches the job. Avoid rules such as “always use rem” or
+                                    “use vw for everything responsive”.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="unit-chooser">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Choose a unit for the intention
+                              </h2>
+                              <p>
+                                    Choose the unit and reference most appropriate for each intention. Other solutions
+                                    may be possible; explain why your choice fits.
+                              </p>
+                              <div class="cu-scenario-pair">
+                                    <article class="cu-scenario" data-no-slide-advance="" data-paired-scenario="border">
+                                          <h3 data-scenario-prompt="">
+                                          </h3>
+                                          <label>
+                                                Best-fit unit
+                                                <select data-choice="type">
+                                                      <option value="">
+                                                            Choose a unit
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label>
+                                                Reference
+                                                <select data-choice="reason">
+                                                      <option value="">
+                                                            Choose a reference
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <div class="cu-controls">
+                                                <button class="primary-link" data-check-pair="" type="button">
+                                                      Check reasoning
+                                                </button>
+                                                <button class="lesson-secondary-action" data-reset-pair=""
+                                                      type="button">
+                                                      Reset
+                                                </button>
+                                          </div>
+                                          <p data-pair-feedback="" role="status">
+                                          </p>
+                                    </article>
+                                    <article class="cu-scenario" data-no-slide-advance="" data-paired-scenario="image">
+                                          <h3 data-scenario-prompt="">
+                                          </h3>
+                                          <label>
+                                                Best-fit unit
+                                                <select data-choice="type">
+                                                      <option value="">
+                                                            Choose a unit
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label>
+                                                Reference
+                                                <select data-choice="reason">
+                                                      <option value="">
+                                                            Choose a reference
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <div class="cu-controls">
+                                                <button class="primary-link" data-check-pair="" type="button">
+                                                      Check reasoning
+                                                </button>
+                                                <button class="lesson-secondary-action" data-reset-pair=""
+                                                      type="button">
+                                                      Reset
+                                                </button>
+                                          </div>
+                                          <p data-pair-feedback="" role="status">
+                                          </p>
+                                    </article>
+                              </div>
+                              <div data-slide-break="">
+                              </div>
+                              <div class="cu-scenario-pair">
+                                    <article class="cu-scenario" data-no-slide-advance=""
+                                          data-paired-scenario="heading">
+                                          <h3 data-scenario-prompt="">
+                                          </h3>
+                                          <label>
+                                                Best-fit unit
+                                                <select data-choice="type">
+                                                      <option value="">
+                                                            Choose a unit
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label>
+                                                Reference
+                                                <select data-choice="reason">
+                                                      <option value="">
+                                                            Choose a reference
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <div class="cu-controls">
+                                                <button class="primary-link" data-check-pair="" type="button">
+                                                      Check reasoning
+                                                </button>
+                                                <button class="lesson-secondary-action" data-reset-pair=""
+                                                      type="button">
+                                                      Reset
+                                                </button>
+                                          </div>
+                                          <p data-pair-feedback="" role="status">
+                                          </p>
+                                    </article>
+                                    <article class="cu-scenario" data-no-slide-advance="" data-paired-scenario="button">
+                                          <h3 data-scenario-prompt="">
+                                          </h3>
+                                          <label>
+                                                Best-fit unit
+                                                <select data-choice="type">
+                                                      <option value="">
+                                                            Choose a unit
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label>
+                                                Reference
+                                                <select data-choice="reason">
+                                                      <option value="">
+                                                            Choose a reference
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <div class="cu-controls">
+                                                <button class="primary-link" data-check-pair="" type="button">
+                                                      Check reasoning
+                                                </button>
+                                                <button class="lesson-secondary-action" data-reset-pair=""
+                                                      type="button">
+                                                      Reset
+                                                </button>
+                                          </div>
+                                          <p data-pair-feedback="" role="status">
+                                          </p>
+                                    </article>
+                              </div>
+                              <div data-slide-break="">
+                              </div>
+                              <div class="cu-scenario-pair">
+                                    <article class="cu-scenario" data-no-slide-advance="" data-paired-scenario="hero">
+                                          <h3 data-scenario-prompt="">
+                                          </h3>
+                                          <label>
+                                                Best-fit unit
+                                                <select data-choice="type">
+                                                      <option value="">
+                                                            Choose a unit
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label>
+                                                Reference
+                                                <select data-choice="reason">
+                                                      <option value="">
+                                                            Choose a reference
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <div class="cu-controls">
+                                                <button class="primary-link" data-check-pair="" type="button">
+                                                      Check reasoning
+                                                </button>
+                                                <button class="lesson-secondary-action" data-reset-pair=""
+                                                      type="button">
+                                                      Reset
+                                                </button>
+                                          </div>
+                                          <p data-pair-feedback="" role="status">
+                                          </p>
+                                    </article>
+                                    <article class="cu-scenario" data-no-slide-advance="" data-paired-scenario="banner">
+                                          <h3 data-scenario-prompt="">
+                                          </h3>
+                                          <label>
+                                                Best-fit unit
+                                                <select data-choice="type">
+                                                      <option value="">
+                                                            Choose a unit
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <label>
+                                                Reference
+                                                <select data-choice="reason">
+                                                      <option value="">
+                                                            Choose a reference
+                                                      </option>
+                                                </select>
+                                          </label>
+                                          <div class="cu-controls">
+                                                <button class="primary-link" data-check-pair="" type="button">
+                                                      Check reasoning
+                                                </button>
+                                                <button class="lesson-secondary-action" data-reset-pair=""
+                                                      type="button">
+                                                      Reset
+                                                </button>
+                                          </div>
+                                          <p data-pair-feedback="" role="status">
+                                          </p>
+                                    </article>
+                              </div>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="live-experiment">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Predict, edit, then compare
+                              </h2>
+                              <p class="cu-revision">
+                                    Work in
+                                    <code>
+        common.css
+       </code>
+                                    , linked to the HTML by the preview tool. In a normal project, keep these rules in
+                                    your external stylesheet.
+                              </p>
+                              <div data-live-code-example-id="units-width-experiment">
+                              </div>
+                              <p class="cu-caption">
+                                    Edit common.css. Here, vw uses the preview frame’s viewport width.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="debugging">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Find the wrong measurement
+                              </h2>
+                              <div data-debug-lab-id="units-parent-width">
+                              </div>
+                              <div data-slide-break="">
+                              </div>
+                              <div data-debug-lab-id="units-missing-unit">
+                              </div>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="mistakes">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Check the reference before correcting the code
+                              </h2>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          “50% means half the screen.”
+                                    </summary>
+                                    <p>
+                                          For width it normally means half the containing block, which may be much
+                                          narrower than the viewport.
+                                    </p>
+                              </details>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          “50vw is always the same as 50%.”
+                                    </summary>
+                                    <p>
+                                          They only match when the width references match. vw always uses the viewport
+                                          width reference.
+                                    </p>
+                              </details>
+                              <div data-slide-break="">
+                              </div>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          “1px is always one physical screen pixel.”
+                                    </summary>
+                                    <p>
+                                          A CSS pixel is a CSS length. Zoom and display density can change how it maps
+                                          to physical pixels.
+                                    </p>
+                              </details>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          “rem and em are basically the same.”
+                                    </summary>
+                                    <p>
+                                          rem uses the root font size. em uses the relevant local font-size context:
+                                          inherited size for font-size, own computed size for padding.
+                                    </p>
+                              </details>
+                              <div data-slide-break="">
+                              </div>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          “100vh means 100 pixels high.”
+                                    </summary>
+                                    <p>
+                                          It means 100% of the viewport height reference. For a 600px-high reference,
+                                          100vh is 600px.
+                                    </p>
+                              </details>
+                              <details class="cu-reveal" data-no-slide-advance="">
+                                    <summary>
+                                          “Relative units mean random sizes.”
+                                    </summary>
+                                    <p>
+                                          They are calculated from a defined reference. Find that reference and the
+                                          result is predictable.
+                                    </p>
+                              </details>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="summary">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Relative to what?
+                              </h2>
+                              <div class="cu-summary">
+                                    <div>
+                                          <strong>
+                                                px
+                                          </strong>
+                                          <span>
+                                                → CSS pixel length
+                                          </span>
+                                          <code>
+         border: 2px solid black;
+        </code>
+                                    </div>
+                                    <div>
+                                          <strong>
+                                                %
+                                          </strong>
+                                          <span>
+                                                → Relevant size: containing block for these widths
+                                          </span>
+                                          <code>
+         width: 50%;
+        </code>
+                                    </div>
+                                    <div>
+                                          <strong>
+                                                rem
+                                          </strong>
+                                          <span>
+                                                → Root font size
+                                          </span>
+                                          <code>
+         font-size: 2rem;
+        </code>
+                                    </div>
+                                    <div>
+                                          <strong>
+                                                em
+                                          </strong>
+                                          <span>
+                                                → Local font-size context
+                                          </span>
+                                          <code>
+         padding: 0.5em 1em;
+        </code>
+                                    </div>
+                                    <div>
+                                          <strong>
+                                                vw
+                                          </strong>
+                                          <span>
+                                                → Viewport width
+                                          </span>
+                                          <code>
+         width: 50vw;
+        </code>
+                                    </div>
+                                    <div>
+                                          <strong>
+                                                vh
+                                          </strong>
+                                          <span>
+                                                → Viewport height
+                                          </span>
+                                          <code>
+         min-height: 100vh;
+        </code>
+                                    </div>
+                              </div>
+                              <p class="cu-key">
+                                    Match the unit to the reference you want the size to follow.
+                              </p>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="quiz">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Check your unit choices
+                              </h2>
+                              <p>
+                                    Choose the answer that best matches the intention. Aim for 8 out of 10.
+                              </p>
+                              <form class="quiz-form" id="lesson-quiz">
+                                    <fieldset class="quiz-question" data-answer="a"
+                                          data-feedback="The number gives the amount; px says it is a CSS pixel length."
+                                          data-question="q1"
+                                          data-success="Correct. The number gives the amount; px says it is a CSS pixel length.">
+                                          <legend>
+                                                1. What does the unit in width: 50px tell the browser?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q1" type="radio" value="a" />
+                                                            <span>
+                                                                  The measurement reference
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q1" type="radio" value="b" />
+                                                            <span>
+                                                                  The class name
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q1" type="radio" value="c" />
+                                                            <span>
+                                                                  The number of elements
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="b"
+                                          data-feedback="A small CSS pixel length is useful for a predictable border thickness."
+                                          data-question="q2"
+                                          data-success="Correct. A small CSS pixel length is useful for a predictable border thickness.">
+                                          <legend>
+                                                2. Which is a sensible choice for a thin, predictable border?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q2" type="radio" value="a" />
+                                                            <span>
+                                                                  50vh
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q2" type="radio" value="b" />
+                                                            <span>
+                                                                  2px
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q2" type="radio" value="c" />
+                                                            <span>
+                                                                  50%
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="c"
+                                          data-feedback="For this width, the percentage follows the containing block."
+                                          data-question="q3"
+                                          data-success="Correct. For this width, the percentage follows the containing block.">
+                                          <legend>
+                                                3. A card should take half its containing block’s width. Which fits?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q3" type="radio" value="a" />
+                                                            <span>
+                                                                  width: 50px;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q3" type="radio" value="b" />
+                                                            <span>
+                                                                  width: 50vw;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q3" type="radio" value="c" />
+                                                            <span>
+                                                                  width: 50%;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="a"
+                                          data-feedback="rem refers to the root font size." data-question="q4"
+                                          data-success="Correct. rem refers to the root font size.">
+                                          <legend>
+                                                4. A heading should follow the root text scale. Which fits?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q4" type="radio" value="a" />
+                                                            <span>
+                                                                  font-size: 2rem;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q4" type="radio" value="b" />
+                                                            <span>
+                                                                  font-size: 2em;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q4" type="radio" value="c" />
+                                                            <span>
+                                                                  font-size: 2vw;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="b"
+                                          data-feedback="For padding, em is based on the element’s computed font size."
+                                          data-question="q5"
+                                          data-success="Correct. For padding, em is based on the element’s computed font size.">
+                                          <legend>
+                                                5. Which unit lets button padding scale with its own text size?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q5" type="radio" value="a" />
+                                                            <span>
+                                                                  px
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q5" type="radio" value="b" />
+                                                            <span>
+                                                                  em
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q5" type="radio" value="c" />
+                                                            <span>
+                                                                  vh
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="c"
+                                          data-feedback="vw uses the viewport width reference." data-question="q6"
+                                          data-success="Correct. vw uses the viewport width reference.">
+                                          <legend>
+                                                6. Which declaration makes a banner half the viewport width?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q6" type="radio" value="a" />
+                                                            <span>
+                                                                  width: 50%;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q6" type="radio" value="b" />
+                                                            <span>
+                                                                  width: 50vh;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q6" type="radio" value="c" />
+                                                            <span>
+                                                                  width: 50vw;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="a"
+                                          data-feedback="100vh uses the full viewport height; min-height allows the section to grow."
+                                          data-question="q7"
+                                          data-success="Correct. 100vh uses the full viewport height; min-height allows the section to grow.">
+                                          <legend>
+                                                7. A desktop hero should be at least as tall as the viewport. Which
+                                                fits?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q7" type="radio" value="a" />
+                                                            <span>
+                                                                  min-height: 100vh;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q7" type="radio" value="b" />
+                                                            <span>
+                                                                  min-height: 100px;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q7" type="radio" value="c" />
+                                                            <span>
+                                                                  width: 100vw;
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="b"
+                                          data-feedback="The two measurements use different references."
+                                          data-question="q8"
+                                          data-success="Correct. The two measurements use different references.">
+                                          <legend>
+                                                8. The container narrows while the viewport stays the same. What
+                                                happens?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q8" type="radio" value="a" />
+                                                            <span>
+                                                                  Both 50% and 50vw must stay the same
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q8" type="radio" value="b" />
+                                                            <span>
+                                                                  50% narrows; 50vw stays the same
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q8" type="radio" value="c" />
+                                                            <span>
+                                                                  50vw narrows; 50% stays the same
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="c"
+                                          data-feedback="rem follows the 16px root; font-size in em follows the 20px inherited reference."
+                                          data-question="q9"
+                                          data-success="Correct. rem follows the 16px root; font-size in em follows the 20px inherited reference.">
+                                          <legend>
+                                                9. Root text is 16px and a parent has an explicit 20px font size. What
+                                                are a child’s 2rem and 2em font sizes?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q9" type="radio" value="a" />
+                                                            <span>
+                                                                  Both 32px
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q9" type="radio" value="b" />
+                                                            <span>
+                                                                  Both 40px
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q9" type="radio" value="c" />
+                                                            <span>
+                                                                  2rem is 32px; 2em is 40px
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <fieldset class="quiz-question" data-answer="b"
+                                          data-feedback="Choose the reference that matches the intended behaviour."
+                                          data-question="q10"
+                                          data-success="Correct. Choose the reference that matches the intended behaviour.">
+                                          <legend>
+                                                10. Which statement is most useful when choosing a unit?
+                                          </legend>
+                                          <ul class="quiz-answer-list">
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q10" type="radio" value="a" />
+                                                            <span>
+                                                                  Use rem for every measurement
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q10" type="radio" value="b" />
+                                                            <span>
+                                                                  Ask what the measurement should respond to
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                                <li>
+                                                      <label class="quiz-answer">
+                                                            <input name="q10" type="radio" value="c" />
+                                                            <span>
+                                                                  Relative units always produce random sizes
+                                                            </span>
+                                                      </label>
+                                                </li>
+                                          </ul>
+                                          <p class="quiz-feedback-note" data-question-feedback="">
+                                          </p>
+                                    </fieldset>
+                                    <div class="quiz-actions">
+                                          <button class="primary-link" type="submit">
+                                                Check score
+                                          </button>
+                                          <button class="lesson-secondary-action" data-action="reset-quiz"
+                                                type="button">
+                                                Reset quiz
+                                          </button>
+                                    </div>
+                                    <p aria-live="polite" class="quiz-result" data-role="quiz-result">
+                                          Your answers save automatically on this device.
+                                    </p>
+                              </form>
+                        </section>
+                        <section class="lesson-section panel" data-lesson-section="" id="practice">
+                              <p class="eyebrow">
+                                    CSS Units
+                              </p>
+                              <h2>
+                                    Explain the reference and apply it
+                              </h2>
+                              <p class="exam-response-note">
+                                    Write your reasoning before opening the guide. Drafts save in this browser.
+                              </p>
+                              <article class="exam-card">
+                                    <h3>
+                                          Question 1
+                                    </h3>
+                                    <p>
+                                          Explain one difference between % and vw. Use a 400px container inside an 800px
+                                          viewport as an example.
+                                    </p>
+                                    <div class="exam-response-wrap">
+                                          <label class="exam-response-label" for="response-1">
+                                                Your answer
+                                          </label>
+                                          <textarea class="exam-response" data-exam-response="question-1"
+                                                id="response-1"
+                                                placeholder="Name the reference and explain why it fits."></textarea>
+                                    </div>
+                                    <details class="exam-guidance">
+                                          <summary>
+                                                Show answer guide
+                                          </summary>
+                                          <div class="exam-guidance-body">
+                                                <p>
+                                                      For width, 50% of this containing block is 200px. 50vw is 400px
+                                                      because it uses the 800px viewport. Name both references.
+                                                </p>
+                                          </div>
+                                    </details>
+                              </article>
+                              <div data-slide-break="">
+                              </div>
+                              <article class="exam-card">
+                                    <h3>
+                                          Question 2
+                                    </h3>
+                                    <p>
+                                          Explain how em and rem differ. Include why em is useful for button padding.
+                                    </p>
+                                    <div class="exam-response-wrap">
+                                          <label class="exam-response-label" for="response-2">
+                                                Your answer
+                                          </label>
+                                          <textarea class="exam-response" data-exam-response="question-2"
+                                                id="response-2"
+                                                placeholder="Name the reference and explain why it fits."></textarea>
+                                    </div>
+                                    <details class="exam-guidance">
+                                          <summary>
+                                                Show answer guide
+                                          </summary>
+                                          <div class="exam-guidance-body">
+                                                <p>
+                                                      rem uses the root font size. For font-size, em uses the inherited
+                                                      size; for padding, it uses the element’s own computed font size.
+                                                      The button’s padding can therefore grow with its text.
+                                                </p>
+                                          </div>
+                                    </details>
+                              </article>
+                              <div data-slide-break="">
+                              </div>
+                              <article class="exam-card">
+                                    <h3>
+                                          Question 3
+                                    </h3>
+                                    <p>
+                                          Suggest a unit for a hero that should be at least as tall as a desktop
+                                          viewport. Then suggest a unit for a card that takes half its container.
+                                          Explain each choice.
+                                    </p>
+                                    <div class="exam-response-wrap">
+                                          <label class="exam-response-label" for="response-3">
+                                                Your answer
+                                          </label>
+                                          <textarea class="exam-response" data-exam-response="question-3"
+                                                id="response-3"
+                                                placeholder="Name the reference and explain why it fits."></textarea>
+                                    </div>
+                                    <details class="exam-guidance">
+                                          <summary>
+                                                Show answer guide
+                                          </summary>
+                                          <div class="exam-guidance-body">
+                                                <p>
+                                                      Use vh for the hero’s viewport-height reference, for example
+                                                      min-height: 100vh. Use % for the card’s containing-block width,
+                                                      for example width: 50%.
+                                                </p>
+                                          </div>
+                                    </details>
+                              </article>
+                              <div data-slide-break="">
+                              </div>
+                              <article class="exam-card">
+                                    <h3>
+                                          Question 4
+                                    </h3>
+                                    <p>
+                                          A student writes .panel { width: 50vw; } and says “This makes it half its
+                                          parent.” Explain the mistake and suggest a correction.
+                                    </p>
+                                    <div class="exam-response-wrap">
+                                          <label class="exam-response-label" for="response-4">
+                                                Your answer
+                                          </label>
+                                          <textarea class="exam-response" data-exam-response="question-4"
+                                                id="response-4"
+                                                placeholder="Name the reference and explain why it fits."></textarea>
+                                    </div>
+                                    <details class="exam-guidance">
+                                          <summary>
+                                                Show answer guide
+                                          </summary>
+                                          <div class="exam-guidance-body">
+                                                <p>
+                                                      50vw is half the viewport width. For half the containing block’s
+                                                      width in this example, use .panel { width: 50%; }. These match
+                                                      only when the two width references match.
+                                                </p>
+                                          </div>
+                                    </details>
+                              </article>
+                        </section>
+                  </main>
+                  <aside class="lesson-rail">
+                        <section class="lesson-rail-card panel">
+                              <p class="eyebrow">
+                                    Glossary
+                              </p>
+                              <h2>
+                                    Useful references
+                              </h2>
+                              <dl class="glossary-list">
+                                    <div class="glossary-item">
+                                          <dt>
+                                                Root
+                                          </dt>
+                                          <dd>
+                                                The document’s html element.
+                                          </dd>
+                                    </div>
+                                    <div class="glossary-item">
+                                          <dt>
+                                                Containing block
+                                          </dt>
+                                          <dd>
+                                                The box used as the size reference for an element; in our width
+                                                examples, the parent’s content box.
+                                          </dd>
+                                    </div>
+                                    <div class="glossary-item">
+                                          <dt>
+                                                Viewport
+                                          </dt>
+                                          <dd>
+                                                The webpage viewing area inside the browser.
+                                          </dd>
+                                    </div>
+                                    <div class="glossary-item">
+                                          <dt>
+                                                Computed font size
+                                          </dt>
+                                          <dd>
+                                                The font size the browser calculates for an element.
+                                          </dd>
+                                    </div>
+                              </dl>
+                        </section>
+                        <section class="lesson-rail-card panel">
+                              <h2>
+                                    Next: CSS Sizing
+                              </h2>
+                              <p>
+                                    Use these units with width, height and minimum/maximum sizes. Layout systems and
+                                    overflow come later.
+                              </p>
+                        </section>
+                  </aside>
+            </div>
+            <section aria-labelledby="lesson-sequence-heading" class="lesson-sequence panel">
+                  <p class="eyebrow">
+                        Keep Going
+                  </p>
+                  <h2 id="lesson-sequence-heading">
+                        Previous and next lesson
+                  </h2>
+                  <div class="sequence-grid" data-role="lesson-sequence">
+                  </div>
+            </section>
+      </div>
+      <div class="teacher-controls panel" data-no-slide-advance="" data-role="teacher-controls" hidden="">
+            <button class="slide-button" data-action="prev-slide" type="button">
+                  Previous
+            </button>
+            <p class="slide-status" data-role="slide-status">
+                  Slide 1 of 34
+            </p>
+            <button class="slide-button" data-action="next-slide" type="button">
+                  Next
+            </button>
+            <button class="slide-button slide-button--exit" data-action="exit-teacher-mode" type="button">
+                  Exit slides
+            </button>
+      </div>
+</body>
+
+</html>

@@ -20,10 +20,11 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "CSS units",
+        title: "CSS Units",
+        href: "css-units.html",
         description:
           "Next, compare common CSS units and choose suitable units for different measurements.",
-        status: "Planned",
+        status: "Live",
       },
     },
   },
