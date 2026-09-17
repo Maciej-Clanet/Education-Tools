@@ -197,6 +197,11 @@ saved progress should be shown as needing a fresh attempt.
     Quiz version 3: 12 questions, pass 9; five written tasks.
     See `docs/binary_bcd_lesson.md`.
 - [x] Hexadecimal numbers
+  - First teaching now starts with binary readability and nibble mapping, then
+    colours, addresses and raw bytes before conversion. Existing nibble explorer,
+    binary↔hex practice and scratch support are preserved; the explorer now shows
+    its selected-value sum. Separate conversion visuals include a binary bridge
+    from denary. Quiz version 2: 10 questions, pass 8; four written tasks.
 - [x] Binary arithmetic
 - [x] Negative and floating point representation
 

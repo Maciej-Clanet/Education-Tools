@@ -24,9 +24,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-hexadecimal-numbers-quiz",
-    passScore: 4,
-    version: 1,
+    storageKey: "lesson-hexadecimal-numbers-quiz-v2",
+    passScore: 8,
+    totalQuestions: 10,
+    version: 2,
   },
   examPractice: {
     storageKey: "lesson-hexadecimal-numbers-exam-practice",
@@ -170,6 +171,12 @@ function renderExplorer(explorer, selectedDigit) {
 
   if (denaryLabel) {
     denaryLabel.textContent = denaryValue.toString()
+  }
+
+  const sumLabel = explorer.querySelector("[data-role='explorer-sum']")
+  if (sumLabel) {
+    const included = [8, 4, 2, 1].filter((_, index) => binaryValue[index] === "1")
+    sumLabel.textContent = `${included.length ? included.join(" + ") : "No active places (0)"} = ${denaryValue} denary = ${digit} hex`
   }
 }
 
