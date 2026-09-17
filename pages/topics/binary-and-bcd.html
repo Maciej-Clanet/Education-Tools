@@ -2,6 +2,7 @@
 <html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Binary and BCD Revision Lesson | Education Tools</title>
     <meta
@@ -115,886 +116,2230 @@
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#bases" data-section-link>Bases</a>
-            <a href="#binary-place-value" data-section-link>Place value</a>
-            <a href="#conversion" data-section-link>Conversion</a>
-            <a href="#practice-zone" data-section-link>Practice zone</a>
-            <a href="#bcd" data-section-link>BCD</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
-            <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam practice</a>
-          </nav>
+<a href="#overview" data-section-link>What does this mean?</a>
+<a href="#why-binary" data-section-link>Why computers use binary</a>
+<a href="#bases" data-section-link>Denary and binary: what changes?</a>
+<a href="#binary-place-value" data-section-link>Binary → denary: add the active columns</a>
+<a href="#conversion" data-section-link>Denary → binary: which values fit?</a>
+<a href="#conversion-directions" data-section-link>Same table, opposite directions</a>
+<a href="#practice-zone" data-section-link>Conversion Workshop</a>
+<a href="#bcd" data-section-link>Why keep decimal digits separate?</a>
+<a href="#bcd-digits" data-section-link>Ten decimal digits, ten valid codes</a>
+<a href="#bcd-compare" data-section-link>27: same value, different representation</a>
+<a href="#bcd-display" data-section-link>BCD can connect codes to decimal displays</a>
+<a href="#bcd-storage" data-section-link>Keeping digits separate can cost more bits</a>
+<a href="#bcd-decoder" data-section-link>Decode one decimal digit at a time</a>
+<a href="#bcd-trap" data-section-link>Read the representation rule first</a>
+<a href="#mistakes" data-section-link>Spot the misconception</a>
+<a href="#summary" data-section-link>One whole number—or separate digits?</a>
+<a href="#quiz" data-section-link>Check binary and BCD understanding</a>
+<a href="#exam-practice" data-section-link>Explain, convert and apply</a>
+</nav>
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>Binary starts with the simplest possible choice</h2>
-            <p class="lesson-section-copy">
-              A bit is a single binary digit. It can be <code>0</code> or
-              <code>1</code>. That sounds tiny, but it matters because computer
-              hardware is very good at storing and detecting two stable states:
-              off or on, low voltage or high voltage, false or true.
-            </p>
-
-            <div class="binary-overview-map">
-              <article class="binary-overview-card binary-overview-card--bit">
-                <span
-                  class="binary-icon binary-icon--bit"
-                  aria-hidden="true"
-                ></span>
-                <h3>One bit</h3>
-                <p>One yes/no choice: <code>0</code> or <code>1</code>.</p>
-              </article>
-
-              <article class="binary-overview-card binary-overview-card--byte">
-                <span
-                  class="binary-icon binary-icon--byte"
-                  aria-hidden="true"
-                ></span>
-                <h3>Many bits</h3>
-                <p>
-                  Bit patterns can represent numbers, text, images, and sound.
-                </p>
-              </article>
-
-              <article
-                class="binary-overview-card binary-overview-card--system"
-              >
-                <span
-                  class="binary-icon binary-icon--system"
-                  aria-hidden="true"
-                ></span>
-                <h3>Computer data</h3>
-                <p>
-                  Programs use agreed rules so the same bits can be interpreted
-                  correctly.
-                </p>
-              </article>
-            </div>
-
-            <div class="lesson-intro-grid">
-              <article class="lesson-card">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>
-                    Explain what binary numbers are and why computers use them.
-                  </li>
-                  <li>Describe what a number base means.</li>
-                  <li>Use an 8-bit place value table accurately.</li>
-                  <li>Convert values between denary and binary.</li>
-                  <li>Explain how BCD is different from pure binary.</li>
-                </ul>
-              </article>
-
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li>
-                    <strong>Binary:</strong> base 2, using <code>0</code> and
-                    <code>1</code>.
-                  </li>
-                  <li>
-                    <strong>Denary:</strong> base 10, using digits
-                    <code>0</code> to <code>9</code>.
-                  </li>
-                  <li>
-                    <strong>Hexadecimal:</strong> base 16, useful shorthand for
-                    binary.
-                  </li>
-                  <li>
-                    <strong>BCD:</strong> each denary digit gets its own 4-bit
-                    binary code.
-                  </li>
-                </ul>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="bases"
-            class="lesson-section lesson-section--bases panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Bases</p>
-            <h2>A number base tells you how the columns grow</h2>
-            <p class="lesson-section-copy">
-              A base is the counting system being used. It tells you how many
-              symbols are available before you carry into the next column, and
-              it controls the place values in the table.
-            </p>
-
-            <div class="base-system-board">
-              <article class="base-system-card base-system-card--denary">
-                <span class="base-badge">Base 10</span>
-                <h3>Denary</h3>
-                <p>
-                  Uses ten symbols: <code>0</code> to <code>9</code>. Place
-                  values grow by multiplying by 10.
-                </p>
-                <div class="base-place-row" aria-label="Denary place values">
-                  <span>1000</span>
-                  <span>100</span>
-                  <span>10</span>
-                  <span>1</span>
-                </div>
-              </article>
-
-              <article class="base-system-card base-system-card--binary">
-                <span class="base-badge">Base 2</span>
-                <h3>Binary</h3>
-                <p>
-                  Uses two symbols: <code>0</code> and <code>1</code>. Place
-                  values grow by multiplying by 2.
-                </p>
-                <div class="base-place-row" aria-label="Binary place values">
-                  <span>8</span>
-                  <span>4</span>
-                  <span>2</span>
-                  <span>1</span>
-                </div>
-              </article>
-
-              <article class="base-system-card base-system-card--hex">
-                <span class="base-badge">Base 16</span>
-                <h3>Hexadecimal</h3>
-                <p>
-                  Uses <code>0</code> to <code>9</code> and <code>A</code> to
-                  <code>F</code>. It is often used as a compact way to write
-                  long binary patterns.
-                </p>
-                <div class="base-place-row" aria-label="Hexadecimal symbols">
-                  <span>0-9</span>
-                  <span>A</span>
-                  <span>B</span>
-                  <span>F</span>
-                </div>
-              </article>
-            </div>
-
-            <article class="lesson-card lesson-fullrow">
-              <h3>Why mention hexadecimal here?</h3>
-              <p>
-                Hexadecimal appears often in computing because each hex digit
-                can represent a group of four binary bits. This lesson only
-                needs the idea that hex is another base. Detailed hexadecimal
-                conversion is covered in the next lesson.
-              </p>
-            </article>
-          </section>
-
-          <section
-            id="binary-place-value"
-            class="lesson-section lesson-section--binary-place-value panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Place Value</p>
-            <h2>Binary place value doubles as you move left</h2>
-            <p class="lesson-section-copy">
-              In an 8-bit binary number, the columns are
-              <code>128, 64, 32, 16, 8, 4, 2, 1</code>. A <code>1</code> means
-              include that value. A <code>0</code> means leave it out.
-            </p>
-
-            <div class="binary-place-table-wrap">
-              <table class="binary-place-table">
-                <caption>
-                  Example: binary
-                  <code>10101101</code>
-                  includes 128, 32, 8, 4, and 1.
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="row">Value</th>
-                    <th>128</th>
-                    <th>64</th>
-                    <th>32</th>
-                    <th>16</th>
-                    <th>8</th>
-                    <th>4</th>
-                    <th>2</th>
-                    <th>1</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Power</th>
-                    <td>2<sup>7</sup></td>
-                    <td>2<sup>6</sup></td>
-                    <td>2<sup>5</sup></td>
-                    <td>2<sup>4</sup></td>
-                    <td>2<sup>3</sup></td>
-                    <td>2<sup>2</sup></td>
-                    <td>2<sup>1</sup></td>
-                    <td>2<sup>0</sup></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Bit</th>
-                    <td class="is-included">1</td>
-                    <td>0</td>
-                    <td class="is-included">1</td>
-                    <td>0</td>
-                    <td class="is-included">1</td>
-                    <td class="is-included">1</td>
-                    <td>0</td>
-                    <td class="is-included">1</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Use?</th>
-                    <td class="is-included">yes</td>
-                    <td>no</td>
-                    <td class="is-included">yes</td>
-                    <td>no</td>
-                    <td class="is-included">yes</td>
-                    <td class="is-included">yes</td>
-                    <td>no</td>
-                    <td class="is-included">yes</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="place-value-summary">
-              <article class="place-summary-card">
-                <strong>Selected columns</strong>
-                <span>128 + 32 + 8 + 4 + 1</span>
-              </article>
-              <article class="place-summary-card">
-                <strong>Denary total</strong>
-                <span>173</span>
-              </article>
-              <article class="place-summary-card">
-                <strong>8-bit binary</strong>
-                <span><code>10101101</code></span>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="conversion"
-            class="lesson-section lesson-section--conversion panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Conversion</p>
-            <h2>Conversion is controlled by the place value table</h2>
-            <p class="lesson-section-copy">
-              Binary to denary and denary to binary use the same table, just in
-              opposite directions. One asks, "Which columns are switched on?"
-              The other asks, "Which columns do I need to switch on?"
-            </p>
-
-            <div class="conversion-method-grid">
-              <article
-                class="conversion-method-card conversion-method-card--binary"
-              >
-                <span class="base-badge">Binary to denary</span>
-                <h3>Add the active columns</h3>
-                <ol class="lesson-list">
-                  <li>Write the place values above the bits.</li>
-                  <li>Find every column with a <code>1</code>.</li>
-                  <li>Add those values together.</li>
-                  <li>The total is the denary answer.</li>
-                </ol>
-              </article>
-
-              <article
-                class="conversion-method-card conversion-method-card--denary"
-              >
-                <span class="base-badge">Denary to binary</span>
-                <h3>Subtract powers of 2</h3>
-                <ol class="lesson-list">
-                  <li>Start with the largest place value in the table.</li>
-                  <li>
-                    If it fits into the remaining number, write <code>1</code>.
-                  </li>
-                  <li>Subtract it, then move to the next column.</li>
-                  <li>If it does not fit, write <code>0</code> and move on.</li>
-                </ol>
-              </article>
-            </div>
-
-            <article
-              class="binary-conversion-simulator lesson-card lesson-fullrow"
-              data-role="binary-conversion-simulator"
-              data-no-slide-advance
-            >
-              <div class="binary-sim-header">
-                <div>
-                  <span class="base-badge">Step-through tool</span>
-                  <h3>Build an 8-bit binary number from denary</h3>
-                  <p>
-                    Choose a denary value from 0 to 255, then step through the
+ <template data-teacher-opener="">
+  <h2>
+   Binary and BCD
+  </h2>
+  <p>
+   How can patterns of 0s and 1s represent useful information?
+  </p>
+  <ul>
+   <li>
+    Explain why computers use binary
+   </li>
+   <li>
+    Convert between 8-bit binary and denary
+   </li>
+   <li>
+    Explain how BCD represents decimal digits
+   </li>
+   <li>
+    Distinguish ordinary binary from BCD
+   </li>
+  </ul>
+ </template>
+ <template data-teacher-divider="">
+  <h2>
+   How binary represents data
+  </h2>
+ </template>
+ <section class="lesson-section panel" data-lesson-section="" id="overview">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   What does this mean?
+  </h2>
+  <p class="bb-pattern">
+   <code>
+    01000001
+   </code>
+  </p>
+  <p class="bb-lead">
+   By itself, it is just a pattern of bits.
+  </p>
+  <div class="bb-interpretations">
+   <details class="bb-reveal" data-no-slide-advance="">
+    <summary>
+     Interpret it as an unsigned number
+    </summary>
+    <p class="bb-equation">
+     <code>
+      01000001
+     </code>
+     →
+     <strong>
+      65
+     </strong>
+    </p>
+   </details>
+   <details class="bb-reveal" data-no-slide-advance="">
+    <summary>
+     Interpret it using the ASCII character code
+    </summary>
+    <p class="bb-equation">
+     Code 65 →
+     <strong>
+      A
+     </strong>
+    </p>
+    <p>
+     The character code gives these bits the meaning A.
+    </p>
+   </details>
+   <details class="bb-reveal" data-no-slide-advance="">
+    <summary>
+     Could bits describe a pixel?
+    </summary>
+    <p>
+     In a simple 8-bit greyscale representation:
+    </p>
+    <div class="bb-brightness">
+     <span>
+      <i aria-hidden="true" class="bb-pixel bb-pixel--dark">
+      </i>
+      <code>
+       00000000
+      </code>
+      → black
+     </span>
+     <span>
+      <i aria-hidden="true" class="bb-pixel bb-pixel--light">
+      </i>
+      <code>
+       11111111
+      </code>
+      → white
+     </span>
+    </div>
+    <p>
+     Audio samples and control values also use agreed rules.
+    </p>
+   </details>
+  </div>
+  <p class="bb-key">
+   Binary becomes useful data when the computer knows how the bits should be interpreted.
+  </p>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="why-binary">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Why computers use binary
+  </h2>
+  <div class="bb-two-states">
+   <div>
+    <strong>
+     0
+    </strong>
+    <span>
+     LOW / OFF-like state
+    </span>
+   </div>
+   <div>
+    <strong>
+     1
+    </strong>
+    <span>
+     HIGH / ON-like state
+    </span>
+   </div>
+  </div>
+  <p class="bb-lead">
+   Electronic systems can reliably distinguish between two states.
+  </p>
+  <p>
+   Combining many bits creates many possible patterns. Agreed rules let those patterns represent numbers, text, images, instructions and other data.
+  </p>
+  <p class="bb-caption">
+   These are logical states; a physical bit need not be a literal light switch.
+  </p>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="bases">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Denary and binary: what changes?
+  </h2>
+  <div class="bb-comparison">
+   <article>
+    <h3>
+     Denary · base 10
+    </h3>
+    <p>
+     Digits
+     <strong>
+      0–9
+     </strong>
+     · places grow by
+     <strong>
+      ×10
+     </strong>
+     to the left.
+    </p>
+    <div class="bb-denary-places">
+     <span>
+      <small>
+       100
+      </small>
+      <strong>
+       5
+      </strong>
+     </span>
+     <span>
+      <small>
+       10
+      </small>
+      <strong>
+       4
+      </strong>
+     </span>
+     <span>
+      <small>
+       1
+      </small>
+      <strong>
+       3
+      </strong>
+     </span>
+    </div>
+    <p>
+     543 = 5 hundreds + 4 tens + 3 ones.
+    </p>
+   </article>
+   <article>
+    <h3>
+     Binary · base 2
+    </h3>
+    <p>
+     Digits
+     <strong>
+      0 and 1
+     </strong>
+     · places grow by
+     <strong>
+      ×2
+     </strong>
+     to the left.
+    </p>
+    <div class="bb-denary-places">
+     <span>
+      <small>
+       4
+      </small>
+      <strong>
+       1
+      </strong>
+     </span>
+     <span>
+      <small>
+       2
+      </small>
+      <strong>
+       0
+      </strong>
+     </span>
+     <span>
+      <small>
+       1
+      </small>
+      <strong>
+       1
+      </strong>
+     </span>
+    </div>
+    <p>
+     101 = 1 four + 0 twos + 1 one = 5 in denary.
+    </p>
+   </article>
+  </div>
+  <p class="bb-key">
+   A digit’s position determines its value.
+  </p>
+ </section>
+ <template data-teacher-divider="">
+  <h2>
+   Converting binary
+  </h2>
+ </template>
+ <section class="lesson-section panel" data-lesson-section="" id="binary-place-value">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Binary → denary: add the active columns
+  </h2>
+  <p>
+   Place values double as you move left:
+   <strong>
+    1, 2, 4, 8…
+   </strong>
+   Tap a bit to switch its column on or off.
+  </p>
+  <div data-no-slide-advance="" data-place-value="">
+   <div aria-label="Interactive eight-bit place-value table; scroll on narrow screens" class="binary-place-table-wrap" role="group" tabindex="0">
+    <table class="binary-place-table">
+     <caption>
+      Value above, bit below · 1 includes the value; 0 leaves it out.
+     </caption>
+     <thead>
+      <tr>
+       <th scope="row">
+        Value
+       </th>
+       <th class="is-included" data-place-column="0" scope="col">
+        128
+        <small>
+         2
+         <sup>
+          7
+         </sup>
+        </small>
+       </th>
+       <th class="" data-place-column="1" scope="col">
+        64
+        <small>
+         2
+         <sup>
+          6
+         </sup>
+        </small>
+       </th>
+       <th class="is-included" data-place-column="2" scope="col">
+        32
+        <small>
+         2
+         <sup>
+          5
+         </sup>
+        </small>
+       </th>
+       <th class="" data-place-column="3" scope="col">
+        16
+        <small>
+         2
+         <sup>
+          4
+         </sup>
+        </small>
+       </th>
+       <th class="is-included" data-place-column="4" scope="col">
+        8
+        <small>
+         2
+         <sup>
+          3
+         </sup>
+        </small>
+       </th>
+       <th class="is-included" data-place-column="5" scope="col">
+        4
+        <small>
+         2
+         <sup>
+          2
+         </sup>
+        </small>
+       </th>
+       <th class="" data-place-column="6" scope="col">
+        2
+        <small>
+         2
+         <sup>
+          1
+         </sup>
+        </small>
+       </th>
+       <th class="is-included" data-place-column="7" scope="col">
+        1
+        <small>
+         2
+         <sup>
+          0
+         </sup>
+        </small>
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <th scope="row">
+        Bit
+       </th>
+       <td class="is-included" data-place-column="0">
+        <button aria-label="Place value 128" aria-pressed="true" data-place-bit="0" type="button">
+         <strong>
+          1
+         </strong>
+         <small>
+          included
+         </small>
+        </button>
+       </td>
+       <td class="" data-place-column="1">
+        <button aria-label="Place value 64" aria-pressed="false" data-place-bit="1" type="button">
+         <strong>
+          0
+         </strong>
+         <small>
+          off
+         </small>
+        </button>
+       </td>
+       <td class="is-included" data-place-column="2">
+        <button aria-label="Place value 32" aria-pressed="true" data-place-bit="2" type="button">
+         <strong>
+          1
+         </strong>
+         <small>
+          included
+         </small>
+        </button>
+       </td>
+       <td class="" data-place-column="3">
+        <button aria-label="Place value 16" aria-pressed="false" data-place-bit="3" type="button">
+         <strong>
+          0
+         </strong>
+         <small>
+          off
+         </small>
+        </button>
+       </td>
+       <td class="is-included" data-place-column="4">
+        <button aria-label="Place value 8" aria-pressed="true" data-place-bit="4" type="button">
+         <strong>
+          1
+         </strong>
+         <small>
+          included
+         </small>
+        </button>
+       </td>
+       <td class="is-included" data-place-column="5">
+        <button aria-label="Place value 4" aria-pressed="true" data-place-bit="5" type="button">
+         <strong>
+          1
+         </strong>
+         <small>
+          included
+         </small>
+        </button>
+       </td>
+       <td class="" data-place-column="6">
+        <button aria-label="Place value 2" aria-pressed="false" data-place-bit="6" type="button">
+         <strong>
+          0
+         </strong>
+         <small>
+          off
+         </small>
+        </button>
+       </td>
+       <td class="is-included" data-place-column="7">
+        <button aria-label="Place value 1" aria-pressed="true" data-place-bit="7" type="button">
+         <strong>
+          1
+         </strong>
+         <small>
+          included
+         </small>
+        </button>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+   <div aria-atomic="true" aria-live="polite" class="bb-place-output">
+    <p>
+     Selected values
+     <strong data-place-sum="">
+      128 + 32 + 8 + 4 + 1
+     </strong>
+    </p>
+    <div>
+     <p>
+      Denary total
+      <strong data-place-total="">
+       173
+      </strong>
+     </p>
+     <p>
+      8-bit binary
+      <code data-place-binary="">
+       10101101
+      </code>
+     </p>
+    </div>
+   </div>
+   <button class="lesson-secondary-action" data-place-reset="" type="button">
+    Reset to 10101101
+   </button>
+  </div>
+  <p class="bb-key">
+   Add the place values wherever the bit is 1.
+  </p>
+  <p class="bb-caption">
+   Eight unsigned bits represent 0–255. Leading zeros keep the eight positions without changing the value.
+  </p>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="conversion">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Denary → binary: which values fit?
+  </h2>
+  <p>
+   Start with 173. At each column, choose 1 if the value fits, subtract it, then continue with the remainder.
+  </p>
+  <article class="binary-conversion-simulator lesson-card lesson-fullrow" data-no-slide-advance="" data-role="binary-conversion-simulator">
+   <div class="binary-sim-header">
+    <div>
+     <span class="base-badge">
+      Step-through tool
+     </span>
+     <h3>
+      Build an 8-bit binary number from denary
+     </h3>
+     <p>
+      Choose a denary value from 0 to 255, then step through the
                     table from left to right.
-                  </p>
-                </div>
-
-                <form class="binary-sim-form" data-role="binary-sim-form">
-                  <label for="binary-sim-target">Denary value</label>
-                  <div class="binary-sim-input-row">
-                    <input
-                      id="binary-sim-target"
-                      type="number"
-                      min="0"
-                      max="255"
-                      step="1"
-                      inputmode="numeric"
-                      value="173"
-                      data-role="binary-sim-target-input"
-                    />
-                    <button class="primary-link" type="submit">Build</button>
-                  </div>
-                </form>
-              </div>
-
-              <div class="binary-sim-status-row">
-                <span class="binary-sim-pill" data-role="binary-sim-counter"
-                  >Step 1 of 10</span
-                >
-                <span class="binary-sim-pill"
-                  >Remainder:
-                  <strong data-role="binary-sim-remainder">173</strong></span
-                >
-                <span class="binary-sim-pill"
-                  >Binary:
-                  <strong data-role="binary-sim-result">--------</strong></span
-                >
-              </div>
-
-              <div
-                class="binary-sim-grid"
-                data-role="binary-sim-grid"
-                aria-label="Binary conversion step table"
-              ></div>
-
-              <p
-                class="binary-sim-action"
-                data-role="binary-sim-action"
-                aria-live="polite"
-              >
-                Start at the largest 8-bit place value.
-              </p>
-              <p class="binary-sim-note" data-role="binary-sim-note">
-                The bits fill in from left to right as each place value is
+     </p>
+    </div>
+    <form class="binary-sim-form" data-role="binary-sim-form">
+     <label for="binary-sim-target">
+      Denary value
+     </label>
+     <div class="binary-sim-input-row">
+      <input data-role="binary-sim-target-input" id="binary-sim-target" inputmode="numeric" max="255" min="0" step="1" type="number" value="173"/>
+      <button class="primary-link" type="submit">
+       Build
+      </button>
+     </div>
+    </form>
+   </div>
+   <div class="binary-sim-status-row">
+    <span class="binary-sim-pill" data-role="binary-sim-counter">
+     Step 1 of 10
+    </span>
+    <span class="binary-sim-pill">
+     Remainder:
+     <strong data-role="binary-sim-remainder">
+      173
+     </strong>
+    </span>
+    <span class="binary-sim-pill">
+     Binary:
+     <strong data-role="binary-sim-result">
+      --------
+     </strong>
+    </span>
+   </div>
+   <div aria-label="Binary conversion step table" class="binary-sim-grid" data-role="binary-sim-grid">
+   </div>
+   <p aria-live="polite" class="binary-sim-action" data-role="binary-sim-action">
+    Start at the largest 8-bit place value.
+   </p>
+   <p class="binary-sim-note" data-role="binary-sim-note">
+    The bits fill in from left to right as each place value is
                 tested.
-              </p>
-
-              <div class="binary-sim-controls">
-                <button
-                  class="lesson-secondary-action"
-                  type="button"
-                  data-sim-action="previous"
-                >
-                  Previous step
-                </button>
-                <button
-                  class="primary-link"
-                  type="button"
-                  data-sim-action="next"
-                >
-                  Next step
-                </button>
-                <button
-                  class="lesson-secondary-action"
-                  type="button"
-                  data-sim-action="reset"
-                >
-                  Reset
-                </button>
-              </div>
-            </article>
-          </section>
-
-          <section
-            id="practice-zone"
-            class="lesson-section lesson-section--practice-zone panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Practice Zone</p>
-            <h2>Practise conversions</h2>
-            <p class="lesson-section-copy">
-              Use the scratch table in the right rail while you work. Each
+   </p>
+   <div class="binary-sim-controls">
+    <button class="lesson-secondary-action" data-sim-action="previous" type="button">
+     Previous step
+    </button>
+    <button class="primary-link" data-sim-action="next" type="button">
+     Next step
+    </button>
+    <button class="lesson-secondary-action" data-sim-action="reset" type="button">
+     Reset
+    </button>
+   </div>
+  </article>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="conversion-directions">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Same table, opposite directions
+  </h2>
+  <div aria-label="Eight binary place values; scroll on narrow screens" class="bb-scroll" data-no-slide-advance="" role="group" tabindex="0">
+   <div class="bb-place-strip">
+    <span>
+     <small>
+      128
+     </small>
+     <strong>
+      1
+     </strong>
+    </span>
+    <span>
+     <small>
+      64
+     </small>
+     <strong>
+      0
+     </strong>
+    </span>
+    <span>
+     <small>
+      32
+     </small>
+     <strong>
+      1
+     </strong>
+    </span>
+    <span>
+     <small>
+      16
+     </small>
+     <strong>
+      0
+     </strong>
+    </span>
+    <span>
+     <small>
+      8
+     </small>
+     <strong>
+      1
+     </strong>
+    </span>
+    <span>
+     <small>
+      4
+     </small>
+     <strong>
+      1
+     </strong>
+    </span>
+    <span>
+     <small>
+      2
+     </small>
+     <strong>
+      0
+     </strong>
+    </span>
+    <span>
+     <small>
+      1
+     </small>
+     <strong>
+      1
+     </strong>
+    </span>
+   </div>
+  </div>
+  <div class="bb-comparison">
+   <article>
+    <h3>
+     Binary → denary
+    </h3>
+    <p>
+     Which place values are already switched on?
+    </p>
+    <p class="bb-equation">
+     <code>
+      10101101
+     </code>
+     →
+     <strong>
+      173
+     </strong>
+    </p>
+   </article>
+   <article>
+    <h3>
+     Denary → binary
+    </h3>
+    <p>
+     Which place values do I need to switch on?
+    </p>
+    <p class="bb-equation">
+     <strong>
+      173
+     </strong>
+     →
+     <code>
+      10101101
+     </code>
+    </p>
+   </article>
+  </div>
+  <p class="bb-key">
+   Same place-value system, opposite direction.
+  </p>
+ </section>
+ <section class="lesson-section lesson-section--practice-zone panel" data-lesson-section="" id="practice-zone">
+  <p class="eyebrow">
+   Practice Zone
+  </p>
+  <h2>
+   Conversion Workshop
+  </h2>
+  <p class="lesson-section-copy">
+   Use the
+   <a class="bb-scratch-link" href="#binary-scratch">
+    scratch table
+   </a>
+   while you work. Each
               question checks instantly and your progress saves in this browser.
-            </p>
-
-            <div class="binary-practice" data-role="binary-practice">
-              <article class="practice-header-card lesson-fullrow">
-                <div>
-                  <h3>Conversion practice progress</h3>
-                  <p>
-                    Denary-to-binary answers can include leading zeros, but they
+  </p>
+  <details class="bb-reveal bb-teacher-scratch" data-no-slide-advance="" data-scratch-dock="">
+   <summary>
+    Open scratch table
+   </summary>
+  </details>
+  <div class="binary-practice" data-role="binary-practice">
+   <article class="practice-header-card lesson-fullrow">
+    <div>
+     <h3>
+      Conversion practice progress
+     </h3>
+     <p>
+      Denary-to-binary answers can include leading zeros, but they
                     do not have to.
-                  </p>
-                </div>
-                <div class="practice-tools">
-                  <span class="practice-progress" data-role="practice-progress"
-                    >0 / 16 completed</span
-                  >
-                  <button
-                    class="lesson-secondary-action"
-                    type="button"
-                    data-action="reset-binary-practice"
-                  >
-                    Reset practice
-                  </button>
-                </div>
-              </article>
-
-              <article class="practice-panel">
-                <div class="practice-panel-header">
-                  <div>
-                    <span class="base-badge">Part A</span>
-                    <h3>Denary to binary</h3>
-                  </div>
-                  <span class="practice-progress" data-role="denary-progress"
-                    >0 / 8 correct</span
-                  >
-                </div>
-                <div
-                  class="conversion-task-grid"
-                  data-role="denary-practice-grid"
-                ></div>
-              </article>
-
-              <article class="practice-panel">
-                <div class="practice-panel-header">
-                  <div>
-                    <span class="base-badge">Part B</span>
-                    <h3>Binary to denary</h3>
-                  </div>
-                  <span class="practice-progress" data-role="binary-progress"
-                    >0 / 8 correct</span
-                  >
-                </div>
-                <div
-                  class="conversion-task-grid"
-                  data-role="binary-practice-grid"
-                ></div>
-              </article>
-
-              <article
-                class="practice-completion-card lesson-fullrow"
-                data-role="practice-completion"
-                hidden
-              >
-                <span class="base-badge">Complete</span>
-                <h3>All conversion questions are correct.</h3>
-                <p>
-                  Try resetting the practice later and doing it without notes.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="bcd"
-            class="lesson-section lesson-section--bcd panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">BCD</p>
-            <h2>Binary coded decimal stores each decimal digit separately</h2>
-            <p class="lesson-section-copy">
-              Pure binary converts the whole number into one binary value. BCD
-              takes each denary digit and stores that digit as a separate 4-bit
-              binary pattern.
-            </p>
-
-            <div class="bcd-visual">
-              <article class="bcd-card bcd-card--digit">
-                <span class="base-badge">Denary digit</span>
-                <strong>2</strong>
-                <code>0010</code>
-              </article>
-              <article class="bcd-card bcd-card--digit">
-                <span class="base-badge">Denary digit</span>
-                <strong>7</strong>
-                <code>0111</code>
-              </article>
-              <article class="bcd-card bcd-card--result">
-                <span class="base-badge">BCD result</span>
-                <strong>27</strong>
-                <code>0010 0111</code>
-              </article>
-            </div>
-
-            <div class="bcd-compare-grid">
-              <article class="bcd-compare-card">
-                <h3>Pure binary for 27</h3>
-                <p>
-                  The whole number is converted into one value:
-                  <code>00011011</code>.
-                </p>
-              </article>
-              <article class="bcd-compare-card">
-                <h3>BCD for 27</h3>
-                <p>
-                  The <code>2</code> and the <code>7</code> are encoded
-                  separately: <code>0010 0111</code>.
-                </p>
-              </article>
-              <article class="bcd-compare-card">
-                <h3>The trade-off</h3>
-                <p>
-                  BCD can make decimal display and entry simpler, but it often
-                  uses more bits than pure binary.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with binary and BCD</h2>
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Reading BCD as one pure binary number</h3>
-                <p>
-                  In BCD, each decimal digit is handled separately. The bit
-                  string must be split into 4-bit groups before it is read.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Group BCD from left to right in nibbles.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Writing place values in the wrong order</h3>
-                <p>
-                  Binary columns must follow powers of 2. Reversing the table
-                  changes the value.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Write <code>128 64 32 16 8 4 2 1</code>
-                  above 8-bit questions.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Dropping required leading zeros</h3>
-                <p>
-                  Leading zeros do not change the number, but the question may
-                  ask for an 8-bit answer.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Match the requested bit width.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="quiz"
-            class="lesson-section lesson-section--quiz panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Quiz</p>
-            <h2>Check the ideas, not the conversions</h2>
-            <p class="quiz-intro">
-              Conversion questions are handled in the practice zone. This quiz
-              checks whether the concepts are clear.
-            </p>
-
-            <form id="lesson-quiz" class="quiz-form">
-              <fieldset
-                class="quiz-question"
-                data-question="q1"
-                data-answer="b"
-                data-success="Correct. Binary fits hardware that stores two stable states."
-                data-feedback="Binary matters because computer hardware can reliably represent two states."
-              >
-                <legend>
-                  1. Why is binary suitable for computer hardware?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="a" />
-                      <span
-                        >It stores every number using fewer than two bits</span
-                      >
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="b" />
-                      <span
-                        >It matches two stable states such as off and on</span
-                      >
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="c" />
-                      <span>It removes the need for agreed data formats</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q2"
-                data-answer="a"
-                data-success="Correct. The base controls the available symbols and place values."
-                data-feedback="A number base defines the symbols available and how the columns grow."
-              >
-                <legend>2. What does a number base describe?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="a" />
-                      <span>The symbols used and the place value pattern</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="b" />
-                      <span>The physical size of the processor</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="c" />
-                      <span>The number of bytes in a file</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q3"
-                data-answer="c"
-                data-success="Correct. Binary place values double as you move left."
-                data-feedback="In binary, each place value is twice the value to its right."
-              >
-                <legend>
-                  3. What happens to binary place values as you move left?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="a" />
-                      <span>They increase by 1 each time</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="b" />
-                      <span>They multiply by 10 each time</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="c" />
-                      <span>They double each time</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q4"
-                data-answer="b"
-                data-success="Correct. Hex is a compact base-16 shorthand for binary patterns."
-                data-feedback="Hexadecimal is base 16 and is commonly used to shorten long binary patterns."
-              >
-                <legend>
-                  4. Why is hexadecimal useful when working with binary?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="a" />
-                      <span>It makes computers stop using bits</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="b" />
-                      <span
-                        >It can write long binary patterns more compactly</span
-                      >
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="c" />
-                      <span>It is another name for BCD</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q5"
-                data-answer="a"
-                data-success="Correct. BCD stores each denary digit as its own 4-bit group."
-                data-feedback="BCD keeps decimal digits separate rather than converting the whole number as one binary value."
-              >
-                <legend>5. Which statement best describes BCD?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="a" />
-                      <span
-                        >Each denary digit is stored as a separate 4-bit
-                        group</span
-                      >
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="b" />
-                      <span>Every decimal number is stored using one bit</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="c" />
-                      <span>It always uses fewer bits than pure binary</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <div class="quiz-actions">
-                <button class="primary-link" type="submit">Check score</button>
-                <button
-                  class="lesson-secondary-action"
-                  type="button"
-                  data-action="reset-quiz"
-                >
-                  Reset quiz
-                </button>
-              </div>
-
-              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
-                Your answers save automatically on this device once you start.
-              </p>
-            </form>
-          </section>
-
-          <section
-            id="exam-practice"
-            class="lesson-section lesson-section--exam-practice panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Try explanation questions</h2>
-            <p class="lesson-section-copy">
-              These questions focus on explaining the method and choosing the
-              right representation. Type your answers into the page, then
-              compare your ideas with the guide.
-            </p>
-            <p class="exam-response-note">
-              Draft answers save automatically in this browser.
-            </p>
-
-            <div class="exam-grid">
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">4 marks</span>
-                  <span class="exam-pill">Explain</span>
-                </div>
-                <h3>Question 1</h3>
-                <p>
-                  Describe the strategy used to convert a denary number into
+     </p>
+    </div>
+    <div class="practice-tools">
+     <span class="practice-progress" data-role="practice-progress">
+      0 / 16 completed
+     </span>
+     <button class="lesson-secondary-action" data-action="reset-binary-practice" type="button">
+      Reset practice
+     </button>
+    </div>
+   </article>
+   <article class="practice-panel">
+    <div class="practice-panel-header">
+     <div>
+      <span class="base-badge">
+       Part A
+      </span>
+      <h3>
+       Denary to binary
+      </h3>
+     </div>
+     <span class="practice-progress" data-role="denary-progress">
+      0 / 8 correct
+     </span>
+    </div>
+    <div class="conversion-task-grid" data-role="denary-practice-grid">
+    </div>
+   </article>
+   <article class="practice-panel">
+    <div class="practice-panel-header">
+     <div>
+      <span class="base-badge">
+       Part B
+      </span>
+      <h3>
+       Binary to denary
+      </h3>
+     </div>
+     <span class="practice-progress" data-role="binary-progress">
+      0 / 8 correct
+     </span>
+    </div>
+    <div class="conversion-task-grid" data-role="binary-practice-grid">
+    </div>
+   </article>
+   <article class="practice-completion-card lesson-fullrow" data-role="practice-completion" hidden="">
+    <span class="base-badge">
+     Complete
+    </span>
+    <h3>
+     All conversion questions are correct.
+    </h3>
+    <p>
+     Try resetting the practice later and doing it without notes.
+    </p>
+   </article>
+  </div>
+ </section>
+ <template data-teacher-divider="">
+  <h2>
+   Binary Coded Decimal
+  </h2>
+ </template>
+ <section class="lesson-section panel" data-lesson-section="" id="bcd">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Why keep decimal digits separate?
+  </h2>
+  <div aria-label="Decimal display showing two separate digits, 2 and 7" class="bb-display">
+   <span>
+    2
+   </span>
+   <span>
+    7
+   </span>
+  </div>
+  <p class="bb-lead">
+   What if the system wants to store each displayed decimal digit separately?
+  </p>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    Encode each digit
+   </summary>
+   <div class="bb-digit-groups">
+    <div class="bb-digit-group">
+     <strong>
+      2
+     </strong>
+     <span aria-hidden="true">
+      ↓
+     </span>
+     <code>
+      0010
+     </code>
+     <small>
+      one decimal digit
+     </small>
+    </div>
+    <div class="bb-digit-group">
+     <strong>
+      7
+     </strong>
+     <span aria-hidden="true">
+      ↓
+     </span>
+     <code>
+      0111
+     </code>
+     <small>
+      one decimal digit
+     </small>
+    </div>
+   </div>
+   <p class="bb-equation">
+    27 →
+    <code>
+     0010 0111
+    </code>
+   </p>
+   <p>
+    <strong>
+     Binary Coded Decimal (BCD)
+    </strong>
+    stores each decimal digit separately using a 4-bit binary code.
+   </p>
+  </details>
+  <p>
+   Keep the decimal digits in order. Give each digit its own group of four bits, including leading zeros.
+  </p>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="bcd-digits">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Ten decimal digits, ten valid codes
+  </h2>
+  <div aria-label="Decimal digits and their BCD codes" class="bb-code-map" role="list">
+   <div role="listitem">
+    <strong>
+     0
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     0000
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     1
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     0001
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     2
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     0010
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     3
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     0011
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     4
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     0100
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     5
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     0101
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     6
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     0110
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     7
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     0111
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     8
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     1000
+    </code>
+   </div>
+   <div role="listitem">
+    <strong>
+     9
+    </strong>
+    <span>
+     →
+    </span>
+    <code>
+     1001
+    </code>
+   </div>
+  </div>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    What about the other six patterns?
+   </summary>
+   <p class="bb-invalid-codes">
+    <code>
+     1010
+    </code>
+    <code>
+     1011
+    </code>
+    <code>
+     1100
+    </code>
+    <code>
+     1101
+    </code>
+    <code>
+     1110
+    </code>
+    <code>
+     1111
+    </code>
+   </p>
+   <p>
+    <strong>
+     Not valid single decimal digits in standard BCD.
+    </strong>
+    A decimal digit can only be 0–9.
+   </p>
+  </details>
+  <p class="bb-key">
+   Within each 4-bit group, use the values 8, 4, 2, 1.
+  </p>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="bcd-compare">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   27: same value, different representation
+  </h2>
+  <div class="bb-comparison">
+   <article>
+    <h3>
+     Pure binary · one whole number
+    </h3>
+    <p class="bb-equation">
+     27 →
+     <code>
+      00011011
+     </code>
+    </p>
+    <p>
+     16 + 8 + 2 + 1 = 27
+    </p>
+   </article>
+   <article>
+    <h3>
+     BCD · separate decimal digits
+    </h3>
+    <div class="bb-digit-groups">
+     <div class="bb-digit-group">
+      <strong>
+       2
+      </strong>
+      <span aria-hidden="true">
+       ↓
+      </span>
+      <code>
+       0010
+      </code>
+      <small>
+       one decimal digit
+      </small>
+     </div>
+     <div class="bb-digit-group">
+      <strong>
+       7
+      </strong>
+      <span aria-hidden="true">
+       ↓
+      </span>
+      <code>
+       0111
+      </code>
+      <small>
+       one decimal digit
+      </small>
+     </div>
+    </div>
+    <p class="bb-equation">
+     27 →
+     <code>
+      0010 0111
+     </code>
+    </p>
+   </article>
+  </div>
+  <p class="bb-key">
+   Same displayed value, different bit pattern.
+  </p>
+  <p>
+   The meaning depends on the representation rule, just as it did with our opening bit pattern.
+  </p>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="bcd-display">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   BCD can connect codes to decimal displays
+  </h2>
+  <p>
+   A device needs to display
+   <strong>
+    42
+   </strong>
+   . Each digit has its own BCD code and display position.
+  </p>
+  <div class="bb-display-paths">
+   <div>
+    <code>
+     0100
+    </code>
+    <span>
+     ↓ digit decoder
+    </span>
+    <strong class="bb-display-digit">
+     4
+    </strong>
+   </div>
+   <div>
+    <code>
+     0010
+    </code>
+    <span>
+     ↓ digit decoder
+    </span>
+    <strong class="bb-display-digit">
+     2
+    </strong>
+   </div>
+  </div>
+  <p class="bb-key">
+   BCD is useful where decimal digits need to remain separate or map conveniently to a decimal display.
+  </p>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    A real component example
+   </summary>
+   <p>
+    A
+    <a href="https://www.ti.com/product/CD4511B">
+     BCD-to-seven-segment display decoder
+    </a>
+    can turn a digit’s BCD code into signals for a display. Such components can be used in instruments and control equipment.
+   </p>
+   <p>
+    This does not mean all displays, calculators or computers store their numbers as BCD.
+   </p>
+  </details>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="bcd-storage">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Keeping digits separate can cost more bits
+  </h2>
+  <p class="bb-lead">
+   Represent the same value:
+   <strong>
+    255
+   </strong>
+  </p>
+  <div class="bb-comparison">
+   <article>
+    <h3>
+     Pure unsigned binary
+    </h3>
+    <p class="bb-pattern">
+     <code>
+      11111111
+     </code>
+    </p>
+    <p class="bb-equation">
+     <strong>
+      8 bits
+     </strong>
+    </p>
+   </article>
+   <article>
+    <h3>
+     BCD
+    </h3>
+    <div class="bb-digit-groups">
+     <div class="bb-digit-group">
+      <strong>
+       2
+      </strong>
+      <span aria-hidden="true">
+       ↓
+      </span>
+      <code>
+       0010
+      </code>
+      <small>
+       one decimal digit
+      </small>
+     </div>
+     <div class="bb-digit-group">
+      <strong>
+       5
+      </strong>
+      <span aria-hidden="true">
+       ↓
+      </span>
+      <code>
+       0101
+      </code>
+      <small>
+       one decimal digit
+      </small>
+     </div>
+     <div class="bb-digit-group">
+      <strong>
+       5
+      </strong>
+      <span aria-hidden="true">
+       ↓
+      </span>
+      <code>
+       0101
+      </code>
+      <small>
+       one decimal digit
+      </small>
+     </div>
+    </div>
+    <p>
+     <code>
+      0010 0101 0101
+     </code>
+    </p>
+    <p class="bb-equation">
+     3 digits × 4 =
+     <strong>
+      12 bits
+     </strong>
+    </p>
+   </article>
+  </div>
+  <p class="bb-key">
+   BCD preserves decimal digits directly, but often uses more bits than ordinary binary.
+  </p>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="bcd-decoder">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Decode one decimal digit at a time
+  </h2>
+  <div data-bcd-decoder="" data-no-slide-advance="">
+   <label for="bcd-example">
+    Worked example
+   </label>
+   <select data-bcd-example="" id="bcd-example">
+    <option value="0010100001001001">
+     0010 1000 0100 1001
+    </option>
+    <option value="00100111">
+     0010 0111
+    </option>
+   </select>
+   <p class="bb-pattern" data-bcd-raw="">
+    <code>
+     0010100001001001
+    </code>
+   </p>
+   <div class="bb-decoder-groups" data-bcd-groups="" hidden="">
+   </div>
+   <div aria-atomic="true" aria-live="polite" class="bb-decoder-report" role="status">
+    <p data-bcd-status="">
+     First, split the bit string into groups of four.
+    </p>
+    <p class="bb-equation" data-bcd-result="">
+     Decimal digits: ? ? ? ?
+    </p>
+   </div>
+   <div class="binary-sim-controls">
+    <button class="lesson-secondary-action" data-bcd-action="previous" type="button">
+     Previous
+    </button>
+    <button class="primary-link" data-bcd-action="step" type="button">
+     Next step
+    </button>
+    <button class="lesson-secondary-action" data-bcd-action="reset" type="button">
+     Reset
+    </button>
+   </div>
+  </div>
+  <p class="bb-caption">
+   Decode each group using 8, 4, 2, 1, then write the decimal digits together. Do not add the decoded digits.
+  </p>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="bcd-trap">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   Read the representation rule first
+  </h2>
+  <p class="bb-pattern">
+   <code>
+    0010 0111
+   </code>
+  </p>
+  <p class="bb-lead">
+   The question says
+   <strong>
+    BCD
+   </strong>
+   . How should you read it?
+  </p>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    Reveal the BCD interpretation
+   </summary>
+   <div class="bb-digit-groups">
+    <div class="bb-digit-group">
+     <code>
+      0010
+     </code>
+     <span>
+      ↓
+     </span>
+     <strong>
+      2
+     </strong>
+    </div>
+    <div class="bb-digit-group">
+     <code>
+      0111
+     </code>
+     <span>
+      ↓
+     </span>
+     <strong>
+      7
+     </strong>
+    </div>
+   </div>
+   <p class="bb-equation">
+    2 | 7 →
+    <strong>
+     27
+    </strong>
+   </p>
+  </details>
+  <p class="bb-key">
+   Do not treat the entire BCD bit string as one ordinary binary number.
+  </p>
+  <p>
+   Spaces help show the groups. The BCD rule—not the spaces—gives each group the meaning of one decimal digit.
+  </p>
+ </section>
+ <template data-teacher-divider="">
+  <h2>
+   Practice
+  </h2>
+ </template>
+ <section class="lesson-section panel" data-lesson-section="" id="mistakes">
+  <p class="eyebrow">
+   Common mistakes
+  </p>
+  <h2>
+   Spot the misconception
+  </h2>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    “Binary is only used for numbers.”
+   </summary>
+   <p>
+    False. A bit pattern can represent many kinds of data. Its meaning depends on the interpretation rule.
+   </p>
+  </details>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    “A 1 means the decimal value 1.”
+   </summary>
+   <p>
+    Not necessarily. It means its place-value column is active: a 1 in the 128 column contributes 128.
+   </p>
+  </details>
+  <div data-slide-break="">
+  </div>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    “The two conversion directions use completely different systems.”
+   </summary>
+   <p>
+    False. Both use 128, 64, 32, 16, 8, 4, 2, 1. One adds active values; the other chooses which values to include.
+   </p>
+  </details>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    “BCD is just normal binary with spaces.”
+   </summary>
+   <p>
+    False. Each four-bit group encodes one decimal digit. Spaces only help us see the grouping.
+   </p>
+  </details>
+  <div data-slide-break="">
+  </div>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    “Read BCD 0010 0111 as one eight-bit binary value.”
+   </summary>
+   <p>
+    False. Decode 0010 → 2 and 0111 → 7. The BCD value is 27.
+   </p>
+  </details>
+  <details class="bb-reveal" data-no-slide-advance="">
+   <summary>
+    “Every four-bit pattern is a valid BCD digit.”
+   </summary>
+   <p>
+    False. Only 0000 through 1001 represent decimal digits 0–9. For example, 1010 is not a valid BCD digit.
+   </p>
+  </details>
+ </section>
+ <section class="lesson-section panel" data-lesson-section="" id="summary">
+  <p class="eyebrow">
+   Binary and BCD
+  </p>
+  <h2>
+   One whole number—or separate digits?
+  </h2>
+  <div class="bb-comparison">
+   <article>
+    <h3>
+     Pure binary
+    </h3>
+    <p>
+     Use one place-value system for the whole number.
+    </p>
+    <div aria-label="Eight binary place values; scroll on narrow screens" class="bb-scroll" data-no-slide-advance="" role="group" tabindex="0">
+     <div class="bb-place-strip">
+      <span>
+       <small>
+        128
+       </small>
+       <strong>
+        1
+       </strong>
+      </span>
+      <span>
+       <small>
+        64
+       </small>
+       <strong>
+        0
+       </strong>
+      </span>
+      <span>
+       <small>
+        32
+       </small>
+       <strong>
+        1
+       </strong>
+      </span>
+      <span>
+       <small>
+        16
+       </small>
+       <strong>
+        0
+       </strong>
+      </span>
+      <span>
+       <small>
+        8
+       </small>
+       <strong>
+        1
+       </strong>
+      </span>
+      <span>
+       <small>
+        4
+       </small>
+       <strong>
+        1
+       </strong>
+      </span>
+      <span>
+       <small>
+        2
+       </small>
+       <strong>
+        0
+       </strong>
+      </span>
+      <span>
+       <small>
+        1
+       </small>
+       <strong>
+        1
+       </strong>
+      </span>
+     </div>
+    </div>
+    <p class="bb-equation">
+     <code>
+      10101101
+     </code>
+     =
+     <strong>
+      173
+     </strong>
+    </p>
+   </article>
+   <article>
+    <h3>
+     BCD
+    </h3>
+    <p>
+     Each decimal digit gets four bits.
+    </p>
+    <div class="bb-digit-groups">
+     <div class="bb-digit-group">
+      <strong>
+       2
+      </strong>
+      <span aria-hidden="true">
+       ↓
+      </span>
+      <code>
+       0010
+      </code>
+      <small>
+       one decimal digit
+      </small>
+     </div>
+     <div class="bb-digit-group">
+      <strong>
+       7
+      </strong>
+      <span aria-hidden="true">
+       ↓
+      </span>
+      <code>
+       0111
+      </code>
+      <small>
+       one decimal digit
+      </small>
+     </div>
+    </div>
+    <p class="bb-equation">
+     27 =
+     <code>
+      0010 0111
+     </code>
+    </p>
+   </article>
+  </div>
+  <p class="bb-key">
+   Bit patterns only become meaningful when we know how they are being interpreted.
+  </p>
+  <p class="bb-caption">
+   Recognise, encode, decode and compare BCD here.
+   <a href="binary-arithmetic.html?context=btec-level-3-unit-2#bcd-arithmetic">
+    BCD arithmetic is covered later in C1.
+   </a>
+  </p>
+ </section>
+ <section class="lesson-section lesson-section--quiz panel" data-lesson-section="" id="quiz">
+  <p class="eyebrow">
+   Quiz
+  </p>
+  <h2>
+   Check binary and BCD understanding
+  </h2>
+  <p class="quiz-intro">
+   Check the representation rules as well as both conversion directions. Aim for 9 out of 12.
+  </p>
+  <form class="quiz-form" id="lesson-quiz">
+   <fieldset class="quiz-question" data-answer="b" data-feedback="Binary matters because computer hardware can reliably represent two states." data-question="q1" data-success="Correct. Binary fits hardware that stores two stable states.">
+    <legend>
+     1. Why is binary suitable for computer hardware?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q1" type="radio" value="a"/>
+       <span>
+        It stores every number using fewer than two bits
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q1" type="radio" value="b"/>
+       <span>
+        It matches two stable states such as off and on
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q1" type="radio" value="c"/>
+       <span>
+        It removes the need for agreed data formats
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="a" data-feedback="A number base defines the symbols available and how the columns grow." data-question="q2" data-success="Correct. The base controls the available symbols and place values.">
+    <legend>
+     2. What does a number base describe?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q2" type="radio" value="a"/>
+       <span>
+        The symbols used and the place value pattern
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q2" type="radio" value="b"/>
+       <span>
+        The physical size of the processor
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q2" type="radio" value="c"/>
+       <span>
+        The number of bytes in a file
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="c" data-feedback="In binary, each place value is twice the value to its right." data-question="q3" data-success="Correct. Binary place values double as you move left.">
+    <legend>
+     3. What happens to binary place values as you move left?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q3" type="radio" value="a"/>
+       <span>
+        They increase by 1 each time
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q3" type="radio" value="b"/>
+       <span>
+        They multiply by 10 each time
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q3" type="radio" value="c"/>
+       <span>
+        They double each time
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="b" data-feedback="The representation rule determines whether the bits mean a number, a character or something else." data-question="q4" data-success="Correct. The representation rule determines whether the bits mean a number, a character or something else.">
+    <legend>
+     4. What does the pattern 01000001 mean?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q4" type="radio" value="a"/>
+       <span>
+        Always the number 65
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q4" type="radio" value="b"/>
+       <span>
+        It depends on the agreed representation
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q4" type="radio" value="c"/>
+       <span>
+        Always the letter A
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="a" data-feedback="BCD keeps decimal digits separate rather than converting the whole number as one binary value." data-question="q5" data-success="Correct. BCD stores each denary digit as its own 4-bit group.">
+    <legend>
+     5. Which statement best describes BCD?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q5" type="radio" value="a"/>
+       <span>
+        Each denary digit is stored as a separate 4-bit
+                        group
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q5" type="radio" value="b"/>
+       <span>
+        Every decimal number is stored using one bit
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q5" type="radio" value="c"/>
+       <span>
+        It always uses fewer bits than pure binary
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="c" data-feedback="Add 128 + 32 + 8 + 4 + 1 to get 173." data-question="q6" data-success="Correct. Add 128 + 32 + 8 + 4 + 1 to get 173.">
+    <legend>
+     6. What is 10101101 as an unsigned denary number?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q6" type="radio" value="a"/>
+       <span>
+        109
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q6" type="radio" value="b"/>
+       <span>
+        237
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q6" type="radio" value="c"/>
+       <span>
+        173
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="a" data-feedback="42 = 32 + 8 + 2, giving 00101010." data-question="q7" data-success="Correct. 42 = 32 + 8 + 2, giving 00101010.">
+    <legend>
+     7. Which eight-bit binary pattern represents denary 42?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q7" type="radio" value="a"/>
+       <span>
+        00101010
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q7" type="radio" value="b"/>
+       <span>
+        01000010
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q7" type="radio" value="c"/>
+       <span>
+        00100100
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="b" data-feedback="Eight unsigned bits represent 256 values, from 0 to 255." data-question="q8" data-success="Correct. Eight unsigned bits represent 256 values, from 0 to 255.">
+    <legend>
+     8. What is the range of an eight-bit unsigned number?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q8" type="radio" value="a"/>
+       <span>
+        1–256
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q8" type="radio" value="b"/>
+       <span>
+        0–255
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q8" type="radio" value="c"/>
+       <span>
+        −128–127
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="c" data-feedback="1010 is outside the BCD digit range 0000–1001." data-question="q9" data-success="Correct. 1010 is outside the BCD digit range 0000–1001.">
+    <legend>
+     9. Which group is NOT a valid single decimal digit in standard BCD?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q9" type="radio" value="a"/>
+       <span>
+        1001
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q9" type="radio" value="b"/>
+       <span>
+        0000
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q9" type="radio" value="c"/>
+       <span>
+        1010
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="b" data-feedback="Encode 4 as 0100 and 2 as 0010, keeping digit order." data-question="q10" data-success="Correct. Encode 4 as 0100 and 2 as 0010, keeping digit order.">
+    <legend>
+     10. How is decimal 42 encoded in BCD?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q10" type="radio" value="a"/>
+       <span>
+        00101010
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q10" type="radio" value="b"/>
+       <span>
+        0100 0010
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q10" type="radio" value="c"/>
+       <span>
+        0010 0100
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="a" data-feedback="Each group is one decimal digit: 2, 8, 4, 9." data-question="q11" data-success="Correct. Each group is one decimal digit: 2, 8, 4, 9.">
+    <legend>
+     11. Decode the BCD value 0010 1000 0100 1001.
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q11" type="radio" value="a"/>
+       <span>
+        2849
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q11" type="radio" value="b"/>
+       <span>
+        2489
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q11" type="radio" value="c"/>
+       <span>
+        23
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <fieldset class="quiz-question" data-answer="c" data-feedback="Pure binary converts the whole value; BCD encodes 2 and 7 separately." data-question="q12" data-success="Correct. Pure binary converts the whole value; BCD encodes 2 and 7 separately.">
+    <legend>
+     12. Which comparison for denary 27 is correct?
+    </legend>
+    <ul class="quiz-answer-list">
+     <li>
+      <label class="quiz-answer">
+       <input name="q12" type="radio" value="a"/>
+       <span>
+        Pure binary and BCD both use 00011011
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q12" type="radio" value="b"/>
+       <span>
+        Pure binary uses 00100111; BCD uses 0001 1011
+       </span>
+      </label>
+     </li>
+     <li>
+      <label class="quiz-answer">
+       <input name="q12" type="radio" value="c"/>
+       <span>
+        Pure binary uses 00011011; BCD uses 0010 0111
+       </span>
+      </label>
+     </li>
+    </ul>
+    <p class="quiz-feedback-note" data-question-feedback="">
+    </p>
+   </fieldset>
+   <div class="quiz-actions">
+    <button class="primary-link" type="submit">
+     Check score
+    </button>
+    <button class="lesson-secondary-action" data-action="reset-quiz" type="button">
+     Reset quiz
+    </button>
+   </div>
+   <p aria-live="polite" class="quiz-result" data-role="quiz-result">
+    Your answers save automatically on this device once you start.
+   </p>
+  </form>
+ </section>
+ <section class="lesson-section lesson-section--exam-practice panel" data-lesson-section="" id="exam-practice">
+  <p class="eyebrow">
+   Exam-Style Practice
+  </p>
+  <h2>
+   Explain, convert and apply
+  </h2>
+  <p class="lesson-section-copy">
+   Show your working and name the representation rule. Write an answer before opening its guide.
+  </p>
+  <p class="exam-response-note">
+   Draft answers save automatically in this browser.
+  </p>
+  <article class="exam-card">
+   <div class="exam-meta">
+    <span class="exam-pill">
+     4 marks
+    </span>
+    <span class="exam-pill">
+     Explain
+    </span>
+   </div>
+   <h3>
+    Question 1
+   </h3>
+   <p>
+    Describe the strategy used to convert a denary number into
                   binary using an 8-bit place value table.
-                </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-1">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-1"
-                    class="exam-response"
-                    data-exam-response="question-1"
-                    placeholder="Explain the table, 1s, 0s, and subtraction."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Show answer guide</summary>
-                  <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>Write the 8-bit place values from 128 down to 1.</li>
-                      <li>
-                        Start with the largest value and test whether it fits.
-                      </li>
-                      <li>
-                        Write <code>1</code> if it fits and subtract it from the
+   </p>
+   <div class="exam-response-wrap">
+    <label class="exam-response-label" for="exam-response-1">
+     Your answer
+    </label>
+    <textarea class="exam-response" data-exam-response="question-1" id="exam-response-1" placeholder="Explain the table, 1s, 0s, and subtraction."></textarea>
+   </div>
+   <details class="exam-guidance">
+    <summary>
+     Show answer guide
+    </summary>
+    <div class="exam-guidance-body">
+     <ul class="exam-points">
+      <li>
+       Write the 8-bit place values from 128 down to 1.
+      </li>
+      <li>
+       Start with the largest value and test whether it fits.
+      </li>
+      <li>
+       Write
+       <code>
+        1
+       </code>
+       if it fits and subtract it from the
                         remaining value.
-                      </li>
-                      <li>
-                        Write <code>0</code> if it does not fit, then move to
+      </li>
+      <li>
+       Write
+       <code>
+        0
+       </code>
+       if it does not fit, then move to
                         the next column.
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">5 marks</span>
-                  <span class="exam-pill">Compare</span>
-                </div>
-                <h3>Question 2</h3>
-                <p>
-                  Compare pure binary and BCD for a device that needs to show
+      </li>
+     </ul>
+    </div>
+   </details>
+  </article>
+  <div data-slide-break="">
+  </div>
+  <article class="exam-card">
+   <div class="exam-meta">
+    <span class="exam-pill">
+     5 marks
+    </span>
+    <span class="exam-pill">
+     Compare
+    </span>
+   </div>
+   <h3>
+    Question 2
+   </h3>
+   <p>
+    Compare pure binary and BCD for a device that needs to show
                   decimal digits on a display.
-                </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-2">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-2"
-                    class="exam-response"
-                    data-exam-response="question-2"
-                    placeholder="Compare machine efficiency with decimal display."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Show answer guide</summary>
-                  <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>
-                        Pure binary stores the whole value as one binary number.
-                      </li>
-                      <li>
-                        BCD stores each denary digit as a separate 4-bit group.
-                      </li>
-                      <li>
-                        BCD can make decimal display simpler because each digit
+   </p>
+   <div class="exam-response-wrap">
+    <label class="exam-response-label" for="exam-response-2">
+     Your answer
+    </label>
+    <textarea class="exam-response" data-exam-response="question-2" id="exam-response-2" placeholder="Compare the representation rules, display suitability and storage."></textarea>
+   </div>
+   <details class="exam-guidance">
+    <summary>
+     Show answer guide
+    </summary>
+    <div class="exam-guidance-body">
+     <ul class="exam-points">
+      <li>
+       Pure binary stores the whole value as one binary number.
+      </li>
+      <li>
+       BCD stores each denary digit as a separate 4-bit group.
+      </li>
+      <li>
+       BCD can make decimal display simpler because each digit
                         stays separate.
-                      </li>
-                      <li>Pure binary is usually more storage efficient.</li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-            </div>
-          </section>
-        </main>
+      </li>
+      <li>
+       Pure binary is usually more storage efficient.
+      </li>
+      <li>
+       For example, 255 uses 8 bits in pure binary but 12 bits in BCD: three decimal digits × four bits.
+      </li>
+     </ul>
+    </div>
+   </details>
+  </article>
+  <div data-slide-break="">
+  </div>
+  <article class="exam-card">
+   <div class="exam-meta">
+    <span class="exam-pill">
+     3 marks
+    </span>
+    <span class="exam-pill">
+     Explain
+    </span>
+   </div>
+   <h3>
+    Question 3
+   </h3>
+   <p>
+    Explain why electronic computers use binary, and why the bits need an agreed interpretation.
+   </p>
+   <div class="exam-response-wrap">
+    <label class="exam-response-label" for="exam-response-3">
+     Your answer
+    </label>
+    <textarea class="exam-response" data-exam-response="question-3" id="exam-response-3" placeholder="Show your reasoning and working."></textarea>
+   </div>
+   <details class="exam-guidance">
+    <summary>
+     Show answer guide
+    </summary>
+    <div class="exam-guidance-body">
+     <ul>
+      <li>
+       Electronic systems reliably distinguish two states, represented by 0 and 1.
+      </li>
+      <li>
+       Combining bits provides many patterns for representing data.
+      </li>
+      <li>
+       An agreed rule determines what a pattern means: for example, a number or a character.
+      </li>
+     </ul>
+    </div>
+   </details>
+  </article>
+  <div data-slide-break="">
+  </div>
+  <article class="exam-card">
+   <div class="exam-meta">
+    <span class="exam-pill">
+     4 marks
+    </span>
+    <span class="exam-pill">
+     Convert
+    </span>
+   </div>
+   <h3>
+    Question 4
+   </h3>
+   <p>
+    (a) Convert 10110100 to denary. (b) Convert denary 93 to eight-bit binary. Show the place values used.
+   </p>
+   <div class="exam-response-wrap">
+    <label class="exam-response-label" for="exam-response-4">
+     Your answer
+    </label>
+    <textarea class="exam-response" data-exam-response="question-4" id="exam-response-4" placeholder="Show your reasoning and working."></textarea>
+   </div>
+   <details class="exam-guidance">
+    <summary>
+     Show answer guide
+    </summary>
+    <div class="exam-guidance-body">
+     <p>
+      (a) 128 + 32 + 16 + 4 =
+      <strong>
+       180
+      </strong>
+      .
+     </p>
+     <p>
+      (b) 93 = 64 + 16 + 8 + 4 + 1 →
+      <strong>
+       01011101
+      </strong>
+      .
+     </p>
+     <p>
+      For each part: one mark for correct working and one for the final answer (four marks overall). Keep all eight positions in part (b).
+     </p>
+    </div>
+   </details>
+  </article>
+  <div data-slide-break="">
+  </div>
+  <article class="exam-card">
+   <div class="exam-meta">
+    <span class="exam-pill">
+     4 marks
+    </span>
+    <span class="exam-pill">
+     BCD
+    </span>
+   </div>
+   <h3>
+    Question 5
+   </h3>
+   <p>
+    (a) Write decimal 42 in BCD. (b) Decode 0010 1000 0100 1001 as BCD. Show the separate digit groups.
+   </p>
+   <div class="exam-response-wrap">
+    <label class="exam-response-label" for="exam-response-5">
+     Your answer
+    </label>
+    <textarea class="exam-response" data-exam-response="question-5" id="exam-response-5" placeholder="Show your reasoning and working."></textarea>
+   </div>
+   <details class="exam-guidance">
+    <summary>
+     Show answer guide
+    </summary>
+    <div class="exam-guidance-body">
+     <p>
+      (a) 4 → 0100; 2 → 0010. Answer:
+      <strong>
+       0100 0010
+      </strong>
+      .
+     </p>
+     <p>
+      (b) 0010 → 2; 1000 → 8; 0100 → 4; 1001 → 9. Answer:
+      <strong>
+       2849
+      </strong>
+      .
+     </p>
+     <p>
+      For each part: one mark for digit-by-digit working and one for the final answer (four marks overall).
+     </p>
+    </div>
+   </details>
+  </article>
+ </section>
+</main>
 
         <aside class="lesson-rail">
           <section
+            id="binary-scratch"
             class="lesson-rail-card panel binary-scratch-card"
             data-role="binary-scratch"
             data-no-slide-advance
@@ -1005,7 +2350,7 @@
               Type <code>0</code> or <code>1</code> in the scratch row while you
               work through practice questions.
             </p>
-            <div class="scratch-table-wrap">
+            <div class="scratch-table-wrap" tabindex="0" role="group" aria-label="Scratch table; scroll on narrow screens">
               <table class="binary-scratch-table">
                 <caption class="sr-only">
                   Scratch binary place value table
@@ -1141,15 +2486,7 @@
             </dl>
           </section>
 
-          <!-- <section class="lesson-rail-card panel revision-card">
-            <p class="eyebrow">Remember</p>
-            <h2>Whole value or separate digits?</h2>
-            <ul class="memory-list">
-              <li>Pure binary converts the whole number.</li>
-              <li>BCD converts each decimal digit separately.</li>
-              <li>Hexadecimal is base 16 and has its own lesson next.</li>
-            </ul>
-          </section> -->
+
         </aside>
       </div>
 
@@ -1172,7 +2509,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 9</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 29</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

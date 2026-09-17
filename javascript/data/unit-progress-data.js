@@ -293,7 +293,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "binary-and-bcd",
           title: "Binary and BCD",
           href: "../topics/binary-and-bcd.html?context=btec-level-3-unit-2",
-          quiz: { version: 2, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 3, totalQuestions: 12, passScore: 9 },
         },
         {
           id: "hexadecimal-numbers",

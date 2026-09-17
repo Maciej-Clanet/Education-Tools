@@ -162,7 +162,6 @@
 }
 
 .binary-overview-card--system,
-.base-system-card--hex,
 .place-summary-card:nth-child(3),
 .practice-header-card,
 .practice-completion-card {
@@ -565,3 +564,104 @@ body.teacher-mode-active .binary-practice {
     min-width: 540px;
   }
 }
+
+/* Representation first: whole binary patterns versus separate decimal digits. */
+.bb-lead,
+.bb-key { font-size: clamp(1.1rem, 1.7vw, 1.45rem); line-height: 1.45; }
+.bb-key { padding: .8rem 1rem; border-left: 5px solid var(--lesson-accent-heading); background: rgba(31, 135, 125, .08); font-weight: 800; }
+.bb-caption { color: var(--muted-ink); font-size: .95rem; }
+.bb-pattern { text-align: center; font-size: clamp(1.65rem, 4vw, 3.1rem); margin: 1.2rem 0; }
+.bb-pattern code { overflow-wrap: anywhere; }
+.bb-equation { font-size: clamp(1.15rem, 2.2vw, 1.85rem); }
+.bb-reveal { margin: .75rem 0; padding: .8rem 1rem; border: 1px solid rgba(37, 52, 66, .2); border-radius: 14px; background: rgba(255, 255, 255, .65); }
+.bb-reveal summary { cursor: pointer; font-weight: 800; min-height: 1.5rem; }
+.bb-reveal p:last-child { margin-bottom: 0; }
+.bb-reveal summary:focus-visible,
+[data-place-bit]:focus-visible,
+[data-bcd-example]:focus-visible,
+.bb-scroll:focus-visible { outline: 3px solid var(--lesson-accent-heading); outline-offset: 3px; }
+.bb-comparison,
+.bb-two-states { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; }
+.bb-comparison > article,
+.bb-two-states > div { min-width: 0; padding: 1rem; border: 1.5px solid rgba(37, 52, 66, .18); border-radius: 18px; background: rgba(255, 255, 255, .7); }
+.bb-comparison h3 { margin: 0 0 .6rem; }
+.bb-two-states > div { display: grid; justify-items: center; gap: 1rem; }
+.bb-two-states strong { font-size: 4rem; }
+.bb-two-states span { font-weight: 800; }
+.bb-brightness { display: flex; flex-wrap: wrap; gap: 2rem; }
+.bb-brightness > span { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.bb-pixel { display: inline-block; width: 2rem; height: 2rem; border: 2px solid #333; }
+.bb-pixel--dark { background: #000; }
+.bb-pixel--light { background: #fff; }
+.bb-denary-places { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+.bb-denary-places > span,
+.bb-place-strip > span { display: grid; gap: .4rem; padding: .7rem .35rem; text-align: center; border: 1px solid rgba(37,52,66,.2); border-radius: 10px; }
+.bb-denary-places strong { font-size: 2rem; }
+.bb-scroll { overflow-x: auto; max-width: 100%; }
+.bb-place-strip { display: grid; grid-template-columns: repeat(8, minmax(2.8rem, 1fr)); gap: .3rem; margin: .5rem 0; min-width: 430px; }
+.bb-place-strip small { font-weight: 800; font-size: 1rem; }
+.bb-place-strip strong { font-size: 1.5rem; }
+.binary-place-table th small { display: block; font-size: .75rem; font-weight: 400; color: var(--muted-ink); }
+.binary-place-table [data-place-column].is-included { border-bottom: 3px solid currentColor; }
+[data-place-bit] { display: grid; justify-items: center; gap: .25rem; width: 100%; min-height: 4rem; padding: .4rem .1rem; background: transparent; color: inherit; border: 2px solid transparent; border-radius: 8px; cursor: pointer; font: inherit; }
+[data-place-bit] strong { font-size: 1.8rem; }
+[data-place-bit] small { font-size: .7rem; }
+[data-place-bit][aria-pressed="true"] { border-color: currentColor; }
+.bb-place-output { padding: .5rem 0; }
+.bb-place-output > p { font-size: 1.15rem; }
+.bb-place-output > p strong { display: block; font-size: clamp(1.2rem, 2vw, 1.8rem); }
+.bb-place-output > div { display: flex; gap: 1rem 3rem; flex-wrap: wrap; }
+.bb-place-output > div p { margin: .3rem 0; }
+.bb-place-output > div strong,
+.bb-place-output > div code { display: block; font-size: clamp(1.5rem, 2.8vw, 2.3rem); font-weight: 900; }
+.bb-display,
+.bb-digit-groups,
+.bb-display-paths,
+.bb-decoder-groups { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1rem 0; }
+.bb-display > span,
+.bb-display-digit { display: inline-block; border: 3px solid var(--page-ink); border-radius: 10px; padding: .3rem 1rem; background: var(--page-ink); color: var(--panel); font: 800 3.5rem monospace; }
+.bb-digit-group { display: grid; justify-items: center; gap: .4rem; padding: .8rem; border: 2px solid rgba(31,135,125,.4); border-radius: 12px; background: rgba(31,135,125,.06); }
+.bb-digit-group strong { font-size: 2.3rem; }
+.bb-digit-group code { font-size: clamp(1.1rem, 2vw, 1.7rem); letter-spacing: .07em; }
+.bb-digit-group small { color: var(--muted-ink); font-size: .8rem; }
+.bb-code-map { display: grid; grid-template-columns: repeat(5, 1fr); gap: .6rem; margin: 1rem 0; }
+.bb-code-map > div { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .5rem; padding: .75rem; border: 1px solid rgba(37,52,66,.18); border-radius: 12px; }
+.bb-code-map code { font-size: 1.25rem; }
+.bb-invalid-codes { display: flex; flex-wrap: wrap; gap: 1rem; }
+.bb-display-paths > div { display: grid; gap: .5rem; justify-items: center; min-width: 10rem; }
+.bb-display-paths code { font-size: 2rem; }
+[data-bcd-example] { display: inline-block; max-width: 100%; min-height: 2.75rem; padding: .5rem; margin: .5rem; font: inherit; background: var(--panel); color: var(--page-ink); border: 1px solid currentColor; border-radius: 8px; }
+.bb-decoder-report { min-height: 8rem; }
+.bb-decoder-groups .is-current { border: 3px solid var(--lesson-accent-heading); box-shadow: 0 0 0 2px var(--panel); }
+.bb-teacher-scratch { display: none; }
+body.teacher-mode-active .bb-teacher-scratch { display: block; }
+body.teacher-mode-active .bb-scratch-link { pointer-events: none; color: inherit; text-decoration: none; }
+body.teacher-mode-active .binary-sim-header { grid-template-columns: minmax(0, 1fr) auto; }
+body.teacher-mode-active .binary-sim-cell small { font-size: .9rem; }
+body.teacher-mode-active .bb-place-strip { min-width: 430px; }
+.binary-scratch-table { min-width: 320px; }
+.binary-scratch-table input { min-height: 2.75rem; }
+@media (max-width: 760px) {
+  .bb-comparison { grid-template-columns: 1fr; }
+  .bb-code-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bb-digit-groups,
+  .bb-decoder-groups { gap: .5rem; }
+  .bb-digit-group { padding: .6rem; }
+  .bb-digit-group small { max-width: 5rem; text-align: center; }
+  body.teacher-mode-active .binary-sim-header { grid-template-columns: 1fr; }
+}
+
+.bb-interpretations { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; align-items: start; }
+.bb-interpretations .bb-reveal { margin: 0; }
+.bb-interpretations .bb-equation { overflow-wrap: anywhere; }
+.bb-place-output { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: center; }
+body.teacher-mode-active #exam-practice > .lesson-section-copy,
+body.teacher-mode-active #exam-practice > .exam-response-note { display: none; }
+body.teacher-mode-active #exam-practice .exam-response { min-height: 5rem; }
+body.teacher-mode-active #exam-practice .exam-guidance-body p { margin: .4rem 0; }
+@media (max-width: 900px) {
+  .bb-interpretations,
+  .bb-place-output { grid-template-columns: 1fr; }
+}
+.bb-decoder-groups[hidden],
+.practice-completion-card[hidden] { display: none; }

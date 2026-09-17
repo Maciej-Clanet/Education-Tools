@@ -1,6 +1,9 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 import { readStorage, removeStorage, writeStorage } from "../core/storage.js"
 
+import { BINARY_PLACE_VALUES, placeValueState, togglePlaceBit, bcdDecodingFrames } from "../core/binary-representation.js"
+import { nextKernelState } from "../core/kernel-visualiser.js"
+
 const lessonConfig = {
   lessonId: "binary-and-bcd",
   defaultContext: "btec-level-3-unit-2",
@@ -24,16 +27,17 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-binary-and-bcd-quiz",
-    passScore: 4,
-    version: 2,
+    storageKey: "lesson-binary-and-bcd-quiz-v3",
+    passScore: 9,
+    totalQuestions: 12,
+    version: 3,
   },
   examPractice: {
     storageKey: "lesson-binary-and-bcd-exam-practice",
   },
 }
 
-const BIT_VALUES = [128, 64, 32, 16, 8, 4, 2, 1]
+const BIT_VALUES = BINARY_PLACE_VALUES
 const SIMULATOR_STORAGE_KEY = "lesson-binary-and-bcd-simulator"
 const PRACTICE_STORAGE_KEY = "lesson-binary-and-bcd-practice"
 const SCRATCH_STORAGE_KEY = "lesson-binary-and-bcd-scratch"
@@ -765,7 +769,96 @@ function initScratchTable() {
   restoreState()
 }
 
+// The main table is temporary teaching state; the independent scratch stays saved.
+function initPlaceValueTable() {
+  const host = document.querySelector('[data-place-value]')
+  if (!host) return
+  let state = placeValueState()
+  const buttons = [...host.querySelectorAll('[data-place-bit]')]
+  function render() {
+    buttons.forEach((button, index) => {
+      const active = state.pattern[index] === '1'
+      button.setAttribute('aria-pressed', String(active))
+      button.querySelector('strong').textContent = state.pattern[index]
+      button.querySelector('small').textContent = active ? 'included' : 'off'
+      host.querySelectorAll(`[data-place-column="${index}"]`).forEach(cell => cell.classList.toggle('is-included', active))
+    })
+    host.querySelector('[data-place-sum]').textContent = state.selected.length ? state.selected.join(' + ') : 'No columns selected (0)'
+    host.querySelector('[data-place-total]').textContent = state.total
+    host.querySelector('[data-place-binary]').textContent = state.pattern
+  }
+  buttons.forEach((button, index) => button.addEventListener('click', () => {
+    state = togglePlaceBit(state.pattern, index)
+    render()
+  }))
+  host.querySelector('[data-place-reset]').addEventListener('click', () => {
+    state = placeValueState()
+    render()
+  })
+  render()
+}
+
+function initBcdDecoder() {
+  const host = document.querySelector('[data-bcd-decoder]')
+  if (!host) return
+  const choice = host.querySelector('[data-bcd-example]')
+  const groups = host.querySelector('[data-bcd-groups]')
+  const previous = host.querySelector('[data-bcd-action="previous"]')
+  const next = host.querySelector('[data-bcd-action="step"]')
+  let model = bcdDecodingFrames(choice.value)
+  let state = { index: 0, playing: false }
+  function render() {
+    const frame = model.frames[state.index]
+    host.querySelector('[data-bcd-raw]').hidden = frame.grouped
+    host.querySelector('[data-bcd-raw] code').textContent = model.bits
+    groups.hidden = !frame.grouped
+    groups.replaceChildren(...model.groups.map((group, index) => {
+      const revealed = index < frame.revealed
+      const cell = createElement('div', 'bb-digit-group')
+      cell.classList.toggle('is-current', index === frame.revealed - 1 && !frame.complete)
+      cell.append(createElement('small', '', `Group ${index + 1}`), createElement('code', '', group), createElement('span', '', '↓'), createElement('strong', '', revealed ? String(model.digits[index]) : '?'))
+      return cell
+    }))
+    host.querySelector('[data-bcd-status]').textContent = `Step ${state.index + 1} of ${model.frames.length}. ${frame.text}`
+    host.querySelector('[data-bcd-result]').textContent = frame.complete ? `BCD represents ${model.result}` : `Decimal digits: ${model.digits.map((digit, index) => index < frame.revealed ? digit : '?').join(' | ')}`
+    previous.disabled = state.index === 0
+    next.disabled = state.index === model.frames.length - 1
+  }
+  choice.addEventListener('change', () => {
+    model = bcdDecodingFrames(choice.value)
+    state = nextKernelState(state, 'reset', model.frames.length)
+    render()
+  })
+  host.querySelectorAll('[data-bcd-action]').forEach(button => button.addEventListener('click', () => {
+    state = nextKernelState(state, button.dataset.bcdAction, model.frames.length)
+    render()
+  }))
+  render()
+}
+
+// Reuse the same scratch fields in a collapsible dock during Teacher Slides.
+function initTeacherScratchDock() {
+  const scratch = document.querySelector('[data-role="binary-scratch"]')
+  const dock = document.querySelector('[data-scratch-dock]')
+  if (!scratch || !dock) return
+  const home = document.createComment('scratch table home')
+  scratch.before(home)
+  function sync() {
+    if (document.body.classList.contains('teacher-mode-active')) {
+      if (scratch.parentElement !== dock) dock.append(scratch)
+    } else if (scratch.parentElement !== home.parentElement) {
+      home.after(scratch)
+    }
+  }
+  new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] })
+  sync()
+}
+
 initLessonPage(lessonConfig)
 initConversionSimulator()
 initPracticeZone()
 initScratchTable()
+
+initPlaceValueTable()
+initBcdDecoder()
+initTeacherScratchDock()

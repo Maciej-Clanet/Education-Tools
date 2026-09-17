@@ -1181,7 +1181,7 @@ export const catalogItems = [
     kicker: "C1 Number systems",
     title: "Binary and BCD",
     summary:
-      "A live revision lesson on binary numbers, bases, place value tables, conversion practice, and binary coded decimal.",
+      "Interpret bit patterns, toggle binary place values, practise conversions, and encode or decode separate decimal digits in BCD.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "binary",
@@ -1192,7 +1192,6 @@ export const catalogItems = [
       "binary coded decimal",
       "denary conversion",
       "binary conversion practice",
-      "hexadecimal",
       "bases",
       "btec unit 2 c1",
       "computer systems",

@@ -190,6 +190,12 @@ saved progress should be shown as needing a fresh attempt.
     Quiz version 4: 12 questions, pass 9; five written tasks.
     See `docs/digital_data_units_lesson.md`.
 - [x] Binary and BCD
+  - Interpretation-first teaching, an interactive 8-bit place-value table,
+    a separate existing denary stepper, and a contextual BCD sequence with
+    guided digit decoding. 18 student sections / 29 Teacher Slides.
+    The 16-task Workshop, scratch table and their saved work are preserved.
+    Quiz version 3: 12 questions, pass 9; five written tasks.
+    See `docs/binary_bcd_lesson.md`.
 - [x] Hexadecimal numbers
 - [x] Binary arithmetic
 - [x] Negative and floating point representation
