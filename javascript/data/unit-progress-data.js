@@ -96,6 +96,12 @@ export const webDevelopmentProgressData = {
           href: "../topics/css-sizing.html?context=web-development",
           quiz: { version: 1, totalQuestions: 10, passScore: 8 },
         },
+        {
+          id: "css-display",
+          title: "CSS Display",
+          href: "../topics/css-display.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 10, passScore: 8 },
+        },
       ],
     },
     {

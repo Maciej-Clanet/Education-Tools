@@ -10,7 +10,7 @@ const lessonConfig = {
   contexts: { 'web-development': {
     label: 'Web Development', backHref: '../resources/web-development.html#css-basics', backLabel: 'Back to Web Development resources',
     previous: { title: 'CSS Units', href: 'css-units.html', description: 'Choose units by the reference they follow.', status: 'Live' },
-    next: { title: 'More CSS lessons', description: 'Continue exploring CSS as new lessons become available.', status: 'Planned' },
+    next: { title: 'CSS Display', href: 'css-display.html', description: 'Control how an element behaves around its neighbours.', status: 'Live' },
   } },
   quiz: { storageKey: 'lesson-css-sizing-quiz', version: 1, totalQuestions: 10, passScore: 8 },
   examPractice: { storageKey: 'lesson-css-sizing-exam-practice' },

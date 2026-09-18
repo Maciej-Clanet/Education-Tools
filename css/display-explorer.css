@@ -1,0 +1,15 @@
+.display-explorer { border: 1px solid var(--line); border-radius: 14px; background: var(--panel-soft); padding: 1rem; }
+.display-explorer__controls { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; }
+.display-explorer__controls label { display: grid; gap: .3rem; font-weight: 700; min-width: 0; }
+.display-explorer__controls input { width: 100%; min-height: 32px; accent-color: var(--lesson-accent-heading); }
+.display-explorer select { font: inherit; padding: .5rem; color: var(--page-ink); background: var(--panel); border: 1px solid var(--muted-ink); border-radius: 8px; width: 100%; }
+.display-explorer :is(select,input):focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.display-explorer__window { max-width: 100%; height: 225px; overflow: auto; padding: 12px; border: 1px solid var(--line); background: var(--panel); }
+.display-explorer__parent { width: 600px; outline: 2px dashed currentColor; color: var(--page-ink); font: 20px/1.6 sans-serif; min-height: 40px; }
+.display-explorer__item { display: block; width: 160px; height: 60px; padding: 0; margin: 0; background: #dceeea; color: #163f3c; outline: 2px solid #216e70; outline-offset: -2px; }
+.display-explorer__code { margin: .8rem 0; padding: .5rem .8rem; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; font: 1.1rem/1.4 monospace; white-space: pre-wrap; }
+.display-explorer__status { margin: .6rem 0 0; }
+.display-explorer__scroll-note { font-size: .9rem; color: var(--muted-ink); margin: .4rem 0; }
+@media (max-width: 800px) { .display-explorer__controls { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 440px) { .display-explorer__controls { grid-template-columns: 1fr; } }
+@media (forced-colors: active) { .display-explorer__item { background: Canvas; color: CanvasText; outline-color: CanvasText; } }
