@@ -10,7 +10,7 @@ const lessonConfig = {
   contexts: { 'web-development': {
     label: 'Web Development', backHref: '../resources/web-development.html#css-basics', backLabel: 'Back to Web Development resources',
     previous: { title: 'Colours, backgrounds, and borders', href: 'colours-backgrounds-and-borders.html', description: 'Use colours and borders to style visible elements.', status: 'Live' },
-    next: { title: 'CSS Sizing', description: 'Next, use width, height and minimum/maximum sizes to control elements.', status: 'Planned' },
+    next: { title: 'CSS Sizing', href: 'css-sizing.html', description: 'Use width, height and minimum/maximum sizes to control elements.', status: 'Live' },
   } },
   quiz: { storageKey: 'lesson-css-units-quiz', version: 1, totalQuestions: 10, passScore: 8 },
   examPractice: { storageKey: 'lesson-css-units-exam-practice' },

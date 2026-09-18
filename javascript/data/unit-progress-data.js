@@ -90,6 +90,12 @@ export const webDevelopmentProgressData = {
           href: "../topics/css-units.html?context=web-development",
           quiz: { version: 1, totalQuestions: 10, passScore: 8 },
         },
+        {
+          id: "css-sizing",
+          title: "CSS Sizing",
+          href: "../topics/css-sizing.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 10, passScore: 8 },
+        },
       ],
     },
     {

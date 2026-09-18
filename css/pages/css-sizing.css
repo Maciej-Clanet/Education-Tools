@@ -1,0 +1,44 @@
+.cs-key { padding: .7rem 1rem; border-left: 5px solid var(--lesson-accent-heading); background: var(--panel-soft); font-size: clamp(1.1rem,1.8vw,1.45rem); font-weight: 800; }
+.cs-code { padding: .7rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--panel-soft); white-space: pre-wrap; overflow-wrap: anywhere; font-size: clamp(1rem,1.65vw,1.3rem); }
+.cs-caption { color: var(--muted-ink); font-size: .94rem; }
+.cs-diagram { width: 100%; height: auto; max-height: 275px; display: block; }
+.cs-diagram text { fill: currentColor; font: 24px sans-serif; }
+.cs-parent { fill: none; stroke: currentColor; stroke-width: 3; stroke-dasharray: 9 5; }
+.cs-child { fill: #216e70; stroke: currentColor; stroke-width: 2; }
+.cs-diagram .cs-on-fill { fill: white; }
+.cs-line { stroke: currentColor; stroke-width: 3; }
+.cs-tint { fill: #e9efed; stroke: currentColor; stroke-width: 2; }
+.cs-pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; margin: .8rem 0; }
+.cs-pair > * { min-width: 0; }
+.cs-pair h3 { margin: 0 0 .6rem; }
+.cs-height-stage { min-height: 255px; padding: .3rem; }
+.cs-height-box { outline: 3px dashed currentColor; background: var(--panel-soft); padding: 0 .5rem; }
+.cs-height-box p { margin: 0; line-height: 1.6; font-size: 1.15rem; }
+.cs-height-box--fixed { height: 80px; }
+.cs-image-stage { border: 2px dashed currentColor; margin: 1rem 0; }
+.cs-image-stage img { max-width: 100%; height: auto; display: block; }
+.cs-image-stage--narrow { width: 60%; }
+.cs-reveal { border: 1px solid var(--line); border-radius: 12px; padding: .75rem 1rem; margin: .7rem 0; background: var(--panel-soft); }
+.cs-reveal summary { font-weight: 800; cursor: pointer; }
+.cs-reveal p { margin-bottom: 0; }
+.cs-scenario { padding: 1rem; border: 1px solid var(--line); border-radius: 16px; background: var(--panel-soft); display: grid; gap: .6rem; }
+.cs-scenario h3,.cs-scenario p { margin: 0; }
+.cs-scenario label { display: grid; gap: .3rem; font-weight: 700; }
+.cs-scenario select { width: 100%; min-width: 0; padding: .6rem; font: inherit; color: var(--page-ink); background: var(--panel); border: 1px solid var(--muted-ink); border-radius: 8px; }
+.cs-scenario [data-pair-feedback] { min-height: 2rem; }
+.cs-summary { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem 1.5rem; }
+.cs-summary p { margin: 0; border-bottom: 1px solid var(--line); padding: .5rem 0; }
+.cs-summary code { display: block; font-weight: 800; }
+body.teacher-mode-active .cs-revision { display: none; }
+body.teacher-mode-active #live-code > h2 { margin-bottom: .5rem; }
+body.teacher-mode-active #live-code > .cs-caption { margin: .5rem 0 0; }
+body.teacher-mode-active #practice .exam-response { min-height: 5rem; }
+body.teacher-mode-active #practice .exam-guidance-body p { margin: .4rem 0; }
+@media (max-width: 760px) { .cs-pair,.cs-summary { grid-template-columns: 1fr; } .cs-height-stage { min-height: 235px; } }
+@media (forced-colors: active) { .cs-child { fill: Highlight; stroke: CanvasText; } .cs-parent,.cs-line { stroke: CanvasText; } .cs-tint { fill: Canvas; stroke: CanvasText; } .cs-diagram .cs-on-fill { fill: HighlightText; } }
+/* Keep labels readable when a tall comparison is scaled into a slide. */
+body.teacher-mode-active :is(#same-percentage,#fit-parent,#fixed-screen,#responsive,#max-width) .cs-diagram text { font-size: 32px; }
+body.teacher-mode-active #hero-height .cs-diagram { max-height: 360px; }
+body.teacher-mode-active #hero-height .cs-diagram text { font-size: 30px; }
+body.teacher-mode-active #flexible-limits .cs-diagram { max-height: 330px; }
+body.teacher-mode-active #flexible-limits .cs-diagram text { font-size: 36px; }

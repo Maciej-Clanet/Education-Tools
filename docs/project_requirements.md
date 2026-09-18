@@ -213,6 +213,7 @@ the browser with `localStorage` where useful.
   `pages/topics/styling-text-with-css.html`, and
   `pages/topics/colours-backgrounds-and-borders.html`,
   `pages/topics/css-units.html`,
+  `pages/topics/css-sizing.html`,
   `pages/topics/running-javascript-and-using-the-console.html`,
   `pages/topics/variables-and-data-types.html`, and
   `pages/topics/working-with-strings.html`, and
