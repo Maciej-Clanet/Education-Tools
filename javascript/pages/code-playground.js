@@ -1,4 +1,4 @@
-import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260924-1"
+import { createLiveCodeWorkspace } from "../core/live-code-example.js?v=20260924-2"
 import { findChallenge, challengeKinds } from "../data/web-challenges.js"
 import { readChallenge, saveChallenge } from "../core/challenge-storage.js"
 import {

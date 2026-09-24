@@ -2290,6 +2290,25 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
   editor.addEventListener("input", () => {
     syncActiveEditorSource()
 
+    const caret = editor.selectionStart
+    if (
+      caret === editor.selectionEnd &&
+      (caret === 0 || editor.value[caret - 1] === "\n")
+    ) {
+      // Native caret scrolling can leave the left padding offscreen after
+      // Enter. Restore it after the browser has finished revealing the caret.
+      requestAnimationFrame(() => {
+        if (
+          document.activeElement === editor &&
+          editor.selectionStart === caret &&
+          editor.selectionEnd === caret
+        ) {
+          editor.scrollLeft = 0
+          syncEditorHighlightScroll()
+        }
+      })
+    }
+
     if (mode === "html-css") {
       updatePreview()
     }

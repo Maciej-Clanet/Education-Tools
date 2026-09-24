@@ -29,9 +29,9 @@ const evaluate = async expression => {
   return result.result.value
 }
 const settle = () => evaluate('new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
-const key = async (name, code) => {
+const key = async (name, code, text) => {
   for (const type of ['keyDown', 'keyUp']) {
-    await send('Input.dispatchKeyEvent', { type, key: name, code: name, windowsVirtualKeyCode: code })
+    await send('Input.dispatchKeyEvent', { type, key: name, code: name, windowsVirtualKeyCode: code, ...(type === 'keyDown' && text ? { text } : {}) })
   }
 }
 async function aligned(label) {
@@ -63,6 +63,16 @@ try {
 
   for (const zoom of [1, 1.5]) {
     await evaluate(`document.querySelector('.live-code-example').style.setProperty('--live-code-local-zoom', ${JSON.stringify(String(zoom))})`)
+    await evaluate(`e.value = ''; e.dispatchEvent(new Event('input', { bubbles: true })); e.focus()`)
+    await send('Input.insertText', { text: 'long line '.repeat(40) })
+    await settle()
+    assert.ok(await evaluate('e.scrollLeft > 0'), 'typing a long line must scroll right')
+    await key('Enter', 13, '\r')
+    await aligned(`Enter after horizontal scrolling, zoom=${zoom}`)
+    assert.equal(await evaluate('e.scrollLeft'), 0, 'Enter must restore the left padding before typing')
+    await send('Input.insertText', { text: 'a' })
+    await aligned('first character on the new line')
+    assert.equal(await evaluate('e.scrollLeft'), 0, 'first character must retain the left padding')
     for (const longLines of [false, true]) {
       const source = Array.from({ length: 60 }, (_, i) => `console.log("line ${i}${longLines ? ' abc'.repeat(60) : ''}");`).join('\n')
       await evaluate(`e.value = ${JSON.stringify(source)}; e.dispatchEvent(new Event('input', { bubbles: true })); e.focus(); e.setSelectionRange(e.value.length, e.value.length)`)
