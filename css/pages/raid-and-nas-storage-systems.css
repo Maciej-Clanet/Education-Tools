@@ -1,68 +1,290 @@
-.raid-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:1rem; margin:1rem 0; }
-.raid-card,.raid-enclosure,.raid-pair,.raid-scenario-brief { padding:1rem; border:1.5px solid #a3b5bc; border-radius:16px; background:var(--panel-bg,#fffdf7); color:var(--page-ink); }
-.raid-card h3 { margin:0 0 .5rem; } .raid-card p { margin:0; }
-.raid-array { display:grid; grid-template-columns:repeat(var(--drive-count),minmax(0,1fr)); gap:.65rem; margin:1rem 0; }
-.raid-drive { display:grid; align-content:start; gap:.4rem; padding:.65rem; border:2px solid #426976; border-radius:12px; background:#edf5f6; color:#24313b; text-align:center; min-width:0; }
-.raid-drive small { min-height:1.5em; font-size:.75em; }
-.raid-block { display:grid; place-items:center; min-height:2.4rem; padding:.3rem; border:1px solid #70969e; border-radius:5px; background:#d4eaf1; font-weight:700; overflow-wrap:anywhere; }
-.raid-block.is-parity,.raid-card.is-parity { background:#fae7b5; color:#503b11; border-style:dashed; }
-.raid-drive.is-failed,.raid-card.is-failed { border:3px dashed #9c302b; background:#fce5e1; color:#782722; }
-.raid-drive.is-failed .raid-block { background:repeating-linear-gradient(135deg,#fae6e3 0 8px,#f4d4d0 8px 10px); color:#782722; }
+/* RAID diagrams use shape, text and status as well as colour. */
+:root { --raid-blue:#dcecf4; --raid-blue-ink:#234c64; --raid-gold:#fae8b6; --raid-green:#e5f0e7; --raid-red:#f9e5e1; --raid-line:#9aaeb4; }
+.raid-icon { width:2.5rem; height:2.5rem; flex:none; color:currentColor; }
+.raid-key { margin:1rem 0; }
+.raid-cards,.raid-goals,.raid-mirror-benefits,.raid-fit-grid,.raid-space-example { display:grid; gap:1rem; margin:1.2rem 0; }
+.raid-cards { grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); }
+.raid-goals { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.raid-mirror-benefits,.raid-fit-grid,.raid-space-example { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.raid-card,.raid-fact,.raid-pair,.raid-scenario-brief { padding:1.1rem; border:1px solid var(--raid-line); border-radius:16px; background:var(--panel-bg,#fffdf7); }
+.raid-card h3,.raid-fact h3,.raid-fit h3 { margin:0 0 .4rem; }
+.raid-card p,.raid-fact p,.raid-fit p { margin:0; }
+.raid-fact { display:flex; gap:1rem; align-items:flex-start; }
+.raid-goals .raid-fact { flex-direction:column; border-top:5px solid #497786; }
+.raid-goals .raid-icon { width:3.5rem; height:3.5rem; }
+.raid-icon + strong { display:block; }
+.raid-flow { display:flex; align-items:center; justify-content:center; gap:1rem; margin:1.2rem 0; }
+.raid-node { min-width:0; flex:1; align-self:stretch; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.5rem; padding:1.3rem 1rem; border:1px solid var(--raid-line); border-radius:16px; background:var(--panel-bg,#fffdf7); text-align:center; }
+.raid-node .raid-icon { width:3.6rem; height:3.6rem; }
+.raid-node strong { font-size:1.08em; }
+.raid-node span { font-size:.88em; }
+.raid-arrow { display:grid; place-items:center; flex:none; font-size:2rem; font-weight:800; }
+.raid-system { display:grid; grid-template-columns:2fr auto 1fr; align-items:center; gap:1rem; margin:1.2rem 0; }
+.raid-enclosure { border:2px solid #526f79; border-radius:18px; background:#f0f4f3; color:#263e49; padding:1rem; }
+.raid-enclosure h3 { margin:.2rem 0; }
+.raid-diagram-label { display:block; font-weight:700; }
+.raid-controller { padding:.7rem; background:#294b5d; color:#fff; border-radius:9px; text-align:center; font-size:.9em; }
+.raid-array { display:grid; grid-template-columns:repeat(var(--drive-count),minmax(0,1fr)); gap:.8rem; margin:1rem 0; }
+.raid-drive { position:relative; display:grid; align-content:start; gap:.4rem; min-width:0; padding:.75rem; border:2px solid #557783; border-radius:12px; background:linear-gradient(145deg,#f5f8fa,#dce6ea); color:#233c4a; box-shadow:0 4px 0 #b8c6cc; }
+.raid-drive::after { content:""; display:block; height:5px; width:45%; margin:.4rem auto 0; background:repeating-linear-gradient(90deg,#536d78 0 4px,transparent 4px 8px); }
+.raid-drive-label { display:grid; grid-template-columns:1.5rem 1fr; gap:.25rem .5rem; align-items:center; }
+.raid-drive-label .raid-icon { width:1.5rem; height:1.5rem; }
+.raid-drive-label strong { font-size:.9em; }
+.raid-drive-size { grid-column:1/-1; font-size:1.2em; font-weight:800; border-bottom:1px solid #abbac1; padding-bottom:.25rem; }
+.raid-drive small { min-height:1.5em; font-size:.7em; }
+.raid-block { display:grid; place-items:center; min-height:2.6rem; padding:.3rem; border:1px solid #7296ad; border-radius:6px; background:var(--raid-blue); color:var(--raid-blue-ink); font-weight:800; text-align:center; overflow-wrap:anywhere; }
+.raid-block[data-block-family="B"] { background:#e5e4f2; color:#454268; border-color:#9a95be; }
+.raid-block[data-block-family="C"] { background:#deede4; color:#285540; border-color:#8aaf99; }
+.raid-block.is-parity,.is-parity.raid-technique { background:var(--raid-gold); color:#654600; border:2px dashed #99751b; }
+.raid-block.is-dual-parity { background:#f3dac0; border-color:#8f5527; color:#643a1c; }
+.raid-drive.is-failed,.raid-node.is-failed,.raid-bit-options .is-failed { border:2px dashed #aa4139; background:var(--raid-red); color:#782f28; }
+.raid-drive.is-failed .raid-block { background:repeating-linear-gradient(135deg,#f8e5e2 0 8px,#f2d2cc 8px 10px); color:#782f28; border-color:#bb746b; }
 [data-raid10] .is-failed .raid-block { text-decoration:line-through; }
-.raid-drive.is-replacement { border-style:dashed; border-color:#7c641b; }
-.raid-flow,.raid-bit-row { display:flex; align-items:stretch; justify-content:center; flex-wrap:wrap; gap:.8rem; margin:1.2rem 0; }
-.raid-flow > b { align-self:center; font-size:1.8rem; }
-.raid-flow .raid-card { flex:1; min-width:130px; text-align:center; }
-.raid-bit-row > span { padding:.8rem; border-radius:12px; background:#edf5f6; color:#24313b; text-align:center; align-self:center; }
-.raid-bit-row b { font-size:2rem; }
-.raid-equation { padding:.9rem; border-left:5px solid var(--lesson-accent,#426976); background:#edf5f6; color:#24313b; font-size:1.25em; }
-.raid-key,.raid-stages { margin:1rem 0; }
-.raid-stage-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.7rem; margin:.8rem 0; }
-.raid-stage-controls [data-stage-count] { flex:1; min-width:10rem; font-size:.85em; }
-.raid-stage-controls button { min-height:44px; }
-.raid-stage-controls button:disabled { opacity:.55; cursor:default; }
-.raid-stage { padding:.8rem; border:1px solid #a3b5bc; border-radius:12px; }
-.raid-stage h3 { margin-top:0; }
-.raid-stages [hidden],.raid-fail-controls[hidden] { display:none; }
-.raid-binary { padding:1rem; overflow-x:auto; background:#edf5f6; color:#24313b; border-radius:12px; line-height:1.6; font-size:1.1em; }
-.raid-process { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; padding-left:1.5rem; }
-.raid-process li { padding:.8rem; background:#edf5f6; color:#24313b; border-radius:10px; }
-.raid-process strong,.raid-process span { display:block; } .raid-process span { margin-top:.5rem; }
-.raid-pairs { display:grid; grid-template-columns:1fr 1fr; gap:1rem; } .raid-pair h3 { margin:0; }
-.raid-fail-controls { display:flex; flex-wrap:wrap; gap:.75rem; border:1px solid #a3b5bc; border-radius:10px; }
+.raid-drive.is-replacement { border-style:dashed; border-color:#99751b; }
+.raid-block.is-dimmed { opacity:.24; }
+.raid-pairs { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.raid-pair h3 { margin:0; font-size:1.05em; }
+.raid-pair .raid-array { margin-bottom:0; }
+.raid-fail-controls { display:flex; flex-wrap:wrap; gap:.75rem; border:1px solid var(--raid-line); border-radius:10px; margin-top:.9rem; }
 .raid-fail-controls label { padding:.5rem; cursor:pointer; }
+.raid-fail-controls input { accent-color:#a34038; width:1.1rem; height:1.1rem; }
+.raid-stages { margin:1rem 0; }
+.raid-stage-controls,.raid-row-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.7rem; margin:.8rem 0; }
+.raid-stage-controls [data-stage-count] { flex:1; min-width:8rem; font-size:.8em; font-weight:700; }
+.raid-stage-controls button,.raid-row-controls button { min-height:44px; }
+.raid-stage-controls button:disabled { opacity:.5; cursor:default; }
+.raid-stage { padding:1rem; border:1px solid var(--raid-line); border-radius:14px; background:var(--panel-bg,#fffdf7); }
+.raid-stage h3 { margin:0 0 .8rem; }
+.raid-stage > :last-child { margin-bottom:0; }
+.raid-stages [hidden],.raid-fail-controls[hidden],[data-read-toggle][hidden],.raid-capacity-tooltip[hidden] { display:none; }
+.raid-level-picker { display:grid; grid-template-columns:minmax(130px,1fr) 3fr; gap:1.3rem; margin:1.2rem 0; }
+.raid-level-buttons { display:grid; gap:.5rem; }
+.raid-level-buttons button { text-align:left; min-height:48px; }
+.raid-level-buttons [aria-pressed="true"],.raid-row-controls [aria-pressed="true"] { background:#2e5766; color:#fff; border-color:#2e5766; box-shadow:inset 5px 0 #e9c665; }
+.raid-preview-result { position:relative; padding:1.5rem 2rem; border:2px solid #527887; border-radius:20px; background:var(--panel-bg,#fffdf7); }
+.raid-preview-number { font-size:3.6rem; line-height:1; font-weight:850; color:#416d7e; }
+.raid-preview-result h3 { margin:.8rem 0; font-size:1.4em; }
+.raid-preview-cost { border-top:1px solid var(--raid-line); padding-top:1rem; }
+.raid-revision { margin:1rem 0; padding:.8rem 1rem; border:1px solid var(--raid-line); border-radius:12px; }
+.raid-revision summary { cursor:pointer; font-weight:700; padding:.3rem; }
+.raid-file-strip { display:grid; grid-template-columns:1.5fr repeat(6,1fr); gap:.4rem; padding:.8rem; border-radius:12px; background:var(--panel-bg,#fffdf7); border:1px solid var(--raid-line); }
+.raid-file-strip strong { display:flex; align-items:center; gap:.5rem; }
+.raid-file-strip .raid-icon { width:1.8rem; }
+.raid-parity-comparison { display:grid; gap:1rem; margin:1rem 0; }
+.raid-parity-comparison > div { padding:1rem 1.3rem; border:1px solid var(--raid-line); border-radius:14px; }
+.raid-parity-comparison h3,.raid-parity-comparison p { margin:.2rem 0 .6rem; }
+.raid-block-ribbon { display:grid; grid-template-columns:repeat(6,1fr); gap:.5rem; }
+.raid-bit-rules { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin:1.5rem 0; }
+.raid-bit-rule { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.8rem; background:#e7eef1; color:#294b5d; border:2px solid #8aa7b4; border-radius:14px; padding:1rem; }
+.raid-bit-rule.is-different { background:#faefce; border-style:dashed; border-color:#a58c47; color:#674b17; }
+.raid-bit-rule > span:last-child { width:100%; text-align:center; font-weight:700; }
+.raid-bit-token,.raid-bit-rule > strong { display:grid; place-items:center; min-width:2.2em; font-size:1.8em; font-weight:800; border:1px solid currentColor; border-radius:8px; }
+.raid-bit-row { display:flex; align-items:center; justify-content:center; gap:1rem; margin:1.3rem 0; }
+.raid-bit-card { display:grid; gap:.7rem; flex:1; text-align:center; padding:1.2rem; border:2px solid #7594a7; background:var(--raid-blue); color:#284c62; border-radius:15px; }
+.raid-bit-card strong { font-size:3.8rem; line-height:1.1; }
+.raid-bit-card.is-parity { background:var(--raid-gold); border-color:#9b792b; color:#674c12; }
+.raid-bit-card.is-missing { border:3px dashed #a0473d; background:var(--raid-red); color:#80382f; }
+.raid-bit-options { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.raid-bit-options > div { padding:1.3rem; border-radius:15px; border:2px solid #769983; }
+.raid-bit-options .is-good { background:var(--raid-green); color:#315b41; }
+.raid-bits-table { width:100%; border-collapse:collapse; text-align:center; }
+.raid-bits-table td,.raid-bits-table th { padding:.5rem; border:1px solid var(--raid-line); }
+[data-xor-picker] { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; padding:1rem 0; }
+[data-xor-picker] select { font:inherit; padding:.4rem; }
+.raid-rebuild-route { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); padding:0; list-style:none; gap:.6rem; }
+.raid-rebuild-route li { position:relative; display:grid; justify-items:center; gap:.5rem; text-align:center; padding:.6rem .2rem; border-bottom:4px solid #c6d2d6; font-size:.8em; }
+.raid-rebuild-route li:not(:last-child)::after { content:'→'; position:absolute; right:-.6rem; top:.7rem; }
+.raid-rebuild-route li[aria-current] { background:#e4eef1; color:#284d60; border-color:#346b80; border-radius:9px 9px 0 0; font-weight:800; }
+.raid-capacity { position:relative; margin:1rem 0; padding:.8rem 1rem; border:1px solid var(--raid-line); border-radius:12px; background:var(--panel-bg,#fffdf7); }
+.raid-capacity-heading { display:flex; align-items:center; gap:.7rem; }
+.raid-capacity-heading > span { margin-right:auto; font-size:.85em; }
+.raid-capacity-heading > strong { font-size:1.2em; }
+.raid-capacity-bar { display:flex; gap:3px; margin:.7rem 0; min-height:2rem; border-radius:7px; overflow:hidden; }
+.raid-capacity-bar > span { display:grid; place-items:center; background:#346777; color:white; font-size:.85em; font-weight:700; }
+.raid-capacity-bar .is-overhead { background:repeating-linear-gradient(135deg,#fae8b6 0 8px,#f1d998 8px 10px); color:#604a19; }
+.raid-capacity p { margin:.2rem 0; font-size:.85em; }
+.raid-info-button { border:1px solid var(--raid-line); background:transparent; color:inherit; border-radius:50%; width:44px; height:44px; cursor:pointer; font-size:1.3rem; }
+.raid-capacity-tooltip { position:absolute; z-index:8; right:0; top:3.7rem; width:min(360px,100%); padding:1rem; border:2px solid #527887; border-radius:12px; background:var(--panel-bg,#fffdf7); box-shadow:0 8px 20px #24313b30; }
+.raid-space-example > div { padding:1rem; border:1px solid var(--raid-line); border-radius:14px; }
+.raid-space-example h3 { margin:0 0 1rem; }
+.raid-space-example .raid-node { padding:1.5rem; }
+.raid-technique-map { display:grid; gap:.65rem; margin:1.3rem 0; }
+.raid-technique-map > div { display:grid; grid-template-columns:.8fr 1fr 1fr 1.3fr; gap:.6rem; align-items:center; }
+.raid-technique-map > div > strong { border-left:5px solid #4b7686; padding:.5rem .8rem; }
+.raid-technique { display:flex; align-items:center; gap:.6rem; padding:.6rem .8rem; border-radius:9px; border:1px solid #8da8b3; background:#e2eef0; color:#294b5d; font-size:.9em; }
+.raid-technique .raid-icon { width:1.6rem; height:1.6rem; }
+.raid-technique.is-off { background:transparent; border-color:#c4c8c8; color:inherit; opacity:.55; }
+.raid-level-facts { display:flex; gap:1rem; justify-content:space-between; margin:1rem 0; }
+.raid-level-facts span { flex:1; padding:.7rem 1rem; border-left:3px solid #62878f; font-size:.95em; }
+.raid-fit { padding:1.4rem; border:2px solid #82a08b; border-radius:18px; background:var(--panel-bg,#fffdf7); }
+.raid-fit.is-poor { border-color:#b69780; }
+.raid-fit-label { display:block; width:fit-content; padding:.25rem .65rem; border-radius:6px; background:#e0eee5; color:#315d43; font-size:.9em; font-weight:800; margin-bottom:1.5rem; }
+.raid-fit.is-poor .raid-fit-label { background:#f3e7dd; color:#765038; }
+.raid-fit > .raid-icon { width:4rem; height:4rem; margin-bottom:1rem; }
+.raid-fit h3 { font-size:1.25em; margin-bottom:.7rem; }
+.raid-summary-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.8rem; margin:1.5rem 0; }
+.raid-summary-grid article { padding:1rem; border:1px solid var(--raid-line); border-top:5px solid #5d8290; border-radius:12px; }
+.raid-summary-grid article > span,.raid-summary-grid article > strong { display:block; }
+.raid-summary-grid article > strong { font-size:3em; line-height:1.2; }
+.raid-summary-grid h3 { font-size:1em; }
+.raid-summary-grid p { font-size:.85em; }
+.raid-nas-intro { display:grid; grid-template-columns:2.3fr 1fr; gap:1.2rem; align-items:center; margin:1.2rem 0; }
+.raid-photo { margin:0; }
+.raid-photo img { display:block; width:100%; height:auto; max-height:410px; object-fit:contain; border-radius:13px; background:#263e49; }
+.raid-photo figcaption { font-size:.7em; line-height:1.5; margin-top:.5rem; }
+.raid-nas-story { display:grid; gap:.4rem; }
+.raid-nas-story > .raid-arrow { transform:rotate(90deg); }
+.raid-figure { margin:1rem 0; }
+.raid-figure img { width:100%; max-height:480px; display:block; object-fit:contain; background:#fffdf7; border-radius:14px; }
+.raid-access-paths { display:grid; gap:1rem; margin:1rem 0; }
+.raid-access-paths article { padding:.6rem 1rem; border:1px solid var(--raid-line); border-radius:14px; }
+.raid-access-paths h3 { margin:.2rem 0; font-size:1.05em; }
+.raid-access-paths .raid-flow { margin:.6rem 0; }
+.raid-access-paths .raid-node { flex-direction:row; flex-wrap:wrap; padding:.7rem; gap:.5rem; }
+.raid-access-paths .raid-node > span { flex-basis:100%; }
+.raid-access-paths .raid-icon { width:2.2rem; height:2.2rem; }
+.raid-permissions { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.raid-permissions .raid-fact { flex-direction:column; }
+.raid-node.is-offline { opacity:.55; border-style:dashed; }
+.raid-nested-nas { border:2px solid #4f7482; padding:1rem 1.5rem; border-radius:20px; background:var(--panel-bg,#fffdf7); }
+.raid-nested-nas > h3 { display:flex; align-items:center; gap:1rem; margin:.3rem 0; }
+.raid-nested-nas > p { margin:.2rem 0 1rem; }
 .raid-table-scroll { overflow-x:auto; max-width:100%; margin:1rem 0; }
 .raid-table-scroll table { width:100%; border-collapse:collapse; font-size:.9em; }
-.raid-table-scroll th,.raid-table-scroll td { padding:.7rem; border:1px solid #a3b5bc; vertical-align:top; text-align:left; }
+.raid-table-scroll th,.raid-table-scroll td { padding:.7rem; border:1px solid var(--raid-line); vertical-align:top; text-align:left; }
 .raid-table-scroll th { background:#e1eef0; color:#24313b; }
 .raid-table-scroll caption { text-align:left; margin-bottom:.7rem; font-size:.9em; }
 .raid-reference { min-width:1050px; }
-.raid-figure { margin:1rem 0; }
-.raid-figure img { width:100%; max-height:420px; display:block; object-fit:contain; background:#fffdf7; border-radius:14px; }
-.raid-mini-path { display:flex; align-items:center; gap:.3rem; margin-bottom:1rem; }
-.raid-mini-path img { width:24%; min-width:0; }
-.raid-lookup { margin:1rem 0; border:2px solid #426976; border-radius:12px; padding:.7rem; }
-.raid-lookup summary { cursor:pointer; padding:.4rem; font-weight:800; min-height:44px; }
-.raid-lookup-button { position:sticky; top:.5rem; z-index:3; margin-bottom:1rem; min-height:44px; }
+.raid-lookup-button { display:block; margin-bottom:1rem; min-height:44px; }
 .raid-reference-dialog { width:min(1300px,94vw); max-height:85vh; border:2px solid #426976; border-radius:14px; padding:1rem; background:var(--panel-bg,#fffdf7); color:var(--page-ink); }
 .raid-reference-dialog::backdrop { background:#15252bb3; }
 .raid-reference-dialog form { position:sticky; top:0; text-align:right; }
-.raid-lookup[hidden] { display:none; }
 .raid-choice-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:.6rem; }
-.raid-choice { display:block; padding:.7rem; border:1px solid #a3b5bc; border-radius:10px; cursor:pointer; }
+.raid-choice { display:block; padding:.7rem; border:1px solid var(--raid-line); border-radius:10px; cursor:pointer; }
 .raid-choice:has(input:checked) { border:2px solid #294c50; background:#e4f0e8; color:#24313b; }
 .raid-choice span { display:block; font-size:.8em; margin-top:.4rem; }
 [data-raid-scenarios] select,[data-raid-scenarios] textarea { display:block; width:100%; padding:.75rem; margin:.5rem 0 1rem; font:inherit; color:var(--page-ink); background:var(--panel-bg,#fffdf7); border:1px solid #71858d; border-radius:8px; }
 [data-raid-scenarios] fieldset { border:0; padding:0; margin:1rem 0; }
 [data-scenario-feedback]:not(:empty) { padding:1rem; background:#edf5f6; color:#24313b; border-left:5px solid #426976; }
-.raid-teacher-note { display:none; }
-body.teacher-mode-active .raid-teacher-note { display:block; border:1px dashed #71858d; padding:.7rem; border-radius:10px; font-size:.85em; }
-body.teacher-mode-active .raid-figure img { max-height:40vh; }
-body.teacher-mode-active .raid-cards { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+.raid-save-note { font-size:.8em; }
+.raid-read-demo { border:1px solid var(--raid-line); border-radius:15px; padding:.9rem; }
+.raid-read-lane { display:grid; grid-template-columns:1fr 1.1fr 1.2fr; align-items:center; gap:.75rem; padding:1rem; background:var(--panel-bg,#fffdf7); border-radius:12px; border:1px solid var(--raid-line); margin-bottom:.7rem; }
+.raid-read-lane h3 { grid-column:1/-1; margin:0; font-size:1em; }
+.raid-read-drives { display:grid; gap:.3rem; }
+.raid-read-drives .raid-node { flex-direction:row; padding:.4rem; font-size:.8em; }
+.raid-read-drives .raid-icon { width:1.8rem; height:1.8rem; }
+.raid-read-track { position:relative; height:7.5rem; border-block:1px dashed #99acb5; background:repeating-linear-gradient(180deg,transparent 0 2.4rem,#d0dce0 2.4rem 2.5rem); }
+.raid-read-piece { display:none; position:absolute; left:0; top:calc(var(--read-row)*2.5rem + .2rem); width:2.8rem; padding:.25rem; border:1px solid #56809a; border-radius:5px; background:#d5e9f3; color:#25475e; font-weight:800; font-size:.85em; text-align:center; }
+.raid-read-piece.is-moving { display:block; animation:raid-read-flight .85s linear both; }
+.is-single .raid-read-track { background:linear-gradient(transparent calc(50% - 1px),#9dafb7 50%,transparent calc(50% + 1px)); }
+.is-single .raid-read-piece { top:calc(50% - 1rem); }
+.raid-read-result { padding:.8rem; border:2px solid #9bafb9; border-radius:10px; font-size:.85em; }
+.raid-read-assembly { display:grid; grid-template-columns:repeat(3,1fr); gap:.3rem; margin:.6rem 0; }
+.raid-arrival { padding:.3rem; text-align:center; border:1px dashed #a5b4bc; border-radius:5px; color:#617682; }
+.raid-arrival.has-arrived { border-style:solid; background:#d5e9f3; color:#25475e; transition:background 0s .8s; }
+.raid-read-done { display:block; opacity:.3; font-weight:800; }
+.raid-read-lane.is-complete .raid-read-done { opacity:1; transition:opacity 0s .8s; }
+.raid-read-lane.is-complete .raid-read-result { border-color:#4f8468; }
+.raid-read-demo.is-paused * { animation-play-state:paused; }
+@keyframes raid-read-flight { from { left:0; } to { left:calc(100% - 2.8rem); } }
+body.teacher-mode-active .raid-revision,body.teacher-mode-active .raid-capacity-info { display:none !important; }
+body.teacher-mode-active .raid-figure img { max-height:53vh; }
+body.teacher-mode-active .raid-photo img { max-height:46vh; }
+body.teacher-mode-active .raid-fit-grid { margin-top:1.8rem; }
+body.teacher-mode-active .raid-goals { margin-top:2rem; }
+body.teacher-mode-active .raid-goals .raid-fact { padding:1.4rem; }
+body.teacher-mode-active .raid-read-lane { grid-template-columns:.9fr 1.1fr 1.4fr; padding:.5rem .8rem; }
+body.teacher-mode-active .raid-read-assembly { grid-template-columns:repeat(6,1fr); }
+body.teacher-mode-active .raid-read-track { height:6rem; background:repeating-linear-gradient(180deg,transparent 0 1.9rem,#d0dce0 1.9rem 2rem); }
+body.teacher-mode-active .is-single .raid-read-track { background:linear-gradient(transparent calc(50% - 1px),#9dafb7 50%,transparent calc(50% + 1px)); }
+body.teacher-mode-active .raid-read-piece { top:calc(var(--read-row)*2rem + .1rem); }
+body.teacher-mode-active .is-single .raid-read-piece { top:calc(50% - 1rem); }
+body.teacher-mode-active .raid-read-result { position:relative; padding:.65rem; }
+body.teacher-mode-active .raid-read-done { position:absolute; right:.65rem; top:.65rem; }
+body.teacher-mode-active .raid-read-drives .raid-node { padding:.15rem .5rem; }
+body.teacher-mode-active .raid-stage { padding:.8rem 1rem; }
+body.teacher-mode-active .raid-stage .raid-array { margin:.5rem 0; }
+body.teacher-mode-active [data-raid10] .raid-drive-label { grid-template-columns:1.5rem 1fr auto; }
+body.teacher-mode-active [data-raid10] .raid-drive-size { grid-column:auto; border:0; padding:0; font-size:1em; }
+body.teacher-mode-active [data-raid10] .raid-pair { padding:.6rem .8rem; }
+body.teacher-mode-active [data-raid10-status] { font-size:.9em; margin:.6rem 0; }
+body.teacher-mode-active #raid-10 .raid-capacity { margin:.6rem 0; }
+@media(min-width:1000px) {
+  body.teacher-mode-active [data-raid-scenarios] { display:grid; grid-template-columns:1fr 1.5fr; gap:.6rem 1.5rem; }
+  body.teacher-mode-active [data-raid-scenarios] > .raid-lookup-button { grid-column:2; grid-row:1 / 3; justify-self:end; align-self:start; }
+  body.teacher-mode-active [data-raid-scenarios] > label { grid-row:1; grid-column:1; }
+  body.teacher-mode-active [data-raid-scenarios] > select { grid-row:2; grid-column:1; margin:0; }
+  body.teacher-mode-active .raid-scenario-brief { grid-column:1; grid-row:3; align-self:start; }
+  body.teacher-mode-active [data-scenario-form] { grid-column:2; grid-row:3; }
+  body.teacher-mode-active [data-scenario-form] fieldset { margin:0 0 .6rem; }
+  body.teacher-mode-active .raid-choice-grid { grid-template-columns:repeat(5,minmax(0,1fr)); gap:.3rem; }
+  body.teacher-mode-active .raid-choice { padding:.4rem; }
+  body.teacher-mode-active .raid-choice span { font-size:.68em; }
+  body.teacher-mode-active [data-raid-scenarios] textarea { height:6rem; margin:.4rem 0; }
+}
+@media(min-width:900px) and (max-height:800px) {
+  body.teacher-mode-active .lesson-section { padding-top:1.2rem; }
+  body.teacher-mode-active #striping-speed,body.teacher-mode-active #raid-10 { padding-bottom:5.3rem; }
+  body.teacher-mode-active .lesson-section > .eyebrow { margin-top:0; }
+  body.teacher-mode-active .lesson-section h2 { margin:.4rem 0 1rem; }
+  body.teacher-mode-active .lesson-section > .lesson-section-copy { margin:.65rem 0; }
+  body.teacher-mode-active .raid-array { margin:.7rem 0; }
+  body.teacher-mode-active .raid-drive { padding:.5rem .65rem; gap:.3rem; line-height:1.3; }
+  body.teacher-mode-active .raid-drive-label { grid-template-columns:1.5rem 1fr auto; }
+  body.teacher-mode-active .raid-drive-size { grid-column:auto; border:0; padding:0; font-size:1em; }
+  body.teacher-mode-active .raid-block { min-height:2.1rem; line-height:1.25; }
+  body.teacher-mode-active .raid-stage { padding:.6rem .8rem; }
+  body.teacher-mode-active .raid-stage-controls { margin:.5rem 0; }
+  body.teacher-mode-active .raid-fail-controls { padding:.25rem .6rem; gap:.5rem; margin-top:.6rem; }
+  body.teacher-mode-active .raid-capacity { padding:.5rem .8rem; }
+  body.teacher-mode-active .raid-capacity-bar { min-height:1.6rem; margin:.4rem 0; }
+}
+@media(max-width:850px) {
+  .raid-goals,.raid-summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .raid-system { grid-template-columns:1fr; }
+  .raid-system > .raid-arrow { transform:rotate(90deg); }
+  .raid-drive-label { grid-template-columns:1fr; }
+  .raid-drive-label .raid-icon { display:none; }
+  .raid-nas-intro { grid-template-columns:1fr; }
+  .raid-nas-story { grid-template-columns:1fr auto 1fr; }
+  .raid-nas-story > .raid-arrow { transform:none; }
+}
 @media(max-width:600px) {
-  .raid-array { gap:.25rem; } .raid-drive { padding:.3rem; font-size:.78rem; }
-  .raid-drive small { font-size:.7rem; } .raid-block { padding:.2rem; }
-  .raid-pairs { grid-template-columns:1fr; } .raid-equation { font-size:1.05em; }
+  .raid-cards,.raid-goals,.raid-mirror-benefits,.raid-fit-grid,.raid-space-example,.raid-pairs,.raid-permissions { grid-template-columns:1fr; }
+  .raid-array { gap:.25rem; } .raid-drive { padding:.3rem; font-size:.74rem; box-shadow:0 2px 0 #b8c6cc; }
+  .raid-drive small { font-size:.65rem; } .raid-drive-size { font-size:1rem; } .raid-block { padding:.2rem; min-height:2.4rem; }
+  .raid-flow { flex-direction:column; gap:.5rem; }
+  .raid-flow > .raid-node { width:100%; }
+  .raid-flow > .raid-arrow { transform:rotate(90deg); }
+  .raid-level-picker { grid-template-columns:1fr; }
+  .raid-level-buttons { display:flex; flex-wrap:wrap; }
+  .raid-level-buttons button { flex:1; padding:.5rem; min-width:70px; }
+  .raid-preview-result { padding:1.2rem; }
+  .raid-file-strip { grid-template-columns:repeat(3,1fr); }
+  .raid-file-strip strong { grid-column:1/-1; }
+  .raid-bit-rules,.raid-bit-options { grid-template-columns:1fr; }
+  .raid-bit-row { gap:.4rem; } .raid-bit-card { padding:.6rem; font-size:.8rem; } .raid-bit-card strong { font-size:2.5rem; }
+  .raid-block-ribbon { grid-template-columns:repeat(3,1fr); }
+  .raid-rebuild-route { grid-template-columns:repeat(3,1fr); }
+  .raid-rebuild-route li:nth-child(3)::after { display:none; }
+  .raid-level-facts { flex-direction:column; gap:.4rem; }
+  .raid-technique-map > div { grid-template-columns:repeat(3,1fr); }
+  .raid-technique-map > div > strong { grid-column:1/-1; }
+  .raid-technique { flex-direction:column; text-align:center; padding:.4rem; font-size:.75rem; }
+  .raid-capacity-heading { flex-wrap:wrap; } .raid-capacity-heading > strong { font-size:1em; }
+  .raid-capacity-heading > span { font-size:.8em; }
+  .raid-nas-story { grid-template-columns:1fr; } .raid-nas-story > .raid-arrow { transform:rotate(90deg); }
+  .raid-read-lane { grid-template-columns:1fr 1fr; padding:.6rem; gap:.5rem; }
+  .raid-read-result { grid-column:1/-1; }
+  .raid-read-assembly { grid-template-columns:repeat(6,1fr); }
   .raid-reference { min-width:950px; }
 }
-@media(forced-colors:active) { .raid-drive,.raid-block,.raid-card,.raid-choice { border-color:CanvasText; } }
+@media(prefers-reduced-motion:reduce) {
+  .raid-read-piece.is-moving { animation:none; left:calc(100% - 2.8rem); }
+  .raid-arrival.has-arrived,.raid-read-lane.is-complete .raid-read-done { transition:none; }
+}
+@media(forced-colors:active) {
+  .raid-drive,.raid-block,.raid-card,.raid-choice,.raid-bit-card,.raid-bit-rule,.raid-fit,.raid-node,.raid-technique { border-color:CanvasText; }
+  .raid-level-buttons [aria-pressed="true"],.raid-row-controls [aria-pressed="true"] { border:3px solid Highlight; }
+  .raid-block.is-dimmed { opacity:.45; }
+}

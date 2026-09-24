@@ -24,8 +24,8 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-raid-and-nas-storage-systems-quiz-v2",
-    version: 2,
+    storageKey: "lesson-raid-and-nas-storage-systems-quiz-v3",
+    version: 3,
     totalQuestions: 14,
     passScore: 10,
   },

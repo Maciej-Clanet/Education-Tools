@@ -31,6 +31,11 @@ the browser with `localStorage` where useful.
 - Make it easy to return from a topic page back to the full unit or course
   search.
 - Keep the visual design simple, friendly, and calm.
+- Use real equipment photographs where they help recognition, and diagrams for
+  processes and relationships. Verify third-party reuse permissions and keep
+  source, creator, licence and modification credits with locally stored assets.
+- Keep first-teaching slides free of teacher prompts by default; opener and
+  section-divider slides provide pacing. Add live-demo cues only when requested.
 - Leave room in the layout for future advertising or promoted resources.
 - Reuse patterns and scripts across multiple lessons and mini-tools where
   possible.

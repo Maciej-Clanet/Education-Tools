@@ -72,6 +72,8 @@ Before making major UI, content, or structure changes, read:
   They start Teacher Slides and need no per-lesson runtime changes.
 - First-teaching slides should favour one main idea, visual transformations and
   progressive disclosure; retain detailed revision supplements for students.
+- Keep slides free of teacher prompts by default. Use opener and divider slides
+  for pacing; only add live-demo cues when explicitly requested.
 - Teacher-only section dividers use inert `template[data-teacher-divider]`
   markup before a teaching section; see `docs/teacher_section_dividers.md`.
 - Small optional live-demo cues use `data-teacher-note` and appear only in
@@ -90,6 +92,9 @@ Before making major UI, content, or structure changes, read:
 - Keep the hero focused on learning and search. Do not place prominent ad
   blocks above the catalogue on the home page.
 - Reuse shared patterns rather than building isolated one-off interfaces.
+- Use real photographs when recognising equipment is the learning point, and
+  diagrams when explaining a process or relationship. For third-party images,
+  verify reuse permission and record creator, source, licence and any edits.
 
 ## Structure Direction
 

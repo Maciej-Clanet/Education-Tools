@@ -1,7 +1,83 @@
 import { readStorage, writeStorage } from "../core/storage.js";
-import { arraySurvives, raidLevels, raidScenarios, evaluateRaidChoice, usableCapacity, raidReferenceTable } from "../data/raid-storage-data.js";
+import { arraySurvives, raidLevels, raidPreviews, raidScenarios, evaluateRaidChoice, usableCapacity, raidReferenceTable, xorBits } from "../data/raid-storage-data.js";
+
+function initMechanismVisuals() {
+  document.querySelectorAll('[data-raid-picker]').forEach(root => {
+    root.addEventListener('click', event => {
+      const button = event.target.closest('[data-preview-level]');
+      if (!button) return;
+      const id = button.dataset.previewLevel, info = raidPreviews[id];
+      root.querySelectorAll('[data-preview-level]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      root.querySelector('.raid-preview-number').textContent = id;
+      root.querySelector('[data-preview-title]').textContent = info.title;
+      root.querySelector('[data-preview-benefit]').textContent = info.benefit;
+      root.querySelector('[data-preview-cost]').textContent = `The cost: ${info.cost}`;
+    });
+  });
+  document.querySelectorAll('[data-parity-rows]').forEach(root => {
+    root.addEventListener('click', event => {
+      const button = event.target.closest('[data-parity-row]');
+      if (!button) return;
+      const row = button.dataset.parityRow;
+      root.querySelectorAll('[data-parity-row]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      root.querySelectorAll('[data-block-family]').forEach(item => item.classList.toggle('is-dimmed', row !== 'all' && item.dataset.blockFamily !== row));
+      root.querySelector('[data-parity-caption]').textContent = row === 'all'
+        ? 'P-A protects A1 and A2; P-B protects B1 and B2; P-C protects C1 and C2.'
+        : `Row ${row}: ${row}1 and ${row}2 are data. P-${row} is their parity. It is on Drive ${{A:3,B:2,C:1}[row]}.`;
+    });
+  });
+  document.querySelectorAll('[data-xor-picker]').forEach(root => {
+    root.addEventListener('change', () => {
+      const a=root.querySelector('[data-xor-a]').value, b=root.querySelector('[data-xor-b]').value;
+      root.querySelector('output').textContent = `${a===b ? 'Same' : 'Different'} → parity ${xorBits(a,b)}`;
+    });
+  });
+  document.querySelectorAll('[data-capacity-info]').forEach(root => {
+    const button=root.querySelector('button'), tip=root.querySelector('[hidden]');
+    let pinned=false;
+    const show = open => { tip.hidden=!open; button.setAttribute('aria-expanded', String(open)); };
+    root.addEventListener('pointerenter', event => { if(event.pointerType==='mouse') show(true); });
+    root.addEventListener('pointerleave', () => { if(!pinned && !root.contains(document.activeElement)) show(false); });
+    button.addEventListener('focus', () => show(true));
+    button.addEventListener('click', () => { pinned=!pinned; show(pinned); });
+    root.addEventListener('focusout', event => { if(!root.contains(event.relatedTarget)) { pinned=false; show(false); } });
+    root.addEventListener('keydown', event => { if(event.key==='Escape') { event.stopPropagation(); pinned=false; show(false); } });
+  });
+  document.querySelectorAll('[data-raid-read]').forEach(root => {
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const button=root.querySelector('[data-read-toggle]');
+    const lanes=[...root.querySelectorAll('.raid-read-lane')];
+    let beat=reduced.matches?7:0, paused=reduced.matches, visible=false, timer=null;
+    function draw() {
+      lanes.forEach(lane => {
+        const parallel=lane.classList.contains('is-parallel');
+        lane.querySelectorAll('.raid-read-piece').forEach((piece,i) => {
+          piece.classList.toggle('is-moving', beat === (parallel?Math.floor(i/3):i)+1);
+        });
+        lane.querySelectorAll('.raid-arrival').forEach((piece,i) => piece.classList.toggle('has-arrived',beat >= (parallel?Math.floor(i/3):i)+1));
+        const complete=beat >= (parallel?2:6);
+        lane.classList.toggle('is-complete',complete);
+        lane.querySelector('.raid-read-done').textContent = complete ? 'File ready' : `${Math.min(6,beat*(parallel?3:1))} of 6 pieces`;
+      });
+      root.classList.toggle('is-paused',paused);
+      button.textContent=paused?'Play animation':'Pause animation';
+      button.setAttribute('aria-pressed',String(paused));
+    }
+    function schedule() {
+      clearInterval(timer); timer=null;
+      if(!paused && visible && !document.hidden) timer=setInterval(() => { beat=(beat+1)%9; draw(); },1100);
+    }
+    button.hidden=false;
+    button.addEventListener('click', () => { paused=!paused; if(!paused && beat>=7) beat=0; draw(); schedule(); });
+    reduced.addEventListener('change', () => { paused=reduced.matches; beat=paused?7:0; draw(); schedule(); });
+    document.addEventListener('visibilitychange',schedule);
+    new IntersectionObserver(entries => { visible=entries[0].isIntersecting; schedule(); },{threshold:0.15}).observe(root);
+    draw();
+  });
+}
 
 export function initRaidActivities() {
+  initMechanismVisuals();
   document.querySelectorAll("[data-raid-stages]").forEach(root => {
     const panels = [...root.querySelectorAll("[data-stage-panel]")];
     const previous = root.querySelector("[data-stage-prev]");
@@ -31,14 +107,14 @@ export function initRaidActivities() {
         disk.querySelector("small").textContent = failed.includes(i) ? "✕ Failed · data unavailable here" : "● Healthy";
       });
       failureDemo.querySelector("[data-raid10-status]").textContent = arraySurvives("10", 4, failed)
-        ? failed.length ? "Still accessible: at least one drive survives in each mirror pair. Replace failed drives and rebuild to restore protection." : "All drives healthy. Both mirror pairs contain two copies."
-        : "Array lost: both drives in at least one mirror pair have failed. The other pair cannot recreate those missing blocks.";
+        ? failed.length ? "Still accessible: a drive survives in each pair. Replace failed drives and rebuild." : "All drives healthy. Both mirror pairs contain two copies."
+        : "Array lost: both drives in one pair have failed. The other pair cannot recreate its blocks.";
     });
   }
 
   const root = document.querySelector("[data-raid-scenarios]");
   if (!root) return;
-  const key = "lesson-raid-nas-decisions-v1";
+  const key = "lesson-raid-nas-decisions-v2";
   const saved = readStorage(key, {});
   const drafts = saved && typeof saved.drafts === "object" && saved.drafts !== null ? saved.drafts : {};
   let current = raidScenarios.some(item => item.id === saved?.current) ? saved.current : raidScenarios[0].id;
@@ -56,7 +132,6 @@ export function initRaidActivities() {
   lookup.textContent = "Open RAID reference";
   lookup.addEventListener("click", () => reference.showModal());
   root.prepend(lookup);
-  root.parentElement.querySelector(".raid-lookup").hidden = true;
   const reason = root.querySelector("textarea");
   const choices = [...root.querySelectorAll('input[name="raid"]')];
   const feedback = root.querySelector("[data-scenario-feedback]");

@@ -101,6 +101,12 @@ saved progress should be shown as needing a fresh attempt.
     a persisted office/design system builder with budget/compatibility checks.
     Quiz version 2: 16 questions, pass score 12.
 - [x] RAID and NAS storage systems
+  - Second teaching pass: 42 student sections / 49 Teacher Slides, with a shared
+    opener and six dividers. Visual problem/solution sequence, RAID preview,
+    parallel-read animation, parity/rebuild stages, separate RAID use cases and
+    credited NAS photograph. Formulas stay in student revision details. Six fresh
+    decision scenarios; quiz version 3: 14 questions, pass 10; four written tasks.
+    See `docs/raid_nas_lesson.md` and `docs/raid_nas_improvement_plan.md`.
 
 ### A2 Computer software in a computer system
 - [x] Operating system types

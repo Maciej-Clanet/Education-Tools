@@ -36,14 +36,16 @@ test('single-answer scenarios reject conflicting choices; open scenario accepts 
     for(const level of ['0','1','5','6','10']) assert.equal(evaluateRaidChoice(scenario.id,[level]).valid,scenario.valid.includes(level));
     assert.equal(evaluateRaidChoice(scenario.id,[]).valid,false);
   }
-  assert.equal(evaluateRaidChoice('business',['5','6','10']).valid,true);
-  assert.equal(evaluateRaidChoice('business',['5','0']).valid,false);
-  assert.equal(evaluateRaidChoice('photo',['5','6']).valid,false);
+  assert.equal(evaluateRaidChoice('club',['5','6','10']).valid,true);
+  assert.equal(evaluateRaidChoice('club',['5','0']).valid,false);
+  assert.equal(evaluateRaidChoice('maps',['5','6']).valid,false);
 });
 test('lesson retains shell, complete reference, local assets and revised assessments', () => {
   const path=resolve('pages/topics/raid-and-nas-storage-systems.html');
   const html=readFileSync(path,'utf8');
-  assert.equal((html.match(/data-lesson-section/g)||[]).length,32);
+  assert.equal((html.match(/data-lesson-section/g)||[]).length,42);
+  assert.equal((html.match(/data-teacher-opener/g)||[]).length,1);
+  assert.equal((html.match(/data-teacher-divider/g)||[]).length,6);
   assert.equal((html.match(/data-question="q/g)||[]).length,14);
   assert.equal((html.match(/data-exam-response=/g)||[]).length,4);
   assert.ok(html.includes(raidReferenceTable()));
@@ -53,5 +55,11 @@ test('lesson retains shell, complete reference, local assets and revised assessm
   assert.doesNotMatch(html,/Hamming|RAID 2/);
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
   assert.equal(new Set(ids).size,ids.length);
-  for(const [,asset] of html.matchAll(/(?:src|href)="([^"?#]+\.(?:svg|js|css))"/g)) assert.ok(existsSync(resolve(dirname(path),asset)),asset);
+  for(const [,asset] of html.matchAll(/(?:src|href)="((?!https?:)[^"?#]+\.(?:svg|jpg|js|css))"/g)) assert.ok(existsSync(resolve(dirname(path),asset)),asset);
+  assert.doesNotMatch(html,/Teaching prompt|data-teacher-note|raid-equation|class="raid-lookup"/);
+  const mechanisms=html.slice(html.indexOf('<section id="raid-mechanisms"'),html.indexOf('<section id="capacity"'));
+  assert.doesNotMatch(mechanisms,/RAID (?:0|1|5|6|10)/);
+  for(const level of ['0','1','5','6','10']) {
+    assert.match(html,new RegExp(`id="raid-${level}"[\\s\\S]*?</section>\\s*<section id="raid-${level}-use"`));
+  }
 });
