@@ -109,6 +109,12 @@ Before making major UI, content, or structure changes, read:
 - `pages/topics/styling-text-with-css.html` is the first lesson to use the
   reusable Live Code Example component extensively.
 - `pages/topics/linking-and-organising-css-files.html` is the first CSS Basics lesson.
+- `pages/topics/flexbox-basics.html` follows CSS Display. Its incremental teaching
+  plan is in `docs/flexbox_basics.md`; `javascript/core/flex-explorer.js` and
+  `css/flex-explorer.css` provide reusable parent/child layout examples and axes.
+- `pages/topics/flexbox-wrapping-and-children.html` follows Flexbox Basics;
+  `docs/flexbox_wrapping_and_children.md` records the scope and explorer contract.
+  It covers wrap, grow/shrink, flex presets and align-self, deferring flex-basis.
 - `pages/topics/running-javascript-and-using-the-console.html` is the first JavaScript Basics lesson.
 - `pages/topics/variables-and-data-types.html` is the second JavaScript Basics lesson.
 - `pages/topics/working-with-strings.html` is the third JavaScript Basics lesson.

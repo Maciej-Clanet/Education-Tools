@@ -102,6 +102,18 @@ export const webDevelopmentProgressData = {
           href: "../topics/css-display.html?context=web-development",
           quiz: { version: 1, totalQuestions: 10, passScore: 8 },
         },
+        {
+          id: "flexbox-basics",
+          title: "Flexbox Basics",
+          href: "../topics/flexbox-basics.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 10, passScore: 8 },
+        },
+        {
+          id: "flexbox-wrapping-and-children",
+          title: "Flexbox: Wrapping and Children",
+          href: "../topics/flexbox-wrapping-and-children.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 12, passScore: 10 },
+        },
       ],
     },
     {

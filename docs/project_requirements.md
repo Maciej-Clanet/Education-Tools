@@ -215,6 +215,8 @@ the browser with `localStorage` where useful.
   `pages/topics/css-units.html`,
   `pages/topics/css-sizing.html`,
   `pages/topics/css-display.html`,
+  `pages/topics/flexbox-basics.html`,
+  `pages/topics/flexbox-wrapping-and-children.html`,
   `pages/topics/running-javascript-and-using-the-console.html`,
   `pages/topics/variables-and-data-types.html`, and
   `pages/topics/working-with-strings.html`, and
@@ -276,6 +278,14 @@ the browser with `localStorage` where useful.
   `javascript/core/shorthand-visualizer.js`, with shared styling in
   `css/shorthand-visualizer.css`. It supports keyboard, pointer, and touch
   mappings for clockwise corners and future side-based CSS shorthands.
+- Flexbox Basics follows CSS Display in the Web Development hub. Its visual,
+  incremental teaching plan lives in `docs/flexbox_basics.md`. The shared
+  `javascript/core/flex-explorer.js` and `css/flex-explorer.css` enhance static
+  diagrams with real browser layout and labelled main/cross axes.
+- Flexbox: Wrapping and Children follows Flexbox Basics, using the same explorer
+  for wrapping, nested parent/child roles, growth, shrinking, shorthand presets
+  and align-self. Its plan is in `docs/flexbox_wrapping_and_children.md`;
+  flex-basis is deferred. The two lessons share `css/flexbox-lesson.css`.
 - The Unit 2 hub now shows per-bucket quiz progress bars and lesson status
   indicators using `javascript/core/unit-progress.js` and
   `javascript/data/unit-progress-data.js`.

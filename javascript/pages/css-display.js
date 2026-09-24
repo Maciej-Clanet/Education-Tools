@@ -10,7 +10,7 @@ const lessonConfig = {
   contexts: { 'web-development': {
     label: 'Web Development', backHref: '../resources/web-development.html#css-basics', backLabel: 'Back to Web Development resources',
     previous: { title: 'CSS Sizing', href: 'css-sizing.html', description: 'Explore sizes, parent references and min/max limits.', status: 'Live' },
-    next: { title: 'More CSS lessons', description: 'Continue exploring CSS as new lessons become available.', status: 'Planned' },
+    next: { title: 'Flexbox Basics', href: 'flexbox-basics.html', description: 'Arrange a parent’s children using direction, alignment and gap.', status: 'Live' },
   } },
   quiz: { storageKey: 'lesson-css-display-quiz', version: 1, totalQuestions: 10, passScore: 8 },
   examPractice: { storageKey: 'lesson-css-display-exam-practice' },

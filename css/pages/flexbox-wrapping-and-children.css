@@ -1,0 +1,13 @@
+.fi-nested .flex-explorer__child:nth-child(2) { padding: 8px; }
+.fi-grandchild { display: block; box-sizing: border-box; width: 40px; height: 36px; border: 1px solid currentColor; font-size: 18px; line-height: 34px; background: var(--panel); color: var(--page-ink); }
+.fi-roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.fi-role { padding: .8rem; border: 2px solid var(--line); border-radius: 12px; background: var(--panel-soft); }
+.fi-role h3 { margin: 0 0 .5rem; }
+.fi-role p { margin: .4rem 0; }
+.fi-growth .flex-explorer__child::after { content: ""; position: absolute; bottom: 2px; height: 10px; left: 64px; border-left: 2px dotted currentColor; pointer-events: none; }
+body.teacher-mode-active .flex-explorer--items .flex-explorer__code { font-size: clamp(.95rem, 1.4vw, 1.15rem); line-height: 1.4; }
+body.teacher-mode-active #live-code > h2 { margin-bottom: .5rem; }
+body.teacher-mode-active #live-code > p { margin-block: .5rem; }
+body.teacher-mode-active #live-code .live-code__workspace { min-height: min(44vh, 24rem); }
+body.teacher-mode-active #practice .exam-response { min-height: 5rem; }
+@media (max-width: 600px) { .fi-roles { grid-template-columns: 1fr; } }

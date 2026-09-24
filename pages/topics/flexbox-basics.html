@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="data:," rel="icon">
+<title>Flexbox Basics Lesson | Education Tools</title>
+<meta name="description" content="Learn Flexbox one step at a time: parent and child layout, row and column, main and cross axes, justify-content, align-items and gap. Includes interactive examples and practice.">
+<meta property="og:title" content="Flexbox Basics Lesson | Education Tools">
+<meta property="og:description" content="Follow the axes, move the children and build a layout with step-by-step interactive Flexbox examples.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Education Tools">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link href="../../css/base.css" rel="stylesheet">
+<link href="../../css/components.css" rel="stylesheet">
+<link href="../../css/theme.css" rel="stylesheet">
+<link href="../../css/pages/lesson.css" rel="stylesheet">
+<link href="../../css/live-code-example.css?v=20260904-9" rel="stylesheet">
+<link href="../../css/flex-explorer.css" rel="stylesheet">
+<link href="../../css/flexbox-lesson.css" rel="stylesheet">
+<link href="../../css/pages/flexbox-basics.css" rel="stylesheet">
+<link href="../../css/accessibility.css" rel="stylesheet">
+<script src="../../javascript/accessibility.js" type="module"></script>
+<script src="../../javascript/pages/flexbox-basics.js" type="module"></script>
+</head>
+<body>
+<div class="page-shell">
+<header class="lesson-hero panel panel-accent">
+<p class="eyebrow">CSS Basics</p>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol class="breadcrumb-list"><li><a href="../../index.html">Home</a></li><li><a data-role="breadcrumb-unit-link" href="../resources/web-development.html#css-basics">Web Development</a></li><li aria-current="page">Flexbox Basics</li></ol></nav>
+<div class="lesson-header-row"><div><h1>Flexbox Basics</h1><p class="lesson-hero-text">One parent. Three children. Learn to arrange them, one change at a time.</p><p class="lesson-hero-support">Follow the arrows, predict what will move, then try it yourself.</p></div></div>
+<div class="lesson-meta-grid"><article class="lesson-meta-card"><strong>Resource area</strong><span data-role="context-label">Web Development</span></article><article class="lesson-meta-card"><strong>Main idea</strong><span>The parent arranges its children</span></article><article class="lesson-meta-card"><strong>Practice</strong><span>Interactive diagrams, live CSS and a quick quiz</span></article></div>
+<div class="lesson-hero-actions"><a class="primary-link" href="../../index.html">Back to home search</a><a class="lesson-secondary-action" data-role="back-to-unit" href="../resources/web-development.html#css-basics">Back to Web Development resources</a><button class="teacher-toggle" data-action="toggle-teacher-mode" aria-pressed="false" type="button">Teacher slides</button></div>
+</header>
+<noscript><p class="panel lesson-sequence">The lesson text, starting diagrams and answer guides are available without JavaScript. Turn JavaScript on to change examples, edit live code, save answers or use Teacher Slides.</p></noscript>
+<div class="lesson-layout">
+<aside class="lesson-sidebar panel"><p class="eyebrow">Jump To</p><nav class="section-nav" aria-label="Lesson sections">
+<a data-section-link href="#parent-and-children">1. Start with the parent and its children</a>
+<a data-section-link href="#switch-on">2. Switch on Flexbox</a>
+<a data-section-link href="#direction">3. Choose a row or a column</a>
+<a data-section-link href="#axes">4. Name the two directions</a>
+<a data-section-link href="#justify-content">5. Move the group along the main axis</a>
+<a data-section-link href="#space-between">6. Put the spare space between children</a>
+<a data-section-link href="#align-items">7. Move each child across the main axis</a>
+<a data-section-link href="#turn-the-axes">8. Turn the direction; keep the alignment rules</a>
+<a data-section-link href="#stretch">9. Why do children sometimes stretch?</a>
+<a data-section-link href="#room-to-move">10. Give alignment some room to show</a>
+<a data-section-link href="#gap">11. Add space between neighbours</a>
+<a data-section-link href="#gap-and-space">12. Is a gap the same as space-between?</a>
+<a data-section-link href="#put-it-together">13. Put the familiar pieces together</a>
+<a data-section-link href="#live-code">14. Write the parent’s CSS yourself</a>
+<a data-section-link href="#mistakes">15. Catch the common mistakes</a>
+<a data-section-link href="#summary">16. A small Flexbox reference</a>
+<a data-section-link href="#quiz">Quick quiz</a>
+<a data-section-link href="#practice">Explain and apply Flexbox</a>
+</nav></aside>
+<main class="lesson-main" data-role="lesson-main">
+<template data-teacher-opener><h2>Flexbox Basics</h2><p>How can one parent arrange its children?</p><ul><li>Choose a row or a column</li><li>Follow the main and cross axes</li><li>Use justify-content and align-items</li><li>Add space with gap</li></ul></template>
+<section class="lesson-section panel" data-lesson-section id="parent-and-children">
+<p class="eyebrow">Flexbox basics</p>
+<h2>1. Start with the parent and its children</h2>
+<p>Flexbox helps a <strong>parent</strong> arrange its direct <strong>children</strong>. First, find that relationship in the HTML.</p><pre class="fb-code"><code>&lt;div class=&quot;parent&quot;&gt;
+  &lt;div class=&quot;child&quot;&gt;1&lt;/div&gt;
+  &lt;div class=&quot;child&quot;&gt;2&lt;/div&gt;
+  &lt;div class=&quot;child&quot;&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<div class="fb-family" role="img" aria-label="One outer parent contains three direct children: 1, 2 and 3."><strong>Parent .parent</strong><div class="fb-family__children"><div class="fb-family__child">Child 1</div><div class="fb-family__child">Child 2</div><div class="fb-family__child">Child 3</div></div></div><p class="fb-key">To arrange these three children, write the layout rules on their parent.</p><details class="fb-reveal" data-no-slide-advance><summary>What if child 2 contains a span?</summary><pre class="fb-code"><code>&lt;div class=&quot;child&quot;&gt;2 &lt;span&gt;New&lt;/span&gt;&lt;/div&gt;</code></pre><p>The span is a child of child 2. It is a grandchild of <code>.parent</code>, so it does not become a fourth item in the outer parent’s flex layout.</p></details>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="switch-on">
+<p class="eyebrow">Flexbox basics</p>
+<h2>2. Switch on Flexbox</h2>
+<p>These children are small block boxes. Predict what will happen when their parent changes from <code>block</code> to <code>flex</code>.</p><div class="flex-explorer" data-flex-explorer="enable" data-direction="row" role="group" aria-label="Enable example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="enable-display"><span>display</span><select id="enable-display" data-flex-control="display" disabled><option value="block" selected>block</option><option value="flex">flex</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+
+<div class="flex-explorer__parent" data-flex-parent style="display:block;flex-direction:row;justify-content:flex-start;align-items:stretch;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: block;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">The three block children stack. Change display on the parent to flex.</p>
+
+</div><p class="fb-key"><code>display: flex</code> goes on the parent. Its children form a row by default.</p><p class="fb-caption">The numbered children are fixed at 48 × 48px so you can follow their positions. Borders and colours help you see the boxes; the code shows the parent’s layout rules.</p>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="direction">
+<p class="eyebrow">Flexbox basics</p>
+<h2>3. Choose a row or a column</h2>
+<p>Change only <code>flex-direction</code>. Follow children 1, 2 and 3.</p><div class="flex-explorer" data-flex-explorer="direction" data-direction="row" role="group" aria-label="Direction example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="direction-direction"><span>flex-direction</span><select id="direction-direction" data-flex-control="direction" disabled><option value="row" selected>row</option><option value="column">column</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Children go this way</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross" hidden>Cross axis</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:stretch;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">Row: follow child 1 → 2 → 3 from left to right.</p>
+
+</div><p class="fb-key"><code>row</code> goes across. <code>column</code> goes down.</p><p class="fb-caption">All examples in this lesson use normal horizontal, left-to-right writing, like this page. The HTML order stays 1, 2, 3.</p>
+</section>
+
+<template data-teacher-divider><h2>Follow the axes</h2></template>
+
+<section class="lesson-section panel" data-lesson-section id="axes">
+<p class="eyebrow">Flexbox basics</p>
+<h2>4. Name the two directions</h2>
+<p>The <strong>main axis</strong> follows the direction of the children. The <strong>cross axis</strong> goes across it, at a right angle.</p><div class="flex-explorer" data-flex-explorer="axes" data-direction="row" role="group" aria-label="Axes example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="axes-direction"><span>flex-direction</span><select id="axes-direction" data-flex-control="direction" disabled><option value="row" selected>row</option><option value="column">column</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Main axis</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross">Cross axis</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:stretch;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">With row, the main axis is horizontal. The cross axis is vertical.</p>
+
+</div><p class="fb-key">Main follows the children. Cross goes across main.</p><details class="fb-reveal" data-no-slide-advance><summary>Predict: in a column, which axis goes left to right?</summary><p>The <strong>cross axis</strong>. The main axis now goes top to bottom.</p></details>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="justify-content">
+<p class="eyebrow">Flexbox basics</p>
+<h2>5. Move the group along the main axis</h2>
+<p><code>justify-content</code> positions the children along the <strong>main axis</strong>. Keep this example as a row and change just that property.</p><div class="flex-explorer" data-flex-explorer="justify" data-direction="row" role="group" aria-label="Justify example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="justify-justify"><span>justify-content</span><select id="justify-justify" data-flex-control="justify" disabled><option value="flex-start" selected>flex-start</option><option value="center">center</option><option value="flex-end">flex-end</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Main axis</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross">Cross axis</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:stretch;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">The row starts at the left of the horizontal main axis.</p>
+
+</div><p class="fb-key">In this row, <code>justify-content</code> moves the group left, centre or right.</p><p class="fb-caption">There is spare width inside the parent. The children’s vertical positions stay the same.</p>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="space-between">
+<p class="eyebrow">Flexbox basics</p>
+<h2>6. Put the spare space between children</h2>
+<p>Another value of <code>justify-content</code> is <code>space-between</code>. Predict where the first and last children will end up.</p><div class="flex-explorer" data-flex-explorer="distribute" data-direction="row" role="group" aria-label="Distribute example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="distribute-justify"><span>justify-content</span><select id="distribute-justify" data-flex-control="justify" disabled><option value="flex-start" selected>flex-start</option><option value="space-between">space-between</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Main axis</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross">Cross axis</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:stretch;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">The children sit together at the start. Spare space is after child 3.</p>
+
+</div><p class="fb-key"><code>space-between</code> shares the spare main-axis space between neighbours.</p>
+</section>
+
+<template data-teacher-divider><h2>Work on the cross axis</h2></template>
+
+<section class="lesson-section panel" data-lesson-section id="align-items">
+<p class="eyebrow">Flexbox basics</p>
+<h2>7. Move each child across the main axis</h2>
+<p><code>align-items</code> positions each child on the <strong>cross axis</strong>. This is still a row. Now watch the children move up and down.</p><div class="flex-explorer" data-flex-explorer="align" data-direction="row" role="group" aria-label="Align example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="align-align"><span>align-items</span><select id="align-align" data-flex-control="align" disabled><option value="flex-start" selected>flex-start</option><option value="center">center</option><option value="flex-end">flex-end</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Main axis · justify-content</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross">Cross axis · align-items</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">Each child sits at the start of the vertical cross axis. Their horizontal positions stay the same.</p>
+
+</div><p class="fb-key">In this row, <code>align-items: center</code> centres each child vertically.</p><p class="fb-caption">The parent is taller than its children. That spare height makes the alignment easy to see.</p>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="turn-the-axes">
+<p class="eyebrow">Flexbox basics</p>
+<h2>8. Turn the direction; keep the alignment rules</h2>
+<p>Keep <code>justify-content: center</code> and <code>align-items: flex-start</code>. Predict the result, then change only <code>row</code> to <code>column</code>.</p><div class="flex-explorer" data-flex-explorer="turn" data-direction="row" role="group" aria-label="Turn example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="turn-direction"><span>flex-direction</span><select id="turn-direction" data-flex-control="direction" disabled><option value="row" selected>row</option><option value="column">column</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Main axis · justify-content</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross">Cross axis · align-items</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:center;align-items:flex-start;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">Row: the group is centred left to right; each child stays at the top.</p>
+
+</div><p class="fb-key">The properties follow their axes, even when the axes turn.</p><details class="fb-reveal" data-no-slide-advance><summary>Why is the column on the left, halfway down?</summary><p><code>justify-content: center</code> centres the group on the now-vertical main axis. <code>align-items: flex-start</code> places each child at the left of the now-horizontal cross axis.</p></details><p class="fb-caption">Check your language: say “main” and “cross” before saying “horizontal” or “vertical”.</p>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="stretch">
+<p class="eyebrow">Flexbox basics</p>
+<h2>9. Why do children sometimes stretch?</h2>
+<p>The default <code>align-items</code> value is <code>stretch</code>. These children now have <strong>automatic width and height</strong>. Compare <code>stretch</code> with <code>center</code>.</p><div class="flex-explorer flex-explorer--auto" data-flex-explorer="stretch" data-direction="row" role="group" aria-label="Stretch example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="stretch-align"><span>align-items</span><select id="stretch-align" data-flex-control="align" disabled><option value="stretch" selected>stretch</option><option value="center">center</option><option value="flex-start">flex-start</option><option value="flex-end">flex-end</option></select></label><label for="stretch-direction"><span>flex-direction</span><select id="stretch-direction" data-flex-control="direction" disabled><option value="row" selected>row</option><option value="column">column</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Main axis · justify-content</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross">Cross axis · align-items</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:stretch;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">With automatic height, each child stretches across the vertical cross axis.</p>
+
+</div><p class="fb-key">Stretch can fill the cross axis when the child’s cross size is automatic.</p><p class="fb-caption">Earlier examples kept both dimensions at 48px. A fixed height prevents this row’s vertical stretching. A fixed width prevents a column’s horizontal stretching.</p>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="room-to-move">
+<p class="eyebrow">Flexbox basics</p>
+<h2>10. Give alignment some room to show</h2>
+<p><code>align-items: center</code> is already set. Change only the parent’s height.</p><div class="flex-explorer" data-flex-explorer="room" data-direction="row" role="group" aria-label="Room example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="room-height"><span>height</span><select id="room-height" data-flex-control="height" disabled><option value="52" selected>52px — just enough room</option><option value="196">196px — extra room</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Main axis · justify-content</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross">Cross axis · align-items</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:center;gap:0px;height:52px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 52px;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">Centre is already working. There is no spare vertical space above or below the children.</p>
+
+</div><p class="fb-key">Without spare space on an axis, moving to the centre can look unchanged.</p><p class="fb-caption">In a row, extra height makes cross-axis alignment visible. In a column, extra height makes main-axis positioning visible.</p>
+</section>
+
+<template data-teacher-divider><h2>Space between children</h2></template>
+
+<section class="lesson-section panel" data-lesson-section id="gap">
+<p class="eyebrow">Flexbox basics</p>
+<h2>11. Add space between neighbours</h2>
+<p>Use <code>gap</code> on the parent. Move the slider and watch the spaces between children 1, 2 and 3.</p><div class="flex-explorer" data-flex-explorer="gap" data-direction="row" role="group" aria-label="Gap example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="gap-gap"><span>gap: <output data-flex-gap-output for="gap-gap">0px</output></span><input id="gap-gap" data-flex-control="gap" type="range" min="0" max="24" step="4" value="0" disabled></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:stretch;gap:0px;height:100px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  gap: 0px;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">There is no gap between neighbouring children.</p>
+
+</div><p class="fb-key"><code>gap</code> separates children. It does not add padding around them.</p><p class="fb-caption">Keep an eye on child 1: it stays against the parent’s inner left edge.</p>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="gap-and-space">
+<p class="eyebrow">Flexbox basics</p>
+<h2>12. Is a gap the same as space-between?</h2>
+<p>The gap stays at <strong>16px</strong>. First change <code>justify-content</code>. Then change the parent’s width.</p><div class="flex-explorer" data-flex-explorer="spacing" data-direction="row" role="group" aria-label="Spacing example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="spacing-justify"><span>justify-content</span><select id="spacing-justify" data-flex-control="justify" disabled><option value="flex-start" selected>flex-start</option><option value="space-between">space-between</option></select></label><label for="spacing-width"><span>Parent width</span><select id="spacing-width" data-flex-control="width" disabled><option value="full" selected>Full available width</option><option value="compact">240px (or the available width)</option></select></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:stretch;gap:16px;height:100px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">The children are exactly 16px apart. A wider parent leaves more spare space after child 3.</p>
+<p class="flex-explorer__spacing" data-flex-spacing>Gap setting: 16px. Actual space between children: 16px.</p>
+</div><p class="fb-key"><code>gap</code> sets the gap. <code>space-between</code> can add more space between the children.</p><p class="fb-caption">On a narrow screen, both width choices may fit the same available space. Try this example in Teacher Slides or on a wider screen to compare widths.</p>
+</section>
+
+<template data-teacher-divider><h2>Use what you know</h2></template>
+
+<section class="lesson-section panel" data-lesson-section id="put-it-together">
+<p class="eyebrow">Flexbox basics</p>
+<h2>13. Put the familiar pieces together</h2>
+<p>Try each recipe in order. Reset between recipes, and name the axis before choosing its property.</p><div class="flex-explorer" data-flex-explorer="combine" data-direction="row" role="group" aria-label="Combine example" data-no-slide-advance>
+<div class="flex-explorer__controls"><label for="combine-direction"><span>flex-direction</span><select id="combine-direction" data-flex-control="direction" disabled><option value="row" selected>row</option><option value="column">column</option></select></label><label for="combine-justify"><span>justify-content</span><select id="combine-justify" data-flex-control="justify" disabled><option value="flex-start" selected>flex-start</option><option value="center">center</option><option value="flex-end">flex-end</option><option value="space-between">space-between</option></select></label><label for="combine-align"><span>align-items</span><select id="combine-align" data-flex-control="align" disabled><option value="flex-start" selected>flex-start</option><option value="center">center</option><option value="flex-end">flex-end</option></select></label><label for="combine-gap"><span>gap: <output data-flex-gap-output for="combine-gap">0px</output></span><input id="combine-gap" data-flex-control="gap" type="range" min="0" max="24" step="4" value="0" disabled></label><button class="lesson-secondary-action" data-flex-reset type="button" disabled>Reset example</button></div>
+<div class="flex-explorer__layout">
+<div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · children 1, 2, 3</p>
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-flex-horizontal data-axis="main">Main axis · justify-content</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-flex-vertical data-axis="cross">Cross axis · align-items</div>
+<div class="flex-explorer__parent" data-flex-parent style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;gap:0px;height:196px"><div class="flex-explorer__child" aria-label="Child 1">1</div>
+<div class="flex-explorer__child" aria-label="Child 2">2</div>
+<div class="flex-explorer__child" aria-label="Child 3">3</div></div>
+</div></div>
+<pre class="flex-explorer__code"><code data-flex-code>.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0px;
+}</code></pre>
+</div>
+<p class="flex-explorer__feedback" data-flex-feedback aria-live="polite" aria-atomic="true">Direction: row. Main is horizontal; cross is vertical. Gap: 0px.</p>
+
+</div><details class="fb-reveal" data-no-slide-advance><summary>Recipe 1: a row centred both ways, with 16px gaps</summary><p>Keep <code>row</code>. Set <code>justify-content: center</code>, then <code>align-items: center</code>, then <code>gap: 16px</code>.</p></details><details class="fb-reveal" data-no-slide-advance><summary>Recipe 2: a column centred left to right, starting at the top, with 8px gaps</summary><p>Set <code>column</code>, keep <code>justify-content: flex-start</code>, set <code>align-items: center</code>, then <code>gap: 8px</code>. Left to right is the column’s cross axis.</p></details><details class="fb-reveal" data-no-slide-advance><summary>Recipe 3: a row spread out, centred vertically</summary><p>Use <code>row</code>, <code>justify-content: space-between</code> and <code>align-items: center</code>.</p></details>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="live-code">
+<p class="eyebrow">Flexbox basics</p>
+<h2>14. Write the parent’s CSS yourself</h2>
+<p>Arrange three toolbar buttons. Select <strong>Try it</strong>, then follow the steps one declaration at a time.</p><div data-live-code-example-id="flex-toolbar"></div><details class="fb-reveal" data-no-slide-advance><summary>Show the finished column’s CSS</summary><pre class="fb-code"><code>.toolbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 240px;
+}</code></pre><p>The group is centred top to bottom by <code>justify-content</code>. Each child is centred left to right by <code>align-items</code>.</p></details><p class="fb-caption">The buttons’ colours and borders are already provided. The visible CSS controls their parent’s layout.</p>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="mistakes">
+<p class="eyebrow">Flexbox basics</p>
+<h2>15. Catch the common mistakes</h2>
+<div class="fb-traps">
+<article><h3>“I put display: flex on every child.”</h3><p>Apply it to their shared parent to arrange those children. On a child, it would arrange that child’s own contents.</p></article>
+<article><h3>“Justify means horizontal; align means vertical.”</h3><p>First check direction. Justify follows <strong>main</strong>; align follows <strong>cross</strong>. In a column, justify works vertically and align works horizontally.</p></article>
+<article><h3>“align-items: center did nothing.”</h3><p>Check that the parent uses Flexbox, check the cross axis, then look for spare space on that axis.</p></article>
+</div><div data-slide-break></div>
+<h3>Two spacing checks</h3><div class="fb-traps">
+<article><h3>“gap should add space at the outside edges.”</h3><p>Gap is between neighbours. Padding creates space between a parent’s edge and its contents.</p></article>
+<article><h3>“space-between always means a 16px gap.”</h3><p>It distributes available space. Use <code>gap: 16px</code> with <code>justify-content: flex-start</code> in these examples for a consistent 16px separation.</p></article>
+</div>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="summary">
+<p class="eyebrow">Flexbox basics</p>
+<h2>16. A small Flexbox reference</h2>
+<p class="fb-key">Parent → direction → main axis → cross axis → gap.</p>
+<table class="fb-reference"><caption>All of these declarations go on the parent.</caption><thead><tr><th scope="col">Property</th><th scope="col">Job</th></tr></thead><tbody>
+<tr><th scope="row"><code>display: flex</code></th><td>Start Flexbox for the direct children.</td></tr>
+<tr><th scope="row"><code>flex-direction</code></th><td>Choose row or column; this defines the main axis.</td></tr>
+<tr><th scope="row"><code>justify-content</code></th><td>Position or distribute children along main.</td></tr>
+<tr><th scope="row"><code>align-items</code></th><td>Align each child across main, on the cross axis.</td></tr>
+<tr><th scope="row"><code>gap</code></th><td>Add space between neighbouring children.</td></tr>
+</tbody></table>
+<table class="fb-reference"><caption>Axis directions in these left-to-right examples</caption><thead><tr><th scope="col">Direction</th><th scope="col">Main / justify</th><th scope="col">Cross / align</th></tr></thead><tbody><tr><th scope="row">row</th><td>Across →</td><td>Down ↓</td></tr><tr><th scope="row">column</th><td>Down ↓</td><td>Across →</td></tr></tbody></table>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="quiz">
+<p class="eyebrow">Flexbox basics</p>
+<h2>Quick quiz</h2>
+<p>Choose one answer each. Aim for <strong>8 out of 10</strong>. Your answers save in this browser.</p><form class="quiz-form" id="lesson-quiz">
+<fieldset class="quiz-question" data-question="q1" data-answer="b" data-feedback="Apply display: flex to the parent whose direct children you want to arrange." data-success="Correct. Apply display: flex to the parent whose direct children you want to arrange."><legend>1. Three div children should form a flex row. Where does display: flex go?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q1" value="a"><span>On each child</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q1" value="b"><span>On their shared parent</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q1" value="c"><span>On the page title</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q2" data-answer="a" data-feedback="Column makes the main axis vertical in these examples." data-success="Correct. Column makes the main axis vertical in these examples."><legend>2. Which flex-direction places these children top to bottom?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q2" value="a"><span>column</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q2" value="b"><span>row</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q2" value="c"><span>center</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q3" data-answer="c" data-feedback="Main goes down the column; cross goes across it, left to right." data-success="Correct. Main goes down the column; cross goes across it, left to right."><legend>3. A parent uses flex-direction: column. Which way is its cross axis?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q3" value="a"><span>Top to bottom</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q3" value="b"><span>It has no cross axis</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q3" value="c"><span>Left to right</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q4" data-answer="b" data-feedback="In a row, justify-content works along the horizontal main axis." data-success="Correct. In a row, justify-content works along the horizontal main axis."><legend>4. A row has spare width. Which declaration centres its group of children left to right?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q4" value="a"><span>align-items: center</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q4" value="b"><span>justify-content: center</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q4" value="c"><span>gap: center</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q5" data-answer="a" data-feedback="In a row, the cross axis is vertical, so align-items does this job." data-success="Correct. In a row, the cross axis is vertical, so align-items does this job."><legend>5. A row is taller than its children. Which declaration centres each child top to bottom?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q5" value="a"><span>align-items: center</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q5" value="b"><span>justify-content: center</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q5" value="c"><span>flex-direction: center</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q6" data-answer="c" data-feedback="A column has a horizontal cross axis. align-items centres each child across it." data-success="Correct. A column has a horizontal cross axis. align-items centres each child across it."><legend>6. A column has spare width. Which declaration centres each child left to right?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q6" value="a"><span>justify-content: center</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q6" value="b"><span>flex-direction: row</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q6" value="c"><span>align-items: center</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q7" data-answer="b" data-feedback="If the parent is just tall enough for its children, there is no spare cross-axis space to reveal the centring." data-success="Correct. If the parent is just tall enough for its children, there is no spare cross-axis space to reveal the centring."><legend>7. Why can align-items: center look unchanged in a row?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q7" value="a"><span>Flexbox cannot centre children</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q7" value="b"><span>There is no spare height around the children</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q7" value="c"><span>Only the first child can be centred</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q8" data-answer="a" data-feedback="Gap adds space between neighbours, not padding around the parent." data-success="Correct. Gap adds space between neighbours, not padding around the parent."><legend>8. What does gap: 16px add in a simple flex row?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q8" value="a"><span>16px between neighbouring children</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q8" value="b"><span>16px of padding around the parent</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q8" value="c"><span>16px to each child’s width</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q9" data-answer="c" data-feedback="space-between can distribute additional main-axis space beyond the specified gap." data-success="Correct. space-between can distribute additional main-axis space beyond the specified gap."><legend>9. A row has spare space, gap: 16px and justify-content: space-between. How far apart can children be?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q9" value="a"><span>Always exactly 16px</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q9" value="b"><span>Always less than 16px</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q9" value="c"><span>More than 16px, because spare space is also distributed</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q10" data-answer="b" data-feedback="Stretch works on the cross axis when the child’s cross size is automatic, subject to size limits." data-success="Correct. Stretch works on the cross axis when the child’s cross size is automatic, subject to size limits."><legend>10. A row uses align-items: stretch. Which child can stretch vertically?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q10" value="a"><span>A child with a fixed height of 48px</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q10" value="b"><span>A child with automatic height, if its size limits allow</span></label></li>
+<li><label class="quiz-answer"><input type="radio" name="q10" value="c"><span>Only a child with gap set on it</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" data-action="reset-quiz" type="button">Reset quiz</button></div><p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device.</p></form>
+</section>
+
+<section class="lesson-section panel" data-lesson-section id="practice">
+<p class="eyebrow">Flexbox basics</p>
+<h2>Explain and apply Flexbox</h2>
+<p class="exam-response-note fb-revision">Write an answer before opening the guide. Drafts save in this browser. Use the mark points to check your reasoning.</p>
+<article class="exam-card"><h3>1. Explain the two axes</h3><p>A parent has <code>display: flex; flex-direction: column;</code>. Explain the direction of each axis and the job of <code>align-items</code>. <strong>(3 marks)</strong></p><div class="exam-response-wrap"><label class="exam-response-label" for="response-1">Your answer</label><textarea class="exam-response" id="response-1" data-exam-response="question-1" placeholder="Write your CSS or explain the axes and spacing."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><p>One mark each: the main axis goes top to bottom; the cross axis goes left to right; align-items positions each child on the horizontal cross axis.</p></div></details></article>
+<div data-slide-break></div>
+<article class="exam-card"><h3>2. Write a centred row</h3><p>Write a rule for <code>.toolbar</code>. Its children should form a row, the group should be centred horizontally, each child should be centred vertically, and neighbours should have a 16px gap. Include a parent height of 200px. <strong>(6 marks)</strong></p><div class="exam-response-wrap"><label class="exam-response-label" for="response-2">Your answer</label><textarea class="exam-response" id="response-2" data-exam-response="question-2" placeholder="Write your CSS or explain the axes and spacing."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><pre class="fb-code"><code>.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 200px;
+}</code></pre><p>One mark for each declaration. Row is the default, but writing it here makes the chosen direction clear.</p></div></details></article>
+<div data-slide-break></div>
+<article class="exam-card"><h3>3. Fix a column’s alignment</h3><p>A column should keep its children at the top and centre each one left to right. A learner wrote:</p><pre class="fb-code"><code>.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}</code></pre><p>Correct the two alignment declarations and explain which axis each uses. Assume the parent has spare space in both directions. <strong>(4 marks)</strong></p><div class="exam-response-wrap"><label class="exam-response-label" for="response-3">Your answer</label><textarea class="exam-response" id="response-3" data-exam-response="question-3" placeholder="Write your CSS or explain the axes and spacing."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><pre class="fb-code"><code>justify-content: flex-start;
+align-items: center;</code></pre><p>Two marks for the corrections. One for explaining that justify uses the vertical main axis, keeping the group at the top. One for explaining that align uses the horizontal cross axis, centring each child left to right.</p></div></details></article>
+<div data-slide-break></div>
+<article class="exam-card"><h3>4. Explain a changing gap</h3><p>A row uses <code>gap: 16px; justify-content: space-between;</code>. The parent gets wider while the children keep their sizes. Explain why the visible spaces increase. How could you keep the children exactly 16px apart and leave spare room after them? <strong>(3 marks)</strong></p><div class="exam-response-wrap"><label class="exam-response-label" for="response-4">Your answer</label><textarea class="exam-response" id="response-4" data-exam-response="question-4" placeholder="Write your CSS or explain the axes and spacing."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><p>One mark each: the wider parent has more spare main-axis space; space-between shares that extra space between children in addition to the gap; keep gap: 16px and use justify-content: flex-start.</p></div></details></article>
+</section>
+</main>
+<aside class="lesson-rail">
+<section class="lesson-rail-card panel"><h2>Key terms</h2><dl class="glossary-list">
+<div class="glossary-item"><dt>Parent</dt><dd>The element directly containing the children being arranged.</dd></div>
+<div class="glossary-item"><dt>Child</dt><dd>An element directly inside its parent.</dd></div>
+<div class="glossary-item"><dt>Flex container</dt><dd>The parent with display: flex.</dd></div>
+<div class="glossary-item"><dt>Flex item</dt><dd>A direct child participating in the parent’s flex layout.</dd></div>
+<div class="glossary-item"><dt>Main axis</dt><dd>The axis defined by flex-direction.</dd></div>
+<div class="glossary-item"><dt>Cross axis</dt><dd>The axis at a right angle to the main axis.</dd></div>
+<div class="glossary-item"><dt>Spare space</dt><dd>Room left inside the parent after the children and gaps have taken their space.</dd></div>
+<div class="glossary-item"><dt>Gap</dt><dd>Space added between neighbouring children.</dd></div>
+<div class="glossary-item"><dt>Stretch</dt><dd>Cross-axis alignment that can expand a child with an automatic cross size.</dd></div>
+</dl></section>
+<section class="lesson-rail-card panel"><h2>Before this lesson</h2><p>Review parent and child relationships or how display changes layout.</p><p><a href="parent-child-relationships-in-html.html?context=web-development">Parent and child relationships</a></p><p><a href="css-display.html?context=web-development">CSS Display</a></p></section>
+</aside>
+</div>
+<section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading"><p class="eyebrow">Keep Going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div></section>
+</div>
+<div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden><button class="slide-button" data-action="prev-slide" type="button">Previous</button><p class="slide-status" data-role="slide-status">Teacher slides</p><button class="slide-button" data-action="next-slide" type="button">Next</button><button class="slide-button slide-button--exit" data-action="exit-teacher-mode" type="button">Exit slides</button></div>
+</body>
+</html>

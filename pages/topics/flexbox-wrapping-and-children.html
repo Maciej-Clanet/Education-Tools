@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="data:," rel="icon"/>
+<title>Flexbox: Wrapping and Children | Education Tools</title>
+<meta content="Learn flex-wrap, flex-grow, flex-shrink, flex and align-self through visual parent/child examples. Explore nested flex parents, measured sizes and guided CSS practice." name="description"/>
+<meta content="Flexbox: Wrapping and Children | Education Tools" property="og:title"/>
+<meta content="Learn flex-wrap, flex-grow, flex-shrink, flex and align-self through visual parent/child examples. Explore nested flex parents, measured sizes and guided CSS practice." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="Education Tools" property="og:site_name"/>
+<meta content="en_GB" property="og:locale"/>
+<meta content="summary" name="twitter:card"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="../../css/components.css" rel="stylesheet"/>
+<link href="../../css/theme.css" rel="stylesheet"/>
+<link href="../../css/pages/lesson.css" rel="stylesheet"/>
+<link href="../../css/live-code-example.css?v=20260904-9" rel="stylesheet"/>
+<link href="../../css/flex-explorer.css" rel="stylesheet"/>
+<link href="../../css/flexbox-lesson.css" rel="stylesheet"/>
+<link href="../../css/pages/flexbox-wrapping-and-children.css" rel="stylesheet"/>
+<link href="../../css/accessibility.css" rel="stylesheet"/>
+<script src="../../javascript/accessibility.js" type="module"></script>
+<script src="../../javascript/pages/flexbox-wrapping-and-children.js" type="module"></script>
+</head>
+<body>
+<div class="page-shell">
+<header class="lesson-hero panel panel-accent">
+<p class="eyebrow">CSS Basics</p>
+<nav aria-label="Breadcrumb" class="breadcrumb"><ol class="breadcrumb-list"><li><a href="../../index.html">Home</a></li><li><a data-role="breadcrumb-unit-link" href="../resources/web-development.html#css-basics">Web Development</a></li><li aria-current="page">Flexbox: Wrapping and Children</li></ol></nav>
+<div class="lesson-header-row"><div><h1>Flexbox: Wrapping and Children</h1><p class="lesson-hero-text">Let children wrap, share space and choose their own alignment. See which rules belong to the parent and which belong to a child.</p><p class="lesson-hero-support">Build on Flexbox Basics. Predict, change one setting, then explain what happened.</p></div></div>
+<div class="lesson-meta-grid"><article class="lesson-meta-card"><strong>Resource area</strong><span data-role="context-label">Web Development</span></article><article class="lesson-meta-card"><strong>Main idea</strong><span>Parents arrange; children can size and align themselves</span></article><article class="lesson-meta-card"><strong>Practice</strong><span>Interactive diagrams, live CSS and a quick quiz</span></article></div>
+<div class="lesson-hero-actions"><a class="primary-link" href="../../index.html">Back to home search</a><a class="lesson-secondary-action" data-role="back-to-unit" href="../resources/web-development.html#css-basics">Back to Web Development resources</a><button aria-pressed="false" class="teacher-toggle" data-action="toggle-teacher-mode" type="button">Teacher slides</button></div>
+</header>
+<noscript><p class="panel lesson-sequence">The lesson text, starting diagrams and answer guides are available without JavaScript. Turn JavaScript on to change examples, edit live code, save answers or use Teacher Slides.</p></noscript>
+<div class="lesson-layout">
+<aside class="lesson-sidebar panel"><p class="eyebrow">Jump To</p><nav aria-label="Lesson sections" class="section-nav"><a data-section-link="" href="#wrap">1. Let the parent use another line</a>
+<a data-section-link="" href="#reflow">2. Keep wrap; change the available room</a>
+<a data-section-link="" href="#child-roles">3. A child can have its own Flexbox rules</a>
+<a data-section-link="" href="#nested">4. One element can do both jobs</a>
+<a data-section-link="" href="#grow">5. Let one child take the extra room</a>
+<a data-section-link="" href="#grow-shares">6. Share the extra room between children</a>
+<a data-section-link="" href="#shrink">7. What if the children ask for too much room?</a>
+<a data-section-link="" href="#protect">8. Keep one child from shrinking</a>
+<a data-section-link="" href="#refuse">9. What if nobody can shrink?</a>
+<a data-section-link="" href="#flex-presets">10. Choose a combined flex setting</a>
+<a data-section-link="" href="#flex-one">11. Use flex: 1 for a simple shared row</a>
+<a data-section-link="" href="#align-self">12. Give one child its own cross-axis alignment</a>
+<a data-section-link="" href="#self-turn">13. The child still follows the cross axis</a>
+<a data-section-link="" href="#wrap-grow">14. Combine wrapping with growing</a>
+<a data-section-link="" href="#live-code">15. Build a flexible set of cards</a>
+<a data-section-link="" href="#mistakes">16. Catch the common mistakes</a>
+<a data-section-link="" href="#summary">17. Choose the element, then the property</a>
+<a data-section-link="" href="#quiz">Quick quiz</a>
+<a data-section-link="" href="#practice">Explain and apply wrapping and child properties</a></nav></aside>
+<main class="lesson-main" data-role="lesson-main"><template data-teacher-opener=""><h2>Flexbox: Wrapping and Children</h2><p>What can a flex child control for itself?</p><ul><li>Allow children to wrap onto more lines</li><li>Separate a child’s sizing from its own layout</li><li>Use grow, shrink and the flex shorthand</li><li>Align one child on the cross axis</li></ul></template>
+<section class="lesson-section panel" data-lesson-section="" id="wrap">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>1. Let the parent use another line</h2>
+<p>A flex row uses <strong>one line by default</strong>. These cards have a <code>min-width</code> of 96px, so they cannot squeeze smaller. Predict what <code>flex-wrap: wrap</code> will change.</p><div aria-label="Wrap example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="wrap" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="wrap-wrap"><span>Parent: flex-wrap</span><select data-flex-control="wrap" disabled="" id="wrap-wrap"><option selected="" value="nowrap">nowrap</option><option value="wrap">wrap</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Wrap layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:auto;width:240px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:96px;min-width:96px">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:96px;min-width:96px">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:96px;min-width:96px">3</div><div class="flex-explorer__child child-four" data-flex-child="4" style="width:96px;min-width:96px">4</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent {
+  display: flex; gap: 8px;
+  flex-wrap: nowrap;
+}
+.child {
+  width: 96px; min-width: 96px;
+}</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">nowrap keeps one line. These children cannot become narrower than 96px, so they extend past the parent’s right edge.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key"><code>flex-wrap</code> belongs on the parent. <code>wrap</code> allows more lines.</p><p class="fb-caption">The parent’s border shows its boundary. With nowrap, use the diagram’s scrollbar if any children are out of view.</p>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="reflow">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>2. Keep wrap; change the available room</h2>
+<p><code>flex-wrap: wrap</code> stays on. Change only the parent’s width.</p><div aria-label="Reflow example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="reflow" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="reflow-parentWidth"><span>Parent width (limited by your screen)</span><select data-flex-control="parentWidth" disabled="" id="reflow-parentWidth"><option selected="" value="420">420px</option><option value="240">240px</option><option value="160">160px</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Reflow layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:wrap;gap:8px;height:auto;width:420px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:96px;min-width:96px">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:96px;min-width:96px">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:96px;min-width:96px">3</div><div class="flex-explorer__child child-four" data-flex-child="4" style="width:96px;min-width:96px">4</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 420px;
+  max-width: 100%;
+}</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">Only the parent’s width changes. Each child keeps its 96px minimum; fewer children fit per line as the parent narrows.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key">A narrower parent can fit fewer children on each line.</p><p class="fb-caption">The parent cannot be wider than the space on your screen. The readout shows its actual inside width. All four children still keep the same HTML order.</p><details class="fb-reveal" data-no-slide-advance=""><summary>Does wrapping change row into column?</summary><p>No. This is still a row layout. Children go across each line, then continue on the next line. The 8px gap also separates the lines.</p></details>
+</section>
+<template data-teacher-divider=""><h2>The child’s own role</h2></template>
+<section class="lesson-section panel" data-lesson-section="" id="child-roles">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>3. A child can have its own Flexbox rules</h2>
+<p>The first lesson mostly put rules on the parent. A flex <strong>child</strong> can also have rules that control its own size or alignment.</p>
+<div class="fi-roles"><article class="fi-role"><h3>Rules on the parent</h3><p>Arrange the children together.</p><code>display: flex</code><br/><code>flex-wrap</code><br/><code>gap</code><br/><code>align-items</code></article><article class="fi-role"><h3>Rules on a child</h3><p>Control how that child takes part.</p><code>flex-grow</code><br/><code>flex-shrink</code><br/><code>flex</code><br/><code>align-self</code></article></div><p class="fb-key">Being a flex child does not automatically give it <code>display: flex</code>.</p><p class="fb-caption">A flex child is often called a flex item. It can use child properties because of its parent’s layout. Those properties do not turn on Flexbox for its own contents.</p>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="nested">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>4. One element can do both jobs</h2>
+<p>Child 2 contains two block children of its own: A and B. Change <strong>only child 2’s display</strong>.</p><div aria-label="Nested example" class="flex-explorer flex-explorer--items fi-nested" data-direction="row" data-flex-explorer="nested" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="nested-innerDisplay"><span>Child 2: display</span><select data-flex-control="innerDisplay" disabled="" id="nested-innerDisplay"><option selected="" value="block">block — normal flow</option><option value="flex">flex — arrange A and B</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · child 2 contains A and B</p>
+<div aria-label="Nested layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:156px;width:420px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:48px;height:88px">1</div><div aria-label="Child 2, containing A and B" class="flex-explorer__child child-two" data-flex-child="2" role="group" style="width:112px;min-width:112px;height:auto;display:block"><div class="fi-grandchild">A</div><div class="fi-grandchild">B</div></div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:48px;height:88px">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent {
+  display: flex;
+  gap: 8px;
+}
+.child-two {
+  display: block;
+}</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">Child 2 is a flex child, but its own block children A and B stack normally. display: flex has not been inherited.</p>
+</div><p class="fb-key">Child 2 can be a child of the outer parent and a flex parent for A and B.</p><details class="fb-reveal" data-no-slide-advance=""><summary>See the parent and child relationships in HTML</summary><pre class="fb-code"><code>&lt;div class="parent"&gt;
+  &lt;div class="child"&gt;1&lt;/div&gt;
+  &lt;div class="child child-two"&gt;
+    &lt;div&gt;A&lt;/div&gt;
+    &lt;div&gt;B&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="child"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre><p>The outer parent arranges 1, 2 and 3. A and B are direct children of child 2, so child 2 needs its own <code>display: flex</code> to arrange them with Flexbox.</p></details>
+</section>
+<template data-teacher-divider=""><h2>Use spare space</h2></template>
+<section class="lesson-section panel" data-lesson-section="" id="grow">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>5. Let one child take the extra room</h2>
+<p><code>flex-grow</code> controls whether a child takes a share of spare <strong>main-axis</strong> space. These children start at 64px wide. Change child 2 from 0 to 1.</p><div aria-label="Grow example" class="flex-explorer flex-explorer--items fi-growth" data-direction="row" data-flex-explorer="grow" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="grow-grow"><span>Child 2: flex-grow</span><select data-flex-control="grow" disabled="" id="grow-grow"><option selected="" value="0">0</option><option value="1">1</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Grow layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:100px;width:420px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:64px;min-width:0px;flex-grow:0">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:64px;min-width:0px;flex-grow:0">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:64px;min-width:0px;flex-grow:0">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent { display: flex; gap: 8px; }
+.child { width: 64px; }
+.child-two { flex-grow: 0; }</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">Grow 0 is the default. None of these children takes the spare main-axis space.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key"><code>flex-grow: 0</code> leaves spare room. <code>flex-grow: 1</code> lets this child use it.</p><p class="fb-caption">The dotted marker shows the original 64px width. Growth changes the child’s width; it does not add to the gap or turn the child into a flex parent.</p>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="grow-shares">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>6. Share the extra room between children</h2>
+<p>All three children now grow. Keep children 1 and 3 at <code>flex-grow: 1</code>; change only child 2’s share.</p><div aria-label="Shares example" class="flex-explorer flex-explorer--items fi-growth" data-direction="row" data-flex-explorer="shares" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="shares-grow"><span>Child 2: flex-grow (others stay at 1)</span><select data-flex-control="grow" disabled="" id="shares-grow"><option selected="" value="1">1</option><option value="2">2</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Shares layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:100px;width:420px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:64px;min-width:0px;flex-grow:1">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:64px;min-width:0px;flex-grow:1">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:64px;min-width:0px;flex-grow:1">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent { display: flex; gap: 8px; }
+.child {
+  width: 64px;
+  flex-grow: 1;
+}
+.child-two { flex-grow: 1; }</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">All three start at 64px and receive equal shares of the extra room.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key">A grow factor compares shares of <em>extra space</em>, not final widths.</p><details class="fb-reveal" data-no-slide-advance=""><summary>Predict: does grow 2 make child 2 twice as wide?</summary><p>No. Each child already starts at 64px. With factors 1 : 2 : 1, child 2 gains twice as much extra width as either neighbour, then keeps its original 64px too.</p></details>
+</section>
+<template data-teacher-divider=""><h2>Handle a shortage</h2></template>
+<section class="lesson-section panel" data-lesson-section="" id="shrink">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>7. What if the children ask for too much room?</h2>
+<p>Each child asks for <code>width: 120px</code>. Keep their rules the same, then make the parent tighter.</p><div aria-label="Shrink example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="shrink" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="shrink-parentWidth"><span>Parent width (limited by your screen)</span><select data-flex-control="parentWidth" disabled="" id="shrink-parentWidth"><option selected="" value="420">420px — roomy</option><option value="240">240px — tight</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Shrink layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:100px;width:420px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:120px;min-width:0px">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:120px;min-width:0px">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:120px;min-width:0px">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent {
+  display: flex; gap: 8px;
+  width: 420px;
+  max-width: 100%;
+}
+.child {
+  width: 120px; min-width: 0;
+  flex-shrink: 1;
+}</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">Shrink 1 is the default. When the parent is too narrow, these equal-size children share the shortage. They stay on one line.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key"><code>flex-shrink: 1</code> is the default: the child can give up main-axis space.</p><p class="fb-caption">These short-label boxes use min-width: 0 so they can become narrower. Real content and minimum sizes can limit how far a child shrinks.</p><details class="fb-reveal" data-no-slide-advance=""><summary>Why can a child end up narrower than its width declaration?</summary><p>Here, 120px is the requested starting width. Flexbox reduces it when the row is short of space and shrinking is allowed. The gap remains 8px.</p></details>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="protect">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>8. Keep one child from shrinking</h2>
+<p>Child 2 should keep its 120px width. Change only its <code>flex-shrink</code> value to 0.</p><div aria-label="Protect example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="protect" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="protect-shrink"><span>Child 2: flex-shrink (others stay at 1)</span><select data-flex-control="shrink" disabled="" id="protect-shrink"><option selected="" value="1">1</option><option value="0">0</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Protect layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:100px;width:240px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:120px;min-width:0px;flex-shrink:1">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:120px;min-width:0px;flex-shrink:1">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:120px;min-width:0px;flex-shrink:1">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent { display: flex; gap: 8px; }
+.child {
+  width: 120px;
+  min-width: 0;
+  flex-shrink: 1;
+}
+.child-two { flex-shrink: 1; }</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">All three have the same starting width and shrink factor, so they give up equal amounts of width.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key"><code>flex-shrink: 0</code> stops this child giving up width.</p><details class="fb-reveal" data-no-slide-advance=""><summary>Do all children always lose equal amounts?</summary><p>No. Shrinking takes both the shrink factor and the starting size into account. With the same factor, a larger starting size normally gives up more space. This example uses equal starting widths to make the comparison clear.</p></details>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="refuse">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>9. What if nobody can shrink?</h2>
+<p>The parent still uses <code>nowrap</code>. Now change the shrink setting on <strong>every child</strong>.</p><div aria-label="Refuse example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="refuse" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="refuse-shrink"><span>Every child: flex-shrink</span><select data-flex-control="shrink" disabled="" id="refuse-shrink"><option selected="" value="1">1</option><option value="0">0</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Refuse layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:100px;width:240px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:120px;min-width:0px;flex-shrink:1">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:120px;min-width:0px;flex-shrink:1">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:120px;min-width:0px;flex-shrink:1">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent {
+  display: flex; gap: 8px;
+  flex-wrap: nowrap;
+}
+.child {
+  width: 120px; min-width: 0;
+  flex-shrink: 1;
+}</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">The children can shrink to fit this parent. Shrinking changes widths; wrapping would put children on another line.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key">If children cannot shrink and cannot wrap, they may overflow.</p><p class="fb-caption">Shrinking changes a child’s size. Wrapping moves a child onto another line. These are different ways to respond to limited room.</p>
+</section>
+<template data-teacher-divider=""><h2>A useful shorthand</h2></template>
+<section class="lesson-section panel" data-lesson-section="" id="flex-presets">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>10. Choose a combined flex setting</h2>
+<p><code>flex</code> is a shorthand for a child’s flexible sizing. Try these two useful settings, then compare a roomy parent with a tight one.</p><div aria-label="Presets example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="presets" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="presets-preset"><span>Every child: flex</span><select data-flex-control="preset" disabled="" id="presets-preset"><option selected="" value="auto">auto</option><option value="none">none</option></select></label><label for="presets-parentWidth"><span>Parent width (limited by your screen)</span><select data-flex-control="parentWidth" disabled="" id="presets-parentWidth"><option selected="" value="420">420px — roomy</option><option value="240">240px — tight</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Presets layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:100px;width:420px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:120px;min-width:0px;flex:auto">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:120px;min-width:0px;flex:auto">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:120px;min-width:0px;flex:auto">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent { display: flex; gap: 8px; }
+.child {
+  width: 120px;
+  min-width: 0;
+  flex: auto;
+}</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">flex: auto allows both growth and shrinking. The 120px width is the starting point; the available room determines the final width.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key"><code>flex: auto</code> can grow and shrink. <code>flex: none</code> does neither.</p><p class="fb-caption">Both use the child’s width, or its content when width is automatic, as the starting point. The flex property belongs on the child; display: flex belongs on the element arranging children.</p><details class="fb-reveal" data-no-slide-advance=""><summary>How does this relate to the separate properties?</summary><p>For these examples, <code>flex: auto</code> uses grow 1 and shrink 1; <code>flex: none</code> uses grow 0 and shrink 0. The shorthand also sets how sizing starts, so treat it as a complete setting rather than mixing in earlier grow/shrink rules.</p></details>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="flex-one">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>11. Use flex: 1 for a simple shared row</h2>
+<p>These children have different width declarations. Compare <code>flex: auto</code> with <code>flex: 1</code> on <strong>all three</strong>.</p><div aria-label="Shorthand example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="shorthand" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="shorthand-preset"><span>Every child: flex</span><select data-flex-control="preset" disabled="" id="shorthand-preset"><option selected="" value="auto">auto — keep width differences</option><option value="1">1 — share from an equal start</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Shorthand layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:100px;width:420px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:80px;min-width:0px;flex:auto">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:160px;min-width:0px;flex:auto">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:80px;min-width:0px;flex:auto">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent { display: flex; gap: 8px; }
+.child { min-width: 0; flex: auto; }
+.child-one { width: 80px; }
+.child-two { width: 160px; }
+.child-three { width: 80px; }</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">flex: auto starts from the different widths, then lets the children grow or shrink to fit. Child 2 remains wider than its neighbours.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key"><code>flex: 1</code> is a useful equal-sharing recipe for simple, matching children.</p><p class="fb-caption">It shares from an equal starting point instead of preserving the different starting widths in this example. Long content, padding and minimum sizes can affect the final result.</p><details class="fb-reveal" data-no-slide-advance=""><summary>Is flex: 1 just a shorter way to write flex-grow: 1?</summary><p>No. <code>flex: 1</code> also permits shrinking and changes how sizing starts. Setting only <code>flex-grow: 1</code> keeps the existing starting widths and shares the extra space.</p></details>
+</section>
+<template data-teacher-divider=""><h2>Align one child</h2></template>
+<section class="lesson-section panel" data-lesson-section="" id="align-self">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>12. Give one child its own cross-axis alignment</h2>
+<p>The parent sets <code>align-items: flex-start</code>. Use <code>align-self</code> on <strong>child 2</strong> to give it a different position.</p><div aria-label="Self example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="self" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="self-self"><span>Child 2: align-self</span><select data-flex-control="self" disabled="" id="self-self"><option selected="" value="auto">auto</option><option value="center">center</option><option value="flex-end">flex-end</option><option value="flex-start">flex-start</option><option value="stretch">stretch</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Self layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-axis="main" data-flex-horizontal="">Main axis</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-axis="cross" data-flex-vertical="">Cross axis · align-self</div>
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:196px;width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:48px">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:auto;height:auto;min-width:48px;min-height:48px;align-self:auto">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:48px">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.child-two {
+  align-self: auto;
+}</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">auto follows the parent’s align-items setting: all children start at the top.</p>
+</div><p class="fb-key"><code>align-items</code> sets the parent’s default. <code>align-self</code> sets one child’s choice.</p><p class="fb-caption">auto follows the parent. Child 2 has automatic width and height, with 48px minimums, so stretch can fill the cross axis. The other children keep fixed sizes.</p><details class="fb-reveal" data-no-slide-advance=""><summary>Does this centre the text inside child 2?</summary><p>No. It aligns the child’s box within the parent’s flex line. Arranging the child’s own contents is a separate job.</p></details>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="self-turn">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>13. The child still follows the cross axis</h2>
+<p>Keep <code>align-self: center</code> on child 2. Change only the parent’s direction.</p><div aria-label="Self turn example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="self-turn" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="self-turn-direction"><span>Parent: flex-direction</span><select data-flex-control="direction" disabled="" id="self-turn-direction"><option selected="" value="row">row</option><option value="column">column</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Self turn layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram">
+<div class="flex-explorer__axis flex-explorer__horizontal" data-axis="main" data-flex-horizontal="">Main axis</div>
+<div class="flex-explorer__axis flex-explorer__vertical" data-axis="cross" data-flex-vertical="">Cross axis · align-self</div>
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:nowrap;gap:8px;height:196px;width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:48px;min-width:0px;align-self:auto">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:48px;min-width:0px;align-self:center">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:48px;min-width:0px;align-self:auto">3</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+.child-two { align-self: center; }</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">In a row, the cross axis is vertical. Child 2 centres top to bottom; the others stay at the top.</p>
+</div><p class="fb-key">In a column, <code>align-self</code> works left to right in these examples.</p><p class="fb-caption">The main and cross axes come from the parent’s flex-direction. Child 2 remains second in the HTML and in the sequence.</p>
+</section>
+<template data-teacher-divider=""><h2>Combine familiar ideas</h2></template>
+<section class="lesson-section panel" data-lesson-section="" id="wrap-grow">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>14. Combine wrapping with growing</h2>
+<p>Wrapping is already on. Now allow each child to grow and watch <strong>each line</strong> use its own spare room.</p><div aria-label="Wrap grow example" class="flex-explorer flex-explorer--items" data-direction="row" data-flex-explorer="wrap-grow" data-no-slide-advance="" role="group">
+<div class="flex-explorer__controls"><label for="wrap-grow-grow"><span>Every child: flex-grow</span><select data-flex-control="grow" disabled="" id="wrap-grow-grow"><option selected="" value="0">0</option><option value="1">1</option></select></label><button class="lesson-secondary-action" data-flex-reset="" disabled="" type="button">Reset example</button></div>
+<div class="flex-explorer__layout"><div class="flex-explorer__picture"><p class="flex-explorer__label">Parent <code>.parent</code> · numbered children</p>
+<div aria-label="Wrap grow layout; scroll horizontally if children overflow" class="flex-explorer__viewport" role="region" tabindex="0">
+<div class="flex-explorer__diagram flex-explorer__diagram--plain">
+<div class="flex-explorer__parent" data-flex-parent="" style="display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;flex-wrap:wrap;gap:8px;height:auto;width:384px;max-width:100%"><div class="flex-explorer__child child-one" data-flex-child="1" style="width:100px;min-width:96px;flex-grow:0">1</div><div class="flex-explorer__child child-two" data-flex-child="2" style="width:100px;min-width:96px;flex-grow:0">2</div><div class="flex-explorer__child child-three" data-flex-child="3" style="width:100px;min-width:96px;flex-grow:0">3</div><div class="flex-explorer__child child-four" data-flex-child="4" style="width:100px;min-width:96px;flex-grow:0">4</div></div>
+</div></div></div>
+<pre class="flex-explorer__code"><code data-flex-code="">.parent {
+  display: flex; gap: 8px;
+  flex-wrap: wrap;
+}
+.child {
+  width: 100px; min-width: 96px;
+  flex-grow: 0;
+}</code></pre></div>
+<p aria-atomic="true" aria-live="polite" class="flex-explorer__feedback" data-flex-feedback="">Children can wrap, but grow 0 leaves each line’s spare room unused.</p>
+<p class="flex-explorer__measurements" data-flex-measurements="">Compare the children’s widths and the room inside the parent.</p>
+</div><p class="fb-key">Flexbox shares space separately on each line.</p><p class="fb-caption">When there is room for three children on the first line, child 4 has the last line to itself. With grow 1, it can fill that line. A narrow screen may produce a different number per line.</p>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="live-code">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>15. Build a flexible set of cards</h2>
+<p>Use <strong>Try it</strong>. First allow wrapping, then flexible sizing, then an inner flex parent. Change one rule at a time.</p><div data-live-code-example-id="flex-cards"></div><details class="fb-reveal" data-no-slide-advance=""><summary>Show the completed rules</summary><pre class="fb-code"><code>.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.card {
+  width: 140px;
+  min-width: 110px;
+  flex: auto;
+}
+.featured {
+  display: flex;
+  gap: 8px;
+}</code></pre><p>The outer parent arranges the cards. The featured card’s <code>flex: auto</code> controls its own size in that layout. Its <code>display: flex</code> arranges A and B inside it.</p></details>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="mistakes">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>16. Catch the common mistakes</h2>
+<div class="fb-traps"><article><h3>“Every flex child gets display: flex.”</h3><p>A child becomes a flex item because of its parent. Set its own display: flex only when you want it to arrange its direct children with Flexbox.</p></article><article><h3>“Grow 2 means twice the final width.”</h3><p>Grow compares shares of extra space. The starting sizes still matter.</p></article><article><h3>“Shrink 0 guarantees that everything fits.”</h3><p>It prevents that child shrinking. Other children must give up more space, or the layout may overflow.</p></article></div>
+<div data-slide-break=""></div><h3>Check which job each rule does</h3><div class="fb-traps"><article><h3>“flex: 1 and flex-grow: 1 are identical.”</h3><p>The shorthand also sets other sizing behaviour. Use its complete recipe; it is more than the grow factor alone.</p></article><article><h3>“align-self centres a child along the main axis.”</h3><p>It uses the cross axis. It also aligns the child’s box, not the text inside it.</p></article><article><h3>“Wrap makes a fixed grid of matching columns.”</h3><p>Each flex line shares its own space. Growing children on a shorter final line can become wider.</p></article></div>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="summary">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>17. Choose the element, then the property</h2>
+<p class="fb-key">Parent: arrange the group. Child: size or align that child.</p>
+<table class="fb-reference"><caption>Parent and child responsibilities in Flexbox</caption><thead><tr><th scope="col">Property</th><th scope="col">Put it on</th><th scope="col">Job</th></tr></thead><tbody>
+<tr><th scope="row"><code>flex-wrap</code></th><td>Parent</td><td>Allow children onto more lines.</td></tr>
+<tr><th scope="row"><code>flex-grow</code></th><td>Child</td><td>Share extra main-axis space.</td></tr>
+<tr><th scope="row"><code>flex-shrink</code></th><td>Child</td><td>Give up main-axis space when needed.</td></tr>
+<tr><th scope="row"><code>flex</code></th><td>Child</td><td>Choose combined flexible sizing.</td></tr>
+<tr><th scope="row"><code>align-self</code></th><td>Child</td><td>Choose that child’s cross-axis alignment.</td></tr>
+<tr><th scope="row"><code>display: flex</code></th><td>Any element that should arrange its own children</td><td>Make it a flex parent.</td></tr>
+</tbody></table><p class="fb-caption">Start with one change. Identify whose rule you are editing, then predict which boxes should move or resize.</p>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="quiz">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>Quick quiz</h2>
+<p>Choose one answer per question. Aim for <strong>10 out of 12</strong>. Answers save in this browser.</p><form class="quiz-form" id="lesson-quiz">
+<fieldset class="quiz-question" data-answer="b" data-feedback="flex-wrap belongs on the flex parent and allows additional lines." data-question="q1" data-success="Correct. flex-wrap belongs on the flex parent and allows additional lines."><legend>1. Where should flex-wrap: wrap go?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q1" type="radio" value="a"/><span>On every child</span></label></li>
+<li><label class="quiz-answer"><input name="q1" type="radio" value="b"/><span>On the parent arranging the children</span></label></li>
+<li><label class="quiz-answer"><input name="q1" type="radio" value="c"/><span>On the last child only</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="a" data-feedback="Wrapping creates more lines without changing row into column." data-question="q2" data-success="Correct. Wrapping creates more lines without changing row into column."><legend>2. A flex row wraps onto two lines. What is still true?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q2" type="radio" value="a"/><span>Its flex-direction can still be row</span></label></li>
+<li><label class="quiz-answer"><input name="q2" type="radio" value="b"/><span>It has automatically become column</span></label></li>
+<li><label class="quiz-answer"><input name="q2" type="radio" value="c"/><span>The HTML order is reversed</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="c" data-feedback="Being a flex child does not automatically turn it into a flex parent for its own children." data-question="q3" data-success="Correct. Being a flex child does not automatically turn it into a flex parent for its own children."><legend>3. A div is a child of a flex parent and contains two block divs. What happens without its own display: flex?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q3" type="radio" value="a"/><span>Its two inner divs automatically form a flex row</span></label></li>
+<li><label class="quiz-answer"><input name="q3" type="radio" value="b"/><span>It cannot use child properties</span></label></li>
+<li><label class="quiz-answer"><input name="q3" type="radio" value="c"/><span>Its inner divs remain in normal block flow</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="b" data-feedback="The eligible child uses the spare main-axis space; its own display does not become flex." data-question="q4" data-success="Correct. The eligible child uses the spare main-axis space; its own display does not become flex."><legend>4. Only child 2 has flex-grow: 1; the others have grow 0. There is spare main-axis space. What happens?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q4" type="radio" value="a"/><span>The gap grows</span></label></li>
+<li><label class="quiz-answer"><input name="q4" type="radio" value="b"/><span>Child 2 can grow into the spare space</span></label></li>
+<li><label class="quiz-answer"><input name="q4" type="radio" value="c"/><span>The children must wrap</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="a" data-feedback="The grow factor compares shares of extra space, not total widths." data-question="q5" data-success="Correct. The grow factor compares shares of extra space, not total widths."><legend>5. Children start at the same width and have grow factors 1, 2, 1. What does the middle 2 mean?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q5" type="radio" value="a"/><span>Twice the extra-space share of either neighbour</span></label></li>
+<li><label class="quiz-answer"><input name="q5" type="radio" value="b"/><span>Always twice the final width</span></label></li>
+<li><label class="quiz-answer"><input name="q5" type="radio" value="c"/><span>Exactly two pixels of growth</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="c" data-feedback="The default shrink factor of 1 allows the child to give up space, subject to minimum sizes and content." data-question="q6" data-success="Correct. The default shrink factor of 1 allows the child to give up space, subject to minimum sizes and content."><legend>6. A child requests width: 120px but becomes narrower in a tight flex row. Which setting allows this?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q6" type="radio" value="a"/><span>flex-wrap: nowrap</span></label></li>
+<li><label class="quiz-answer"><input name="q6" type="radio" value="b"/><span>align-self: center</span></label></li>
+<li><label class="quiz-answer"><input name="q6" type="radio" value="c"/><span>flex-shrink: 1</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="b" data-feedback="Shrink 0 protects that child’s size. It can cause overflow if the layout cannot otherwise fit." data-question="q7" data-success="Correct. Shrink 0 protects that child’s size. It can cause overflow if the layout cannot otherwise fit."><legend>7. What does flex-shrink: 0 do?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q7" type="radio" value="a"/><span>Makes the child disappear</span></label></li>
+<li><label class="quiz-answer"><input name="q7" type="radio" value="b"/><span>Stops that child shrinking to absorb the shortage</span></label></li>
+<li><label class="quiz-answer"><input name="q7" type="radio" value="c"/><span>Makes the parent wider automatically</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="a" data-feedback="flex: auto allows growth and shrinking using the width or content as the starting point." data-question="q8" data-success="Correct. flex: auto allows growth and shrinking using the width or content as the starting point."><legend>8. Which combined child setting allows both growing and shrinking, using width or content as the starting point?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q8" type="radio" value="a"/><span>flex: auto</span></label></li>
+<li><label class="quiz-answer"><input name="q8" type="radio" value="b"/><span>flex: none</span></label></li>
+<li><label class="quiz-answer"><input name="q8" type="radio" value="c"/><span>display: flex</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="c" data-feedback="flex: none keeps the child inflexible even when that causes overflow." data-question="q9" data-success="Correct. flex: none keeps the child inflexible even when that causes overflow."><legend>9. Which child setting allows neither growing nor shrinking?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q9" type="radio" value="a"/><span>flex: auto</span></label></li>
+<li><label class="quiz-answer"><input name="q9" type="radio" value="b"/><span>flex: 1</span></label></li>
+<li><label class="quiz-answer"><input name="q9" type="radio" value="c"/><span>flex: none</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="b" data-feedback="The flex shorthand changes combined sizing behaviour, not just the grow factor." data-question="q10" data-success="Correct. The flex shorthand changes combined sizing behaviour, not just the grow factor."><legend>10. Why is flex: 1 more than flex-grow: 1?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q10" type="radio" value="a"/><span>It only changes text alignment</span></label></li>
+<li><label class="quiz-answer"><input name="q10" type="radio" value="b"/><span>It also sets shrinking and how sizing starts</span></label></li>
+<li><label class="quiz-answer"><input name="q10" type="radio" value="c"/><span>It always turns the child into a flex parent</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="a" data-feedback="In a column the cross axis is horizontal. align-self changes that one child’s cross-axis alignment." data-question="q11" data-success="Correct. In a column the cross axis is horizontal. align-self changes that one child’s cross-axis alignment."><legend>11. A column’s child needs to centre left to right while its siblings stay at the left. Which fits?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q11" type="radio" value="a"/><span>align-self: center on that child</span></label></li>
+<li><label class="quiz-answer"><input name="q11" type="radio" value="b"/><span>justify-content: center on that child</span></label></li>
+<li><label class="quiz-answer"><input name="q11" type="radio" value="c"/><span>flex-wrap: wrap on that child</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<fieldset class="quiz-question" data-answer="c" data-feedback="Auto uses the parent’s alignment choice for the child." data-question="q12" data-success="Correct. Auto uses the parent’s alignment choice for the child."><legend>12. What does align-self: auto do for a flex child?</legend><ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input name="q12" type="radio" value="a"/><span>Always centres it</span></label></li>
+<li><label class="quiz-answer"><input name="q12" type="radio" value="b"/><span>Always stretches it</span></label></li>
+<li><label class="quiz-answer"><input name="q12" type="radio" value="c"/><span>Follows its parent’s align-items setting</span></label></li>
+</ul><p class="quiz-feedback-note" data-question-feedback=""></p></fieldset>
+<div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" data-action="reset-quiz" type="button">Reset quiz</button></div><p aria-live="polite" class="quiz-result" data-role="quiz-result">Your answers save automatically on this device.</p></form>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="practice">
+<p class="eyebrow">Flexbox: wrapping and children</p>
+<h2>Explain and apply wrapping and child properties</h2>
+<p class="exam-response-note fb-revision">Write your answer before opening the guide. Drafts save in this browser; use the mark points to check your reasoning.</p>
+<article class="exam-card"><h3>1. Write wrapping and child sizing rules</h3><p>A <code>.cards</code> parent should use Flexbox, allow more lines and keep a 12px gap. Each <code>.card</code> starts at 140px and should be allowed to grow and shrink. Write the two rules using the <code>flex</code> shorthand. <strong>(5 marks)</strong></p><div class="exam-response-wrap"><label class="exam-response-label" for="response-1">Your answer</label><textarea class="exam-response" data-exam-response="question-1" id="response-1" placeholder="Write your CSS or explain which parent or child the rule affects."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><pre class="fb-code"><code>.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.card {
+  width: 140px;
+  flex: auto;
+}</code></pre><p>One mark for each declaration, applied to the correct element. Content or minimum sizes may still limit shrinking.</p></div></details></article>
+<div data-slide-break=""></div>
+<article class="exam-card"><h3>2. Explain both jobs of a card</h3><p>A <code>.card</code> is inside a flex parent. It has <code>flex: auto</code> and contains two ordinary block divs. Explain why these inner divs do not automatically form a flex row. Write the extra declaration needed on <code>.card</code>. <strong>(3 marks)</strong></p><div class="exam-response-wrap"><label class="exam-response-label" for="response-2">Your answer</label><textarea class="exam-response" data-exam-response="question-2" id="response-2" placeholder="Write your CSS or explain which parent or child the rule affects."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><p>One mark each: flex: auto controls the card’s own sizing as a child; display: flex is not inherited and has not been set on the card; add <code>display: flex</code> to .card to arrange its own children.</p></div></details></article>
+<div data-slide-break=""></div>
+<article class="exam-card"><h3>3. Predict which child shrinks</h3><p>Three children each start at 120px wide in one flex row. The parent becomes too narrow for all three. Children 1 and 3 use <code>flex-shrink: 1</code>; child 2 uses <code>flex-shrink: 0</code>. Explain what happens, and one reason the row might still overflow. <strong>(3 marks)</strong></p><div class="exam-response-wrap"><label class="exam-response-label" for="response-3">Your answer</label><textarea class="exam-response" data-exam-response="question-3" id="response-3" placeholder="Write your CSS or explain which parent or child the rule affects."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><p>One mark each: child 2 keeps its starting width; children 1 and 3 can give up space; if their content or minimum sizes prevent enough shrinking, the row can still overflow. A parent narrower than child 2 alone can also force overflow.</p></div></details></article>
+<div data-slide-break=""></div>
+<article class="exam-card"><h3>4. Align one child in a column</h3><p>A column uses <code>align-items: flex-start</code> and has spare horizontal space. Child 2 should centre left to right while the others stay at the left. Write its rule, name the axis it uses, and explain how to make it follow the parent again. <strong>(3 marks)</strong></p><div class="exam-response-wrap"><label class="exam-response-label" for="response-4">Your answer</label><textarea class="exam-response" data-exam-response="question-4" id="response-4" placeholder="Write your CSS or explain which parent or child the rule affects."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><pre class="fb-code"><code>.child-two { align-self: center; }</code></pre><p>One mark for the rule, one for identifying the horizontal cross axis, and one for resetting <code>align-self: auto</code> (or removing the override).</p></div></details></article>
+</section></main>
+<aside class="lesson-rail"><section class="lesson-rail-card panel"><h2>Key terms</h2><dl class="glossary-list"><div class="glossary-item"><dt>Flex parent / container</dt><dd>An element with display: flex that arranges its direct children.</dd></div><div class="glossary-item"><dt>Flex child / item</dt><dd>A direct child taking part in its parent’s flex layout.</dd></div><div class="glossary-item"><dt>Wrapping</dt><dd>Allowing children to continue onto another flex line.</dd></div><div class="glossary-item"><dt>Grow factor</dt><dd>A child’s share of extra main-axis space.</dd></div><div class="glossary-item"><dt>Shrink factor</dt><dd>A child’s participation in giving up main-axis space when needed; starting size also matters.</dd></div><div class="glossary-item"><dt>flex shorthand</dt><dd>A combined setting for a child’s flexible sizing.</dd></div><div class="glossary-item"><dt>align-self</dt><dd>A child’s own choice of cross-axis alignment.</dd></div><div class="glossary-item"><dt>Nested flex parent</dt><dd>A flex child that also has display: flex to arrange its own children.</dd></div><div class="glossary-item"><dt>Overflow</dt><dd>Content extending beyond the parent’s available space.</dd></div></dl></section><section class="lesson-rail-card panel"><h2>Before this lesson</h2><p>Revisit direction, the main and cross axes, and parent alignment.</p><a href="flexbox-basics.html?context=web-development">Review Flexbox Basics</a></section></aside>
+</div>
+<section aria-labelledby="lesson-sequence-heading" class="lesson-sequence panel"><p class="eyebrow">Keep Going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div></section>
+</div>
+<div class="teacher-controls panel" data-no-slide-advance="" data-role="teacher-controls" hidden=""><button class="slide-button" data-action="prev-slide" type="button">Previous</button><p class="slide-status" data-role="slide-status">Teacher slides</p><button class="slide-button" data-action="next-slide" type="button">Next</button><button class="slide-button slide-button--exit" data-action="exit-teacher-mode" type="button">Exit slides</button></div>
+</body>
+</html>
+
