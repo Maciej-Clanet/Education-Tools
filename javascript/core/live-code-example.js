@@ -1404,6 +1404,11 @@ export function createLiveCodeWorkspace(root, example, options = {}) {
 
   function updateEditorHighlight() {
     renderSyntaxHighlightedCode(editorHighlight, editor.value, getActiveSource().type)
+    // A pre omits the final empty line, but a textarea gives it a caret row.
+    // Keep that row so the highlight can reach the same scroll position.
+    if (editor.value.endsWith("\n")) {
+      editorHighlight.append(document.createTextNode("\n"))
+    }
     syncEditorHighlightScroll()
   }
 
