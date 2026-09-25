@@ -89,30 +89,36 @@
       <aside class="lesson-sidebar panel">
         <p class="eyebrow">Jump To</p>
         <nav class="section-nav" aria-label="Lesson sections">
-          <a href="#overview" data-section-link>Why collect data?</a>
-          <a href="#data-information" data-section-link>Data vs information</a>
-          <a href="#where-used" data-section-link>Where is collection used?</a>
-          <a href="#data-collection" data-section-link>How is data collected?</a>
-          <a href="#manual" data-section-link>Manual data collection</a>
-          <a href="#automatic" data-section-link>Automatic hardware collection</a>
-          <a href="#system-generated" data-section-link>Software/system-generated collection</a>
-          <a href="#hardware-software" data-section-link>Hardware and software work together</a>
-          <a href="#collection-example" data-section-link>Collection worked example</a>
-          <a href="#processing-functions" data-section-link>Raw data needs processing</a>
-          <a href="#validation" data-section-link>What is validation?</a>
-          <a href="#validation-tool" data-section-link>Try a validation rule</a>
-          <a href="#sorting" data-section-link>What is sorting?</a>
+          <a href="#overview" data-section-link>How many lunches should the canteen make?</a>
+          <a href="#data-information" data-section-link>From recorded facts to useful information</a>
+          <a href="#where-used" data-section-link>Different settings. Decisions that matter.</a>
+          <a href="#data-collection" data-section-link>Start with the origin of the data</a>
+          <a href="#manual" data-section-link>Manual collection: a person supplies the data</a>
+          <a href="#automatic" data-section-link>Automatic collection: measure the physical world</a>
+          <a href="#capture-devices" data-section-link>Different inputs need different hardware</a>
+          <a href="#system-generated" data-section-link>Software can record what happens inside it</a>
+          <a href="#hardware-software" data-section-link>One reading, two different jobs</a>
+          <a href="#collection-example" data-section-link>Context turns “14.2” into a usable record</a>
+          <a href="#raw-data" data-section-link>Raw data: collected, but not yet prepared for the task</a>
+          <a href="#processing-functions" data-section-link>Six jobs we can ask a computer to do</a>
+          <a href="#validation-problem" data-section-link>What if the input is wrong?</a>
+          <a href="#validation" data-section-link>Validation: check against a rule</a>
+          <a href="#validation-tool" data-section-link>Check a school-trip booking</a>
+          <a href="#validation-accuracy" data-section-link>A valid value can still be wrong</a>
+          <a href="#sorting" data-section-link>Sorting: same records, different order</a>
           <a href="#sorting-tool" data-section-link>Try sorting weather records</a>
-          <a href="#conversion" data-section-link>What is conversion?</a>
+          <a href="#conversion" data-section-link>Conversion: a new representation</a>
           <a href="#conversion-tool" data-section-link>Try converting a temperature</a>
-          <a href="#aggregation" data-section-link>What is aggregation?</a>
+          <a href="#aggregation" data-section-link>Aggregation: many records become a summary</a>
+          <a href="#aggregation-weather" data-section-link>Choose a summary that answers the question</a>
           <a href="#aggregation-tool" data-section-link>Try aggregating readings</a>
-          <a href="#analysis" data-section-link>What is analysis?</a>
+          <a href="#analysis" data-section-link>Analysis: what does the data tell us?</a>
           <a href="#analysis-tool" data-section-link>Explore the weather trend</a>
-          <a href="#reporting" data-section-link>What is reporting?</a>
-          <a href="#using-results" data-section-link>Report view vs raw data</a>
-          <a href="#recap" data-section-link>Six processing functions</a>
-          <a href="#journey" data-section-link>Complete data-processing journey</a>
+          <a href="#reporting" data-section-link>Reporting: make the finding useful to its audience</a>
+          <a href="#report-formats" data-section-link>One dataset, different reports</a>
+          <a href="#using-results" data-section-link>Weather records beside their report</a>
+          <a href="#recap" data-section-link>Six functions, six different jobs</a>
+          <a href="#journey" data-section-link>Follow the same data from collection to report</a>
           <a href="#identify" data-section-link>Which processing function happened?</a>
           <a href="#mistakes" data-section-link>Common exam mistakes</a>
           <a href="#quiz" data-section-link>Check your understanding</a>
@@ -133,274 +139,434 @@
 </template>
 <section id="overview" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">01 · Collecting and processing data</p>
-<h2>Why collect data?</h2>
-<p class="data-lead">Collect data → answer questions → support decisions.</p>
-<div class="data-examples" data-no-slide-advance><details class="data-reveal" open><summary>College register</summary><ol class="data-flow data-process"><li><img class="data-illustration" src="../../assets/illustrations/data-processing/college-register.svg" alt="">Absence records: Sam, Jo</li><li><strong>Who needs support?</strong></li></ol></details><details class="data-reveal"><summary>Supermarket</summary><ol class="data-flow data-process"><li><img class="data-illustration" src="../../assets/illustrations/data-processing/supermarket-stock.svg" alt="">Sales records: 48 cartons of milk</li><li><strong>What needs restocking?</strong></li></ol></details><details class="data-reveal"><summary>Weather station</summary><ol class="data-flow data-process"><li><img class="data-illustration" src="../../assets/illustrations/data-processing/weather-station.svg" alt="">Temperature readings: 14°C → 22°C</li><li><strong>Is the temperature changing?</strong></li></ol></details></div>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<div class="data-grid">
-<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/college-register.svg" alt="" width="140" height="100">
-<h3>College register</h3>
-<p>Absent today: <strong>Sam, Jo</strong><br>Who needs a catch-up? Are absences recurring?</p>
-</article>
-<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/supermarket-stock.svg" alt="" width="140" height="100">
-<h3>Supermarket stock</h3>
-<p>Milk sold: <strong>48 cartons</strong><br>What sold, and what needs restocking?</p>
-</article>
-<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/weather-station.svg" alt="" width="140" height="100">
-<h3>Weather station</h3>
-<p>Temperature: <strong>14°C → 22°C</strong><br>Is it getting warmer? Was a reading unusual?</p>
-</article>
-<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/fitness-device.svg" alt="" width="140" height="100">
-<h3>Fitness device</h3>
-<p><strong>Steps · heart rate · activity</strong><br>How active have I been today?</p>
-</article>
-<article class="lesson-card"><img class="data-illustration" src="../../assets/illustrations/data-processing/website-app.svg" alt="" width="140" height="100">
-<h3>Website or app</h3>
-<p><strong>Pages visited · errors · usage</strong><br>Where are users running into problems?</p>
-</article>
+<h2>How many lunches should the canteen make?</h2>
+
+<p class="data-lead">Too few: students miss lunch. Too many: food goes to waste.</p>
+<div class="dp-opening">
+<div class="dp-canteen">
+<div class="dp-awning" aria-hidden="true">
 </div>
-<p class="data-note">Computer systems collect data because it can later be processed to support actions and decisions.</p>
-</details>
+<div class="dp-shop-title">FRIDAY LUNCH</div>
+<div class="dp-lunches" aria-hidden="true"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 49l24-33 24 33Z"/><path d="M8 49v8h48v-8M15 42h34M21 33h22"/></svg><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 49l24-33 24 33Z"/><path d="M8 49v8h48v-8M15 42h34M21 33h22"/></svg><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 49l24-33 24 33Z"/><path d="M8 49v8h48v-8M15 42h34M21 33h22"/></svg>
+</div>
+<div class="dp-counter"><strong>60?</strong><span>How many portions?</span><strong>120?</strong>
+</div>
+</div>
+<div class="dp-evidence"><span class="dp-label">Start with evidence · example sales</span>
+<h3>What happened on the last three Fridays?</h3>
+<div class="dp-bars">
+<div class="dp-bar-row"><span>Friday 1</span>
+<div class="dp-bar-track"><span style="--bar:80.0%"></span>
+</div><strong>80</strong>
+</div>
+<div class="dp-bar-row"><span>Friday 2</span>
+<div class="dp-bar-track"><span style="--bar:84.0%"></span>
+</div><strong>84</strong>
+</div>
+<div class="dp-bar-row"><span>Friday 3</span>
+<div class="dp-bar-track"><span style="--bar:82.0%"></span>
+</div><strong>82</strong>
+</div>
+</div>
+<div class="dp-decision"><strong>Plan around 82 lunches</strong><span>Then adjust for this week’s bookings.</span>
+</div>
+</div>
+</div>
+<p class="dp-takeaway">Collect what happened → make a better-informed decision.</p>
 </section>
 
 <section id="data-information" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">02 · Collecting and processing data</p>
-<h2>Data vs information</h2>
-<p class="data-lead">DATA → PROCESS → INFORMATION</p><div class="data-values">14 &nbsp; 16 &nbsp; 18 &nbsp; 19 &nbsp; 22</div><details class="data-reveal"><summary>Give the readings context</summary><p>Temperature (°C), ordered by time.</p><figure class="data-mini-chart"><svg viewBox="0 0 440 150" role="img" aria-label="Accepted temperatures rise from 14 to 22 degrees between 09:00 and 14:00; 13:00 is excluded."><path d="M35 15V115H415" class="axis"/><polyline points="35,105 109,85 183,65 257,55 405,25"/><g><circle cx="35" cy="105" r="5"/><circle cx="109" cy="85" r="5"/><circle cx="183" cy="65" r="5"/><circle cx="257" cy="55" r="5"/><circle cx="405" cy="25" r="5"/></g><text x="35" y="140">09:00 · 14°C</text><text x="300" y="140">14:00 · 22°C</text></svg><figcaption>Accepted readings over time · 13:00 excluded</figcaption></figure><p class="data-lead">Temperature increased during the observed period.</p></details><p>Data is recorded facts. Information gives processed data meaning.</p>
+<h2>From recorded facts to useful information</h2>
+
+<div class="dp-pipeline">
+<article><span class="dp-label">01 · Data</span>
+<div class="dp-number-line">80 · 84 · 82</div>
+<p>Lunches sold on three Fridays</p>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article><span class="dp-label">02 · Process</span><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="12" height="12" rx="2"/><rect x="26" y="7" width="12" height="12" rx="2"/><rect x="47" y="7" width="12" height="12" rx="2"/><path d="M11 25v8h42v-8M32 33v10"/><rect x="20" y="43" width="24" height="15" rx="3"/></svg><strong>(80 + 84 + 82) ÷ 3</strong>
+<p>Calculate the average</p>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article class="dp-highlight"><span class="dp-label">03 · Information</span>
+<div class="dp-big">82</div>
+<p>Average lunches sold per Friday</p>
+</article>
+</div>
+<div class="dp-decision"><strong>Decision: prepare about 82 portions.</strong><span>Past sales guide the plan; they cannot guarantee future demand.</span>
+</div>
 </section>
 
 <section id="where-used" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">03 · Collecting and processing data</p>
-<h2>Where is collection used?</h2>
-<p>Different sources, the same purpose: record something useful to process later.</p><dl class="data-routes"><dt>People</dt><dd>Attendance / patient observations → support and care</dd><dt>Transactions</dt><dd>Retail sales → restocking</dd><dt>Machines / environment</dt><dd>Sensor measurements → monitor conditions</dd><dt>Software activity</dt><dd>Logs and telemetry → investigate problems</dd></dl>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Education</h3>
-<p>Attendance → identify pupils needing support.</p>
+<h2>Different settings. Decisions that matter.</h2>
+
+<div class="dp-grid dp-three">
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="18" r="10"/><path d="M12 56v-9a20 20 0 0 1 40 0v9M23 46v10M41 46v10"/></svg>
+<h3>College register</h3>
+<div class="dp-mini-register"><span>Sam</span><b>Absent · 3 Mondays</b><span>Jo</span><b>Present</b>
+</div>
+<p class="dp-route-label">Attendance → spot a recurring absence</p>
+<div class="dp-decision">Tutor checks whether Sam needs support.</div>
 </article>
-<article class="lesson-card">
-<h3>Retail</h3>
-<p>Sales and stock → plan restocking.</p>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="15" width="54" height="34" rx="6"/><path d="M5 35h54M19 15v20M34 15v20M48 15v20"/><circle cx="17" cy="50" r="6"/><circle cx="47" cy="50" r="6"/></svg>
+<h3>Bus service</h3>
+<div class="dp-mini-route"><span>Stop A</span><span>+12 min</span><span>Stop B</span>
+</div>
+<p class="dp-route-label">Journey times → spot repeated delays</p>
+<div class="dp-decision">Planner adjusts the timetable.</div>
 </article>
-<article class="lesson-card">
-<h3>Healthcare</h3>
-<p>Patient observations → flag changes for staff.</p>
-</article>
-<article class="lesson-card">
-<h3>Transport</h3>
-<p>GPS and journey times → monitor delays.</p>
-</article>
-<article class="lesson-card">
-<h3>Websites and apps</h3>
-<p>Errors and usage telemetry → locate software problems.</p>
-</article>
-<article class="lesson-card">
-<h3>Environmental monitoring</h3>
-<p>Rainfall and temperature → compare conditions.</p>
-</article>
-<article class="lesson-card">
-<h3>Manufacturing</h3>
-<p>Product measurements → flag items outside tolerances.</p>
-</article>
-<article class="lesson-card">
-<h3>Cybersecurity</h3>
-<p>Login and network activity logs → investigate unusual access.</p>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M26 38V15a6 6 0 0 1 12 0v23a13 13 0 1 1-12 0Z"/><path d="M32 22v24M43 18h8M43 28h8"/></svg>
+<h3>Greenhouse</h3>
+<div class="dp-meter"><span>18°C</span><span>24°C</span><strong>32°C</strong>
+</div>
+<p class="dp-route-label">Temperature → detect overheating</p>
+<div class="dp-decision">Controller opens a vent.</div>
 </article>
 </div>
-<p class="data-note">Data science uses collected datasets to look for patterns. Useful analysis starts with relevant data.</p>
-</details>
 </section>
 
 <template data-teacher-divider>
-<h2>Collecting data</h2></template>
+<h2>Collecting data</h2>
+<p>Where does the data come from?</p>
+</template>
 <section id="data-collection" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">04 · Collecting and processing data</p>
-<h2>How is data collected?</h2>
-<p class="data-lead">Where did this record originate?</p><dl class="data-routes"><dt>Person</dt><dd>Manual entry → form → record</dd><dt>Physical world</dt><dd>Automatic hardware → sensor value → record</dd><dt>Software event</dt><dd>System-generated data → log → record</dd></dl>
+<h2>Start with the origin of the data</h2>
+
+<p>Different origins need different ways of capturing data.</p>
+<div class="dp-grid dp-three">
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="18" r="10"/><path d="M12 56v-9a20 20 0 0 1 40 0v9M23 46v10M41 46v10"/></svg>
+<h3>A person knows something</h3>
+<p>“I would choose a pasta lunch.”</p>
+<div class="dp-route-label">Person → form</div><strong class="dp-method">Manual collection</strong>
+</article>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M26 38V15a6 6 0 0 1 12 0v23a13 13 0 1 1-12 0Z"/><path d="M32 22v24M43 18h8M43 28h8"/></svg>
+<h3>Something happens in the physical world</h3>
+<p>The greenhouse gets warmer.</p>
+<div class="dp-route-label">Temperature → sensor</div><strong class="dp-method">Automatic hardware collection</strong>
+</article>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="52" height="36" rx="4"/><path d="M24 56h16M32 46v10M6 20h52M15 15h1M21 15h1M18 29l-5 5 5 5M46 29l5 5-5 5M36 26l-8 16"/></svg>
+<h3>Something happens inside software</h3>
+<p>An app cannot save an order.</p>
+<div class="dp-route-label">Software event → log</div><strong class="dp-method">System-generated collection</strong>
+</article>
+</div>
 </section>
 
 <section id="manual" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">05 · Collecting and processing data</p>
-<h2>Manual data collection</h2>
-<ol class="data-flow data-process"><li>Teacher observes attendance</li><li>Touchscreen / form</li><li><code>Sam | Absent</code></li><li>Stored record</li></ol><p class="data-note">Flexible entry · can contain entry errors</p>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<ol class="data-flow">
-<li>Person</li>
-<li>Keyboard or touchscreen</li>
-<li>Form or application</li>
-<li>Stored data</li>
-</ol>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Examples</h3>
-<p>An online survey, a teacher entering attendance, an employee entering order details, or a till operator typing an item quantity.</p>
-</article>
-<article class="lesson-card">
-<h3>Strengths</h3>
-<p>Flexible: a person can record opinions or details that are not automatically measurable.</p>
-</article>
-<article class="lesson-card">
-<h3>Limitations</h3>
-<p>Entry takes time and effort. A person may mistype a value or choose the wrong option.</p>
-</article>
+<h2>Manual collection: a person supplies the data</h2>
+
+<div class="dp-scene-flow">
+<div class="dp-person-scene"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="18" r="10"/><path d="M12 56v-9a20 20 0 0 1 40 0v9M23 46v10M41 46v10"/></svg>
+<div class="dp-speech">“I’d like pasta.”</div><span>Student chooses an answer</span>
+</div><span class="dp-arrow" aria-hidden="true">→</span>
+<div class="dp-device">
+<div class="dp-device-bar">Canteen lunch survey</div><span>Which lunch would you choose?</span>
+<div class="dp-form-option">○ Wrap</div>
+<div class="dp-form-option is-selected">● Pasta</div>
+<div class="dp-form-option">○ Salad</div>
+<div class="dp-fake-button">Submit answer</div><small>Keyboard or touchscreen</small>
+</div><span class="dp-arrow" aria-hidden="true">→</span>
+<div class="dp-record-card"><span class="dp-label">Stored response</span><strong>Pasta</strong><span>Choice from one student</span>
 </div>
-</details>
+</div>
+<div class="dp-tradeoffs">
+<p><strong>Useful for</strong> opinions and details people can supply.</p>
+<p><strong>Watch for</strong> typos and selecting the wrong option.</p>
+</div>
+<p class="dp-takeaway">A digital form can still be manual collection.</p>
 </section>
 
 <section id="automatic" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">06 · Collecting and processing data</p>
-<h2>Automatic hardware collection</h2>
-<ol class="data-flow data-process"><li>Physical temperature</li><li><img class="data-illustration" src="../../assets/illustrations/data-processing/weather-station.svg" alt="">Sensor captures it</li><li><strong>14.2°C</strong></li></ol><p>A device captures the value without someone manually typing it.</p><details class="data-reveal"><summary>Other physical inputs</summary><p class="data-strip">Barcode → product code · Camera → image · GPS → location</p></details>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<ol class="data-flow">
-<li>Real-world signal or object</li>
-<li>Input hardware captures it</li>
-<li>Digital value or data</li>
-</ol>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Codes and identity</h3>
-<p>Barcode scanner → product code<br>RFID/contactless reader → tag identifier</p>
+<h2>Automatic collection: measure the physical world</h2>
+
+<div class="dp-scene-flow">
+<div class="dp-greenhouse" role="img" aria-label="A temperature sensor inside a greenhouse">
+<div class="dp-roof">
+</div><svg class="dp-plants" viewBox="0 0 240 85" aria-hidden="true"><g transform="translate(40 4)"><g fill="none" stroke="currentColor" stroke-width="3"><path d="M0 47V12M0 31C-23 29-24 13-24 13S-1 10 0 31M0 22C23 20 24 4 24 4S1 1 0 22"/><path d="M-18 47h36l-5 24h-26Z" fill="currentColor" fill-opacity=".2"/></g></g><g transform="translate(120 4)"><g fill="none" stroke="currentColor" stroke-width="3"><path d="M0 47V12M0 31C-23 29-24 13-24 13S-1 10 0 31M0 22C23 20 24 4 24 4S1 1 0 22"/><path d="M-18 47h36l-5 24h-26Z" fill="currentColor" fill-opacity=".2"/></g></g><g transform="translate(200 4)"><g fill="none" stroke="currentColor" stroke-width="3"><path d="M0 47V12M0 31C-23 29-24 13-24 13S-1 10 0 31M0 22C23 20 24 4 24 4S1 1 0 22"/><path d="M-18 47h36l-5 24h-26Z" fill="currentColor" fill-opacity=".2"/></g></g></svg>
+<div class="dp-probe"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M26 38V15a6 6 0 0 1 12 0v23a13 13 0 1 1-12 0Z"/><path d="M32 22v24M43 18h8M43 28h8"/></svg><span>Temperature sensor</span>
+</div>
+</div><span class="dp-arrow" aria-hidden="true">→</span>
+<div class="dp-record-card"><span class="dp-label">Captured reading</span><strong class="dp-big">14.2°C</strong><span>No one types this value.</span>
+</div><span class="dp-arrow" aria-hidden="true">→</span>
+<div class="dp-device">
+<div class="dp-device-bar">Collection software</div>
+<div class="dp-number-line">09:00 · 14.2°C</div>
+<div class="dp-number-line">09:05 · 14.5°C</div>
+<div class="dp-number-line">09:10 · 14.7°C</div><small>Reads and records every five minutes</small>
+</div>
+</div>
+<p class="dp-takeaway">Repeated measurements without repeated manual entry.</p>
+</section>
+
+<section id="capture-devices" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">07 · Collecting and processing data</p>
+<h2>Different inputs need different hardware</h2>
+
+<div class="dp-grid dp-three">
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="54" height="40" rx="4"/><path d="M14 16v23M20 16v23M27 16v23M31 16v23M39 16v23M48 16v23M15 57h34"/></svg>
+<h3>Barcode scanner</h3>
+<div class="dp-barcode" aria-hidden="true">
+</div>
+<div class="dp-route-label">Printed code → product ID</div>
+<p>A till captures <code>50401234</code> and looks up the item.</p>
 </article>
-<article class="lesson-card">
-<h3>Sound and images</h3>
-<p>Camera → image data<br>Microphone → audio data</p>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 18l4-8h12l4 8h13v35H9V18Z"/><circle cx="32" cy="35" r="11"/></svg>
+<h3>Camera</h3>
+<div class="dp-camera-view" aria-hidden="true"><span>School entrance</span>
+</div>
+<div class="dp-route-label">Light → image</div>
+<p>A security system records an image of the entrance.</p>
 </article>
-<article class="lesson-card">
-<h3>Environment and location</h3>
-<p>Temperature sensor → reading<br>GPS receiver → location</p>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="15" width="54" height="34" rx="6"/><path d="M5 35h54M19 15v20M34 15v20M48 15v20"/><circle cx="17" cy="50" r="6"/><circle cx="47" cy="50" r="6"/></svg>
+<h3>GPS receiver</h3>
+<div class="dp-mini-route"><span>A</span><strong>● Bus</strong><span>B</span>
+</div>
+<div class="dp-route-label">Satellite signals → location</div>
+<p>A transport system records where the bus is.</p>
 </article>
 </div>
-<p class="data-note">Hardware captures data from the world. A person may aim a scanner, but the device captures the code without someone typing it.</p>
-<p>Recall the <a href="input-output-and-storage-devices.html?context=btec-level-3-unit-2">input-device lesson</a>: match the device to what must be captured.</p>
-</details>
+<p>A person may aim a scanner or start a camera; the device captures the data itself.</p>
 </section>
 
 <section id="system-generated" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">07 · Collecting and processing data</p>
-<h2>Software/system-generated collection</h2>
-<ol class="data-flow data-process"><li>Request <code>/courses</code></li><li>Web server handles request</li></ol><details class="data-reveal"><summary>See the resulting log record</summary><p class="data-record"><code>09:04 | /courses | GET | 200</code></p></details><p class="data-lead">A system can record its own operation.</p><p>Login events · error logs · transactions · telemetry</p>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<ol class="data-flow">
-<li>A user requests a web page</li>
-<li>The server handles the request</li>
-<li><code>09:04 | /courses | GET | 200 OK</code>
-</li>
-</ol>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>System records its own activity</h3>
-<p>Web access logs, login timestamps, sales transactions and file access history.</p>
-</article>
-<article class="lesson-card">
-<h3>Software records how it runs</h3>
-<p>Error logs, application telemetry and system performance measurements.</p>
-</article>
+<p class="eyebrow">08 · Collecting and processing data</p>
+<h2>Software can record what happens inside it</h2>
+
+<div class="dp-scene-flow">
+<div class="dp-device">
+<div class="dp-device-bar">Lunch ordering app</div><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 49l24-33 24 33Z"/><path d="M8 49v8h48v-8M15 42h34M21 33h22"/></svg><strong>1 pasta lunch</strong>
+<div class="dp-fake-button">Place order</div>
+<div class="dp-error-strip">Order could not be saved</div>
+</div><span class="dp-arrow" aria-hidden="true">→</span>
+<div class="dp-record-card"><span class="dp-label">The app automatically writes a log</span>
+<dl class="dp-fields">
+<dt>Time</dt>
+<dd>12:04:08</dd>
+<dt>Action</dt>
+<dd>Save order</dd>
+<dt>Result</dt>
+<dd>Failed</dd>
+<dt>Reason</dt>
+<dd>Connection lost</dd>
+</dl>
 </div>
-<p class="data-note">No person needs to type each record, and no dedicated physical input device is needed to capture a software event. The software still runs on hardware.</p>
-</details>
+</div>
+<p class="dp-takeaway">A <strong>log</strong> is a record of events. The student did not type this error record.</p>
+<div class="dp-tradeoffs">
+<p><strong>Other events:</strong> a login, payment or page visit.</p>
+<p><strong>Telemetry:</strong> measurements of software use or performance, such as how long a page takes to load.</p>
+</div>
 </section>
 
 <section id="hardware-software" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">08 · Collecting and processing data</p>
-<h2>Hardware and software work together</h2>
-<ol class="data-flow data-process"><li>Physical temperature</li><li><strong>Hardware captures</strong><br>Sensor supplies 14.2°C</li></ol><p class="data-note">The sensor captures a value. Software must read and record it.</p>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Hardware · temperature sensor</h3>
-<p>Responds to temperature and supplies a reading.</p>
-</article>
-<article class="lesson-card">
-<h3>Software · weather application</h3>
-<p>Reads the value, adds a timestamp and sensor ID, validates and stores it; it may trigger an alert.</p>
+<p class="eyebrow">09 · Collecting and processing data</p>
+<h2>One reading, two different jobs</h2>
+
+<div class="dp-pipeline dp-two-stage">
+<article><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M26 38V15a6 6 0 0 1 12 0v23a13 13 0 1 1-12 0Z"/><path d="M32 22v24M43 18h8M43 28h8"/></svg><span class="dp-label">Hardware · capture</span>
+<div class="dp-big">14.2°C</div>
+<p>The sensor responds to temperature and supplies a value.</p>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article class="dp-highlight"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="52" height="36" rx="4"/><path d="M24 56h16M32 46v10M6 20h52M15 15h1M21 15h1M18 29l-5 5 5 5M46 29l5 5-5 5M36 26l-8 16"/></svg><span class="dp-label">Software · record</span>
+<dl class="dp-fields">
+<dt>When</dt>
+<dd>09:00</dd>
+<dt>Where</dt>
+<dd>Greenhouse · sensor_03</dd>
+<dt>What</dt>
+<dd>Temperature · 14.2°C</dd>
+</dl>
+<p>The application reads, labels and stores it.</p>
 </article>
 </div>
-<ol class="data-flow">
-<li>Sensor captures <strong>14.2°C</strong>
-</li>
-<li>Software records <strong>when, where and what</strong>
-</li>
-<li>Staff can compare readings later</li>
-</ol>
-<p class="data-note">For physical inputs, hardware captures the signal and software controls, records and processes it. Software can also generate records about its own operation.</p>
-</details>
 </section>
 
 <section id="collection-example" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">09 · Collecting and processing data</p>
-<h2>Collection worked example</h2>
-<p class="data-lead">Software gives a reading context.</p><div class="data-values">14.2</div><details class="data-reveal"><summary>Add when, where and what</summary><p class="data-record"><code>09:00 | sensor_03 | 14.2°C</code></p><p>Software adds the timestamp, sensor ID and unit, then stores the record.</p></details><p>Repeat collection → a dataset to process.</p>
+<p class="eyebrow">10 · Collecting and processing data</p>
+<h2>Context turns “14.2” into a usable record</h2>
+
+<div class="dp-context-map">
+<div class="dp-context-source"><span class="dp-label">Sensor value</span><strong class="dp-big">14.2</strong>
+</div>
+<div class="dp-context-inputs">
+<div><span>Clock adds <strong>when</strong></span><b>09:00 · 8 September</b>
+</div>
+<div><span>Sensor setup adds <strong>where</strong></span><b>sensor_03 · greenhouse</b>
+</div>
+<div><span>Field definition adds <strong>what</strong></span><b>Temperature in °C</b>
+</div>
+</div>
+<div class="dp-context-record"><span class="dp-label">Software stores one complete record</span>
+<div class="dp-record-fields"><span><small>Time</small>09:00</span><span><small>Sensor</small>sensor_03</span><span><small>Temperature</small>14.2°C</span>
+</div>
+</div>
+</div>
+<p class="dp-takeaway">Now we can compare this sensor’s readings over time.</p>
 </section>
 
 <template data-teacher-divider>
-<h2>Processing functions</h2></template>
-<section id="processing-functions" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">10 · Collecting and processing data</p>
-<h2>Raw data needs processing</h2>
-<div class="data-table-wrap">
-<table><caption>Weather station · sensor_03 · 8 September 2026</caption>
-<thead>
-<tr><th scope="col">Time</th><th scope="col">Temperature (°C)</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>09:00</td><td>14</td>
-</tr>
-<tr><td>11:00</td><td>18</td>
-</tr>
-<tr><td>10:00</td><td>16</td>
-</tr>
-<tr><td>12:00</td><td>19</td>
-</tr>
-<tr><td>13:00</td><td>91 · outside rule</td>
-</tr>
-<tr><td>14:00</td><td>22</td>
-</tr>
-</tbody>
-</table>
+<h2>Processing functions</h2>
+<p>From individual records to useful results</p>
+</template>
+<section id="raw-data" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">11 · Collecting and processing data</p>
+<h2>Raw data: collected, but not yet prepared for the task</h2>
+
+<p>Eight lunch orders arrive. What should the kitchen prepare?</p>
+<div class="dp-pipeline">
+<article><span class="dp-label">Orders as collected</span>
+<div class="dp-token-cloud"><span class="dp-token">W</span><span class="dp-token">W</span><span class="dp-token">P</span><span class="dp-token">S</span><span class="dp-token">W</span><span class="dp-token">P</span><span class="dp-token">W</span><span class="dp-token">S</span>
+</div><small>W = wrap · P = pasta · S = salad</small>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article><span class="dp-label">Process</span><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="12" height="12" rx="2"/><rect x="26" y="7" width="12" height="12" rx="2"/><rect x="47" y="7" width="12" height="12" rx="2"/><path d="M11 25v8h42v-8M32 33v10"/><rect x="20" y="43" width="24" height="15" rx="3"/></svg><strong>Count each lunch type</strong>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article class="dp-highlight"><span class="dp-label">Kitchen preparation list</span>
+<div class="dp-count-list"><span>Wraps <b>4</b></span><span>Pasta <b>2</b></span><span>Salads <b>2</b></span>
 </div>
-<p class="data-note">Wrong order · suspicious 91°C · many individual values</p><details class="data-reveal"><summary>Open the processing toolbox</summary><p class="data-strip"><strong>VALIDATE · SORT · CONVERT · AGGREGATE · ANALYSE · REPORT</strong></p><p>Choose functions for the task; raw data is not automatically useful.</p></details>
+</article>
+</div>
+<p class="dp-takeaway">Raw data may already have labels. It still needs processing to answer this question.</p>
+</section>
+
+<section id="processing-functions" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">12 · Collecting and processing data</p>
+<h2>Six jobs we can ask a computer to do</h2>
+
+<p>Each processing function does a different job with data.</p>
+<div class="dp-grid dp-toolbox">
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 5l23 9v17c0 14-23 27-23 27S9 45 9 31V14Z"/><path d="M20 31l8 8 17-18"/></svg>
+<h3>Validation</h3>
+</article>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10v44M6 44l8 10 8-10M32 15h12M32 31h20M32 47h28"/></svg>
+<h3>Sorting</h3>
+</article>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h46M44 10l10 10-10 10M56 44H10M20 34L10 44l10 10"/></svg>
+<h3>Conversion</h3>
+</article>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="12" height="12" rx="2"/><rect x="26" y="7" width="12" height="12" rx="2"/><rect x="47" y="7" width="12" height="12" rx="2"/><path d="M11 25v8h42v-8M32 33v10"/><rect x="20" y="43" width="24" height="15" rx="3"/></svg>
+<h3>Aggregation</h3>
+</article>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="27" cy="27" r="19"/><path d="M41 41l17 17M15 33l9-12 8 8 8-14"/></svg>
+<h3>Analysis</h3>
+</article>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="5" width="42" height="54" rx="4"/><path d="M20 17h24M20 25h15M21 48V37M32 48V31M43 48V35"/></svg>
+<h3>Reporting</h3>
+</article>
+</div>
+<p class="dp-takeaway">Choose the functions the task needs. There is no single compulsory order.</p>
+</section>
+
+<section id="validation-problem" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">13 · Collecting and processing data</p>
+<h2>What if the input is wrong?</h2>
+
+<p>This weather station is expected to record temperatures between −30°C and 55°C.</p>
+<div class="dp-pipeline">
+<article><span class="dp-label">New readings</span>
+<div class="dp-token-cloud"><span class="dp-token">18°C</span><span class="dp-token">19°C</span><span class="dp-token dp-suspect">91°C ?</span>
+</div>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article class="dp-danger"><span class="dp-label">Use everything without checking</span>
+<div class="dp-big">42.7°C</div>
+<p>Average of these three readings</p>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article><span class="dp-label">Misleading result</span><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="5" width="42" height="54" rx="4"/><path d="M20 17h24M20 25h15M21 48V37M32 48V31M43 48V35"/></svg><strong>“An extremely hot morning!”</strong>
+</article>
+</div>
+<p class="dp-takeaway">An out-of-range value can distort the result. Check inputs before relying on them.</p>
 </section>
 
 <section id="validation" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">11 · Collecting and processing data</p>
-<h2>What is validation?</h2>
-<p>Validation checks data against predefined rules.</p><p class="data-lead">Rule: −30 ≤ value ≤ 55</p><div class="data-gate"><p>20°C → <strong>✓ follows rule</strong></p><p>91°C → <strong>✗ fails rule</strong></p></div><details class="data-reveal"><summary>Does valid mean accurate?</summary><p class="data-lead">20°C ✓ valid … actual temperature: 17°C?</p><p class="data-note">Validation does not prove the data is true.</p></details><p>This range is our teaching station’s rule. Investigate failures; do not invent replacements.</p>
+<p class="eyebrow">14 · Collecting and processing data</p>
+<h2>Validation: check against a rule</h2>
+
+<p><strong>Validation</strong> checks whether data meets predefined rules.</p>
+<div class="dp-validation-gate">
+<div class="dp-gate-rule">Range rule<br><strong>−30°C ≤ reading ≤ 55°C</strong>
+</div>
+<div class="dp-gate-lanes">
+<div class="dp-pass"><strong>20°C</strong><span>→ ✓ PASS</span><span>Accept for processing</span>
+</div>
+<div class="dp-fail"><strong>91°C</strong><span>→ ✕ FAIL</span><span>Set aside for investigation</span>
+</div>
+</div>
+</div>
+<p class="dp-takeaway">A failed check flags a problem. It does not tell us the correct replacement.</p>
 </section>
 
 <section id="validation-tool" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">12 · Collecting and processing data</p>
-<h2>Try a validation rule</h2>
-<form class="data-tool" data-tool="validation" data-no-slide-advance>
-<label for="validation-value">Temperature to check (°C)</label>
-<input id="validation-value" name="value" type="number" step="any" value="20">
-<p>Rule: temperature must be between <strong>−30°C and 55°C</strong>, inclusive. Try 91, then 20. Does passing prove it is true?</p>
-<div class="quiz-actions">
-<button class="primary-link" type="submit">Check value</button>
-<button class="lesson-secondary-action" type="reset">Reset defaults</button>
+<p class="eyebrow">15 · Collecting and processing data</p>
+<h2>Check a school-trip booking</h2>
+
+<p>Four rules. Some values will pass; some will fail. Predict the results, then test.</p>
+<form class="dp-validation-lab" data-validation-lab data-no-slide-advance novalidate>
+<div class="dp-grid dp-rules">
+<article class="dp-rule" data-rule="name"><span class="dp-label">Presence check</span><label for="booking-name">Student name</label><input id="booking-name" name="name" value="" type="text" autocomplete="off">
+<p>Something must be entered.</p><button class="lesson-secondary-action" type="button" data-test-rule="name">Test presence</button><output data-rule-result role="status">Not checked</output>
+</article>
+<article class="dp-rule" data-rule="age"><span class="dp-label">Range check</span><label for="booking-age">Age</label><input id="booking-age" name="age" value="19" type="text" autocomplete="off">
+<p>This trip is for ages 16–18 inclusive.</p><button class="lesson-secondary-action" type="button" data-test-rule="age">Test range</button><output data-rule-result role="status">Not checked</output>
+</article>
+<article class="dp-rule" data-rule="tickets"><span class="dp-label">Type check</span><label for="booking-tickets">Ticket quantity</label><input id="booking-tickets" name="tickets" value="2" type="text" autocomplete="off">
+<p>Must be a whole number.</p><button class="lesson-secondary-action" type="button" data-test-rule="tickets">Test type</button><output data-rule-result role="status">Not checked</output>
+</article>
+<article class="dp-rule" data-rule="studentId"><span class="dp-label">Format check</span><label for="booking-studentId">Student ID</label><input id="booking-studentId" name="studentId" value="ST-204" type="text" autocomplete="off">
+<p>ST- followed by exactly three digits.</p><button class="lesson-secondary-action" type="button" data-test-rule="studentId">Test format</button><output data-rule-result role="status">Not checked</output>
+</article>
 </div>
-<p data-result role="status">
-</p>
+<div class="quiz-actions"><button class="primary-link" type="submit">Test all four rules</button><button class="lesson-secondary-action" type="button" data-valid-booking>Use corrected example</button><button class="lesson-secondary-action" type="reset">Reset booking</button>
+</div>
+<p data-validation-summary role="status">No rules tested yet.</p>
 </form>
 </section>
 
+<section id="validation-accuracy" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">16 · Collecting and processing data</p>
+<h2>A valid value can still be wrong</h2>
+
+<div class="dp-pipeline">
+<article><span class="dp-label">Recorded in the system</span><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="52" height="36" rx="4"/><path d="M24 56h16M32 46v10M6 20h52M15 15h1M21 15h1M18 29l-5 5 5 5M46 29l5 5-5 5M36 26l-8 16"/></svg>
+<div class="dp-big">20°C</div>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article class="dp-highlight"><span class="dp-label">Range check</span><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 5l23 9v17c0 14-23 27-23 27S9 45 9 31V14Z"/><path d="M20 31l8 8 17-18"/></svg><strong>✓ Within −30°C to 55°C</strong>
+<p>The value passes.</p>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article><span class="dp-label">Actual temperature</span><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M26 38V15a6 6 0 0 1 12 0v23a13 13 0 1 1-12 0Z"/><path d="M32 22v24M43 18h8M43 28h8"/></svg>
+<div class="dp-big">17°C</div>
+</article>
+</div>
+<div class="dp-decision"><strong>Valid = follows the rule.</strong><span>Accurate = matches reality. Compare with a reliable measurement to check accuracy.</span>
+</div>
+</section>
+
 <section id="sorting" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">13 · Collecting and processing data</p>
-<h2>What is sorting?</h2>
-<p>Sorting changes the order of records using a chosen field.</p>
-<ol class="data-flow">
-<li><strong>Before</strong><br>11:00 · 09:00 · 14:00 · 10:00</li>
-<li>Sort by time, ascending</li>
-<li><strong>After</strong><br>09:00 · 10:00 · 11:00 · 14:00</li>
+<p class="eyebrow">17 · Collecting and processing data</p>
+<h2>Sorting: same records, different order</h2>
+
+<p>A field is one item in a record, such as a name, time or score. Choose which field sets the order.</p>
+<div class="dp-sort-demo" data-record-sort data-no-slide-advance>
+<div class="quiz-actions" hidden data-sort-controls><button class="lesson-secondary-action" type="button" data-sort-key="name">Name · A–Z</button><button class="lesson-secondary-action" type="button" data-sort-key="time">Arrival · earliest first</button><button class="lesson-secondary-action" type="button" data-sort-key="score">Score · highest first</button><button class="lesson-secondary-action" type="button" data-sort-key="original">Original order</button>
+</div>
+<div class="dp-record-header"><span>Name</span><span>Arrival</span><span>Score</span>
+</div>
+<ol class="dp-sort-records">
+<li data-record="0"><strong>Zara</strong><span>09:05</span><b>84</b>
+</li>
+<li data-record="1"><strong>Amir</strong><span>09:10</span><b>72</b>
+</li>
+<li data-record="2"><strong>Mei</strong><span>08:55</span><b>91</b>
+</li>
 </ol>
-<p class="data-strip"><strong>Ascending ↑</strong> A–Z / low–high &nbsp; · &nbsp; <strong>Descending ↓</strong> Z–A / high–low</p>
-<p class="data-note">Sorting changes record order, not the actual data values. Keep each temperature with its own timestamp.</p>
+<p data-sort-status role="status">Original order. Names, arrival times and scores stay together.</p>
+</div>
+<p class="dp-takeaway">Alphabetical, chronological or numerical: sorting moves the whole record.</p>
 </section>
 
 <section id="sorting-tool" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">14 · Collecting and processing data</p>
+<p class="eyebrow">18 · Collecting and processing data</p>
 <h2>Try sorting weather records</h2>
 <form class="data-tool" data-tool="sorting" data-no-slide-advance>
 <div class="data-controls">
@@ -450,37 +616,40 @@
 </section>
 
 <section id="conversion" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">15 · Collecting and processing data</p>
-<h2>What is conversion?</h2>
-<div class="data-equation">20°C <span>→</span> 68°F</div><p class="data-lead">Same underlying meaning, different representation.</p><details class="data-reveal"><summary>Other representations</summary><p class="data-strip"><code>"42" → 42</code><br><code>2026-09-08 → 08/09/2026</code> (DD/MM/YYYY)<br><code>P → Present</code></p></details>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<p>Conversion changes data from one representation, format or unit into another.</p>
-<ol class="data-flow">
-<li><strong>20°C</strong>
-</li>
-<li>Convert the unit</li>
-<li><strong>68°F</strong>
-</li>
-</ol>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Data types</h3>
-<p>Text <code>"42"</code> → numeric <code>42</code>, ready for arithmetic.</p>
+<p class="eyebrow">19 · Collecting and processing data</p>
+<h2>Conversion: a new representation</h2>
+
+<p>Change the unit, format or data type so the data can be used where it is needed.</p>
+<div class="dp-grid dp-two">
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M26 38V15a6 6 0 0 1 12 0v23a13 13 0 1 1-12 0Z"/><path d="M32 22v24M43 18h8M43 28h8"/></svg>
+<h3>Same temperature, different units</h3>
+<div class="dp-conversion"><strong>20°C</strong><span>→</span><strong>68°F</strong>
+</div>
+<p>A weather report for an audience using Fahrenheit.</p>
 </article>
-<article class="lesson-card">
-<h3>Dates and files</h3>
-<p><code>2026-09-08</code> → <code>08/09/2026</code> (DD/MM/YYYY); CSV records → JSON records.</p>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h46M44 10l10 10-10 10M56 44H10M20 34L10 44l10 10"/></svg>
+<h3>Race timing, ready to read</h3>
+<div class="dp-conversion"><strong>125,000 ms</strong><span>→</span><strong>2 min 5 s</strong>
+</div>
+<p>A timing system measures milliseconds; spectators need a readable time.</p>
 </article>
-<article class="lesson-card">
-<h3>Readable categories</h3>
-<p>Code <code>P</code> → category <code>Present</code>.</p>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="52" height="36" rx="4"/><path d="M24 56h16M32 46v10M6 20h52M15 15h1M21 15h1M18 29l-5 5 5 5M46 29l5 5-5 5M36 26l-8 16"/></svg>
+<h3>Text becomes a number</h3>
+<div class="dp-conversion"><code>"42"</code><span>→</span><strong>42</strong>
+</div>
+<p>Convert a form value to a number: 42 + 8 = 50.</p>
+</article>
+<article class="dp-card"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="5" width="42" height="54" rx="4"/><path d="M20 17h24M20 25h15M21 48V37M32 48V31M43 48V35"/></svg>
+<h3>Same date, different format</h3>
+<div class="dp-conversion"><strong>2026-09-08</strong><span>→</span><strong>8 Sep 2026</strong>
+</div>
+<p>A stored date becomes easier to read in a report.</p>
 </article>
 </div>
-</details>
 </section>
 
 <section id="conversion-tool" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">16 · Collecting and processing data</p>
+<p class="eyebrow">20 · Collecting and processing data</p>
 <h2>Try converting a temperature</h2>
 <form class="data-tool" data-tool="conversion" data-no-slide-advance>
 <label for="conversion-value">Temperature in Celsius (°C)</label>
@@ -496,50 +665,60 @@
 </section>
 
 <section id="aggregation" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">17 · Collecting and processing data</p>
-<h2>What is aggregation?</h2>
-<p>Aggregation combines many records into a summary.</p><div class="data-values">14 &nbsp; 16 &nbsp; 18 &nbsp; 19 &nbsp; 22</div><p>91°C is set aside because it fails the rule.</p><details class="data-reveal"><summary>Aggregate: find the average</summary><div class="data-equation">5 readings <span>→</span> 17.8°C</div><p>Other summaries: count · minimum · maximum · total</p></details>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<p>Aggregation combines many individual records into summary values.</p>
-<p class="data-note">Set aside the 91°C reading because it failed our rule. The five remaining values are 14, 16, 18, 19 and 22°C.</p>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Count</h3>
-<p>5 readings</p>
+<p class="eyebrow">21 · Collecting and processing data</p>
+<h2>Aggregation: many records become a summary</h2>
+
+<p>One Friday, three tills record lunch sales. How many lunches were sold altogether?</p>
+<div class="dp-aggregate-visual">
+<div class="dp-receipts">
+<div class="dp-receipt"><span>Till 1</span><strong>28</strong><span>lunches sold</span>
+</div>
+<div class="dp-receipt"><span>Till 2</span><strong>24</strong><span>lunches sold</span>
+</div>
+<div class="dp-receipt"><span>Till 3</span><strong>30</strong><span>lunches sold</span>
+</div>
+</div>
+<div class="dp-merge-lines" aria-hidden="true">
+</div>
+<div class="dp-summary-number"><span>Total sold</span><strong>28 + 24 + 30 = <em>82</em></strong>
+</div>
+</div>
+<div class="dp-tradeoffs">
+<p><strong>Aggregation</strong> calculates a count, total, average, minimum or maximum.</p>
+<p>Records can come from one place, several branches or different times.</p>
+</div>
+</section>
+
+<section id="aggregation-weather" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">22 · Collecting and processing data</p>
+<h2>Choose a summary that answers the question</h2>
+
+<div class="dp-token-cloud dp-centred"><span class="dp-token">14°C</span><span class="dp-token">16°C</span><span class="dp-token">18°C</span><span class="dp-token">19°C</span><span class="dp-token">22°C</span>
+</div>
+<p class="dp-centred">Five accepted weather readings · 91°C set aside</p>
+<div class="dp-grid dp-three">
+<article class="dp-stat"><span>How many?</span><strong>5</strong><span>Count</span>
 </article>
-<article class="lesson-card">
-<h3>Total</h3>
-<p>89 (sum of the Celsius values)</p>
+<article class="dp-stat"><span>Average temperature?</span><strong>17.8°C</strong><span>(14 + 16 + 18 + 19 + 22) ÷ 5</span>
 </article>
-<article class="lesson-card">
-<h3>Average</h3>
-<p>17.8°C</p>
-</article>
-<article class="lesson-card">
-<h3>Minimum</h3>
-<p>14°C</p>
-</article>
-<article class="lesson-card">
-<h3>Maximum</h3>
-<p>22°C</p>
+<article class="dp-stat"><span>Highest reading?</span><strong>22°C</strong><span>Maximum</span>
 </article>
 </div>
-<p class="data-note">Aggregation reduces many records into useful summaries. An average temperature is useful here; the total demonstrates summing but is not a temperature for the day.</p>
-</details>
+<p class="dp-takeaway">A summary is compact, but hides individual readings. The average does not show when it was warmest.</p>
 </section>
 
 <section id="aggregation-tool" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">18 · Collecting and processing data</p>
+<p class="eyebrow">23 · Collecting and processing data</p>
 <h2>Try aggregating readings</h2>
 <form class="data-tool" data-tool="aggregation" data-no-slide-advance>
 <label for="aggregation-values">Temperature readings (°C), separated by commas</label>
 <textarea id="aggregation-values" name="values" rows="2">14, 16, 18, 19, 22</textarea>
-<p>Use 1–24 numbers. The 91°C reading has been set aside for investigation, not silently corrected.</p>
+<p>Use 1–24 numbers. The 91°C reading is set aside for investigation. A sum helps calculate the average; it is not the temperature for the day.</p>
 <label for="aggregate-operation">Summary</label>
 <select id="aggregate-operation" name="operation">
 <option value="count">Count</option>
 <option value="total">Total</option>
-<option value="average">Average</option>
+<option value="average" selected>Average</option>
 <option value="minimum">Minimum</option>
 <option value="maximum">Maximum</option>
 </select>
@@ -553,27 +732,35 @@
 </section>
 
 <section id="analysis" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">19 · Collecting and processing data</p>
-<h2>What is analysis?</h2>
-<p><strong>Aggregation:</strong> 14, 16, 18, 19, 22 → average 17.8°C</p><figure class="data-mini-chart"><svg viewBox="0 0 440 150" role="img" aria-label="Accepted temperatures rise from 14 to 22 degrees between 09:00 and 14:00; 13:00 is excluded."><path d="M35 15V115H415" class="axis"/><polyline points="35,105 109,85 183,65 257,55 405,25"/><g><circle cx="35" cy="105" r="5"/><circle cx="109" cy="85" r="5"/><circle cx="183" cy="65" r="5"/><circle cx="257" cy="55" r="5"/><circle cx="405" cy="25" r="5"/></g><text x="35" y="140">09:00 · 14°C</text><text x="300" y="140">14:00 · 22°C</text></svg><figcaption>Accepted readings over time · 13:00 excluded</figcaption></figure><details class="data-reveal"><summary>Analyse the pattern</summary><p class="data-lead">Accepted readings rise over time.</p><p>Analysis identifies patterns, relationships, trends or anomalies.</p><p class="data-note">A pattern does not establish its cause.</p></details>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Aggregation asks…</h3>
-<p><strong>What is the average?</strong><br>The five accepted readings average 17.8°C.</p>
-</article>
-<article class="lesson-card">
-<h3>Analysis asks…</h3>
-<p><strong>What does the data appear to tell us?</strong><br>The accepted readings rise; the highest accepted value is later in the day. The excluded 91°C is unusual.</p>
-</article>
+<p class="eyebrow">24 · Collecting and processing data</p>
+<h2>Analysis: what does the data tell us?</h2>
+
+<p>Analysis examines data to identify patterns, trends, relationships or unusual values.</p>
+<div class="dp-grid dp-two">
+<div class="dp-card"><span class="dp-label">Question · when is demand higher?</span>
+<table class="dp-comparison-table"><caption>Lunches sold · three example weeks</caption>
+<thead>
+<tr><th scope="col">Day</th><th scope="col">Week 1</th><th scope="col">Week 2</th><th scope="col">Week 3</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">Monday</th><td>40</td><td>42</td><td>41</td>
+</tr>
+<tr class="dp-highlight"><th scope="row">Friday</th><td>80</td><td>84</td><td>82</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p class="data-note">Analysis looks for patterns, relationships, trends or anomalies.</p>
-<p>“Sales dropped on Tuesday” is an observation. “Sales dropped because it rained” requires additional evidence. A pattern alone does not establish a cause.</p>
-</details>
+<div class="dp-analysis-finding"><span class="dp-label">Compare the days across all three weeks</span>
+<div class="dp-big">2×</div><strong>Friday sales are twice Monday sales in these weeks.</strong>
+<p>This supports planning more food for Friday.</p>
+</div>
+</div>
+<p class="dp-takeaway">The pattern does not explain <em>why</em>. Menu, attendance or other evidence could help investigate.</p>
 </section>
 
 <section id="analysis-tool" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">20 · Collecting and processing data</p>
+<p class="eyebrow">25 · Collecting and processing data</p>
 <h2>Explore the weather trend</h2>
 <form class="data-tool" data-tool="analysis" data-no-slide-advance>
 <div class="data-table-wrap">
@@ -610,6 +797,8 @@
 </tbody>
 </table>
 </div>
+<div data-analysis-chart>
+</div>
 <p>Readings are plotted in time order. All entered values are shown; anything outside −30 to 55°C is flagged. Observations describe a pattern, not its cause.</p>
 <div class="quiz-actions">
 <button class="primary-link" type="submit">Update graph</button>
@@ -618,87 +807,156 @@
 <p data-result role="status">
 </p>
 </form>
-<div data-analysis-chart>
-</div>
+
 </section>
 
 <section id="reporting" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">21 · Collecting and processing data</p>
-<h2>What is reporting?</h2>
-<p>A manager needs to understand conditions quickly. What should they see?</p><details class="data-reveal"><summary>Show a weather report</summary><figure class="data-mini-chart"><svg viewBox="0 0 440 150" role="img" aria-label="Accepted temperatures rise from 14 to 22 degrees between 09:00 and 14:00; 13:00 is excluded."><path d="M35 15V115H415" class="axis"/><polyline points="35,105 109,85 183,65 257,55 405,25"/><g><circle cx="35" cy="105" r="5"/><circle cx="109" cy="85" r="5"/><circle cx="183" cy="65" r="5"/><circle cx="257" cy="55" r="5"/><circle cx="405" cy="25" r="5"/></g><text x="35" y="140">09:00 · 14°C</text><text x="300" y="140">14:00 · 22°C</text></svg><figcaption>Accepted readings over time · 13:00 excluded</figcaption></figure><p class="data-lead">Average: 17.8°C</p><p class="data-note">Exception: 13:00 reading of 91°C failed the rule.</p></details><p>Same underlying data, presented for its audience.</p><details class="data-reveal"><summary>Other report formats</summary><p>Tables · dashboards · written summaries · exception lists</p></details>
-<details class="data-revision"><summary>More examples and explanation</summary>
-<p>Reporting presents processed information in a form suitable for a user or purpose.</p>
-<div class="data-grid">
-<article class="lesson-card">
-<h3>Compare conditions</h3>
-<p>A labelled chart helps weather staff see changes over time.</p>
-</article>
-<article class="lesson-card">
-<h3>Find details</h3>
-<p>A table or printed statement lets someone look up exact values.</p>
-</article>
-<article class="lesson-card">
-<h3>Take action</h3>
-<p>An alert or exception report draws attention to readings needing investigation.</p>
-</article>
-<article class="lesson-card">
-<h3>See an overview</h3>
-<p>A dashboard or summary gives a manager key figures.</p>
+<p class="eyebrow">26 · Collecting and processing data</p>
+<h2>Reporting: make the finding useful to its audience</h2>
+
+<div class="dp-analysis-report">
+<article class="dp-analysis-finding"><span class="dp-label">Analysis · identify the pattern</span><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="27" cy="27" r="19"/><path d="M41 41l17 17M15 33l9-12 8 8 8-14"/></svg><strong>Friday sales are twice Monday sales in the three observed weeks.</strong>
+<p>Answers: “What have we found?”</p>
+</article><span class="dp-arrow" aria-hidden="true">→</span>
+<article class="dp-report-paper"><span class="dp-label">Reporting · communicate it</span>
+<h3>Canteen planning brief</h3>
+<p>For the catering manager · last 3 weeks</p>
+<div class="dp-bars">
+<div class="dp-bar-row"><span>Monday average</span>
+<div class="dp-bar-track"><span style="--bar:41.0%"></span>
+</div><strong>41</strong>
+</div>
+<div class="dp-bar-row"><span>Friday average</span>
+<div class="dp-bar-track"><span style="--bar:82.0%"></span>
+</div><strong>82</strong>
+</div>
+</div>
+<div class="dp-decision"><strong>Plan more portions for Fridays.</strong><span>Check current bookings before ordering ingredients.</span>
+</div>
 </article>
 </div>
-<p class="data-note">The right format depends on the audience and the decision they need to make.</p>
-</details>
+<p class="dp-takeaway">Reporting presents information as a chart, table, dashboard, written summary or alert.</p>
 </section>
 
 <template data-teacher-divider>
-<h2>From raw data to information</h2></template>
-<section id="using-results" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">22 · Collecting and processing data</p>
-<h2>Report view vs raw data</h2>
-<p>Compare two views of the same six records. Edits in the trend tool update both views here.</p>
-<div class="data-tool" data-no-slide-advance>
-<div class="quiz-actions" role="group" aria-label="Weather data view">
-<button type="button" class="lesson-secondary-action" data-view="report" aria-pressed="true" aria-controls="weather-report">Report view</button>
-<button type="button" class="lesson-secondary-action" data-view="raw" aria-pressed="false" aria-controls="weather-raw">Raw data</button>
+<h2>From raw data to information</h2>
+<p>Choose a view that answers the question</p>
+</template>
+<section id="report-formats" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">27 · Collecting and processing data</p>
+<h2>One dataset, different reports</h2>
+
+<p>The same eight orders can answer different questions.</p>
+<div class="dp-report-formats">
+<article class="dp-card"><span class="dp-label">Raw order records</span>
+<div class="dp-order-list"><span>Order 01</span><b>Wrap</b><span>Order 02</span><b>Wrap</b><span>Order 03</span><b>Pasta</b><span>Order 04</span><b>Salad</b><span>Order 05</span><b>Wrap</b><span>Order 06</span><b>Pasta</b><span>Order 07</span><b>Wrap</b><span>Order 08</span><b>Salad</b>
 </div>
-<div id="weather-report">
-<h3>Weather station · 8 September 2026</h3>
-<p data-report-summary>
-</p>
-<div data-report-chart>
+</article>
+<article class="dp-card"><span class="dp-label">Bar chart · compare counts</span>
+<h3>How many of each lunch?</h3>
+<div class="dp-bars">
+<div class="dp-bar-row"><span>Wrap</span>
+<div class="dp-bar-track"><span style="--bar:100.0%"></span>
+</div><strong>4</strong>
 </div>
-<p data-report-exceptions>
-</p>
+<div class="dp-bar-row"><span>Pasta</span>
+<div class="dp-bar-track"><span style="--bar:50.0%"></span>
+</div><strong>2</strong>
 </div>
-<div id="weather-raw" hidden>
-<h3>Original records · sensor_03</h3><pre data-raw-records></pre>
+<div class="dp-bar-row"><span>Salad</span>
+<div class="dp-bar-track"><span style="--bar:50.0%"></span>
+</div><strong>2</strong>
 </div>
-<p data-view-status role="status">Report view selected.</p>
 </div>
-<p class="data-note">The graph uses the underlying records, not different data. This report plots accepted readings and lists rejected readings separately. The raw view retains every original record, in its original order.</p>
+<p class="dp-chart-caption">Number of orders · scale 0–4</p>
+</article>
+<article class="dp-card"><span class="dp-label">Pie chart · share of the whole</span>
+<h3>What proportion is each type?</h3>
+<div class="dp-pie" role="img" aria-label="Eight orders: Wrap 4, 50%; Pasta 2, 25%; Salad 2, 25%."><span>8<br>orders</span>
+</div>
+<ul class="dp-legend">
+<li><i></i>Wrap · 4 · 50%</li>
+<li><i></i>Pasta · 2 · 25%</li>
+<li><i></i>Salad · 2 · 25%</li>
+</ul>
+</article>
+</div>
 </section>
 
-<section id="recap" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">23 · Collecting and processing data</p>
-<h2>Six processing functions</h2>
+<section id="using-results" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">28 · Collecting and processing data</p>
+<h2>Weather records beside their report</h2>
+
+<p>The trend tool updates both sides. Every record remains visible; the report separates out readings that fail the rule.</p>
+<div class="dp-weather-report" data-no-slide-advance>
+<div id="weather-raw" class="dp-card"><span class="dp-label">Source records · sensor_03</span>
+<h3>8 September 2026</h3>
+<div data-raw-table>
 <div class="data-table-wrap">
-<table><caption>Processing toolbox · revision reference</caption>
+<table><caption>All six records · original order</caption>
 <thead>
-<tr><th scope="col">Function</th><th scope="col">Main question</th><th scope="col">Example</th>
+<tr><th scope="col">Time</th><th scope="col">°C</th><th scope="col">Range check</th>
 </tr>
 </thead>
 <tbody>
-<tr><th scope="row">Validation</th><td>Does it follow the rules?</td><td>91°C fails a −30 to 55°C range check.</td>
+<tr><td>09:00</td><td>14</td><td>✓ Pass</td>
 </tr>
-<tr><th scope="row">Sorting</th><td>What order should records appear in?</td><td>Put readings in timestamp order.</td>
+<tr><td>11:00</td><td>18</td><td>✓ Pass</td>
 </tr>
-<tr><th scope="row">Conversion</th><td>What form or unit should it use?</td><td>20°C becomes 68°F.</td>
+<tr><td>10:00</td><td>16</td><td>✓ Pass</td>
 </tr>
-<tr><th scope="row">Aggregation</th><td>How can many values be summarised?</td><td>Five accepted readings average 17.8°C.</td>
+<tr><td>12:00</td><td>19</td><td>✓ Pass</td>
 </tr>
-<tr><th scope="row">Analysis</th><td>What does the data tell us?</td><td>Accepted readings rise through the observed day.</td>
+<tr class="dp-suspect"><td>13:00</td><td>91</td><td>✕ Hold</td>
 </tr>
-<tr><th scope="row">Reporting</th><td>How should information be presented?</td><td>Show staff a chart and exception summary.</td>
+<tr><td>14:00</td><td>22</td><td>✓ Pass</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><details class="data-revision"><summary>See the same records as CSV</summary><pre data-raw-records>timestamp,temperature_c,sensor_id
+2026-09-08T09:00:00,14,sensor_03
+2026-09-08T11:00:00,18,sensor_03
+2026-09-08T10:00:00,16,sensor_03
+2026-09-08T12:00:00,19,sensor_03
+2026-09-08T13:00:00,91,sensor_03
+2026-09-08T14:00:00,22,sensor_03</pre></details>
+</div>
+<div id="weather-report" class="dp-report-paper"><span class="dp-label">Report · for weather staff</span>
+<h3>Accepted readings over time</h3>
+<div data-report-chart>
+<figure class="dp-weather-chart"><svg viewBox="0 0 560 210" role="img" aria-label="Accepted readings: 09:00 14°C, 10:00 16°C, 11:00 18°C, 12:00 19°C, 14:00 22°C. 13:00 excluded pending investigation."><path class="dp-axis" d="M55 15V170H530"/><path class="dp-gridline" d="M55 50H530M55 105H530"/><text x="15" y="28">°C</text><text x="25" y="55">22</text><text x="25" y="166">14</text><polyline points="60,160 152,132 244,104 336,90 520,48"/><g><circle cx="60" cy="160" r="5"/><circle cx="152" cy="132" r="5"/><circle cx="244" cy="104" r="5"/><circle cx="336" cy="90" r="5"/><circle cx="520" cy="48" r="5"/></g><text x="55" y="195">09:00</text><text x="475" y="195">14:00</text></svg>
+<figcaption>5 accepted readings · 13:00 excluded</figcaption>
+</figure>
+</div>
+<p class="dp-decision" data-report-summary>5 accepted readings · Average 17.8°C · High 22°C · Trend: increasing.</p>
+<p class="dp-exception" data-report-exceptions>Held: 13:00 · 91°C. Outside −30 to 55°C; excluded pending investigation. Lines join available readings, not measurements at missing times.</p>
+</div>
+</div>
+</section>
+
+<section id="recap" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">29 · Collecting and processing data</p>
+<h2>Six functions, six different jobs</h2>
+
+<div class="data-table-wrap">
+<table class="dp-recap"><caption>Use the change to identify the function</caption>
+<thead>
+<tr><th scope="col">Function</th><th scope="col">Question it answers</th><th scope="col">Visible change</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 5l23 9v17c0 14-23 27-23 27S9 45 9 31V14Z"/><path d="M20 31l8 8 17-18"/></svg> Validation</th><td>Does it follow the rules?</td><td><strong>91°C → ✕ outside range</strong></td>
+</tr>
+<tr><th scope="row"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10v44M6 44l8 10 8-10M32 15h12M32 31h20M32 47h28"/></svg> Sorting</th><td>What order do we need?</td><td><strong>Zara, Amir → Amir, Zara</strong></td>
+</tr>
+<tr><th scope="row"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h46M44 10l10 10-10 10M56 44H10M20 34L10 44l10 10"/></svg> Conversion</th><td>What unit, type or format?</td><td><strong>20°C → 68°F</strong></td>
+</tr>
+<tr><th scope="row"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="12" height="12" rx="2"/><rect x="26" y="7" width="12" height="12" rx="2"/><rect x="47" y="7" width="12" height="12" rx="2"/><path d="M11 25v8h42v-8M32 33v10"/><rect x="20" y="43" width="24" height="15" rx="3"/></svg> Aggregation</th><td>What is the summary?</td><td><strong>5 readings → mean 17.8°C</strong></td>
+</tr>
+<tr><th scope="row"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="27" cy="27" r="19"/><path d="M41 41l17 17M15 33l9-12 8 8 8-14"/></svg> Analysis</th><td>What patterns can we find?</td><td><strong>Readings rise over time</strong></td>
+</tr>
+<tr><th scope="row"><svg class="dp-icon" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="5" width="42" height="54" rx="4"/><path d="M20 17h24M20 25h15M21 48V37M32 48V31M43 48V35"/></svg> Reporting</th><td>How will people use the result?</td><td><strong>Readings → labelled chart</strong></td>
 </tr>
 </tbody>
 </table>
@@ -706,23 +964,134 @@
 </section>
 
 <section id="journey" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">24 · Collecting and processing data</p>
-<h2>Complete data-processing journey</h2>
-<ol class="data-journey">
-<li><strong>COLLECT</strong><span>Sensor → <code>09:00 | 14°C</code></span></li>
-<li><strong>VALIDATE</strong><span>91°C → ✗ flagged; 5 readings accepted</span></li>
-<li><strong>SORT</strong><span>09, 11, 10… → 09, 10, 11…</span></li>
-<li><strong>CONVERT · if needed</strong><span>14°C → 57.2°F · this report keeps °C</span></li>
-<li><strong>AGGREGATE</strong><span>14, 16, 18, 19, 22 → 17.8°C mean</span></li>
-<li><strong>ANALYSE</strong><span>14 ▁ 16 ▃ 18 ▅ 19 ▆ 22 █ → rising</span></li>
-<li><strong>REPORT</strong><span>Readings → <svg class="data-report-glyph" viewBox="0 0 100 35" role="img" aria-label="Rising trend graph"><polyline points="3,29 23,23 43,17 63,13 97,3" fill="none" stroke="currentColor" stroke-width="3"/></svg> <strong>17.8°C</strong> · 91°C flagged</span></li>
-</ol><p class="data-note">This is one worked example. Not every task uses every function or uses them in this exact order.</p>
+<p class="eyebrow">30 · Collecting and processing data</p>
+<h2>Follow the same data from collection to report</h2>
+
+<div class="dp-journey" data-step-sequence data-no-slide-advance>
+<nav class="dp-step-route" aria-label="Data journey stages" data-step-navigation hidden><button type="button" data-step-to="0" aria-controls="journey-step-0">1 · Collect</button><button type="button" data-step-to="1" aria-controls="journey-step-1">2 · Validate</button><button type="button" data-step-to="2" aria-controls="journey-step-2">3 · Sort</button><button type="button" data-step-to="3" aria-controls="journey-step-3">4 · Convert</button><button type="button" data-step-to="4" aria-controls="journey-step-4">5 · Aggregate</button><button type="button" data-step-to="5" aria-controls="journey-step-5">6 · Analyse</button><button type="button" data-step-to="6" aria-controls="journey-step-6">7 · Report</button>
+</nav>
+<div class="dp-step-controls" data-step-controls hidden><button type="button" class="lesson-secondary-action" data-step-prev>Previous step</button>
+<p data-step-status role="status">
+</p><button type="button" class="primary-link" data-step-next>Next step</button><button type="button" class="lesson-secondary-action" data-step-reset>Restart</button>
+</div>
+<article class="dp-step-panel" id="journey-step-0" data-step-panel><span class="dp-label">1 · Collect</span>
+<h3>Capture the sensor readings</h3>
+<div class="dp-weather-records">
+<div class="dp-weather-record"><span>09:00</span><strong>14°C</strong>
+</div>
+<div class="dp-weather-record"><span>11:00</span><strong>18°C</strong>
+</div>
+<div class="dp-weather-record"><span>10:00</span><strong>16°C</strong>
+</div>
+<div class="dp-weather-record"><span>12:00</span><strong>19°C</strong>
+</div>
+<div class="dp-weather-record"><span>13:00</span><strong>91°C</strong>
+</div>
+<div class="dp-weather-record"><span>14:00</span><strong>22°C</strong>
+</div>
+</div>
+<p>Six records arrive, including one out of time order. Each temperature stays with its timestamp.</p>
+</article>
+<article class="dp-step-panel" id="journey-step-1" data-step-panel><span class="dp-label">2 · Validate</span>
+<h3>Keep the suspect reading separate</h3>
+<div class="dp-weather-records">
+<div class="dp-weather-record"><span>09:00</span><strong>14°C</strong>
+</div>
+<div class="dp-weather-record"><span>11:00</span><strong>18°C</strong>
+</div>
+<div class="dp-weather-record"><span>10:00</span><strong>16°C</strong>
+</div>
+<div class="dp-weather-record"><span>12:00</span><strong>19°C</strong>
+</div>
+<div class="dp-weather-record dp-suspect"><span>13:00</span><strong>91°C</strong><small>✕ Hold</small>
+</div>
+<div class="dp-weather-record"><span>14:00</span><strong>22°C</strong>
+</div>
+</div>
+<p>Rule: −30°C to 55°C. Five pass; 91°C fails. Keep the original record for investigation.</p>
+</article>
+<article class="dp-step-panel" id="journey-step-2" data-step-panel><span class="dp-label">3 · Sort</span>
+<h3>Put accepted records in time order</h3>
+<div class="dp-weather-records">
+<div class="dp-weather-record"><span>09:00</span><strong>14°C</strong>
+</div>
+<div class="dp-weather-record"><span>10:00</span><strong>16°C</strong>
+</div>
+<div class="dp-weather-record"><span>11:00</span><strong>18°C</strong>
+</div>
+<div class="dp-weather-record"><span>12:00</span><strong>19°C</strong>
+</div>
+<div class="dp-weather-record"><span>14:00</span><strong>22°C</strong>
+</div>
+</div>
+<div class="dp-held-record"><strong>Held for investigation</strong><span>13:00 · 91°C · outside range</span>
+</div>
+<p>09:00 → 10:00 → 11:00 → 12:00 → 14:00. The temperature values have not changed.</p>
+</article>
+<article class="dp-step-panel" id="journey-step-3" data-step-panel><span class="dp-label">4 · Convert</span>
+<h3>Change units only if the task needs it</h3>
+<div class="dp-conversion dp-large-conversion"><strong>14°C</strong><span>→</span><strong>57.2°F</strong>
+</div>
+<p>For a Fahrenheit report: °F = (°C × 9 ÷ 5) + 32. This report’s audience uses °C, so we keep Celsius.</p>
+<div class="dp-held-record"><strong>Held for investigation</strong><span>13:00 · 91°C · outside range</span>
+</div>
+</article>
+<article class="dp-step-panel" id="journey-step-4" data-step-panel><span class="dp-label">5 · Aggregate</span>
+<h3>Calculate a useful summary</h3>
+<div class="dp-weather-records">
+<div class="dp-weather-record"><span>09:00</span><strong>14°C</strong>
+</div>
+<div class="dp-weather-record"><span>10:00</span><strong>16°C</strong>
+</div>
+<div class="dp-weather-record"><span>11:00</span><strong>18°C</strong>
+</div>
+<div class="dp-weather-record"><span>12:00</span><strong>19°C</strong>
+</div>
+<div class="dp-weather-record"><span>14:00</span><strong>22°C</strong>
+</div>
+</div>
+<div class="dp-summary-number"><span>Mean of accepted readings</span><strong>89 ÷ 5 = <em>17.8°C</em></strong>
+</div>
+<div class="dp-held-record"><strong>Held for investigation</strong><span>13:00 · 91°C · outside range</span>
+</div>
+</article>
+<article class="dp-step-panel" id="journey-step-5" data-step-panel><span class="dp-label">6 · Analyse</span>
+<h3>Look for a pattern</h3>
+<div class="dp-grid dp-two">
+<figure class="dp-weather-chart"><svg viewBox="0 0 560 210" role="img" aria-label="Accepted readings: 09:00 14°C, 10:00 16°C, 11:00 18°C, 12:00 19°C, 14:00 22°C. 13:00 excluded pending investigation."><path class="dp-axis" d="M55 15V170H530"/><path class="dp-gridline" d="M55 50H530M55 105H530"/><text x="15" y="28">°C</text><text x="25" y="55">22</text><text x="25" y="166">14</text><polyline points="60,160 152,132 244,104 336,90 520,48"/><g><circle cx="60" cy="160" r="5"/><circle cx="152" cy="132" r="5"/><circle cx="244" cy="104" r="5"/><circle cx="336" cy="90" r="5"/><circle cx="520" cy="48" r="5"/></g><text x="55" y="195">09:00</text><text x="475" y="195">14:00</text></svg>
+<figcaption>5 accepted readings · 13:00 excluded</figcaption>
+</figure>
+<div class="dp-analysis-finding"><span class="dp-label">Finding</span><strong>Accepted readings rise over the observed period.</strong>
+<p>14°C → 22°C: an increase of 8°C. This does not tell us the cause.</p>
+</div>
+</div>
+<div class="dp-held-record"><strong>Held for investigation</strong><span>13:00 · 91°C · outside range</span>
+</div>
+</article>
+<article class="dp-step-panel" id="journey-step-6" data-step-panel><span class="dp-label">7 · Report</span>
+<h3>Give staff a readable result</h3>
+<div class="dp-grid dp-two">
+<figure class="dp-weather-chart"><svg viewBox="0 0 560 210" role="img" aria-label="Accepted readings: 09:00 14°C, 10:00 16°C, 11:00 18°C, 12:00 19°C, 14:00 22°C. 13:00 excluded pending investigation."><path class="dp-axis" d="M55 15V170H530"/><path class="dp-gridline" d="M55 50H530M55 105H530"/><text x="15" y="28">°C</text><text x="25" y="55">22</text><text x="25" y="166">14</text><polyline points="60,160 152,132 244,104 336,90 520,48"/><g><circle cx="60" cy="160" r="5"/><circle cx="152" cy="132" r="5"/><circle cx="244" cy="104" r="5"/><circle cx="336" cy="90" r="5"/><circle cx="520" cy="48" r="5"/></g><text x="55" y="195">09:00</text><text x="475" y="195">14:00</text></svg>
+<figcaption>5 accepted readings · 13:00 excluded</figcaption>
+</figure>
+<div class="dp-report-paper"><span class="dp-label">Weather station · 8 September</span>
+<div class="dp-big">17.8°C</div><strong>Average of 5 accepted readings</strong>
+<p>Trend: rising. High: 22°C.</p>
+<div class="dp-held-record"><strong>Held for investigation</strong><span>13:00 · 91°C · outside range</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+<p class="dp-sequence-note">One possible workflow: functions may be skipped, repeated or used in a different order.</p>
 </section>
 
 <template data-teacher-divider>
-<h2>Practice</h2></template>
+<h2>Practice</h2>
+<p>Identify the change, then explain its purpose</p>
+</template>
 <section id="identify" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">25 · Collecting and processing data</p>
+<p class="eyebrow">31 · Collecting and processing data</p>
 <h2>Which processing function happened?</h2>
 
 <article class="lesson-card data-tool" data-paired-scenario="sorting" data-no-slide-advance>
@@ -932,9 +1301,9 @@
 </section>
 
 <section id="mistakes" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">26 · Collecting and processing data</p>
+<p class="eyebrow">32 · Collecting and processing data</p>
 <h2>Common exam mistakes</h2>
-<div class="data-misconception"><h3>“Data = information”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>Data is raw; information has meaning or supports a decision.</p></details></div>
+<div class="data-misconception"><h3>“Data = information”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>Data consists of recorded facts or values; information gives data meaning for a purpose.</p></details></div>
 <div class="data-misconception"><h3>“Validation proves correctness”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>It checks rules, not real-world truth.</p></details></div>
 <div data-slide-break></div>
 <div class="data-misconception"><h3>“Sorting changes the values”</h3><details class="data-reveal"><summary>Reveal the correction</summary><p>It changes record order. Fields stay together.</p></details></div>
@@ -945,7 +1314,7 @@
 </section>
 
 <section id="quiz" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">27 · Collecting and processing data</p>
+<p class="eyebrow">33 · Collecting and processing data</p>
 <h2>Check your understanding</h2>
 <p>Answer all 14 questions, then check your score. Your choices and best score save in this browser. Aim for 10 correct.</p>
 <form id="lesson-quiz" class="quiz-form">
@@ -1266,7 +1635,7 @@
 </section>
 
 <section id="exam-practice" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">28 · Collecting and processing data</p>
+<p class="eyebrow">34 · Collecting and processing data</p>
 <h2>Exam-style practice</h2>
 <p>Write an applied explanation, then compare it with the guide. These are practice questions, not an official mark scheme.</p>
 <p class="exam-response-note">Draft answers save automatically in this browser.</p>
@@ -1389,7 +1758,11 @@
           <p class="eyebrow">Glossary</p>
           <h2>Quick glossary</h2>
           <dl class="glossary-list">
-<div class="glossary-item"><dt>Data</dt><dd>Raw facts or values.</dd>
+<div class="glossary-item"><dt>Data</dt><dd>Recorded facts or values.</dd>
+</div>
+<div class="glossary-item"><dt>Raw data</dt><dd>Data as collected, before processing for the current task.</dd>
+</div>
+<div class="glossary-item"><dt>Log</dt><dd>A record of events in a system.</dd>
 </div>
 <div class="glossary-item"><dt>Information</dt><dd>Data processed or presented meaningfully.</dd>
 </div>

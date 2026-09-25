@@ -15,9 +15,11 @@ function renderChart(container, records, title) {
   const figure = document.createElement('figure')
   figure.className = 'data-chart'
   const caption = document.createElement('figcaption')
-  caption.textContent = records.length
+  const description = records.length
     ? `${title}. ${sortRecords(records).map(r => `${r.time}: ${format(r.temperature)}°C`).join('; ')}.`
     : `${title}. No readings meet the reporting rule.`
+  // Exact values are in the adjacent source table as well as the SVG label.
+  caption.textContent = records.length ? title : description
   if (records.length) {
     const ordered = sortRecords(records)
     const stats = summarise(ordered.map(r => r.temperature))
@@ -28,7 +30,7 @@ function renderChart(container, records, title) {
     const first = minutes(ordered[0].time), last = minutes(ordered.at(-1).time)
     const x = record => first === last ? 320 : 65 + (minutes(record.time) - first) / (last - first) * 510
     const y = value => 245 - (value - low) / (high - low) * 195
-    const svg = element('svg', { viewBox: '0 0 640 295', role: 'img', 'aria-label': caption.textContent })
+    const svg = element('svg', { viewBox: '0 0 640 295', role: 'img', 'aria-label': description })
     svg.append(element('title', {}, title))
     for (let i = 0; i <= 4; i++) {
       const value = low + (high - low) * i / 4
@@ -37,9 +39,11 @@ function renderChart(container, records, title) {
     svg.append(element('text', { x: 20, y: 22 }, '°C'), element('text', { x: 600, y: 285, 'text-anchor': 'end' }, 'Time'))
     svg.append(element('polyline', { points: ordered.map(r => `${x(r)},${y(r.temperature)}`).join(' '), class: 'chart-line' }))
     ordered.forEach(record => {
-      const point = element('circle', { cx: x(record), cy: y(record.temperature), r: 5, class: 'chart-point' })
+      const outside = !validateTemperature(record.temperature)
+      const point = element('circle', { cx: x(record), cy: y(record.temperature), r: outside ? 7 : 5, class: `chart-point${outside ? ' is-outside-rule' : ''}` })
       point.append(element('title', {}, `${record.time}: ${format(record.temperature)}°C`))
       svg.append(point, element('text', { x: x(record), y: 266, 'text-anchor': 'middle' }, record.time))
+      if (outside) svg.append(element('text', { x: x(record), y: y(record.temperature) - 12, 'text-anchor': 'middle', class: 'chart-flag' }, `${format(record.temperature)}°C`))
     })
     figure.append(svg)
   }
@@ -58,9 +62,27 @@ export function initProcessingTools(defaultRecords, root = document) {
       ? `${summary.count} accepted readings · Average ${format(summary.average)}°C · High ${format(summary.maximum)}°C · Trend: ${describeTrend(accepted).toLowerCase()}.`
       : 'No accepted readings. A temperature summary cannot be calculated.'
     query('[data-report-exceptions]').textContent = rejected.length
-      ? `Exceptions: ${rejected.map(r => `${r.time}: ${format(r.temperature)}°C`).join('; ')}. Outside −30 to 55°C; excluded from chart and summary pending investigation. Lines connect available readings, not measurements of the missing times.`
+      ? `Held: ${rejected.map(r => `${r.time}: ${format(r.temperature)}°C`).join('; ')}. Outside −30 to 55°C; excluded pending investigation. Lines join available readings, not measurements at missing times.`
       : 'All readings pass the −30 to 55°C rule. Passing does not prove accuracy.'
     query('[data-raw-records]').textContent = 'timestamp,temperature_c,sensor_id\n' + records.map(r => `2026-09-08T${r.time}:00,${r.temperature},sensor_03`).join('\n')
+    const rawTable = query('[data-raw-table]')
+    if (rawTable) {
+      const wrap = document.createElement('div')
+      wrap.className = 'data-table-wrap'
+      const table = document.createElement('table')
+      table.innerHTML = '<caption>All six records · original order</caption><thead><tr><th scope="col">Time</th><th scope="col">°C</th><th scope="col">Range check</th></tr></thead><tbody></tbody>'
+      records.forEach(record => {
+        const row = document.createElement('tr')
+        const accepted = validateTemperature(record.temperature)
+        if (!accepted) row.className = 'dp-suspect'
+        for (const value of [record.time, format(record.temperature), accepted ? '✓ Pass' : '✕ Hold']) {
+          const cell = document.createElement('td'); cell.textContent = value; row.append(cell)
+        }
+        table.tBodies[0].append(row)
+      })
+      wrap.append(table)
+      rawTable.replaceChildren(wrap)
+    }
     renderChart(query('[data-report-chart]'), accepted, 'Accepted weather readings')
   }
   function renderAnalysis() {

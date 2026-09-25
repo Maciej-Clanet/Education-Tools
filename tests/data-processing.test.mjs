@@ -1,6 +1,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { parseValues, validateTemperature, convertTemperature, sortRecords, summarise, describeTrend } from '../javascript/core/data-processing.js'
+import { checkRule } from '../javascript/core/validation-lab.js'
+import { bookingRules, correctedBooking } from '../javascript/data/data-processing-examples.js'
 
 test('numeric demonstrations handle rules, conversion and edited summaries', () => {
   assert.equal(validateTemperature(-30), true)
@@ -21,4 +23,16 @@ test('sorting preserves source records and trend analysis uses time order', () =
   assert.equal(describeTrend(records), 'Increasing')
   assert.equal(describeTrend([...records, { time: '12:00', temperature: 1 }]), 'Mixed')
   assert.equal(describeTrend([{ time: '09:00', temperature: 2 }]), 'Not enough readings to identify a trend')
+})
+
+test('booking rules reject missing, out-of-range, fractional and malformed values', () => {
+  assert.equal(checkRule('   ', bookingRules.name), false)
+  assert.equal(checkRule('Alex', bookingRules.name), true)
+  for (const value of ['', '15', '19', 'Infinity', 'sixteen']) assert.equal(checkRule(value, bookingRules.age), false, value)
+  for (const value of ['16', '17', '18']) assert.equal(checkRule(value, bookingRules.age), true, value)
+  for (const value of ['', '2.5', 'two', '9007199254740993']) assert.equal(checkRule(value, bookingRules.tickets), false, value)
+  for (const value of ['ST-20', 'ST-2040', '204', 'ST-ABC']) assert.equal(checkRule(value, bookingRules.studentId), false, value)
+  for (const [field, value] of Object.entries(correctedBooking)) assert.equal(checkRule(value, bookingRules[field]), true, field)
+  // A plausible but incorrect value still passes: these checks cannot establish truth.
+  assert.equal(checkRule('ST-999', bookingRules.studentId), true)
 })

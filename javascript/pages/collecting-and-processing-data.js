@@ -4,6 +4,10 @@ import { initProcessingTools } from "../core/processing-tools.js"
 import { weatherRecords } from "../data/weather-records.js"
 import { initPairedScenarios } from "../core/paired-scenarios.js"
 import { dataProcessingScenarios } from "../data/data-processing-scenarios.js"
+import { initStepSequences } from "../core/step-sequence.js"
+import { initValidationLab } from "../core/validation-lab.js"
+import { initRecordSort } from "../core/record-sort-demo.js"
+import { bookingRules, correctedBooking, arrivalRecords } from "../data/data-processing-examples.js"
 
 const lessonConfig = {
   lessonId: "collecting-and-processing-data",
@@ -40,4 +44,7 @@ const lessonConfig = {
 
 initProcessingTools(weatherRecords)
 initPairedScenarios(dataProcessingScenarios)
+initValidationLab(bookingRules, correctedBooking)
+initRecordSort(arrivalRecords)
+initStepSequences()
 initLessonPage(lessonConfig)

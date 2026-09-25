@@ -1,136 +1,123 @@
 # Collecting and processing data
 
-The existing lesson URL and unit context are retained. The first-teaching order
-has 28 student sections, one inert teacher-opener template and four
-teacher-divider templates (40 teacher slides after activity/misconception splits). Long quiz, practice and tool slides use the existing scrolling deck.
+## September 2026 redesign
 
-## Student section order
+34 student sections, one shared teacher opener and four section dividers produce
+46 Teacher Slides (the existing six transformation questions and three pairs of
+misconceptions remain separate slides). The URL, context navigation, glossary,
+quiz progress and written-answer storage remain stable.
 
-1. Why collect data?
-2. Data vs information
-3. Where is collection used?
-4. How is data collected?
-5. Manual data collection
+The redesign plan follows the review in this order:
+
+| Review notes | Teaching change |
+| --- | --- |
+| 1–3: weak introduction, hidden examples, forgettable use cases | Begin with a canteen choosing how many lunches to prepare. Visible sales evidence leads to a decision; a separate data → process → information diagram names the stages. Illustrated attendance, bus and greenhouse examples show consequences. |
+| 4–6: collection origins, terminology and context | Origin map before methods. Show a person answering a form, a greenhouse sensor supplying values and an app recording its own failed order. Define log and telemetry in context. Separate capture hardware examples and a when/where/what diagram. |
+| 7–8: functions and raw data | Give raw order records their own before/after slide. Follow with six named functions without premature definitions. Raw data can be labelled; it is unprocessed for the current task, not intrinsically meaningless. |
+| 9–10: validation | Problem → rule gate → four editable checks → valid versus accurate. School-trip booking starts with two passes and two failures, all untested. Test individually or together, edit, load a corrected example or reset. |
+| 11–13: sorting, conversion, aggregation | Animate complete name/time/score records into alphabetical, chronological or numerical order. Show four conversion cases. Merge three till totals into one count before weather count/mean/max summaries. Records can be grouped across places or times; multiple sites are not required. |
+| 14–15: analysis and reporting | Compare Monday/Friday sales across three weeks to find a repeated pattern. The following slide separates finding that pattern from communicating it in a manager's brief. A pattern alone does not establish its cause. |
+| 16–17: report views and recap | Show eight orders beside count bars and a proportional pie chart. Show the editable weather source table beside its report, with held readings explicit. Retain the six-function comparison table with visual examples. |
+| 18: complete journey | Seven selectable steps carry the same six weather records through collection, validation, sorting, optional conversion, aggregation, analysis and reporting. Previous/next/restart controls, current-step navigation and restrained transition animation. |
+| 19: end tasks | Review all six paired transformations, 14 quiz questions and five written tasks against the new teaching. They remain applicable, including attendance, supermarket and transport transfer tasks. Their wording, scoring and saved-answer IDs remain unchanged. |
+
+Core explanations and examples are visible. Disclosures are reserved for optional
+CSV reference and assessment answer reveals. One idea per teaching section;
+Teacher Slides reuse the student content. The teacher-only title opener remains
+brief, with goals, ahead of the visual canteen introduction.
+
+## Sequence
+
+1. How many lunches should the canteen make?
+2. From recorded facts to useful information
+3. Different settings, decisions that matter
+4. Start with the origin of the data
+5. Manual collection
 6. Automatic hardware collection
-7. Software/system-generated collection
-8. Hardware and software work together
-9. Collection worked example
-10. Raw data needs processing: six-function toolbox
-11. What is validation?
-12. Try a validation rule
-13. What is sorting?
-14. Try sorting weather records
-15. What is conversion?
-16. Try converting a temperature
-17. What is aggregation?
-18. Try aggregating readings
-19. What is analysis?
-20. Explore the weather trend
-21. What is reporting?
-22. Report view vs raw data
-23. Six processing functions: revision comparison
-24. Complete data-processing journey (one possible sequence)
-25. Which processing function happened?
-26. Common exam mistakes
-27. Check your understanding
-28. Exam-style practice
+7. Different inputs need different hardware
+8. Software records its own activity
+9. Hardware captures, software records
+10. Adding when, where and what
+11. Raw data
+12. Six processing functions
+13. Bad inputs distort results
+14. Validation rules
+15. School-trip validation lab
+16. Valid versus accurate
+17. Sorting complete records
+18. Sorting weather records
+19. Four conversion examples
+20. Temperature conversion tool
+21. Aggregation using three tills
+22. Weather summary choices
+23. Aggregation tool
+24. Analysis using repeated sales patterns
+25. Editable weather trend
+26. Reporting the finding to an audience
+27. Raw orders, bar chart and pie chart
+28. Weather records beside their report
+29. Six-function recap table
+30. Interactive complete journey
+31. Six paired transformation questions
+32. Three pairs of misconceptions
+33. Quick quiz
+34. Five written exam-style tasks
 
-Teacher dividers precede sections 4 (Collecting data), 10 (Processing functions),
-22 (From raw data to information) and 25 (Practice). The shared shell supplies
-“Next”, hides them for students and excludes them from Jump To.
+Dividers precede collection, raw data, report formats and practice. No teacher
+prompts or per-lesson deck runtime are added.
 
-## Data and components
+## Components and data
 
-- `javascript/data/weather-records.js`: six intentionally unsorted timestamped
-  readings, including 91°C outside the teaching station's −30 to 55°C rule.
-- Collection first demonstrates a single 14.2°C record; subsequent processing
-  uses rounded whole-degree values for readable arithmetic.
-- Sorting preserves complete records and restores original order on reset.
-  It uses the starting dataset independently of the trend editor.
-- Validation and Celsius conversion use independent editable single values.
-- Aggregation accepts 1–24 comma-separated finite numbers and offers count,
-  total, average, minimum and maximum. Defaults are the five accepted weather
-  readings. It does not silently validate or remove user-entered values.
-- Analysis plots all six editable readings in time order. Trend classification
-  compares successive values: increasing, decreasing, steady or mixed. Anomalies
-  are deterministic range-rule flags, not statistical or causal discoveries.
-- Reporting and raw CSV use the same latest successfully plotted records.
-  The chart and mean/high summaries use accepted readings; rejected readings
-  appear explicitly in an exception note. The raw view retains all six original
-  records and their original order, without padding or invented observations.
-  Timestamp spacing is proportional; connecting lines do not claim measurements
-  at omitted times. All-invalid datasets produce an explicit empty summary.
-- `javascript/core/data-processing.js`: small pure numeric helpers.
-- `javascript/core/processing-tools.js`: focused native forms and a shared SVG
-  chart renderer with exact readings in a visible text alternative. Numeric
-  inputs reject blanks, non-finite numbers and magnitudes above 1,000,000.
-  Invalid edits retain the last successful graph and report with an explanation.
-- `javascript/data/data-processing-scenarios.js`: six transformation/reason
-  matches using the existing `paired-scenarios.js` component.
-- Local SVG scenario illustrations and page-scoped CSS use the shared visual
-  language. No new framework, service, account or chart dependency.
+- Original code-native CSS/SVG diagrams require no external assets or licences.
+- `javascript/core/step-sequence.js` enhances static authored panels. Attribute
+  contract: `data-step-sequence`, `data-step-panel` (each with an h3 and unique
+  ID), `data-step-navigation`, `data-step-to` (zero-based index plus
+  `aria-controls`), `data-step-controls`, `data-step-prev`, `data-step-next`,
+  `data-step-reset`, `data-step-status`. Controls start hidden; panels start
+  visible. Animation respects reduced motion; printing reveals every panel.
+- `javascript/core/validation-lab.js` checks authored presence, range, integer
+  and format rules. `javascript/data/data-processing-examples.js` supplies the
+  booking rules, corrected values and sorting records. Input edits invalidate
+  stale feedback; “Test all” never relies on the browser blocking submission.
+  Each card tests its displayed rule only, not every possible rule for that field.
+- `javascript/core/record-sort-demo.js` moves whole existing record nodes,
+  animating their positions and preserving field relationships. Reduced-motion
+  users get the same ordering without animation.
+- `javascript/core/processing-tools.js` retains the numeric forms and charts.
+  The report's visible source table and optional CSV use the same last successful
+  weather dataset as the graph. All six records retain their original order;
+  only range-accepted records contribute to the report summary and chart.
+- `javascript/data/weather-records.js` retains six unsorted timestamped readings,
+  including 91°C outside the illustrative station's −30°C to 55°C rule. The
+  walkthrough uses these original records independently of trend-tool edits.
+- Sorting weather records preserves timestamp/temperature pairs and restores
+  source order on reset. Aggregation does not silently validate its input.
+- Analysis checks every successive change in time order; the range rule flags
+  possible anomalies. It makes no statistical or causal claim. Time spacing in
+  charts is proportional; joining available readings does not invent measurements
+  at missing times. Invalid edits retain the last successful graph and report;
+  all-invalid inputs produce an explicit empty report.
 
-Tool experiments reset on reload; quiz and exam drafts use existing persistence.
-Quiz version 2 has 14 questions, pass score 10, and a new answer storage key.
-Unit progress metadata matches. New exam field IDs avoid attaching old answers
-to different questions; prior saved drafts are not migrated into these tasks.
+No backend, accounts, framework or chart package. Tool experiments reset on
+reload. Quiz version 2 remains 14 questions, pass 10. Existing quiz and exam-draft
+storage keys and IDs are preserved because assessment content has not changed.
 
-## Scope and verification
+## Checks
 
-Intentionally limited to simple range validation, Celsius/Fahrenheit conversion,
-six fixed timestamps, lightweight descriptive analysis and a six-row raw report.
-No SQL, advanced statistics, machine learning or sensor electronics. Multi-system
-access/cost/security impacts and backup/recovery remain in later A3 lessons.
+Run `node --test tests/data-processing.test.mjs tests/teacher-dividers.test.mjs
+tests/interface-activities.test.mjs`. Browser review covers all slides, every
+journey stage, keyboard controls, reduced motion, validation edits and resets,
+record sorting, numeric tools and invalid inputs, source/report agreement, quiz
+scoring/persistence, exam drafts, mobile width and no-JavaScript reading.
+There is no package build or lint command in this static repository.
 
-Regression checks: `node --test tests/data-processing.test.mjs
- tests/teacher-dividers.test.mjs tests/interface-activities.test.mjs`.
-Browser checks cover editable tools/reset, invalid inputs, empty reports, raw/report
-correspondence, paired feedback, quiz scoring/reset/reload, exam drafts, teacher
-navigation and mobile overflow. Syntax and whitespace checks also apply.
-
-## Second-pass presentation sequence
-
-1. Lesson opener: Collecting and Processing Data; “How does raw data become
-   useful information?”; four goals covering collection, distinguishing functions,
-   transforming data and supporting decisions.
-2–4. Why collect?; Data vs information; Where collection is used.
-5. Divider: Collecting data.
-6–11. Collection routes; Manual; Automatic hardware; System-generated;
-   Hardware captures; Software gives the reading context.
-12. Divider: Processing functions.
-13–24. Raw data/toolbox; Validation; Validation tool; Sorting; Sorting tool;
-   Conversion; Conversion tool; Aggregation; Aggregation tool; Analysis;
-   Trend tool; Reporting.
-25. Divider: From raw data to information.
-26–28. Report/raw view; Six-function recap; Complete journey.
-29. Divider: Practice.
-30–35. One transformation question per slide, using the existing Next/Previous.
-36–38. Two misconceptions per slide, with revealable corrections.
-39–40. Existing quiz and exam practice.
-
-All four divider placements are preserved. Native details/summary disclosures
-show decisions, context, validation versus truth, representations, aggregation,
-analysis and reports progressively. Expanded revision supplements are hidden in
-Teacher Slides. The full student page keeps all activity questions. The deck's
-existing chunk mechanism preserves selections and feedback when moving between
-questions; no extra activity state or pagination runtime was added.
-
-Sorting now animates rows from their previous positions into their new order,
-respecting reduced motion; numeric processing, reset semantics and source records
-are unchanged. Hardware/software slides now have distinct jobs: capture first,
-context second. The recap, quiz questions/answers/version/storage keys, exam tasks,
-trend editing and report/raw correspondence remain unchanged.
-
-Shared files: teacher-dividers.js (opener variant), lesson-shell.js (opener entry),
-lesson.css (minimal opener styling), processing-tools.js (row movement only).
-Visual lesson styling remains scoped to collecting-and-processing-data.css.
-Manual opener authoring: see [teacher_section_dividers.md](teacher_section_dividers.md).
-
-Second-pass verification: three relevant Node test files and JavaScript syntax /
-whitespace checks passed. Local Chrome checks passed for all processing widgets,
-resets, invalid/empty reports, report/raw correspondence, paired feedback,
-quiz scoring/reset/reload, exam draft reload, opener entry/reload/exit, keyboard
-navigation, all 40 slides, one-question visibility/student restoration, expanded
-mobile content without page overflow, and a divider-only lesson. Screenshots were
-reviewed for the opener, teaching visuals, journey and activity; no runtime errors.
-No package build or lint command is configured in this static repository.
+Verified in local Chrome at 1366×768: every teaching slide and every journey
+state fits at the default presentation text size. The long quiz and written-task
+sections intentionally retain scrolling. Interaction checks passed for all four
+validation rules and keyboard activation, record sorting, the original numeric
+tools, invalid/all-rejected weather datasets, raw/report agreement, six paired
+scenarios, quiz scoring/reset/reload and exam draft reload. Student layouts at
+1366, 1024, 768 and 390 pixels have no horizontal page overflow. Reduced motion,
+print-visible journey steps and no-JavaScript lesson/report content also passed;
+no uncaught browser errors. Node regressions, JavaScript syntax, HTML reference
+checks and whitespace checks passed.
