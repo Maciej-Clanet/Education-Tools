@@ -17,7 +17,8 @@ the browser with `localStorage` where useful.
   and OS use/performance are reserved for an operating-system refinement.
 
 - Teacher slide decks support optional teacher-only lesson-opener and section-divider templates.
-  Openers always start Teacher Slides when declared; lessons without one retain
+  Openers start Teacher Slides via its button when declared; Alt + Shift + T
+  opens the current section directly from normal view. Lessons without one retain
   their existing entry behaviour. First teaching should favour one main idea,
   large visual transformations and progressive disclosure; denser revision
   supplements can remain on student pages.

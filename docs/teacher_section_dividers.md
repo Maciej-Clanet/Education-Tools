@@ -79,12 +79,18 @@ slide numbering are needed in lessons already using `initLessonPage` and
 `css/pages/lesson.css`. These templates are inert without JavaScript and remain
 hidden in student mode, read-aloud discovery and printing.
 
-Opening Teacher Slides always starts at the declared opener, including a reload
+The Teacher Slides button starts at the declared opener, including a reload
 with Teacher Slides saved as active. This intentionally takes precedence over a
 saved content hash for lessons with an opener. Lessons without an opener retain
 their existing nearest-section entry and hash restoration. Only the first opener
 declaration is used. Generated ID: `<first-section-id>--opener`; exiting on the
 opener, or visiting that hash in student mode, maps to the first student section.
+
+From normal view, **Alt + Shift + T** opens the current teaching section directly,
+bypassing the opener and dividers. The current section is the last student section
+whose top has passed 30% of the viewport, matching the reading navigation. It opens
+that section's first slide, including when a section has multiple slide chunks.
+The shortcut ignores typing in form fields or editable content and held-key repeats.
 
 Quick check: normal page → no opener; Teacher Slides → opener first; Next → first
 content (or its divider, if declared); Previous → opener; Jump To → no opener link.

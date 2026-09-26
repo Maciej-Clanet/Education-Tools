@@ -674,6 +674,7 @@ function initTeacherMode(config) {
           <div class="teacher-shortcut-list">
             <span class="teacher-shortcut"><kbd>&larr; &rarr;</kbd><span>Slides</span></span>
             <span class="teacher-shortcut"><kbd>Esc</kbd><span>Exit slides</span></span>
+            <span class="teacher-shortcut"><kbd>Alt + Shift + T</kbd><span>Open current section from normal view</span></span>
             <span class="teacher-shortcut"><kbd>H</kbd><span>Highlight</span></span>
             <span class="teacher-shortcut"><kbd>S</kbd><span>Spotlight</span></span>
             <span class="teacher-shortcut"><kbd>B</kbd><span>Blank screen</span></span>
@@ -1372,15 +1373,12 @@ function initTeacherMode(config) {
   })
 
   function findNearestSectionIndex() {
-    let nearestSection = sections[0] ?? null
-    let nearestDistance = Number.MAX_SAFE_INTEGER
+    const studentSections = sections.filter(section => !section.hasAttribute('data-teacher-only'))
+    let nearestSection = studentSections[0] ?? null
+    const activationLine = (window.innerHeight || document.documentElement.clientHeight) * 0.3
 
-    sections.forEach((section) => {
-      if (section.hasAttribute('data-teacher-only')) return
-      const distance = Math.abs(section.getBoundingClientRect().top - 150)
-
-      if (distance < nearestDistance) {
-        nearestDistance = distance
+    studentSections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= activationLine) {
         nearestSection = section
       }
     })
@@ -1422,6 +1420,7 @@ function initTeacherMode(config) {
       ? "Exit teacher slides"
       : "Teacher slides"
     toggleButton.setAttribute("aria-pressed", String(isTeacherMode))
+    toggleButton.title = "Alt + Shift + T: open teacher slides at the current section"
 
     if (controls) {
       controls.hidden = !isTeacherMode
@@ -1693,6 +1692,19 @@ function initTeacherMode(config) {
   })
 
   window.addEventListener("keydown", (event) => {
+    if (
+      !isTeacherMode && event.altKey && event.shiftKey &&
+      !event.ctrlKey && !event.metaKey && event.code === "KeyT" &&
+      !event.repeat && !event.isComposing && !event.defaultPrevented &&
+      !document.activeElement?.matches("input, textarea, select") &&
+      !document.activeElement?.isContentEditable
+    ) {
+      event.preventDefault()
+      activeSlideIndex = findNearestSectionIndex()
+      setTeacherMode(true)
+      return
+    }
+
     if (!isTeacherMode) {
       return
     }
