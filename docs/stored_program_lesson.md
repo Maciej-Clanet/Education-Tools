@@ -1,112 +1,159 @@
 # Stored-program architecture: first-teaching rebuild
 
-Purpose: motivate the stored-program idea, build one spatial model of a computer,
-then derive Harvard's separation from Von Neumann's shared arrangement. Existing
-URL, contextual navigation and shared lesson shell remain in use.
+Updated 26 September 2026. The improvement checklist is in
+`stored_program_improvement_plan.md`. The existing URL, shared lesson shell,
+contextual navigation, glossary, quizzes and saved written responses remain.
 
-## Teaching sequence
+## Sequence and slide map
 
-1. How do you tell a computer what to do? Historical operator/patch-cable scene.
-2. Changing the program could mean changing the machine: before/after configuration.
-3. The stored-program breakthrough: external configuration becomes stored instructions.
-4. From secondary storage to RAM to CPU.
-5. Instructions and values are both binary patterns; interpretation gives meaning.
-6. The whole stored-program computer: CPU, memory, input, output and paths.
-7. Von Neumann architecture: shared memory and pathway.
-8. CPU highlight: Control Unit.
-9. CPU highlight: ALU.
-10. CPU highlight: registers.
-11. Instructions and data share memory.
-12. Instructions and data share the pathway: step-through transfers.
-13. One road, two kinds of traffic: bottleneck metaphor.
-14. The Von Neumann bottleneck: shared transfer capacity can limit performance.
-15. Tiny program: LOAD A, ADD B, OUTPUT, using A = 5 and B = 3.
-16. Transform shared memory/path into separate instruction/data memories and paths.
-17. Harvard architecture definition.
-18. Independent instruction/data accesses on separate paths.
-19. Von Neumann/Harvard visualiser: mode switching, Step, Previous step and Reset.
-20. Compact comparison table, after both models are taught.
-21. Modern modified Harvard: separate instruction/data caches, shared main memory.
-22. Identify systems A/B/C from diagrams and justify with architectural evidence.
-23. Common misconceptions.
-24. Architecture in one picture: paired diagrams and stored-program principle.
-25. Twelve-question quiz.
-26. Six written exam tasks, progressing through 4, 4, 6, 6, 8 and 10 marks.
+23 student sections produce 35 Teacher Slides: one objective opener, five dividers,
+one extra misconceptions slide and five extra written-task slides. The quiz remains
+one scrollable slide. Revision disclosures are hidden in Teacher Slides.
 
-Five teacher-only dividers precede sections 3, 7, 16, 20 and 25: Stored-program
-breakthrough, Von Neumann, Harvard, Comparing architectures and Practice. The
-shared deck adds its “Next” presentation. Templates are absent from student
-content and Jump To. Total: 26 teaching sections plus five teacher dividers.
+| Slide | Main idea |
+| --- | --- |
+| 1 | Opener: stored programs, instructions/data, memory arrangements, device suitability |
+| 2–3 | Familiar programs; why the historical example matters; early ENIAC cables/switches |
+| 4–6 | Stored-program divider; change the program; introduce instructions and data with 5 + 3 |
+| 7–9 | Laptop storage → RAM → CPU; architecture-neutral roles; short CPU-parts primer |
+| 10–12 | Introduce architectures; Von Neumann divider; classic shared memory/path |
+| 13–16 | Run the small program; contention; why choose Von Neumann; room-heating design example |
+| 17–20 | Harvard divider; concurrent access; headphone sound processing; fixed memory split drawback |
+| 21–24 | Modern-design divider; split caches/shared main memory; Raspberry Pi photo editing; cache costs |
+| 25–27 | Apply feature → effect → task → trade-off/judgement; common misconceptions |
+| 28–29 | Practice divider and unchanged 12-question quiz |
+| 30–35 | Six separate written tasks, with saved response areas and answer guides |
 
-## Visuals and reusable implementation
+The first whole-system visual is a role map with no memory-to-CPU wiring. It must
+not imply that every stored-program computer has the Von Neumann arrangement.
+Instruction/data meaning comes before the architecture names. Control Unit, ALU
+and registers get one short introduction; named registers, machine code and the
+full instruction cycle belong in subsequent lessons. Definitions and examples use
+plain language; technical qualifications remain in revision disclosures.
 
-- `assets/images/architecture/machine-frame.svg` supplies the recurring CPU/input/
-  output frame via SVG use. Inline memory/path layers reuse the same geometry
-  throughout whole-machine, component, shared-path, Harvard and scenario views.
-- Dashed outlines highlight CU, ALU, registers and memory without removing the
-  surrounding machine. Captions name the highlighted area.
-- Local `early-computer.svg`, `patch-a.svg`, `patch-b.svg`, `bottleneck-road.svg`
-  and `modified-harvard.svg` provide historical, before/after, traffic and cache
-  visuals. These are illustrative diagrams, not reconstructions of a named machine.
-- `javascript/core/architecture-visualiser.js` reuses `nextKernelState` from the
-  existing kernel visualiser. Deterministic frames live in
-  `javascript/data/architecture-frames.js`. Shared CSS is
-  `css/architecture-machine.css`; lesson composition stays in its page stylesheet.
-- The shared path, tiny program, Harvard transformation, concurrent access and
-  comparison all use this one small visualiser. Mode changes restart; Reset
-  preserves the selected mode; controls stop at sequence boundaries.
-- Existing paired-scenarios component handles evidence/reason feedback for shared
-  Von Neumann, separate Harvard and modified-Harvard systems.
-- Shared teacher deck, quiz, accessibility, contextual navigation and exam draft
-  persistence remain in use. No duplicate slideshow or quiz engine.
-- Quiz version 3: 12 questions, pass 9. Page configuration, storage key and unit
-  progress metadata agree. Six new response IDs isolate changed exam drafts.
-- Composition varies between historical scenes, before/after images, memory
-  transformation, binary ribbon, persistent schematic, road metaphor, stepper,
-  compact table and layered cache illustration; equal-card teaching grids removed.
+## Visuals and demonstration contract
 
-## Model boundaries and accessibility
+The retained original `early-computer.svg` illustrates physical programming.
+Process diagrams use responsive HTML/CSS with original inline SVG icons.
+This replaces the old fixed SVG machine frame, separate CPU highlights,
+road metaphor and large cache graphic. The initial role map stays abstract; later
+diagrams explicitly name shared/separate memories and pathways. Three locally
+stored real photographs show a room thermostat, headphones and a Raspberry Pi 4.
+Their creators, source links, licences and resizing are recorded in
+`assets/images/architecture/CREDITS.md`, with attribution visible below each image.
+The photos are about 294 KB combined and require no external image requests.
 
-The small program uses symbolic addresses A/B to distinguish instruction fetches
-from data accesses. It demonstrates an ordered explanation, not clock cycles.
-The Harvard comparison overlaps a forthcoming instruction fetch with an independent
-access associated with an already-decoded instruction. It does not imply that a
-new instruction's dependent data is available before decoding, or that two
-instructions execute together. No speed ratio is inferred from step counts.
+`javascript/core/architecture-visualiser.js` reuses `nextKernelState` and reads
+`javascript/data/architecture-frames.js`. `css/architecture-machine.css` handles
+the memory/route/processor diagrams; the page stylesheet handles lesson composition.
+Three values are supported for `data-architecture-demo`:
 
-Native keyboard controls have visible focus, text/live status and bounded states.
-Transfers have dashed paths and labels, not colour alone. Motion is finite and
-respects reduced-motion preferences. Diagrams have descriptions/captions and
-horizontal scrolling on narrow screens; the comparison table also scrolls.
-Teacher demos put controls beside the diagram on wide displays.
+- `program`: eight stages, fetching three readable operations, receiving 5 and 3,
+  adding inside the processor and displaying 8.
+- `shared`: four stages, with an instruction using the route while data waits,
+  followed by data transfer. Waiting/received badges show the contention.
+- `concurrent`: three stages, with a ready next instruction and independent data
+  for the current operation using separate routes to one CPU together.
 
-Registers are introduced only as small, fast CPU working storage. Detailed named
-registers, the full fetch-decode-execute cycle, machine code, cache hierarchy,
-pipelines, branch prediction, real timing and RISC/CISC remain for later lessons.
+Frames provide title, description, CPU fields, highlighted source items, request
+statuses and an array of labelled transfers. Each transfer identifies its kind,
+visible words and route. The responsive diagram switches to vertical routes on
+mobile. Static HTML supplies the baseline and a full readable transcript.
 
-## Verification
+Controls are Previous, Play/Pause/Replay, Next step and Restart. Manual movement
+stops playback. Ends are bounded; Replay resets and starts again. Each transfer
+lasts 1.1 seconds; automatic frames advance every 2.4 seconds. These durations
+are teaching pacing, never measured hardware performance. Controls retain focus
+at sequence boundaries using aria-disabled and guarded handlers. Status and its
+explanation share a polite live region. Tool interactions do not move the slide.
 
-Passed two focused state regression cases in `tests/architecture-visualiser.test.mjs`:
-mode changes, bounded stepping, reset, shared/separate transfers, tiny-program
-output and memory transformation. JavaScript syntax, local asset references,
-unique HTML IDs, SVG XML parsing and whitespace checks passed.
+Teaching motion ignores the OS reduced-motion preference, as explicitly requested.
+Playback pauses offscreen, on page hiding or departure; Pause also freezes a
+travelling label. Manual alternatives remain. Print/no-JavaScript exposes the
+transcript and hides the controls. No simulation state needs persistence.
 
-Focused browser smoke check covers controls and keyboard Space, scenario feedback,
-quiz scoring/reset/reload, exam draft persistence, teacher interaction isolation,
-external SVG-frame loading, narrow-screen overflow, reduced motion and runtime
-errors. Two representative views were inspected: historical opening and teacher
-visualiser. The teacher layout was tightened after inspection. No screenshot sweep,
-exact-copy tests, coverage work or new build tooling.
+The old mode-switching comparison and diagram-identification activity are removed;
+`architecture-scenarios.js` is no longer needed. The compact reference comparison
+table remains in a student revision disclosure. Historical section IDs survive as
+anchors within the relevant new section so old links remain useful.
 
-## Source checks
+## Model boundaries and practical use
 
-Historical plugboard example (qualified as some early machines; shallow context):
-https://computerhistory.org/blog/unprogramming-the-eniac-lehmer-childs-play/
+- The readable Read/Add/Show operations simplify a program. Stages are not clock
+  cycles. Instructions and values are both binary patterns; roles depend on how
+  the processor interprets them. No invented bit encoding is taught.
+- “Shared” is an access/address-space model, not a promise of one physical memory
+  chip or interchangeable Flash/RAM. The loading diagram is a laptop example;
+  some small systems execute programs directly from non-volatile Flash.
+- Harvard allows independent accesses to overlap; it does not imply two CPUs,
+  two simultaneous instructions, removal of dependencies or a guaranteed speed ratio.
+- Modified Harvard is a simplified shared-main-memory/split-cache example. It
+  does not draw every cache level or claim all processors use that exact layout.
+- The micro:bit and Arduino examples were replaced after classroom-level feedback.
+  Avoid processor model names in the teaching copy. Use familiar tasks and explain
+  the requirement before connecting it to memory access.
+- Room heating: a hypothetical simple controller reads temperature and switches
+  heating. When a shared pathway already meets its response needs, extra access
+  capacity may have little practical value. This does not establish the architecture
+  of the photographed model or of every thermostat.
+- Headphones: digital noise cancellation illustrates continual sound data and
+  repeated processing. Harvard-style access can reduce waiting. The source explains
+  sound-processing architectures generally; the photo is task context, not evidence
+  about that product's internals or its digital/analogue implementation.
+- Raspberry Pi 4 retains the verified separate instruction/data caches and shared
+  main-memory example; the processor is simply named “processor”.
+- Shared-memory flexibility: two diagrams allocate the same ten units of RAM as
+  3 program + 5 data + 2 spare or 6 program + 2 data + 2 spare. The fixed Harvard
+  example needs 6 program + 2 data, but has two five-unit pools: three spare data
+  units cannot fill the missing program unit. Equal units and a fixed split are
+  explicit simplifying assumptions; this is not a claim that every Harvard design
+  has equal pools or that Flash/RAM are interchangeable.
+- The new cache-cost slide explains chip area/cost, tracking up-to-date copies and
+  waiting when a copy is absent. It contrasts the benefit for a simple controller
+  with repeated image processing. None of the architecture names alone determines
+  price, power or speed; the trade-off depends on the implementation and task.
 
-Classic Harvard separation, Microchip:
-https://developerhelp.microchip.com/xwiki/bin/view/products/mcu-mpu/8-bit-avr/structure/core/
+Hardware facts link to primary documentation. Projects and suitability explanations
+are illustrative inferences, not claims about manufacturer intentions or benchmarks.
+See the source list in the improvement plan and on-page sources/revision notes.
 
-Separate instruction/data caches and shared memory, Arm:
-https://developer.arm.com/community/arm-community-blogs/b/architectures-and-processors-blog/posts/caches-and-self-modifying-code
+## Assessments
 
-Optional disclosures offer these sources. History is motivation, not assessed trivia.
+Quiz version 3 stays unchanged: 12 questions, pass 9, matching page configuration
+and unit progress metadata. The six written questions retain 4, 4, 6, 6, 8 and 10
+marks, answer guides, v3 response IDs and the existing draft storage key. Each now
+has its own teaching slide. No assessment migration is required.
+
+The suitability explanation reuses `css/exam-technique.css`. As in
+`exam_technique.md`, this is a thinking scaffold, not an official mark scheme or
+a universal formula. Use it for analysis/evaluation when the command word calls
+for it; short definition questions do not require a complete balanced evaluation.
+
+## Validation and resuming work
+
+- The initial 32 slides were visually reviewed; the seven changed/new views in
+  this refinement were inspected at both desktop heights and on mobile. All 35
+  slides were layout-checked at 1366×900 and 1366×768. Every
+  demonstration state fits these viewports. The complete quiz intentionally
+  scrolls; opening longer answer guides or increasing text size can also scroll.
+- Mobile 390/320px: no horizontal page overflow; vertical transfer labels stay
+  inside their routes. Mobile controls use two columns.
+- Three model regression cases cover bounded controls, pause/replay, program data
+  order/output, shared contention and simultaneous independent Harvard transfers.
+- Browser checks cover OS reduced motion, all states, Play/Pause/Replay/Restart,
+  offscreen pausing, keyboard Enter, slide isolation, quiz 12/12, reset and actual
+  reload persistence for quiz answers and written drafts, print/no-JS fallbacks,
+  duplicate IDs, fragment links, local images and runtime errors.
+- All 12 quiz fieldsets and six exam cards match the prior version after whitespace
+  normalisation. All old section anchors remain and local asset references resolve.
+
+Run `node --test tests/architecture-visualiser.test.mjs`. Browser regression:
+`node tests/stored-program-architecture.browser.mjs`. The shared teaching-motion
+check also exercises the new labelled architecture transfers.
+
+Browser tests use `tests/helpers/browser-session.mjs`, a local server such as
+`node raid-test-server.mjs` on port 8765 and a dedicated Chrome debugging profile
+on port 9226. Override `FLEXBOX_TEST_ORIGIN` and `FLEXBOX_CDP_ORIGIN` if needed;
+`FLEXBOX_SCREENSHOTS` optionally saves evidence. Always use an isolated profile:
+tests create local answers/preferences. The in-app browser had no available
+session, so this review used local headless Chrome. No new build system or backend.

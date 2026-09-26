@@ -14,13 +14,12 @@ export function initRecordSort(records, scope = document) {
         return key === 'score' ? right - left : left.localeCompare(right, 'en-GB')
       })
       list.append(...ordered)
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        ordered.forEach(row => {
-          row.getAnimations().forEach(animation => animation.cancel())
-          const offset = oldTops.get(row) - row.getBoundingClientRect().top
-          if (offset) row.animate([{ transform: `translateY(${offset}px)` }, { transform: 'translateY(0)' }], { duration: 600, easing: 'ease-in-out' })
-        })
-      }
+      // Row movement explains how complete records stay together.
+      ordered.forEach(row => {
+        row.getAnimations().forEach(animation => animation.cancel())
+        const offset = oldTops.get(row) - row.getBoundingClientRect().top
+        if (offset) row.animate([{ transform: `translateY(${offset}px)` }, { transform: 'translateY(0)' }], { duration: 600, easing: 'ease-in-out' })
+      })
       buttons.forEach(control => control.setAttribute('aria-pressed', String(control === button)))
       root.querySelector('[data-sort-status]').textContent = `${labels[key]}. ${ordered.map(row => records[Number(row.dataset.record)].name).join(' → ')}. Each person's time and score move with their name.`
     }))

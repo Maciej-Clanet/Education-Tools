@@ -1,0 +1,33 @@
+/* File versions and simultaneous backup procedures. Colour supplements labels. */
+.bk-files { list-style: none; padding: 0; margin: .7rem 0; display: grid; gap: .4rem; }
+.bk-files li { display: flex; justify-content: space-between; align-items: center; gap: .5rem; min-width: 0; border: 1px solid var(--panel-border); border-left: 4px solid var(--muted-ink); border-radius: 7px; padding: .45rem .6rem; background: var(--panel); font-size: .9em; }
+.bk-files li > span { overflow-wrap: anywhere; }
+.bk-files b { font-size: .85em; border-radius: 4px; padding: .1rem .35rem; background: var(--panel-soft); white-space: nowrap; }
+.bk-files .bk-file-changed { border-left-color: var(--teal-deep); }
+.bk-files .bk-file-changed b { background: var(--teal-deep); color: var(--panel); }
+.bk-files-compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.bk-comparison { margin-block: 1rem; }
+.bk-live-strip { display: grid; grid-template-columns: 13rem 1fr; gap: 1rem; align-items: center; padding: .8rem 1rem; border: 2px solid var(--teal); border-radius: 12px; background: var(--panel-soft); }
+.bk-live-strip h3, .bk-live-strip p { margin: .2rem 0; }
+.bk-live-strip .bk-files { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.bk-comparison-rows { display: grid; gap: .6rem; }
+.bk-comparison-rows > article { display: grid; grid-template-columns: 13rem 1.5rem 1fr; gap: .7rem; align-items: center; padding: .6rem 1rem; border: 1px solid var(--panel-border); border-radius: 10px; background: var(--panel-soft); }
+.bk-comparison-rows h3 { margin: .2rem 0; }
+.bk-comparison-rows p { margin: .2rem 0; font-size: .83em; }
+.bk-copy-arrow { color: var(--teal-deep); font-size: 1.6em; font-weight: 800; }
+[data-comparison-status] { font-weight: 650; margin-block: .8rem; }
+[data-comparison-controls] button { min-height: 44px; }
+[data-comparison-controls] button:disabled { opacity: .5; }
+@media (max-width: 950px) {
+  .bk-live-strip { grid-template-columns: 1fr; gap: .2rem; }
+  .bk-comparison-rows > article { grid-template-columns: 10rem 1.2rem 1fr; gap: .4rem; }
+  .bk-files-compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .bk-live-strip .bk-files { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bk-comparison-rows > article { grid-template-columns: 1fr; }
+  .bk-copy-arrow { display: none; }
+  .bk-comparison [data-comparison-controls] .quiz-actions { gap: .4rem; }
+}
+@media (forced-colors: active) { .bk-files .bk-file-changed { border-left-style: double; border-left-width: 6px; } }
+@media print { [data-comparison-controls] { display: none !important; } }

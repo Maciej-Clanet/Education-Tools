@@ -32,7 +32,6 @@ function element(tag, className, text) {
 }
 
 export function initKernelVisualisers(configs, root = document) {
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
   const players = []
   root.querySelectorAll('[data-kernel-visualiser]').forEach((host, instance) => {
     if (host.dataset.kernelReady) return
@@ -141,14 +140,13 @@ export function initKernelVisualisers(configs, root = document) {
       })
       buttons.previous.disabled = state.index === 0
       buttons.step.disabled = state.index === config.frames.length - 1
-      buttons.play.disabled = reducedMotion.matches || state.index === config.frames.length - 1
+      buttons.play.disabled = state.index === config.frames.length - 1
       buttons.play.textContent = state.playing ? 'Pause' : 'Play'
       buttons.play.setAttribute('aria-label', `${state.playing ? 'Pause' : 'Play'}: ${config.title}`)
       buttons.play.setAttribute('aria-pressed', String(state.playing))
-      motionNote.textContent = reducedMotion.matches ? 'Reduced motion is on: use Step and Previous at your own pace.' : 'Play advances slowly and stops at the end. Step and Previous pause playback.'
+      motionNote.textContent = 'Play advances slowly and stops at the end. Step and Previous pause playback.'
     }
     function dispatch(action) {
-      if (action === 'play' && reducedMotion.matches) return
       clearTimeout(timer)
       state = nextKernelState(state, action, config.frames.length)
       render()
@@ -156,7 +154,6 @@ export function initKernelVisualisers(configs, root = document) {
     }
     const pause = () => { if (state.playing) dispatch('pause') }
     players.push({ host, pause })
-    reducedMotion.addEventListener('change', () => { pause(); render() })
     render()
   })
   const observer = new IntersectionObserver(entries => {

@@ -50,6 +50,9 @@ Before making major UI, content, or structure changes, read:
 - Lesson pages should normally reuse a glossary pattern, a common mistakes or
   exam traps section, and at least one exam-style practice area with answer
   guidance where that fits the topic.
+- For extended evaluation practice, reuse the static exam-technique pattern in
+  `css/exam-technique.css`; see `docs/exam_technique.md`. Tailor the example and
+  judgement to the question. It is a planning aid, not a fixed Pearson formula.
 - Where both are present, a shorter quick quiz should usually come before the
   longer exam-style practice tasks, and exam practice should include on-page
   response areas so students can write inside the lesson itself.
@@ -72,6 +75,10 @@ Before making major UI, content, or structure changes, read:
   They start Teacher Slides and need no per-lesson runtime changes.
 - First-teaching slides should favour one main idea, visual transformations and
   progressive disclosure; retain detailed revision supplements for students.
+- Teaching animations must remain available regardless of the operating system's
+  reduced-motion preference. Use visible playback/pause or step controls for
+  teaching sequences and pause playback off screen. Decorative transitions should
+  still respect reduced motion. See `docs/teaching_motion.md`.
 - Keep slides free of teacher prompts by default. Use opener and divider slides
   for pacing; only add live-demo cues when explicitly requested.
 - Teacher-only section dividers use inert `template[data-teacher-divider]`
@@ -100,6 +107,9 @@ Before making major UI, content, or structure changes, read:
 
 - Shared styles belong in `css/`, with page-specific styling in `css/pages/`.
 - Reusable browser logic belongs in `javascript/core/`.
+- `javascript/core/lesson-walkthrough.js` and `css/lesson-walkthrough.css` provide
+  optional previous/next/restart sequences with a readable no-JavaScript fallback;
+  the access comparison in Data across multiple systems is the first example.
 - `javascript/core/simulated-terminal.js` provides deterministic whitelist-only
   teaching terminals; `javascript/core/paired-scenarios.js` supports interface
   and reason activities. See `docs/user_interfaces_lesson.md`.

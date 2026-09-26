@@ -1,4 +1,5 @@
 import { initLessonPage } from "../core/lesson-shell.js"
+import { initTeachingAnimations } from "../core/teaching-animation.js"
 import { readStorage, writeStorage } from "../core/storage.js"
 
 const lessonConfig = {
@@ -288,4 +289,5 @@ function initSimulator() {
 }
 
 initLessonPage(lessonConfig)
+initTeachingAnimations()
 initSimulator()

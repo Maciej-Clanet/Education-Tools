@@ -1,8 +1,6 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
 import { initArchitectureVisualisers } from "../core/architecture-visualiser.js"
-import { initPairedScenarios } from "../core/paired-scenarios.js"
-import { architectureScenarios } from "../data/architecture-scenarios.js"
 
 const lessonConfig = {
   lessonId: "stored-program-architecture-von-neumann-and-harvard",
@@ -39,5 +37,4 @@ const lessonConfig = {
 }
 
 initArchitectureVisualisers()
-initPairedScenarios(architectureScenarios)
 initLessonPage(lessonConfig)

@@ -44,10 +44,10 @@ function initMechanismVisuals() {
     root.addEventListener('keydown', event => { if(event.key==='Escape') { event.stopPropagation(); pinned=false; show(false); } });
   });
   document.querySelectorAll('[data-raid-read]').forEach(root => {
-    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
     const button=root.querySelector('[data-read-toggle]');
     const lanes=[...root.querySelectorAll('.raid-read-lane')];
-    let beat=reduced.matches?7:0, paused=reduced.matches, visible=false, timer=null;
+    // Teaching movement remains available regardless of OS motion settings.
+    let beat=0, paused=false, visible=false, timer=null;
     function draw() {
       lanes.forEach(lane => {
         const parallel=lane.classList.contains('is-parallel');
@@ -69,7 +69,6 @@ function initMechanismVisuals() {
     }
     button.hidden=false;
     button.addEventListener('click', () => { paused=!paused; if(!paused && beat>=7) beat=0; draw(); schedule(); });
-    reduced.addEventListener('change', () => { paused=reduced.matches; beat=paused?7:0; draw(); schedule(); });
     document.addEventListener('visibilitychange',schedule);
     new IntersectionObserver(entries => { visible=entries[0].isIntersecting; schedule(); },{threshold:0.15}).observe(root);
     draw();

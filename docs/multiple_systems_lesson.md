@@ -1,147 +1,122 @@
 # Data across multiple systems
 
-The existing URL, `#why-multiple-systems` anchor, context navigation and lesson
-shell remain. The old `#overview` anchor is retained as an alias in the opening
-section. Twenty-three student sections become 28 teacher slides using the existing
-opener/divider templates and one existing `data-slide-break` for misconceptions.
+September 2026 improvement pass: 29 student sections and 34 Teacher Slides.
+The saved review checklist is [multiple_systems_improvement_plan.md](multiple_systems_improvement_plan.md).
+The URL, previous/next context, old section IDs and #overview alias remain.
+Quiz version 2 has 12 questions, pass score 9; the five written tasks and their
+stored answer IDs are unchanged. Quiz/progress metadata therefore needs no bump.
 
-## Final Teacher Slide sequence
+## Teacher Slide sequence
 
-1. Lesson opener: Data Across Multiple Systems
-2. Why use data across multiple systems?
-3. The problem with disconnected systems
-4. Shared and connected data
-5. Divider: The five implications
-6. Five questions to ask
-7. Access: the right data for the right people
-8. Access permissions in our college
-9. Shared access creates a dependency
-10. Cost: more than the purchase price
-11. What does implementation mean?
-12. What can go wrong during implementation?
-13. Productivity: remove repeated work
-14. When poor integration creates extra work
-15. Security: more routes need protection
-16. Protect each route
-17. Why sensitivity matters
-18. Divider: Balancing the trade-offs
-19. The five factors affect each other
-20. Another trade-off: replace separate records
-21. Worked college scenario
-22. Impact Explorer
-23. How to write a balanced answer
-24. Divider: Practice
-25. Misconceptions: access, cost and implementation
-26. Misconceptions: productivity, security and applied answers
-27. Check your understanding
-28. Exam-style practice
+1. Opener: Data Across Multiple Systems
+2. Two ways to organise the same data
+3. One student, several different jobs
+4. Separate PCs, conflicting records
+5. What would solve the repeated-update problem?
+6. Centralised data: update once, use in several places
+7. Connected systems can also keep synchronised copies
+8. Divider: The five implications
+9. Five questions before changing the system
+10. Walkthrough: getting the current class list
+11. Access permissions in our college
+12. One shared service, several affected teams
+13. What is the college paying for?
+14. Implementation: moving into everyday use
+15. A date can be valid and still be in the wrong field
+16. Update once: where the time is saved
+17. When an update fails to reach the next system
+18. A new access route can expose a shared record
+19. Two checks: who are you, and what may you do?
+20. Protect the connection and the device
+21. Shared control can make misuse easier to spot
+22. The same exposure can cause different harm
+23. Divider: Balancing the trade-offs
+24. One decision creates several connected effects
+25. The decision: centralise the college’s records
+26. Centralising records: what changes for the college?
+27. Impact Explorer
+28. Exam technique: build a balanced answer
+29. Finish by weighing the effects
+30. Divider: Practice
+31. Common exam mistakes (access, cost, implementation)
+32. Common exam mistakes (productivity, security, applied reasoning)
+33. Check your understanding
+34. Exam-style practice
 
-The shared lesson opener replaces the redundant introductory divider so Next
-enters the first teaching section immediately. Its subtitle is “What changes when
-several systems need the same data?” Four concise goals cover organisational
-sharing, the five factors, connected consequences and balanced judgements.
-The old “Making a judgement” divider is renamed “Balancing the trade-offs”;
-the other two transition placements are preserved. No shared opener/runtime or
-shared stylesheet changes are needed. Authoring remains documented in
-[teacher_section_dividers.md](teacher_section_dividers.md).
+## Teaching and visual model
 
-## Recurring scenario and visual composition
+- Separate local copies and shared data are introduced before the college problem.
+  Alex Smith (S104) is the recurring record. Labelled PC/laptop silhouettes show
+  both the device and the application/file. Explicit updated/out-of-date badges
+  make inconsistency visible without relying on colour or dropdowns.
+- The missed course change leads to the need for a maintained shared record;
+  the solution is introduced only after explaining that need. Centralised storage
+  and synchronised application copies have separate diagrams and definitions.
+- A proposal plus five questions explains what the factors are evaluating.
+  Access uses a three-stage comparison walkthrough; availability keeps normal and
+  outage states visible together. The permissions table retains its original
+  role rules, with styled labels and a keyboard-focusable scrolling wrapper.
+- Cost names a student-information platform and distinguishes introduction,
+  operation and possible savings. No arbitrary supplier price is used. The
+  productivity diagram compares three 2-minute entries with one: 30 weekly
+  changes could free 120 minutes. These are labelled teaching assumptions, cover
+  entry time only and do not imply a reduced wage bill.
+- Implementation moves through prepare, prove and use. A field-mapping diagram
+  shows the same birth date going to a wrong field or the correct field; valid
+  format alone cannot establish correctness. Separate connected-system failure
+  teaching shows an available application with stale data, rather than an outage.
+- Security begins with an unlocked staff laptop exposing contacts. Subsequent
+  sections distinguish identity from permission, connection/device protection,
+  and monitoring. Permissions block an example payroll request; logs record it.
+  Sensitivity is linked to concrete consequences for privacy, safety and support.
+- Remote work creates two visible chains: what it enables and what it needs.
+  The centralisation decision and worked comparison explicitly show before/after
+  arrangements and changes to all five factors. Multiple computers continue to
+  use the data even when its main records are centralised.
+- The original Impact Explorer remains. A reusable two-section exam-technique
+  pattern builds applied reasoning, weighs effects and supports a judgement;
+  see [exam_technique.md](exam_technique.md) for Pearson evidence and reuse.
 
-Alex Smith's course/contact record sits in the same semantic HTML/CSS college
-map throughout: reception above, teacher/attendance left, reporting right and
-finance/admin below. Disconnected copies lose the connecting lines and show old
-versus new fields. Connected systems use relevant current information; this
-remains a conceptual model, not one physical database or network architecture.
-The same map shows an unavailable service, stale synchronised copies and broader
-staff/device access. Text states and labels carry meaning independently of colour;
-the SVG connection lines are decorative and hidden from assistive technology.
+The page remains static HTML. Styles are in
+`css/pages/data-across-multiple-systems.css`. The shared lesson shell handles
+the opener, three dividers, existing misconception slide break and touch/keyboard
+slide navigation. Student revision details stay hidden in Teacher Slides. No
+photographs or third-party assets are required for these process diagrams.
 
-- Access now separates current authorised information, a concise VIEW / EDIT /
-  NO ACCESS matrix, and shared-service dependency. Safeguarding requires separate
-  authorisation; illustrative job titles do not imply entitlement to every field.
-- Native reveals replace a before workflow with its after diagram for access,
-  productivity and expanded security routes. Closing restores the before view.
-- The illustrative £20,000 purchase grows into introduction and ongoing cost
-  items, followed by potential savings. No invented universal total is given.
-- A numbered implementation timeline shows the whole move. One migration example
-  puts Alex's date of birth in the course-start field; a reveal compares against
-  the source and fixes the mapping. Other risks remain in revision supplements.
-- Productivity compares UPDATE / UPDATE / UPDATE against UPDATE ONCE. A separate
-  synchronisation-failure diagram shows extra checking and correction work.
-- Security introduces expanding access routes before a second slide reuses them
-  with identity, permission, connection, device and monitoring controls. A final
-  reveal retains the potential for consistent permissions and central monitoring.
-- A sensitivity scale distinguishes public, personal and highly sensitive data
-  while preserving the need to protect public information from alteration.
-- One remote-work decision branches into five progressively disclosed effects.
-  The second trade-off becomes a short application question. The worked college
-  decision reveals three applied implications and a conditional judgement.
-- The answer-building sequence grows from benefit through impact, trade-off and
-  application to judgement. Misconceptions use two existing teacher chunks with
-  three revealable corrections each; the student page retains the full set.
+## Shared walkthrough authoring
 
-Page-scoped `.systems-revision` details keep broader explanations on the normal
-page and hide them in Teacher Slides. Native details/summary controls support
-keyboard input without a new interaction runtime; named groups allow one focused
-consequence at a time. No animations or new motion effects were added. Narrow
-screens stack maps and allow the permissions matrix to scroll within its wrapper.
+Load `css/lesson-walkthrough.css`, import `initLessonWalkthroughs` from
+`javascript/core/lesson-walkthrough.js`, and call it before `initLessonPage`.
+An optional root argument scopes discovery. Each independent instance has:
 
-## Impact Explorer
+- `data-lesson-walkthrough` and `data-no-slide-advance` on the wrapper.
+- One or more `data-walkthrough-step="Short step title"` panels, visible in HTML.
+- A `data-walkthrough-controls` container with the HTML `hidden` attribute.
+- A `data-walkthrough-status` paragraph with role=status, aria-live=polite and
+  aria-atomic=true, plus native type=button controls with
+  `data-walkthrough-prev`, `data-walkthrough-next` and `data-walkthrough-reset`.
 
-- `javascript/data/college-impacts.js`: six consequences and supported
-  factor/impact pairs, with applied explanations.
-- `javascript/core/impact-explorer.js` and `css/impact-explorer.css`: reusable
-  native-checkbox/radio activity,
-  one consequence at a time; reuses `evaluateScenarioPair` from the shared paired
-  scenarios component. The shell and existing quiz-answer/button patterns handle
-  presentation and interaction exclusion in teacher mode.
-- Learners choose one or more factors and an overall Benefit, Concern or Could
-  be both. The tone applies to the stated consequence as a whole.
-- Any supported subset receives positive feedback; other direct links are
-  suggested rather than demanded. Unsupported selections prompt reconsideration
-  and explain the consequence. This is reasoning practice, not a quiz score.
-- Previous/next preserve each response and checked feedback within the page
-  session. Reset clears only the current consequence. Editing clears stale
-  feedback. Navigation is bounded and moves focus to the new statement.
-- Experiments reset on reload. No new storage scheme or simulation framework.
-- Second pass changes only presentation: larger current consequence, compact
-  factor labels in Teacher Slides and reduced spacing. All options, multi-factor
-  reasoning, previous/next state, feedback and reset behaviour remain unchanged.
+Initialisation checks the required nodes, reveals controls and hides other
+panels. Bounds use aria-disabled while retaining button focus; guarded handlers
+prevent moving beyond the sequence. Restart restores step 1. There is no saved
+state: reload starts fresh. Without JavaScript all steps remain readable and the
+controls stay hidden; printing also shows all steps. Initialisation is idempotent.
 
-## Assessment and persistence
+## Validation
 
-Quiz version 2: 12 questions, pass score 9. The answer storage key and shared unit
-progress metadata are updated together. Scoring, reset and local persistence are
-unchanged shared behaviour. Five written tasks (4, 4, 6, 8 and 12 marks) retain
-on-page locally saved drafts and applied answer guidance. New response IDs avoid
-showing old answers under changed questions; old drafts are not migrated.
-
-## Scope and checks
-
-Permissions, data sensitivity and implementation safeguards stay high-level.
-No network design, distributed databases, APIs, cloud architecture, security
-operations or backup/recovery procedures are taught here. Backup/fallback is
-mentioned only as a changeover precaution; recovery is the next lesson.
-
-Relevant regression command:
-`node --test tests/impact-explorer.test.mjs tests/interface-activities.test.mjs tests/teacher-dividers.test.mjs`
-
-Browser verification covers multiple selections, benefit/concern/both feedback,
-per-consequence state/reset, keyboard use, quiz scoring/reset/reload, exam drafts,
-student/teacher dividers, desktop/mobile layout and runtime errors. Also check
-JavaScript syntax, local links/IDs and `git diff --check`. No package-based
-lint or build pipeline is configured in this static project.
-
-## Second-pass verification
-
-All 12 existing `tests/*.test.mjs` files passed; no new tests were added for static
-markup/layout. Quiz questions and exam task content were compared against HEAD
-and are unchanged apart from section eyebrow numbering. No package lint/build
-pipeline is configured. Whitespace, duplicate IDs and sidebar targets were checked.
-
-Local Chrome checks cover multi-factor Benefit/Concern/Could be both, unsupported
-choices, per-consequence state, reset, keyboard input/focus, quiz scoring and reload,
-exam drafts, opener and section navigation, teacher/student separation, all 28 deck
-entries, expanded disclosures and mobile page width. Screenshots were reviewed
-for the opener, every slide and mobile layouts. No runtime errors were observed.
-Long quiz/exam sections continue to use the shared scrolling presentation surface.
+- Relevant automated regression suite includes the new walkthrough tests plus
+  Impact Explorer, paired interface activities and teacher dividers.
+- Local headless Chrome checks cover keyboard activation, previous/next bounds,
+  restart and in-slide controls not advancing the deck; quiz scoring and answer
+  restoration; written-draft restoration; Impact Explorer multi-factor feedback,
+  response retention and reset; all section links and duplicate IDs.
+- Visually reviewed all 32 non-assessment slides at 1366×900. All fit without
+  scrolling at 1366×768 after compacting spacing without reducing teaching text
+  size. Quiz and written practice retain the shared scrolling surface.
+- Student views at 390px and 320px have no page-level horizontal overflow;
+  wide tables scroll inside their labelled, focusable wrappers. Reviewed mobile
+  device diagrams, access, permissions, productivity and exam technique, plus
+  high contrast. No new animation is used. The no-JavaScript view displays all
+  three walkthrough steps and no active controls or teacher-only slides.
+- No browser runtime exceptions; local paths, retained assessment markup and
+  whitespace checked. This static project has no package build/lint pipeline.

@@ -25,6 +25,11 @@ the browser with `localStorage` where useful.
   These pace classroom delivery without adding student content or Jump To links.
   Authoring and hash behaviour are documented in `docs/teacher_section_dividers.md`.
 
+- Pedagogical playback must work even when the classroom PC requests reduced
+  motion. Keep visible Play/Pause or manual steps, and pause sequences when hidden.
+  Continue respecting reduced motion for decorative effects and interface
+  transitions. See `docs/teaching_motion.md` for the distinction and audited tools.
+
 - Make it easy to find a unit, topic, course, or spec from the home page.
 - Include a search bar on the main page.
 - Support topic pages with an easy sidebar for navigating within a unit or
@@ -95,6 +100,11 @@ the browser with `localStorage` where useful.
 - Lesson pages should normally also include a glossary pattern, a common
   mistakes or exam traps section, and at least one short exam-style practice
   area with answer guidance where that format makes sense for the topic.
+- Extended evaluation practice can use the reusable static exam-technique pattern
+  introduced in Data across multiple systems (`css/exam-technique.css`, authoring
+  in `docs/exam_technique.md`). Develop scenario-based reasoning, weigh relevant
+  effects and justify a judgement when the question requires one. This is a
+  flexible teaching scaffold rather than a prescribed Pearson answer formula.
 - Where both are present, a shorter quick quiz should usually come before the
   longer exam-style practice tasks, and exam-style practice should include
   built-in response areas so learners can write inside the page.

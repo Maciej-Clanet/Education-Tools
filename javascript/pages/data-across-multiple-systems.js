@@ -2,6 +2,7 @@ import { initLessonPage } from "../core/lesson-shell.js"
 
 import { initImpactExplorers } from "../core/impact-explorer.js"
 import { collegeImpacts } from "../data/college-impacts.js"
+import { initLessonWalkthroughs } from "../core/lesson-walkthrough.js"
 
 const lessonConfig = {
   lessonId: "data-across-multiple-systems",
@@ -37,4 +38,5 @@ const lessonConfig = {
 }
 
 initImpactExplorers(collegeImpacts)
+initLessonWalkthroughs()
 initLessonPage(lessonConfig)

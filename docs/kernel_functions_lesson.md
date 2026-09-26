@@ -40,7 +40,7 @@
 
 ## Visualiser
 
-`javascript/core/kernel-visualiser.js` renders labelled snapshots from `javascript/data/kernel-visualiser-data.js`; shared appearance is in `css/kernel-visualiser.css`. Native Play/Pause, Previous, Step and Reset controls use a finite state reducer. Playback ends at the last frame and pauses when hidden/offscreen. Reduced motion disables timed playback; every snapshot remains available through Step. No emulator, libraries, canvas or continuously running loop. Readable sequence transcripts remain without JavaScript.
+`javascript/core/kernel-visualiser.js` renders labelled snapshots from `javascript/data/kernel-visualiser-data.js`; shared appearance is in `css/kernel-visualiser.css`. Native Play/Pause, Previous, Step and Reset controls use a finite state reducer. Playback ends at the last frame and pauses when hidden/offscreen. OS reduced motion does not disable pedagogical playback; Play/Pause and manual Step remain available. See `teaching_motion.md`. No emulator, libraries, canvas or continuously running loop. Readable sequence transcripts remain without JavaScript.
 
 Reused on teaching sections 5, 6, 10, 12, 14, 15, 17, 19, 21, 24 (open and save), 27 and 31. One interrupt player provides seven snapshots and a keyboard trigger. RAM has 12 labelled illustrative blocks; CPU strips show labelled illustrative time slices.
 
@@ -83,6 +83,6 @@ Deferred: scheduling algorithms, paging/page tables and virtual-memory architect
 - JavaScript syntax and `git diff --check` pass.
 - Local Chrome checks pass for Step/Play/Pause/Previous/Reset, interrupt triggering and resumption, independent players, RAM allocation/reclamation, CPU slices, integrated saving, partial/multiple scenario answers and reset.
 - Quiz 16/16 scoring, reset and reload persistence, plus exam draft restoration, verified through the shared shell.
-- Normal and teacher layouts reviewed at desktop and mobile widths; map, recap, opening/saving pipelines and table grid reviewed visually. Keyboard activation does not advance the slide; offscreen playback pauses; reduced motion disables timed playback while retaining manual steps.
+- Normal and teacher layouts reviewed at desktop and mobile widths; map, recap, opening/saving pipelines and table grid reviewed visually. Keyboard activation does not advance the slide; offscreen playback pauses; playback remains available under OS reduced motion alongside manual steps.
 - Sidebar/context/sequence links and static transcripts without JavaScript checked. No JavaScript exceptions or lesson asset failures; Chrome only reports the existing missing site favicon.
 - Shared teacher positioning regression checked at the kernel recap and on the neighbouring OS-types lesson (enter, reload, previous/next, exit).

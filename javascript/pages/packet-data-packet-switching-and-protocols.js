@@ -64,8 +64,6 @@ const DEFAULT_STATE = {
   log: ["Simulator ready. Edit the message or send the first packet."],
 }
 
-const MOTION_QUERY = window.matchMedia("(prefers-reduced-motion: reduce)")
-
 function createElement(tagName, className, textContent) {
   const element = document.createElement(tagName)
 
@@ -544,8 +542,8 @@ function animateAttempt(tool, state, attempt, index, shouldStagger) {
     `moving-packet moving-packet--${attempt.outcome}`,
     `Packet ${packet.id}`
   )
-  const duration = MOTION_QUERY.matches ? 80 : 1250 + index * 90
-  const delay = shouldStagger && !MOTION_QUERY.matches ? index * 130 : 0
+  const duration = 1250 + index * 90
+  const delay = shouldStagger ? index * 130 : 0
 
   movingPacket.style.animationDuration = `${duration}ms`
   movingPacket.style.animationDelay = `${delay}ms`

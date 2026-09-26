@@ -1,35 +1,80 @@
-/* The same local CPU/input/output frame is used in every machine view. */
-.machine-figure { margin: 1rem 0; }
-.machine-viewport { overflow-x: auto; background: #fffdf7; border-radius: 16px; border: 1px solid var(--panel-border); }
-.machine-svg { display: block; width: 100%; min-width: 650px; height: auto; }
-.machine-svg text { font: 20px sans-serif; fill: #24313b; text-anchor: middle; }
-.machine-svg .machine-heading { font-size: 23px; font-weight: 700; }
-.machine-svg .machine-path-label { font-size: 17px; font-weight: 700; }
-.machine-svg .machine-signal { font-size: 15px; }
-.machine-svg .machine-working { font-size: 20px; }
-.machine-svg .memory-box { fill: #f5e4bd; stroke: #87611f; stroke-width: 3; }
-.machine-svg .data-memory { fill: #e0edf2; }
-.machine-path { stroke: #476c69; stroke-width: 4; fill: none; }
-.machine-focus { display: none; fill: none; stroke: #b34d27; stroke-width: 6; stroke-dasharray: 10 5; }
-.machine-figure[data-mode=von] .machine-harvard, .machine-figure[data-mode=harvard] .machine-von { display: none; }
-.machine-figure[data-focus=cu] .focus-cu, .machine-figure[data-focus=alu] .focus-alu, .machine-figure[data-focus=registers] .focus-registers { display: block; }
-.machine-figure[data-focus=memory] .memory-box { stroke: #b34d27; stroke-width: 6; stroke-dasharray: 12 4; }
-.machine-figure[data-transfer=instruction] .shared-path, .machine-figure[data-transfer=data] .shared-path,
-.machine-figure[data-transfer=instruction] .instruction-path, .machine-figure[data-transfer=data] .data-path,
-.machine-figure[data-transfer=both] .instruction-path, .machine-figure[data-transfer=both] .data-path,
-.machine-figure[data-transfer=output] .output-path { stroke: #b34d27; stroke-width: 9; stroke-dasharray: 14 6; }
-.machine-overlay rect { fill: #fffdf7; stroke: #b34d27; }
-.machine-overlay text { font-size: 15px; font-weight: 700; }
-.machine-figure[data-transfer=none] .machine-overlay { display: none; }
-.machine-figure figcaption { margin-top: .6rem; }
-.architecture-demo { padding: 1rem; background: var(--panel-soft); border: 1px solid var(--panel-border); border-radius: 16px; }
-.architecture-demo .quiz-actions { margin-block: .7rem; }
-.architecture-demo button { min-height: 44px; }
-.architecture-demo button:disabled { opacity: .5; cursor: default; }
-.machine-mode-controls { display: flex; flex-wrap: wrap; gap: .7rem; }
-.machine-mode-controls [aria-pressed=true] { outline: 3px solid var(--teal); outline-offset: 2px; }
-[data-architecture-status] { min-height: 3em; }
-@media (prefers-reduced-motion: no-preference) {
- .machine-figure:not([data-transfer=none]) .machine-path { animation: path-flow 1.5s linear 1; }
- @keyframes path-flow { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
+﻿/* Responsive memory/processor teaching diagrams. All routes and transfers are labelled. */
+.architecture-demo { margin-block: 1rem; }
+.arch-machine { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: .8rem; align-items: stretch; margin-block: 1rem; }
+.arch-stores { display: grid; gap: .7rem; }
+.arch-store { border: 2px solid var(--teal); border-radius: 12px; padding: .8rem; background: var(--panel-soft); }
+.arch-store > .arch-kicker { display: flex; align-items: center; gap: .6rem; margin: 0 0 .7rem; font-size: .85em; }
+.arch-store > .arch-kicker .arch-icon { width: 26px; height: 26px; flex: 0 0 26px; }
+.arch-data-store { border-color: var(--sand-deep); }
+.arch-machine--harvard .arch-store { padding: .65rem .8rem; }
+.arch-machine--harvard .arch-store > .arch-kicker { margin-bottom: .35rem; }
+.arch-machine--harvard .arch-memory-items { margin-block: .35rem; }
+.arch-machine--harvard .arch-memory-items li { padding: .2rem 0; border: 0; background: transparent; }
+.arch-machine--harvard .arch-memory-items .arch-tag { display: none; }
+.arch-memory-items { display: grid; gap: .45rem; list-style: none; padding: 0; margin: .5rem 0; }
+.arch-memory-items li { border: 1px solid var(--panel-border); border-left: 4px solid var(--teal); border-radius: 7px; padding: .55rem .6rem; background: var(--panel); }
+.arch-memory-items li.arch-data { border-left-color: var(--sand-deep); }
+.arch-memory-items .arch-tag { display: block; padding: 0; border: 0; font-size: .66em; margin-bottom: .15rem; }
+.arch-memory-items strong { font-size: .9em; }
+.arch-memory-items .is-active { outline: 3px solid var(--teal-deep); outline-offset: 1px; }
+.arch-number-pair { grid-template-columns: 1fr 1fr; }
+.arch-number-pair strong { font-size: 1.2em; }
+.arch-processor { align-self: center; border: 3px solid var(--teal-deep); border-radius: 15px; padding: 1rem; background: var(--panel-soft); position: relative; }
+.arch-processor > .arch-icon { display: block; margin-bottom: .5rem; }
+.arch-processor h3 { margin: .3rem 0 .8rem; font-size: 1.1em; }
+.arch-processor h3 span { font-size: .8em; font-weight: 500; }
+.arch-processor dl { margin: 0; display: grid; gap: .6rem; }
+.arch-processor dl > div { padding-top: .6rem; border-top: 1px solid var(--panel-border); }
+.arch-processor dt { font-size: .72em; color: var(--muted-ink); font-weight: 700; }
+.arch-processor dd { margin: .2rem 0 0; font-size: .9em; font-weight: 650; }
+.arch-processor.is-calculating { border-style: double; border-width: 6px; }
+.arch-output { display: flex; align-items: center; justify-content: space-between; gap: .5rem; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 7px; padding: .4rem .6rem; margin-top: .7rem; }
+.arch-output span { font-size: .75em; }
+.arch-output strong { font-size: 1.5em; color: var(--teal-deep); }
+.arch-lanes { display: grid; align-items: center; gap: .7rem; }
+.arch-lane { --travel-axis: x; position: relative; min-height: 105px; }
+.arch-lane > strong { display: block; font-size: .75em; text-align: center; color: var(--teal-deep); }
+.arch-wire { display: block; position: absolute; left: 0; right: 0; top: 64%; border-top: 5px solid var(--teal); }
+.arch-wire::after { content: ''; position: absolute; right: 0; top: -10px; width: 13px; height: 13px; border-right: 4px solid var(--teal); border-top: 4px solid var(--teal); transform: rotate(45deg); }
+[data-transfer-lane=data] .arch-wire { border-color: var(--sand-deep); }
+[data-transfer-lane=data] .arch-wire::after { border-color: var(--sand-deep); }
+.arch-flight { position: absolute; left: 0; top: 35%; display: grid; gap: .1rem; justify-items: center; text-align: center; width: min(160px, 76%); padding: .4rem .5rem; border: 2px solid var(--teal-deep); border-radius: 7px; background: var(--panel); box-shadow: 0 3px 0 var(--panel-border); z-index: 1; }
+.arch-flight small { color: var(--teal-deep); font-size: .64em; font-weight: 800; text-transform: uppercase; }
+.arch-flight b { font-size: .8em; }
+.arch-flight.arch-data { border-color: var(--sand-deep); }
+.arch-flight.arch-data small { color: var(--sand-deep); }
+.arch-request { display: inline-block; border: 1px solid currentColor; border-radius: 5px; font-size: .72em; padding: .15rem .4rem; font-weight: 650; }
+.arch-request[data-waiting=true] { border-style: dashed; color: var(--sand-deep); }
+.arch-demo-report { border-left: 4px solid var(--teal); padding: .5rem .85rem; margin-block: .7rem; background: var(--panel-soft); border-radius: 0 8px 8px 0; }
+[data-architecture-status] { font-weight: 750; margin: 0; }
+[data-architecture-description] { margin: .3rem 0 0; font-size: .9em; }
+[data-architecture-controls] { gap: .6rem; margin-block: .7rem; }
+[data-architecture-controls] button { min-height: 44px; }
+[data-architecture-controls] [aria-disabled=true] { opacity: .5; cursor: default; }
+.arch-transcript { padding-left: 1.5rem; }
+.arch-transcript li { margin-block: .5rem; }
+@media (min-width: 701px) {
+  .arch-machine--harvard .arch-store { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .25rem .6rem; }
+  .arch-machine--harvard .arch-store > .arch-kicker { grid-column: 1 / -1; }
+  .arch-machine--harvard .arch-request { justify-self: end; }
 }
+@media (max-width: 700px) {
+  [data-architecture-controls]:not([hidden]) { display: grid; grid-template-columns: 1fr 1fr; }
+  [data-architecture-controls] button { width: 100%; }
+  .arch-machine { grid-template-columns: 1fr; gap: .6rem; }
+  .arch-lane { --travel-axis: y; min-height: 135px; }
+  .arch-lane > strong { text-align: left; padding-left: .4rem; max-width: 40%; font-size: .7em; }
+  .arch-wire { top: 0; bottom: 0; left: 65%; right: auto; border-top: 0; border-left: 4px solid var(--teal); }
+  .arch-wire::after { top: auto; bottom: 3px; left: -10px; right: auto; transform: rotate(135deg); }
+  .arch-flight { top: 0; left: calc(65% - 60px); width: 120px; }
+  .arch-processor { width: 100%; box-sizing: border-box; }
+  .arch-processor > .arch-icon { float: right; }
+  .arch-machine--harvard .arch-stores, .arch-machine--harvard .arch-lanes { grid-template-columns: 1fr 1fr; }
+  .arch-machine--harvard .arch-store { padding: .65rem; }
+  .arch-machine--harvard .arch-lane { min-height: 150px; }
+  .arch-machine--harvard .arch-lane > strong { max-width: none; text-align: center; padding: 0; }
+  .arch-machine--harvard .arch-wire { top: 40px; left: 50%; }
+  .arch-machine--harvard .arch-flight { top: 40px; left: calc(50% - 45px); width: 90px; }
+}
+@media (forced-colors: active) { .arch-flight, .arch-memory-items .is-active { border-color: CanvasText; } }
+@media print { [data-architecture-controls], .arch-flight { display: none !important; } [data-architecture-transcript][hidden] { display: block !important; } }

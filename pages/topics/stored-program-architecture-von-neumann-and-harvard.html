@@ -32,6 +32,7 @@
       href="../../css/pages/stored-program-architecture-von-neumann-and-harvard.css"
     />
     <link rel="stylesheet" href="../../css/architecture-machine.css" />
+    <link rel="stylesheet" href="../../css/exam-technique.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -132,440 +133,375 @@
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
-<a href="#overview" data-section-link>How do you tell a computer what to do?</a><a href="#physical-programming" data-section-link>Changing the program could mean changing the machine</a><a href="#stored-program" data-section-link>The stored-program breakthrough</a><a href="#loading" data-section-link>From storage to memory to CPU</a><a href="#instructions-data" data-section-link>Instructions are represented as data too</a><a href="#whole-machine" data-section-link>The stored-program computer</a><a href="#von-neumann" data-section-link>Von Neumann architecture</a><a href="#control-unit" data-section-link>CPU zoom: Control Unit</a><a href="#alu" data-section-link>CPU zoom: ALU</a><a href="#registers" data-section-link>CPU zoom: Registers</a><a href="#shared-memory" data-section-link>Instructions and data share memory</a><a href="#shared-path" data-section-link>Instructions and data share the pathway</a><a href="#one-road" data-section-link>One road, two kinds of traffic</a><a href="#bottleneck" data-section-link>What is the Von Neumann bottleneck?</a><a href="#tiny-program" data-section-link>Watch a tiny program run</a><a href="#split-memory" data-section-link>What if instructions and data had separate paths?</a><a href="#harvard" data-section-link>Harvard architecture</a><a href="#parallel-access" data-section-link>Separate instruction and data access</a><a href="#memory-lab" data-section-link>Von Neumann vs Harvard visualiser</a><a href="#compare" data-section-link>Von Neumann vs Harvard</a><a href="#modern-designs" data-section-link>Are modern computers purely one or the other?</a><a href="#scenarios" data-section-link>Identify the architecture</a><a href="#mistakes" data-section-link>Common mistakes</a><a href="#summary" data-section-link>Architecture in one picture</a><a href="#quiz" data-section-link>Check your understanding</a><a href="#exam-practice" data-section-link>Exam-style practice</a></nav>
+<a href="#overview" data-section-link>First, a problem from early computing</a>
+<a href="#physical-programming" data-section-link>Early ENIAC: set up the machine for the calculation</a>
+<a href="#stored-program" data-section-link>Change the stored program to change the job</a>
+<a href="#instructions-data" data-section-link>Instructions say what to do. Data supplies the values.</a>
+<a href="#loading" data-section-link>Opening a program on a laptop</a>
+<a href="#whole-machine" data-section-link>The jobs every stored-program computer needs</a>
+<a href="#cpu-parts" data-section-link>A quick look inside the processor</a>
+<a href="#architectures" data-section-link>Two ways to organise memory access</a>
+<a href="#von-neumann" data-section-link>Von Neumann: instructions and data share access</a>
+<a href="#tiny-program" data-section-link>Follow the instructions and values separately</a>
+<a href="#bottleneck" data-section-link>The Von Neumann bottleneck: requests can queue</a>
+<a href="#von-benefits" data-section-link>Why choose Von Neumann?</a>
+<a href="#von-in-practice" data-section-link>A familiar task: controlling room heating</a>
+<a href="#harvard" data-section-link>Harvard: separate memories, separate pathways</a>
+<a href="#harvard-in-practice" data-section-link>A familiar task: processing sound in headphones</a>
+<a href="#harvard-tradeoffs" data-section-link>Separate memories can leave unusable spare space</a>
+<a href="#modern-designs" data-section-link>Shared main memory, separate fast copies</a>
+<a href="#modern-in-practice" data-section-link>Real example: Raspberry Pi 4</a>
+<a href="#architecture-choice" data-section-link>Why not add separate caches to every device?</a>
+<a href="#exam-technique" data-section-link>Explain what the arrangement helps the device do</a>
+<a href="#mistakes" data-section-link>Common mistakes</a>
+<a href="#quiz" data-section-link>Check your understanding</a>
+<a href="#exam-practice" data-section-link>Exam-style practice</a>
+</nav>
         </aside>
 
 <main class="lesson-main" data-role="lesson-main">
+<template data-teacher-opener><h2>Stored-program architecture</h2><p>How can the same computer run different programs?</p>
+<ul>
+<li>Explain the stored-program idea</li>
+<li>Distinguish instructions from data</li>
+<li>Compare shared and separate memory pathways</li>
+<li>Explain benefits and trade-offs in real devices</li></ul>
+</template>
 <section id="overview" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">01 · Stored-program architecture</p>
-<h2>How do you tell a computer what to do?</h2>
-<p class="architecture-lead">A computer needs instructions. How does it get them?</p>
-<figure class="history-scene"><img src="../../assets/images/architecture/early-computer.svg" width="1000" height="370" alt="Illustrative early electronic-computer room: operators configure large panels using patch cables and switches."><figcaption>Some early electronic computers were programmed or reconfigured using switches, plugboards or physical wiring. Methods varied between machines.</figcaption>
-</figure>
-<p class="architecture-note">Changing the task could mean changing the machine’s control setup.</p>
-<details class="exam-guidance">
-<summary>Historical context</summary>
-<div class="exam-guidance-body">
-<p>This is an illustrative scene, not a reconstruction of every early computer. The <a href="https://computerhistory.org/blog/unprogramming-the-eniac-lehmer-childs-play/">Computer History Museum’s ENIAC account</a> describes plugboard-style programming cables. You do not need dates or historical names for this lesson.</p>
+<p class="eyebrow">01 · Stored-program architecture</p><h2>First, a problem from early computing</h2>
+<div class="arch-history-bridge">
+<div class="arch-today"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="12" y="3" width="24" height="42" rx="5"/><path d="M19 8h10m-8 31h6M18 18h4v4h-4zm8 0h4v4h-4z"/></svg><p class="arch-kicker">A familiar idea</p><h3>One device. Many programs.</h3>
+<div class="arch-apps"><span><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m17 12-12 12 12 12m14-24 12 12-12 12M28 5l-8 38"/></svg>Calculator</span><span><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 35V12l22-6v25M18 17l22-6"/><ellipse cx="11" cy="36" rx="7" ry="5"/><ellipse cx="33" cy="32" rx="7" ry="5"/></svg>Music player</span></div>
+<p>You change the program to change the job.</p></div>
+<div class="arch-history-question"><p class="arch-kicker">Now go back to the 1940s</p><h3>Changing the job could mean changing the setup.</h3><p>We will look at an early programming method to see why storing a program in memory was such a useful change.</p></div>
 </div>
-</details>
 </section>
 <section id="physical-programming" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">02 · Stored-program architecture</p>
-<h2>Changing the program could mean changing the machine</h2>
-<div class="history-comparison">
-<figure><img src="../../assets/images/architecture/patch-a.svg" width="420" height="220" alt="Task A uses one pattern of cable connections and switch positions."><figcaption><strong>Task A:</strong> one calculation, one configuration.</figcaption>
-</figure>
-<figure><img src="../../assets/images/architecture/patch-b.svg" width="420" height="220" alt="Task B uses a changed pattern of cables and switches on the same panel."><figcaption><strong>Task B:</strong> another calculation, another configuration.</figcaption>
-</figure>
-</div>
-<ol class="architecture-flow">
-<li><strong>STOP</strong>
-</li>
-<li>Change cables or switches</li>
-<li>Test the configuration</li>
-<li>Run again</li>
-</ol>
-<p>In this kind of setup, program instructions were not simply held in ordinary memory ready to be replaced like modern software. Reconfiguration could take substantial effort.</p>
-</section><template data-teacher-divider>
-<h2>The stored-program breakthrough</h2></template>
-<section id="stored-program" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">03 · Stored-program architecture</p>
-<h2>The stored-program breakthrough</h2>
-<p class="architecture-lead">What if the instructions themselves could be stored as data in memory?</p>
-<div class="breakthrough">
-<div class="old-control"><strong>Before</strong><br>External control configuration<br><span class="patch-mark" aria-hidden="true">● ━╮ ●<br>● ╰━ ●</span>
-</div><span class="breakthrough-arrow" aria-hidden="true">→</span>
-<div class="program-memory"><strong>Memory</strong>
-<p><b>I</b> Program instructions</p>
-<p><b>D</b> Values being processed</p>
-</div><span class="breakthrough-arrow" aria-hidden="true">→</span>
-<div class="processor-pill"><strong>CPU</strong><br>Fetch and execute</div>
-</div>
-<p class="architecture-note">A stored-program computer stores program instructions in memory so the processor can fetch and execute them.</p>
-<p>To run another program, load different instructions rather than physically reconfiguring the machine’s control setup. Both architectures we will study can store programs.</p>
+<p class="eyebrow">02 · Stored-program architecture</p><h2>Early ENIAC: set up the machine for the calculation</h2>
+<p>ENIAC was an early electronic computer used for long calculations. In its original programming approach, people connected cables and set switches to control the work.</p><figure class="arch-history-scene"><img src="../../assets/images/architecture/early-computer.svg" width="1000" height="370" alt="Illustration of operators connecting patch cables and setting switches on a room-sized early computer"><figcaption>Illustration of physical programming: the connections and settings determine the sequence of operations.</figcaption></figure>
+<ol class="arch-flow">
+<li><strong>Plan the calculation</strong><span>Decide the operations and their order</span></li>
+<li><strong>Configure and test</strong><span>Connect cables and set switches</span></li>
+<li><strong>Change the task</strong><span>Rework the setup for a different calculation</span></li></ol>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>This is an illustration, not an exact reconstruction of ENIAC. Its programming methods changed over its lifetime. The lesson uses its early approach to explain the benefit of stored instructions. <a href="https://www.computerhistory.org/revolution/story/78">Computer History Museum: ENIAC</a>.</p></details>
 </section>
-<section id="loading" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">04 · Stored-program architecture</p>
-<h2>From storage to memory to CPU</h2>
-<div class="load-journey">
-<div class="storage-slab"><strong>Secondary storage</strong><code>game.exe</code><span>Kept for later use</span>
-</div><span class="load-arrow">Load →</span>
-<div class="ram-slab"><strong>RAM</strong><span>I · program instructions</span><span>D · program data</span>
-</div><span class="load-arrow">Fetch →</span>
-<div class="processor-pill"><strong>CPU</strong><span>Execute instructions</span>
+<template data-teacher-divider><h2>The stored-program idea</h2><p>Keep the instructions in memory, ready for the processor to use.</p></template>
+<section id="stored-program" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">03 · Stored-program architecture</p><h2>Change the stored program to change the job</h2>
+<div class="arch-breakthrough">
+<article><p class="arch-kicker">Earlier physical setup</p>
+<div class="arch-patch-mini"><span>● ━━ ●</span><span>● ━╮ ●</span><span>● ╰━ ●</span></div>
+<strong>Change connections and settings</strong></article>
+<b class="arch-big-arrow" aria-hidden="true">→</b>
+<article><p class="arch-kicker">Stored-program approach</p>
+<div class="arch-program-choice"><span><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m17 12-12 12 12 12m14-24 12 12-12 12M28 5l-8 38"/></svg>Calculation program</span><span><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 35V12l22-6v25M18 17l22-6"/><ellipse cx="11" cy="36" rx="7" ry="5"/><ellipse cx="33" cy="32" rx="7" ry="5"/></svg>Music program</span></div>
+<div class="arch-retained-machine"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><strong>Same processor<br>Different stored instructions</strong></div>
+</article>
 </div>
-</div>
-<p class="architecture-note">Programs can be stored, loaded into memory, and then executed.</p>
-<p>This is a familiar general-purpose computer example. Instructions do not permanently live in RAM: RAM normally loses its contents without power. Other systems may execute instructions from non-volatile program memory.</p>
+<p class="architecture-note">A stored-program computer keeps program instructions in memory so the processor can fetch and execute them.</p><p class="arch-language"><strong>Fetch</strong> = get an instruction. <strong>Execute</strong> = carry it out.</p>
 </section>
 <section id="instructions-data" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">05 · Stored-program architecture</p>
-<h2>Instructions are represented as data too</h2>
-<div class="binary-ribbon" role="group" aria-label="Illustrative binary memory patterns">
-<div><code>1010 0101</code><strong>I · instruction</strong>
+<p class="eyebrow">04 · Stored-program architecture</p><h2>Instructions say what to do. Data supplies the values.</h2>
+<p>A <strong>program</strong> is a set of instructions. An <strong>instruction</strong> tells the processor to perform an operation.</p>
+<div class="arch-instruction-example">
+<article><h3><span class="arch-tag arch-instruction">Program instructions</span></h3>
+<ol>
+<li>Read the first number</li>
+<li>Add the next number</li>
+<li>Show the total</li></ol>
+</article>
+<article><h3><span class="arch-tag arch-data">Data</span></h3>
+<div class="arch-values"><strong>5</strong><strong>3</strong></div>
+<p>The numbers the program works on.</p></article>
+<article class="arch-result"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="5" width="40" height="29" rx="3"/><path d="M18 34v8m12-8v8m-16 0h20M10 27h28"/></svg><h3>Result</h3><strong>8</strong></article>
 </div>
-<div><code>0000 0101</code><strong>D · value</strong>
+<p class="architecture-note">“Add” is an operation. The numbers being added are data.</p><details class="architecture-revision"><summary>More explanation and sources</summary><p>These are readable descriptions of operations, not a real machine-code listing. In a computer, instructions and data are both represented using binary patterns. Their role depends on how they are interpreted; they are not different kinds of bits.</p></details>
+</section>
+<section id="loading" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">05 · Stored-program architecture</p><h2>Opening a program on a laptop</h2>
+<p>The processor is also called the <strong>CPU</strong>. It needs access to the instructions it is about to follow.</p>
+<div class="arch-load-route">
+<article><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="4" width="30" height="40" rx="4"/><circle cx="24" cy="20" r="10"/><path d="m24 20 11 13m-20 4h7"/></svg><p class="arch-kicker">1 · Keep</p><h3>SSD storage</h3><span>Calculator program</span><p>Kept when the laptop is off.</p></article>
+<div class="arch-route-arrow"><span>Load</span><b aria-hidden="true">→</b></div>
+<article><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="14" width="40" height="22" rx="2"/><path d="M10 36v6m7-6v6m7-6v6m7-6v6m7-6v6"/><rect x="9" y="19" width="7" height="10"/><rect x="21" y="19" width="7" height="10"/><path d="M33 19h6v10h-6z"/></svg><p class="arch-kicker">2 · Prepare</p><h3>Main memory · RAM</h3><span>Program ready to run</span><p>Working memory while powered on.</p></article>
+<div class="arch-route-arrow"><span>Fetch</span><b aria-hidden="true">→</b></div>
+<article><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><p class="arch-kicker">3 · Use</p><h3>Processor · CPU</h3><span>Carry out instructions</span><p>Process the numbers and results.</p></article>
 </div>
-<div><code>0110 0011</code><strong>I · instruction</strong>
-</div>
-<div><code>0000 0011</code><strong>D · value</strong>
-</div>
-</div>
-<p class="architecture-note">Instructions and data are both represented using binary patterns. How the system interprets a pattern gives it meaning.</p>
-<p>The labels show the intended roles in this example, not physically different kinds of bits. The instruction patterns are illustrative, not a real instruction-set encoding.</p>
+<p class="architecture-note">Storage keeps the program; memory makes it available; the processor runs it.</p><details class="architecture-revision"><summary>More explanation and sources</summary><p>This is a typical laptop example. Some small devices run their instructions directly from non-volatile program memory, such as Flash, which retains them without power. Storing a program does not mean that it must permanently live in RAM.</p></details>
 </section>
 <section id="whole-machine" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">06 · Stored-program architecture</p>
-<h2>The stored-program computer</h2>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Input supplies values; the CPU contains the Control Unit, ALU and registers; memory holds instructions/data; output presents results. Paths connect the parts.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Input supplies values; the CPU contains the Control Unit, ALU and registers; memory holds instructions/data; output presents results. Paths connect the parts.</figcaption>
-</figure>
-<p>Keep this machine in view. We will change what is highlighted, then change its memory arrangement. The CPU processes; memory stores.</p>
-</section><template data-teacher-divider>
-<h2>Von Neumann architecture</h2></template>
+<p class="eyebrow">06 · Stored-program architecture</p><h2>The jobs every stored-program computer needs</h2>
+<p>Before choosing a memory arrangement, separate the <strong>roles</strong> of the parts.</p>
+<div class="arch-role-board">
+<article><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="14" width="40" height="22" rx="2"/><path d="M10 36v6m7-6v6m7-6v6m7-6v6m7-6v6"/><rect x="9" y="19" width="7" height="10"/><rect x="21" y="19" width="7" height="10"/><path d="M33 19h6v10h-6z"/></svg><h3>Memory stores</h3>
+<div class="arch-role-pair"><span class="arch-tag arch-instruction">Instructions</span><span class="arch-tag arch-data">Values</span></div>
+<p>Keep the program and the data it needs.</p></article>
+<article><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><h3>The processor acts</h3>
+<div class="arch-role-action">Read → Add → Show</div>
+<p>Follow instructions and work on data.</p></article>
+<article><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="5" width="40" height="29" rx="3"/><path d="M18 34v8m12-8v8m-16 0h20M10 27h28"/></svg><h3>Input and output connect</h3>
+<div class="arch-role-action">Numbers in → Result out</div>
+<p>Receive inputs and present results.</p></article>
+</div>
+<div class="arch-role-footer"><strong>These are jobs, not a wiring plan.</strong><span>The next question is how memory and the processor are connected.</span></div>
+</section>
+<section id="cpu-parts" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">07 · Stored-program architecture</p><h2>A quick look inside the processor</h2>
+<p>These three names explain who does the work inside the CPU.</p>
+<div class="arch-cpu-primer">
+<div class="arch-chip-title"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><strong>Processor · CPU</strong></div>
+<div class="arch-cpu-jobs">
+<article><span id="control-unit" class="arch-anchor"></span><p class="arch-kicker">Coordinate</p><h3>Control Unit</h3><p>Interprets instructions and directs the operations.</p><span>“Get the values, then add.”</span></article>
+<article><span id="alu" class="arch-anchor"></span><p class="arch-kicker">Calculate</p><h3>Arithmetic Logic Unit</h3><p>The <strong>ALU</strong> performs arithmetic and logical operations.</p><span>5 + 3 = 8</span></article>
+<article><span id="registers" class="arch-anchor"></span><p class="arch-kicker">Hold current work</p><h3>Registers</h3><p>Very small, fast storage inside the CPU.</p><span>Hold a value such as 5 or a result such as 8.</span></article>
+</div>
+</div>
+<p class="architecture-note">Memory stores the program. Parts inside the CPU work together to carry it out.</p><details class="architecture-revision"><summary>More explanation and sources</summary><p>Later lessons explain the instruction cycle and named registers in detail. For this lesson, follow where instructions and data are stored and which pathways they use.</p></details>
+</section>
+<section id="architectures" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">08 · Stored-program architecture</p><h2>Two ways to organise memory access</h2>
+<p>A computer <strong>architecture</strong> describes how its main parts are organised and work together. Here we focus on memory and its connections to the CPU.</p>
+<div class="arch-model-options">
+<article><span class="arch-model-number">01</span>
+<div><h3>Von Neumann</h3><strong>Share the memory system and route</strong><p>Instructions and data use common memory access.</p></div>
+</article>
+<article><span class="arch-model-number">02</span>
+<div><h3>Harvard</h3><strong>Separate the memories and routes</strong><p>Instructions and data have their own access paths.</p></div>
+</article>
+</div>
+<p class="architecture-note">Both store programs. The difference is how instructions and data reach the processor.</p><p class="arch-language">A <strong>pathway</strong>, or <strong>bus</strong>, carries signals between components.</p>
+</section>
+<template data-teacher-divider><h2>Von Neumann architecture</h2><p>Shared memory access: useful simplicity, but possible competition.</p></template>
 <section id="von-neumann" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">07 · Stored-program architecture</p>
-<h2>Von Neumann architecture</h2>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="memory" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Von Neumann: instructions and data occupy shared memory and use a shared CPU–memory path.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Von Neumann: instructions and data occupy shared memory and use a shared CPU–memory path.</figcaption>
-</figure>
-<p class="architecture-note">Von Neumann architecture uses shared memory for program instructions and data.</p>
-<p>The diagram is the conventional simplified model. A shared memory system/address space does not mean exactly one physical memory chip.</p>
-</section>
-<section id="control-unit" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">08 · Stored-program architecture</p>
-<h2>CPU zoom: Control Unit</h2>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="cu" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="The Control Unit is highlighted inside the same CPU. It coordinates instruction execution and sends control signals.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>The Control Unit is highlighted inside the same CPU. It coordinates instruction execution and sends control signals.</figcaption>
-</figure>
-<div class="component-caption"><strong>Coordinate</strong><span>Interpret what must happen → direct the required operations.</span>
-</div>
-<p>For an addition, the Control Unit coordinates getting the values and directing the operation. It does not perform the arithmetic itself.</p>
-</section>
-<section id="alu" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">09 · Stored-program architecture</p>
-<h2>CPU zoom: ALU</h2>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="alu" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="The Arithmetic Logic Unit is highlighted inside the CPU. It performs arithmetic and logical operations.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>The Arithmetic Logic Unit is highlighted inside the CPU. It performs arithmetic and logical operations.</figcaption>
-</figure>
-<div class="operation-strip"><span>5 + 3 = <strong>8</strong></span><span>5 &gt; 3 → <strong>true</strong></span><span>1 AND 0 → <strong>0</strong></span>
-</div>
-<p>Addition, subtraction, comparisons and logical operations are examples of ALU work.</p>
-</section>
-<section id="registers" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">10 · Stored-program architecture</p>
-<h2>CPU zoom: Registers</h2>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="registers" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Registers are highlighted inside the processor. They are very small, very fast storage locations for work in progress.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Registers are highlighted inside the processor. They are very small, very fast storage locations for work in progress.</figcaption>
-</figure>
-<p class="architecture-note">Registers temporarily hold values or instructions currently being worked with.</p>
-<p>They are not the same as main memory or a disk. Named registers such as PC, MAR, MDR and ACC are taught in the later instruction-cycle and register lessons.</p>
-</section>
-<section id="shared-memory" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">11 · Stored-program architecture</p>
-<h2>Instructions and data share memory</h2>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="memory" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="The I and D entries are interleaved inside one shared memory system, not two separate instruction/data stores.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>The I and D entries are interleaved inside one shared memory system, not two separate instruction/data stores.</figcaption>
-</figure>
-<div class="architecture-equation"><strong>I · instructions</strong><span>+</span><strong>D · values</strong><span>→</span><strong>One memory system</strong>
-</div>
-<p class="architecture-note">Instructions and data use the same memory system/address space. The CPU uses each according to its role.</p>
-</section>
-<section id="shared-path" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">12 · Stored-program architecture</p>
-<h2>Instructions and data share the pathway</h2>
-<div class="architecture-demo" data-architecture-demo="shared" data-no-slide-advance>
-<div class="quiz-actions">
-<button type="button" class="primary-link" data-architecture-action="step">Step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="previous">Previous step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="reset">Reset</button>
-</div>
-<p data-architecture-status role="status">Ready. Use Step to follow the highlighted paths.</p>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Watch an instruction fetch and then a data access use the same CPU–memory path.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Watch an instruction fetch and then a data access use the same CPU–memory path.</figcaption>
-</figure>
-</div>
-<p class="architecture-note">The same communication pathway is used for instruction fetches and data transfers.</p>
-<p>A path summarises an interface carrying address, data and control signals. These are conceptual events, not detailed CPU clock cycles.</p>
-</section>
-<section id="one-road" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">13 · Stored-program architecture</p>
-<h2>One road, two kinds of traffic</h2>
-<figure class="road-scene"><img src="../../assets/images/architecture/bottleneck-road.svg" width="1000" height="300" alt="Instruction and data requests queue to use one single-capacity road between CPU and memory. One transfer occupies the route while another waits."><figcaption>The road stands for shared transfer capacity. I = instruction fetch; D = data transfer.</figcaption>
-</figure>
-<p class="architecture-note">Instructions and data compete for access to the shared memory/pathway. This competition is contention.</p>
-<p>The metaphor is about a shared resource, not physical vehicles or a rule that the CPU can do nothing else while data moves.</p>
-</section>
-<section id="bottleneck" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">14 · Stored-program architecture</p>
-<h2>What is the Von Neumann bottleneck?</h2>
-<div class="bottleneck-story">
-<div class="demand"><strong>CPU demand</strong><span>I · D · I · D · I</span>
-</div>
-<div class="narrow-path"><strong>Limited transfer capacity</strong><span>Shared memory pathway</span>
-</div>
-<div class="waiting"><strong>Possible consequence</strong><span>Requests wait; useful work may be delayed</span>
+<p class="eyebrow">09 · Stored-program architecture</p><h2>Von Neumann: instructions and data share access</h2>
+<span id="shared-memory" class="arch-anchor"></span><p>The classic model uses a shared memory system for instructions and data, with a shared pathway to the processor.</p>
+<div class="arch-machine arch-machine--von" data-machine>
+<div class="arch-stores">
+<div class="arch-store"><p class="arch-kicker"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="14" width="40" height="22" rx="2"/><path d="M10 36v6m7-6v6m7-6v6m7-6v6m7-6v6"/><rect x="9" y="19" width="7" height="10"/><rect x="21" y="19" width="7" height="10"/><path d="M33 19h6v10h-6z"/></svg>Shared memory</p>
+<ul class="arch-memory-items">
+<li class="arch-instruction" data-memory-item="instruction"><span class="arch-tag arch-instruction">Instruction</span><strong>Next instruction</strong></li></ul>
+<ul class="arch-memory-items">
+<li class="arch-data" data-memory-item="data"><span class="arch-tag arch-data">Data</span><strong>Current value</strong></li></ul>
 </div>
 </div>
-<p class="architecture-note">Processor performance can be limited by the rate at which instructions and data can be transferred between CPU and memory.</p>
-<p>This is a potential throughput limitation. Its importance depends on the workload and memory system; it does not mean a CPU can literally do only one thing at once. A faster CPU alone may still have to wait for memory.</p>
+<div class="arch-lanes">
+<div class="arch-lane" data-transfer-lane="shared"><strong>Shared pathway</strong><span class="arch-wire" aria-hidden="true"></span></div>
+</div>
+<div class="arch-processor"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><h3>Processor <span>(CPU)</span></h3><p>Fetch instructions<br>Use data<br>Produce results</p></div>
+</div>
+<div class="arch-tradeoff">
+<div><strong>Why this can help</strong><p>A common memory organisation is simpler to work with; a shared RAM pool can hold different mixes of program and data.</p></div>
+<div><strong>The trade-off</strong><p>Instruction and data requests may compete for the same transfer capacity.</p></div>
+</div>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>The textbook model uses a common instruction/data address space. “Shared” does not require one physical chip or mean that all memory regions have the same technology. A common RAM pool can be allocated flexibly; Flash and RAM are not interchangeable just because they share a CPU interface.</p></details>
 </section>
 <section id="tiny-program" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">15 · Stored-program architecture</p>
-<h2>Watch a tiny program run</h2>
-<div class="program-strip"><code>LOAD A</code><code>ADD B</code><code>OUTPUT</code><span>A = 5 · B = 3</span>
-</div>
-<p>Readable pseudo-instructions: LOAD A means use the value at A; ADD B means add the value at B. These names are not a real assembly-language lesson.</p>
+<p class="eyebrow">10 · Stored-program architecture</p><h2>Follow the instructions and values separately</h2>
+<p><strong>Goal:</strong> add 5 and 3, then show 8. Watch what travels along the shared pathway.</p>
 <div class="architecture-demo" data-architecture-demo="program" data-no-slide-advance>
-<div class="quiz-actions">
-<button type="button" class="primary-link" data-architecture-action="step">Step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="previous">Previous step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="reset">Reset</button>
+<div class="arch-machine arch-machine--von" data-machine>
+<div class="arch-stores">
+<div class="arch-store"><p class="arch-kicker"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="14" width="40" height="22" rx="2"/><path d="M10 36v6m7-6v6m7-6v6m7-6v6m7-6v6"/><rect x="9" y="19" width="7" height="10"/><rect x="21" y="19" width="7" height="10"/><path d="M33 19h6v10h-6z"/></svg>Shared memory</p>
+<ul class="arch-memory-items">
+<li class="arch-instruction" data-memory-item="read"><span class="arch-tag arch-instruction">Instruction</span><strong>Read the first number</strong></li>
+<li class="arch-instruction" data-memory-item="add"><span class="arch-tag arch-instruction">Instruction</span><strong>Add the next number</strong></li>
+<li class="arch-instruction" data-memory-item="show"><span class="arch-tag arch-instruction">Instruction</span><strong>Show the total</strong></li></ul>
+<ul class="arch-memory-items arch-number-pair">
+<li class="arch-data" data-memory-item="five"><span class="arch-tag arch-data">Data</span><strong>5</strong></li>
+<li class="arch-data" data-memory-item="three"><span class="arch-tag arch-data">Data</span><strong>3</strong></li></ul>
 </div>
-<p data-architecture-status role="status">Ready. Use Step to follow the highlighted paths.</p>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Follow the shared memory path: fetch each instruction, access its value, compute 8 and send the result to output.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Follow the shared memory path: fetch each instruction, access its value, compute 8 and send the result to output.</figcaption>
-</figure>
 </div>
-<p>The sequence deliberately separates instruction fetches from value accesses. Detailed decode stages and named register transfers come later.</p>
-</section><template data-teacher-divider>
-<h2>Harvard architecture</h2></template>
-<section id="split-memory" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">16 · Stored-program architecture</p>
-<h2>What if instructions and data had separate paths?</h2>
-<div class="architecture-demo" data-architecture-demo="split" data-no-slide-advance>
-<div class="quiz-actions">
-<button type="button" class="primary-link" data-architecture-action="step">Step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="previous">Previous step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="reset">Reset</button>
+<div class="arch-lanes">
+<div class="arch-lane" data-transfer-lane="shared"><strong>Shared pathway</strong><span class="arch-wire" aria-hidden="true"></span></div>
 </div>
-<p data-architecture-status role="status">Ready. Use Step to follow the highlighted paths.</p>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Start with shared memory and a shared path. Step splits them while the CPU, input and output stay in place.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Start with shared memory and a shared path. Step splits them while the CPU, input and output stay in place.</figcaption>
-</figure>
+<div class="arch-processor"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><h3>Processor <span>(CPU)</span></h3><dl>
+<div><dt>Instruction</dt><dd data-machine-instruction>Not fetched yet</dd></div>
+<div><dt>Working data</dt><dd data-machine-working>No values yet</dd></div>
+</dl>
+<div class="arch-output"><span>Display output</span><strong data-machine-output>—</strong></div>
 </div>
-<p class="architecture-lead">What could be gained by separating them?</p>
+</div>
+<div class="arch-demo-report" role="status" aria-live="polite" aria-atomic="true"><p data-architecture-status>1 of 8 · The program and its numbers are ready</p><p data-architecture-description>The goal is to add 5 and 3, then display the total.</p></div>
+<div class="quiz-actions" data-architecture-controls hidden><button type="button" class="lesson-secondary-action" data-architecture-action="previous">Previous</button><button type="button" class="primary-link" data-architecture-action="play" aria-pressed="false">Play</button><button type="button" class="lesson-secondary-action" data-architecture-action="step">Next step</button><button type="button" class="lesson-secondary-action" data-architecture-action="reset">Restart</button></div>
+<ol class="arch-transcript" data-architecture-transcript>
+<li><strong>The program and its numbers are ready</strong> The goal is to add 5 and 3, then display the total.</li>
+<li><strong>Fetch an instruction</strong> The processor receives “Read the first number”.</li>
+<li><strong>Read the data</strong> The same pathway now carries the value 5 into the processor.</li>
+<li><strong>Fetch the next instruction</strong> “Add the next number” travels along that shared pathway.</li>
+<li><strong>Read the next value</strong> The value 3 follows. The processor now has both numbers.</li>
+<li><strong>Carry out the addition</strong> The ALU adds the values inside the processor.</li>
+<li><strong>Fetch the final instruction</strong> The processor receives “Show the total”.</li>
+<li><strong>Show the result</strong> The output is 8. Both instructions and values used the shared pathway.</li></ol>
+</div>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>The labelled operations simplify a real program so you can follow instruction fetches separately from data accesses. The snapshots are teaching stages, not clock cycles. Calculation happens inside the processor; output is shown as a result, without modelling an output-device controller.</p></details>
 </section>
+<section id="bottleneck" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">11 · Stored-program architecture</p><h2>The Von Neumann bottleneck: requests can queue</h2>
+<span id="shared-path" class="arch-anchor"></span><span id="one-road" class="arch-anchor"></span><p>When instructions and data need the same busy pathway, one request may have to wait.</p>
+<div class="architecture-demo" data-architecture-demo="shared" data-no-slide-advance>
+<div class="arch-machine arch-machine--von" data-machine>
+<div class="arch-stores">
+<div class="arch-store"><p class="arch-kicker"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="14" width="40" height="22" rx="2"/><path d="M10 36v6m7-6v6m7-6v6m7-6v6m7-6v6"/><rect x="9" y="19" width="7" height="10"/><rect x="21" y="19" width="7" height="10"/><path d="M33 19h6v10h-6z"/></svg>Shared memory</p>
+<ul class="arch-memory-items">
+<li class="arch-instruction" data-memory-item="instruction"><span class="arch-tag arch-instruction">Instruction</span><strong>Next instruction</strong></li></ul>
+<span class="arch-request" data-request-kind="instruction">Waiting</span>
+<ul class="arch-memory-items">
+<li class="arch-data" data-memory-item="data"><span class="arch-tag arch-data">Data</span><strong>Current value</strong></li></ul>
+<span class="arch-request" data-request-kind="data">Waiting</span></div>
+</div>
+<div class="arch-lanes">
+<div class="arch-lane" data-transfer-lane="shared"><strong>Shared pathway</strong><span class="arch-wire" aria-hidden="true"></span></div>
+</div>
+<div class="arch-processor"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><h3>Processor <span>(CPU)</span></h3><dl>
+<div><dt>Instruction</dt><dd data-machine-instruction>Next instruction needed</dd></div>
+<div><dt>Working data</dt><dd data-machine-working>Current data needed</dd></div>
+</dl></div>
+</div>
+<div class="arch-demo-report" role="status" aria-live="polite" aria-atomic="true"><p data-architecture-status>1 of 4 · Two requests need the same route</p><p data-architecture-description>The processor needs a next instruction and data for its current instruction.</p></div>
+<div class="quiz-actions" data-architecture-controls hidden><button type="button" class="lesson-secondary-action" data-architecture-action="previous">Previous</button><button type="button" class="primary-link" data-architecture-action="play" aria-pressed="false">Play</button><button type="button" class="lesson-secondary-action" data-architecture-action="step">Next step</button><button type="button" class="lesson-secondary-action" data-architecture-action="reset">Restart</button></div>
+<ol class="arch-transcript" data-architecture-transcript>
+<li><strong>Two requests need the same route</strong> The processor needs a next instruction and data for its current instruction.</li>
+<li><strong>The instruction uses the shared path</strong> The data request waits while this route carries the instruction.</li>
+<li><strong>Now the data can use the path</strong> The data travels after the instruction; the two requests competed for access.</li>
+<li><strong>Both requests have been served</strong> A faster processor can still be held back by limited memory-transfer capacity.</li></ol>
+</div>
+<p class="architecture-note">The processor can be limited by how quickly memory supplies instructions and data.</p><details class="architecture-revision"><summary>More explanation and sources</summary><p>Competition for a shared resource is called contention. This example shows a ready next-instruction request and a separate data request for the current instruction. It does not mean the CPU can do no other work, and the stage count is not a performance measurement.</p></details>
+</section>
+<section id="von-benefits" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">12 · Stored-program architecture</p><h2>Why choose Von Neumann?</h2>
+<p>Maximum speed is only one aim. A designer may value <strong>simpler hardware</strong> and <strong>flexible use of memory</strong>.</p>
+<ol class="arch-flow"><li><strong>One shared pathway</strong><span>Fewer separate connections to manage</span></li><li><strong>Simpler memory hardware</strong><span>Can reduce complexity and hardware cost</span></li><li><strong>Check the task’s needs</strong><span>If it responds in time, extra pathways may add little.</span></li></ol>
+<div class="arch-capacity-example"><h3>One RAM pool can hold different mixes</h3>
+<div class="arch-capacity-row"><strong>A smaller program with more data</strong><div class="arch-capacity-bar" style="--capacity:10"><span class="arch-capacity-program" style="--units:3">Program · 3</span><span class="arch-capacity-data" style="--units:5">Data · 5</span><span class="arch-capacity-free" style="--units:2">Spare · 2</span></div></div>
+<div class="arch-capacity-row"><strong>A larger program with less data</strong><div class="arch-capacity-bar" style="--capacity:10"><span class="arch-capacity-program" style="--units:6">Program · 6</span><span class="arch-capacity-data" style="--units:2">Data · 2</span><span class="arch-capacity-free" style="--units:2">Spare · 2</span></div></div>
+<p class="arch-capacity-caption">Illustration: the same 10 equal units of RAM, allocated differently.</p></div>
+<p class="architecture-note">The compromise: instructions and data still compete for shared access.</p>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>This capacity example assumes a common pool of the same kind of RAM. It does not mean that Flash can turn into RAM, or that every memory technology can store either kind of content equally. Cost depends on the complete implementation, so a Von Neumann processor is not automatically cheaper than every Harvard processor. The shared-memory principle also remains useful in modern systems that add separate caches near the CPU.</p></details>
+</section>
+<section id="von-in-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">13 · Stored-program architecture</p><h2>A familiar task: controlling room heating</h2>
+<div class="arch-device-example"><figure class="arch-real-photo"><img src="../../assets/images/architecture/room-thermostat.jpg" width="960" height="720" alt="A digital room thermostat mounted on a wall" loading="lazy"><figcaption>A thermostat controls room heating.<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:Robertshaw_Non-Programmable_Digital_Thermostat.JPG">Ente75</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></small></figcaption></figure><div><p class="arch-kicker">Design example · a simple thermostat</p><h3>Read the temperature. Decide whether heating is needed.</h3>
+<ol class="arch-flow"><li><strong>Read</strong><span>Current room temperature</span></li><li><strong>Compare</strong><span>Is it below the setting?</span></li><li><strong>Act</strong><span>Switch heating on or off</span></li></ol>
+<p>A room changes temperature slowly. A basic controller has a small amount of work to do between readings.</p></div></div>
+<div class="arch-tradeoff"><div><strong>Why this can help</strong><p>If shared memory access is already fast enough, Von Neumann can meet the need with a simpler memory connection. Paying for more transfer capacity may not improve the heating.</p></div><div><strong>The trade-off</strong><p>Adding demanding features could increase memory traffic. The designer would need to check that the shared pathway still keeps up.</p></div></div>
+<p class="arch-example-scope">Possible design choice; the photo illustrates the task, not the internal architecture of this particular product.</p>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>The thermostat is a suitability scenario, not a claim that all thermostats or the photographed model use Von Neumann. Commercial controllers vary. The point is to match required response time and cost to the work. Small processors with shared memory access are real designs; a chip model number is not needed to explain their suitability. <a href="https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Processor%20Datasheets/Arm_Cortex-M0_Processor_Datasheet.pdf">Manufacturer example of a small processor with shared memory access</a>.</p></details>
+</section>
+<template data-teacher-divider><h2>Harvard architecture</h2><p>What changes if instructions and data have their own routes?</p></template>
 <section id="harvard" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">17 · Stored-program architecture</p>
-<h2>Harvard architecture</h2>
-<figure class="machine-figure" data-machine data-mode="harvard" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Harvard: instruction memory has its own path to the CPU; data memory has a separate path. The processor is still one CPU.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Harvard: instruction memory has its own path to the CPU; data memory has a separate path. The processor is still one CPU.</figcaption>
-</figure>
-<p class="architecture-note">Harvard architecture stores instructions and data separately and uses separate pathways for them.</p>
-<p>The classic model separates instruction/data memories and their address spaces. It remains a stored-program architecture: instructions are held in program memory.</p>
-</section>
-<section id="parallel-access" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">18 · Stored-program architecture</p>
-<h2>Separate instruction and data access</h2>
+<p class="eyebrow">14 · Stored-program architecture</p><h2>Harvard: separate memories, separate pathways</h2>
+<span id="split-memory" class="arch-anchor"></span><span id="parallel-access" class="arch-anchor"></span><span id="memory-lab" class="arch-anchor"></span><p>Instruction memory and data memory each have their own route to the same CPU.</p>
 <div class="architecture-demo" data-architecture-demo="concurrent" data-no-slide-advance>
-<div class="quiz-actions">
-<button type="button" class="primary-link" data-architecture-action="step">Step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="previous">Previous step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="reset">Reset</button>
+<div class="arch-machine arch-machine--harvard" data-machine>
+<div class="arch-stores">
+<div class="arch-store"><p class="arch-kicker">Instruction memory</p>
+<ul class="arch-memory-items">
+<li class="arch-instruction" data-memory-item="instruction"><span class="arch-tag arch-instruction">Instruction</span><strong>Next instruction</strong></li></ul>
+<span class="arch-request" data-request-kind="instruction">Waiting</span></div>
+<div class="arch-store arch-data-store"><p class="arch-kicker">Data memory</p>
+<ul class="arch-memory-items">
+<li class="arch-data" data-memory-item="data"><span class="arch-tag arch-data">Data</span><strong>Current value</strong></li></ul>
+<span class="arch-request" data-request-kind="data">Waiting</span></div>
 </div>
-<p data-architecture-status role="status">Ready. Use Step to follow the highlighted paths.</p>
-<figure class="machine-figure" data-machine data-mode="harvard" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Step shows a ready instruction fetch and an independent data access using separate paths together.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Step shows a ready instruction fetch and an independent data access using separate paths together.</figcaption>
-</figure>
+<div class="arch-lanes">
+<div class="arch-lane" data-transfer-lane="instruction"><strong>Instruction pathway</strong><span class="arch-wire" aria-hidden="true"></span></div>
+<div class="arch-lane" data-transfer-lane="data"><strong>Data pathway</strong><span class="arch-wire" aria-hidden="true"></span></div>
 </div>
-<p class="architecture-note">Separate pathways can allow instruction and data accesses to occur independently or concurrently.</p>
-<p>The data access shown is for an instruction already decoded; the instruction fetch is a forthcoming one. This does not remove dependencies or guarantee that every program runs faster.</p>
+<div class="arch-processor"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><h3>Processor <span>(CPU)</span></h3><dl>
+<div><dt>Instruction</dt><dd data-machine-instruction>Next instruction needed</dd></div>
+<div><dt>Working data</dt><dd data-machine-working>Current data needed</dd></div>
+</dl></div>
+</div>
+<div class="arch-demo-report" role="status" aria-live="polite" aria-atomic="true"><p data-architecture-status>1 of 3 · Two requests, two routes</p><p data-architecture-description>A next instruction and data for the current instruction are ready to transfer.</p></div>
+<div class="quiz-actions" data-architecture-controls hidden><button type="button" class="lesson-secondary-action" data-architecture-action="previous">Previous</button><button type="button" class="primary-link" data-architecture-action="play" aria-pressed="false">Play</button><button type="button" class="lesson-secondary-action" data-architecture-action="step">Next step</button><button type="button" class="lesson-secondary-action" data-architecture-action="reset">Restart</button></div>
+<ol class="arch-transcript" data-architecture-transcript>
+<li><strong>Two requests, two routes</strong> A next instruction and data for the current instruction are ready to transfer.</li>
+<li><strong>Instruction and data can travel together</strong> Each transfer uses its own pathway to the same processor.</li>
+<li><strong>Less competition for the pathway</strong> This can reduce waiting when useful instruction and data accesses overlap.</li></ol>
+</div>
+<div class="arch-tradeoff">
+<div><strong>Why this can help</strong><p>A next instruction can be fetched while independent data for the current instruction is accessed, reducing competition.</p></div>
+<div><strong>The trade-off</strong><p>Separate memory spaces and interfaces need managing. The benefit depends on the work being done.</p></div>
+</div>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>Both routes lead to one processor; the diagram does not imply that two instructions execute at once. Separation allows independent accesses to overlap but does not remove dependencies or guarantee twice the speed. Classic Harvard has separate program/data address spaces.</p></details>
 </section>
-<section id="memory-lab" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">19 · Stored-program architecture</p>
-<h2>Von Neumann vs Harvard visualiser</h2>
-<div class="architecture-demo" data-architecture-demo="compare" data-no-slide-advance>
-<div class="machine-mode-controls" role="group" aria-label="Architecture">
-<button type="button" class="lesson-secondary-action" data-architecture-mode="von" aria-pressed="true">Von Neumann</button>
-<button type="button" class="lesson-secondary-action" data-architecture-mode="harvard" aria-pressed="false">Harvard</button>
+<section id="harvard-in-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">15 · Stored-program architecture</p><h2>A familiar task: processing sound in headphones</h2>
+<div class="arch-device-example"><figure class="arch-real-photo"><img src="../../assets/images/architecture/noise-cancelling-headphones.jpg" width="960" height="720" alt="Over-ear noise-cancelling headphones" loading="lazy"><figcaption>Headphones are a familiar use for sound processing.<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:Bose_QuietComfort_25_Acoustic_Noise_Cancelling_Headphones.jpg">Florian Fuchs / Wikipedia</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></small></figcaption></figure><div><p class="arch-kicker">Design example · digital noise cancellation</p><h3>New sound keeps arriving while the processor is working.</h3>
+<ol class="arch-flow"><li><strong>Input</strong><span>Read sound from a microphone</span></li><li><strong>Process</strong><span>Calculate how to reduce the noise</span></li><li><strong>Output</strong><span>Adjust the sound sent to the ear</span></li></ol>
+<p>Instructions tell the processor how to adjust the sound. The incoming sound readings are the data.</p></div></div>
+<div class="arch-tradeoff"><div><strong>Why this can help</strong><p>Harvard-style separate pathways can bring in a next instruction while current sound data is accessed. Less waiting helps repeated processing keep up with incoming sound.</p></div><div><strong>The trade-off</strong><p>Separate memories and pathways need extra hardware and planning. They help only if memory access is a significant limit on the task.</p></div></div>
+<p class="arch-example-scope">Possible design choice; the photographed headphones illustrate the task. Actual products may use modified designs.</p>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>Sound-processing processors often use Harvard-style or modified Harvard arrangements to feed instructions and data efficiently. The scenario is a simplified application of that principle, not a claim about the architecture or digital/analogue implementation of these particular headphones. <a href="https://www.analog.com/en/resources/analog-dialogue/articles/dsp-101-part-2.html">Analog Devices explains sound-processing memory arrangements</a>.</p></details>
+</section>
+<section id="harvard-tradeoffs" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">16 · Stored-program architecture</p><h2>Separate memories can leave unusable spare space</h2>
+<p>Suppose a task needs <strong>6 units for instructions</strong> and <strong>2 for data</strong>. Compare two designs with 10 equal units in total.</p>
+<div class="arch-memory-comparison"><article><p class="arch-kicker">Shared pool · Von Neumann</p><h3>The task fits</h3>
+<div class="arch-capacity-bar" style="--capacity:10"><span class="arch-capacity-program" style="--units:6">Program · 6</span><span class="arch-capacity-data" style="--units:2">Data · 2</span><span class="arch-capacity-free" style="--units:2">Spare · 2</span></div>
+<p>All 8 required units fit in the common pool.</p></article>
+<article><p class="arch-kicker">Separate pools · classic Harvard</p><h3>A fixed 5 + 5 split</h3>
+<div class="arch-split-pools"><div><strong>Program memory · 5 units</strong><div class="arch-capacity-bar" style="--capacity:5"><span class="arch-capacity-program" style="--units:5">All 5 used</span></div><span class="arch-capacity-shortfall">1 more program unit needed</span></div>
+<div><strong>Data memory · 5 units</strong><div class="arch-capacity-bar" style="--capacity:5"><span class="arch-capacity-data" style="--units:2">Used · 2</span><span class="arch-capacity-free" style="--units:3">Spare · 3</span></div><span>The spare data space cannot fill the program gap.</span></div></div></article></div>
+<div class="arch-tradeoff"><div><strong>Why this can help</strong><p>Separate paths reduce competition. Each memory can also be designed for its own job.</p></div><div><strong>The trade-off</strong><p>The designer must choose suitable sizes for both memories and provide separate connections. This adds design complexity and can add cost.</p></div></div>
+<p class="arch-capacity-caption">A simplified fixed-capacity example. A different split could fit this task; the spare space cannot simply be reassigned in the design shown.</p>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>Equal units isolate the allocation trade-off. Real program and data memories may use different sizes, word widths or technologies. Modified designs can provide ways to cross between memory spaces. <a href="https://developerhelp.microchip.com/xwiki/bin/view/products/mcu-mpu/16bit-mcu/architecture/">Microchip: separate instruction/data paths and memory organisation</a>.</p></details>
+</section>
+<template data-teacher-divider><h2>Architecture in modern devices</h2><p>Shared memory and separate nearby paths can appear in the same computer.</p></template>
+<section id="modern-designs" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">17 · Stored-program architecture</p><h2>Shared main memory, separate fast copies</h2>
+<span id="compare" class="arch-anchor"></span><p>A <strong>cache</strong> is a small, fast store of copies near the processor. Some designs separate instruction and data caches while keeping main memory shared.</p>
+<div class="arch-cache-map">
+<article class="arch-main-store"><p class="arch-kicker">Further from the processor</p><h3>Shared main memory</h3><span class="arch-tag arch-instruction">Program instructions</span><span class="arch-tag arch-data">Program data</span><p>One common memory space.</p></article>
+<div class="arch-cache-feeds" aria-hidden="true"><span>→</span><span>→</span></div>
+<div class="arch-cache-pair">
+<article class="arch-instruction"><h3>Instruction cache</h3><span>Fast instruction copies</span></article>
+<article class="arch-data"><h3>Data cache</h3><span>Fast data copies</span></article>
 </div>
-<div class="quiz-actions">
-<button type="button" class="primary-link" data-architecture-action="step">Step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="previous">Previous step</button>
-<button type="button" class="lesson-secondary-action" data-architecture-action="reset">Reset</button>
+<div class="arch-cache-feeds" aria-hidden="true"><span>→</span><span>→</span></div>
+<article class="arch-cache-cpu"><svg class="arch-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="10" width="28" height="28" rx="3"/><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M17 3v7m7-7v7m7-7v7M17 38v7m7-7v7m7-7v7M3 17h7m-7 7h7m-7 7h7m28-14h7m-7 7h7m-7 7h7"/></svg><h3>Processor</h3><span>Separate nearby access paths</span></article>
 </div>
-<p data-architecture-status role="status">Ready. Use Step to follow the highlighted paths.</p>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Compare what is shared and what is separate. Mode changes restart the sequence.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Compare what is shared and what is separate. Mode changes restart the sequence.</figcaption>
-</figure>
+<div class="arch-cache-key"><span><b>Shared further away</b> · flexible main memory</span><span><b>Separate nearby</b> · less competition for access</span></div>
+<p class="architecture-note">This combination is often called modified Harvard. Describe which level of memory you mean.</p><details class="architecture-revision"><summary>More explanation and sources</summary><p>This is a simplified view of one form of modified Harvard; other cache levels and connections are omitted. If the required copy is not in a nearby cache, a request must be served from elsewhere in the memory system, so waiting is still possible. <a href="https://developer.arm.com/community/arm-community-blogs/b/architectures-and-processors-blog/posts/caches-and-self-modifying-code">Arm explains separate instruction/data caches</a>. More cache detail belongs in the later CPU-performance lesson.</p></details>
+</section>
+<section id="modern-in-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">18 · Stored-program architecture</p><h2>Real example: Raspberry Pi 4</h2>
+<div class="arch-device-example">
+<figure class="arch-real-photo"><img src="../../assets/images/architecture/raspberry-pi-4-photo.jpg" width="960" height="565" alt="A Raspberry Pi 4 board with USB and network sockets" loading="lazy"><figcaption>Raspberry Pi 4: a small computer that can run a desktop.<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:Raspberry_Pi_4_Model_B_-_Side.jpg">Michael H. (“Laserlicht”) / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></small></figcaption></figure>
+<div><p class="arch-kicker">Illustrative task · edit a photo</p><h3>The program and the picture both need memory.</h3>
+<div class="arch-photo-task">
+<div><span class="arch-tag arch-instruction">Instructions</span><strong>Brighten a pixel<br>Move to the next pixel</strong></div>
+<div><span class="arch-tag arch-data">Data</span>
+<div class="arch-pixels" role="img" aria-label="A small grid representing picture pixels"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 </div>
-<p>In Von Neumann mode, a ready instruction fetch and data access take turns on the shared path. In Harvard mode, a forthcoming instruction fetch and an independent data access can use separate paths together.</p>
-<p class="architecture-note">This visualiser explains memory organisation. It is not a CPU emulator, a timing benchmark or a promise of double performance.</p>
-</section><template data-teacher-divider>
-<h2>Comparing architectures</h2></template>
-<section id="compare" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">20 · Stored-program architecture</p>
-<h2>Von Neumann vs Harvard</h2>
+</div>
+<p>Its processor uses separate instruction and data caches, alongside shared main memory.</p></div>
+</div>
+<div class="arch-tradeoff">
+<div><strong>Why this can help</strong><p>Shared RAM supports different applications and their data. Separate nearby caches can reduce delays when the processor repeatedly needs instructions and picture values.</p></div>
+<div><strong>The trade-off</strong><p>Caches add hardware and hold only a limited amount. Missing copies still need access to the wider memory system.</p></div>
+</div>
+<p class="arch-source">Hardware: <a href="https://www.raspberrypi.com/documentation/computers/processors.html#bcm2711">Raspberry Pi hardware documentation</a>.</p><details class="architecture-revision"><summary>More explanation and sources</summary><p>The simplified diagram on the previous slide explains the shared/split principle, not every part of the Pi’s cache hierarchy. The photo-editing example illustrates a possible benefit; measured speed also depends on software, workload and the rest of the hardware.</p></details>
+</section>
+<section id="architecture-choice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">19 · Stored-program architecture</p><h2>Why not add separate caches to every device?</h2>
+<p>Modified Harvard can keep <strong>flexible shared main memory</strong> and <strong>fast separate access nearby</strong>. Those benefits need additional hardware.</p>
+<div class="arch-cache-costs"><article><span class="arch-cost-number">1</span><h3>More chip space</h3><p>Fast cache storage and control circuits take space and can add cost.</p></article><article><span class="arch-cost-number">2</span><h3>More to manage</h3><p>The system must track cached copies so the processor uses up-to-date instructions and values.</p></article><article><span class="arch-cost-number">3</span><h3>Waiting can remain</h3><p>If a needed copy is missing, the processor must get it from the wider memory system.</p></article></div>
+<div class="arch-worth-it"><article><p class="arch-kicker">Simple heating controller</p><strong>Already responds in time?</strong><p>Extra cache hardware may add little useful benefit. A simpler shared design can be enough.</p></article><article><p class="arch-kicker">Computer editing a photo</p><strong>Repeatedly needs instructions and pixels?</strong><p>Separate caches can reduce waiting often enough to justify the extra hardware.</p></article></div>
+<p class="architecture-note">Choose an arrangement that meets the task’s speed, memory and cost needs. More hardware is useful only when its benefits justify it.</p>
+<details class="architecture-revision"><summary>More explanation and sources</summary><p>This slide considers the split-cache form of modified Harvard introduced here. Cache control includes tracking changes and deciding when copies need updating or replacing; the mechanisms belong in a later CPU lesson. A cache may also save energy by avoiding some main-memory accesses, so neither power consumption nor price follows from the architecture name alone. <a href="https://developer.arm.com/community/arm-community-blogs/b/architectures-and-processors-blog/posts/caches-and-self-modifying-code">Arm: separate caches and keeping instructions consistent</a>.</p></details>
+</section>
+<section id="exam-technique" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">20 · Stored-program architecture</p><h2>Explain what the arrangement helps the device do</h2>
+<span id="summary" class="arch-anchor"></span><p>When analysing suitability, connect an architectural feature to the task, then weigh a limitation.</p>
+<div class="exam-technique">
+<ol class="exam-technique__chain">
+<li><strong>Feature</strong><p>Separate instruction and data pathways…</p></li>
+<li><strong>Effect</strong><p>…allow independent accesses to overlap…</p></li>
+<li><strong>Application</strong><p>…which can help a sound processor keep up with incoming audio.</p></li></ol>
+<div class="exam-technique__counter"><strong>Trade-off</strong><p>The designer must manage separate memory spaces and interfaces. A simpler shared route may already meet a low-demand task’s needs.</p></div>
+<blockquote class="exam-technique__judgement"><strong>Weigh the need</strong><p>Separation is useful if memory access limits the sound processor’s response. Choose using the required response time, cost and workload, rather than assuming one model is always fastest.</p></blockquote></div>
+<details class="architecture-revision"><summary>More explanation and sources</summary>
 <div class="architecture-table-wrap">
 <table><caption>Compare the classic exam models after examining their diagrams</caption>
 <thead>
@@ -586,141 +522,10 @@
 </tbody>
 </table>
 </div>
-<p>Choose from the given requirements, memory layout and trade-offs. Do not assume “PC = pure Von Neumann” or “embedded = Harvard”.</p>
-</section>
-<section id="modern-designs" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">21 · Stored-program architecture</p>
-<h2>Are modern computers purely one or the other?</h2>
-<figure class="modern-scene"><img src="../../assets/images/architecture/modified-harvard.svg" width="1000" height="370" alt="Near the processor, instruction and data caches have separate access paths. Further away, both connect to shared main memory."><figcaption>One form of modified Harvard organisation: separation near the CPU, shared memory further away.</figcaption>
-</figure>
-<p>Modern general-purpose systems often present a Von Neumann-like common address space to software, while the processor may use separate instruction and data caches internally.</p>
-<p class="architecture-note">Real modern processors often combine ideas from both architectures. Keep the shared-versus-separate exam models clear, then recognise this practical variation.</p>
-<details class="exam-guidance">
-<summary>More context</summary>
-<div class="exam-guidance-body">
-<p>A cache holds fast-access copies near the CPU. <a href="https://developer.arm.com/community/arm-community-blogs/b/architectures-and-processors-blog/posts/caches-and-self-modifying-code">Arm’s explanation of instruction/data caches</a> gives a real example. Cache hierarchies belong in the later <a href="cpu-performance-instruction-sets-and-cache.html?context=btec-level-3-unit-2">CPU performance lesson</a>.</p>
-</div>
 </details>
 </section>
-<section id="scenarios" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">22 · Stored-program architecture</p>
-<h2>Identify the architecture</h2>
-<p>Identify each system, then justify it using architectural evidence.</p>
-<article class="architecture-scenario" data-paired-scenario="a" data-no-slide-advance>
-<h3>System A</h3>
-<p>Instructions and data share memory and a CPU–memory path.</p>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Instructions and data share memory and a CPU–memory path.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Instructions and data share memory and a CPU–memory path.</figcaption>
-</figure>
-<div class="scenario-choices">
-<label for="scenario-a">Architecture</label>
-<select id="scenario-a" data-choice="type">
-<option value="">Choose</option>
-<option value="von">Von Neumann</option>
-<option value="harvard">Harvard</option>
-<option value="modified">Modified Harvard / hybrid</option>
-</select>
-<label for="evidence-a">Evidence and consequence</label>
-<select id="evidence-a" data-choice="reason">
-<option value="">Choose evidence</option>
-<option value="shared">Shared memory/path means possible contention</option>
-<option value="separate">Separate memories/paths permit independent access</option>
-<option value="mixed">Shared main memory with separate instruction/data caches</option>
-</select>
-</div>
-<div class="quiz-actions">
-<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
-<button type="button" class="lesson-secondary-action" data-reset-pair>Reset</button>
-</div>
-<p data-pair-feedback role="status">
-</p>
-</article>
-<article class="architecture-scenario" data-paired-scenario="b" data-no-slide-advance>
-<h3>System B</h3>
-<p>Program memory and data memory each have their own pathway to the CPU.</p>
-<figure class="machine-figure" data-machine data-mode="harvard" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Program memory and data memory each have their own pathway to the CPU.">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Program memory and data memory each have their own pathway to the CPU.</figcaption>
-</figure>
-<div class="scenario-choices">
-<label for="scenario-b">Architecture</label>
-<select id="scenario-b" data-choice="type">
-<option value="">Choose</option>
-<option value="von">Von Neumann</option>
-<option value="harvard">Harvard</option>
-<option value="modified">Modified Harvard / hybrid</option>
-</select>
-<label for="evidence-b">Evidence and consequence</label>
-<select id="evidence-b" data-choice="reason">
-<option value="">Choose evidence</option>
-<option value="shared">Shared memory/path means possible contention</option>
-<option value="separate">Separate memories/paths permit independent access</option>
-<option value="mixed">Shared main memory with separate instruction/data caches</option>
-</select>
-</div>
-<div class="quiz-actions">
-<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
-<button type="button" class="lesson-secondary-action" data-reset-pair>Reset</button>
-</div>
-<p data-pair-feedback role="status">
-</p>
-</article>
-<article class="architecture-scenario" data-paired-scenario="c" data-no-slide-advance>
-<h3>System C · extension</h3>
-<p>Main memory is shared, but instruction and data caches near the processor have separate paths.</p><img class="scenario-modern" src="../../assets/images/architecture/modified-harvard.svg" width="1000" height="370" alt="Shared main memory with separate instruction and data caches">
-<div class="scenario-choices">
-<label for="scenario-c">Architecture</label>
-<select id="scenario-c" data-choice="type">
-<option value="">Choose</option>
-<option value="von">Von Neumann</option>
-<option value="harvard">Harvard</option>
-<option value="modified">Modified Harvard / hybrid</option>
-</select>
-<label for="evidence-c">Evidence and consequence</label>
-<select id="evidence-c" data-choice="reason">
-<option value="">Choose evidence</option>
-<option value="shared">Shared memory/path means possible contention</option>
-<option value="separate">Separate memories/paths permit independent access</option>
-<option value="mixed">Shared main memory with separate instruction/data caches</option>
-</select>
-</div>
-<div class="quiz-actions">
-<button type="button" class="primary-link" data-check-pair>Check reasoning</button>
-<button type="button" class="lesson-secondary-action" data-reset-pair>Reset</button>
-</div>
-<p data-pair-feedback role="status">
-</p>
-</article>
-</section>
 <section id="mistakes" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">23 · Stored-program architecture</p>
+<p class="eyebrow">21 · Stored-program architecture</p>
 <h2>Common mistakes</h2><dl class="misconception-list">
 <div><dt>“Programs permanently live in RAM”</dt><dd>Programs can be kept in secondary storage and loaded for execution; some systems use non-volatile program memory.</dd>
 </div>
@@ -728,62 +533,18 @@
 </div>
 <div><dt>“Modern PCs are pure textbook Von Neumann”</dt><dd>Real designs can combine shared memory with separate instruction/data access near the CPU.</dd>
 </div>
+</dl>
+<div data-slide-break></div>
+<dl class="misconception-list">
 <div><dt>“Instructions and data are different kinds of bits”</dt><dd>Both are binary patterns. Interpretation gives them meaning.</dd>
 </div>
 <div><dt>“The bottleneck means the CPU can only do one thing”</dt><dd>It concerns shared memory/path bandwidth, not a universal restriction on all CPU activity.</dd>
-</div></dl>
+</div>
+</dl>
 </section>
-<section id="summary" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">24 · Stored-program architecture</p>
-<h2>Architecture in one picture</h2>
-<p class="summary-principle"><strong>Stored-program idea:</strong> instructions held in memory for the processor to fetch and execute.</p>
-<div class="architecture-summary">
-<div>
-<h3>Von Neumann</h3>
-<figure class="machine-figure" data-machine data-mode="von" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Shared memory · shared pathway">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Shared memory · shared pathway</figcaption>
-</figure>
-</div>
-<div>
-<h3>Harvard</h3>
-<figure class="machine-figure" data-machine data-mode="harvard" data-focus="" data-transfer="none">
-<div class="machine-viewport" tabindex="0" role="group" aria-label="Architecture diagram; scroll horizontally on a small screen">
-<svg class="machine-svg" viewBox="0 0 1000 480" role="img" aria-label="Separate memories · separate pathways">
-<use href="../../assets/images/architecture/machine-frame.svg#machine"/>
-<rect class="machine-focus focus-cu" x="226" y="143" width="153" height="93" rx="12"/>
-<rect class="machine-focus focus-alu" x="387" y="143" width="137" height="93" rx="12"/>
-<rect class="machine-focus focus-registers" x="226" y="254" width="298" height="94" rx="12"/>
-<g class="machine-von"><rect class="memory-box" x="700" y="55" width="280" height="270" rx="14"/><text x="840" y="91" class="machine-heading">Shared memory</text>
-<text x="840" y="131">I · LOAD A</text><text x="840" y="170">D · A = 5</text><text x="840" y="209">I · ADD B</text><text x="840" y="248">D · B = 3</text><text x="840" y="287">I · OUTPUT</text>
-<path class="machine-path shared-path" d="M540 218H700"/><text x="620" y="193" class="machine-path-label">Shared path</text><text x="620" y="249" class="machine-signal" data-machine-signal>Instruction / data</text></g>
-<g class="machine-harvard"><rect class="memory-box" x="700" y="40" width="280" height="140" rx="14"/><text x="840" y="77" class="machine-heading">Instruction memory</text><text x="840" y="117">LOAD A · ADD B</text><text x="840" y="153">OUTPUT</text><rect class="memory-box data-memory" x="700" y="242" width="280" height="108" rx="14"/><text x="840" y="278" class="machine-heading">Data memory</text><text x="840" y="316">A = 5 · B = 3</text><path class="machine-path instruction-path" d="M540 180H601V115H700"/><path class="machine-path data-path" d="M540 290H700"/><text x="603" y="84" class="machine-path-label">Instruction path</text><text x="620" y="324" class="machine-path-label">Data path</text></g>
-<path class="machine-path output-path" d="M540 365H625V417H735"/>
-<text x="375" y="330" class="machine-working" data-machine-working>Working storage</text><text x="852" y="433" data-machine-output>Result</text>
-<g class="machine-overlay"><rect x="540" y="350" width="155" height="29" rx="5"/><text x="618" y="371" data-machine-transfer-label>Ready</text></g>
-</svg>
-</div><figcaption>Separate memories · separate pathways</figcaption>
-</figure>
-</div>
-</div>
-<p class="architecture-note">Modern systems often combine elements of both. Describe the memory and pathways in the question.</p>
-</section><template data-teacher-divider>
-<h2>Practice</h2></template>
+<template data-teacher-divider><h2>Practice</h2><p>Use the memory arrangement to explain behaviour and justify choices.</p></template>
 <section id="quiz" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">25 · Stored-program architecture</p>
+<p class="eyebrow">22 · Stored-program architecture</p>
 <h2>Check your understanding</h2>
 <p>Answer all 12 questions, then check your score. Aim for 9 correct. Your choices and best score save in this browser.</p>
 <form id="lesson-quiz" class="quiz-form">
@@ -1059,11 +820,12 @@
 </form>
 </section>
 <section id="exam-practice" class="lesson-section panel" data-lesson-section>
-<p class="eyebrow">26 · Stored-program architecture</p>
+<p class="eyebrow">23 · Stored-program architecture</p>
 <h2>Exam-style practice</h2>
 <p>Use memory and pathway evidence, explain consequences and apply your judgement. These are practice questions, not an official mark scheme.</p>
 <p class="exam-response-note">Draft answers save automatically in this browser.</p>
-<div class="exam-grid">
+<span id="scenarios" class="arch-anchor"></span>
+<div class="arch-exam-task">
 <article class="exam-card">
 <div class="exam-meta"><span class="exam-pill">4 marks</span>
 </div>
@@ -1083,6 +845,9 @@
 </div>
 </details>
 </article>
+</div>
+<div data-slide-break></div>
+<div class="arch-exam-task">
 <article class="exam-card">
 <div class="exam-meta"><span class="exam-pill">4 marks</span>
 </div>
@@ -1102,6 +867,9 @@
 </div>
 </details>
 </article>
+</div>
+<div data-slide-break></div>
+<div class="arch-exam-task">
 <article class="exam-card">
 <div class="exam-meta"><span class="exam-pill">6 marks</span>
 </div>
@@ -1121,6 +889,9 @@
 </div>
 </details>
 </article>
+</div>
+<div data-slide-break></div>
+<div class="arch-exam-task">
 <article class="exam-card">
 <div class="exam-meta"><span class="exam-pill">6 marks</span>
 </div>
@@ -1140,6 +911,9 @@
 </div>
 </details>
 </article>
+</div>
+<div data-slide-break></div>
+<div class="arch-exam-task">
 <article class="exam-card">
 <div class="exam-meta"><span class="exam-pill">8 marks</span>
 </div>
@@ -1160,6 +934,9 @@
 </div>
 </details>
 </article>
+</div>
+<div data-slide-break></div>
+<div class="arch-exam-task">
 <article class="exam-card">
 <div class="exam-meta"><span class="exam-pill">10 marks</span>
 </div>
@@ -1182,13 +959,17 @@
 </details>
 </article>
 </div>
-</section></main>
+</section>
+</main>
 
         <aside class="lesson-rail">
           <section class="lesson-rail-card panel glossary-card">
             <p class="eyebrow">Glossary</p>
             <h2>Quick glossary</h2>
             <dl class="glossary-list">
+<div class="glossary-item"><dt>Architecture</dt><dd>How the main parts of a computer are organised and work together.</dd></div>
+<div class="glossary-item"><dt>CPU</dt><dd>The processor: the part that follows instructions and works on data.</dd></div>
+<div class="glossary-item"><dt>Cache</dt><dd>A small, fast store of instruction or data copies near the processor.</dd></div>
 <div class="glossary-item"><dt>Stored program</dt><dd>Instructions held in memory for the CPU to fetch and execute.</dd>
 </div>
 <div class="glossary-item"><dt>Instruction</dt><dd>An operation for the processor to carry out.</dd>
@@ -1202,12 +983,13 @@
 <div class="glossary-item"><dt>Von Neumann</dt><dd>Shared instruction/data memory and access in the classic model.</dd>
 </div>
 <div class="glossary-item"><dt>Harvard</dt><dd>Separate instruction/data memories and access paths in the classic model.</dd>
-</div></dl>
+</div>
+</dl>
           </section>
 
           <section class="lesson-rail-card panel revision-card">
             <p class="eyebrow">Remember</p>
-            <h2>Ask two comparison questions</h2>
+            <h2>Ask three comparison questions</h2>
             <ul class="memory-list">
               <li>Do instructions and data share memory access?</li>
               <li>Does the system need simplicity or reduced contention?</li>
@@ -1253,7 +1035,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 12</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 35</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

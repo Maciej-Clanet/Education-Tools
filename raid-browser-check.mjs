@@ -50,7 +50,10 @@ assert.equal(await evaluate(`document.querySelector('[data-raid-read]').innerHTM
 await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
 await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
 assert.equal(await evaluate(`document.querySelector('[data-read-toggle]').textContent`),'Play animation');
-assert.equal(await evaluate(`document.querySelectorAll('.raid-read-lane.is-complete').length`),2);
+assert.equal(await evaluate(`document.querySelector('[data-raid-read]').innerHTML`),pausedFrame);
+await click('[data-read-toggle]');
+await new Promise(resolve=>setTimeout(resolve,1300));
+assert.notEqual(await evaluate(`document.querySelector('[data-raid-read]').innerHTML`),pausedFrame);
 await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]});
 await evaluate(`for(const root of document.querySelectorAll('[data-raid-stages]')){ const next=root.querySelector('[data-stage-next]'); while(!next.disabled)next.click(); }`);
 assert.equal(await evaluate(`document.querySelector('#raid5-5').hidden`),false);

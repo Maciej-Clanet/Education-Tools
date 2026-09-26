@@ -1,6 +1,9 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 
-import { initBackupVisualisers } from "../core/backup-visualiser.js"
+import { initBackupComparisons } from "../core/backup-comparison.js"
+import { initLessonWalkthroughs } from "../core/lesson-walkthrough.js"
+import { initRecoveryLabs } from "../core/recovery-lab.js"
+import { collegeRecovery } from "../data/recovery-scenario.js"
 import { backupExample } from "../data/backup-example.js"
 import { initPairedScenarios } from "../core/paired-scenarios.js"
 import { backupStrategyScenarios } from "../data/backup-strategy-scenarios.js"
@@ -38,6 +41,8 @@ const lessonConfig = {
   },
 }
 
-initBackupVisualisers(backupExample)
+initBackupComparisons(backupExample)
+initLessonWalkthroughs()
+initRecoveryLabs(collegeRecovery)
 initPairedScenarios(backupStrategyScenarios)
 initLessonPage(lessonConfig)

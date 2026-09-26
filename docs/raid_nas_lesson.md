@@ -31,8 +31,8 @@ one reference dialog at the decision task. Teacher prompts have been removed.
 
 The parallel-reading example is illustrative, not a measured benchmark. Equal
 pieces arrive in six beats from one drive, or two beats from three drives. It
-loops by default only while visible, can pause, and opens in a completed, paused
-state when reduced motion is preferred. Background tabs and offscreen slides do
+loops by default only while visible and has a Pause control. OS reduced motion
+does not suppress this teaching sequence; see `teaching_motion.md`. Background tabs and offscreen slides do
 not advance it. Animation state is temporary.
 
 The XOR primer teaches same/different before the symbol. Reconstruction tests

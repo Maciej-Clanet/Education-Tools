@@ -1,187 +1,164 @@
-# Backup and data recovery
+﻿# Backup and data recovery
 
-The existing lesson URL and context navigation remain. Twenty-five student
-sections become 42 teacher slides: one shared opener, five existing dividers,
-two separate restore-chain chunks, five recovery states, four strategy decisions
-plus the written plan, and two misconception chunks. Old `#why-backup`,
-`#overview`, `#recovery-planning` and `#backup-vs-resilience` links still resolve.
-Long written work and assessments use the shared deck's scrolling surface.
+Updated 26 September 2026. The lesson has 35 student sections and 46 Teacher
+Slides, including the shared opener and five section dividers. The saved work
+plan is [backup_recovery_improvement_plan.md](backup_recovery_improvement_plan.md).
+The existing URL, unit context, previous/next links, glossary, quiz and written
+response keys remain. Existing `#why-backup`, `#overview`, `#recovery-planning`
+and `#backup-vs-resilience` anchors still resolve.
 
 ## Final Teacher Slide sequence
 
 1. Opener: Backup and Data Recovery
-2. Something went wrong: Friday 15:40
-3. Why live data can be lost
-4. Backup vs recovery
-5. Backup is not just “another copy”: backup / sync / RAID
-6. Divider: Backup procedures
-7. Full backup timeline
-8. Incremental backup timeline
-9. Incremental restore chain
-10. Differential backup timeline
-11. Differential restore chain
-12. Backup Strategy Visualiser
-13. Full / incremental / differential recap
-14. Divider: Where backups are kept
-15. Storage destinations
-16. Onsite: local device failure
-17. Offsite: site-wide incident
-18. Location vs management
-19. Backup frequency and potential loss window
-20. Divider: Data recovery
-21. Friday incident: what now?
-22. Identify
-23. Select
-24. Restore
-25. Verify
-26. Return service
-27. Recovery priorities
-28. Recovery time
-29. Test restores
-30. RAID vs backup scenarios
-31. Divider: Designing a backup strategy
-32. Complete strategy map
-33. Strategy choice 1: backup type
-34. Strategy choice 2: frequency
-35. Strategy choice 3: location
-36. Strategy choice 4: management
-37. Written recovery plan and example judgement
-38. Divider: Practice
-39. Misconceptions: RAID, sync and incremental
-40. Misconceptions: differential restore, recoverability and offsite management
-41. Existing quiz
-42. Existing exam practice
+2. Define live data: current working records versus a retained recovery copy
+3. Friday 15:40: college records are corrupted
+4. Causes of loss and the protection each needs
+5. Backup before failure; recovery after failure
+6. One deletion incident: backup, sync and RAID serve different purposes
+7. Divider: Backup procedures
+8. Introduce three procedures using the same four files and daily changes
+9. Full backup timeline
+10. Full: advantage, trade-off and suitable use
+11. Incremental timeline: moving reference point
+12. Incremental: advantage, trade-off and suitable use
+13. Interactive incremental restore: build the recovered files in four steps
+14. Differential timeline: fixed full-backup reference point
+15. Differential: advantage, trade-off and suitable use
+16. Differential restore: Monday full plus Thursday differential
+17. Simultaneous animated comparison of the same daily changes
+18. Full/incremental/differential recap table
+19. Divider: Where backups are kept
+20. Storage destinations and their practical limitations
+21. Onsite copy survives a local drive failure
+22. Offsite copy survives an incident affecting the college site
+23. Organisation's responsibility versus in-house/provider operation
+24. Personal-data recovery duties, with ICO source
+25. Daily and hourly schedules compared at the same failure time
+26. Divider: Data recovery
+27. Newest is not always usable: select a point before the damage
+28. Interactive five-stage recovery lab
+29. Priorities: urgent registers before the large archive
+30. Recovery duration: retrieve, transfer, restore and check
+31. Restore-test evidence versus a successful copy job
+32. GitLab incident case study, with primary source
+33. RAID and backup responses to four incidents
+34. Divider: Designing a backup strategy
+35. Join data, timing, location, ownership and recovery decisions
+36. Strategy choice: backup procedure
+37. Strategy choice: frequency and the one-hour loss limit
+38. Strategy choice: local recovery and site-loss protection
+39. Strategy choice: who operates the backups
+40. Written plan and example judgement
+41. Shared evaluation technique applied to a backup choice
+42. Divider: Practice
+43. Misconceptions: RAID, sync and incremental
+44. Misconceptions: differential restore, recoverability and offsite management
+45. Existing 14-question quiz
+46. Existing six exam-style tasks
 
-All five section-divider placements and titles are preserved. The opener uses
-`template[data-teacher-opener]` before the first teaching section, with the framing
-question “What happens when important data is lost?” and four goals covering types,
-storage, restoration and justified strategy. No shared opener, lesson shell or
-shared lesson stylesheet changes were needed. See `teacher_section_dividers.md`.
+Written work and assessments retain the shared scroll surface. First-teaching
+sections are concise; supplementary detail uses student revision disclosures.
+No teacher prompts, backend, real backup operation or external service is added.
 
-## Teaching example and visualiser
+## Shared example and interactions
 
-Friday afternoon: college student records are corrupted. Thursday's recoverable
-copy may exist, but Friday's later attendance changes are not recreated by
-restoring that copy. Recovery must select a usable point before the damage.
+`javascript/data/backup-example.js` and `javascript/core/backup-model.js` define
+Monday's four v1 files, Tuesday's attendance change, Wednesday's contact change
+and Thursday's course change. Each static timeline uses the same versions as the
+interactive comparison. Full copies all selected files; incremental copies
+changes since the previous backup; differential copies changes since the last
+full. Recurring changed files keep their latest version (covered by model tests).
 
-`javascript/data/backup-example.js` defines four fictional files and four days:
-Monday baseline, Tuesday attendance change, Wednesday contact change, Thursday
-course change. Static teaching timelines, generated from the existing example/model during
-authoring, introduce each type before comparison. Native day disclosures reveal
-Monday–Thursday file versions. All three timelines share the same file tokens
-and labels as the visualiser; versions above v1 have a border cue plus a textual
-version badge. Version numbers, not colour, carry the change information.
+The new `javascript/core/backup-comparison.js` and `css/backup-comparison.css`
+show the live files and all three procedures simultaneously. Previous/Next day,
+Play/Pause and Restart are native buttons. Copy motion maps each destination
+file back to the matching live file. Playback stops at Thursday, pauses offscreen
+or when the page is hidden, and deliberately ignores OS reduced motion. Changed
+files have text version labels as well as a border/badge cue. The model represents
+whole files: counts are not byte sizes, transfer-time estimates or a guarantee
+about real software. Deletions, compression and specialised backup features are
+outside this introductory example.
 
-- Full copies all selected files each day; restore the latest suitable full.
-- Incremental copies changes since the preceding backup; restore Monday full
-  plus the required Tuesday, Wednesday and Thursday incremental chain.
-- Differential copies changes accumulated since Monday full; restore Monday
-  full plus Thursday differential.
-- File version numbers make the same final Thursday state visible for every
-  strategy. Recovery gathers the required sets into an explicitly labelled chain,
-  with file contents and version badges rather than colour-only selection.
+Incremental restore uses `lesson-walkthrough.js`: each step applies one required
+set to the accumulated recovered files. Differential restore shows why earlier
+differentials are unnecessary when the latest suitable one contains their changes.
+All walkthrough steps remain readable without JavaScript and in print. The older
+`backup-visualiser.js` is no longer loaded by this lesson.
 
-`javascript/core/backup-model.js` contains pure set/version and restore-chain
-logic plus a small strategy/reset state transition. `backup-visualiser.js` and
-`css/backup-visualiser.css` render native radio selection, file cards and restore
-results. The selector precedes the timeline and the restore action follows it. Recovery
-replaces the timeline visually with the required sets and their actual file
-versions, linked in restore order, followed by the recovered Thursday files.
-The underlying set-building, selection and restore logic are unchanged. Switching
-strategy clears old restore output; reset returns to Full and reveals the timeline. Experiments are
-session-only and do not access the filesystem or any external service.
+`javascript/core/recovery-lab.js` uses `javascript/data/recovery-scenario.js` for
+five stages: identify/contain, select, restore, verify and return service. A newer
+Friday copy includes corruption; the checked Thursday point is usable. No choice
+or a damaged/unknown copy cannot advance past selection. Restoring does not
+immediately reopen the service: verification and reopening remain separate stages.
+Previous and Restart are bounded, the copies have a labelled radio group, status
+and feedback are announced, and all actions remain within the slide. The static
+five-stage fallback is available without JavaScript and in print. Exploration is
+temporary; it does not alter saved student work.
 
-This is a deterministic whole-file model, not byte-level backup software. File
-counts are not storage-size estimates. It assumes intact required sets and omits
-deletion records, retention algorithms, synthetic fulls, compression and real
-scheduling. The lesson explains that missing chain sets can prevent recovery.
+## Context and examples
 
-## Other visuals and reuse
+- Live data is defined before the incident and added to the glossary. It need not
+  be online. Recovery point is also defined.
+- One deletion scenario distinguishes historical recovery, synchronisation and
+  RAID fault tolerance, including qualifications about sync history and RAID levels.
+- Identical two-site diagrams contrast a failed local drive with a flooded site.
+  Offsite is not automatically offline, cloud-based, provider-managed or protected
+  against ransomware. Storage choices include advantages and practical limitations.
+- Ownership remains with the college regardless of who operates the service.
+  The legal slide concerns UK personal data and risk-appropriate recovery/testing;
+  it does not invent a universal legally mandated backup frequency. Source:
+  [ICO data-security guidance](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/security/a-guide-to-data-security/).
+- At Friday 15:40, a usable midnight copy leaves a 15h40 window; a 15:00 copy leaves
+  40 minutes. Both bars share a 16-hour scale. The assumption is completed usable
+  recovery points; failed jobs can extend the loss window. Backup load is the trade-off.
+- Restore priorities use identical five-hour workloads: four hours of archive
+  followed by one hour of essential service versus the reverse. Registers become
+  available after five hours or one hour. Dependencies must be restored first.
+- A two-hour recovery budget explicitly includes retrieval, transfer, restoration
+  and checks; it is an illustrative example, distinct from potential lost work.
+- The GitLab case links to its [incident report](https://about.gitlab.com/blog/postmortem-of-database-outage-of-january-31/).
+  It distinguishes database-record loss from code repositories and connects the
+  outcome to monitoring, restore testing and assigned responsibility.
 
-The Friday incident dashboard shows the unavailable college system, Thursday's
-23:00 backup and potentially missing Friday attendance. Causes of loss are now a
-separate short follow-up. Backup versus recovery uses a failure boundary; backup,
-synchronisation and RAID use one file scenario with qualified, revealable outcomes.
+## Strategy and assessments
 
-Storage destinations surround the college server. The same two-site diagram first
-shows a local drive failure, then switches from available systems to a site-wide
-incident. A tape icon at the separate physical site avoids equating offsite with
-cloud. Fuller original media/location explanations remain in student-only revision
-supplements. A 2×2 matrix separates location from management responsibility.
+Every strategy task shows Situation and Your task. Choice/reason feedback uses
+`paired-scenarios.js` and `backup-strategy-scenarios.js`. Frequency now accepts only
+hourly/recent against the stated one-hour tolerance; saving resources with daily
+or weekly copying does not satisfy that constraint. Location accepts both/balance
+for quick local recovery plus a separate copy against site loss. Procedure and
+management choices retain qualified alternative answers and explicit limitations.
+These activities do not automatically mark the written justification.
 
-Frequency switches between daily and hourly intervals on one proportional time
-scale: 16 hours versus 37 minutes of changes potentially at risk. The text states
-that failed jobs can extend the gap. Recovery duration contrasts illustrative
-36-hour and 2-hour downtime, then reveals retrieval, transfer, restore and checks.
+The evaluation slide reuses `css/exam-technique.css`; see `exam_technique.md` for
+Pearson evidence and scope. It demonstrates choice, impact, application, trade-off
+and a conditional judgement. It is a developed example, not a complete extended
+answer or a universal answer formula.
 
-Recovery reuses the existing `data-slide-break` mechanism for five states of the
-same backup → recovery environment → live service diagram. The focus moves from
-failure to selecting a copy, restoring, verifying and returning service. This is
-presentation markup, not a new stepper runtime. Priorities are an illustrative
-outage queue based on criticality and dependencies, not file size or a universal
-ranking. Restore testing challenges the job-success message and reveals checks
-and possible failures; successful samples provide evidence rather than guarantees.
+Quiz content is unchanged: version 2, 14 questions, pass 10. Unit progress metadata
+and the lesson's quiz config therefore remain unchanged. Six written tasks retain
+4, 4, 6, 6, 8 and 12 marks, original response IDs and saved drafts. The written
+strategy plan keeps `v2-strategy-plan`.
 
-The RAID server remains alongside four native scenario disclosures: drive failure,
-deletion, encryption by ransomware and site loss. Suitable fault-tolerant RAID can
-help availability; independent protected backups enable historical recovery.
-The final strategy diagram gathers seven short decision labels around recoverable
-data. Misconceptions use two teacher chunks and native correction disclosures.
+## Validation
 
-Page styling is scoped to `css/pages/backup-and-data-recovery.css`. Shared changes
-are limited to `backup-visualiser.js` (render file contents within restore sets and
-compact status) and `css/backup-visualiser.css` (matching file tokens and chains).
-`backup-model.js`, the example dataset, paired-scenario logic and lesson shell are
-unchanged. No animation, dependency or real file operation was introduced.
+- All 46 slides reviewed visually; desktop layouts checked at 1366×900 and
+  1366×768. Normal pages checked at 390px and 320px without horizontal overflow.
+- Comparison versions, step bounds, replay/end/pause, offscreen pausing and visible
+  copy animation under OS reduced motion verified in headless Chrome.
+- Recovery selection guards, all stages, Previous/Restart, keyboard Enter, feedback
+  and slide-navigation isolation checked. No-JavaScript and print reading fallbacks
+  remain present. Local images load; source links and legacy IDs retained.
+- Quiz 14/14, reset, genuine reload persistence and written-draft persistence checked.
+- `tests/backup-model.test.mjs`, `tests/backup-recovery.test.mjs` and
+  `tests/lesson-walkthrough.test.mjs` cover versions/chains, scenario requirements,
+  recovery guards and walkthrough state. Related teaching component regressions pass.
+- Browser regressions: `tests/backup-recovery.browser.mjs` and
+  `tests/teaching-motion.browser.mjs`. They use the existing browser-session helper,
+  a local server on 8765 and a dedicated Chrome debugging profile on port 9226.
+  Override `FLEXBOX_TEST_ORIGIN` / `FLEXBOX_CDP_ORIGIN` if needed; screenshots are
+  optional through `FLEXBOX_SCREENSHOTS`. Use an isolated profile: tests create
+  local answers and preferences. The in-app browser had no available session,
+  so this review used local headless Chrome.
 
-## Strategy activity and assessment
-
-Four choice/reason cards reuse `paired-scenarios.js`, configured by
-`javascript/data/backup-strategy-scenarios.js`. Learners justify type, active-record
-frequency, location and management. Existing slide chunks present one decision
-at a time, followed by the original written plan; the normal page retains all
-choices. Original form nodes preserve selections and feedback across navigation.
-Repeated scenario context is shown only once on the student page. Feedback explains benefits and limitations of
-each selected choice; it does not certify a whole plan as correct. In particular,
-weekly copying can match a resource-saving rationale while remaining unsuitable
-for frequently changing student records. The written recovery plan and example
-judgement address separate archive schedules, priorities and restore tests.
-
-The shell retains quiz scoring/reset/persistence and written draft storage.
-Quiz version 2 has 14 questions, pass 10, with a new answer key in localStorage
-and matching shared unit-progress metadata. Six applied written tasks use 4, 4,
-6, 6, 8 and 12 marks. New response IDs prevent old answers appearing under changed
-questions. The strategy-plan textarea uses the same existing draft infrastructure.
-
-## Scope and verification
-
-No real backup operations, uploads/downloads, vendors, enterprise disaster-recovery
-architecture, detailed RPO/RTO terminology, cryptographic key-management procedures,
-replication or high-availability design. Those depths are deliberately deferred.
-Priorities are reasoned scenario cards, not a forced universal ranking.
-
-Relevant regression command:
-`node --test tests/backup-model.test.mjs tests/interface-activities.test.mjs tests/teacher-dividers.test.mjs`
-
-Browser checks cover all strategies and recovered versions, required restore sets,
-keyboard radio switching, reset, conditional strategy feedback, quiz scoring/reset/
-reload, strategy and exam drafts, teacher dividers and interaction exclusion,
-mobile overflow, local SVG loading and runtime errors. Syntax, unique-ID/link and
-whitespace checks also apply. No package-based build or lint pipeline is configured.
-
-## Second-pass verification
-
-All 12 existing `tests/*.test.mjs` files pass. No new tests were added for static
-markup. Existing backup-model state/chain coverage remains unchanged. JavaScript
-syntax and whitespace checks pass. Quiz/exam content and the written strategy
-plan were compared with HEAD and are unchanged apart from section eyebrow numbers.
-
-Local Chrome checks passed for all three strategies and recovered versions,
-required restore chains, keyboard radio changes, reset, conditional choice feedback,
-choice retention across teacher chunks, quiz scoring/reset/reload, saved strategy
-and exam drafts, native keyboard reveals, opener, all 42 deck entries, student
-restoration, unique IDs/sidebar targets, local images and expanded mobile width.
-Screenshots were inspected for the opener, teaching states and restore views.
-At 1366×900, expanded teaching and visualiser recovery states fit; the original
-long written plan/guidance, quiz and exam practice remain scrollable. No runtime
-errors were observed. No package-based build/lint pipeline is configured.
+See `teaching_motion.md` for the related correction to existing teaching animations.

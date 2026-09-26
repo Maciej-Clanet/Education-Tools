@@ -138,27 +138,40 @@ saved progress should be shown as needing a fresh attempt.
     Quiz remains version 2: 14 questions, pass 10; five applied written tasks.
     See `docs/data_processing_lesson.md`.
 - [x] Data across multiple systems
-  - Refined into 23 student sections / 28 teacher slides with the shared opener,
-    three dividers, a recurring Alex Smith diagram, progressive cost and migration
-    examples, and separate access/availability, productivity failure and security
-    protection teaching moments. The multi-factor Impact Explorer is preserved. Quiz version 2: 12 questions, pass 9; five applied written
-    tasks. See `docs/multiple_systems_lesson.md`.
+  - Third teaching pass: 29 student sections / 34 Teacher Slides. Separate-copy
+    and shared-data introduction, labelled PCs, a problem-to-solution bridge,
+    centralised versus synchronised records, and a reusable access walkthrough.
+    Concrete cost/workload, migration and security visuals; explicit before/after
+    impacts; reusable Pearson-checked evaluation technique. Impact Explorer and
+    assessment retained: quiz version 2, 12 questions, pass 9; five written tasks.
+    See `docs/multiple_systems_lesson.md`, `docs/multiple_systems_improvement_plan.md`
+    and `docs/exam_technique.md`.
 - [x] Backup and data recovery
-  - Refined into 25 student sections / 42 teacher slides, including the shared
-    opener, five dividers, matching file timelines and restore chains, site-risk
-    incidents, loss windows and five recovery states. The existing visualiser
-    and progressive strategy reasoning retain their underlying logic. Quiz version 2: 14 questions,
-    pass 10; six applied written tasks. See `docs/backup_recovery_lesson.md`.
+  - Upgraded to 35 student sections / 46 teacher slides. Defines live data;
+    matching file timelines, advantages/limitations/use cases, incremental restore
+    walkthrough and simultaneous animated comparison clarify the three procedures.
+    Site-risk, ownership, legal duties, frequency and priority visuals lead into a
+    five-stage recovery lab and sourced GitLab case. Explicit strategy constraints
+    and the shared evaluation technique support exam practice. Quiz version 2
+    remains 14 questions, pass 10, with six written tasks and saved drafts retained.
+    See `docs/backup_recovery_lesson.md`, `docs/backup_recovery_improvement_plan.md`
+    and `docs/teaching_motion.md`.
 
 ## B Computer architecture
 
 ### B1 Approaches to computer architecture
 - [x] Stored program architecture: Von Neumann and Harvard
-  - Rebuilt into 26 teaching sections with five teacher-only dividers: historical
-    motivation, one recurring machine schematic, CPU component highlights, a
-    shared-path/tiny-program stepper and Von Neumann-to-Harvard transformation.
-    Quiz version 3: 12 questions, pass 9; six written tasks.
-    See `docs/stored_program_lesson.md`.
+  - Revised into 23 student sections / 35 Teacher Slides: objective opener,
+    contextualised ENIAC history, instruction/data introduction, neutral system
+    roles and a short CPU primer before the architecture models. Three labelled
+    teaching animations explain program execution, shared-path contention and
+    separate concurrent access. Familiar room-heating and headphone-processing
+    scenarios replace development-board examples; Raspberry Pi photo editing stays.
+    Three credited real photos and explicit shared-memory flexibility, fixed-memory
+    capacity and cache-cost explanations make the design trade-offs concrete.
+    Repeated comparison/identification activities removed. Quiz version 3 remains
+    12 questions, pass 9; six written tasks retain saved drafts, one per slide.
+    See `docs/stored_program_lesson.md` and `docs/stored_program_improvement_plan.md`.
 - [x] Cluster computing, UMA, and NUMA
   - Consolidated physical teaching pass: 40 → 22 student sections, 57 → 33
     Teacher Slides. Local socket/DIMM illustrations and one Shared-Memory

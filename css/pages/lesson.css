@@ -2528,12 +2528,15 @@ body.teacher-mode-active .teacher-tools-dock {
 
 @media (prefers-reduced-motion: reduce) {
 
-  .stack-flow__item--top,
-  .queue-flow__motion--leave,
-  .queue-flow__motion--join {
+  /* This small pulse decorates the top item; it does not demonstrate push/pop. */
+  .stack-flow__item--top {
     animation: none;
   }
 }
+
+.teaching-animation-control { grid-column: 1 / -1; justify-self: start; min-height: 44px; }
+.teaching-animation-paused .queue-flow__motion { animation-play-state: paused; }
+@media print { .teaching-animation-control { display: none; } }
 
 /* The opener is a variant of the shared presentation-only divider. */
 body.teacher-mode-active .teacher-lesson-opener h2 {
