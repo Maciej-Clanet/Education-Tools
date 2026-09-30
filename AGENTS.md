@@ -109,7 +109,7 @@ Before making major UI, content, or structure changes, read:
 - Reusable browser logic belongs in `javascript/core/`.
 - `javascript/core/lesson-walkthrough.js` and `css/lesson-walkthrough.css` provide
   optional previous/next/restart sequences with a readable no-JavaScript fallback;
-  the access comparison in Data across multiple systems is the first example.
+  the incremental restore sequence in Backup and data recovery is an example.
 - `javascript/core/simulated-terminal.js` provides deterministic whitelist-only
   teaching terminals; `javascript/core/paired-scenarios.js` supports interface
   and reason activities. See `docs/user_interfaces_lesson.md`.

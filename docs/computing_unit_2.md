@@ -138,12 +138,14 @@ saved progress should be shown as needing a fresh attempt.
     Quiz remains version 2: 14 questions, pass 10; five applied written tasks.
     See `docs/data_processing_lesson.md`.
 - [x] Data across multiple systems
-  - Third teaching pass: 29 student sections / 34 Teacher Slides. Separate-copy
-    and shared-data introduction, labelled PCs, a problem-to-solution bridge,
-    centralised versus synchronised records, and a reusable access walkthrough.
-    Concrete cost/workload, migration and security visuals; explicit before/after
-    impacts; reusable Pearson-checked evaluation technique. Impact Explorer and
-    assessment retained: quiz version 2, 12 questions, pass 9; five written tasks.
+  - Classroom-flow pass: 27 student sections / 37 Teacher Slides. A furniture
+    business establishes separate copies, their occasional benefits, a missed
+    delivery update and the proposed shared-record upgrade before five implications.
+    Each factor has a divider and named headings. Recruitment workload and retail
+    synchronisation examples broaden application before college transfer and the
+    retained activities. The repetitive access walkthrough is removed; old anchors
+    remain as sections or aliases. Impact Explorer and assessment retained:
+    quiz version 2, 12 questions, pass 9; five written tasks.
     See `docs/multiple_systems_lesson.md`, `docs/multiple_systems_improvement_plan.md`
     and `docs/exam_technique.md`.
 - [x] Backup and data recovery

@@ -1,5 +1,37 @@
 # Data across multiple systems: improvement plan
 
+## Classroom feedback pass · 30 September 2026
+
+Completed after the revised lesson was taught in class. The current sequence is
+in [multiple_systems_lesson.md](multiple_systems_lesson.md): 27 student sections
+and 37 Teacher Slides. The earlier pass below is retained as historical context.
+
+- [x] Make the first content slide explicitly explain that several computers
+  can use different arrangements for maintaining and sharing data.
+- [x] Establish separate copies with a small furniture business: named files,
+  three teams, and one shared order detail. Explain when existing tools, local
+  work and familiar routines can be reasonable before showing the pain points.
+- [x] Show a missed delivery-slot update and let students predict the effect.
+  Introduce the shared-order upgrade immediately before the five implications.
+- [x] Give each implication a numbered divider and factor-prefixed slide titles.
+  Replace the access walkthrough with a direct local/shared access comparison.
+- [x] Vary the examples: furniture business, recruitment workload and retail
+  stock synchronisation, followed by deliberate transfer to the college.
+  Move synchronised copies beside the failed-update example under productivity
+  so the opening has one clear problem-to-solution sequence.
+- [x] Condense security to four slides; combine account checks and logging.
+  Remove the late repeat introduction to centralisation, retaining its anchor.
+- [x] Keep the Impact Explorer, quiz and written tasks. Put the explorer's
+  action buttons on one row where space permits so feedback fits a classroom
+  display. Preserve all quiz metadata and saved-answer keys.
+- [x] Verify all 37 slides at 1366×768 and 1366×900, including expanded reveals
+  and correct/incorrect feedback; 118 presentation states fit without teaching
+  overflow. Quiz and written tasks retain their scrolling assessment surface.
+  Mobile 320/390px, no-JavaScript reading, keyboard reveal, quiz scoring,
+  persistence, explorer controls, anchors and runtime checks pass.
+
+## Earlier pass · 26 September 2026
+
 Review date: 26 September 2026. Keep this file as the handover checklist if work
 continues in another session. The original slide numbers below refer to the
 28-slide deck reviewed by the user, not the revised sequence.

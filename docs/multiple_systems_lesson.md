@@ -1,122 +1,141 @@
 # Data across multiple systems
 
-September 2026 improvement pass: 29 student sections and 34 Teacher Slides.
-The saved review checklist is [multiple_systems_improvement_plan.md](multiple_systems_improvement_plan.md).
-The URL, previous/next context, old section IDs and #overview alias remain.
-Quiz version 2 has 12 questions, pass score 9; the five written tasks and their
-stored answer IDs are unchanged. Quiz/progress metadata therefore needs no bump.
+30 September 2026 classroom-flow improvement pass: 27 student sections and
+37 Teacher Slides. The earlier review is retained in
+[multiple_systems_improvement_plan.md](multiple_systems_improvement_plan.md).
+The URL, previous/next context and old section IDs remain; `before-sharing`,
+`security-monitoring` and `shared-trade-off` now point into their replacement
+sections as aliases, alongside the existing `overview` alias.
+
+Quiz version 2 has 12 questions, pass score 9. The Impact Explorer, five written
+tasks and stored answer IDs remain. Quiz/progress metadata needs no version bump.
 
 ## Teacher Slide sequence
 
 1. Opener: Data Across Multiple Systems
-2. Two ways to organise the same data
-3. One student, several different jobs
-4. Separate PCs, conflicting records
-5. What would solve the repeated-update problem?
-6. Centralised data: update once, use in several places
-7. Connected systems can also keep synchronised copies
-8. Divider: The five implications
-9. Five questions before changing the system
-10. Walkthrough: getting the current class list
-11. Access permissions in our college
-12. One shared service, several affected teams
-13. What is the college paying for?
-14. Implementation: moving into everyday use
-15. A date can be valid and still be in the wrong field
-16. Update once: where the time is saved
-17. When an update fails to reach the next system
-18. A new access route can expose a shared record
-19. Two checks: who are you, and what may you do?
-20. Protect the connection and the device
-21. Shared control can make misuse easier to spot
-22. The same exposure can cause different harm
-23. Divider: Balancing the trade-offs
-24. One decision creates several connected effects
-25. The decision: centralise the college’s records
-26. Centralising records: what changes for the college?
-27. Impact Explorer
-28. Exam technique: build a balanced answer
-29. Finish by weighing the effects
-30. Divider: Practice
-31. Common exam mistakes (access, cost, implementation)
-32. Common exam mistakes (productivity, security, applied reasoning)
-33. Check your understanding
-34. Exam-style practice
+2. Multiple computers. Different ways to organise data.
+3. Separate copies: a small furniture business
+4. Why might separate copies be enough?
+5. Separate copies: one change, conflicting plans
+6. Divider: An alternative: shared data
+7. The upgrade: one maintained order record
+8. Five implications of the proposed upgrade
+9. Divider: 1 · Access
+10. Access: current information away from the office
+11. Access: match permissions to the job
+12. Access: what if the shared service stops?
+13. Divider: 2 · Cost
+14. Cost: compare the whole cost over time
+15. Divider: 3 · Implementation
+16. Implementation: make the change usable
+17. Implementation: a valid date in the wrong field
+18. Divider: 4 · Productivity
+19. Productivity: less repeated work
+20. Productivity: specialist systems can exchange updates
+21. Productivity: old data creates new work
+22. Divider: 5 · Security
+23. Security: another device is another route in
+24. Security: control what each account can do
+25. Security: protect the route and both ends
+26. Security: match protection to potential harm
+27. Divider: Balancing the trade-offs
+28. One decision creates several connected effects
+29. Apply the five implications: a college
+30. Impact Explorer
+31. Exam technique: build a balanced answer
+32. Finish by weighing the effects
+33. Divider: Practice
+34. Common exam mistakes (access, cost, implementation)
+35. Common exam mistakes (productivity, security, applied reasoning)
+36. Check your understanding
+37. Exam-style practice
 
 ## Teaching and visual model
 
-- Separate local copies and shared data are introduced before the college problem.
-  Alex Smith (S104) is the recurring record. Labelled PC/laptop silhouettes show
-  both the device and the application/file. Explicit updated/out-of-date badges
-  make inconsistency visible without relying on colour or dropdowns.
-- The missed course change leads to the need for a maintained shared record;
-  the solution is introduced only after explaining that need. Centralised storage
-  and synchronised application copies have separate diagrams and definitions.
-- A proposal plus five questions explains what the factors are evaluating.
-  Access uses a three-stage comparison walkthrough; availability keeps normal and
-  outage states visible together. The permissions table retains its original
-  role rules, with styled labels and a keyboard-focusable scrolling wrapper.
-- Cost names a student-information platform and distinguishes introduction,
-  operation and possible savings. No arbitrary supplier price is used. The
-  productivity diagram compares three 2-minute entries with one: 30 weekly
-  changes could free 120 minutes. These are labelled teaching assumptions, cover
-  entry time only and do not imply a reduced wage bill.
-- Implementation moves through prepare, prove and use. A field-mapping diagram
-  shows the same birth date going to a wrong field or the correct field; valid
-  format alone cannot establish correctness. Separate connected-system failure
-  teaching shows an available application with stale data, rather than an outage.
-- Security begins with an unlocked staff laptop exposing contacts. Subsequent
-  sections distinguish identity from permission, connection/device protection,
-  and monitoring. Permissions block an example payroll request; logs record it.
-  Sensitivity is linked to concrete consequences for privacy, safety and support.
-- Remote work creates two visible chains: what it enables and what it needs.
-  The centralisation decision and worked comparison explicitly show before/after
-  arrangements and changes to all five factors. Multiple computers continue to
-  use the data even when its main records are centralised.
-- The original Impact Explorer remains. A reusable two-section exam-technique
-  pattern builds applied reasoning, weighs effects and supports a judgement;
-  see [exam_technique.md](exam_technique.md) for Pearson evidence and reuse.
+- The opening explicitly separates the number of computers from the arrangement
+  of their data. Separate files and a shared source are introduced as starting
+  arrangements, rather than an exhaustive choice or a claim that more computers
+  automatically share updates.
+- Oak & Room, a small furniture business, grounds the introduction, access, cost,
+  implementation and initial security teaching. Sales, warehouse and delivery
+  staff maintain named spreadsheets for order 1842. The lesson first explains
+  why familiar, inexpensive local files can be sufficient with few changes;
+  then a Friday-to-Monday delivery change exposes disagreement and wasted work.
+  A short native reveal allows students to predict the driver's decision.
+- The proposed shared order system follows the problem and precedes the five
+  implications. One maintained record serves several authorised devices.
+  Revision detail distinguishes logical centralisation from one physical server,
+  and consistency from accuracy: a shared source can also spread a wrong value.
+- Each implication has a teacher-only divider, a factor-prefixed heading and
+  a matching eyebrow. Access compares an offline driver list with a current
+  authorised view, without the former three-step access walkthrough. The role
+  matrix and normal/outage comparison retain distinct lessons about permission
+  and availability, including the limits of an offline fallback.
+- Cost compares setup, operation and avoided waste over the same time period.
+  Separate copies also consume resources; a shared system is not automatically
+  worthwhile. Implementation follows prepare, prove and launch stages, then
+  shows order 2750's delivery date mapped into an invoice-date field. A valid
+  format does not establish the right meaning.
+- A recruitment agency provides a fresh productivity example. Three 2-minute
+  entries for a temporary worker's contact details become one: 30 weekly changes
+  could free 120 minutes. These are illustrative entry-time assumptions, not
+  measured savings or a promise of a lower wage bill.
+- A retailer's warehouse application and web shop introduce synchronised copies
+  under productivity. An automatic update removes re-entry while preserving
+  specialist systems. A failed stock update then causes an order for two lamps
+  when only one remains, making correction work visible. An available application
+  can still contain stale data; managed copies differ from unmanaged duplication.
+- Security returns to the furniture company's delivery tablet. An unlocked
+  session exposes customer details. Authentication, permissions and logging
+  share one focused section: permissions block actions, while logs record them
+  for review and response. Connection encryption and device protection remain
+  distinct, with their limits explained. Revision detail covers alteration,
+  deletion and recovery as well as confidentiality.
+- College sensitivity provides a short transfer example before the application
+  work: public timetables, contact details and safeguarding records have different
+  consequences if exposed, altered or lost. The final college sequence connects
+  effects, compares all five implications and retains the Impact Explorer and
+  written tasks. The former repeated centralisation introduction is folded into
+  this explicit transfer to a new setting.
+- The two-section evaluation pattern develops applied reasoning, weighs effects
+  and supports a judgement where the command word requires it. See
+  [exam_technique.md](exam_technique.md) for Pearson evidence and reuse.
 
-The page remains static HTML. Styles are in
+The page remains static HTML with page styles in
 `css/pages/data-across-multiple-systems.css`. The shared lesson shell handles
-the opener, three dividers, existing misconception slide break and touch/keyboard
-slide navigation. Student revision details stay hidden in Teacher Slides. No
-photographs or third-party assets are required for these process diagrams.
+one opener, eight dividers, one misconception slide break and touch/keyboard
+navigation. Student revision details stay hidden in Teacher Slides. The diagram
+states use text labels as well as colour. No external imagery or new animation
+is required.
 
-## Shared walkthrough authoring
+## Shared walkthrough reference
 
-Load `css/lesson-walkthrough.css`, import `initLessonWalkthroughs` from
-`javascript/core/lesson-walkthrough.js`, and call it before `initLessonPage`.
-An optional root argument scopes discovery. Each independent instance has:
+This lesson no longer loads or initialises the walkthrough component. Its shared
+helper and styles remain available at `javascript/core/lesson-walkthrough.js`
+and `css/lesson-walkthrough.css`. A current example is the incremental restore
+sequence in
+[`backup-and-data-recovery.html#incremental-restore`](../pages/topics/backup-and-data-recovery.html#incremental-restore);
+see [backup_recovery_lesson.md](backup_recovery_lesson.md).
 
-- `data-lesson-walkthrough` and `data-no-slide-advance` on the wrapper.
-- One or more `data-walkthrough-step="Short step title"` panels, visible in HTML.
-- A `data-walkthrough-controls` container with the HTML `hidden` attribute.
-- A `data-walkthrough-status` paragraph with role=status, aria-live=polite and
-  aria-atomic=true, plus native type=button controls with
-  `data-walkthrough-prev`, `data-walkthrough-next` and `data-walkthrough-reset`.
-
-Initialisation checks the required nodes, reveals controls and hides other
-panels. Bounds use aria-disabled while retaining button focus; guarded handlers
-prevent moving beyond the sequence. Restart restores step 1. There is no saved
-state: reload starts fresh. Without JavaScript all steps remain readable and the
-controls stay hidden; printing also shows all steps. Initialisation is idempotent.
+The component provides previous/next/restart controls, bounded navigation,
+independent instances and a readable no-JavaScript/print fallback. Its existing
+regression coverage remains in `tests/lesson-walkthrough.test.mjs`.
 
 ## Validation
 
-- Relevant automated regression suite includes the new walkthrough tests plus
-  Impact Explorer, paired interface activities and teacher dividers.
-- Local headless Chrome checks cover keyboard activation, previous/next bounds,
-  restart and in-slide controls not advancing the deck; quiz scoring and answer
-  restoration; written-draft restoration; Impact Explorer multi-factor feedback,
-  response retention and reset; all section links and duplicate IDs.
-- Visually reviewed all 32 non-assessment slides at 1366×900. All fit without
-  scrolling at 1366×768 after compacting spacing without reducing teaching text
-  size. Quiz and written practice retain the shared scrolling surface.
-- Student views at 390px and 320px have no page-level horizontal overflow;
-  wide tables scroll inside their labelled, focusable wrappers. Reviewed mobile
-  device diagrams, access, permissions, productivity and exam technique, plus
-  high contrast. No new animation is used. The no-JavaScript view displays all
-  three walkthrough steps and no active controls or teacher-only slides.
-- No browser runtime exceptions; local paths, retained assessment markup and
-  whitespace checked. This static project has no package build/lint pipeline.
+- Regression checks pass with `node --test tests/impact-explorer.test.mjs
+  tests/teacher-dividers.test.mjs tests/lesson-walkthrough.test.mjs`. The
+  walkthrough tests still cover the shared helper used elsewhere.
+- Browser review covers all 37 slides at 1366×768 and 1366×900, checking 118
+  default, reveal and feedback states. Teaching slides fit without overflow,
+  including the longest incorrect Impact Explorer feedback. Assessment retains
+  the shared scrolling surface.
+- The original 12 quiz questions and answers and all five written tasks are
+  byte-identical apart from section eyebrows. Quiz scoring at 12/12, reset,
+  reload persistence and written-draft persistence pass.
+- All six Impact Explorer consequences pass correct, incorrect and incomplete
+  feedback checks, with navigation checked.
+- Student views at 320px and 390px have no page-level horizontal overflow. The
+  no-JavaScript fallback is checked. No browser runtime errors, duplicate IDs,
+  broken anchors or HTML nesting problems were found.
+- This static project has no package build/lint pipeline.
