@@ -1,21 +1,27 @@
 # Resolution bit depth and image compression lesson
 
-Implemented 4 October 2026. The existing URL now contains 30 student sections
-and 36 Teacher Slides, including an opener and five dividers. The Part 2 divider
+Implemented and refined 4 October 2026. The existing URL contains 29 student sections
+and 35 Teacher Slides, including an opener and five dividers. The Part 2 divider
 starts compression after resolution, colour precision and raw storage. The
 two-period pacing in [the improvement plan](image_quality_improvement_plan.md)
 remains a teaching estimate rather than a fixed timetable.
 
 ## Teaching order
 
-The same computing-museum photograph introduces web-preview and poster needs.
+Gustave Caillebotte's *Paris Street; Rainy Day* (Art Institute of Chicago, CC0)
+introduces web-preview and poster needs, then supplies every photographic depth
+and compression comparison. Attribution and the central crop are documented
+with the assets. The separate NASA photograph belongs to the bitmap lesson.
 The preceding bitmap lesson's 8 by 4 arrow retrieves dimensions before learners
 change the sample count of a fixed house scene. Enlargement, fourfold pixel-count
 growth and print density receive separate explanations. Colour codes precede
 the greyscale tool, then RGB channel values explain why eight bits per channel
-means 24 bits per pixel. Two manual walkthroughs model pixel, bit and byte units.
+means 24 bits per pixel. One standalone RGB walkthrough models pixel, bit and
+byte units; the smaller calculation repeated from the preceding lesson is removed.
 
-Part 2 distinguishes input, encoded file and reconstructed pixel values. A
+Part 2 uses two illustrated paths to distinguish input, encoded file and
+reconstructed values: lossless recovers every value, while lossy discards some
+information. The original and both results keep the same grid dimensions. A
 run-length example demonstrates exact recovery and a counterexample to guaranteed
 savings. Genuine encoded photograph/diagram assets then show lossy changes at
 fixed dimensions. Three routes to smaller data are compared before a museum
@@ -48,10 +54,10 @@ centres for 8/16/32 square grids. The narrow door is deliberately missed at 8 by
 vector resampling. The zoom view enlarges only the unchanged 8 by 8 samples.
 Neither tool claims enlargement can recover missing source information.
 
-Depth starts at two bits per pixel with source brightness 110. Buttons select
+Depth starts at two bits per pixel. Buttons select
 1/2/4/8 bits. The photograph dimensions remain 960 by 640; the independently
-authored gradient has all 256 source positions. Inspecting brightness exposes
-the code and displayed grey value. Each comparison derives from the reference,
+authored gradient has all 256 source positions. The unexplained brightness
+inspection slider is removed. Each comparison derives from the reference,
 not from the previous quantised state. These preview PNGs contain quantised
 grey values; their encoded file sizes are not the ideal packed bit-depth totals.
 
@@ -99,16 +105,18 @@ passes nine checks: all shade codes/endpoints, calculated units/scaling, lossles
 round trips and expansion, one-byte run limits, scene detail, matched scenarios,
 static assets/IDs/storage, and shared walkthrough navigation/instance behaviour.
 Changed modules pass Node syntax checks. ImageMagick confirms all four greyscale
-previews are 960 by 640 with exactly 2, 4, 16 and 256 used shades respectively.
+previews are 960 by 640. They allow 2, 4, 16 and 256 shades; the artwork actually
+uses 2, 4, 14 and 220 respectively. An image need not use every available value.
+The authored gradient covers all values at each depth.
 
 Setting `$env:REP_LESSONS='resolution-bit-depth-and-image-compression'` in
 PowerShell, then running `node tests/representation-lessons.browser.mjs`, passes
-the full 36-slide layout review
+the full 35-slide layout review
 at 1366 by 768 and 1366 by 900, student layouts at 390/320 pixels, all image loads,
 no-JavaScript reading, 12/12 scoring, reload persistence and old quiz isolation.
 
 `node tests/image-quality.browser.mjs` passes all resolution/depth presets,
-brightness values 0/110/255, exact displayed zoom ratios, walkthrough bounds,
+fixed photo/gradient dimensions, exact displayed zoom ratios, walkthrough bounds,
 both run-length presets through every step, all eight compression combinations,
 resets and matched scenarios. It also checks revealed-state slide dimensions at
 1366 by 768 under OS reduced motion. Screenshot review confirmed readable depth

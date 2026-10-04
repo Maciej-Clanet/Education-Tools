@@ -1,6 +1,7 @@
 // Requires the isolated local test browser, not a user's browsing profile.
 import assert from 'node:assert/strict'
 import { createBrowserSession } from './helpers/browser-session.mjs'
+import { imageCompressionAssets } from '../javascript/data/image-compression-assets.js'
 process.env.FLEXBOX_TEST_ORIGIN ||= 'http://127.0.0.1:8765'
 process.env.FLEXBOX_CDP_ORIGIN ||= 'http://127.0.0.1:9229'
 process.env.FLEXBOX_SCREENSHOTS ||= '.raid-checks/image-quality'
@@ -45,22 +46,30 @@ try {
   }
   await click('[data-quality-zoom] [data-quality-reset]')
   await goto('bit-depth-tool')
+  assert.equal(await s.ev('document.querySelector("[data-shade-input]")'), null)
+  assert.equal(await s.ev('document.querySelector("[data-quality-output=shade]")'), null)
+  const depthAssets = async () => {
+    await s.ev('Promise.all([...document.querySelectorAll("[data-depth-image], [data-depth-gradient]")].map(image=>image.decode()))')
+    return s.ev('[...document.querySelectorAll("[data-depth-image], [data-depth-gradient]")].map(image=>({src:image.getAttribute("src"),width:image.naturalWidth,height:image.naturalHeight,displayWidth:image.getBoundingClientRect().width,displayHeight:image.getBoundingClientRect().height}))')
+  }
+  const initialDepthAssets = await depthAssets()
   for(const depth of [1,2,4,8]) {
     await click(`[data-depth-value="${depth}"]`)
     assert.match(await s.text('[data-quality-output=depth]'),new RegExp(`${2**depth} possible shades`))
-    for(const brightness of [0,110,255]) {
-      await s.input('[data-shade-input]',brightness,'input'); await frame()
-      assert.match(await s.text('[data-quality-output=shade]'),new RegExp(`Source brightness ${brightness}`))
-      await fit('bit-depth-tool')
-    }
+    assert.equal(await s.ev(`document.querySelector('[data-depth-value="${depth}"]').getAttribute('aria-pressed')`),'true')
+    const selectedAssets = await depthAssets()
+    assert.ok(selectedAssets[0].src.endsWith(`quality-grey-${depth}.png`))
+    assert.ok(selectedAssets[1].src.endsWith(`quality-gradient-${depth}.svg`))
+    assert.deepEqual(selectedAssets.map(({src,...dimensions})=>dimensions),initialDepthAssets.map(({src,...dimensions})=>dimensions),'Depth changes available shades without changing source or display dimensions')
+    assert.equal(selectedAssets[0].width,imageCompressionAssets.photo.source.width)
+    assert.equal(selectedAssets[0].height,imageCompressionAssets.photo.source.height)
+    await fit('bit-depth-tool')
   }
   await click('[data-quality-depth] [data-quality-reset]')
-  assert.equal(await s.ev('document.querySelector("[data-shade-input]").value'),'110')
-  assert.match(await s.text('[data-quality-output=shade]'),/code 01/)
+  assert.deepEqual(await depthAssets(),initialDepthAssets)
+  assert.equal(await s.ev(`document.querySelector('[data-depth-value="2"]').getAttribute('aria-pressed')`),'true')
+  assert.match(await s.text('[data-quality-output=depth]'),/4 possible shades/)
   await s.screenshot('depth-reset')
-  await goto('raw-size')
-  for(let step=0;step<3;step++) { await fit('raw-size'); await click('#raw-size [data-walkthrough-next]') }
-  await click('#raw-size [data-walkthrough-reset]')
   await goto('photo-size')
   for(let step=0;step<4;step++) { await fit('photo-size'); await click('#photo-size [data-walkthrough-next]') }
   await goto('lossless-runs')
@@ -82,12 +91,14 @@ try {
       const sources=await s.ev('[...document.querySelectorAll("[data-compression-image=variant]")].map(i=>i.src)')
       assert.equal(sources[0],sources[1])
       assert.ok(sources[0].includes(subject))
+      assert.equal(await s.text('[data-quality-output=variant-size]'),`${imageCompressionAssets[subject][variant].bytes.toLocaleString('en-GB')} bytes`)
+      assert.deepEqual(await s.ev('[...document.querySelectorAll("[data-compression-image]")].map(image=>[image.naturalWidth,image.naturalHeight])'),Array(4).fill([imageCompressionAssets[subject].source.width,imageCompressionAssets[subject].source.height]))
       await fit('lossy-comparison')
     }
     await s.screenshot(`compression-${subject}-low`)
   }
   await click('[data-quality-compression] [data-quality-reset]')
-  assert.match(await s.text('[data-quality-output=variant-size]'),/64,526/)
+  assert.equal(await s.text('[data-quality-output=variant-size]'),`${imageCompressionAssets.photo.medium.bytes.toLocaleString('en-GB')} bytes`)
   for(const [scenario,choice,reason] of [['screenshot','lossless','text'],['gallery','lossy','transfer'],['icon','mono','two']]) {
     await goto(`scenario-${scenario}`)
     await s.input(`[data-paired-scenario=${scenario}] [data-choice=type]`,choice)
@@ -99,5 +110,5 @@ try {
     await fit(`scenario-${scenario}`)
   }
   assert.deepEqual(s.errors.filter(error=>!error.includes('favicon.ico')),[])
-  console.log('PASS image quality controls: presets, quantisation inspection, exact zoom scales, RLE all stages, asset swaps, resets, scenarios and revealed-state layouts at 1366×768 under reduced motion.')
+  console.log('PASS image quality controls: depth presets and fixed dimensions, exact zoom scales, RLE all stages, measured asset swaps, resets, scenarios and revealed-state layouts at 1366×768 under reduced motion.')
 } finally { await s.close() }

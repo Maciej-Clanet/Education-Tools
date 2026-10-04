@@ -232,24 +232,29 @@ saved progress should be shown as needing a fresh attempt.
 - [x] Character sets, ASCII, and Unicode
   - Rebuilt and refined on 4 October 2026: a sender/receiver transmission visual
     leads into ASCII, Unicode code points, a static UTF-8 explanation and a
-    visible decoding mismatch. Conceptual scenarios assess character coverage
-    and consistent interpretation; invented-code and byte-count tasks are removed.
-    22 student sections / 27 Teacher Slides. Quiz version 4: eight questions,
+    visible decoding mismatch. Quiz and written tasks assess character coverage
+    and consistent interpretation; the redundant dropdown task, invented-code
+    and byte-count tasks are removed. 21 student sections / 26 Teacher Slides.
+    Quiz version 4: eight questions,
     pass six; three written tasks, with retired drafts preserved.
     See [the lesson notes](character_sets_lesson.md).
 
 ### C3 Image representation
 - [x] Image storage: bitmap and vector images
-  - Rebuilt for first teaching on 4 October 2026: one picture becomes ordered
-    pixel codes and is reconstructed before dimension and palette experiments.
-    A saved bitmap builder, matched photo crop and raster/vector enlargement
-    support 18 student sections / 27 Teacher Slides. Quiz version 3: 10 questions,
-    pass 8; four written tasks. See [the lesson notes](bitmap_image_storage_lesson.md).
+  - Rebuilt and refined on 4 October 2026: explain stored pixel values and image
+    information, then introduce bit depth using a fixed-pixel gradient. A NASA
+    spacewalk photo replaces the reused equipment image. Vector geometry,
+    enlargement, benefits, limitations and practical uses follow. Reconstruction
+    exercises are removed. There are 17 student sections / 25 Teacher Slides;
+    quiz version 4 has 10 questions, pass 8, followed by three written tasks.
+    See [the lesson notes](bitmap_image_storage_lesson.md).
 - [x] Resolution, bit depth, and image compression
-  - Rebuilt for first teaching on 4 October 2026: controlled resolution and depth
-    comparisons precede guided pixel-data calculations, exact run-length recovery
-    and genuine encoded compression comparisons. The two-part teaching sequence
-    has 30 student sections / 36 Teacher Slides. Quiz version 3: 12 questions,
+  - Rebuilt and refined on 4 October 2026: controlled resolution and depth
+    comparisons use a museum painting, followed by one RGB storage walkthrough,
+    visual lossless/lossy paths, exact run-length recovery and real encoded
+    compression comparisons. Duplicate jump links, the brightness inspector and
+    the repeated small-image calculation are removed. The teaching sequence
+    has 29 student sections / 35 Teacher Slides. Quiz version 3: 12 questions,
     pass 9; five written tasks. See [the lesson notes](image_quality_lesson.md).
 
 The [shared C2/C3 improvement plan](text_and_image_representation_improvement_plan.md)

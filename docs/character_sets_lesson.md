@@ -4,11 +4,13 @@ Rebuilt and refined 4 October 2026 from
 [the original improvement plan](character_sets_improvement_plan.md).
 The initial rebuild introduced the first-teaching structure. The same-day
 correction simplifies its visual sequence and removes invented-code and byte-count
-assessment. The current lesson has **22 student sections / 27 Teacher Slides**:
+assessment. The redundant dropdown scenario slide was subsequently removed because
+its supplied facts stated the answers. The current lesson has **21 student sections / 26 Teacher Slides**:
 one opener, four dividers and three individual written-practice slides.
 
 The existing URL, contextual navigation and useful anchors remain. The removed
-`exam-storage` anchor is retained as a hidden alias beside the final written task.
+`exam-storage` anchor is retained as a hidden alias beside the final written task;
+the former `practice` anchor now points to the following character inspector.
 
 ## Teaching sequence
 
@@ -23,11 +25,9 @@ code points precede a single static character-to-UTF-8 visual. Variable-length
 encoding remains visible, but byte totals are not an assessed skill. The
 UTF-8/Windows-1252 mismatch shows why consistent decoding matters.
 
-Practice presents three short, self-contained scenarios: an existing ASCII
-ticket printer, an international membership register and a name misread by the
-wrong decoder. Learners choose an approach using supplied facts; explanatory
-feedback connects the choice to coverage or interpretation. No byte-count input
-or arithmetic challenge remains.
+The quiz and written tasks apply character coverage and agreed interpretation
+to unfamiliar examples. No dropdown scenario, byte-count input or arithmetic
+challenge remains.
 
 The editable inspector retains technical byte details for exploration. It says
 **code points**, not characters; revision notes explain combining marks and
@@ -38,7 +38,7 @@ multi-code-point emoji. Dense references stay out of first-teaching slides.
 - `pages/topics/character-sets-ascii-and-unicode.html` is the authored static
   source; no generator is needed.
 - `javascript/pages/character-sets-ascii-and-unicode.js` composes the shared
-  lesson shell, transmission, inspectors, decoder and scenarios.
+  lesson shell, transmission, inspectors and decoder.
 - `javascript/core/character-transmission.js` and
   `css/character-transmission.css` provide the transmission component.
   `initCharacterTransmissions(root)` enhances `[data-character-transmission]`.
@@ -52,19 +52,19 @@ multi-code-point emoji. Dense references stay out of first-teaching slides.
   and the fixed decoding comparison. The obsolete A/B/space codebook API and
   byte-count prediction helper have been removed.
 - `javascript/data/character-encoding-data.js` holds UTF-8 fixtures, fixed
-  decoding results and the three conceptual scenarios. Page-specific layouts
-  live in `css/pages/character-sets-ascii-and-unicode.css`.
+  decoding results. The removed scenario data and runtime are no longer shipped.
+  Page-specific layouts live in `css/pages/character-sets-ascii-and-unicode.css`.
 
 The ASCII inspector starts with `Aa0 ` and exposes denary values and seven-bit
 codes. The UTF-8 inspector starts with `Hi!`, supports presets and accepts up to
 40 code points. Truncation preserves surrogate pairs; isolated surrogates follow
 TextEncoder's replacement behaviour. User input is rendered with `textContent`.
 Selecting a token preserves button focus. If TextEncoder is unavailable, authored
-inspector examples remain visible; conceptual practice still works.
+inspector examples remain visible.
 
 The decoder accepts only the fixed `63 61 66 C3 A9` example and the named UTF-8
 or Windows-1252 interpretation, with authored results if TextDecoder is missing.
-All diagrams and scenario guidance have readable static fallbacks.
+All diagrams and inspector examples have readable static fallbacks.
 
 ## Assessment and saved work
 
@@ -87,7 +87,7 @@ The former byte-count question is removed. Shared draft saving preserves retired
 IDs, including `exam-practice-v3` and `exam-storage-v3`, without restoring their
 answers beneath new prompts.
 
-Selections, animation and conceptual scenarios are temporary. Editable exploration
+Selections and animation are temporary. Editable exploration
 retains the `{text}` schema at `lesson-character-sets-inspector`: typing/presets
 save, reload starts at `Hi!`, Restore retrieves earlier work, and Reset changes
 only the view. Keys use the shared `education-tools:` prefix.
@@ -101,11 +101,11 @@ node --test tests/character-encoding.test.mjs tests/representation-integration.t
 node --check javascript/pages/character-sets-ascii-and-unicode.js
 ```
 
-Current browser checks pass for all 27 slides at 1366×768 and 1366×900, student
+Current browser checks pass for all 26 slides at 1366×768 and 1366×900, student
 layouts at 390px and 320px, and no-JavaScript reading. The dedicated interaction
 suite verifies manual and animated arrivals under reduced motion, pause/resume,
-automatic end, pausing when leaving the slide, all three conceptual scenarios,
-quiz answer spacing, selection focus, safe input and inspector fallback.
+automatic end, pausing when leaving the slide, quiz answer spacing, selection
+focus, safe input and inspector fallback.
 The shared suite verifies quiz/draft reloads, migration from both old quiz keys,
 and preservation of retired written drafts. Reviewed screenshots include the
 hello mapping, both computers, font/digit explanation, ASCII byte, UTF-8 overview

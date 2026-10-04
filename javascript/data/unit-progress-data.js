@@ -365,7 +365,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "bitmap-image-storage",
           title: "Image storage: bitmap and vector images",
           href: "../topics/bitmap-image-storage.html?context=btec-level-3-unit-2",
-          quiz: { version: 3, totalQuestions: 10, passScore: 8, storageKey: "lesson-bitmap-image-storage-quiz-v3" },
+          quiz: { version: 4, totalQuestions: 10, passScore: 8, storageKey: "lesson-bitmap-image-storage-quiz-v4" },
         },
         {
           id: "resolution-bit-depth-and-image-compression",

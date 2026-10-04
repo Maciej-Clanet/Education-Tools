@@ -1164,7 +1164,7 @@ export const catalogItems = [
     kicker: "C3 Image representation",
     title: "Image storage: bitmap and vector images",
     summary:
-      "Build a picture from pixel codes, reconstruct it using a colour key, and compare bitmap and vector enlargement.",
+      "Explore pixel storage and bit depth, compare raster and vector enlargement, and choose representations for photographs, logos and diagrams.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "image storage",

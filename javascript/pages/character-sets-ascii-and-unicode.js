@@ -2,7 +2,7 @@ import { initLessonPage } from '../core/lesson-shell.js'
 import { initCharacterTransmissions } from '../core/character-transmission.js'
 import { readStorage, writeStorage } from '../core/storage.js'
 import { boundCharacterText, inspectCharacterText, decodeMismatch } from '../core/character-encoding.js'
-import { CHARACTER_LIMIT, CHARACTER_TASKS } from '../data/character-encoding-data.js'
+import { CHARACTER_LIMIT } from '../data/character-encoding-data.js'
 
 const lessonConfig = {
   lessonId: 'character-sets-ascii-and-unicode',
@@ -150,39 +150,7 @@ function initMismatch() {
   render()
 }
 
-function initCharacterPractice() {
-  const host = document.querySelector('[data-character-practice]')
-  if (!host) return
-  const choice = host.querySelector('[data-practice-choice]')
-  const feedback = host.querySelector('[data-practice-feedback]')
-  let index = 0
-  function render() {
-    const task = CHARACTER_TASKS[index]
-    host.querySelector('[data-practice-title]').textContent = task.title
-    host.querySelector('[data-practice-scenario]').textContent = task.scenario
-    host.querySelector('[data-practice-facts]').textContent = task.facts
-    host.querySelector('[data-practice-progress]').textContent = `Scenario ${index + 1} of ${CHARACTER_TASKS.length}`
-    host.querySelector('[data-practice-prev]').setAttribute('aria-disabled', String(index === 0))
-    host.querySelector('[data-practice-next]').setAttribute('aria-disabled', String(index === CHARACTER_TASKS.length - 1))
-    choice.value = ''
-    feedback.textContent = ''
-  }
-  host.querySelector('[data-practice-check]').addEventListener('click', () => {
-    if (!choice.value) { feedback.textContent = 'Choose an approach using the supplied facts first.'; return }
-    const task = CHARACTER_TASKS[index]
-    feedback.textContent = `${choice.value === task.answer ? 'Suitable choice.' : 'Reconsider the requirement.'} ${task.explanation}`
-  })
-  choice.addEventListener('change', () => { feedback.textContent = '' })
-  host.querySelector('[data-practice-prev]').addEventListener('click', () => { if (index > 0) { index -= 1; render() } })
-  host.querySelector('[data-practice-next]').addEventListener('click', () => { if (index < CHARACTER_TASKS.length - 1) { index += 1; render() } })
-  host.querySelector('[data-practice-reset]').addEventListener('click', () => { index = 0; render() })
-  host.querySelector('[data-practice-live]').hidden = false
-  host.querySelector('[data-practice-fallback]').hidden = true
-  render()
-}
-
 initLessonPage(lessonConfig)
 initCharacterTransmissions()
 initCharacterInspectors()
 initMismatch()
-initCharacterPractice()

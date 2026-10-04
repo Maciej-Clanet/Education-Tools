@@ -3,28 +3,28 @@ export const imageCompressionAssets = {
   "photo": {
     "source": {
       "src": "../../assets/images/image-representation/photo-source.png",
-      "bytes": 876557,
+      "bytes": 995015,
       "width": 960,
       "height": 640,
       "label": "PNG reference (lossless)"
     },
     "high": {
       "src": "../../assets/images/image-representation/photo-jpeg-high.jpg",
-      "bytes": 180832,
+      "bytes": 193693,
       "width": 960,
       "height": 640,
       "label": "JPEG: less compression"
     },
     "medium": {
       "src": "../../assets/images/image-representation/photo-jpeg-medium.jpg",
-      "bytes": 64526,
+      "bytes": 57070,
       "width": 960,
       "height": 640,
       "label": "JPEG: medium compression"
     },
     "low": {
       "src": "../../assets/images/image-representation/photo-jpeg-low.jpg",
-      "bytes": 20016,
+      "bytes": 15989,
       "width": 960,
       "height": 640,
       "label": "JPEG: strong compression"

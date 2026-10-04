@@ -1,4 +1,4 @@
-import { normaliseDepth, quantiseShade, RUN_PRESETS, encodeRuns, decodeRuns } from '../data/image-quality-model.js'
+import { normaliseDepth, RUN_PRESETS, encodeRuns, decodeRuns } from '../data/image-quality-model.js'
 
 const assetBase = '../../assets/images/image-representation/'
 const text = (root, name, value) => { const node = root.querySelector(`[data-quality-output="${name}"]`); if (node) node.textContent = value }
@@ -32,22 +32,18 @@ export function initImageQualityTools(assets, root = document) {
   })
   root.querySelectorAll('[data-quality-depth]').forEach(tool => {
     let depth = 2
-    const inspect = tool.querySelector('[data-shade-input]')
     const render = () => {
-      const value = quantiseShade(inspect.value, depth)
       const image = tool.querySelector('[data-depth-image]')
       image.src = `${assetBase}quality-grey-${depth}.png`
-      image.alt = `The same photograph with ${2 ** depth} available grey shades at ${depth} bits per pixel.`
+      image.alt = `The same artwork image with ${2 ** depth} available grey shades at ${depth} bits per pixel.`
       tool.querySelector('[data-depth-gradient]').src = `${assetBase}quality-gradient-${depth}.svg`
       tool.querySelector('[data-depth-gradient]').alt = `256 gradient positions using ${2 ** depth} available grey shades.`
       text(tool, 'depth', `${depth} bit${depth === 1 ? '' : 's'} per pixel · ${2 ** depth} possible shades`)
-      text(tool, 'shade', `Source brightness ${inspect.value} → code ${value.code} → displayed grey ${value.shade}`)
       text(tool, 'banding', depth <= 2 ? 'Few shades make distinct bands.' : depth === 4 ? 'Sixteen shades reduce the jumps between tones.' : '256 shades preserve smoother tonal changes.')
       buttons(tool, '[data-depth-value]', depth, 'data-depth-value')
     }
     tool.querySelectorAll('[data-depth-value]').forEach(button => button.addEventListener('click', () => { depth = normaliseDepth(button.dataset.depthValue); render() }))
-    inspect.addEventListener('input', render)
-    tool.querySelector('[data-quality-reset]').addEventListener('click', () => { depth = 2; inspect.value = '110'; render() })
+    tool.querySelector('[data-quality-reset]').addEventListener('click', () => { depth = 2; render() })
     tool.querySelectorAll('[data-quality-controls]').forEach(controls => { controls.hidden = false })
     render()
   })
@@ -86,7 +82,7 @@ export function initImageQualityTools(assets, root = document) {
     let subject = 'photo', variant = 'medium'
     const render = () => {
       const reference = assets[subject].source, selected = assets[subject][variant]
-      const subjectName = subject === 'photo' ? 'Photograph' : 'Diagram'
+      const subjectName = subject === 'photo' ? 'Artwork image' : 'Diagram'
       for (const [role, asset] of [['source', reference], ['variant', selected]]) {
         tool.querySelectorAll(`[data-compression-image="${role}"]`).forEach(img => { img.src = asset.src; img.alt = `${subjectName}: ${role === 'source' ? 'reference PNG' : asset.label}` })
         text(tool, `${role}-size`, `${asset.bytes.toLocaleString('en-GB')} bytes`)

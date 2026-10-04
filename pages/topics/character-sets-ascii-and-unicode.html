@@ -120,7 +120,6 @@
 <a href="#utf8" data-section-link>UTF-8 bytes</a>
 <a href="#decoding" data-section-link>Decoding mismatch</a>
 <a href="#implications" data-section-link>Choosing a system</a>
-<a href="#practice" data-section-link>Guided practice</a>
 <a href="#inspector" data-section-link>Character inspector</a>
 <a href="#mistakes" data-section-link>Common mistakes</a>
 <a href="#quiz" data-section-link>Quick quiz</a>
@@ -304,40 +303,9 @@ A</pre></div></div><p class="text-key">LF has value 10: <code>0001010</code> in 
 <p class="lesson-section-copy">An international club stores names and membership messages. It must keep José, 李 and £ intact, while still supporting plain English entries.</p><div class="text-register"><span>José</span><span>李</span><span>Membership: £5</span></div><div class="text-flow"><div class="text-node"><span class="text-label">Enter text</span><strong>Unicode characters</strong></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Save and send</span><strong>Encode as UTF-8</strong></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Read and display</span><strong>Decode as UTF-8</strong></div></div><p class="text-key">Choose enough character coverage <strong>and</strong> compatible encoding throughout the route.</p><details class="text-check" data-no-slide-advance><summary>Why is “Unicode has more characters” an incomplete justification?</summary><p>Broader coverage preserves the actual names and symbols. Sender, storage and receiver must also agree on the encoding, or those supported characters can still be misread.</p></details><details class="text-revision"><summary>Missing glyphs and “extended ASCII”</summary><p>A font without the needed glyph may display an empty box even when the text is correctly encoded. That is a display problem. Also, “extended ASCII” describes various eight-bit mappings, not one universal standard; systems using different mappings can disagree.</p></details>
 </section>
 
-<section id="practice" class="lesson-section panel text-section" data-lesson-section>
-<p class="eyebrow">16 · Text representation</p>
-<h2>Choose an approach that fits the text</h2>
-<p class="lesson-section-copy">Use the supplied facts to decide whether character coverage or decoding needs attention.</p>
-<div class="text-practice" data-character-practice data-no-slide-advance>
-  <div data-practice-live hidden>
-    <p class="text-label" data-practice-progress aria-live="polite">Scenario 1 of 3</p>
-    <h3 data-practice-title>An existing ticket printer</h3>
-    <p data-practice-scenario>The printer receives messages such as TICKET 21. Its connection already expects standard ASCII.</p>
-    <p class="text-key" data-practice-facts>Required text: A–Z, digits and spaces. All are available in standard ASCII.</p>
-    <div class="text-controls">
-      <label for="character-approach">Suitable approach</label>
-      <select id="character-approach" data-practice-choice>
-        <option value="">Choose…</option>
-        <option value="ascii">Standard ASCII is sufficient</option>
-        <option value="unicode">Use Unicode with an agreed encoding</option>
-        <option value="decoder">Correct the receiver’s UTF-8 decoding</option>
-      </select>
-      <button type="button" class="primary-link" data-practice-check>Check choice</button>
-    </div>
-    <p class="text-feedback" data-practice-feedback aria-live="polite"></p>
-    <div class="text-controls"><button type="button" class="lesson-secondary-action" data-practice-prev>Previous scenario</button><button type="button" class="lesson-secondary-action" data-practice-next>Next scenario</button><button type="button" class="lesson-secondary-action" data-practice-reset>Restart practice</button></div>
-  </div>
-  <div data-practice-fallback>
-    <p><strong>Ticket printer:</strong> only A–Z, digits and spaces are required; the receiver expects ASCII.</p>
-    <p><strong>Membership register:</strong> José and 李 must be preserved. Standard ASCII lacks é and 李; Unicode includes them.</p>
-    <p><strong>Garbled name:</strong> café was sent as UTF-8 but decoded as Windows-1252, producing cafÃ©. The original data arrived unchanged.</p>
-    <details class="text-check"><summary>Show the reasoning</summary><p>ASCII already covers the printer’s requirements. The register needs Unicode support and an agreed encoding. The garbled name needs the receiver to decode the original data as UTF-8, matching the sender.</p></details>
-  </div>
-</div>
-</section>
-
 <section id="inspector" class="lesson-section panel text-section" data-lesson-section>
-<p class="eyebrow">17 · Text representation</p>
+<span id="practice" hidden></span>
+<p class="eyebrow">16 · Text representation</p>
 <h2>Explore the code points and bytes</h2>
 <p class="lesson-section-copy">Try the examples, then select a code point to inspect its stored bytes. Predict what will change before changing the text.</p><div class="text-inspector" data-character-inspector="utf8" data-text="Hi!" data-no-slide-advance>
 <div data-inspector-fallback><div class="text-table-wrap"><table class="text-table"><caption>UTF-8 bytes are shown in hexadecimal.</caption><thead><tr><th scope="col">Text</th><th scope="col">Code point</th><th scope="col">UTF-8 bytes</th><th scope="col">Bytes</th></tr></thead><tbody><tr><th scope="row">A</th><td>U+0041</td><td>41</td><td>1</td></tr><tr><th scope="row">é</th><td>U+00E9</td><td>C3 A9</td><td>2</td></tr><tr><th scope="row">漢</th><td>U+6F22</td><td>E6 BC A2</td><td>3</td></tr><tr><th scope="row">😀</th><td>U+1F600</td><td>F0 9F 98 80</td><td>4</td></tr></tbody></table></div><p>Hi! contains three code points and three UTF-8 bytes: 48 69 21.</p></div>
@@ -348,13 +316,13 @@ A</pre></div></div><p class="text-key">LF has value 10: <code>0001010</code> in 
 <template data-teacher-divider><h2>Apply what you know</h2><p>Use the model to explain unfamiliar examples</p></template>
 
 <section id="mistakes" class="lesson-section panel text-section" data-lesson-section>
-<p class="eyebrow">18 · Text representation</p>
+<p class="eyebrow">17 · Text representation</p>
 <h2>Repair three common mistakes</h2>
 <div class="text-misconceptions"><details class="text-check" data-no-slide-advance><summary>“Changing the font changes the character encoding.”</summary><p>A font changes how a character is drawn. The same stored A can appear in several fonts without changing its code.</p></details><details class="text-check" data-no-slide-advance><summary>“Unicode stores every character in exactly 16 bits.”</summary><p>Unicode code points and encoded storage are different things. Our UTF-8 examples have different lengths: A uses one byte, while 😀 uses four.</p></details><details class="text-check" data-no-slide-advance><summary>“Unicode support alone prevents garbled text.”</summary><p>Supporting the characters is only part of the solution. The receiver must also use the encoding that matches the sender. Reading UTF-8 data with the wrong decoder can still produce the wrong text.</p></details></div><p class="text-key">Name the representation, use evidence from the data, then explain the consequence.</p>
 </section>
 
 <section id="quiz" class="lesson-section panel text-section" data-lesson-section>
-<p class="eyebrow">19 · Text representation</p>
+<p class="eyebrow">18 · Text representation</p>
 <h2>Check your understanding</h2>
 <p class="lesson-section-copy">Aim for at least 6 out of 8; feedback explains the reasoning after you check your answers.</p><form id="lesson-quiz" class="quiz-form"><fieldset class="quiz-question" data-question="q1" data-answer="0" data-success="Correct. The mapping determines how codes are interpreted. The bits can stay unchanged while the decoded message changes." data-feedback="The mapping determines how codes are interpreted. The bits can stay unchanged while the decoded message changes."><legend>1. Two computers receive identical bits but use different character mappings. What can happen?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q1" value="0"><span>The same bits can produce different text.</span></label><label class="quiz-answer"><input type="radio" name="q1" value="1"><span>The bits automatically change to match the new mapping.</span></label><label class="quiz-answer"><input type="radio" name="q1" value="2"><span>Only the font can change; the text must remain identical.</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
 <fieldset class="quiz-question" data-question="q2" data-answer="2" data-success="Correct. Seven bits give 2⁷ = 128 values. Counting begins at zero, so the largest is 127." data-feedback="Seven bits give 2⁷ = 128 values. Counting begins at zero, so the largest is 127."><legend>2. Standard ASCII has 128 code positions. Which range is correct?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q2" value="0"><span>1–128</span></label><label class="quiz-answer"><input type="radio" name="q2" value="1"><span>0–128</span></label><label class="quiz-answer"><input type="radio" name="q2" value="2"><span>0–127</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
@@ -367,7 +335,7 @@ A</pre></div></div><p class="text-key">LF has value 10: <code>0001010</code> in 
 </section>
 
 <section id="exam-practice" class="lesson-section panel text-section" data-lesson-section>
-<p class="eyebrow">20 · Text representation</p>
+<p class="eyebrow">19 · Text representation</p>
 <h2>Practice 1 · Explain the agreement</h2>
 <p class="lesson-section-copy">A computer sends the text STOP to a display. Explain how character codes let the computer represent the text as data, and why the sender and receiver must agree on how to interpret that data. You do not need to know the codes for the letters.</p>
 <p class="text-caption">Your written drafts save on this device as you type. These are practice tasks with answer guidance.</p>
@@ -376,7 +344,7 @@ A</pre></div></div><p class="text-key">LF has value 10: <code>0001010</code> in 
 </section>
 
 <section id="exam-international" class="lesson-section panel text-section" data-lesson-section>
-<p class="eyebrow">21 · Text representation</p>
+<p class="eyebrow">20 · Text representation</p>
 <h2>Practice 2 · Preserve people’s names</h2>
 <p class="lesson-section-copy">An ASCII-only membership system stores Jose instead of José and cannot store 李. Explain the problem and justify a suitable approach for storing and sending these names.</p><div class="exam-response-wrap"><label class="exam-response-label" for="response-exam-international">Your answer</label><textarea id="response-exam-international" class="exam-response" data-exam-response="exam-international-v3" placeholder="Connect character coverage, the effect on the member’s name, and compatible encoding."></textarea></div><details class="exam-guidance" data-no-slide-advance><summary>Show answer guidance</summary><div class="exam-guidance-body"><p>Standard ASCII has only 128 positions and does not include é or 李. Removing or replacing these characters changes members’ actual names.</p><p>Use software/storage that supports Unicode, with an agreed encoding such as UTF-8 for saving and exchanging the data. The receiver must decode that encoding correctly. This provides character coverage and preserves the intended text across systems.</p></div></details>
 </section>
@@ -384,7 +352,7 @@ A</pre></div></div><p class="text-key">LF has value 10: <code>0001010</code> in 
 
 
 <section id="exam-decoding" class="lesson-section panel text-section" data-lesson-section>
-<p class="eyebrow">22 · Text representation</p>
+<p class="eyebrow">21 · Text representation</p>
 <span id="exam-storage" hidden></span>
 <h2>Practice 3 · Diagnose garbled text</h2>
 <p class="lesson-section-copy">A sender encodes café as UTF-8. The unchanged bytes 63 61 66 C3 A9 arrive at a receiver that displays cafÃ© using Windows-1252. Explain what went wrong and how to recover the intended text.</p><p class="text-key">All byte values in the question are hexadecimal.</p><div class="exam-response-wrap"><label class="exam-response-label" for="response-exam-decoding">Your answer</label><textarea id="response-exam-decoding" class="exam-response" data-exam-response="exam-decoding-v3" placeholder="Identify what stayed the same, what changed, and the matching decoder."></textarea></div><details class="exam-guidance" data-no-slide-advance><summary>Show answer guidance</summary><div class="exam-guidance-body"><p>The sender and receiver used different encoding interpretations. UTF-8 treats C3 A9 together as é; Windows-1252 interprets those bytes separately as Ã and ©.</p><p>Decode the original, unchanged bytes as UTF-8 to recover café. Configure consistent encoding at both ends. Changing the font does not change the decoder.</p></div></details>
@@ -451,7 +419,7 @@ A</pre></div></div><p class="text-key">LF has value 10: <code>0001010</code> in 
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 29</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 26</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

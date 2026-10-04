@@ -133,9 +133,9 @@ sections or more animation alone do not demonstrate improvement.
 
 | Live lesson | Student sections | Teacher Slides | Current quiz | Written tasks | Implementation notes |
 | --- | ---: | ---: | --- | ---: | --- |
-| Character sets, ASCII and Unicode | 22 | 27 | v4: 8 questions, pass 6 | 3 | [Character sets](character_sets_lesson.md) |
-| Image storage | 18 | 27 | v3: 10 questions, pass 8 | 4 | [Bitmap storage](bitmap_image_storage_lesson.md) |
-| Resolution, bit depth and compression | 30 | 36 | v3: 12 questions, pass 9 | 5 | [Image quality](image_quality_lesson.md) |
+| Character sets, ASCII and Unicode | 21 | 26 | v4: 8 questions, pass 6 | 3 | [Character sets](character_sets_lesson.md) |
+| Image storage | 17 | 25 | v4: 10 questions, pass 8 | 3 | [Bitmap storage](bitmap_image_storage_lesson.md) |
+| Resolution, bit depth and compression | 29 | 35 | v3: 12 questions, pass 9 | 5 | [Image quality](image_quality_lesson.md) |
 
 All three existing URLs, contextual navigation and useful old anchors are
 retained. Teacher Slides reuse the same teaching sections, with openers and
@@ -146,16 +146,22 @@ remains available under reduced motion. No account, backend or new dependency
 is needed to serve the lessons.
 
 The text tools distinguish code points, UTF-8 bytes and visible characters,
-including spaces and controls. Its refined practice uses real coverage/decoding
-scenarios; technical byte details remain in the inspector without byte-count
-assessment. Bitmap tools retain fixed codes while changing
-their dimensions or palette. Image-quality tools independently change sampling,
+including spaces and controls. Its quiz and written practice use real coverage/
+decoding scenarios; technical byte details remain in the inspector without
+byte-count assessment. The redundant dropdown task is removed. The refined bitmap
+lesson uses a short storage illustration,
+explicit bit-depth gradients and practical raster/vector comparisons, without
+reconstruction exercises. Image-quality tools independently change sampling,
 colour precision and compression, using measured file sizes rather than invented
-figures. The shared photograph has local, reproducible derivatives with
+figures. The bitmap lesson uses a NASA spacewalk photo with a matched helmet
+crop; the quality lesson uses a separate museum painting for all its comparisons.
+It retains one RGB storage walkthrough and introduces lossless/lossy compression
+with illustrated encoding/decoding paths. The photographs
+have local, reproducible derivatives with
 [licence and edits recorded](../assets/images/image-representation/CREDITS.md).
 
 Quiz configurations and unit-progress metadata use matching versioned
-storage keys, totals and pass scores: character v4, both image lessons v3.
+storage keys, totals and pass scores: character and bitmap v4, image quality v3.
 Catalogue summaries describe the rebuilt
 content. Written responses retain their original storage keys with new IDs for
 changed prompts. The shared exam saver now merges current responses into saved
@@ -163,10 +169,10 @@ data, preserving retired draft IDs without presenting them under new questions.
 
 ### Verification
 
-The current combined model/integration/shared-component suite passes 32 tests.
-The earlier rebuild had 35; three checks for removed invented-code and byte-count
-activities were retired with those components. Transmission behavior is exercised
-in the dedicated browser suite.
+The combined model/integration/shared-component suite covers encoding fixtures,
+bitmap storage calculations, quantisation, compression, assessment metadata and
+shared lesson controls. Dedicated browser suites exercise the visible tools and
+storage migrations, including the revised bitmap quiz and retired written tasks.
 
 ```powershell
 node --test tests/character-encoding.test.mjs tests/bitmap-image.test.mjs tests/image-quality.test.mjs tests/representation-integration.test.mjs tests/teacher-dividers.test.mjs tests/lesson-walkthrough.test.mjs tests/interface-activities.test.mjs
@@ -198,7 +204,7 @@ states, resets, keyboard operation, temporary versus saved state, and reduced
 motion. Screenshots and the layout report are local test artifacts under
 `.raid-checks/representation/`.
 
-The corrected character lesson passes the complete classroom/mobile layout
-review and its dedicated interaction suite. The quiz remains a scrolling
+The corrected character, bitmap and image-quality lessons pass the classroom/mobile
+layout review. Dedicated interaction suites exercise their tools. The quiz remains a scrolling
 assessment, while supplementary guidance opens on demand. Suggested classroom
 timings remain estimates pending use with a class.

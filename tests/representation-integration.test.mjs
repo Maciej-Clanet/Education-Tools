@@ -7,7 +7,7 @@ import { imageCompressionAssets } from '../javascript/data/image-compression-ass
 
 const lessons = {
   'character-sets-ascii-and-unicode': { total: 8, pass: 6, version: 4, exams: 3, anchors: ['overview','character-sets','ascii','unicode','inspector','practice','implications','mistakes','quiz','exam-practice','exam-storage'] },
-  'bitmap-image-storage': { total: 10, pass: 8, version: 3, exams: 4, anchors: ['overview','models','bitmap-pixels','colour-data','file-size','vector-images','vector-tool','choosing','mistakes','quiz','exam-practice'] },
+  'bitmap-image-storage': { total: 10, pass: 8, version: 4, exams: 3, anchors: ['overview','models','bitmap-pixels','colour-data','file-size','vector-images','vector-tool','choosing','mistakes','quiz','exam-practice','encode-rows','decode-rows','bitmap-builder'] },
   'resolution-bit-depth-and-image-compression': { total: 12, pass: 9, version: 3, exams: 5, anchors: ['overview','resolution','bit-depth','bit-depth-tool','raw-size','compression','trade-offs','mistakes','quiz','exam-practice'] },
 }
 for (const [id, expected] of Object.entries(lessons)) {

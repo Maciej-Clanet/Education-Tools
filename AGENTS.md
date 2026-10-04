@@ -163,6 +163,8 @@ Before making major UI, content, or structure changes, read:
   `javascript/core/` enhance static examples using fixtures in `javascript/data/`.
   `character-transmission.js` and `css/character-transmission.css` provide the
   controlled two-computer teaching animation, with static completed fallback.
+  `bit-depth-gradient.js` and `css/bit-depth-gradient.css` provide a fixed-position
+  greyscale comparison, reusing the image-quality quantisation model.
   Bitmap and image-quality lesson authoring uses `build-bitmap-lesson.mjs` and
   `build-image-quality-lesson.mjs`; update their sources when editing generated
   teaching content. Compression assets have measured sizes and reproducible

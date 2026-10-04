@@ -1,10 +1,12 @@
 # Resolution bit depth and image compression improvement plan
 
 Proposed 3 October 2026; implemented 4 October 2026. See
-[the lesson notes](image_quality_lesson.md) for the final 30-section / 36-slide
-structure, component contracts, assessment and verification. The sequence below
-records the intended teaching progression; short paired scenarios and written
-tasks are separate sections in the implementation.
+[the lesson notes](image_quality_lesson.md) for the current 29-section / 35-slide
+structure, component contracts, assessment and verification. The 4 October review
+removed duplicate jump links, brightness inspection and the repeated small-image
+calculation; it added a museum artwork source and visual compression paths.
+The sequence below records the original proposal, including superseded details;
+the lesson notes record current behaviour.
 
 Rebuild `pages/topics/resolution-bit-depth-and-image-compression.html` around
 controlled changes to the same image. Learners should see what changes, explain

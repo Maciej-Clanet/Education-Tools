@@ -8,8 +8,8 @@ process.env.FLEXBOX_TEST_ORIGIN ||= 'http://127.0.0.1:8765'
 process.env.FLEXBOX_CDP_ORIGIN ||= 'http://127.0.0.1:9229'
 process.env.FLEXBOX_SCREENSHOTS ||= '.raid-checks/representation'
 const lessons = [
-  { id: 'character-sets-ascii-and-unicode', total: 8, exams: 3, version: 4 },
-  { id: 'bitmap-image-storage', total: 10, exams: 4, version: 3 },
+  { id: 'character-sets-ascii-and-unicode', total: 8, exams: 3, version: 4, retiredDrafts: {'exam-practice-v3':'Earlier codebook answer.','exam-storage-v3':'Earlier byte-count answer.'} },
+  { id: 'bitmap-image-storage', total: 10, exams: 3, version: 4, retiredDrafts: {'decode-v3':'Earlier pixel-decoding answer.','interpretation-v3':'Earlier reconstruction explanation.','allocation-v3':'Earlier calculation answer.','representation-v3':'Earlier representation choice.'} },
   { id: 'resolution-bit-depth-and-image-compression', total: 12, exams: 5, version: 3 },
 ].filter(lesson => !process.env.REP_LESSONS || process.env.REP_LESSONS.split(',').includes(lesson.id))
 const report = []
@@ -34,7 +34,7 @@ for (const lesson of lessons) {
       localStorage.setItem('education-tools:lesson-${lesson.id}-quiz', JSON.stringify({answers:{q1:'a',q2:'a',q3:'a',q4:'a',q5:'a'},lastScore:5}));
       if (${lesson.version} === 4) localStorage.setItem('education-tools:lesson-${lesson.id}-quiz-v3', JSON.stringify({answers:{q1:'0',q2:'0',q3:'0'},lastScore:10,bestScore:10}));
       const drafts={'retired-prompt':'Earlier saved work must survive the new lesson.'};
-      if (${lesson.version} === 4) Object.assign(drafts,{'exam-practice-v3':'Earlier codebook answer.','exam-storage-v3':'Earlier byte-count answer.'});
+      Object.assign(drafts,${JSON.stringify(lesson.retiredDrafts ?? {})});
       localStorage.setItem('education-tools:lesson-${lesson.id}-exam-practice', JSON.stringify(drafts));
     })()`)
     await s.load()
@@ -51,9 +51,8 @@ for (const lesson of lessons) {
     assert.equal(await s.ev('document.querySelectorAll("[data-question] input:checked").length'), lesson.total)
     assert.match(await s.ev('document.querySelector("[data-exam-response]").value'), /saved explanation/)
     assert.equal(await s.ev(`JSON.parse(localStorage.getItem('education-tools:lesson-${lesson.id}-exam-practice'))['retired-prompt']`), 'Earlier saved work must survive the new lesson.')
-    if (lesson.version === 4) {
-      assert.equal(await s.ev(`JSON.parse(localStorage.getItem('education-tools:lesson-${lesson.id}-exam-practice'))['exam-practice-v3']`), 'Earlier codebook answer.')
-      assert.equal(await s.ev(`JSON.parse(localStorage.getItem('education-tools:lesson-${lesson.id}-exam-practice'))['exam-storage-v3']`), 'Earlier byte-count answer.')
+    for (const [key, value] of Object.entries(lesson.retiredDrafts ?? {})) {
+      assert.equal(await s.ev(`JSON.parse(localStorage.getItem('education-tools:lesson-${lesson.id}-exam-practice'))[${JSON.stringify(key)}]`), value)
     }
     const progress = await s.ev(`JSON.parse(localStorage.getItem('education-tools:lesson-progress:v1'))[${JSON.stringify(lesson.id)}]`)
     assert.equal(progress.quizVersion, lesson.version); assert.equal(progress.correct, lesson.total)

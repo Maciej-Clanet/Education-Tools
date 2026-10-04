@@ -14,8 +14,11 @@ const run = (...args) => {
   return result.stdout.trim()
 }
 const file = name => resolve(folder, name)
-run(resolve(folder, '../storage/nas-open-photo.jpg'), '-auto-orient', '-resize', '960x640^',
-  '-gravity', 'center', '-extent', '960x640', '-strip', '-colorspace', 'sRGB', '-depth', '8',
+const artwork = JSON.parse(readFileSync(file('quality-artwork.json'), 'utf8'))
+const sourceHash = createHash('sha256').update(readFileSync(file(artwork.download.file))).digest('hex')
+if (sourceHash !== artwork.download.sha256) throw new Error('The museum source differs from the verified download; review its provenance before regenerating.')
+run(file(artwork.download.file), '-auto-orient', '-crop', '2898x1932+0+159', '+repage',
+  '-filter', 'Lanczos', '-resize', '960x640!', '-strip', '-colorspace', 'sRGB', '-depth', '8',
   '-define', 'png:color-type=2', file('photo-source.png'))
 run('-background', 'white', file('diagram.svg'), '-strip', '-colorspace', 'sRGB', '-depth', '8',
   '-define', 'png:color-type=2', file('diagram-source.png'))
@@ -39,13 +42,29 @@ for (const subject of ['photo', 'diagram']) {
     assets[subject][name] = entry(output, label)
   }
 }
+const greyscale = {}
+for (const depth of [1, 2, 4, 8]) {
+  const maximum = 2 ** depth - 1
+  const name = `quality-grey-${depth}.png`
+  run(file('photo-source.png'), '-colorspace', 'Gray', '-depth', '8', '-fx',
+    `round(u*${maximum})/${maximum}`, '-depth', '8', '-define', 'png:color-type=0', file(name))
+  greyscale[depth] = {
+    file: name, width: 960, height: 640, availableShades: 2 ** depth,
+    usedShades: Number(run('identify', '-format', '%k', file(name))),
+    bytes: statSync(file(name)).size,
+    sha256: createHash('sha256').update(readFileSync(file(name))).digest('hex'),
+  }
+}
 const manifest = {
   generatedBy: run('-version').split('\n')[0],
-  sourcePhoto: '../storage/nas-open-photo.jpg',
-  sourceSha256: createHash('sha256').update(readFileSync(resolve(folder, '../storage/nas-open-photo.jpg'))).digest('hex'),
-  sourceConversion: 'Auto-orient; Lanczos resize to fill 960x640; centred crop; sRGB; 8 bits/channel; no metadata.',
+  sourcePhoto: artwork.download.file,
+  sourceSha256: sourceHash,
+  sourceProvenance: 'quality-artwork.json',
+  sourceTitle: `${artwork.creator}, ${artwork.title}, ${artwork.artworkDate}`,
+  sourceConversion: 'Auto-orient; crop 2898x1932+0+159; Lanczos resize to 960x640; sRGB; 8 bits/channel; no metadata.',
   jpeg: { qualitySettings: { high: 90, medium: 45, low: 8 }, chromaSampling: '4:4:4', progressive: false },
-  notes: 'PNG reference preserves the resized source pixel values, not the original camera data. Encoder quality settings are not percentages of retained quality.',
+  notes: 'PNG reference preserves the prepared central excerpt of the museum reproduction, not original camera data or an uncropped archival master. Encoder quality settings are not percentages of retained quality.',
+  greyscale,
   assets,
 }
 writeFileSync(file('manifest.json'), JSON.stringify(manifest, null, 2) + '\n')

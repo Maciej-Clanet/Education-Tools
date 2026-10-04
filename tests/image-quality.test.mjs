@@ -81,7 +81,7 @@ test('static lesson has complete controls, live assets, unique IDs and fresh ass
   for (const [,anchor] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(anchor),anchor)
   for (const fixture of Object.values(imageCompressionAssets)) for (const asset of Object.values(fixture)) assert.equal(statSync(resolve(dirname(path),asset.src)).size,asset.bytes)
   assert.ok(html.includes('quality-grey-1.png') && html.includes('quality-grey-8.png'))
-  assert.ok(html.includes('CC BY 4.0') && html.includes('Korrupt'))
+  assert.ok(html.includes('CC0') && html.includes('Paris Street; Rainy Day') && html.includes('Art Institute of Chicago'))
   assert.ok(html.includes('8 × 4 = 32'))
   assert.doesNotMatch(html, /Ã—|Â·|â†/)
 })

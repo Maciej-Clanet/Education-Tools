@@ -1,6 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 import { initLessonWalkthroughs } from "../core/lesson-walkthrough.js"
 import { initPairedScenarios } from "../core/paired-scenarios.js"
+import { initBitDepthGradients } from "../core/bit-depth-gradient.js"
 import { initBitmapExplorers } from "../core/bitmap-explorer.js"
 import { bitmapScenarios } from "../data/bitmap-image-model.js"
 
@@ -27,9 +28,9 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-bitmap-image-storage-quiz-v3",
+    storageKey: "lesson-bitmap-image-storage-quiz-v4",
     passScore: 8,
-    version: 3,
+    version: 4,
   },
   examPractice: {
     storageKey: "lesson-bitmap-image-storage-exam-practice",
@@ -40,3 +41,4 @@ initLessonPage(lessonConfig)
 initLessonWalkthroughs()
 initPairedScenarios(bitmapScenarios)
 initBitmapExplorers()
+initBitDepthGradients()

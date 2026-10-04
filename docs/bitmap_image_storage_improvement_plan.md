@@ -4,6 +4,16 @@
 See [the implementation guide](bitmap_image_storage_lesson.md)
 for the delivered sequence, component contracts and verification evidence.
 
+**Classroom review correction, 4 October 2026:** the current implementation
+supersedes the encoding/decoding emphasis in the original proposal below. Row
+exercises, bitmap painting/reconstruction and the decoding written task are
+removed. Two explicit bit-depth sections, a new NASA photograph, illustrated
+vector benefits/limitations and real project comparisons strengthen explanation
+and choice. The paired zoom remains, with three size presets and no redundant
+reset. Current assessment is quiz version 4, ten questions/pass eight, plus three
+new written tasks. The implementation guide records the final 17-section,
+25-slide sequence; the following proposal is retained as design history.
+
 Rebuild `pages/topics/bitmap-image-storage.html` around the question: **How can a
 computer rebuild a picture from stored numbers?** Move one small image through
 picture, pixel grid, colour codes, stored sequence and reconstruction before

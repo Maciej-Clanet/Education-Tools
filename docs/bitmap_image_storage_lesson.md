@@ -1,113 +1,134 @@
-# Bitmap image storage lesson
+﻿# Bitmap image storage lesson
 
-Implemented 4 October 2026. The page now has 18 student sections, an opener and
-four teacher-only dividers. A second scenario and four individually presented
-written tasks bring the deck to 27 Teacher Slides. The URL, contextual navigation
-and previous/next sequence remain unchanged; `models` remains as an anchor alias.
+Refined and verified 4 October 2026 after the classroom review. The page has
+17 student sections and 25 Teacher Slides, including one opener, four dividers,
+a second representation-choice scenario and three individually presented written
+tasks. Its URL and contextual previous/next navigation remain unchanged.
 
-## Teaching decisions
+## Teaching focus
 
-The lesson follows one 8×4 arrow through position, one-bit coding, row encoding
-and reconstruction. Dimensions then reshape its unchanged 32 bits. Four-colour
-codes and a palette change introduce interpretation before the conceptual file
-diagram and pixel-data calculation. The main worked sizes are 32 bits / four
-bytes for the monochrome arrow and 64 bits / eight bytes for the two-bit model.
-Both exclude other file data.
+The lesson now teaches how bitmap storage works and why a representation suits a
+particular use. It does not ask students to encode rows, decode pixel codes,
+paint a target or reconstruct an image. Those activities and their learning goal
+were removed after review. A brief palette illustration remains to explain that
+a stored value gives each pixel a colour; no code conversion is assessed.
 
-The saved construction activity uses a fresh target. A photograph and matching
-crop connect the small model to raster images. Three shape instructions and a
-paired enlargement tool introduce vectors as a supporting comparison; bitmap
-storage remains the main C3 teaching and assessment focus. RGB, format nuance and
-full comparison notes remain in student revision disclosures. Resolution changes,
-channel depth and compression belong to the next lesson.
+The sequence is:
 
-The planned 60-minute core is a pacing assumption. The four written tasks are
-available for independent practice rather than compulsory completion in that
-session. See [the improvement plan](bitmap_image_storage_improvement_plan.md).
+1. A bitmap stores a grid of pixel values.
+2. Rows and columns locate each pixel.
+3. Each pixel needs a stored colour value.
+4. Dimensions, colour format and pixel values describe the image.
+5. A real photograph contains fine colour and tonal variation.
+6. Bit depth means bits per pixel; 2^b gives the number of possible values.
+7. A controlled gradient demonstrates tonal detail at fixed pixel positions.
+8. Dimensions and bit depth determine uncompressed pixel-data size.
+9. Vector images describe shapes rather than storing every pixel value.
+10. The same raster and vector badge enlarge side by side.
+11. Vector benefits include sharp resizing, object editing and compact simple art.
+12. Photographs, complex artwork and output-format requirements expose limitations.
+13. A museum website and route diagram show real representation choices.
+14. Paired choices apply those ideas to fresh requirements.
+15. Misconceptions, then the quiz and three written tasks.
 
-## Authoring
+The formula examples keep 8×4 positions fixed: one bit per pixel needs 32 bits
+or four bytes; two bits need 64 bits or eight bytes. These are uncompressed
+pixel-data figures, excluding file headers, palettes, padding and compression.
+Detailed image quality and compression remain in the following C3 lesson.
 
-`build-bitmap-lesson.mjs` generates the teaching HTML and the original raster/vector
-badge assets. Run `node build-bitmap-lesson.mjs` after changing its content or
-assessment arrays. It retains the existing outer page shell, replaces the main
-content and section navigation, and ensures the walkthrough stylesheet is linked.
+Vector source geometry is distinguished from the final screen pixels. A simple
+shape description can be compact, but the lesson makes no universal claim that
+vector files are smaller. Original logo/editing/map visuals support the benefits
+and use cases rather than relying only on lists.
 
-- `javascript/data/bitmap-image-model.js` contains inspectable fixtures,
-  encode/decode and reshaping functions, saved-work normalisation and scenarios.
-- `javascript/core/bitmap-explorer.js` enhances authored grids and controls.
-- `javascript/pages/bitmap-image-storage.js` initializes the shared shell,
-  walkthroughs, paired scenarios and bitmap tools explicitly.
-- `css/pages/bitmap-image-storage.css` contains page composition and responsive
-  teaching layouts. Tools reuse the shared runtime and styles; the common exam
-  saver also preserves retired draft IDs during this three-lesson rebuild.
+## Authoring and components
 
-## Tools and persistence
+`build-bitmap-lesson.mjs` is the authoritative static content generator. Run
+`node build-bitmap-lesson.mjs` after changing its lesson or assessment content.
+The generator also reproduces the original raster/vector badge pair. It has no
+dependency on ignored `.raid-checks` snippets: the gradient markup is authored in
+the generator and both static SVG ramps are generated with `quantiseShade` from
+`javascript/data/image-quality-model.js`.
 
-The locator, one-bit toggle, row walkthroughs, dimension switch and palette
-demonstration start in authored temporary states. Native Previous/Next/Restart
-controls operate the three walkthroughs. There is no automatic playback.
+- `javascript/data/bitmap-image-model.js` retains the small image/palette
+  fixtures, exact pixel-data calculation and paired-scenario definitions. Removed
+  encoding, decoding, painting and saved-artwork helpers are no longer shipped.
+- `javascript/core/bitmap-explorer.js` provides only the pixel-position selector
+  and the three display-enlargement presets. Both start in temporary default
+  states. The locator starts at row 2, column 5; the comparator starts at ×8.
+- `javascript/core/bit-depth-gradient.js` and `css/bit-depth-gradient.css` provide
+  the shared gradient component. It starts at two bits per pixel and offers
+  one, two, four and eight bits: 2, 4, 16 and 256 available grey values.
+- The gradient always has the same 256 horizontal positions and display width.
+  Its eight-bit reference stays unchanged; each selected ramp is independently
+  quantised from that reference. There is no persistence, animation or redundant
+  reset button.
+- The vector comparator has ×4, ×8 and ×12 buttons. The redundant Reset to ×8
+  control was removed. The source remains 24×24 raster samples or three vector
+  objects; only the display size changes.
+- `javascript/pages/bitmap-image-storage.js` initializes the shared lesson shell,
+  the single vector-construction walkthrough, paired scenarios, bitmap controls
+  and bit-depth gradient explicitly.
 
-The practice grid uses `lesson-image-storage-bitmap-builder-v3`. It saves only
-the 32 bounded palette indices. Palette selection remains temporary. The target,
-Check action, outlines and textual first-mismatch feedback are independent of the
-worked arrow. Grid buttons retain focus during edits and support arrow-key
-movement. Clear my grid affects only this practice grid. Earlier 5×5 work under
-`lesson-image-storage-bitmap-builder` remains untouched.
+Page composition belongs to `css/pages/bitmap-image-storage.css`. The shared
+lesson shell is unchanged. With JavaScript disabled, the pixel illustrations,
+completed shape sequence, default comparison, gradient strips and written
+answer guidance remain available. Dynamic controls require JavaScript.
 
-The comparator displays the same badge as 24×24 raster samples and three vector
-objects. It starts at a readable ×8; ×4, ×8, ×12 and reset change only display
-size. The raster uses nearest-neighbour enlargement. The original project SVG
-and PNG are generated from the same square/circle/line geometry; the PNG samples
-pixel centres without antialiasing. The white canvas is not counted as an object.
-The old vector-tool storage key is neither read nor erased.
+Old anchors including `encode-rows`, `decode-rows`, `bitmap-builder`, `one-bit`,
+`colour-data` and `palette` now point to the short stored-value illustration.
+`dimensions` points to the file-information section and `models` to vectors.
+They do not create obsolete exercises or extra teaching slides.
 
-Without JavaScript, the grids, colour keys, every walkthrough stage, byte groups,
-paired image examples and answer guidance remain readable. Interactive controls
-and quiz scoring require JavaScript. Revision disclosures include target row
-codes; editable controls do not replace the static teaching examples.
+## Photograph and assets
 
-## Assessment
+The bitmap photograph is now NASA's Bruce McCandless spacewalk photograph,
+credited to Robert L. “Hoot” Gibson / NASA. Visible source and NASA usage links
+accompany its resized/cropped presentation. The lesson uses
+`assets/images/image-representation/bitmap-photo.jpg` at 960×640.
 
-Quiz version 3 contains ten questions with pass score eight. Its answer key is
-`lesson-bitmap-image-storage-quiz-v3`; the same key must be recorded explicitly in
-Unit 2 progress metadata so its fallback never treats the old answers as current.
+`bitmap-photo.json` records source, rights, hashes, crop/resize settings and the
+matched 60×40 teaching crop at x636, y176. Both views use the same local image.
+`build-bitmap-photo.mjs` reproduces the derivative; the source, modification and
+reuse record is in the folder's `CREDITS.md`. Existing NASA image details are
+linked through the [official source](https://www.nasa.gov/history/photos-from-sts-41b/)
+and [usage guidance](https://www.nasa.gov/nasa-brand-center/images-and-media/).
+The NAS photograph and compression fixtures in the other image lesson remain
+unchanged.
 
-The exam store remains `lesson-bitmap-image-storage-exam-practice`; new response
-IDs are `decode-v3`, `interpretation-v3`, `allocation-v3` and `representation-v3`.
-Earlier saved responses remain untouched. One task decodes a 4×4 two-bit image,
-one explains interpretation, one calculates 24 bytes from 12×8×2 bits, and one
-recommends representations for a museum photograph and logo.
+## Assessment and saved work
 
-## Evidence and verification
+Quiz version 4 contains ten questions with pass score eight. Its fresh answer key
+is `lesson-bitmap-image-storage-quiz-v4` in both lesson configuration and unit
+progress metadata. Questions assess bitmap structure, dimensions, bit depth,
+possible values, storage, vector benefits and appropriate choices. No question
+requires encoding or decoding a pixel sequence.
 
-PNG row packing and sample/index terminology were checked against the
-[W3C PNG specification](https://www.w3.org/TR/png-3/). The
-[W3C SVG specification](https://www.w3.org/TR/SVG2/) supports the qualified
-vector/raster distinction. The photograph's author, licence and crop attribution
-appear on the page and in
-[the image credits](../assets/images/image-representation/CREDITS.md).
+The exam store remains `lesson-bitmap-image-storage-exam-practice`. Current
+response IDs are `explanation-v4`, `allocation-v4` and `representation-v4`.
+The prompts ask for a storage/depth explanation, a 12×8×2-bit calculation and a
+justified photograph/logo choice with limitations. Old question responses and
+all earlier quiz keys remain untouched.
 
-`node --test tests/bitmap-image.test.mjs` passes five meaningful model tests:
-worked encode/decode round trips, fixed-bit reshaping, four-colour fixtures,
-invalid-code rejection and bounded saved artwork with mismatch reporting.
-Changed JavaScript passes `node --check`; regeneration produces the expected
-18 sections, ten questions and four response IDs.
+The removed artwork activity's unversioned and v3 saves also remain untouched.
+No current bitmap control reads, modifies or clears those old keys.
 
-Browser acceptance passes using the isolated server on port 8765 and debugging
-browser on port 9229:
+## Verification
 
-- `$env:REP_LESSONS='bitmap-image-storage'; node tests/representation-lessons.browser.mjs` (PowerShell):
-  all 27 slides at 1366×768 and 1366×900, student layouts at 390px and 320px,
-  ten-question scoring and persistence, saved drafts, old-answer isolation,
-  static fallback, assets, IDs and navigation.
-- `node tests/bitmap-image.browser.mjs`: the final encoding explanation open,
-  final decoding stage, temporary resets, palette colours, arrow-key focus,
-  practice/error feedback, old-artwork isolation and scenario feedback. These
-  expanded states fit 1366×768 with OS reduced motion enabled.
+`node --test tests/bitmap-image.test.mjs` passes four tests covering fixture
+interpretation, worked storage figures, invalid sizes and scenario reasoning.
+Changed JavaScript passes syntax checks, and the static generator rebuilds the
+17-section page and its assets successfully.
 
-Reviewed screenshots are saved under `.raid-checks/representation/`. The first
-written task places its code matrix beside its response field; compact spacing
-and inline walkthrough controls keep large teaching figures readable without
-clipping. The photo crop contains 60×40 source pixels and matches its marked
-region in the full photograph. Answer guidance remains an expandable reading
-surface, and the long quiz retains normal assessment scrolling.
+`node tests/bitmap-image.browser.mjs` passes focused browser checks for the
+removed activities, pixel selection, every gradient preset and exact shade count,
+unchanged reference/positions, native Enter handling, temporary gradient reset,
+final vector step, all zoom presets, visual sections, scenario feedback and
+untouched old artwork. Expanded states fit 1366×768 with reduced motion enabled.
+
+The generic `representation-lessons.browser.mjs` bitmap pass also covers all
+25 slides at 1366×768 and 1366×900, 390px/320px student layouts, current quiz and
+written drafts, old-save isolation, assets, anchors and no-JavaScript reading.
+The root review confirmed those checks and inspected the new photo, bit-depth,
+gradient, vector and context slides. Screenshots are in
+`.raid-checks/representation/`.
