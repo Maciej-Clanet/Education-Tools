@@ -261,12 +261,13 @@ try {
     const p=JSON.parse(localStorage.getItem(${JSON.stringify(keys.progress)})||'{}');delete p['stacks-and-queues'];delete p['arrays-lists-and-data-types'];
     localStorage.setItem(${JSON.stringify(keys.progress)},JSON.stringify(p));
     localStorage.removeItem('education-tools:lesson-arrays-lists-and-data-types-quiz');
+    localStorage.removeItem('education-tools:lesson-arrays-lists-and-data-types-quiz-v2');
   })()`)
   await s.load('/pages/units/btec-level-3-unit-2.html','document.querySelector("[data-topic-progress=D1]").textContent.includes("correct")')
-  assert.match(await s.text('[data-topic-progress=D1]'),/10\/15 correct/,'Hub reads new raw quiz answers after aggregate removal')
+  assert.match(await s.text('[data-topic-progress=D1]'),/10\/20 correct/,'Hub reads new raw quiz answers after aggregate removal')
   await s.ev(`localStorage.removeItem(${JSON.stringify(keys.quiz)})`)
   await s.load('/pages/units/btec-level-3-unit-2.html','document.querySelector("[data-topic-progress=D1]").textContent.includes("correct")')
-  assert.match(await s.text('[data-topic-progress=D1]'),/0\/15 correct/,'Old raw v1 answers are not treated as current')
+  assert.match(await s.text('[data-topic-progress=D1]'),/0\/20 correct/,'Old raw v1 answers are not treated as current')
   await checkLegacy()
   console.log('PASS static fallback, mobile states, assets, unique IDs, valid anchors, temporary explorer state and D1 migration.')
 } finally {

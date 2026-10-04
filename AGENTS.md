@@ -115,6 +115,11 @@ Before making major UI, content, or structure changes, read:
   the page; `docs/stacks_and_queues_lesson.md` records the component contracts.
   Reusable operation behaviour lives in `javascript/core/structure-explorer.js`
   with pure models in `javascript/data/structure-model.js`.
+- Arrays, lists and data types continues D1 without a recap. Its source is
+  `build-arrays-lists-lesson.mjs`; `docs/arrays_lists_lesson.md` records the
+  teaching sequence and qualified array/list definitions. An indexed array
+  explorer and shared walkthroughs compare fixed arrays, array-backed lists
+  and linked nodes. Preserve the distinction between a list and its storage.
 - `javascript/core/simulated-terminal.js` provides deterministic whitelist-only
   teaching terminals; `javascript/core/paired-scenarios.js` supports interface
   and reason activities. See `docs/user_interfaces_lesson.md`.

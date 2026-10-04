@@ -1405,7 +1405,7 @@ export const catalogItems = [
     kicker: "D1 Data structures",
     title: "Arrays, lists, and data types",
     summary:
-      "A live revision lesson on arrays, lists, indexed access, linked structures, and why their storage model matters in software and hardware.",
+      "Learn indexed arrays, data types and records, then compare growing array-backed lists with linked nodes through interactive examples and practical software uses.",
     badges: ["Subject area: Data organisation"],
     keywords: [
       "arrays",

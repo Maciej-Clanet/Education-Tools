@@ -389,7 +389,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "arrays-lists-and-data-types",
           title: "Arrays, lists, and data types",
           href: "../topics/arrays-lists-and-data-types.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 2, totalQuestions: 10, passScore: 8, storageKey: "lesson-arrays-lists-and-data-types-quiz-v2" },
         },
       ],
     },

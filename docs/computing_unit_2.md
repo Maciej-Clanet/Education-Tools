@@ -274,7 +274,16 @@ being counted against new questions; earlier written drafts remain stored.
     pass 8; three saved written tasks. Earlier quiz, drafts and tool saves are
     retained. See [the lesson notes](stacks_and_queues_lesson.md) and
     [the teaching plan](stacks_and_queues_improvement_plan.md).
-- [ ] Arrays, lists, and data types
+- [x] Arrays, lists, and data types
+  - Rebuilt for first teaching on 4 October 2026 as a direct continuation of
+    Stacks and queues, without a recap. An editable monitoring dashboard teaches
+    indexing and updates; visual sequences show list growth, linked traversal
+    and insertion. Explicitly distinguishes fixed arrays, array-backed lists and
+    linked lists, with data types and records as a separate concern. Practical
+    examples connect choices to monitoring, file search and playlist editing.
+    18 student sections / 21 Teacher Slides. Quiz version 2: 10 questions,
+    pass 8; three saved written tasks. Earlier quiz and drafts are retained.
+    See [the teaching and implementation notes](arrays_lists_lesson.md).
 
 ### D2 Indices and matrices
 - [ ] Matrices and arrays
