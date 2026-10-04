@@ -407,7 +407,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "multi-dimensional-arrays-and-memory-order",
           title: "Multi-dimensional arrays and memory order",
           href: "../topics/multi-dimensional-arrays-and-memory-order.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 2, totalQuestions: 5, passScore: 4, storageKey: "lesson-multi-dimensional-arrays-and-memory-order-quiz-v2" },
         },
       ],
     },

@@ -23,7 +23,8 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-multi-dimensional-arrays-and-memory-order-quiz",
+    storageKey: "lesson-multi-dimensional-arrays-and-memory-order-quiz-v2",
+    version: 2,
     passScore: 4,
   },
   examPractice: {
@@ -74,12 +75,6 @@ function formatCoordinate(rowIndex, columnIndex) {
   return `[${rowIndex}][${columnIndex}]`
 }
 
-function getOrderSummary(order) {
-  return order === "column-major"
-    ? "one full column before moving to the next column"
-    : "one full row before moving to the next row"
-}
-
 function initMemoryOrderVisualiser() {
   const visualiser = document.querySelector("[data-memory-order-visualiser]")
   const card = visualiser?.closest(".memory-order-visual-card")
@@ -117,7 +112,7 @@ function initMemoryOrderVisualiser() {
 
   let state = {
     order: "row-major",
-    step: totalSlots,
+    step: 0,
   }
 
   function renderGrid(sequence) {
@@ -153,6 +148,7 @@ function initMemoryOrderVisualiser() {
           "memory-order-grid__step",
           String(stepIndex + 1)
         )
+        stepBadge.setAttribute("aria-label", `Storage slot ${stepIndex + 1}`)
 
         if (stepIndex < state.step) {
           cell.classList.add("is-stored")
@@ -183,14 +179,14 @@ function initMemoryOrderVisualiser() {
       const value = createElement(
         "strong",
         "memory-order-slot__value",
-        index < state.step ? String(item.value) : "Pending"
+        index < state.step ? String(item.value) : "—"
       )
       const meta = createElement(
         "span",
         "memory-order-slot__meta",
         index < state.step
           ? formatCoordinate(item.rowIndex, item.columnIndex)
-          : "Waiting for this step"
+          : "Waiting"
       )
 
       if (index < state.step) {
@@ -213,10 +209,10 @@ function initMemoryOrderVisualiser() {
       const first = sequence[0]
       status.textContent = `${
         state.order === "column-major" ? "Column-major" : "Row-major"
-      } order will start with ${first.value} at ${formatCoordinate(
+      } starts with ${first.value} at ${formatCoordinate(
         first.rowIndex,
         first.columnIndex
-      )}. Move the slider to see memory fill up.`
+      )}. Use Next step or the slider.`
       return
     }
 
@@ -226,9 +222,7 @@ function initMemoryOrderVisualiser() {
     status.textContent = `Step ${state.step} of ${totalSlots}: ${current.value} from ${formatCoordinate(
       current.rowIndex,
       current.columnIndex
-    )} is now in memory slot ${slotNumber} because ${state.order} order stores ${getOrderSummary(
-      state.order
-    )}.`
+    )} is now in memory slot ${slotNumber}.`
   }
 
   function render() {
@@ -242,17 +236,23 @@ function initMemoryOrderVisualiser() {
 
     stepInput.max = String(totalSlots)
     stepInput.value = String(state.step)
+    stepInput.setAttribute("aria-valuetext", `${state.step} of ${totalSlots} slots filled, ${state.order} order`)
     stepOutput.textContent =
       state.step === totalSlots
         ? `Full order shown (${totalSlots}/${totalSlots})`
         : `Step ${state.step} of ${totalSlots}`
-    sequenceSummary.textContent = `Sequence: ${sequence
+    sequenceSummary.textContent = `Full ${state.order} sequence: ${sequence
       .map((item) => item.value)
       .join(", ")}.`
 
     renderGrid(sequence)
     renderMemory(sequence)
     renderStatus(sequence)
+    card.querySelectorAll("[data-memory-step]").forEach((button) => {
+      const atBoundary = button.dataset.memoryStep === "next"
+        ? state.step === totalSlots : state.step === 0
+      button.setAttribute("aria-disabled", String(atBoundary))
+    })
   }
 
   modeButtons.forEach((button) => {
@@ -281,6 +281,16 @@ function initMemoryOrderVisualiser() {
     render()
   })
 
+  card.querySelectorAll("[data-memory-step]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const action = button.dataset.memoryStep
+      const requested = action === "reset" ? 0 : state.step + (action === "next" ? 1 : -1)
+      state = { ...state, step: Math.max(0, Math.min(totalSlots, requested)) }
+      render()
+    })
+  })
+  card.dataset.memoryOrderReady = "true"
+  card.querySelectorAll("[data-memory-order-controls]").forEach(controls => { controls.hidden = false })
   render()
 }
 
