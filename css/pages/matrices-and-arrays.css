@@ -1,0 +1,93 @@
+.matrices-lesson {
+  --ma-line: rgba(37, 52, 66, .2);
+  --ma-soft: #edf5f4;
+}
+
+.matrices-lesson .ma-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+  align-items: center;
+  margin-block: 1rem;
+}
+
+.ma-pair > *, .ma-operation-grid > * { min-width: 0; }
+.ma-table-wrap { overflow-x: auto; }
+.ma-table { border-collapse: separate; border-spacing: 0; width: 100%; text-align: center; }
+.ma-table caption { font-weight: 700; margin-bottom: .7rem; text-align: left; }
+.ma-table th, .ma-table td { padding: .8rem .5rem; border-bottom: 1px solid var(--ma-line); }
+.ma-table th { font-size: .85em; color: var(--teal-deep); background: var(--ma-soft); }
+.ma-table td { font-weight: 700; }
+.ma-note { padding: .75rem 1rem; border-left: 4px solid var(--teal-deep); background: var(--ma-soft); border-radius: 0 10px 10px 0; }
+.ma-big-rule { font-size: 1.3em; font-weight: 800; color: var(--teal-deep); }
+.ma-operation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-block: 1rem; }
+.ma-operation-grid .lesson-card { margin: 0; }
+.ma-operation-symbol { display: block; font-size: 1.65em; font-weight: 800; color: var(--teal-deep); margin-bottom: .8rem; }
+.ma-dimension-rule { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; padding: 1.2rem 0; }
+.ma-dimension-rule > div { display: grid; gap: .5rem; text-align: center; }
+.ma-dimension-rule > div > span { font-size: .8em; font-weight: 700; }
+.ma-dimension-rule strong { display: flex; align-items: center; gap: .4rem; font-size: 1.65em; }
+.ma-dimension-rule b { padding: .25rem .5rem; border-radius: 7px; }
+.ma-inner { background: #fae9db; border-bottom: 3px solid #8a481d; }
+.ma-outer { background: #e4f0f8; border: 2px solid #2e6784; }
+.ma-rule-pair { align-items: start !important; }
+.ma-rule-pair p { margin: 0; }
+.matrices-lesson .ma-row, .ma-row-tag { background: #fae9db; border-color: #8a481d; color: #673717; }
+.matrices-lesson .ma-column, .ma-column-tag { background: #e4f0f8; border-color: #2e6784; color: #21516c; }
+.matrices-lesson .ma-target { background: #e8f2df; color: #2d531e; box-shadow: inset 0 0 0 3px #527d3c; }
+.matrices-lesson .ma-pair-active { outline: 3px solid currentColor; outline-offset: 2px; }
+.ma-row-tag, .ma-column-tag { display: inline-block; padding: .2rem .55rem; border: 1px solid; border-radius: 6px; }
+.ma-calculation { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .4rem .6rem; min-height: 3.2rem; padding: .6rem; background: var(--ma-soft); border-radius: 10px; font-size: 1.1em; }
+.ma-calculation strong { color: var(--teal-deep); }
+.ma-step-copy { margin-bottom: 0; }
+.ma-step-title { font-size: 1.1em; }
+.ma-walkthrough[data-walkthrough-ready] .ma-step-title { display: none; }
+.ma-walkthrough [data-walkthrough-controls] { margin-block: .6rem; gap: .5rem; }
+.ma-walkthrough [data-walkthrough-status] { font-size: .92em; }
+.ma-walkthrough [data-walkthrough-step] { margin-bottom: 1rem; }
+.ma-walkthrough[data-walkthrough-ready] [data-walkthrough-step] { margin-bottom: 0; }
+.ma-walkthrough [data-matrix-play][aria-pressed="true"] { background: var(--teal-deep); color: #fff; }
+.ma-revision { margin-block: 1rem; }
+.ma-revision summary { cursor: pointer; font-weight: 700; min-height: 44px; padding-block: .5rem; }
+.matrices-lesson .exam-grid { grid-template-columns: minmax(0, 1fr); }
+.matrices-lesson .matrix-answer-cell { width: 3.2rem; }
+.matrices-lesson .matrix-practice-card, .matrices-lesson .matrix-practice-workspace { gap: .6rem; }
+.matrices-lesson .matrix-practice-equation { margin-block: .6rem; }
+
+body.teacher-mode-active.matrices-lesson .ma-walkthrough { margin-block: .5rem; }
+body.teacher-mode-active.matrices-lesson .ma-walkthrough .matrix-equation { margin-block: .65rem; }
+body.teacher-mode-active.matrices-lesson .ma-walkthrough .matrix-display__label { font-size: .7em; }
+body.teacher-mode-active.matrices-lesson .ma-walkthrough .ma-step-copy { font-size: .9em; min-height: 2.8em; }
+body.teacher-mode-active.matrices-lesson .ma-compact { font-size: .88em; }
+body.teacher-mode-active.matrices-lesson .ma-revision { display: none; }
+body.teacher-mode-active.matrices-lesson .matrix-practice-card > div:first-child > p { display: none; }
+body.teacher-mode-active.matrices-lesson .matrix-practice-card { padding: .8rem 1rem; }
+body.teacher-mode-active.matrices-lesson .matrix-answer-cell { width: var(--teacher-slide-matrix-cell-size, 3.2rem); }
+body.teacher-mode-active.matrices-lesson .matrix-practice-workspace > .matrix-practice-copy:nth-child(2),
+body.teacher-mode-active.matrices-lesson #multiplication-practice > p:not(.eyebrow),
+body.teacher-mode-active.matrices-lesson #multiplication-practice .matrix-practice-card > div:first-child { display: none; }
+
+@media (max-width: 700px) {
+  .matrices-lesson .ma-pair, .ma-operation-grid { grid-template-columns: minmax(0, 1fr); }
+  .ma-dimension-rule { gap: .5rem; }
+  .ma-dimension-rule strong { font-size: 1.15em; gap: .15rem; }
+  .ma-dimension-rule b { padding: .2rem; }
+  .ma-dimension-rule > div > span { font-size: .7em; }
+  .ma-table th, .ma-table td { padding: .7rem .25rem; }
+  .ma-calculation { font-size: 1em; }
+  .matrices-lesson .matrix-display__body { padding: .4rem .65rem; }
+  .matrices-lesson .matrix-grid { gap: .35rem; }
+  .matrices-lesson .matrix-practice-card { padding: .8rem; }
+  .matrices-lesson .matrix-practice-equation { flex-direction: column; }
+  .ma-walkthrough .matrix-equation { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: .5rem; }
+  .ma-walkthrough .matrix-equation > :nth-child(4) { grid-column: 1 / -1; text-align: center; }
+  .ma-walkthrough .matrix-equation > :last-child { grid-column: 1 / -1; }
+  .ma-walkthrough .matrix-grid { grid-template-columns: repeat(2, 2.5rem); gap: .25rem; }
+  .ma-walkthrough .matrix-grid__cell { min-width: 2.5rem; min-height: 2.5rem; padding: .3rem; }
+  .ma-walkthrough .matrix-display__label { font-size: .7rem; }
+}
+
+@media print {
+  .ma-walkthrough[data-walkthrough-ready] .ma-step-title { display: block; }
+  .ma-walkthrough [data-walkthrough-step] { break-inside: avoid; margin-bottom: 1rem !important; }
+}

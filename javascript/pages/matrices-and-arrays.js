@@ -1,5 +1,6 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 import { readStorage, writeStorage } from "../core/storage.js"
+import { initLessonWalkthroughs } from "../core/lesson-walkthrough.js"
 
 const lessonConfig = {
   lessonId: "matrices-and-arrays",
@@ -648,5 +649,58 @@ function initOperationPractice() {
   saveState()
 }
 
+// Optional playback uses the shared walkthrough's authored, printable states.
+// Manual navigation always pauses; teaching steps remain available with reduced motion.
+function initMatrixPlayback() {
+  const host = document.querySelector("[data-matrix-playback]")
+  if (!host) return
+  const play = host.querySelector("[data-matrix-play]")
+  const next = host.querySelector("[data-walkthrough-next]")
+  const reset = host.querySelector("[data-walkthrough-reset]")
+  const section = host.closest("[data-lesson-section]")
+  let timer = null
+  let advancing = false
+
+  function pause() {
+    clearInterval(timer)
+    timer = null
+    play.textContent = "Play steps"
+    play.setAttribute("aria-pressed", "false")
+  }
+
+  function visible() {
+    const rect = host.getBoundingClientRect()
+    return !document.hidden && rect.width > 0 && rect.height > 0 &&
+      rect.bottom > 0 && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth
+  }
+
+  play.addEventListener("click", () => {
+    if (timer !== null) { pause(); return }
+    if (!visible()) return
+    if (next.getAttribute("aria-disabled") === "true") reset.click()
+    play.textContent = "Pause steps"
+    play.setAttribute("aria-pressed", "true")
+    timer = setInterval(() => {
+      if (!visible()) { pause(); return }
+      advancing = true
+      next.click()
+      advancing = false
+      if (next.getAttribute("aria-disabled") === "true") pause()
+    }, 3500)
+  })
+  host.querySelectorAll("[data-walkthrough-prev], [data-walkthrough-next], [data-walkthrough-reset]")
+    .forEach(button => button.addEventListener("click", () => { if (!advancing) pause() }))
+  new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) pause()
+  }).observe(host)
+  new MutationObserver(() => { if (!visible()) pause() })
+    .observe(section, { attributes: true, attributeFilter: ["class", "hidden", "style"] })
+  document.addEventListener("visibilitychange", () => { if (document.hidden) pause() })
+  window.addEventListener("pagehide", pause)
+  window.addEventListener("hashchange", () => { if (!visible()) pause() })
+}
+
 initLessonPage(lessonConfig)
 initOperationPractice()
+initLessonWalkthroughs()
+initMatrixPlayback()
