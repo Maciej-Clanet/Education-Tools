@@ -1,5 +1,5 @@
 // Use an isolated profile: this test replaces storage on its local test origin.
-// Local setup and results: docs/text_and_image_representation_improvement_plan.md.
+// Local setup: docs/testing.md.
 import assert from 'node:assert/strict'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { createBrowserSession } from './helpers/browser-session.mjs'

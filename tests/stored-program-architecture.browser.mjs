@@ -1,4 +1,4 @@
-// Isolated local origin/profile; setup is documented in docs/stored_program_lesson.md.
+// Isolated local origin/profile; setup is documented in docs/testing.md.
 import assert from 'node:assert/strict';
 import { createBrowserSession } from './helpers/browser-session.mjs';
 process.env.FLEXBOX_TEST_ORIGIN ||= 'http://127.0.0.1:8765';

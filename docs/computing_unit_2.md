@@ -1,317 +1,36 @@
-# Source
-PEARSON BTEC LEVEL 3 NATIONAL EXTENDED DIPLOMA IN COMPUTING
-First teaching from September 2016
-First certification from 2018
-Issue 8
-https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/computing/2016/specification-and-sample-assessments/btec-nat-l3-ext-dip-in-computing-spec.pdf
+# Computing Unit 2 scope reference
 
-Pearson revision book
-in docs/Unit 2 - Fundamentals of computing revision book-1.pdf
+Read only the relevant content area when planning or checking Unit 2 coverage.
+This is the qualification scope, not a lesson-completion or improvement tracker.
+Current lesson coverage belongs in `docs/lessons/`; page availability and teaching
+order are in the unit hub and `javascript/data/course-catalog.js`.
 
-# Unit in brief
-Learners study the fundamental principles of how computer systems work, including the role of
-hardware and software, the way components of a system work together and how data in a system
-is used.
+Source: Pearson BTEC Level 3 National Extended Diploma in Computing, first teaching
+2016, Issue 8 — [specification](https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/computing/2016/specification-and-sample-assessments/btec-nat-l3-ext-dip-in-computing-spec.pdf).
+The essential-content extract below is retained from the existing project source;
+this documentation refactor does not revalidate the qualification's current terms.
+The local supporting revision book is `docs/Unit 2 - Fundamentals of Computing Revision Book-1.pdf`.
 
-# Unit introduction
-Knowing how and why computer components, and the data they use, perform in certain ways
-has a significant impact on the work of all computing professionals. In technical support roles,
-understanding how different parts of a system integrate facilitates accurate identification of
-problems and efficient solutions. Professional programmers use their understanding of the way
-the computer operates to develop more efficient software solutions.
-In this unit, you will explore the relationship between hardware and software as part of a computer
-system. You will examine the way computer components work both individually and together to
-store and process data, and the way in which data is transmitted and used in computer systems.
-You will explore the impact that computing systems have on organisations and individuals.
-In this unit, you will apply the fundamental principles of computers to all areas of computing.
-This is essential for progression to a computing-related higher education course or for entry to
-the workplace as a computing professional.
+## Assessment context
 
-# Summary of assessment
-This unit is assessed through a written examination set and marked by Pearson.
-The examination is one hour and 45 minutes in length. During the supervised assessment period,
-learners will be assessed on their knowledge and understanding of how computer systems work,
-including the role of hardware and software, the way components of a system work together and
-how data in a system is used.
-The number of marks for the unit is 80.
-The assessment availability is twice a year in January and May/June. The first assessment
-availability is May/June 2017.
+Unit 2 concerns the relationships between hardware/software, computer architecture,
+representation/organisation/transmission of data, and logic/data flow. The source
+specification describes a written examination of 80 marks over 1 hour 45 minutes.
 
-# Assessment outcomes
-**AO1** Demonstrate knowledge and understanding of computing facts, terms, standards, concepts
-and processes
-Command words: complete, draw, give, identify, name, state
-Marks: ranges from 1 to 5 marks
+- AO1: knowledge and understanding of computing facts, terms, standards, concepts
+  and processes.
+- AO2: apply that knowledge to real-life scenarios.
+- AO3: select/use technologies and procedures to explore outcomes and solve
+  problems in context.
+- AO4: analyse/evaluate information, technologies and procedures to recommend
+  and justify solutions.
+- AO5: connect technologies, procedures, outcomes and solutions to resolve problems.
 
-**AO2** Apply knowledge and understanding of computing facts, terms, standards, concepts and
-processes to real-life scenarios
-Command words: calculate, complete, demonstrate, describe, draw, explain, produce
-Marks: ranges from 1 to 5 marks
+Use the actual question and mark scheme for answer requirements; avoid universal
+command-word or paragraph formulas. [Exam-technique guidance](exam_technique.md)
+records a worked evaluation pattern and the relevant sample-assessment source.
 
-**AO3** Select and use computing technologies and procedures to explore likely outcomes and find
-solutions to problems in context
-Command words: calculate, demonstrate, develop, explain, produce
-Marks: ranges from 1 to 6 marks
-
-**AO4** Analyse and evaluate data, information, technologies and procedures in order to recommend
-and justify solutions to computing problems
-Command words: analyse, demonstrate, discuss, produce, write
-Marks: ranges from 6 to 12 marks
-
-**AO5** Make connections between the application of technologies, procedures, outcomes and
-solutions to resolve computing problems
-Command words: evaluate, produce, write
-Marks: ranges from 6 to 12 marks
-
-# Planned lesson pages and progress
-Each item below is intended to become a specific lesson page. Tick lessons off
-here as they are completed.
-
-All the initial versions of the lessons have been added, the below checklist is now for ticking off lessons that have been manually looked over and improved.
-
-# Unit 2 quiz progress data
-Unit 2 quiz aggregation for the unit hub is configured in
-`javascript/data/unit-progress-data.js`. When adding a Unit 2 lesson or changing
-a lesson quiz, update that file as well as the unit page and homepage catalogue.
-
-Each lesson entry should keep its lesson `id`, title, unit-context `href`, quiz
-`totalQuestions`, quiz `passScore`, and quiz `version` accurate. The lesson's
-own `lessonConfig.quiz` metadata should use the same quiz ID and version so new
-attempts write progress that the unit hub treats as current. Progress is shared
-across units for the same lesson quiz by default, so only use a different quiz ID
-if a reused lesson needs a different quiz in another unit.
-
-Bump the quiz `version` when questions or correct answers change enough that old
-saved progress should be shown as needing a fresh attempt.
-
-## A Hardware and software
-
-### A1 Computer hardware in a computer system
-- [x] Computer system types and internal components
-  - Expanded for first teaching: 20 slides, local device/component SVGs, six
-    scenario matches and a 10-question quiz (version 2, pass score 7).
-    Detailed hardware performance and compatibility remain in later lessons.
-- [x] Input, output, and storage devices
-  - Expanded for first teaching: 29 slides, device illustrations, labelled HDD
-    diagrams, fragmentation sequences and five storage-choice activities.
-    Quiz version 2 has 12 questions with a pass score of 9.
-- [x] Hardware performance and component choice
-  - Rebuilt as 53 first-teaching slides on one page, with a Part 2 divider,
-    teacher-only demonstration prompts, fictional specification cards and
-    a persisted office/design system builder with budget/compatibility checks.
-    Quiz version 2: 16 questions, pass score 12.
-- [x] RAID and NAS storage systems
-  - Second teaching pass: 42 student sections / 49 Teacher Slides, with a shared
-    opener and six dividers. Visual problem/solution sequence, RAID preview,
-    parallel-read animation, parity/rebuild stages, separate RAID use cases and
-    credited NAS photograph. Formulas stay in student revision details. Six fresh
-    decision scenarios; quiz version 3: 14 questions, pass 10; four written tasks.
-    See `docs/raid_nas_lesson.md` and `docs/raid_nas_improvement_plan.md`.
-
-### A2 Computer software in a computer system
-- [x] Operating system types
-  - Reworked into 21 first-teaching slides: definitions and examples before
-    the users/tasks versus timing map, modern overlap and exam classification.
-    Eight paired scenario/clue activities; quiz version 2, 12 questions, pass 9.
-- [x] Kernel functions and system management
-  - 35 teaching sections with a reusable stepped Kernel Visualiser, clarified processor privilege modes, one interrupt sequence, and nine teacher-only dividers (44 teacher slides). Multi-answer scenarios and five written tasks. Quiz version 2: 16 questions, pass 12. See `docs/kernel_functions_lesson.md`.
-- [x] User interfaces
-  - Refocused into 31 teaching sections with a static PowerShell introduction and
-    five progressively introduced simulated terminals,
-    professional CLI examples, six paired scenarios and five teacher-only
-    dividers. Quiz version 2: 12 questions, pass 9. Generic software selection
-    merged into the next lesson. See `docs/user_interfaces_lesson.md`.
-- [x] Utility, application, and open source software
-  - Rebuilt as 34 first-teaching sections with a purpose/licence matrix, utility
-    process visuals, paired classification and a conditional software-choice
-    activity. Five teacher-only dividers. Quiz version 2: 14 questions, pass 10.
-    See `docs/software_lesson.md`.
-
-### A3 Data processing
-- [x] Collecting and processing data
-  - Redesigned as 34 student sections / 46 Teacher Slides, with a canteen decision
-    opener, illustrated collection routes, separate raw-data teaching, four-part
-    validation sequence and editable four-rule booking lab. Animated whole-record
-    sorting, visible conversions, aggregation diagrams, analysis/reporting contrast,
-    simultaneous raw/chart views and a seven-step weather journey. Shared opener,
-    four dividers, six paired transformations and three misconception pairs.
-    Quiz remains version 2: 14 questions, pass 10; five applied written tasks.
-    See `docs/data_processing_lesson.md`.
-- [x] Data across multiple systems
-  - Classroom-flow pass: 27 student sections / 37 Teacher Slides. A furniture
-    business establishes separate copies, their occasional benefits, a missed
-    delivery update and the proposed shared-record upgrade before five implications.
-    Each factor has a divider and named headings. Recruitment workload and retail
-    synchronisation examples broaden application before college transfer and the
-    retained activities. The repetitive access walkthrough is removed; old anchors
-    remain as sections or aliases. Impact Explorer and assessment retained:
-    quiz version 2, 12 questions, pass 9; five written tasks.
-    See `docs/multiple_systems_lesson.md`, `docs/multiple_systems_improvement_plan.md`
-    and `docs/exam_technique.md`.
-- [x] Backup and data recovery
-  - Upgraded to 35 student sections / 46 teacher slides. Defines live data;
-    matching file timelines, advantages/limitations/use cases, incremental restore
-    walkthrough and simultaneous animated comparison clarify the three procedures.
-    Site-risk, ownership, legal duties, frequency and priority visuals lead into a
-    five-stage recovery lab and sourced GitLab case. Explicit strategy constraints
-    and the shared evaluation technique support exam practice. Quiz version 2
-    remains 14 questions, pass 10, with six written tasks and saved drafts retained.
-    See `docs/backup_recovery_lesson.md`, `docs/backup_recovery_improvement_plan.md`
-    and `docs/teaching_motion.md`.
-
-## B Computer architecture
-
-### B1 Approaches to computer architecture
-- [x] Stored program architecture: Von Neumann and Harvard
-  - Revised into 23 student sections / 35 Teacher Slides: objective opener,
-    contextualised ENIAC history, instruction/data introduction, neutral system
-    roles and a short CPU primer before the architecture models. Three labelled
-    teaching animations explain program execution, shared-path contention and
-    separate concurrent access. Familiar room-heating and headphone-processing
-    scenarios replace development-board examples; Raspberry Pi photo editing stays.
-    Three credited real photos and explicit shared-memory flexibility, fixed-memory
-    capacity and cache-cost explanations make the design trade-offs concrete.
-    Repeated comparison/identification activities removed. Quiz version 3 remains
-    12 questions, pass 9; six written tasks retain saved drafts, one per slide.
-    See `docs/stored_program_lesson.md` and `docs/stored_program_improvement_plan.md`.
-- [x] Cluster computing, UMA, and NUMA
-  - Consolidated physical teaching pass: 40 → 22 student sections, 57 → 33
-    Teacher Slides. Local socket/DIMM illustrations and one Shared-Memory
-    Explorer replace repetitive UMA/NUMA slides. Rack/node terminology,
-    render farm and VM placement anchor practical use. Existing distributor
-    and multi-label classifier retained. Quiz version 3: 14 questions, pass 10.
-    Seven written tasks. See `docs/cluster_computing_lesson.md`.
-- [x] Emulation
-  - Rebuilt for first teaching: 27 student sections and 39 Teacher Slides,
-    including the shared opener, five dividers and seven separate written tasks.
-    A missing-platform scenario introduces host/target/emulator roles, then
-    instruction sets, input/graphics recreation and native execution. Dedicated
-    preservation, classroom, legacy-business and ARM development examples lead
-    into overhead, illustrative work units and accuracy. Deterministic Emulation
-    Path Explorer and qualified scenario choices reuse shared activity patterns.
-    Quiz version 2: 14 questions, pass 10. See `docs/emulation_lesson.md`.
-
-### B2 The concepts of microarchitecture
-- [x] The instruction cycle
-- [x] CPU performance, instruction sets, and cache
-- [x] Pipelining, multi-processing, and multi-threading
-- [x] CPU architecture for different systems
-
-### B3 Registers and register handling
-- [x] Registers and their functions
-- [x] Interrupts and register handling
-
-## C How data is represented by computer systems
-
-### C1 Number systems
-- [x] Units of digital data
-  - Corrected to teach byte-prefix conversions before a separate bits/bytes
-    block: 23 student sections / 32 Teacher Slides. Decimal/binary modes set
-    byte-only ladder labels and factors. The 12-task Workshop is preserved;
-    mixed bit/prefix teaching and presets are removed. A later two-dimensional
-    prefix/bit-byte diagram leads into download rates and transfer time.
-    Quiz version 4: 12 questions, pass 9; five written tasks.
-    See `docs/digital_data_units_lesson.md`.
-- [x] Binary and BCD
-  - Interpretation-first teaching, an interactive 8-bit place-value table,
-    a separate existing denary stepper, and a contextual BCD sequence with
-    guided digit decoding. 18 student sections / 29 Teacher Slides.
-    The 16-task Workshop, scratch table and their saved work are preserved.
-    Quiz version 3: 12 questions, pass 9; five written tasks.
-    See `docs/binary_bcd_lesson.md`.
-- [x] Hexadecimal numbers
-  - First teaching now starts with binary readability and nibble mapping, then
-    colours, addresses and raw bytes before conversion. Existing nibble explorer,
-    binary↔hex practice and scratch support are preserved; the explorer now shows
-    its selected-value sum. Separate conversion visuals include a binary bridge
-    from denary. Quiz version 2: 10 questions, pass 8; four written tasks.
-- [x] Binary arithmetic
-- [x] Negative and floating point representation
-
-### C2 Text representation
-- [x] Character sets, ASCII, and Unicode
-  - Rebuilt and refined on 4 October 2026: a sender/receiver transmission visual
-    leads into ASCII, Unicode code points, a static UTF-8 explanation and a
-    visible decoding mismatch. Quiz and written tasks assess character coverage
-    and consistent interpretation; the redundant dropdown task, invented-code
-    and byte-count tasks are removed. 21 student sections / 26 Teacher Slides.
-    Quiz version 4: eight questions,
-    pass six; three written tasks, with retired drafts preserved.
-    See [the lesson notes](character_sets_lesson.md).
-
-### C3 Image representation
-- [x] Image storage: bitmap and vector images
-  - Rebuilt and refined on 4 October 2026: explain stored pixel values and image
-    information, then introduce bit depth using a fixed-pixel gradient. A NASA
-    spacewalk photo replaces the reused equipment image. Vector geometry,
-    enlargement, benefits, limitations and practical uses follow. Reconstruction
-    exercises are removed. There are 17 student sections / 25 Teacher Slides;
-    quiz version 4 has 10 questions, pass 8, followed by three written tasks.
-    See [the lesson notes](bitmap_image_storage_lesson.md).
-- [x] Resolution, bit depth, and image compression
-  - Rebuilt and refined on 4 October 2026: controlled resolution and depth
-    comparisons use a museum painting, followed by one RGB storage walkthrough,
-    visual lossless/lossy paths, exact run-length recovery and real encoded
-    compression comparisons. Duplicate jump links, the brightness inspector and
-    the repeated small-image calculation are removed. The teaching sequence
-    has 29 student sections / 35 Teacher Slides. Quiz version 3: 12 questions,
-    pass 9; five written tasks. See [the lesson notes](image_quality_lesson.md).
-
-The [shared C2/C3 improvement plan](text_and_image_representation_improvement_plan.md)
-records the teaching boundaries and implementation checks. All three lessons
-retain their URLs and navigation. Fresh versioned quiz keys prevent old attempts
-being counted against new questions; earlier written drafts remain stored.
-
-## D How data is organised on computer systems
-
-### D1 Data structures
-- [x] Stacks and queues
-  - Rebuilt for first teaching on 4 October 2026: introduces data structures and
-    their value to programmers and security analysts before LIFO/FIFO. Separate
-    operation explorers accompany visual undo, nested-call and file-scanning
-    sequences. Covers buffering, priorities, empty/full states and pseudocode.
-    21 student sections / 26 Teacher Slides. Quiz version 2: 10 questions,
-    pass 8; three saved written tasks. Earlier quiz, drafts and tool saves are
-    retained. See [the lesson notes](stacks_and_queues_lesson.md) and
-    [the teaching plan](stacks_and_queues_improvement_plan.md).
-- [x] Arrays, lists, and data types
-  - Rebuilt for first teaching on 4 October 2026 as a direct continuation of
-    Stacks and queues, without a recap. An editable monitoring dashboard teaches
-    indexing and updates; visual sequences show list growth, linked traversal
-    and insertion. Explicitly distinguishes fixed arrays, array-backed lists and
-    linked lists, with data types and records as a separate concern. Practical
-    examples connect choices to monitoring, file search and playlist editing.
-    18 student sections / 21 Teacher Slides. Quiz version 2: 10 questions,
-    pass 8; three saved written tasks. Earlier quiz and drafts are retained.
-    See [the teaching and implementation notes](arrays_lists_lesson.md).
-
-### D2 Indices and matrices
-- [ ] Matrices and arrays
-- [ ] Multi-dimensional arrays and memory order
-
-## E How data is transmitted by computer systems
-
-### E1 Transmitting data
-- [x] Communication channels and connection methods
-- [x] Transmission methods: synchronous, asynchronous, serial, and parallel
-- [x] Packet data, packet switching, and protocols
-- [x] Encryption and data compression
-
-### E2 Error detection
-- [x] Error detection methods
-
-### E3 Error correction
-- [x] Error correction with ARQ and FEC
-
-## F The use of logic and data flow in computer systems
-
-### F1 Boolean logic
-- [x] Boolean logic
-
-### F2 Flow charts and system diagrams
-- [x] Flow charts and system diagrams
-
-# Essential content
+## Essential content
 The essential content is set out under content areas. Learners must cover all specified content
 before the assessment
 
@@ -531,7 +250,7 @@ computer systems.
     o cyclic redundancy check (CRC).
 • The concepts, implications and applications of error detection.
 
-###E3 Error correction
+### E3 Error correction
 • Commonly-used error correction systems:
     o automatic repeat request (ARQ)
     o forward error correction (FEC).

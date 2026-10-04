@@ -27,9 +27,9 @@ thermostat/headphone pictures illustrate familiar tasks; the lesson's hypothetic
 memory designs do not claim to describe those particular products. The Raspberry
 Pi example is supported separately by its hardware documentation.
 
-Primary hardware sources are linked in the lesson and in
-`docs/stored_program_improvement_plan.md`. Device names identify the examples;
-the illustrative projects are not manufacturer endorsements or benchmark claims.
+Primary hardware sources are linked in the lesson's revision notes. Device names
+identify the examples; the illustrative projects are not manufacturer endorsements
+or benchmark claims.
 
 Older local SVG diagrams in this directory remain available but are no longer
 referenced by this lesson. Other lessons also use assets from this directory.

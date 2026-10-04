@@ -1,342 +1,52 @@
-# Educational Tutorials And Tools Project Notes
+# Product requirements
 
-## Purpose
+Use this document for product, discovery and site-layout decisions. Lesson
+composition belongs in [lesson authoring](lesson_authoring.md).
 
-Create a simple, friendly website for educational tutorials and educational
-tools.
+## Purpose and architecture
 
-The site should work as a static front end with no accounts and ideally no
-backend. Any quizzes, lesson progress, or mini-tool state should be saved in
-the browser with `localStorage` where useful.
+Educational tutorials and mini-tools, served as a static site without accounts.
+Lightweight work and progress stay in the browser. BTEC Computing Unit 2 and the
+separate Web Development resource hub are supported teaching areas; the structure
+must allow reusable topics to serve other units and qualifications.
 
-## Core Product Goals
+## Discovery and page roles
 
-- The A2 User interfaces lesson focuses on GUI, CLI, menu-based styles and
-  interface suitability. Its existing URL remains stable. Generic software
-  selection belongs in Utility, application, and open source software; OS choice
-  and OS use/performance are reserved for an operating-system refinement.
+- Home helps learners find a unit, topic, course or specification quickly through
+  search. Browse order: unit hubs and subject resource hubs, then topics, then
+  specifications. A direct search can surface specifications normally.
+- Unfiltered browsing shows live pages. Planned topics may appear in search but
+  must not look like completed live resources. Availability and search metadata
+  belong in `javascript/data/course-catalog.js`, not a second Markdown checklist.
+- Specification pages stay brief and route into their units. Home specification
+  cards link to units; unit cards identify the unit, qualification and subject.
+- Unit hubs are ordered schemes of work grouped by specification headings, with
+  direct lesson links. Resource hubs reuse that layout with generic labels such
+  as “Overview”. Both make the main course/search route easy to reach.
+- Topic pages are the main teaching/search destinations. Keep their content and
+  catalogue descriptions unit-agnostic where possible; pass unit context through
+  links/parameters for appropriate back and previous/next navigation.
+- Unit quiz progress aggregates shared lesson quiz IDs. Protected classroom exam
+  entries may save drafts/attempts locally and show feedback under each question.
+  The existing client-side gate is not a server authentication system.
+- Web basics sections offer lessons and numbered challenge grids. Challenges open
+  the shared Playground, save independently, and expose skills on hover/focus/tap;
+  opening an exercise does not establish completion. See [challenges](web_challenges.md).
 
-- Teacher slide decks support optional teacher-only lesson-opener and section-divider templates.
-  Openers start Teacher Slides via its button when declared; Alt + Shift + T
-  opens the current section directly from normal view. Lessons without one retain
-  their existing entry behaviour. First teaching should favour one main idea,
-  large visual transformations and progressive disclosure; denser revision
-  supplements can remain on student pages.
-  These pace classroom delivery without adding student content or Jump To links.
-  Authoring and hash behaviour are documented in `docs/teacher_section_dividers.md`.
+## Design and accessibility
 
-- Pedagogical playback must work even when the classroom PC requests reduced
-  motion. Keep visible Play/Pause or manual steps, and pause sequences when hidden.
-  Continue respecting reduced motion for decorative effects and interface
-  transitions. See `docs/teaching_motion.md` for the distinction and audited tools.
+- Simple, friendly, calm scrapbook/notebook styling. Keep the home hero focused on
+  learning and search. Search may overlap the hero on desktop but flows below it
+  on small screens.
+- Reserve side/bottom space for future adverts or promoted resources; do not put
+  prominent adverts above or among the main catalogue entries.
+- Use one shared Reading and Accessibility launcher. Site-wide font, contrast,
+  text-size, palette and simplification preferences persist across pages;
+  temporary reading/focus modes reset on reload or departure.
+- While read aloud is active, retain a visible mini player after the panel closes:
+  pause/resume, stop, progress/current location, section navigation and speed.
+- Teacher Slides reuse lesson content and support keyboard, swipe and tap.
+  Presentation tools are temporary and unobtrusive when closed.
 
-- Make it easy to find a unit, topic, course, or spec from the home page.
-- Include a search bar on the main page.
-- Support topic pages with an easy sidebar for navigating within a unit or
-  course area.
-- Make it easy to return from a topic page back to the full unit or course
-  search.
-- Keep the visual design simple, friendly, and calm.
-- Use real equipment photographs where they help recognition, and diagrams for
-  processes and relationships. Verify third-party reuse permissions and keep
-  source, creator, licence and modification credits with locally stored assets.
-- Keep first-teaching slides free of teacher prompts by default; opener and
-  section-divider slides provide pacing. Add live-demo cues only when requested.
-- Leave room in the layout for future advertising or promoted resources.
-- Reuse patterns and scripts across multiple lessons and mini-tools where
-  possible.
-
-## Constraints
-
-- No user accounts.
-- Prefer no backend at all.
-- Use local browser storage for lightweight persistence.
-- Existing items in `donetools/` are temporary and will be unified later.
-- The original visual reference came from the existing unit conversion
-  tutorial, but the current chosen direction is a scrapbook / notebook hybrid.
-
-## Information Architecture Direction
-
-- Home page:
-  Search-first discovery of units, topics, and courses, with spec pages
-  available but not dominant.
-- Spec page:
-  Short qualification overview with a route into all units in that spec.
-- Unit page:
-  Scheme-of-work hub for a unit, with ordered links to all related topics,
-  quizzes, and mini-tools.
-- Resource hub:
-  Subject-area collection page for teaching resources that are not tied to a
-  qualification unit. These can reuse the unit hub layout but should use
-  generic labels such as `Overview` rather than unit-specific wording.
-- Topic page:
-  Main teaching page for a concept, designed to be reusable across multiple
-  units where possible and likely to be the main SEO target.
-- Shared tool layer:
-  Reusable JavaScript helpers for storage, filtering, scoring, and common UI
-  patterns.
-
-## Current Product Decisions
-
-- Students are more likely to search by unit number, unit name, or specific
-  topic than by spec title alone.
-- The homepage should show unit cards and subject resource hubs first, then
-  topic cards, and spec cards last, while still letting spec pages appear in
-  search.
-- Spec cards should stay short and link through with a button such as
-  `See all units` rather than listing every unit on the homepage.
-- Unit cards should show the unit name, the spec it belongs to, and a subject
-  area, with a CTA such as `See all topics`.
-- Topic cards should show a short description and subject area, but should not
-  mention a specific unit if the topic may belong to multiple units.
-- Topic pages should be canonical where possible to avoid duplicate content
-  across specs and improve SEO.
-- Reusable topic pages should carry unit context through links or parameters so
-  the same page can show different back links and previous/next lesson links
-  without duplicating lesson content.
-- Lesson pages should share a core structure with a breadcrumb, section
-  sidebar, contextual back navigation, previous/next lesson links, optional
-  interactive tools, and an end quiz unless there is a strong reason not to.
-- Lesson pages should normally also include a glossary pattern, a common
-  mistakes or exam traps section, and at least one short exam-style practice
-  area with answer guidance where that format makes sense for the topic.
-- Extended evaluation practice can use the reusable static exam-technique pattern
-  introduced in Data across multiple systems (`css/exam-technique.css`, authoring
-  in `docs/exam_technique.md`). Develop scenario-based reasoning, weigh relevant
-  effects and justify a judgement when the question requires one. This is a
-  flexible teaching scaffold rather than a prescribed Pearson answer formula.
-- Where both are present, a shorter quick quiz should usually come before the
-  longer exam-style practice tasks, and exam-style practice should include
-  built-in response areas so learners can write inside the page.
-- The site should expose a clear shared `Reading and Accessibility` control
-  from a sticky launcher rather than scattering many separate toggles around
-  each page.
-- Accessibility preferences that describe how the whole site should look, such
-  as text size, visual simplification, contrast, palette, and font choices,
-  should persist site-wide. Temporary page-use modes such as reading mode and
-  focus mode should reset when the page reloads or the user leaves the page.
-- Read aloud should keep its key controls visible after the accessibility panel
-  is closed, including pause or resume, stop, visible progress, a clear
-  indicator of the current reading point, easy movement between sections, and
-  a simple speed control.
-- Teacher mode should reuse the same lesson sections as a swipe or tap-friendly
-  slide view instead of requiring a separately maintained duplicate slide deck.
-- Teacher slide mode can include a collapsible presentation tools shelf for
-  temporary in-session teaching aids such as highlighting, spotlighting, and
-  blanking the screen, but it should stay compact when those tools are not in
-  use.
-- The current content focus is BTEC Level 3 Computing Unit 2.
-- Web development teaching resources are a separate non-unit resource hub,
-  beginning with HTML basics, CSS basics, and JavaScript basics.
-- Each Web Development basics section can switch between lessons and a compact
-  numbered challenge grid. Challenges identify debugging or programming tasks,
-  expose skills on hover/focus or tap, and open in the existing Code Playground.
-  Each challenge saves independently in localStorage for classroom review, with
-  an individual restart action. See `docs/web_challenges.md` for authoring.
-- JavaScript challenges cover the existing lessons and the planned sequence
-  through arrays, loops, functions, return values, scope, objects, nested data,
-  debugging, and console mini projects. The bank currently has 37 exercises;
-  `docs/javascript_basics.md` records the supplied plan and coverage. These
-  future-topic challenges do not imply that their lesson pages are live.
-- When the homepage is not filtered by search, it should prioritise real live
-  pages. Planned lesson topics can still appear through search, but should not
-  be presented as if they are already finished live pages by default.
-- Unit pages should group lessons by specification headings such as `A1` and
-  `B2`, but should usually expose the specific lesson targets directly instead
-  of requiring an extra group-page click.
-- Unit pages can include protected classroom-only past exam practice entries
-  where useful. These should stay static-first, save drafts and submitted
-  attempts locally, and show question-level feedback instead of relying only on
-  a long end report.
-- Unit pages should show quiz progress for each specification bucket where
-  quiz metadata is available. The progress should aggregate lesson quiz
-  summaries from `localStorage`, using green for correct checked answers, red
-  for checked incorrect answers, and empty space for questions not yet checked.
-- Quiz progress is shared by lesson/quiz ID across units when a reusable lesson
-  appears in more than one unit. Only create a separate quiz ID when a unit
-  needs genuinely different quiz questions or marking.
-- When a new lesson page is created, its existence should also be reflected in
-  the relevant unit page, `javascript/data/course-catalog.js`, and
-  `javascript/data/unit-progress-data.js` so it is searchable from the homepage
-  and included in unit quiz progress.
-- When lesson quiz questions, answers, pass scores, or totals change, update the
-  matching quiz metadata in `javascript/data/unit-progress-data.js` and the
-  lesson page's `lessonConfig.quiz` metadata. Bump the quiz `version` if saved
-  progress should be treated as stale because the quiz has changed meaningfully.
-
-## Current Homepage Direction
-
-- The hero should stay focused on learning and search.
-- On large screens, the search card can overlap the bottom of the hero.
-- On smaller screens, the search card should sit normally after the hero so it
-  does not cover content below.
-- Visible page copy should stay learner-facing. Avoid adding copy that reads as
-  developer notes, SEO reminders, or explanations of the website itself unless
-  there is a real user-facing reason to show it.
-- The chosen homepage visual direction is currently a scrapbook / notebook
-  hybrid.
-- Keep ad space available, but prefer dedicated side or bottom placements over
-  interrupting the catalogue with ads.
-
-## Content Sources
-
-- Spec links are listed in [course_specs.md](./course_specs.md).
-- Unit 2 content planning and completion tracking now lives in
-  [computing_unit_2.md](./computing_unit_2.md).
-- Course metadata and homepage search entries currently live in
-  `javascript/data/course-catalog.js`.
-- Lesson content can later move into `content/lessons/`.
-
-## Project Structure Direction
-
-- `css/`
-  Shared styling and theme tokens.
-- `javascript/core/`
-  Reusable helpers such as storage and search utilities.
-- `javascript/data/`
-  Local catalogue data for courses and units.
-- `content/courses/`
-  Source material or structured course metadata.
-- `content/lessons/`
-  Lesson and topic content that can feed topic pages later.
-- `content/tools/`
-  Shared content or configuration for reusable mini-tools.
-- `pages/`
-  Future course, unit, or topic page templates.
-- `donetools/`
-  Legacy experiments to fold into the main structure later.
-
-## Foundation Status
-
-- Requirements notes and agent startup notes are in place.
-- The homepage has a working search experience using local data.
-- The homepage now highlights the live Unit 2 hub plus live and planned Unit 2
-  lesson pages.
-- The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
-- A first Web Development resource hub now exists at
-  `pages/resources/web-development.html`.
-- The existing C2 text and both C3 image representation lessons now teach from
-  first principles with progressive diagrams, bounded interactive tools,
-  teacher slide pacing, quizzes and saved written practice. The shared record is
-  `docs/text_and_image_representation_improvement_plan.md`. Quiz replacements
-  use fresh storage keys as well as versions; the shared exam saver preserves
-  older draft IDs when written prompts change.
-- The first Web Development lessons now exist at
-  `pages/topics/what-is-html.html` and
-  `pages/topics/html-document-structure.html`, and
-  `pages/topics/headings-paragraphs-lists-and-links.html`, and
-  `pages/topics/images-alt-text-and-useful-page-sections.html`, and
-  `pages/topics/parent-child-relationships-in-html.html`, and
-  `pages/topics/file-paths-folders-and-linking-pages.html`, and
-  `pages/topics/forms-1-inputs-labels-and-submitting-data.html`, and
-  `pages/topics/forms-2-choices-larger-inputs-and-grouping.html`, and
-  `pages/topics/linking-and-organising-css-files.html`, and
-  `pages/topics/css-selectors.html`, and
-  `pages/topics/styling-text-with-css.html`, and
-  `pages/topics/colours-backgrounds-and-borders.html`,
-  `pages/topics/css-units.html`,
-  `pages/topics/css-sizing.html`,
-  `pages/topics/css-display.html`,
-  `pages/topics/flexbox-basics.html`,
-  `pages/topics/flexbox-wrapping-and-children.html`,
-  `pages/topics/running-javascript-and-using-the-console.html`,
-  `pages/topics/variables-and-data-types.html`, and
-  `pages/topics/working-with-strings.html`, and
-  `pages/topics/operators-and-expressions.html`.
-- Live topic lessons now exist at
-  `pages/topics/computer-system-types-and-internal-components.html`,
-  `pages/topics/input-output-and-storage-devices.html`,
-  `pages/topics/hardware-performance-and-component-choice.html`,
-  `pages/topics/raid-and-nas-storage-systems.html`,
-  `pages/topics/operating-system-types.html`,
-  `pages/topics/kernel-functions-and-system-management.html`,
-  `pages/topics/user-interfaces-and-software-choice.html`,
-  `pages/topics/utility-application-and-open-source-software.html`,
-  `pages/topics/collecting-and-processing-data.html`,
-  `pages/topics/data-across-multiple-systems.html`,
-  `pages/topics/backup-and-data-recovery.html`,
-  `pages/topics/stored-program-architecture-von-neumann-and-harvard.html`,
-  `pages/topics/cluster-computing-uma-and-numa.html`,
-  `pages/topics/emulation-in-computer-systems.html`,
-  `pages/topics/instruction-cycle.html`,
-  `pages/topics/cpu-performance-instruction-sets-and-cache.html`,
-  `pages/topics/pipelining-multi-processing-and-multi-threading.html`,
-  `pages/topics/cpu-architecture-for-different-systems.html`,
-  `pages/topics/registers-and-their-functions.html`,
-  `pages/topics/interrupts-and-register-handling.html`,
-  `pages/topics/stacks-and-queues.html`,
-  `pages/topics/arrays-lists-and-data-types.html`,
-  `pages/topics/matrices-and-arrays.html`, and
-  `pages/topics/multi-dimensional-arrays-and-memory-order.html`,
-  `pages/topics/communication-channels-and-connection-methods.html`,
-  `pages/topics/transmission-methods-synchronous-asynchronous-serial-and-parallel.html`,
-  `pages/topics/packet-data-packet-switching-and-protocols.html`, and
-  `pages/topics/encryption-and-data-compression.html`,
-  `pages/topics/error-detection-methods.html`, and
-  `pages/topics/error-correction-with-arq-and-fec.html`.
-- A shared lesson shell now supports sidebar navigation, contextual unit
-  navigation, teacher slide mode, quiz persistence, and shared quiz progress
-  summaries for unit pages.
-- A shared code-preview component now exists at
-  `javascript/core/code-preview.js` for code versus preview examples, step
-  changes, and animated/cycling examples in lesson pages.
-- A shared guided Debug Lab component now exists at
-  `javascript/core/debug-lab.js`, with shared styling in `css/debug-lab.css`.
-  Lesson scripts can supply static scenario data for find-the-bug,
-  choose-the-repair, and find-and-fix activities without executing arbitrary
-  learner code.
-- A shared Live Code Example component now exists at
-  `javascript/core/live-code-example.js`, with shared styling in
-  `css/live-code-example.css`. It keeps literal editable HTML/CSS iframe
-  previews separate from the existing authored teaching-preview system, and now
-  also supports JavaScript-only console examples through an isolated worker.
-- A standalone Code Playground now exists at
-  `pages/tools/code-playground.html`, with page logic in
-  `javascript/pages/code-playground.js` and page styling in
-  `css/pages/code-playground.css`. It reuses the Live Code editor/runtime,
-  supports HTML/CSS preview and JavaScript console workspaces, and autosaves
-  local workspace state with a versioned `localStorage` structure.
-- A shared four-value shorthand visualiser now exists at
-  `javascript/core/shorthand-visualizer.js`, with shared styling in
-  `css/shorthand-visualizer.css`. It supports keyboard, pointer, and touch
-  mappings for clockwise corners and future side-based CSS shorthands.
-- Flexbox Basics follows CSS Display in the Web Development hub. Its visual,
-  incremental teaching plan lives in `docs/flexbox_basics.md`. The shared
-  `javascript/core/flex-explorer.js` and `css/flex-explorer.css` enhance static
-  diagrams with real browser layout and labelled main/cross axes.
-- Flexbox: Wrapping and Children follows Flexbox Basics, using the same explorer
-  for wrapping, nested parent/child roles, growth, shrinking, shorthand presets
-  and align-self. Its plan is in `docs/flexbox_wrapping_and_children.md`;
-  flex-basis is deferred. The two lessons share `css/flexbox-lesson.css`.
-- The Unit 2 hub now shows per-bucket quiz progress bars and lesson status
-  indicators using `javascript/core/unit-progress.js` and
-  `javascript/data/unit-progress-data.js`.
-- The Unit 2 hub now includes a protected June 2024 practice paper entry at
-  `pages/exams/btec-level-3-unit-2-jun-2024.html`. The exam page uses native
-  HTML questions, local draft/attempt storage, a temporary client-side password
-  gate, and inline local-demo feedback that can later be replaced by a VPS
-  marking endpoint.
-- The current lesson template now includes glossary, exam trap, and exam-style
-  practice patterns that future lessons should reuse where appropriate.
-- A shared accessibility launcher now provides reading, focus, visual, font,
-  contrast, and read-aloud controls across the live pages.
-- Read aloud now uses a persistent mini player with pause or resume, stop,
-  progress tracking, current-block highlighting, and speed control while it is
-  active.
-- Shared CSS, theme, and page-specific styling are split into reusable files.
-- Layout space is reserved for future adverts or promos.
-
-## Next Likely Steps
-
-- Build more Unit 2 lessons on top of the shared lesson shell.
-- Add more Web Development topic lessons under the HTML basics, CSS basics,
-  and JavaScript basics sections.
-- Decide when lesson content should move from page HTML into structured
-  `content/lessons/` data.
-- Decide what a short spec page should include beyond description + unit links.
-- Add `sitemap.xml` and likely `robots.txt` once the canonical live domain is
-  known.
-- Move course data into a more structured content format if needed.
-- Decide how legacy `donetools/` pieces should be merged into the new shared
-  design system.
-- Add more lesson-specific mini-tools where the topic benefits from them.
+Change these requirements when product decisions change, not when another lesson
+is published. Source links are in [course specifications](course_specs.md).
