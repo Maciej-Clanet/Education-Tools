@@ -110,6 +110,11 @@ Before making major UI, content, or structure changes, read:
 - `javascript/core/lesson-walkthrough.js` and `css/lesson-walkthrough.css` provide
   optional previous/next/restart sequences with a readable no-JavaScript fallback;
   the incremental restore sequence in Backup and data recovery is an example.
+- Stacks and queues introduces D1 data structures through operation explorers,
+  undo, nested calls and queued work. `build-stacks-and-queues-lesson.mjs` authors
+  the page; `docs/stacks_and_queues_lesson.md` records the component contracts.
+  Reusable operation behaviour lives in `javascript/core/structure-explorer.js`
+  with pure models in `javascript/data/structure-model.js`.
 - `javascript/core/simulated-terminal.js` provides deterministic whitelist-only
   teaching terminals; `javascript/core/paired-scenarios.js` supports interface
   and reason activities. See `docs/user_interfaces_lesson.md`.

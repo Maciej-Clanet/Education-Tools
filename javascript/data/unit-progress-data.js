@@ -383,7 +383,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "stacks-and-queues",
           title: "Stacks and queues",
           href: "../topics/stacks-and-queues.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 2, totalQuestions: 10, passScore: 8, storageKey: "lesson-stacks-and-queues-quiz-v2" },
         },
         {
           id: "arrays-lists-and-data-types",

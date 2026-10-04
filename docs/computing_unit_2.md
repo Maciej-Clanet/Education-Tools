@@ -265,7 +265,15 @@ being counted against new questions; earlier written drafts remain stored.
 ## D How data is organised on computer systems
 
 ### D1 Data structures
-- [ ] Stacks and queues
+- [x] Stacks and queues
+  - Rebuilt for first teaching on 4 October 2026: introduces data structures and
+    their value to programmers and security analysts before LIFO/FIFO. Separate
+    operation explorers accompany visual undo, nested-call and file-scanning
+    sequences. Covers buffering, priorities, empty/full states and pseudocode.
+    21 student sections / 26 Teacher Slides. Quiz version 2: 10 questions,
+    pass 8; three saved written tasks. Earlier quiz, drafts and tool saves are
+    retained. See [the lesson notes](stacks_and_queues_lesson.md) and
+    [the teaching plan](stacks_and_queues_improvement_plan.md).
 - [ ] Arrays, lists, and data types
 
 ### D2 Indices and matrices

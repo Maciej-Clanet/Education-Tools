@@ -706,7 +706,7 @@ export const catalogItems = [
     kicker: "D1 Data structures",
     title: "Stacks and queues",
     summary:
-      "A live revision lesson on LIFO and FIFO data structures with examples, an interactive visualiser, teacher slides, and a short quiz.",
+      "Learn why data structures matter, explore stack and queue operations, and apply them to undo, function calls, debugging and waiting jobs.",
     badges: ["Subject area: Data organisation"],
     keywords: [
       "stacks",
