@@ -157,6 +157,16 @@ Before making major UI, content, or structure changes, read:
   mappings; its contract is documented in `docs/shorthand_visualizer.md`.
 - Unit quiz progress metadata lives in `javascript/data/unit-progress-data.js`
   and shared rendering logic lives in `javascript/core/unit-progress.js`.
+- The C2/C3 first-teaching rebuild is documented in
+  `docs/text_and_image_representation_improvement_plan.md` and its lesson notes.
+  `character-encoding.js`, `bitmap-explorer.js` and `image-quality-tools.js` in
+  `javascript/core/` enhance static examples using fixtures in `javascript/data/`.
+  `character-transmission.js` and `css/character-transmission.css` provide the
+  controlled two-computer teaching animation, with static completed fallback.
+  Bitmap and image-quality lesson authoring uses `build-bitmap-lesson.mjs` and
+  `build-image-quality-lesson.mjs`; update their sources when editing generated
+  teaching content. Compression assets have measured sizes and reproducible
+  local sources in `assets/images/image-representation/`.
 
 ## Working Style
 
@@ -181,3 +191,7 @@ Before making major UI, content, or structure changes, read:
   `lessonConfig.quiz` metadata; bump the quiz version when old saved progress
   should be treated as stale. Reused lessons should normally share quiz progress
   across units unless a different quiz ID is explicitly needed.
+- Replacing a quiz also needs a fresh answer storage key in both the page config
+  and unit-progress metadata: raw saved answers do not carry a checked version.
+  Changed written prompts need new response IDs. The exam saver preserves
+  unmatched older response IDs when saving current drafts.

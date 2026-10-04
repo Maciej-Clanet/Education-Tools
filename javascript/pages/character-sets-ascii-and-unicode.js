@@ -1,342 +1,188 @@
-import { initLessonPage } from "../core/lesson-shell.js"
-import { readStorage, writeStorage } from "../core/storage.js"
+import { initLessonPage } from '../core/lesson-shell.js'
+import { initCharacterTransmissions } from '../core/character-transmission.js'
+import { readStorage, writeStorage } from '../core/storage.js'
+import { boundCharacterText, inspectCharacterText, decodeMismatch } from '../core/character-encoding.js'
+import { CHARACTER_LIMIT, CHARACTER_TASKS } from '../data/character-encoding-data.js'
 
 const lessonConfig = {
-  lessonId: "character-sets-ascii-and-unicode",
-  defaultContext: "btec-level-3-unit-2",
+  lessonId: 'character-sets-ascii-and-unicode',
+  defaultContext: 'btec-level-3-unit-2',
   contexts: {
-    "btec-level-3-unit-2": {
-      label: "BTEC Level 3 Computing Unit 2",
-      backHref: "../units/btec-level-3-unit-2.html#section-c",
-      backLabel: "Back to Unit 2 content",
-      previous: {
-        title: "Negative and floating point representation",
-        description: "Previous in C1 Number systems.",
-        status: "Live",
-        href: "../topics/negative-and-floating-point-representation.html",
-      },
-      next: {
-        title: "Image storage: bitmap and vector images",
-        description: "Next in C3 Image representation.",
-        status: "Live",
-        href: "../topics/bitmap-image-storage.html",
-      },
+    'btec-level-3-unit-2': {
+      label: 'BTEC Level 3 Computing Unit 2', backHref: '../units/btec-level-3-unit-2.html#section-c', backLabel: 'Back to Unit 2 content',
+      previous: { title: 'Negative and floating point representation', description: 'Previous in C1 Number systems.', status: 'Live', href: '../topics/negative-and-floating-point-representation.html' },
+      next: { title: 'Image storage: bitmap and vector images', description: 'Next in C3 Image representation.', status: 'Live', href: '../topics/bitmap-image-storage.html' },
     },
   },
-  quiz: {
-    storageKey: "lesson-character-sets-ascii-and-unicode-quiz",
-    passScore: 4,
-    version: 2,
-  },
-  examPractice: {
-    storageKey: "lesson-character-sets-ascii-and-unicode-exam-practice",
-  },
+  quiz: { storageKey: 'lesson-character-sets-ascii-and-unicode-quiz-v4', passScore: 6, totalQuestions: 8, version: 4 },
+  examPractice: { storageKey: 'lesson-character-sets-ascii-and-unicode-exam-practice' },
 }
 
-const INSPECTOR_STORAGE_KEY = "lesson-character-sets-inspector"
-const PRACTICE_STORAGE_KEY = "lesson-character-sets-practice"
-const DEFAULT_TEXT = "Code 65 = A"
-const ASCII_PRACTICE_MESSAGES = [
-  { text: "HELLO", ascii: true },
-  { text: "Room 204", ascii: true },
-  { text: "Total: \u00A312", ascii: false },
-  { text: "Cafe", ascii: true },
-  { text: "Caf\u00E9", ascii: false },
-  { text: "Omega \u03A9", ascii: false },
-  { text: "Line 1\nLine 2", ascii: true },
-  { text: "\u6F22 character", ascii: false },
-]
+const INSPECTOR_STORAGE_KEY = 'lesson-character-sets-inspector'
+const hexByte = byte => byte.toString(16).toUpperCase().padStart(2, '0')
 
-function createElement(tagName, className, textContent) {
-  const element = document.createElement(tagName)
-
-  if (className) {
-    element.className = className
-  }
-
-  if (textContent !== undefined) {
-    element.textContent = textContent
-  }
-
+function node(tag, className, text) {
+  const element = document.createElement(tag)
+  if (className) element.className = className
+  if (text !== undefined) element.textContent = text
   return element
 }
 
-function toBinary(value, width = 8) {
-  return value.toString(2).padStart(width, "0")
-}
+function initCharacterInspectors() {
+  // Authored tables and diagrams remain visible if byte encoding is unavailable.
+  if (typeof TextEncoder === 'undefined') return
+  document.querySelectorAll('[data-character-inspector]').forEach(host => {
+    const mode = host.dataset.characterInspector
+    const original = host.dataset.text ?? 'Hi!'
+    const input = host.querySelector('[data-inspector-input]')
+    const tokens = host.querySelector('[data-inspector-tokens]')
+    const card = host.querySelector('[data-inspector-card]')
+    const status = host.querySelector('[data-inspector-status]')
+    const table = host.querySelector('[data-inspector-table]')
+    let inspected = inspectCharacterText(original)
+    let selected = 0
 
-function toHex(value, width = 4) {
-  return value.toString(16).toUpperCase().padStart(width, "0")
-}
-
-function visibleCharacter(character) {
-  if (character === " ") {
-    return "space"
-  }
-
-  if (character === "\n") {
-    return "line feed"
-  }
-
-  if (character === "\t") {
-    return "tab"
-  }
-
-  return character
-}
-
-function getUtf8Bytes(character) {
-  if (!window.TextEncoder) {
-    return []
-  }
-
-  return Array.from(new TextEncoder().encode(character))
-}
-
-function renderInspectorRows(table, text) {
-  table.replaceChildren()
-
-  const headers = [
-    "Character",
-    "Code point",
-    "Denary",
-    "Binary",
-    "UTF-8 bytes",
-    "ASCII?",
-  ]
-
-  headers.forEach((header) => {
-    table.append(createElement("span", "row-label", header))
-  })
-
-  Array.from(text).forEach((character) => {
-    const codePoint = character.codePointAt(0)
-    const isAscii = codePoint <= 127
-    const binary = isAscii ? toBinary(codePoint, 7) : "outside ASCII"
-    const utf8Bytes = getUtf8Bytes(character)
-      .map((byte) => toHex(byte, 2))
-      .join(" ")
-
-    table.append(
-      createElement("span", "character-cell", visibleCharacter(character))
-    )
-    table.append(createElement("code", "", `U+${toHex(codePoint)}`))
-    table.append(createElement("span", "", codePoint.toString()))
-    table.append(createElement("code", "", binary))
-    table.append(createElement("code", "", utf8Bytes || "n/a"))
-    table.append(
-      createElement(
-        "span",
-        isAscii ? "status-chip is-yes" : "status-chip is-no",
-        isAscii ? "yes" : "no"
-      )
-    )
-  })
-}
-
-function renderInspectorSummary(tool, text) {
-  const characters = Array.from(text)
-  const asciiCount = characters.filter(
-    (character) => character.codePointAt(0) <= 127
-  ).length
-  const byteCount = getUtf8Bytes(text).length
-  const allAscii = asciiCount === characters.length
-
-  const characterCount = tool.querySelector(
-    "[data-role='inspector-character-count']"
-  )
-  const asciiStatus = tool.querySelector("[data-role='inspector-ascii-status']")
-  const utf8Count = tool.querySelector("[data-role='inspector-utf8-count']")
-  const note = tool.querySelector("[data-role='inspector-note']")
-
-  if (characterCount) {
-    characterCount.textContent = characters.length.toString()
-  }
-
-  if (asciiStatus) {
-    asciiStatus.textContent = allAscii
-      ? "ASCII can store every character"
-      : "Unicode is needed"
-  }
-
-  if (utf8Count) {
-    utf8Count.textContent = byteCount.toString()
-  }
-
-  if (note) {
-    note.textContent = allAscii
-      ? "Every character in this text is inside the first 128 ASCII codes."
-      : "At least one character is outside ASCII, so a wider standard such as Unicode is needed."
-  }
-}
-
-function initCharacterInspector() {
-  const tool = document.querySelector("[data-role='character-inspector']")
-
-  if (!tool) {
-    return
-  }
-
-  const input = tool.querySelector("[data-role='inspector-input']")
-  const table = tool.querySelector("[data-role='inspector-table']")
-  const buttons = tool.querySelectorAll("[data-inspector-sample]")
-  const state = {
-    text:
-      readStorage(INSPECTOR_STORAGE_KEY, { text: DEFAULT_TEXT }).text ??
-      DEFAULT_TEXT,
-  }
-
-  function saveAndRender(text) {
-    state.text = text
-    writeStorage(INSPECTOR_STORAGE_KEY, state)
-
-    if (input) {
-      input.value = text
-    }
-
-    if (table) {
-      renderInspectorRows(table, text)
-    }
-
-    renderInspectorSummary(tool, text)
-  }
-
-  input?.addEventListener("input", () => {
-    saveAndRender(input.value)
-  })
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      saveAndRender(button.dataset.inspectorSample ?? DEFAULT_TEXT)
-      input?.focus()
-    })
-  })
-
-  saveAndRender(state.text)
-}
-
-function choosePracticeTask() {
-  return ASCII_PRACTICE_MESSAGES[
-    Math.floor(Math.random() * ASCII_PRACTICE_MESSAGES.length)
-  ]
-}
-
-function normalisePracticeState(value) {
-  if (value && typeof value === "object" && value.task) {
-    return {
-      task: value.task,
-      choice: value.choice ?? "",
-      status: value.status ?? "empty",
-      message:
-        value.message ??
-        "Decide whether standard ASCII can store every character.",
-    }
-  }
-
-  return {
-    task: choosePracticeTask(),
-    choice: "",
-    status: "empty",
-    message: "Decide whether standard ASCII can store every character.",
-  }
-}
-
-function renderPractice(practice, state) {
-  const message = practice.querySelector("[data-role='ascii-practice-message']")
-  const feedback = practice.querySelector("[data-role='ascii-practice-feedback']")
-  const buttons = practice.querySelectorAll("[data-ascii-choice]")
-
-  if (message) {
-    message.textContent = state.task.text
-  }
-
-  buttons.forEach((button) => {
-    button.classList.toggle(
-      "is-selected",
-      button.dataset.asciiChoice === state.choice
-    )
-  })
-
-  if (feedback) {
-    feedback.className = "practice-feedback"
-    feedback.classList.toggle("is-correct", state.status === "correct")
-    feedback.classList.toggle("is-incorrect", state.status === "incorrect")
-    feedback.textContent = state.message
-  }
-}
-
-function initAsciiPractice() {
-  const practice = document.querySelector("[data-role='ascii-practice']")
-
-  if (!practice) {
-    return
-  }
-
-  let state = normalisePracticeState(readStorage(PRACTICE_STORAGE_KEY, null))
-  const checkButton = practice.querySelector("[data-action='check-ascii-practice']")
-  const newButton = practice.querySelector("[data-action='new-ascii-practice']")
-
-  function save() {
-    writeStorage(PRACTICE_STORAGE_KEY, state)
-  }
-
-  practice.querySelectorAll("[data-ascii-choice]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state = {
-        ...state,
-        choice: button.dataset.asciiChoice ?? "",
-        status: "empty",
-        message: "Choice saved. Check when you are ready.",
+    function renderSelection() {
+      const character = inspected.characters[selected]
+      tokens.querySelectorAll('button').forEach((button, index) => button.setAttribute('aria-pressed', String(index === selected)))
+      card.replaceChildren()
+      if (!character) {
+        card.append(node('p', 'text-key', 'Enter text to inspect its code points and bytes.'))
+        return
       }
-      save()
-      renderPractice(practice, state)
-    })
-  })
-
-  checkButton?.addEventListener("click", () => {
-    if (!state.choice) {
-      state = {
-        ...state,
-        status: "incorrect",
-        message: "Choose yes or no before checking.",
+      const identity = node('div', 'text-selected-character')
+      identity.append(node('span', 'text-label', `Position ${selected + 1}`), node('strong', 'text-glyph', character.name))
+      const values = node('dl', 'text-values')
+      const addValue = (label, value) => {
+        const group = node('div')
+        group.append(node('dt', '', label), node('dd', '', value))
+        values.append(group)
       }
-      save()
-      renderPractice(practice, state)
-      return
+      if (mode === 'ascii') {
+        addValue('ASCII value · denary', character.point)
+        addValue('ASCII code · 7 bits', character.binary ?? 'Outside standard ASCII')
+      } else {
+        addValue('Unicode code point', character.codePoint)
+        addValue('Standard ASCII?', character.ascii ? 'Yes · value ' + character.point : 'No · outside 0–127')
+        const group = node('div', 'text-byte-value')
+        group.append(node('dt', '', 'UTF-8 bytes · hexadecimal'))
+        const bytes = node('dd', 'text-bytes')
+        character.bytes.forEach(byte => bytes.append(node('code', 'text-byte', hexByte(byte))))
+        bytes.append(node('span', 'text-byte-count', `${character.bytes.length} byte${character.bytes.length === 1 ? '' : 's'}`))
+        group.append(bytes)
+        values.append(group)
+      }
+      card.append(identity, values)
     }
 
-    const saysAscii = state.choice === "yes"
-    const correct = saysAscii === state.task.ascii
-
-    state = {
-      ...state,
-      status: correct ? "correct" : "incorrect",
-      message: correct
-        ? state.task.ascii
-          ? "Correct. Every character in this message is part of standard ASCII."
-          : "Correct. At least one character needs Unicode."
-        : state.task.ascii
-          ? "Not quite. This message only uses standard ASCII characters."
-          : "Not quite. Look for a character outside the 128 standard ASCII codes.",
+    function render(text, persist = false) {
+      inspected = inspectCharacterText(text)
+      selected = Math.min(selected, Math.max(0, inspected.codePoints - 1))
+      if (input && input.value !== inspected.text) input.value = inspected.text
+      tokens.replaceChildren()
+      inspected.characters.forEach((character, index) => {
+        const button = node('button', 'text-token', character.name)
+        button.type = 'button'
+        button.dataset.characterIndex = String(index)
+        button.setAttribute('aria-label', `Position ${index + 1}: ${character.name}`)
+        tokens.append(button)
+      })
+      if (table) {
+        table.replaceChildren()
+        inspected.characters.forEach(character => {
+          const row = node('tr')
+          ;[character.name, character.codePoint, String(character.point), character.binary ?? 'Outside ASCII', character.bytes.map(hexByte).join(' ')].forEach(value => row.append(node('td', '', value)))
+          table.append(row)
+        })
+      }
+      if (mode === 'ascii') status.textContent = 'Select a symbol. Its number and seven-bit code stay linked.'
+      else if (!inspected.codePoints) status.textContent = 'Enter text. The example accepts up to 40 code points.'
+      else {
+        const coverage = inspected.unsupported.length
+          ? `Outside standard ASCII: ${[...new Set(inspected.unsupported.map(item => item.name))].join(', ')}. UTF-8 can represent this text.`
+          : 'Every code point is in standard ASCII.'
+        status.textContent = `${inspected.codePoints} code points · ${inspected.bytes.length} UTF-8 bytes. ${coverage}${inspected.codePoints === CHARACTER_LIMIT ? ' 40-code-point limit reached.' : ''}`
+      }
+      renderSelection()
+      if (persist) writeStorage(INSPECTOR_STORAGE_KEY, { text: inspected.text })
     }
-    save()
-    renderPractice(practice, state)
+
+    tokens.addEventListener('click', event => {
+      const button = event.target.closest('[data-character-index]')
+      if (!button || !tokens.contains(button)) return
+      selected = Number(button.dataset.characterIndex)
+      renderSelection()
+    })
+    input?.addEventListener('input', () => { selected = 0; render(input.value, true) })
+    host.querySelectorAll('[data-inspector-sample]').forEach(button => button.addEventListener('click', () => {
+      selected = 0
+      render(button.dataset.inspectorSample, true)
+    }))
+    host.querySelector('[data-inspector-reset]')?.addEventListener('click', () => { selected = 0; render(original) })
+    host.querySelector('[data-inspector-restore]')?.addEventListener('click', () => {
+      const saved = readStorage(INSPECTOR_STORAGE_KEY, null)
+      if (typeof saved?.text !== 'string') { status.textContent = 'There is no saved exploration yet. Try one of the examples.'; return }
+      selected = 0
+      render(boundCharacterText(saved.text))
+    })
+    host.querySelectorAll('[data-inspector-controls], [data-inspector-live]').forEach(element => { element.hidden = false })
+    host.querySelector('[data-inspector-fallback]').hidden = true
+    render(original)
   })
+}
 
-  newButton?.addEventListener("click", () => {
-    state = {
-      task: choosePracticeTask(),
-      choice: "",
-      status: "empty",
-      message: "Decide whether standard ASCII can store every character.",
-    }
-    save()
-    renderPractice(practice, state)
+function initMismatch() {
+  const host = document.querySelector('[data-encoding-mismatch]')
+  const decoder = host.querySelector('[data-decoder]')
+  const output = host.querySelector('[data-decoded-text]')
+  const status = host.querySelector('[data-decoder-status]')
+  function render() {
+    output.textContent = decodeMismatch(decoder.value)
+    status.textContent = decoder.value === 'utf-8'
+      ? 'Same encoding at both ends: C3 A9 is decoded together as é.'
+      : 'Same bytes, different interpretation: Windows-1252 reads C3 as Ã and A9 as ©.'
+  }
+  decoder.addEventListener('change', render)
+  host.querySelector('[data-decoder-reset]').addEventListener('click', () => { decoder.value = 'utf-8'; render() })
+  host.querySelector('[data-decoder-controls]').hidden = false
+  host.querySelector('[data-decoder-live]').hidden = false
+  host.querySelector('[data-decoder-fallback]').hidden = true
+  render()
+}
+
+function initCharacterPractice() {
+  const host = document.querySelector('[data-character-practice]')
+  if (!host) return
+  const choice = host.querySelector('[data-practice-choice]')
+  const feedback = host.querySelector('[data-practice-feedback]')
+  let index = 0
+  function render() {
+    const task = CHARACTER_TASKS[index]
+    host.querySelector('[data-practice-title]').textContent = task.title
+    host.querySelector('[data-practice-scenario]').textContent = task.scenario
+    host.querySelector('[data-practice-facts]').textContent = task.facts
+    host.querySelector('[data-practice-progress]').textContent = `Scenario ${index + 1} of ${CHARACTER_TASKS.length}`
+    host.querySelector('[data-practice-prev]').setAttribute('aria-disabled', String(index === 0))
+    host.querySelector('[data-practice-next]').setAttribute('aria-disabled', String(index === CHARACTER_TASKS.length - 1))
+    choice.value = ''
+    feedback.textContent = ''
+  }
+  host.querySelector('[data-practice-check]').addEventListener('click', () => {
+    if (!choice.value) { feedback.textContent = 'Choose an approach using the supplied facts first.'; return }
+    const task = CHARACTER_TASKS[index]
+    feedback.textContent = `${choice.value === task.answer ? 'Suitable choice.' : 'Reconsider the requirement.'} ${task.explanation}`
   })
-
-  renderPractice(practice, state)
+  choice.addEventListener('change', () => { feedback.textContent = '' })
+  host.querySelector('[data-practice-prev]').addEventListener('click', () => { if (index > 0) { index -= 1; render() } })
+  host.querySelector('[data-practice-next]').addEventListener('click', () => { if (index < CHARACTER_TASKS.length - 1) { index += 1; render() } })
+  host.querySelector('[data-practice-reset]').addEventListener('click', () => { index = 0; render() })
+  host.querySelector('[data-practice-live]').hidden = false
+  host.querySelector('[data-practice-fallback]').hidden = true
+  render()
 }
 
 initLessonPage(lessonConfig)
-initCharacterInspector()
-initAsciiPractice()
+initCharacterTransmissions()
+initCharacterInspectors()
+initMismatch()
+initCharacterPractice()

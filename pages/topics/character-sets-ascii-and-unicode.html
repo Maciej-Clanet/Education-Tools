@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Character Sets, ASCII, and Unicode Revision Lesson | Education Tools
+      Character Sets, ASCII, and Unicode | Education Tools
     </title>
     <meta
       name="description"
-      content="Revise character sets, ASCII, Unicode, UTF-8, code points, compatibility, and text encoding implications for BTEC Level 3 Computing Unit 2."
+      content="Learn how text becomes stored bytes. Follow text between computers, explore ASCII and Unicode, inspect UTF-8, and explain encoding mismatches."
     />
     <meta
       property="og:title"
-      content="Character Sets, ASCII, and Unicode Revision Lesson | Education Tools"
+      content="Character Sets, ASCII, and Unicode | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise character sets, ASCII, Unicode, UTF-8, code points, compatibility, and text encoding implications for BTEC Level 3 Computing Unit 2."
+      content="Learn how text becomes stored bytes. Follow text between computers, explore ASCII and Unicode, inspect UTF-8, and explain encoding mismatches."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/character-transmission.css" />
     <link
       rel="stylesheet"
       href="../../css/pages/character-sets-ascii-and-unicode.css"
@@ -58,17 +59,8 @@
         <div class="lesson-header-row">
           <div>
             <h1>Character sets, ASCII, and Unicode</h1>
-            <p class="lesson-hero-text">
-              Learn how visible text becomes stored binary data, why agreed
-              character codes matter, where ASCII fits, and why Unicode is
-              needed for modern global text.
-            </p>
-            <p class="lesson-hero-support">
-              In the current lesson context, this sits inside
-              <span data-role="context-label"
-                >BTEC Level 3 Computing Unit 2</span
-              >.
-            </p>
+            <p class="lesson-hero-text">Follow a message from letters to bits and back. See how computers exchange codes, explore ASCII and Unicode, and discover why the receiver’s interpretation matters.</p>
+            <p class="lesson-hero-support"><span data-role="context-label">BTEC Level 3 Computing Unit 2</span> · C2 Text representation</p>
           </div>
         </div>
 
@@ -83,7 +75,7 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Practice focus</strong>
-            <span>Inspecting characters and judging ASCII suitability</span>
+            <span>Encoding, decoding and explaining compatibility</span>
           </article>
         </div>
 
@@ -119,791 +111,285 @@
       <div class="lesson-layout">
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
-          <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#character-sets" data-section-link>Character sets</a>
-            <a href="#ascii" data-section-link>ASCII</a>
-            <a href="#unicode" data-section-link>Unicode</a>
-            <a href="#inspector" data-section-link>Inspector</a>
-            <a href="#practice" data-section-link>Practice</a>
-            <a href="#implications" data-section-link>Implications</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
-            <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam-style practice</a>
-          </nav>
+          <nav class="section-nav" aria-label="Lesson sections"><a href="#overview" data-section-link>Sending text</a>
+<a href="#character-sets" data-section-link>Characters and codes</a>
+<a href="#encode-decode" data-section-link>Encode and decode</a>
+<a href="#ascii" data-section-link>ASCII</a>
+<a href="#ascii-table" data-section-link>ASCII reference</a>
+<a href="#unicode" data-section-link>Unicode</a>
+<a href="#utf8" data-section-link>UTF-8 bytes</a>
+<a href="#decoding" data-section-link>Decoding mismatch</a>
+<a href="#implications" data-section-link>Choosing a system</a>
+<a href="#practice" data-section-link>Guided practice</a>
+<a href="#inspector" data-section-link>Character inspector</a>
+<a href="#mistakes" data-section-link>Common mistakes</a>
+<a href="#quiz" data-section-link>Quick quiz</a>
+<a href="#exam-practice" data-section-link>Written practice</a></nav>
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>Text is stored as numbers, then interpreted as characters</h2>
-            <p class="lesson-section-copy">
-              A computer does not store the shape of a letter every time you
-              type it. It stores a numeric code. Software then uses an agreed
-              character set to interpret that code as a letter, digit, symbol,
-              or control instruction.
-            </p>
+<template data-teacher-opener><h2>Character sets, ASCII and Unicode</h2><p>How does another computer know which text our bits mean?</p><ul><li>Encode and decode a short message</li><li>Explain the limits of standard ASCII</li><li>Connect Unicode code points with UTF-8 bytes</li></ul></template>
 
-            <div class="text-pipeline" aria-label="Text encoding pipeline">
-              <article class="pipeline-card pipeline-card--character">
-                <span class="pipeline-symbol">A</span>
-                <h3>Character</h3>
-                <p>The visible symbol a user expects to read.</p>
-              </article>
-              <article class="pipeline-card pipeline-card--code">
-                <span class="pipeline-symbol">65</span>
-                <h3>Code</h3>
-                <p>The agreed number assigned by the character set.</p>
-              </article>
-              <article class="pipeline-card pipeline-card--binary">
-                <span class="pipeline-symbol">1000001</span>
-                <h3>Binary</h3>
-                <p>The stored or transmitted bit pattern.</p>
-              </article>
-              <article class="pipeline-card pipeline-card--display">
-                <span class="pipeline-symbol">A</span>
-                <h3>Display</h3>
-                <p>The software turns the code back into text.</p>
-              </article>
-            </div>
+<section id="overview" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">01 · Text representation</p>
+<h2>A message must become data</h2>
+<p class="lesson-section-copy">One computer sends a message to another. The receiver gets bits. How could it work out which letters and spaces to display?</p><div class="text-flow"><div class="text-node"><span class="text-label">Sender</span><div class="text-message">hello</div><span>What you typed</span></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Stored / transmitted data</span><strong class="text-puzzle">0s and 1s</strong><span>How should we interpret them?</span></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Receiver</span><div class="text-message is-unknown">?</div><span>What should appear?</span></div></div><p class="text-key">The two computers need an agreed way to represent the text.</p>
+</section>
 
-            <div class="lesson-intro-grid">
-              <article class="lesson-card">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>Explain why character sets are needed.</li>
-                  <li>Describe the purpose and limitations of ASCII.</li>
-                  <li>Explain why Unicode supports wider modern text.</li>
-                  <li>Connect encoding choices to storage and compatibility.</li>
-                </ul>
-              </article>
+<section id="character-sets" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">02 · Text representation</p>
+<h2>Characters have corresponding codes</h2>
+<p class="lesson-section-copy">Computers represent each character with a code. An agreed character set tells them which code belongs to which character.</p>
+<p class="text-caption text-example-note">Not the actual codes</p>
+<div class="text-message-mapping" role="group" aria-label="Illustrative codes above the letters of hello">
+<span class="text-mapping-label">Stored codes</span><code>00</code><code>01</code><code>10</code><code>10</code><code>11</code>
+<span class="text-mapping-label">Displayed text</span><strong>h</strong><strong>e</strong><strong>l</strong><strong>l</strong><strong>o</strong>
+</div>
+<p class="text-key">To read text correctly, the computer must know which character set was used so it can match the codes to the right characters.</p>
+<p class="text-caption">The repeated letter <strong>l</strong> has the same code each time.</p>
+</section>
 
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>Character set:</strong> maps codes to characters.</li>
-                  <li><strong>ASCII:</strong> 7-bit, 128 standard codes.</li>
-                  <li><strong>Unicode:</strong> wide international coverage.</li>
-                  <li><strong>Encoding:</strong> how codes become stored bytes.</li>
-                </ul>
-              </article>
-            </div>
-          </section>
+<section id="encode-decode" class="lesson-section panel text-section" data-lesson-section>
+<span id="mapping-mismatch" aria-hidden="true"></span>
+<p class="eyebrow">03 · Text representation</p>
+<h2>Send codes; recover the message</h2>
+<p class="lesson-section-copy">The sender turns letters into codes. As each code arrives, the receiver uses the same key to turn it back into a letter.</p>
+<div class="character-transmission" data-character-transmission data-no-slide-advance>
+  <div class="transmission-key" aria-label="Shared teaching key">
+    <span class="transmission-key-label">Same key at both computers</span>
+    <span class="transmission-key-pair"><b>h</b><span>→</span><code>00</code></span>
+    <span class="transmission-key-pair"><b>e</b><span>→</span><code>01</code></span>
+    <span class="transmission-key-pair"><b>l</b><span>→</span><code>10</code></span>
+    <span class="transmission-key-pair"><b>o</b><span>→</span><code>11</code></span>
+    <span class="transmission-key-note">Illustrative codes, not ASCII or Unicode</span>
+  </div>
+  <div class="transmission-scene">
+    <div class="transmission-computer">
+      <p class="transmission-label">Sender</p>
+      <div class="transmission-monitor"><div class="transmission-screen">
+        <p class="transmission-word" aria-label="Message to send: hello"><span class="transmission-letter" data-transmission-source aria-hidden="true">h</span><span class="transmission-letter" data-transmission-source aria-hidden="true">e</span><span class="transmission-letter" data-transmission-source aria-hidden="true">l</span><span class="transmission-letter" data-transmission-source aria-hidden="true">l</span><span class="transmission-letter" data-transmission-source aria-hidden="true">o</span></p>
+      </div></div>
+      <div class="transmission-stand" aria-hidden="true"></div>
+    </div>
+    <div class="transmission-channel">
+      <p class="transmission-label">Codes sent</p>
+      <div class="transmission-track" aria-hidden="true"><span class="transmission-packet" data-transmission-packet hidden>00</span></div>
+      <ol class="transmission-codes" aria-label="Five codes in order">
+        <li class="transmission-code has-arrived" data-transmission-code>00</li>
+        <li class="transmission-code has-arrived" data-transmission-code>01</li>
+        <li class="transmission-code has-arrived" data-transmission-code>10</li>
+        <li class="transmission-code has-arrived" data-transmission-code>10</li>
+        <li class="transmission-code has-arrived" data-transmission-code>11</li>
+      </ol>
+      <p class="transmission-progress" data-transmission-count>5 / 5 received</p>
+    </div>
+    <div class="transmission-computer">
+      <p class="transmission-label">Receiver</p>
+      <div class="transmission-monitor"><div class="transmission-screen">
+        <p class="transmission-word" data-transmission-receiver aria-label="Received message: hello"><span class="transmission-letter has-arrived" data-transmission-letter aria-hidden="true">h</span><span class="transmission-letter has-arrived" data-transmission-letter aria-hidden="true">e</span><span class="transmission-letter has-arrived" data-transmission-letter aria-hidden="true">l</span><span class="transmission-letter has-arrived" data-transmission-letter aria-hidden="true">l</span><span class="transmission-letter has-arrived" data-transmission-letter aria-hidden="true">o</span></p>
+      </div></div>
+      <div class="transmission-stand" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div class="transmission-controls" data-transmission-controls hidden>
+    <button type="button" class="primary-link" data-transmission-play aria-pressed="false">Play</button>
+    <button type="button" class="lesson-secondary-action" data-transmission-next aria-disabled="false">Next character</button>
+    <button type="button" class="lesson-secondary-action" data-transmission-restart>Restart</button>
+  </div>
+  <p class="transmission-status" data-transmission-status role="status" aria-live="polite" aria-atomic="true">The sender turns hello into 00 01 10 10 11. The receiver uses the same key to recover hello.</p>
+</div>
 
-          <section
-            id="character-sets"
-            class="lesson-section lesson-section--character-sets panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Foundations</p>
-            <h2>A character set gives each character an agreed code</h2>
-            <p class="lesson-section-copy">
-              A character set is a standard mapping between stored numbers and
-              characters. It can include letters, digits, punctuation, symbols,
-              and control characters. If two systems do not agree on the
-              mapping, the same stored data can be displayed incorrectly.
-            </p>
+<p class="text-encoding-agreement"><strong>How does the receiver know the key?</strong> The format or application specifies the coding rules, or a setting selects them. Both ends must agree; the bits alone do not reliably tell the receiver which rules to use.</p>
+</section>
 
-            <div class="mapping-board">
-              <article class="mapping-card">
-                <span class="mapping-character">A</span>
-                <div>
-                  <strong>Denary 65</strong>
-                  <code>1000001</code>
-                </div>
-                <p>Uppercase letter A in ASCII and Unicode.</p>
-              </article>
 
-              <article class="mapping-card">
-                <span class="mapping-character">0</span>
-                <div>
-                  <strong>Denary 48</strong>
-                  <code>0110000</code>
-                </div>
-                <p>The character <code>0</code>, not the number zero.</p>
-              </article>
 
-              <article class="mapping-card">
-                <span class="mapping-character">LF</span>
-                <div>
-                  <strong>Denary 10</strong>
-                  <code>0001010</code>
-                </div>
-                <p>A line feed control code, used for a new line.</p>
-              </article>
-            </div>
+<section id="appearance" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">04 · Text representation</p>
+<h2>Codes store characters; fonts draw them</h2>
+<div class="text-two-up">
+<article class="text-example"><h3>Same letter, different fonts</h3><div class="text-fonts" aria-label="The letter A in three fonts"><span>A</span><span>A</span><span>A</span></div><p>A <strong>font</strong> is a design for drawing letters and other symbols. Changing the font changes the appearance, not which character is stored.</p></article>
+<article class="text-example"><h3>Digits can be text too</h3><div class="text-message text-room-label">Room <mark>7</mark></div><p>Here, <strong>7</strong> is part of a label. It needs a character code just like the letters and the space. We are displaying a room name, not doing a calculation.</p></article>
+</div>
+<details class="text-revision"><summary>Text digits and numeric values</summary><p>Software can interpret a sequence of text digits as a number when it needs to calculate. The character code used to write a digit is a different thing from the numeric value it represents. For example, ASCII gives the text digit 0 the code value 48.</p></details>
+</section>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Printable characters</strong>
-                <span>Visible letters, digits, punctuation, and symbols.</span>
-              </article>
-              <article class="term-card">
-                <strong>Control characters</strong>
-                <span>Codes for actions such as tab, line feed, or escape.</span>
-              </article>
-              <article class="term-card">
-                <strong>Code point</strong>
-                <span>The number assigned to a character in a character set.</span>
-              </article>
-              <article class="term-card">
-                <strong>Encoding</strong>
-                <span>The method used to store those codes as bytes.</span>
-              </article>
-            </div>
-          </section>
+<template data-teacher-divider><h2>A shared standard</h2><p>Using the same mapping across systems</p></template>
 
-          <section
-            id="ascii"
-            class="lesson-section lesson-section--ascii panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">ASCII</p>
-            <h2>ASCII is small, simple, and historically important</h2>
-            <p class="lesson-section-copy">
-              Standard ASCII uses 7 bits, giving <code>128</code> possible
-              codes. It covers English uppercase and lowercase letters, digits,
-              punctuation, and control characters. It is useful for explaining
-              the principle of text encoding, but it is too limited for modern
-              international text.
-            </p>
+<section id="ascii" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">05 · Text representation</p>
+<h2>Seven bits give 128 codes</h2>
+<p class="lesson-section-copy"><strong>ASCII</strong> is an agreed character-coding standard. Standard ASCII uses seven-bit values.</p><div class="text-capacity"><div><span>1 bit</span><strong>2</strong><span>0 or 1</span></div><span aria-hidden="true">→</span><div><span>2 bits</span><strong>4</strong><span>00, 01, 10, 11</span></div><span aria-hidden="true">→</span><div><span>7 bits</span><strong>128</strong><span>2⁷ possible codes</span></div></div><p class="text-key">128 positions, numbered <strong>0 to 127</strong>. Counting starts at zero.</p><details class="text-check" data-no-slide-advance><summary>Is the largest standard ASCII code 128?</summary><p>No. The largest value is 127. There are 128 values when zero is included.</p></details>
+</section>
 
-            <div class="ascii-grid" aria-label="ASCII code examples">
-              <article>
-                <span>Space</span>
-                <strong>32</strong>
-                <code>0100000</code>
-              </article>
-              <article>
-                <span>0</span>
-                <strong>48</strong>
-                <code>0110000</code>
-              </article>
-              <article>
-                <span>A</span>
-                <strong>65</strong>
-                <code>1000001</code>
-              </article>
-              <article>
-                <span>a</span>
-                <strong>97</strong>
-                <code>1100001</code>
-              </article>
-            </div>
+<section id="ascii-table" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">06 · Text representation</p>
+<h2>Read a small ASCII table</h2>
+<p class="lesson-section-copy">You can look up a code rather than memorise the table. Uppercase and lowercase letters have different codes.</p><div class="text-inspector" data-character-inspector="ascii" data-text="Aa0 " data-no-slide-advance><div data-inspector-fallback><div class="text-table-wrap"><table class="text-table"><caption>These are standard ASCII values, not the invented codebook.</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Denary value</th><th scope="col">ASCII code · 7 bits</th></tr></thead><tbody><tr><th scope="row">A</th><td>65</td><td><code>1000001</code></td></tr><tr><th scope="row">a</th><td>97</td><td><code>1100001</code></td></tr><tr><th scope="row">0 (digit)</th><td>48</td><td><code>0110000</code></td></tr><tr><th scope="row">space</th><td>32</td><td><code>0100000</code></td></tr></tbody></table></div></div><div data-inspector-live hidden><div class="text-token-strip" data-inspector-tokens aria-label="Choose an ASCII symbol"></div><div class="text-inspector-card" data-inspector-card></div><p class="text-caption" data-inspector-status></p></div></div><details class="text-check" data-no-slide-advance><summary>Why can’t A and a share one code in this mapping?</summary><p>The decoder must distinguish them. A is 65; a is 97. Giving both the same code would lose that distinction.</p></details><details class="text-revision" data-no-slide-advance><summary>Keep the four-value reference table open</summary><div class="text-table-wrap"><table class="text-table"><caption>These are standard ASCII values, not the invented codebook.</caption><thead><tr><th scope="col">Symbol</th><th scope="col">Denary value</th><th scope="col">ASCII code · 7 bits</th></tr></thead><tbody><tr><th scope="row">A</th><td>65</td><td><code>1000001</code></td></tr><tr><th scope="row">a</th><td>97</td><td><code>1100001</code></td></tr><tr><th scope="row">0 (digit)</th><td>48</td><td><code>0110000</code></td></tr><tr><th scope="row">space</th><td>32</td><td><code>0100000</code></td></tr></tbody></table></div></details>
+</section>
 
-            <div class="ascii-limit-strip">
-              <article>
-                <h3>Strength</h3>
-                <p>ASCII is compact and easy to process for basic text.</p>
-              </article>
-              <article>
-                <h3>Limit</h3>
-                <p>
-                  Standard ASCII cannot represent characters such as
-                  <code>&pound;</code>, <code>&eacute;</code>, or
-                  <code>&Omega;</code>.
-                </p>
-              </article>
-              <article>
-                <h3>Exam note</h3>
-                <p>
-                  Extended ASCII exists, but different extensions used different
-                  extra characters, so compatibility was not guaranteed.
-                </p>
-              </article>
-            </div>
-          </section>
+<section id="control-codes" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">07 · Text representation</p>
+<h2>Some codes do not draw a symbol</h2>
+<p class="lesson-section-copy">ASCII includes control codes as well as printable characters. <strong>Line feed (LF)</strong> tells this text display to start a new line.</p><div class="text-flow"><div class="text-node"><span class="text-label">Stored sequence</span><div class="text-token-strip"><span class="text-token ">H</span><span class="text-token ">i</span><span class="text-token ">LF</span><span class="text-token ">A</span></div></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Display</span><pre class="text-screen">Hi
+A</pre></div></div><p class="text-key">LF has value 10: <code>0001010</code> in seven bits. It still occupies a position in the data.</p><details class="text-check" data-no-slide-advance><summary>How many codes are in H, i, LF, A?</summary><p><strong>Four.</strong> A control code counts even though it is not a visible letter.</p></details><details class="text-revision"><summary>Other controls and line endings</summary><p>Tab has value 9 and carriage return has value 13. Some systems use LF alone for a line break; others use CR followed by LF. Our example explicitly uses one LF code.</p></details>
+</section>
 
-          <section
-            id="unicode"
-            class="lesson-section lesson-section--unicode panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Unicode</p>
-            <h2>Unicode is designed for many languages and symbols</h2>
-            <p class="lesson-section-copy">
-              Unicode gives characters from many writing systems a consistent
-              code point. This helps websites, documents, databases, and
-              messaging apps exchange text across countries, devices, and
-              software platforms.
-            </p>
+<section id="ascii-bytes" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">08 · Text representation</p>
+<h2>ASCII needs seven bits; storage uses a byte</h2>
+<p class="lesson-section-copy">Computers commonly organise memory and files in <strong>eight-bit bytes</strong>. Giving each ASCII code its own byte lets software find the next code at the next byte position.</p>
+<div class="text-flow text-ascii-storage"><div class="text-node"><span class="text-label">ASCII code for A · 7 bits</span><code class="text-storage-code">1000001</code><span>Value 65</span></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Stored in one byte · 8 bits</span><code class="text-storage-code"><mark>0</mark>1000001</code><span>Still value 65</span></div></div>
+<p class="text-key">The extra leading zero does not change the value. <strong>Seven bits describe the ASCII code; eight bits are used to store it here.</strong></p>
+<details class="text-revision"><summary>Why give each code its own byte?</summary><p>With one character code in each byte, software can read or locate the next code at the next byte position. This is a common storage convention, rather than a requirement to pack seven-bit values tightly across byte boundaries. ASCII itself still has only 128 code values.</p></details>
+</section>
 
-            <div class="unicode-map" aria-label="Unicode examples">
-              <article>
-                <span>A</span>
-                <strong>U+0041</strong>
-                <p>Basic Latin</p>
-              </article>
-              <article>
-                <span>&pound;</span>
-                <strong>U+00A3</strong>
-                <p>Currency symbol</p>
-              </article>
-              <article>
-                <span>&Omega;</span>
-                <strong>U+03A9</strong>
-                <p>Greek letter</p>
-              </article>
-              <article>
-                <span>&#28450;</span>
-                <strong>U+6F22</strong>
-                <p>CJK character</p>
-              </article>
-            </div>
+<section id="ascii-limits" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">09 · Text representation</p>
+<h2>A name does not fit</h2>
+<p class="lesson-section-copy">A club register must preserve members’ names. Standard ASCII can represent every letter in Jose, but not every character in José.</p><div class="text-two-up"><article class="text-example"><span class="text-label">Inside standard ASCII</span><div class="text-message">Jose</div><p>J, o, s and e all have codes from 0 to 127.</p></article><article class="text-example"><span class="text-label">One character outside the range</span><div class="text-message">Jos<mark>é</mark></div><p>The unsupported character is <strong>é</strong>, not the entire name.</p></article></div><p class="text-key">£ and Ω are also outside standard ASCII. A broader repertoire is needed to preserve them.</p><details class="text-check" data-no-slide-advance><summary>Would changing José to Jose preserve the original text?</summary><p>No. It changes the name. The storage system should support the characters people actually use.</p></details>
+</section>
 
-            <article class="lesson-card">
-              <h3>Unicode is the character set, UTF-8 is an encoding</h3>
-              <p>
-                Unicode defines the code points. UTF-8 is one common way to
-                store those code points as bytes. UTF-8 is widely used on the
-                web because the first 128 Unicode code points match ASCII, while
-                wider characters can use more bytes when needed.
-              </p>
-            </article>
-          </section>
+<template data-teacher-divider><h2>More writing systems</h2><p>From Unicode code points to stored bytes</p></template>
 
-          <section
-            id="inspector"
-            class="lesson-section lesson-section--inspector panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Interactive</p>
-            <h2>Inspect how characters become codes</h2>
-            <p class="lesson-section-copy">
-              Type a short message or choose a sample. The table shows each
-              character, its Unicode code point, whether it fits standard ASCII,
-              and the UTF-8 bytes that would store it.
-            </p>
+<section id="unicode" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">10 · Text representation</p>
+<h2>Unicode assigns code points</h2>
+<p class="lesson-section-copy"><strong>Unicode</strong> gives characters from many writing systems, symbols and emoji standard identifiers called <strong>code points</strong>.</p><div class="text-unicode-cards"><article><strong>A</strong><code>U+0041</code><span>Latin letter</span></article><article><strong>é</strong><code>U+00E9</code><span>Accented Latin letter</span></article><article><strong>漢</strong><code>U+6F22</code><span>CJK ideograph</span></article><article><strong>😀</strong><code>U+1F600</code><span>Emoji</span></article></div><p class="text-key"><code>U+</code> introduces a code point written in <strong>hexadecimal</strong>. It is an identifier, not a picture of the character.</p><details class="text-revision"><summary>Hexadecimal reminder</summary><p>Hexadecimal uses digits 0–9 and A–F. U+0041 is denary 65. The number assigned to A agrees with its ASCII value.</p></details>
+</section>
 
-            <article
-              class="character-inspector"
-              data-role="character-inspector"
-            >
-              <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Text inspector</p>
-                  <h3>Character code viewer</h3>
-                </div>
-                <div class="sample-actions" aria-label="Sample messages">
-                  <button
-                    type="button"
-                    class="lesson-secondary-action"
-                    data-inspector-sample="Code 65 = A"
-                  >
-                    ASCII
-                  </button>
-                  <button
-                    type="button"
-                    class="lesson-secondary-action"
-                    data-inspector-sample="Caf&eacute;"
-                  >
-                    Accent
-                  </button>
-                  <button
-                    type="button"
-                    class="lesson-secondary-action"
-                    data-inspector-sample="Price &pound;12"
-                  >
-                    Currency
-                  </button>
-                  <button
-                    type="button"
-                    class="lesson-secondary-action"
-                    data-inspector-sample="Omega &Omega;"
-                  >
-                    Symbol
-                  </button>
-                </div>
-              </div>
+<section id="utf8" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">11 · Text representation</p>
+<h2>An encoding turns code points into bytes</h2>
+<p class="lesson-section-copy">Unicode identifies the character. <strong>UTF-8</strong> gives the rules for storing that identifier as bytes.</p>
+<div class="text-flow text-encoding-map">
+<div class="text-node"><span class="text-label">Character</span><strong class="text-large-glyph">é</strong><span>What the reader sees</span></div>
+<span class="text-arrow" aria-hidden="true">→</span>
+<div class="text-node"><span class="text-label">Unicode code point</span><strong class="text-big-code">U+00E9</strong><span>The character’s identifier</span></div>
+<span class="text-arrow" aria-hidden="true">→</span>
+<div class="text-node"><span class="text-label">UTF-8 stored bytes</span><span class="text-bytes"><code class="text-byte">C3</code><code class="text-byte">A9</code></span><span>Two bytes for this character</span></div>
+</div>
+<p class="text-key"><strong>Decoding reverses this process:</strong> UTF-8 reads the two bytes together and identifies <strong>é</strong>.</p>
+<p class="text-caption">C3 and A9 are byte values written in hexadecimal. The computer stores their bits. You do not need to memorise or calculate the UTF-8 byte patterns.</p>
+<details class="text-revision"><summary>See the stored bits</summary><p>C3 = <code>11000011</code> and A9 = <code>10101001</code>. UTF-8 specifies this two-byte sequence for U+00E9.</p></details>
+</section>
 
-              <label class="inspector-input-label">
-                Message
-                <textarea
-                  rows="3"
-                  maxlength="40"
-                  data-role="inspector-input"
-                ></textarea>
-              </label>
+<section id="byte-counts" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">12 · Text representation</p>
+<h2>UTF-8 uses variable-length codes</h2>
+<p class="lesson-section-copy">UTF-8 stores these code points using one to four bytes. Each box below is one byte.</p><div class="text-byte-ladder"><div><strong>A</strong><code>U+0041</code><span class="text-bytes"><code class="text-byte">41</code></span><span>1 byte</span></div><div><strong>é</strong><code>U+00E9</code><span class="text-bytes"><code class="text-byte">C3</code><code class="text-byte">A9</code></span><span>2 bytes</span></div><div><strong>漢</strong><code>U+6F22</code><span class="text-bytes"><code class="text-byte">E6</code><code class="text-byte">BC</code><code class="text-byte">A2</code></span><span>3 bytes</span></div><div><strong>😀</strong><code>U+1F600</code><span class="text-bytes"><code class="text-byte">F0</code><code class="text-byte">9F</code><code class="text-byte">98</code><code class="text-byte">80</code></span><span>4 bytes</span></div></div><details class="text-check" data-no-slide-advance><summary>Does every Unicode character use the same amount of storage?</summary><p>No. UTF-8 uses different numbers of bytes for these code points. A larger character repertoire does not mean every character has one fixed, larger size.</p></details><details class="text-revision"><summary>Unicode, UTF-16 and UTF-32</summary><p>Unicode is not a fixed 16-bit storage scheme. UTF-8, UTF-16 and UTF-32 are different encoding forms. UTF-8 uses one to four bytes for a Unicode scalar value. UTF-16 uses one or two 16-bit units for a Unicode scalar value; UTF-32 uses one 32-bit unit. A scalar value is a Unicode code point excluding the reserved surrogate range.</p></details>
+</section>
 
-              <div class="inspector-summary">
-                <article>
-                  <span>Characters</span>
-                  <strong data-role="inspector-character-count">0</strong>
-                </article>
-                <article>
-                  <span>ASCII check</span>
-                  <strong data-role="inspector-ascii-status">-</strong>
-                </article>
-                <article>
-                  <span>UTF-8 bytes</span>
-                  <strong data-role="inspector-utf8-count">0</strong>
-                </article>
-              </div>
+<section id="ascii-compatible" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">13 · Text representation</p>
+<h2>ASCII text still fits UTF-8</h2>
+<p class="lesson-section-copy">For the ASCII range, UTF-8 uses one byte with the same value. This plain-English message uses the same bytes in both encodings.</p><div class="text-two-up"><article class="text-example"><h3>ASCII in eight-bit bytes</h3><div class="text-message">Hi!</div><span class="text-bytes"><code class="text-byte">48</code><code class="text-byte">69</code><code class="text-byte">21</code></span><p>Three bytes</p></article><article class="text-example"><h3>UTF-8</h3><div class="text-message">Hi!</div><span class="text-bytes"><code class="text-byte">48</code><code class="text-byte">69</code><code class="text-byte">21</code></span><p>Three bytes</p></article></div><p class="text-caption">48, 69 and 21 above are hexadecimal byte values: denary 72, 105 and 33.</p><p class="text-key">A broader character repertoire does not mean every piece of text takes more bytes.</p>
+</section>
 
-              <div class="character-table-wrap">
-                <div
-                  class="character-code-table"
-                  data-role="inspector-table"
-                ></div>
-              </div>
+<template data-teacher-divider><h2>Decode consistently</h2><p>The receiver must interpret the bytes correctly</p></template>
 
-              <p class="tool-note" data-role="inspector-note">
-                Type text to inspect its character codes.
-              </p>
-            </article>
-          </section>
+<section id="decoding" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">14 · Text representation</p>
+<h2>The right bytes with the wrong decoder</h2>
+<p class="lesson-section-copy">The sender encodes café as UTF-8. Keep the transmitted bytes fixed, then change only the receiver’s decoder.</p><div class="text-mismatch" data-encoding-mismatch data-no-slide-advance>
+<div class="text-flow"><div class="text-node"><span class="text-label">Sender · UTF-8</span><div class="text-message">café</div></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Unchanged bytes · hex</span><span class="text-bytes"><code class="text-byte">63</code><code class="text-byte">61</code><code class="text-byte">66</code><code class="text-byte">C3</code><code class="text-byte">A9</code></span></div></div>
+<div class="text-controls" data-decoder-controls hidden><label for="text-decoder">Receiver’s decoder</label><select id="text-decoder" data-decoder><option value="utf-8">UTF-8</option><option value="windows-1252">Windows-1252</option></select><button type="button" class="lesson-secondary-action" data-decoder-reset>Reset decoder</button></div>
+<div class="text-decoded" data-decoder-live hidden><span class="text-label">Receiver displays</span><output class="text-message" data-decoded-text>café</output><p data-decoder-status aria-live="polite"></p></div>
+<div data-decoder-fallback><div class="text-two-up"><article class="text-example"><h3>Decoded as UTF-8</h3><div class="text-message">café</div><p>C3 A9 together → é</p></article><article class="text-example"><h3>Decoded as Windows-1252</h3><div class="text-message">cafÃ©</div><p>C3 → Ã and A9 → ©</p></article></div></div></div><p class="text-key">An encoding mismatch changes the interpretation. A different font cannot repair it.</p><details class="text-revision"><summary>How software chooses the encoding</summary><p>A file format or application can define a default. A file or message can declare its encoding, or a user can select it when opening the file. For example, a web server can label text as UTF-8 so the browser uses the matching decoder. Guessing from the bytes is unreliable.</p><p><a href="https://www.w3.org/TR/international-specs/#char-encoding-identification">W3C: identifying character encodings</a></p></details>
+</section>
 
-          <section
-            id="practice"
-            class="lesson-section lesson-section--practice panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Practice</p>
-            <h2>Can standard ASCII store this whole message?</h2>
-            <p class="lesson-section-copy">
-              Look at the message and decide whether every character is inside
-              the first 128 ASCII codes. This is about suitability, not
-              memorising every code number.
-            </p>
+<section id="implications" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">15 · Text representation</p>
+<h2>Choose a consistent system</h2>
+<p class="lesson-section-copy">An international club stores names and membership messages. It must keep José, 李 and £ intact, while still supporting plain English entries.</p><div class="text-register"><span>José</span><span>李</span><span>Membership: £5</span></div><div class="text-flow"><div class="text-node"><span class="text-label">Enter text</span><strong>Unicode characters</strong></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Save and send</span><strong>Encode as UTF-8</strong></div><span class="text-arrow" aria-hidden="true">→</span><div class="text-node"><span class="text-label">Read and display</span><strong>Decode as UTF-8</strong></div></div><p class="text-key">Choose enough character coverage <strong>and</strong> compatible encoding throughout the route.</p><details class="text-check" data-no-slide-advance><summary>Why is “Unicode has more characters” an incomplete justification?</summary><p>Broader coverage preserves the actual names and symbols. Sender, storage and receiver must also agree on the encoding, or those supported characters can still be misread.</p></details><details class="text-revision"><summary>Missing glyphs and “extended ASCII”</summary><p>A font without the needed glyph may display an empty box even when the text is correctly encoded. That is a display problem. Also, “extended ASCII” describes various eight-bit mappings, not one universal standard; systems using different mappings can disagree.</p></details>
+</section>
 
-            <article class="ascii-practice" data-role="ascii-practice">
-              <div class="practice-message" data-role="ascii-practice-message">
-                HELLO
-              </div>
-              <div class="ascii-choice-row">
-                <button
-                  type="button"
-                  class="lesson-secondary-action"
-                  data-ascii-choice="yes"
-                >
-                  Yes, ASCII can store it
-                </button>
-                <button
-                  type="button"
-                  class="lesson-secondary-action"
-                  data-ascii-choice="no"
-                >
-                  No, Unicode is needed
-                </button>
-              </div>
-              <div class="practice-action-row">
-                <button
-                  type="button"
-                  class="primary-link"
-                  data-action="check-ascii-practice"
-                >
-                  Check answer
-                </button>
-                <button
-                  type="button"
-                  class="lesson-secondary-action"
-                  data-action="new-ascii-practice"
-                >
-                  New message
-                </button>
-              </div>
-              <p
-                class="practice-feedback"
-                data-role="ascii-practice-feedback"
-                aria-live="polite"
-              >
-                Decide whether standard ASCII can store every character.
-              </p>
-            </article>
-          </section>
+<section id="practice" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">16 · Text representation</p>
+<h2>Choose an approach that fits the text</h2>
+<p class="lesson-section-copy">Use the supplied facts to decide whether character coverage or decoding needs attention.</p>
+<div class="text-practice" data-character-practice data-no-slide-advance>
+  <div data-practice-live hidden>
+    <p class="text-label" data-practice-progress aria-live="polite">Scenario 1 of 3</p>
+    <h3 data-practice-title>An existing ticket printer</h3>
+    <p data-practice-scenario>The printer receives messages such as TICKET 21. Its connection already expects standard ASCII.</p>
+    <p class="text-key" data-practice-facts>Required text: A–Z, digits and spaces. All are available in standard ASCII.</p>
+    <div class="text-controls">
+      <label for="character-approach">Suitable approach</label>
+      <select id="character-approach" data-practice-choice>
+        <option value="">Choose…</option>
+        <option value="ascii">Standard ASCII is sufficient</option>
+        <option value="unicode">Use Unicode with an agreed encoding</option>
+        <option value="decoder">Correct the receiver’s UTF-8 decoding</option>
+      </select>
+      <button type="button" class="primary-link" data-practice-check>Check choice</button>
+    </div>
+    <p class="text-feedback" data-practice-feedback aria-live="polite"></p>
+    <div class="text-controls"><button type="button" class="lesson-secondary-action" data-practice-prev>Previous scenario</button><button type="button" class="lesson-secondary-action" data-practice-next>Next scenario</button><button type="button" class="lesson-secondary-action" data-practice-reset>Restart practice</button></div>
+  </div>
+  <div data-practice-fallback>
+    <p><strong>Ticket printer:</strong> only A–Z, digits and spaces are required; the receiver expects ASCII.</p>
+    <p><strong>Membership register:</strong> José and 李 must be preserved. Standard ASCII lacks é and 李; Unicode includes them.</p>
+    <p><strong>Garbled name:</strong> café was sent as UTF-8 but decoded as Windows-1252, producing cafÃ©. The original data arrived unchanged.</p>
+    <details class="text-check"><summary>Show the reasoning</summary><p>ASCII already covers the printer’s requirements. The register needs Unicode support and an agreed encoding. The garbled name needs the receiver to decode the original data as UTF-8, matching the sender.</p></details>
+  </div>
+</div>
+</section>
 
-          <section
-            id="implications"
-            class="lesson-section lesson-section--implications panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Implications</p>
-            <h2>Encoding choices affect compatibility, storage, and users</h2>
-            <p class="lesson-section-copy">
-              Text encoding is not just a technical detail. It affects whether
-              users can type their names correctly, whether data is exchanged
-              safely between systems, and how much storage or bandwidth text
-              may need.
-            </p>
+<section id="inspector" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">17 · Text representation</p>
+<h2>Explore the code points and bytes</h2>
+<p class="lesson-section-copy">Try the examples, then select a code point to inspect its stored bytes. Predict what will change before changing the text.</p><div class="text-inspector" data-character-inspector="utf8" data-text="Hi!" data-no-slide-advance>
+<div data-inspector-fallback><div class="text-table-wrap"><table class="text-table"><caption>UTF-8 bytes are shown in hexadecimal.</caption><thead><tr><th scope="col">Text</th><th scope="col">Code point</th><th scope="col">UTF-8 bytes</th><th scope="col">Bytes</th></tr></thead><tbody><tr><th scope="row">A</th><td>U+0041</td><td>41</td><td>1</td></tr><tr><th scope="row">é</th><td>U+00E9</td><td>C3 A9</td><td>2</td></tr><tr><th scope="row">漢</th><td>U+6F22</td><td>E6 BC A2</td><td>3</td></tr><tr><th scope="row">😀</th><td>U+1F600</td><td>F0 9F 98 80</td><td>4</td></tr></tbody></table></div><p>Hi! contains three code points and three UTF-8 bytes: 48 69 21.</p></div>
+<div data-inspector-controls hidden><label for="text-inspector-input">Text to inspect · up to 40 code points</label><textarea id="text-inspector-input" rows="2" spellcheck="false" data-inspector-input aria-describedby="text-save-note">Hi!</textarea><div class="text-controls"><button type="button" class="lesson-secondary-action" data-inspector-sample="café">café</button><button type="button" class="lesson-secondary-action" data-inspector-sample="Aé漢😀">Aé漢😀</button><button type="button" class="lesson-secondary-action" data-inspector-sample="Hi&#10;A">Line break</button><button type="button" class="lesson-secondary-action" data-inspector-reset>Reset example</button><button type="button" class="lesson-secondary-action" data-inspector-restore>Restore saved text</button></div></div>
+<div data-inspector-live hidden><div class="text-token-strip" data-inspector-tokens aria-label="Choose a code point"></div><div class="text-inspector-card" data-inspector-card></div><p class="text-feedback" data-inspector-status aria-live="polite"></p><p class="text-caption" id="text-save-note">Your exploration saves on this device as you type or choose an example. Reset changes the view; it keeps your saved text.</p><details class="text-revision"><summary>Full code-point reference for your text</summary><div class="text-table-wrap" tabindex="0" role="region" aria-label="Text code point reference"><table class="text-table"><thead><tr><th scope="col">Code point shown as</th><th scope="col">Unicode</th><th scope="col">Denary</th><th scope="col">ASCII · 7 bits</th><th scope="col">UTF-8 · hex</th></tr></thead><tbody data-inspector-table></tbody></table></div></details></div></div><details class="text-revision"><summary>Why the counter says code points</summary><p>One visible character can use more than one code point. Precomposed é is U+00E9; e followed by the combining acute accent U+0301 can look the same. Some emoji also use sequences of code points. This inspector counts code points, not perceived characters.</p></details>
+</section>
 
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Issue</th>
-                    <th>Why it matters</th>
-                    <th>Example</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Compatibility</td>
-                    <td>Systems must interpret the same bytes the same way.</td>
-                    <td><code>caf&eacute;</code> can become <code>caf&Atilde;&copy;</code>.</td>
-                  </tr>
-                  <tr>
-                    <td>Storage</td>
-                    <td>Wider characters can need more bytes in UTF-8.</td>
-                    <td>Plain ASCII text is compact.</td>
-                  </tr>
-                  <tr>
-                    <td>Accessibility and inclusion</td>
-                    <td>People need names, languages, and symbols represented correctly.</td>
-                    <td>Unicode supports a wider range of writing systems.</td>
-                  </tr>
-                  <tr>
-                    <td>Validation</td>
-                    <td>Systems should not reject valid characters unnecessarily.</td>
-                    <td>A form should handle accents and currency signs where needed.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+<template data-teacher-divider><h2>Apply what you know</h2><p>Use the model to explain unfamiliar examples</p></template>
 
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with text representation</h2>
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Calling ASCII a language</h3>
-                <p>
-                  ASCII is a character coding standard, not a spoken or written
-                  language.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Describe it as a character set or
-                  encoding standard.
-                </p>
-              </article>
+<section id="mistakes" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">18 · Text representation</p>
+<h2>Repair three common mistakes</h2>
+<div class="text-misconceptions"><details class="text-check" data-no-slide-advance><summary>“Changing the font changes the character encoding.”</summary><p>A font changes how a character is drawn. The same stored A can appear in several fonts without changing its code.</p></details><details class="text-check" data-no-slide-advance><summary>“Unicode stores every character in exactly 16 bits.”</summary><p>Unicode code points and encoded storage are different things. Our UTF-8 examples have different lengths: A uses one byte, while 😀 uses four.</p></details><details class="text-check" data-no-slide-advance><summary>“Unicode support alone prevents garbled text.”</summary><p>Supporting the characters is only part of the solution. The receiver must also use the encoding that matches the sender. Reading UTF-8 data with the wrong decoder can still produce the wrong text.</p></details></div><p class="text-key">Name the representation, use evidence from the data, then explain the consequence.</p>
+</section>
 
-              <article class="trap-card">
-                <h3>Mixing up character set and font</h3>
-                <p>
-                  A character set decides which code means which character. A
-                  font decides how that character looks on screen.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Use font only when discussing visual
-                  style.
-                </p>
-              </article>
+<section id="quiz" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">19 · Text representation</p>
+<h2>Check your understanding</h2>
+<p class="lesson-section-copy">Aim for at least 6 out of 8; feedback explains the reasoning after you check your answers.</p><form id="lesson-quiz" class="quiz-form"><fieldset class="quiz-question" data-question="q1" data-answer="0" data-success="Correct. The mapping determines how codes are interpreted. The bits can stay unchanged while the decoded message changes." data-feedback="The mapping determines how codes are interpreted. The bits can stay unchanged while the decoded message changes."><legend>1. Two computers receive identical bits but use different character mappings. What can happen?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q1" value="0"><span>The same bits can produce different text.</span></label><label class="quiz-answer"><input type="radio" name="q1" value="1"><span>The bits automatically change to match the new mapping.</span></label><label class="quiz-answer"><input type="radio" name="q1" value="2"><span>Only the font can change; the text must remain identical.</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q2" data-answer="2" data-success="Correct. Seven bits give 2⁷ = 128 values. Counting begins at zero, so the largest is 127." data-feedback="Seven bits give 2⁷ = 128 values. Counting begins at zero, so the largest is 127."><legend>2. Standard ASCII has 128 code positions. Which range is correct?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q2" value="0"><span>1–128</span></label><label class="quiz-answer"><input type="radio" name="q2" value="1"><span>0–128</span></label><label class="quiz-answer"><input type="radio" name="q2" value="2"><span>0–127</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q3" data-answer="1" data-success="Correct. A decoder needs different codes to distinguish uppercase A from lowercase a." data-feedback="A decoder needs different codes to distinguish uppercase A from lowercase a."><legend>3. ASCII assigns A the value 65 and a the value 97. Why?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q3" value="0"><span>The lowercase letter uses two ASCII bytes.</span></label><label class="quiz-answer"><input type="radio" name="q3" value="1"><span>Uppercase and lowercase are distinct characters.</span></label><label class="quiz-answer"><input type="radio" name="q3" value="2"><span>The same code changes automatically with the font.</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q4" data-answer="1" data-success="Correct. The example specifies one LF control code. It counts as data even though it is not a visible letter." data-feedback="The example specifies one LF control code. It counts as data even though it is not a visible letter."><legend>4. The stored sequence is H, i, LF, A. How many character codes does it contain?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q4" value="0"><span>Three, because LF is invisible.</span></label><label class="quiz-answer"><input type="radio" name="q4" value="1"><span>Four, including the line feed.</span></label><label class="quiz-answer"><input type="radio" name="q4" value="2"><span>Five, because every LF must use two codes.</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q5" data-answer="0" data-success="Correct. A code point is an identifier. The chosen encoding turns that identifier into one or more stored bytes." data-feedback="A code point is an identifier. The chosen encoding turns that identifier into one or more stored bytes."><legend>5. For é, the Unicode identifier is U+00E9 and the UTF-8 bytes are C3 A9. Which statement is correct?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q5" value="0"><span>U+00E9 identifies the character; C3 A9 is its UTF-8 byte representation.</span></label><label class="quiz-answer"><input type="radio" name="q5" value="1"><span>C3 A9 is the name of a font.</span></label><label class="quiz-answer"><input type="radio" name="q5" value="2"><span>U+00E9 proves that UTF-8 uses exactly one byte.</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q6" data-answer="0" data-success="Correct. UTF-8 preserves the ASCII-range values, so the same plain ASCII text can be read consistently." data-feedback="UTF-8 preserves the ASCII-range values. A broader character repertoire does not change the meaning of ordinary ASCII text."><legend>6. A message contains only standard ASCII characters. Which statement about UTF-8 is correct?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q6" value="0"><span>UTF-8 preserves the ASCII character values.</span></label><label class="quiz-answer"><input type="radio" name="q6" value="1"><span>Every ASCII character must be replaced with a different symbol.</span></label><label class="quiz-answer"><input type="radio" name="q6" value="2"><span>UTF-8 cannot represent ordinary ASCII text.</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q7" data-answer="1" data-success="Correct. The bytes were interpreted with the wrong decoder. Correct decoding preserves the original name; changing a font does not repair the mapping." data-feedback="The bytes were interpreted with the wrong decoder. Correct decoding preserves the original name; changing a font does not repair the mapping."><legend>7. UTF-8 bytes for café arrive unchanged but appear as cafÃ©. Which change addresses the demonstrated problem?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q7" value="0"><span>Choose a larger font.</span></label><label class="quiz-answer"><input type="radio" name="q7" value="1"><span>Decode those bytes as UTF-8 instead of Windows-1252.</span></label><label class="quiz-answer"><input type="radio" name="q7" value="2"><span>Replace é with e before saving every name.</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset>
+<fieldset class="quiz-question" data-question="q8" data-answer="1" data-success="Correct. The system needs sufficient character coverage and consistent encoding/decoding. Coverage alone does not prevent an interpretation mismatch." data-feedback="The system needs sufficient character coverage and consistent encoding/decoding. Coverage alone does not prevent an interpretation mismatch."><legend>8. A club must preserve José, 李 and £ in records sent between systems. Which choice is best justified?</legend><div class="quiz-answer-list"><label class="quiz-answer"><input type="radio" name="q8" value="0"><span>Keep standard ASCII and discard unsupported characters.</span></label><label class="quiz-answer"><input type="radio" name="q8" value="1"><span>Choose Unicode support and use an agreed encoding such as UTF-8 throughout.</span></label><label class="quiz-answer"><input type="radio" name="q8" value="2"><span>Use Unicode at the sender and let the receiver assume any encoding.</span></label></div><p class="quiz-feedback-note" data-question-feedback></p></fieldset><div class="quiz-actions"><button class="primary-link" type="submit">Check answers</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div><p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device once you start.</p></form>
+</section>
 
-              <article class="trap-card">
-                <h3>Assuming Unicode always wastes storage</h3>
-                <p>
-                  UTF-8 stores standard ASCII characters in one byte each, while
-                  wider characters use more bytes.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Say the storage impact depends on the
-                  encoding and characters used.
-                </p>
-              </article>
-            </div>
-          </section>
+<section id="exam-practice" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">20 · Text representation</p>
+<h2>Practice 1 · Explain the agreement</h2>
+<p class="lesson-section-copy">A computer sends the text STOP to a display. Explain how character codes let the computer represent the text as data, and why the sender and receiver must agree on how to interpret that data. You do not need to know the codes for the letters.</p>
+<p class="text-caption">Your written drafts save on this device as you type. These are practice tasks with answer guidance.</p>
+<div class="exam-response-wrap"><label class="exam-response-label" for="response-exam-practice">Your answer</label><textarea id="response-exam-practice" class="exam-response" data-exam-response="character-code-agreement-v4" placeholder="Explain codes, stored data and the receiver’s interpretation."></textarea></div>
+<details class="exam-guidance" data-no-slide-advance><summary>Show answer guidance</summary><div class="exam-guidance-body"><p>A coded character set assigns a number to each character. An encoding represents them as binary data for storage or transmission.</p><p>The receiver interprets the data using the agreed encoding to recover S, T, O and P. If it uses a different interpretation, the same data can produce the wrong text. The agreement lets the intended message survive the transfer.</p></div></details>
+</section>
 
-          <section
-            id="quiz"
-            class="lesson-section lesson-section--quiz panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Quiz</p>
-            <h2>Check the concepts</h2>
-            <p class="quiz-intro">
-              The interactive tools handle examples. This quiz checks the ideas
-              that explain why character sets and encodings matter.
-            </p>
+<section id="exam-international" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">21 · Text representation</p>
+<h2>Practice 2 · Preserve people’s names</h2>
+<p class="lesson-section-copy">An ASCII-only membership system stores Jose instead of José and cannot store 李. Explain the problem and justify a suitable approach for storing and sending these names.</p><div class="exam-response-wrap"><label class="exam-response-label" for="response-exam-international">Your answer</label><textarea id="response-exam-international" class="exam-response" data-exam-response="exam-international-v3" placeholder="Connect character coverage, the effect on the member’s name, and compatible encoding."></textarea></div><details class="exam-guidance" data-no-slide-advance><summary>Show answer guidance</summary><div class="exam-guidance-body"><p>Standard ASCII has only 128 positions and does not include é or 李. Removing or replacing these characters changes members’ actual names.</p><p>Use software/storage that supports Unicode, with an agreed encoding such as UTF-8 for saving and exchanging the data. The receiver must decode that encoding correctly. This provides character coverage and preserves the intended text across systems.</p></div></details>
+</section>
 
-            <form id="lesson-quiz" class="quiz-form">
-              <fieldset
-                class="quiz-question"
-                data-question="q1"
-                data-answer="b"
-                data-success="Correct. A character set maps codes to characters."
-                data-feedback="A character set is an agreed mapping between stored values and characters."
-              >
-                <legend>1. What is the purpose of a character set?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="a" />
-                      <span>To increase CPU clock speed</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="b" />
-                      <span>To map numeric codes to characters</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="c" />
-                      <span>To compress image files</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
 
-              <fieldset
-                class="quiz-question"
-                data-question="q2"
-                data-answer="a"
-                data-success="Correct. Standard ASCII uses 7 bits, giving 128 codes."
-                data-feedback="Standard ASCII is usually described as 7-bit, so it has a limited character range."
-              >
-                <legend>2. What is a key feature of standard ASCII?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="a" />
-                      <span>It uses 7 bits and has 128 standard codes</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="b" />
-                      <span>It stores every writing system in the world</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="c" />
-                      <span>It is an image compression method</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
 
-              <fieldset
-                class="quiz-question"
-                data-question="q3"
-                data-answer="c"
-                data-success="Correct. Unicode supports a much wider character range."
-                data-feedback="Unicode is used so systems can handle many languages and symbols consistently."
-              >
-                <legend>3. Why is Unicode widely used?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="a" />
-                      <span>It only supports uppercase English letters</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="b" />
-                      <span>It removes the need for binary storage</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="c" />
-                      <span>It supports a much wider range of characters</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q4"
-                data-answer="b"
-                data-success="Correct. A control character is a non-printing instruction."
-                data-feedback="Control codes tell the system to do something like move to a new line."
-              >
-                <legend>4. What is a control character?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="a" />
-                      <span>A brighter pixel value</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="b" />
-                      <span>A non-printing code such as a line break</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="c" />
-                      <span>A CPU cache level</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q5"
-                data-answer="a"
-                data-success="Correct. Different encodings can make text display incorrectly."
-                data-feedback="If systems use different mappings, the text may become garbled."
-              >
-                <legend>
-                  5. What can happen if two systems use incompatible text
-                  encodings?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="a" />
-                      <span>Text may display as incorrect characters</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="b" />
-                      <span>The keyboard stops sending any input</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="c" />
-                      <span>All files are encrypted automatically</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <div class="quiz-actions">
-                <button class="primary-link" type="submit">Check score</button>
-                <button
-                  class="lesson-secondary-action"
-                  type="button"
-                  data-action="reset-quiz"
-                >
-                  Reset quiz
-                </button>
-              </div>
-
-              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
-                Your answers save automatically on this device once you start.
-              </p>
-            </form>
-          </section>
-
-          <section
-            id="exam-practice"
-            class="lesson-section lesson-section--exam-practice panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Explain the choice, not just the definition</h2>
-            <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers into the page, then compare your ideas with the
-              answer guide.
-            </p>
-            <p class="exam-response-note">
-              Draft answers save automatically in this browser.
-            </p>
-
-            <div class="exam-grid">
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">4 marks</span>
-                  <span class="exam-pill">Explain</span>
-                </div>
-                <h3>Question 1</h3>
-                <p>
-                  Explain why computers need character sets instead of storing
-                  letters directly as visible symbols.
-                </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-1">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-1"
-                    class="exam-response"
-                    data-exam-response="question-1"
-                    placeholder="Link binary storage, numeric codes, and interpretation."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Show answer guide</summary>
-                  <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>Computers store data as binary values.</li>
-                      <li>
-                        A character needs an agreed numeric code so it can be
-                        stored and transmitted.
-                      </li>
-                      <li>
-                        Software uses the character set or encoding to interpret
-                        the code.
-                      </li>
-                      <li>
-                        Without a shared standard, text could display as the
-                        wrong character.
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">6 marks</span>
-                  <span class="exam-pill">Compare and justify</span>
-                </div>
-                <h3>Question 2</h3>
-                <p>
-                  Compare ASCII and Unicode for an international messaging app,
-                  then justify which standard is more suitable.
-                </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-2">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-2"
-                    class="exam-response"
-                    data-exam-response="question-2"
-                    placeholder="Compare character range with storage and compatibility."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Show answer guide</summary>
-                  <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>ASCII has a small character range.</li>
-                      <li>
-                        Unicode supports far more languages, scripts, and
-                        symbols.
-                      </li>
-                      <li>
-                        Unicode or encodings such as UTF-8 can use more storage
-                        for wider characters.
-                      </li>
-                      <li>
-                        An international messaging app needs broad language
-                        support, so Unicode is the stronger justified choice.
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-            </div>
-          </section>
-        </main>
+<section id="exam-decoding" class="lesson-section panel text-section" data-lesson-section>
+<p class="eyebrow">22 · Text representation</p>
+<span id="exam-storage" hidden></span>
+<h2>Practice 3 · Diagnose garbled text</h2>
+<p class="lesson-section-copy">A sender encodes café as UTF-8. The unchanged bytes 63 61 66 C3 A9 arrive at a receiver that displays cafÃ© using Windows-1252. Explain what went wrong and how to recover the intended text.</p><p class="text-key">All byte values in the question are hexadecimal.</p><div class="exam-response-wrap"><label class="exam-response-label" for="response-exam-decoding">Your answer</label><textarea id="response-exam-decoding" class="exam-response" data-exam-response="exam-decoding-v3" placeholder="Identify what stayed the same, what changed, and the matching decoder."></textarea></div><details class="exam-guidance" data-no-slide-advance><summary>Show answer guidance</summary><div class="exam-guidance-body"><p>The sender and receiver used different encoding interpretations. UTF-8 treats C3 A9 together as é; Windows-1252 interprets those bytes separately as Ã and ©.</p><p>Decode the original, unchanged bytes as UTF-8 to recover café. Configure consistent encoding at both ends. Changing the font does not change the decoder.</p></div></details>
+</section>
+</main>
 
         <aside class="lesson-rail">
           <section class="lesson-rail-card panel glossary-card">
@@ -912,19 +398,19 @@
             <dl class="glossary-list">
               <div class="glossary-item">
                 <dt>Character set</dt>
-                <dd>An agreed mapping between codes and characters.</dd>
+                <dd>The available characters; a coded character set assigns a number to each.</dd>
               </div>
               <div class="glossary-item">
                 <dt>ASCII</dt>
-                <dd>A smaller character standard often described as 7-bit.</dd>
+                <dd>A character-coding standard with 128 positions numbered 0–127, expressed in seven bits.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Unicode</dt>
-                <dd>A much wider standard for characters and symbols.</dd>
+                <dd>A standard assigning code points to characters from many writing systems, symbols and emoji.</dd>
               </div>
               <div class="glossary-item">
                 <dt>Code point</dt>
-                <dd>The number assigned to a character in a character set.</dd>
+                <dd>A numbered position, written as U+ followed by hexadecimal in Unicode.</dd>
               </div>
               <div class="glossary-item">
                 <dt>UTF-8</dt>
@@ -935,15 +421,15 @@
 
           <section class="lesson-rail-card panel revision-card">
             <p class="eyebrow">Remember</p>
-            <h2>Same code, same meaning</h2>
+            <h2>Codes need interpretation</h2>
             <ul class="memory-list">
               <li>Character sets let systems interpret text consistently.</li>
               <li>ASCII is compact but limited to 128 standard codes.</li>
-              <li>Unicode is stronger for global modern computing.</li>
+              <li>Unicode coverage and consistent encoding preserve international text.</li>
               <li>Encoding mismatches can create garbled text.</li>
             </ul>
           </section>
-        </aside>
+        <section class="lesson-rail-card panel text-source-card"><p class="eyebrow">References</p><h2>Read further</h2><ul><li><a href="https://www.rfc-editor.org/info/rfc20/">ASCII: RFC 20</a></li><li><a href="https://www.rfc-editor.org/info/rfc3629/">UTF-8: RFC 3629</a></li><li><a href="https://www.unicode.org/faq/utf_bom.html">Unicode encoding FAQ</a></li><li><a href="https://encoding.spec.whatwg.org/index-windows-1252.txt">Windows-1252 mapping</a></li></ul></section></aside>
       </div>
 
       <section
@@ -965,7 +451,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 10</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 29</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

@@ -215,6 +215,12 @@ the browser with `localStorage` where useful.
 - The first real unit hub now exists at `pages/units/btec-level-3-unit-2.html`.
 - A first Web Development resource hub now exists at
   `pages/resources/web-development.html`.
+- The existing C2 text and both C3 image representation lessons now teach from
+  first principles with progressive diagrams, bounded interactive tools,
+  teacher slide pacing, quizzes and saved written practice. The shared record is
+  `docs/text_and_image_representation_improvement_plan.md`. Quiz replacements
+  use fresh storage keys as well as versions; the shared exam saver preserves
+  older draft IDs when written prompts change.
 - The first Web Development lessons now exist at
   `pages/topics/what-is-html.html` and
   `pages/topics/html-document-structure.html`, and

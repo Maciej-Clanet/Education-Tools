@@ -230,10 +230,32 @@ saved progress should be shown as needing a fresh attempt.
 
 ### C2 Text representation
 - [x] Character sets, ASCII, and Unicode
+  - Rebuilt and refined on 4 October 2026: a sender/receiver transmission visual
+    leads into ASCII, Unicode code points, a static UTF-8 explanation and a
+    visible decoding mismatch. Conceptual scenarios assess character coverage
+    and consistent interpretation; invented-code and byte-count tasks are removed.
+    22 student sections / 27 Teacher Slides. Quiz version 4: eight questions,
+    pass six; three written tasks, with retired drafts preserved.
+    See [the lesson notes](character_sets_lesson.md).
 
 ### C3 Image representation
 - [x] Image storage: bitmap and vector images
+  - Rebuilt for first teaching on 4 October 2026: one picture becomes ordered
+    pixel codes and is reconstructed before dimension and palette experiments.
+    A saved bitmap builder, matched photo crop and raster/vector enlargement
+    support 18 student sections / 27 Teacher Slides. Quiz version 3: 10 questions,
+    pass 8; four written tasks. See [the lesson notes](bitmap_image_storage_lesson.md).
 - [x] Resolution, bit depth, and image compression
+  - Rebuilt for first teaching on 4 October 2026: controlled resolution and depth
+    comparisons precede guided pixel-data calculations, exact run-length recovery
+    and genuine encoded compression comparisons. The two-part teaching sequence
+    has 30 student sections / 36 Teacher Slides. Quiz version 3: 12 questions,
+    pass 9; five written tasks. See [the lesson notes](image_quality_lesson.md).
+
+The [shared C2/C3 improvement plan](text_and_image_representation_improvement_plan.md)
+records the teaching boundaries and implementation checks. All three lessons
+retain their URLs and navigation. Fresh versioned quiz keys prevent old attempts
+being counted against new questions; earlier written drafts remain stored.
 
 ## D How data is organised on computer systems
 

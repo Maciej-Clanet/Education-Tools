@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Resolution, Bit Depth, and Image Compression Revision Lesson | Education
+      Resolution, Bit Depth, and Image Compression Lesson | Education
       Tools
     </title>
     <meta
       name="description"
-      content="Revise image resolution, bit depth, colour banding, raw bitmap size, lossy compression, and lossless compression for BTEC Level 3 Computing Unit 2."
+      content="Learn image resolution, bit depth, colour banding, raw bitmap size, lossy compression, and lossless compression for BTEC Level 3 Computing Unit 2."
     />
     <meta
       property="og:title"
-      content="Resolution, Bit Depth, and Image Compression Revision Lesson | Education Tools"
+      content="Resolution, Bit Depth, and Image Compression Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise image resolution, bit depth, colour banding, raw bitmap size, lossy compression, and lossless compression for BTEC Level 3 Computing Unit 2."
+      content="Learn image resolution, bit depth, colour banding, raw bitmap size, lossy compression, and lossless compression for BTEC Level 3 Computing Unit 2."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -37,7 +37,7 @@
       type="module"
       src="../../javascript/pages/resolution-bit-depth-and-image-compression.js"
     ></script>
-  </head>
+  <link rel="stylesheet" href="../../css/lesson-walkthrough.css"><link rel="stylesheet" href="../../css/exam-technique.css"></head>
   <body>
     <div class="page-shell">
       <header class="lesson-hero panel panel-accent">
@@ -86,7 +86,7 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Interactive focus</strong>
-            <span>Changing bit depth and seeing the visual/storage effect</span>
+            <span>Controlled image comparisons and compression</span>
           </article>
         </div>
 
@@ -114,752 +114,80 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, the bit-depth tool, and teacher slides
-          need JavaScript, but the lesson notes still work without it.
+          Interactive controls, scoring and saved answers need JavaScript. Static examples and worked steps remain readable.
         </p>
       </noscript>
 
-      <div class="lesson-layout">
-        <aside class="lesson-sidebar panel">
-          <p class="eyebrow">Jump To</p>
-          <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#resolution" data-section-link>Resolution</a>
-            <a href="#bit-depth" data-section-link>Bit depth</a>
-            <a href="#bit-depth-tool" data-section-link>Bit-depth tool</a>
-            <a href="#raw-size" data-section-link>Raw image size</a>
-            <a href="#compression" data-section-link>Compression</a>
-            <a href="#trade-offs" data-section-link>Compare and choose</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
-            <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam-style practice</a>
-          </nav>
-        </aside>
+      <div class="lesson-layout"><aside class="lesson-sidebar panel"><p class="eyebrow">Jump to</p><nav class="section-nav" aria-label="Lesson sections"><a href="#overview" data-section-link>Start here</a><a href="#resolution" data-section-link>Resolution</a><a href="#bit-depth" data-section-link>Bit depth</a><a href="#bit-depth-tool" data-section-link>Shade explorer</a><a href="#raw-size" data-section-link>Raw storage</a><a href="#compression" data-section-link>Part 2: compression</a><a href="#lossy-comparison" data-section-link>Compare real files</a><a href="#trade-offs" data-section-link>Choose settings</a><a href="#mistakes" data-section-link>Common mistakes</a><a href="#quiz" data-section-link>Quick quiz</a><a href="#exam-practice" data-section-link>Written practice</a></nav></aside><main class="lesson-main" data-role="lesson-main"><template data-teacher-opener><h2>Resolution, depth and compression</h2><p>Which image data can we change, and what do we gain or lose?</p><ul><li>Explain image detail and colour precision</li><li>Calculate raw pixel storage</li><li>Justify compression choices</li></ul></template><section id="overview" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>One photograph. Two different jobs.</h2><p class="quality-copy">A computing museum needs a small web preview and a detailed exhibit poster. Which image data can we change, and what might we lose?</p><div class="quality-columns"><figure class="quality-use quality-use--web"><img class="" src="../../assets/images/image-representation/photo-source.png" alt="A photograph shown inside a small website card" loading="lazy"><figcaption><strong>Web preview</strong>Small display area · quick transfer</figcaption></figure><figure class="quality-use quality-use--poster"><img class="" src="../../assets/images/image-representation/photo-source.png" alt="The same photograph used in a larger poster" loading="lazy"><figcaption><strong>Large poster</strong>Fine detail at a larger size</figcaption></figure></div><p class="quality-part-links"><a href="#resolution">Part 1: detail, colour and storage</a><a href="#compression">Part 2: compression and choices</a></p><p class="quality-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Synology_nas_413j_back_open.jpg">Korrupt / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cropped/resized; greyscale or recompressed where shown.</p></section>
 
-        <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>Image quality is a set of linked storage decisions</h2>
-            <p class="lesson-section-copy">
-              For bitmap images, resolution decides how many pixels are stored.
-              Bit depth decides how much colour information each pixel can hold.
-              Compression decides how the stored data is reduced, and whether
-              image data is preserved exactly.
-            </p>
+<section id="pixel-retrieval" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Read the grid before counting the bits</h2><p class="quality-copy">Each position is one pixel. A bitmap stores a value for each position, using an agreed colour interpretation.</p><div class="quality-columns"><figure><svg class="quality-arrow" viewBox="0 0 320 160" role="img" aria-label="An arrow stored in eight columns and four rows"><title>8 columns, 4 rows, 32 pixels</title><rect x="0" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="40" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="80" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="120" y="0" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="160" y="0" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="200" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="240" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="280" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="0" y="40" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="40" y="40" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="80" y="40" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="120" y="40" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="160" y="40" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="200" y="40" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="240" y="40" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="280" y="40" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="0" y="80" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="40" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="80" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="120" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="160" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="200" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="240" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="280" y="80" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="0" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="40" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="80" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="120" y="120" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="160" y="120" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="200" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="240" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="280" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/></svg><figcaption>Width: 8 pixels · height: 4 pixels</figcaption></figure><article class="quality-card"><h3>What do you count?</h3><div class="quality-formula"><strong>8 × 4 = 32</strong><span>pixel positions</span></div><p>The dimensions multiply. Adding 8 + 4 does not count the grid.</p></article></div><details class="quality-check"><summary>If you repaint every pixel, does this grid gain more positions?</summary><p>No. Its values change, but it still has 32 pixel positions.</p></details></section>
 
-            <div class="quality-map">
-              <article class="quality-card quality-card--resolution">
-                <span class="quality-icon quality-icon--resolution"></span>
-                <h3>Resolution</h3>
-                <p>More pixels can store more detail.</p>
-              </article>
-              <article class="quality-card quality-card--depth">
-                <span class="quality-icon quality-icon--depth"></span>
-                <h3>Bit depth</h3>
-                <p>More bits per pixel can store more colour values.</p>
-              </article>
-              <article class="quality-card quality-card--compression">
-                <span class="quality-icon quality-icon--compression"></span>
-                <h3>Compression</h3>
-                <p>Smaller files can save space and transfer faster.</p>
-              </article>
-            </div>
+<template data-teacher-divider><h2>Resolution</h2><p>How many samples describe the image?</p></template><section id="resolution" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>More samples can capture finer detail</h2><p class="quality-copy">These are fresh samples of the same scene. The display size stays fixed; only the stored grid changes.</p><div class="quality-tool" data-quality-resolution data-no-slide-advance><div class="quality-controls" data-quality-controls hidden><button type="button" data-resolution-size="8" aria-pressed="false">8 × 8</button><button type="button" data-resolution-size="16" aria-pressed="false">16 × 16</button><button type="button" data-resolution-size="32" aria-pressed="false">32 × 32</button><button type="button" class="quality-reset" data-quality-reset>Reset</button></div><div class="quality-resolution-layout"><figure><img class="quality-scene" src="../../assets/images/image-representation/quality-resolution-16.svg" alt="The house scene sampled at 16 by 16 pixels" loading="lazy"><figcaption data-quality-output="resolution">16 × 16 = 256 pixels</figcaption></figure><div><h3>Look at the narrow door</h3><p data-quality-output="resolution-detail" aria-live="polite">More samples distinguish the narrow door and the roof edge.</p><p class="quality-fixed">Fixed: subject, display size and colour precision.</p></div></div></div><details class="quality-revision"><summary>Compare without the controls</summary><div class="quality-columns"><figure><img class="quality-scene" src="../../assets/images/image-representation/quality-resolution-8.svg" alt="At 8 by 8, the door is not sampled" loading="lazy"><figcaption>8 × 8: the door disappears.</figcaption></figure><figure><img class="quality-scene" src="../../assets/images/image-representation/quality-resolution-32.svg" alt="At 32 by 32, the narrow door and roof edge are clear" loading="lazy"><figcaption>32 × 32: more detail is represented.</figcaption></figure></div></details></section>
 
-            <div class="lesson-intro-grid">
-              <article class="lesson-card">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>Explain how resolution affects detail and file size.</li>
-                  <li>Explain how bit depth affects colours and storage.</li>
-                  <li>Compare lossy and lossless compression.</li>
-                  <li>Recommend suitable image settings for a scenario.</li>
-                </ul>
-              </article>
+<section id="zoom" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>A bigger view is still the same stored grid</h2><p class="quality-copy">Zoom makes the existing pixels larger on screen. It cannot recover the door that the original 8 × 8 grid never recorded.</p><div class="quality-tool" data-quality-zoom data-no-slide-advance><div class="quality-controls" data-quality-controls hidden><button type="button" data-zoom-scale="1" aria-pressed="false">View ×1</button><button type="button" data-zoom-scale="2" aria-pressed="false">View ×2</button><button type="button" data-zoom-scale="3" aria-pressed="false">View ×3</button><button type="button" class="quality-reset" data-quality-reset>Reset</button></div><div class="quality-zoom-stage"><img data-zoom-image src="../../assets/images/image-representation/quality-resolution-8.svg" alt="The unchanged 8 by 8 scene enlarged without new samples" width="80" height="80"></div><p class="quality-status" data-quality-output="zoom" aria-live="polite">View ×1 · stored image still 8 × 8 (64 pixels)</p></div><div class="quality-definition"><strong>Resampling</strong><p>Creates a new pixel grid from existing samples. Enlargement estimates new values; it does not recover the original missing detail.</p></div></section>
 
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>Resolution:</strong> how many pixels.</li>
-                  <li><strong>Bit depth:</strong> how many bits per pixel.</li>
-                  <li><strong>Lossless:</strong> exact recovery possible.</li>
-                  <li><strong>Lossy:</strong> smaller file, possible quality loss.</li>
-                </ul>
-              </article>
-            </div>
-          </section>
+<section id="dimension-growth" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Double the width and height: four times the pixels</h2><p class="quality-copy">Count the positions first. These four blocks divide one larger grid; they are not four copies of the picture.</p><div class="quality-columns"><div class="quality-count-blocks" role="img" aria-label="Four blocks of 64 positions make 256 positions"><span>8 × 8<br><strong>64</strong></span><span>8 × 8<br><strong>64</strong></span><span>8 × 8<br><strong>64</strong></span><span>8 × 8<br><strong>64</strong></span></div><article class="quality-card"><h3>One 16 × 16 image</h3><div class="quality-formula"><strong>16 × 16 = 256</strong><span>four times 8 × 8 = 64</span></div><figure><img class="quality-scene quality-scene--small" src="../../assets/images/image-representation/quality-resolution-16.svg" alt="One house sampled across the whole larger grid" loading="lazy"><figcaption>One subject across the whole grid</figcaption></figure></article></div></section>
 
-          <section
-            id="resolution"
-            class="lesson-section lesson-section--resolution panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Resolution</p>
-            <h2>Resolution controls how many pixels are stored</h2>
-            <p class="lesson-section-copy">
-              Resolution is usually given as width by height, such as
-              <code>1920 x 1080</code>. A higher resolution stores more pixels,
-              so it can capture more fine detail. It also usually needs more
-              storage because there are more pixel values to save.
-            </p>
+<section id="pixel-density" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>The same pixels can cover different print sizes</h2><p class="quality-copy">Pixel dimensions count samples. Pixels per inch (PPI) describes how tightly those samples are placed when printing.</p><div class="quality-print-comparison"><figure><div class="quality-print quality-print--small">1200 × 800<br><strong>300 PPI</strong></div><figcaption>4 × 2⅔ inches</figcaption></figure><figure><div class="quality-print quality-print--large">1200 × 800<br><strong>150 PPI</strong></div><figcaption>8 × 5⅓ inches</figcaption></figure></div><p class="quality-fixed">Resampling is OFF: both still contain 960,000 pixels.</p><details class="quality-revision"><summary>Print calculation and terminology</summary><p class="quality-copy">Print width in inches = width in pixels ÷ PPI. 1200 ÷ 300 = 4 inches; 1200 ÷ 150 = 8 inches. Changing only this density setting adds no image samples. Printer dots per inch (DPI) describes printer dots; it is not simply another name for image pixel count.</p><p><a href="https://helpx.adobe.com/photoshop/desktop/crop-resize-transform/resize-adjust-resolution/image-size-resolution-and-resampling.html">Adobe: image size, resolution and resampling</a></p></details></section>
 
-            <div class="resolution-visual">
-              <article>
-                <h3>Low resolution</h3>
-                <div class="resolution-grid resolution-grid--low">
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                </div>
-                <p>Fewer stored samples, less detail, smaller raw data.</p>
-              </article>
-              <article>
-                <h3>Higher resolution</h3>
-                <div class="resolution-grid resolution-grid--high">
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                </div>
-                <p>More stored samples, more detail, larger raw data.</p>
-              </article>
-            </div>
-          </section>
+<template data-teacher-divider><h2>Bit depth</h2><p>How many values can each pixel represent?</p></template><section id="bit-depth" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>More bits give a pixel more possible codes</h2><p class="quality-copy">Start with a single greyscale value per pixel. Every extra bit doubles the number of choices.</p><div class="quality-code-levels"><article class="quality-card"><h3>1 bit per pixel</h3><div class="quality-swatches"><span style="--shade:0"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>0</code></span><span style="--shade:255"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>1</code></span></div><strong>2 possible values</strong></article><article class="quality-card"><h3>2 bits per pixel</h3><div class="quality-swatches"><span style="--shade:0"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>00</code></span><span style="--shade:85"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>01</code></span><span style="--shade:170"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>10</code></span><span style="--shade:255"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>11</code></span></div><strong>4 possible values</strong></article><article class="quality-card"><h3>3 bits per pixel</h3><div class="quality-swatches"><span style="--shade:0"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>000</code></span><span style="--shade:36"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>001</code></span><span style="--shade:73"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>010</code></span><span style="--shade:109"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>011</code></span><span style="--shade:146"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>100</code></span><span style="--shade:182"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>101</code></span><span style="--shade:219"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>110</code></span><span style="--shade:255"><i style="background:rgb(var(--shade),var(--shade),var(--shade))"></i><code>111</code></span></div><strong>8 possible values</strong></article></div><div class="quality-formula"><strong>Possible codes = 2ᵇ</strong><span>b = the number of bits in this value</span></div></section>
 
-          <section
-            id="bit-depth"
-            class="lesson-section lesson-section--bit-depth panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Bit Depth</p>
-            <h2>Bit depth controls how many colour values each pixel can store</h2>
-            <p class="lesson-section-copy">
-              Bit depth is the number of bits used for each pixel. More bits
-              create more possible values. For example, 1 bit gives
-              <code>2</code> values, 2 bits give <code>4</code> values, and 8
-              bits give <code>256</code> values for the channel or palette being
-              represented.
-            </p>
-
-            <div class="bit-depth-equation">
-              <strong>Possible values</strong>
-              <code>2 ^ bit depth</code>
-              <p>
-                More possible values can reduce visible banding in gradients and
-                keep subtle tone changes.
-              </p>
-            </div>
-          </section>
-
-          <section
-            id="bit-depth-tool"
-            class="lesson-section lesson-section--bit-depth-tool panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Interactive</p>
-            <h2>Change the bit depth and watch the image data change</h2>
-            <p class="lesson-section-copy">
-              Use the slider to reduce or increase bit depth. The gradient shows
-              banding clearly, while the small image preview shows how tone
-              detail is lost or preserved. The storage figures update for a
-              <code>16 x 10</code> sample bitmap. This simplified preview uses
-              greyscale values so the effect is easy to see; colour images use
-              the same principle for their colour data.
-            </p>
-
-            <article
-              class="bit-depth-tool"
-              data-role="bit-depth-tool"
-              aria-labelledby="bit-depth-tool-heading"
-            >
-              <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Bit-depth visualiser</p>
-                  <h3 id="bit-depth-tool-heading">Colour values per pixel</h3>
-                </div>
-                <span class="tool-pill" data-role="bit-depth-value">3 bits</span>
-              </div>
-
-              <label class="tool-slider-label">
-                Bits per pixel
-                <input
-                  type="range"
-                  min="1"
-                  max="8"
-                  step="1"
-                  data-role="bit-depth-slider"
-                />
-              </label>
-
-              <div class="bit-depth-stats">
-                <article>
-                  <span>Possible values</span>
-                  <strong data-role="bit-depth-levels">8</strong>
-                </article>
-                <article>
-                  <span>Sample raw bits</span>
-                  <strong data-role="bit-depth-sample-bits">480</strong>
-                </article>
-                <article>
-                  <span>Sample raw bytes</span>
-                  <strong data-role="bit-depth-sample-bytes">60</strong>
-                </article>
-              </div>
-
-              <div class="bit-depth-preview-grid">
-                <article>
-                  <h4>Gradient</h4>
-                  <div
-                    class="gradient-preview"
-                    data-role="bit-depth-gradient"
-                    aria-label="Gradient preview affected by bit depth"
-                  ></div>
-                </article>
-                <article>
-                  <h4>Sample image</h4>
-                  <div
-                    class="image-preview"
-                    data-role="bit-depth-image"
-                    aria-label="Small bitmap preview affected by bit depth"
-                  ></div>
-                </article>
-              </div>
-
-              <div class="palette-preview-wrap">
-                <h4>Sample values available</h4>
-                <div
-                  class="palette-preview"
-                  data-role="bit-depth-palette"
-                  aria-label="Preview of available shade values"
-                ></div>
-              </div>
-
-              <p class="tool-note" data-role="bit-depth-note">
-                Low bit depth creates obvious bands because there are very few
-                shades available.
-              </p>
-            </article>
-          </section>
-
-          <section
-            id="raw-size"
-            class="lesson-section lesson-section--raw-size panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Raw Size</p>
-            <h2>Resolution and bit depth multiply together</h2>
-            <p class="lesson-section-copy">
-              Raw bitmap storage can be estimated by multiplying width by
-              height by bits per pixel. Compression and metadata can change the
-              final file size, but this formula explains the basic pressure on
-              storage.
-            </p>
-
-            <div class="formula-card">
-              <strong>Raw image size in bits</strong>
-              <code>width x height x bit depth</code>
-              <p>
-                Example: <code>800 x 600 x 24 = 11,520,000 bits</code>, before
-                compression or extra file information.
-              </p>
-            </div>
-          </section>
-
-          <section
-            id="compression"
-            class="lesson-section lesson-section--compression panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Compression</p>
-            <h2>Compression reduces file size, but the method matters</h2>
-            <p class="lesson-section-copy">
-              Compression makes image files smaller for storage and transfer.
-              The key distinction is whether the original data can be recovered
-              exactly after decompression.
-            </p>
-
-            <div class="compression-grid">
-              <article class="compression-card compression-card--lossless">
-                <h3>Lossless compression</h3>
-                <p>
-                  Reorganises data so the file is smaller, but no original image
-                  data is lost. The image can be restored exactly.
-                </p>
-                <span>Useful for archives, diagrams, medical or legal images.</span>
-              </article>
-              <article class="compression-card compression-card--lossy">
-                <h3>Lossy compression</h3>
-                <p>
-                  Removes some image data to reduce file size more strongly.
-                  The original cannot be perfectly restored.
-                </p>
-                <span>Useful for web photos where smaller files matter.</span>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="trade-offs"
-            class="lesson-section lesson-section--trade-offs panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Trade-Offs</p>
-            <h2>Image choices should match the purpose of the file</h2>
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Need</th>
-                    <th>Likely choice</th>
-                    <th>Reason</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Small web image</td>
-                    <td>Lower resolution or lossy compression</td>
-                    <td>Faster loading and smaller transfer size</td>
-                  </tr>
-                  <tr>
-                    <td>Detailed print work</td>
-                    <td>Higher resolution and suitable bit depth</td>
-                    <td>More detail and smoother colour transitions</td>
-                  </tr>
-                  <tr>
-                    <td>Exact archive</td>
-                    <td>Lossless compression</td>
-                    <td>Preserves the original image data</td>
-                  </tr>
-                  <tr>
-                    <td>Low storage device</td>
-                    <td>Reduced resolution, bit depth, or compression</td>
-                    <td>Saves space, but may reduce quality</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with image quality and compression</h2>
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Mixing up resolution and bit depth</h3>
-                <p>
-                  Resolution is about pixel count. Bit depth is about colour
-                  values per pixel.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Ask whether the question is about
-                  detail or colour range.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Assuming all compression is lossless</h3>
-                <p>
-                  Some compression methods permanently remove data.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> State whether the original image can be
-                  recovered exactly.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Ignoring the trade-off</h3>
-                <p>
-                  Better quality usually needs more data unless some quality is
-                  sacrificed.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Link image settings to file size and
-                  intended use.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="quiz"
-            class="lesson-section lesson-section--quiz panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Quiz</p>
-            <h2>Check the concepts</h2>
-            <p class="quiz-intro">
-              The bit-depth tool handles the visual examples. This quiz checks
-              the ideas behind image quality and compression choices.
-            </p>
-
-            <form id="lesson-quiz" class="quiz-form">
-              <fieldset
-                class="quiz-question"
-                data-question="q1"
-                data-answer="a"
-                data-success="Correct. Resolution is about the number of pixels in the image."
-                data-feedback="Resolution refers to how many pixels are used to build the picture."
-              >
-                <legend>1. What does image resolution mainly describe?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="a" />
-                      <span>The number of pixels in the image</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="b" />
-                      <span>The keyboard layout used to name the file</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="c" />
-                      <span>The number of network packets sent</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q2"
-                data-answer="c"
-                data-success="Correct. Higher bit depth means more possible colours or shades."
-                data-feedback="Bit depth controls the range of colour values each pixel can hold."
-              >
-                <legend>2. What is a likely effect of increasing bit depth?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="a" />
-                      <span>Fewer pixels automatically</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="b" />
-                      <span>All compression becomes lossless</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="c" />
-                      <span>More possible colour values per pixel</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q3"
-                data-answer="b"
-                data-success="Correct. Lossless compression preserves the original image data."
-                data-feedback="Lossless compression reduces size without losing the original information."
-              >
-                <legend>3. Which statement matches lossless compression?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="a" />
-                      <span>It always removes image detail permanently</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="b" />
-                      <span>The original image can be restored exactly</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="c" />
-                      <span>It only works with text files</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q4"
-                data-answer="a"
-                data-success="Correct. Lossy compression can reduce quality to save more space."
-                data-feedback="Lossy methods remove some data, so image quality may be affected."
-              >
-                <legend>4. What is a likely result of lossy compression?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="a" />
-                      <span>The file becomes smaller but some quality may be lost</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="b" />
-                      <span>The image gains more pixels automatically</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="c" />
-                      <span>The bit depth doubles every time</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q5"
-                data-answer="b"
-                data-success="Correct. More pixels and more bits per pixel both increase raw bitmap storage."
-                data-feedback="Raw bitmap size depends on pixel count and bit depth."
-              >
-                <legend>
-                  5. Which pair directly affects raw bitmap storage size?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="a" />
-                      <span>Keyboard type and mouse speed</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="b" />
-                      <span>Pixel count and bits per pixel</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="c" />
-                      <span>Screen brightness and speaker volume</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <div class="quiz-actions">
-                <button class="primary-link" type="submit">Check score</button>
-                <button
-                  class="lesson-secondary-action"
-                  type="button"
-                  data-action="reset-quiz"
-                >
-                  Reset quiz
-                </button>
-              </div>
-
-              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
-                Your answers save automatically on this device once you start.
-              </p>
-            </form>
-          </section>
-
-          <section
-            id="exam-practice"
-            class="lesson-section lesson-section--exam-practice panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Explain the effect, then judge the trade-off</h2>
-            <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers into the page, then compare your ideas with the
-              answer guide.
-            </p>
-            <p class="exam-response-note">
-              Draft answers save automatically in this browser.
-            </p>
-
-            <div class="exam-grid">
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">4 marks</span>
-                  <span class="exam-pill">Explain</span>
-                </div>
-                <h3>Question 1</h3>
-                <p>
-                  Explain how reducing the bit depth of an image will affect the
-                  way the image data is stored and displayed.
-                </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-1">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-1"
-                    class="exam-response"
-                    data-exam-response="question-1"
-                    placeholder="Link fewer bits per pixel to fewer colour values and smaller storage."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Show answer guide</summary>
-                  <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>Each pixel stores fewer bits of colour data.</li>
-                      <li>There are fewer possible colours or shades.</li>
-                      <li>
-                        The image may show banding, posterisation, or less
-                        realistic colour.
-                      </li>
-                      <li>The raw image data will be smaller.</li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">6 marks</span>
-                  <span class="exam-pill">Evaluate</span>
-                </div>
-                <h3>Question 2</h3>
-                <p>
-                  Evaluate whether lossy or lossless compression is more
-                  suitable for storing an important logo archive and a set of
-                  quickly loading website images.
-                </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-2">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-2"
-                    class="exam-response"
-                    data-exam-response="question-2"
-                    placeholder="Compare exact preservation against smaller file size."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Show answer guide</summary>
-                  <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>
-                        Lossless compression preserves the original data exactly.
-                      </li>
-                      <li>
-                        That is useful for an important archive where quality
-                        must be preserved.
-                      </li>
-                      <li>
-                        Lossy compression can make website images smaller and
-                        faster to load.
-                      </li>
-                      <li>
-                        The trade-off is that some image quality may be lost.
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-            </div>
-          </section>
-        </main>
-
-        <aside class="lesson-rail">
-          <section class="lesson-rail-card panel glossary-card">
-            <p class="eyebrow">Glossary</p>
-            <h2>Quick glossary</h2>
-            <dl class="glossary-list">
-              <div class="glossary-item">
-                <dt>Resolution</dt>
-                <dd>The number of pixels used to store the image.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Bit depth</dt>
-                <dd>The number of bits used to store each pixel's colour.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Banding</dt>
-                <dd>Visible steps between tones when too few values are available.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Lossless compression</dt>
-                <dd>Compression that preserves the original data exactly.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Lossy compression</dt>
-                <dd>Compression that removes some data to shrink the file.</dd>
-              </div>
-            </dl>
-          </section>
-
-          <section class="lesson-rail-card panel revision-card">
-            <p class="eyebrow">Remember</p>
-            <h2>Three linked decisions</h2>
-            <ul class="memory-list">
-              <li>Resolution controls image detail.</li>
-              <li>Bit depth controls colour precision.</li>
-              <li>Compression controls how size is reduced and at what cost.</li>
-            </ul>
-          </section>
-        </aside>
-      </div>
-
-      <section
-        class="lesson-sequence panel"
-        aria-labelledby="lesson-sequence-heading"
-      >
-        <p class="eyebrow">Keep Going</p>
-        <h2 id="lesson-sequence-heading">Previous and next lesson</h2>
-        <div class="sequence-grid" data-role="lesson-sequence"></div>
-      </section>
+<section id="bit-depth-tool" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Keep the pixels. Change the available shades.</h2><p class="quality-copy">Every setting uses the same pixels. Watch for jumps between tones: banding.</p>
+<div class="quality-tool" data-quality-depth data-no-slide-advance>
+  <div class="quality-controls" data-quality-controls hidden><button type="button" data-depth-value="1" aria-pressed="false">1 bit</button><button type="button" data-depth-value="2" aria-pressed="false">2 bits</button><button type="button" data-depth-value="4" aria-pressed="false">4 bits</button><button type="button" data-depth-value="8" aria-pressed="false">8 bits</button><button type="button" class="quality-reset" data-quality-reset>Reset</button></div>
+  <div class="quality-depth-layout">
+    <figure><img data-depth-image src="../../assets/images/image-representation/quality-grey-2.png" alt="The photograph quantised to four grey shades"><figcaption>Fixed dimensions: 960 × 640</figcaption></figure>
+    <div>
+      <p class="quality-status" data-quality-output="depth">2 bits per pixel · 4 possible shades</p>
+      <img class="quality-gradient" data-depth-gradient src="../../assets/images/image-representation/quality-gradient-2.svg" alt="A gradient with four distinct grey bands">
+      <p data-quality-output="banding" aria-live="polite">Few shades make distinct bands.</p>
+      <div class="quality-controls" data-quality-controls hidden><label class="quality-range">Inspect source brightness <input data-shade-input type="range" min="0" max="255" value="110"></label></div>
+      <p class="quality-status" data-quality-output="shade" aria-live="polite">Source brightness 110 → code 01 → displayed grey 85</p>
     </div>
+  </div>
+  <p class="quality-note">Each choice starts again from the reference; it does not recover a previously saved low-depth copy.</p>
+</div><details class="quality-revision"><summary>Static comparison and model limits</summary><div class="quality-columns"><figure><img class="" src="../../assets/images/image-representation/quality-grey-1.png" alt="Photograph with two shades" loading="lazy"><figcaption>1 bit: two shades</figcaption></figure><figure><img class="" src="../../assets/images/image-representation/quality-grey-8.png" alt="The same photograph with 256 available shades" loading="lazy"><figcaption>8 bits: 256 possible shades</figcaption></figure></div><p class="quality-copy">The gradient contains 256 sample positions. The photograph is a quantised teaching preview stored as a PNG; its actual file bytes are not the ideal packed bit-depth total. Displayed RGB grey values map the stored teaching code onto a 0–255 brightness scale.</p></details><p class="quality-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Synology_nas_413j_back_open.jpg">Korrupt / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cropped/resized; greyscale or recompressed where shown.</p></section>
 
-    <div
-      class="teacher-controls panel"
-      data-role="teacher-controls"
-      data-no-slide-advance
-      hidden
-    >
-      <button type="button" class="slide-button" data-action="prev-slide">
-        Previous
-      </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 10</p>
-      <button type="button" class="slide-button" data-action="next-slide">
-        Next
-      </button>
-      <button
-        type="button"
-        class="slide-button slide-button--exit"
-        data-action="exit-teacher-mode"
-      >
-        Exit slides
-      </button>
-    </div>
-  </body>
-</html>
+<section id="rgb-channels" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>One RGB pixel holds three channel values</h2><p class="quality-copy">Red, green and blue describe the colour together. “8-bit colour” is ambiguous unless we say whether it means each channel or the whole pixel.</p><div class="quality-rgb"><div><span class="quality-rgb-chip" style="background:#c87840" aria-label="The combined brown colour"></span><strong>One pixel</strong></div><div class="quality-channel quality-channel--red"><strong>Red: 200</strong><code>11001000</code><span>8 bits</span></div><div class="quality-channel quality-channel--green"><strong>Green: 120</strong><code>01111000</code><span>8 bits</span></div><div class="quality-channel quality-channel--blue"><strong>Blue: 64</strong><code>01000000</code><span>8 bits</span></div></div><div class="quality-formula"><strong>8 + 8 + 8 = 24 bits per pixel</strong><span>256 × 256 × 256 = 16,777,216 possible RGB combinations</span></div><p class="quality-note">No transparency channel is included in this example.</p></section>
+
+<section id="depth-labels" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Label what the depth measures</h2><p class="quality-copy">The same number of bits can describe different things. A palette index selects a colour from a separate table.</p><div class="quality-code-levels"><article class="quality-card"><h3>8-bit greyscale</h3><div class="quality-metric"><strong>256</strong><span>possible shades</span></div><p>One 8-bit grey value per pixel.</p></article><article class="quality-card"><h3>8-bit indexed colour</h3><div class="quality-metric"><strong>256</strong><span>possible palette entries</span></div><p>One 8-bit index per pixel. The palette also needs storage.</p></article><article class="quality-card"><h3>RGB: 8 bits per channel</h3><div class="quality-metric"><strong>24</strong><span>bits per pixel</span></div><p>Three values: red, green and blue.</p></article></div><details class="quality-check"><summary>Does every image described as “8-bit” have only 256 possible colours?</summary><p>No. RGB with eight bits per channel has 24 bits per pixel. Ask what the depth measures.</p></details><details class="quality-revision"><summary>Sample depth in real formats</summary><p class="quality-copy">PNG defines depth per sample for greyscale/RGB images, or per palette index for indexed images. Always identify the representation before calculating bits per pixel.</p><p><a href="https://www.w3.org/TR/png-3/">W3C PNG specification</a></p></details></section>
+
+<template data-teacher-divider><h2>Storage</h2><p>How much uncompressed pixel data is there?</p></template><section id="raw-size" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Count pixels, then bits, then bytes</h2><p class="quality-copy">The 8 × 4 image uses two bits for every pixel. Follow the quantities and keep the units beside each result.</p><div class="quality-walkthrough" data-lesson-walkthrough data-no-slide-advance><div class="quality-card" data-walkthrough-step="Count pixel positions"><h3>Count pixel positions</h3><div class="quality-columns"><div class="quality-formula"><strong>8 × 4 = 32 pixels</strong><span>width × height</span></div><svg class="quality-arrow" viewBox="0 0 320 160" role="img" aria-label="An arrow stored in eight columns and four rows"><title>8 columns, 4 rows, 32 pixels</title><rect x="0" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="40" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="80" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="120" y="0" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="160" y="0" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="200" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="240" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="280" y="0" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="0" y="40" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="40" y="40" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="80" y="40" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="120" y="40" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="160" y="40" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="200" y="40" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="240" y="40" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="280" y="40" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="0" y="80" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="40" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="80" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="120" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="160" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="200" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="240" y="80" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="280" y="80" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="0" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="40" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="80" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="120" y="120" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="160" y="120" width="40" height="40" stroke="#71808b" fill="#24313b"/><rect x="200" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="240" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/><rect x="280" y="120" width="40" height="40" stroke="#71808b" fill="#fff"/></svg></div></div><div class="quality-card" data-walkthrough-step="Allocate two bits to each pixel"><h3>Allocate two bits to each pixel</h3><div class="quality-formula"><strong>32 × 2 = 64 bits</strong><span>pixel positions × bits per pixel</span></div><p>Repainting the image changes the values, not the number of fixed-size slots.</p></div><div class="quality-card" data-walkthrough-step="Group the bits into bytes"><h3>Group the bits into bytes</h3><div class="quality-formula"><strong>64 ÷ 8 = 8 bytes</strong><span>eight bits form one byte</span></div><p>This is the uncompressed pixel payload. Palette, headers and other file information are excluded.</p></div><div data-walkthrough-controls hidden><p data-walkthrough-status aria-live="polite"></p><button class="lesson-secondary-action" type="button" data-walkthrough-prev>Previous step</button><button class="primary-link" type="button" data-walkthrough-next>Next step</button><button class="lesson-secondary-action" type="button" data-walkthrough-reset>Restart</button></div></div><details class="quality-revision"><summary>One formula after the working</summary><div class="quality-formula"><strong>width × height × bits per pixel</strong><span>raw pixel payload in bits; divide by eight for bytes</span></div></details></section>
+
+<section id="photo-size" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Use the same method for a larger image</h2><p class="quality-copy">A 1200 × 800 photograph uses 24-bit RGB without transparency. Calculate its raw pixel payload, excluding extra file information.</p><div class="quality-walkthrough" data-lesson-walkthrough data-no-slide-advance><div class="quality-card" data-walkthrough-step="Count pixels"><h3>Count pixels</h3><div class="quality-formula"><strong>1200 × 800 = 960,000 pixels</strong><span>width × height</span></div></div><div class="quality-card" data-walkthrough-step="Multiply by the bits per pixel"><h3>Multiply by the bits per pixel</h3><div class="quality-formula"><strong>960,000 × 24 = 23,040,000 bits</strong><span>all three RGB channels are included</span></div></div><div class="quality-card" data-walkthrough-step="Convert bits to bytes"><h3>Convert bits to bytes</h3><div class="quality-formula"><strong>23,040,000 ÷ 8 = 2,880,000 bytes</strong><span>divide by eight, not by 1000</span></div></div><div class="quality-card" data-walkthrough-step="Use the stated unit convention"><h3>Use the stated unit convention</h3><div class="quality-formula"><strong>2,880,000 ÷ 1,000,000 = 2.88 MB</strong><span>decimal MB: one million bytes</span></div></div><div data-walkthrough-controls hidden><p data-walkthrough-status aria-live="polite"></p><button class="lesson-secondary-action" type="button" data-walkthrough-prev>Previous step</button><button class="primary-link" type="button" data-walkthrough-next>Next step</button><button class="lesson-secondary-action" type="button" data-walkthrough-reset>Restart</button></div></div></section>
+
+<section id="predict-size" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Predict the change before calculating</h2><div class="quality-columns"><article class="quality-card"><h3>Halve width and height</h3><p>1200 × 800 → 600 × 400. Keep 24 bits per pixel.</p><details class="quality-check"><summary>Half or one quarter of the raw data?</summary><p>One quarter: 600 × 400 × 24 ÷ 8 = 720,000 bytes, compared with 2,880,000 bytes.</p></details></article><article class="quality-card"><h3>Halve the bits per pixel</h3><p>Keep 1200 × 800 pixels. Change 8-bit greyscale to 4-bit greyscale.</p><details class="quality-check"><summary>What changes, and what stays fixed?</summary><p>Raw data halves from 960,000 to 480,000 bytes. Pixel count is unchanged; the available shades fall from 256 to 16.</p></details></article></div><p class="quality-fixed">Change one property at a time so its effect is clear.</p></section>
+
+<section id="complete-file" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Raw pixel payload is only part of the story</h2><p class="quality-copy">An image file also tells a decoder how to interpret its data. Its pixel values may be compressed.</p><div class="quality-file"><div><strong>Header / metadata</strong><span>Dimensions and interpretation</span></div><div><strong>Palette, if used</strong><span>Entries selected by pixel codes</span></div><div><strong>Encoded pixel data</strong><span>May use compression</span></div></div><p class="quality-note">Conceptual file diagram; real formats arrange their contents differently.</p><details class="quality-check"><summary>Exit check: 100 × 80 at 8 bits per pixel. How many raw bytes?</summary><p>100 × 80 × 8 = 64,000 bits = 8,000 bytes. This excludes compression and extra file data; it is not a prediction of the final PNG or JPEG file size.</p></details></section>
+
+<template data-teacher-divider><h2>Part 2 · Compression</h2><p>Keep the same image dimensions. Investigate the stored data.</p></template><section id="compression" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Can we reconstruct exactly the same values?</h2><p class="quality-copy">Compression changes how image data is encoded for storage or transfer. Compare the decoded values with the data supplied to the encoder.</p><ol class="quality-path"><li><strong>Original pixel values</strong><code>0 0 0 255 255</code></li><li><strong>Encoded file</strong><span>A different representation</span></li><li><strong>Decoded pixel values</strong><span>Exact match or approximation?</span></li></ol><div class="quality-columns"><article class="quality-card"><h3>Lossless</h3><p>The original supplied data can be reconstructed exactly.</p></article><article class="quality-card"><h3>Lossy</h3><p>Some distinctions are discarded. The original supplied data cannot be reconstructed exactly.</p></article></div></section>
+
+<section id="lossless-runs" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>A short description can preserve every value</h2><p class="quality-copy">Store a count and a shade for each run of equal values. PNG uses a different method.</p><div class="quality-tool quality-rle" data-quality-runs data-no-slide-advance><div class="quality-controls" data-quality-controls hidden><button type="button" data-run-preset="flat" aria-pressed="false">Repeated areas</button><button type="button" data-run-preset="alternating" aria-pressed="false">Alternating shades</button><button type="button" class="quality-reset" data-quality-reset>Reset</button></div><p class="quality-status" data-quality-output="run-stage" aria-live="polite">Original pixel values</p><div><strong>Original: 16 pixels, 8 bits each</strong><div class="quality-run-row" data-run-original><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span></div></div><p data-run-after="1" data-quality-output="run-count">2 runs of equal neighbouring shades</p><div data-run-after="2"><strong>Count × shade</strong><div class="quality-run-pairs" data-run-pairs><span class="quality-pair">8 × 0</span><span class="quality-pair">8 × 255</span></div></div><div data-run-after="3"><strong>Decoded</strong><div class="quality-run-row" data-run-decoded><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#24313b;color:#fff">0</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span><span style="background:#fff;color:#24313b">255</span></div><p data-quality-output="run-verdict">All 16 values match exactly.</p></div><div class="quality-controls" data-quality-controls hidden><button type="button" data-run-prev>Previous step</button><button type="button" data-run-next>Next step</button></div><details class="quality-revision"><summary>Does this method always save space?</summary><p data-quality-output="run-size">Pixel values: 16 bytes. Count/value pairs: 4 bytes. Headers excluded.</p><p>Here each count uses one byte and each shade uses one byte. A row of 16 alternating shades needs 16 pairs: 32 bytes. Exact reconstruction is guaranteed by this scheme; a smaller result is not.</p></details></div></section>
+
+<section id="lossy-comparison" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>A smaller file can change the decoded picture</h2><p class="quality-copy">Compare real encoded files from the same reference. Their dimensions stay fixed. Inspect the full image and the matching enlarged crop.</p><div class="quality-tool quality-compression" data-quality-compression data-no-slide-advance><div class="quality-controls" data-quality-controls hidden><button type="button" data-compression-subject="photo" aria-pressed="false">Photograph</button><button type="button" data-compression-subject="diagram" aria-pressed="false">Diagram</button><button type="button" class="quality-reset" data-quality-reset>Reset</button></div><div class="quality-controls" data-quality-controls hidden><button type="button" data-compression-variant="source" aria-pressed="false">Reference PNG</button><button type="button" data-compression-variant="high" aria-pressed="false">JPEG · high quality</button><button type="button" data-compression-variant="medium" aria-pressed="false">JPEG · medium quality</button><button type="button" data-compression-variant="low" aria-pressed="false">JPEG · low quality</button></div><div class="quality-columns quality-compression-columns"><figure class="quality-compression-figure"><figcaption><strong >Reference PNG</strong><span data-quality-output="source-size">876,557 bytes</span></figcaption><img class="quality-compression-full" data-compression-image="source" src="../../assets/images/image-representation/photo-source.png" alt="Photograph: Reference PNG"><div class="quality-crop" data-compression-crop data-subject="photo"><img data-compression-image="source" src="../../assets/images/image-representation/photo-source.png" alt="Matching magnified crop of the Reference PNG"></div><span class="quality-crop-label">Same magnified crop</span></figure><figure class="quality-compression-figure"><figcaption><strong data-quality-output="variant-label">JPEG: medium compression</strong><span data-quality-output="variant-size">64,526 bytes</span></figcaption><img class="quality-compression-full" data-compression-image="variant" src="../../assets/images/image-representation/photo-jpeg-medium.jpg" alt="Photograph: JPEG: medium compression"><div class="quality-crop" data-compression-crop data-subject="photo"><img data-compression-image="variant" src="../../assets/images/image-representation/photo-jpeg-medium.jpg" alt="Matching magnified crop of the JPEG: medium compression"></div><span class="quality-crop-label">Same magnified crop</span></figure></div><p class="quality-note" data-quality-output="compression-status" aria-live="polite">Photograph · 960 × 640 in both files · compare the same edge or texture.</p></div><details class="quality-revision"><summary>Reference and strong-compression examples without controls</summary><div class="quality-columns"><figure><img class="" src="../../assets/images/image-representation/photo-source.png" alt="Source photograph" loading="lazy"><figcaption>Reference PNG</figcaption></figure><figure><img class="" src="../../assets/images/image-representation/photo-jpeg-low.jpg" alt="Photograph with strong JPEG compression" loading="lazy"><figcaption>JPEG · low quality</figcaption></figure></div></details><p class="quality-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Synology_nas_413j_back_open.jpg">Korrupt / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cropped/resized; greyscale or recompressed where shown.</p></section>
+
+<section id="compression-content" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>The image content affects the result</h2><p class="quality-copy">Photographs have gradual tones and textures. Diagrams often have flat areas, fine lines and text. Compare the actual results before choosing.</p><div class="quality-columns"><article class="quality-card"><h3>Photograph</h3><img class="quality-example-image" src="../../assets/images/image-representation/photo-jpeg-low.jpg" alt="Strongly compressed photograph" loading="lazy"><p>Lossy encoding can save substantial space, but texture and edges can change.</p></article><article class="quality-card"><h3>Diagram with small text</h3><img class="quality-example-image" src="../../assets/images/image-representation/diagram-jpeg-low.jpg" alt="Strongly compressed diagram with small text" loading="lazy"><p>Changes around letters and lines can be distracting. Lossless encoding preserves the supplied values.</p></article></div><details class="quality-revision"><summary>Measured example file sizes</summary><div class="compare-table-wrap"><table class="compare-table"><thead><tr><th>Example</th><th>Reference PNG</th><th>JPEG high</th><th>JPEG medium</th><th>JPEG low</th></tr></thead><tbody><tr><th>Photograph</th><td>876,557 B</td><td>180,832 B</td><td>64,526 B</td><td>20,016 B</td></tr><tr><th>Diagram</th><td>32,353 B</td><td>91,400 B</td><td>39,389 B</td><td>17,503 B</td></tr></tbody></table></div><p>All examples are 960 × 640. These are measured file bytes, not predictions for other images. The reference is the supplied pixel data, not a promise of untouched camera data.</p><p><a href="https://www.w3.org/TR/png-3/">PNG specifies lossless raster encoding</a>. This lesson uses the common lossy JPEG mode; the <a href="https://jpeg.org/jpeg/">JPEG family also includes other modes</a>.</p></details><p class="quality-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Synology_nas_413j_back_open.jpg">Korrupt / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cropped/resized; greyscale or recompressed where shown.</p></section>
+
+<section id="three-routes" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Three different changes can reduce data</h2><div class="quality-route-list"><article><strong>Downsample</strong><span>Fewer pixel positions</span><code>1200 × 800 → 600 × 400</code></article><article><strong>Reduce depth</strong><span>Fewer bits per value</span><code>8-bit grey → 4-bit grey</code></article><article><strong>Compress</strong><span>Different encoding</span><code>Same dimensions can remain</code></article></div><p class="quality-copy">Lossy compression can change reconstructed values without removing rows or columns. Lossless compression preserves the data given to it.</p><details class="quality-check"><summary>Can saving a damaged JPEG as PNG bring back discarded detail?</summary><p>No. Lossless encoding preserves the values it receives. It cannot recover information discarded by an earlier operation.</p></details></section>
+
+<template data-teacher-divider><h2>Apply the ideas</h2><p>Choose settings from the task, then justify the consequence.</p></template><section id="trade-offs" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Keep a preservation copy. Make a preview.</h2><p class="quality-copy">A museum needs exact preservation of its supplied image data, plus a small web preview visitors can load quickly.</p><ol class="exam-technique__chain"><li><strong>Requirement</strong><p>The preservation copy must retain every supplied pixel value.</p></li><li><strong>Choice and effect</strong><p>Use lossless encoding for that copy. Derive a smaller preview separately.</p></li><li><strong>Judgement</strong><p>Check the preview at its intended size. Reject settings that hide useful detail.</p></li></ol><div class="exam-technique__counter"><strong>What changes the decision?</strong><p>A preview containing small labels may need lossless encoding too. “Website” alone does not mean “use lossy”.</p></div></section>
+
+<section id="scenario-screenshot" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>A screenshot needs readable text</h2><p class="quality-copy">A technician must send a screenshot with small error messages. The receiver needs the supplied pixel values preserved exactly.</p><div class="quality-scenario quality-card" data-paired-scenario="screenshot" data-no-slide-advance><div class="quality-columns"><label>Image choice<select data-choice="type"><option value="">Choose a setting</option><option value="lossless">Lossless at adequate dimensions</option><option value="lossy">Resize and check a lossy copy</option><option value="mono">1-bit monochrome at required dimensions</option></select></label><label>Reason<select data-choice="reason"><option value="">Choose a reason</option><option value="text">Preserve small text and exact supplied values</option><option value="transfer">Reduce photo transfer size while checking useful detail</option><option value="two">Only two pixel values are required</option></select></label></div><div class="quality-controls"><button type="button" data-check-pair>Check choice</button><button type="button" data-reset-pair>Reset</button></div><p data-pair-feedback aria-live="polite"></p><details class="quality-check"><summary>Show answer guidance</summary><p>Keep adequate dimensions and use lossless encoding. Strong lossy compression may alter values around letter edges.</p></details></div></section>
+
+<section id="scenario-gallery" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>A photographic gallery has a transfer budget</h2><p class="quality-copy">A travel gallery displays photos in small cards. The originals are much larger; visitors have limited mobile data. The source files remain safely stored.</p><div class="quality-scenario quality-card" data-paired-scenario="gallery" data-no-slide-advance><div class="quality-columns"><label>Image choice<select data-choice="type"><option value="">Choose a setting</option><option value="lossless">Lossless at adequate dimensions</option><option value="lossy">Resize and check a lossy copy</option><option value="mono">1-bit monochrome at required dimensions</option></select></label><label>Reason<select data-choice="reason"><option value="">Choose a reason</option><option value="text">Preserve small text and exact supplied values</option><option value="transfer">Reduce photo transfer size while checking useful detail</option><option value="two">Only two pixel values are required</option></select></label></div><div class="quality-controls"><button type="button" data-check-pair>Check choice</button><button type="button" data-reset-pair>Reset</button></div><p data-pair-feedback aria-live="polite"></p><details class="quality-check"><summary>Show answer guidance</summary><p>Make appropriately sized preview copies and inspect a lossy setting. Balance transfer size with useful detail; do not overwrite the sources.</p></details></div></section>
+
+<section id="scenario-icon" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>A device icon uses exactly two values</h2><p class="quality-copy">A tiny status display accepts only black and white. Its icon has no grey anti-aliased edge pixels.</p><div class="quality-scenario quality-card" data-paired-scenario="icon" data-no-slide-advance><div class="quality-columns"><label>Image choice<select data-choice="type"><option value="">Choose a setting</option><option value="lossless">Lossless at adequate dimensions</option><option value="lossy">Resize and check a lossy copy</option><option value="mono">1-bit monochrome at required dimensions</option></select></label><label>Reason<select data-choice="reason"><option value="">Choose a reason</option><option value="text">Preserve small text and exact supplied values</option><option value="transfer">Reduce photo transfer size while checking useful detail</option><option value="two">Only two pixel values are required</option></select></label></div><div class="quality-controls"><button type="button" data-check-pair>Check choice</button><button type="button" data-reset-pair>Reset</button></div><p data-pair-feedback aria-live="polite"></p><details class="quality-check"><summary>Show answer guidance</summary><p>At the required dimensions, one bit per pixel represents the two values. More depth adds choices this icon does not use.</p></details></div></section>
+
+<section id="mistakes" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Repair the missing condition</h2><div class="quality-mistakes"><details class="quality-check"><summary>“300 PPI always creates more pixels.”</summary><p>Only if pixel data is resampled as part of the change. Changing density metadata alone changes print size, not pixel count.</p></details><details class="quality-check"><summary>“8-bit means 256 colours in every image.”</summary><p>Eight bits per channel is different from eight bits per pixel. RGB with three 8-bit channels uses 24 bits per pixel.</p></details><details class="quality-check"><summary>“All compression removes image detail.”</summary><p>Lossless encoding reconstructs its input exactly. Lossy encoding discards distinctions; visible damage depends on the image and settings.</p></details><details class="quality-check"><summary>“Width × height × depth gives the JPEG file size.”</summary><p>It gives raw pixel bits when depth means total bits per pixel. Extra file information and compression change the file size.</p></details></div></section>
+
+<section id="quiz" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Check the concepts</h2><p class="quality-copy">Answer all 12 questions, then check your score. Aim for 9 correct. Your choices save in this browser.</p><form id="lesson-quiz" class="quiz-form" data-no-slide-advance><fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. Multiply width by height: 100 × 80 = 8,000 pixels." data-feedback="Multiply width by height: 100 × 80 = 8,000 pixels."><legend>1. How many pixels are in a 100 × 80 image?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a"><span>180</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b"><span>8,000</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c"><span>64,000</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q2" data-answer="c" data-success="Correct. There are twice as many columns and twice as many rows: 2 × 2 = 4." data-feedback="There are twice as many columns and twice as many rows: 2 × 2 = 4."><legend>2. Width and height both double. At the same bits per pixel, what happens to raw pixel data?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a"><span>It doubles</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b"><span>It stays the same</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c"><span>It becomes four times as large</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q3" data-answer="a" data-success="Correct. Zoom changes the view. It does not add information to the source pixels." data-feedback="Zoom changes the view. It does not add information to the source pixels."><legend>3. You zoom into an 8 × 8 image without resampling. What changes?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a"><span>Its displayed size, while the 64 stored samples stay the same</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b"><span>Its stored dimensions automatically increase</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c"><span>Original detail missing from the samples is recovered</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q4" data-answer="b" data-success="Correct. The same 1200 × 800 samples are packed into fewer inches. No samples are added." data-feedback="The same 1200 × 800 samples are packed into fewer inches. No samples are added."><legend>4. A 1200 × 800 image changes from 150 PPI to 300 PPI with resampling OFF. What happens?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a"><span>Pixel count doubles</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b"><span>It prints smaller; pixel count stays the same</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c"><span>Its stored colours double</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q5" data-answer="c" data-success="Correct. 2⁴ = 16 possible codes. Each extra bit doubles the number." data-feedback="2⁴ = 16 possible codes. Each extra bit doubles the number."><legend>5. How many different codes can four bits represent?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a"><span>4</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b"><span>8</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c"><span>16</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q6" data-answer="b" data-success="Correct. Add all three channels: 8 + 8 + 8 = 24 bits per pixel." data-feedback="Add all three channels: 8 + 8 + 8 = 24 bits per pixel."><legend>6. An RGB pixel has 8 bits for red, 8 for green and 8 for blue. What is its depth, excluding alpha?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a"><span>8 bits per pixel</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b"><span>24 bits per pixel</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c"><span>256 bits per pixel</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q7" data-answer="a" data-success="Correct. 8 × 4 × 2 = 64 bits; 64 ÷ 8 = 8 bytes, excluding extra file data." data-feedback="8 × 4 × 2 = 64 bits; 64 ÷ 8 = 8 bytes, excluding extra file data."><legend>7. What is the raw pixel payload of an 8 × 4 image at 2 bits per pixel?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a"><span>8 bytes</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b"><span>64 bytes</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c"><span>32 bytes</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q8" data-answer="c" data-success="Correct. 600 × 400 × 24 = 5,760,000 bits, divided by eight = 720,000 bytes." data-feedback="600 × 400 × 24 = 5,760,000 bits, divided by eight = 720,000 bytes."><legend>8. What is the raw pixel payload of a 600 × 400 image at 24 bits per pixel?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a"><span>5,760,000 bytes</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b"><span>240,000 bytes</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c"><span>720,000 bytes</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q9" data-answer="b" data-success="Correct. Lossless means exact reconstruction of the data given to the encoder, not guaranteed savings." data-feedback="Lossless means exact reconstruction of the data given to the encoder, not guaranteed savings."><legend>9. What makes compression lossless?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q9" value="a"><span>The decoded image looks close enough</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="b"><span>The original supplied data can be reconstructed exactly</span></label></li><li><label class="quiz-answer"><input type="radio" name="q9" value="c"><span>The file always uses fewer bytes</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q10" data-answer="a" data-success="Correct. Pixel count and pixel values are different properties. Lossy encoding may change the values." data-feedback="Pixel count and pixel values are different properties. Lossy encoding may change the values."><legend>10. Two JPEG copies have identical dimensions but different compression settings. Can their decoded pixels differ?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q10" value="a"><span>Yes: lossy compression can change values without changing the dimensions</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="b"><span>No: identical dimensions mean identical data</span></label></li><li><label class="quiz-answer"><input type="radio" name="q10" value="c"><span>Only if the display resolution changes</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q11" data-answer="c" data-success="Correct. The formula models uncompressed pixel payload, not the complete encoded file." data-feedback="The formula models uncompressed pixel payload, not the complete encoded file."><legend>11. Why may a PNG file size differ from width × height × bits per pixel ÷ 8?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q11" value="a"><span>The formula measures its physical print size</span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="b"><span>PNG does not contain raster images</span></label></li><li><label class="quiz-answer"><input type="radio" name="q11" value="c"><span>The formula excludes compression and extra file information</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q12" data-answer="b" data-success="Correct. The exact-data requirement favours lossless encoding; adequate dimensions keep the text samples." data-feedback="The exact-data requirement favours lossless encoding; adequate dimensions keep the text samples."><legend>12. A screenshot has small text and must preserve its pixel values exactly. Which choice is justified?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q12" value="a"><span>Strong lossy compression because all web images should use it</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="b"><span>Lossless encoding at adequate dimensions to preserve the supplied values</span></label></li><li><label class="quiz-answer"><input type="radio" name="q12" value="c"><span>Reduce to two colours regardless of the source</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><div class="quiz-actions"><button class="primary-link" type="submit">Check score</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div><p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save automatically on this device.</p></form></section>
+
+<section id="exam-practice" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Written practice 1: explain</h2><article class="exam-card" data-no-slide-advance><div class="exam-meta"><span class="exam-pill">4 marks · practice estimate</span><span class="exam-pill">Explain</span></div><p>Explain how reducing the bit depth of an image will affect the way the image data is stored and displayed.</p><div class="exam-response-wrap"><label class="exam-response-label" for="quality-exam-1">Your answer</label><textarea id="quality-exam-1" class="exam-response" data-exam-response="question-1" placeholder="Show your working or explain the consequence for the task."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><ul class="lesson-list"><li>For a fixed pixel count and representation, fewer bits are allocated per pixel.</li><li>Fewer possible colours or shades can be represented.</li><li>This can produce banding or remove subtle tone distinctions.</li><li>The raw pixel payload becomes smaller; final file size also depends on encoding and other file data.</li></ul></div></details></article><p class="exam-response-note">Drafts save in this browser. Guidance supports self-checking; it does not automatically award marks.</p></section>
+
+<section id="exam-practice-2" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Written practice 2: calculate</h2><article class="exam-card" data-no-slide-advance><div class="exam-meta"><span class="exam-pill">4 marks · practice estimate</span><span class="exam-pill">Calculate</span></div><p>A 1200 × 800 RGB image uses 8 bits per channel and has no transparency. Calculate the uncompressed pixel payload in bytes and decimal MB. Exclude all other file data.</p><div class="exam-response-wrap"><label class="exam-response-label" for="quality-exam-2">Your answer</label><textarea id="quality-exam-2" class="exam-response" data-exam-response="quality-v3-calculation" placeholder="Show your working or explain the consequence for the task."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><ul class="lesson-list"><li>RGB has three channels: 8 + 8 + 8 = 24 bits per pixel.</li><li>1200 × 800 = 960,000 pixels. Multiply by 24 = 23,040,000 bits.</li><li>Divide by 8 = 2,880,000 bytes. Divide by 1,000,000 = 2.88 MB.</li><li>State that these are raw pixel values, not the encoded file size.</li></ul></div></details></article><p class="exam-response-note">Drafts save in this browser. Guidance supports self-checking; it does not automatically award marks.</p></section>
+
+<section id="exam-practice-3" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Written practice 3: explain</h2><article class="exam-card" data-no-slide-advance><div class="exam-meta"><span class="exam-pill">4 marks · practice estimate</span><span class="exam-pill">Explain</span></div><p>An image is resampled from 1600 × 1200 to 800 × 600. Its bit depth stays the same. Explain the effect on raw storage and image detail.</p><div class="exam-response-wrap"><label class="exam-response-label" for="quality-exam-3">Your answer</label><textarea id="quality-exam-3" class="exam-response" data-exam-response="quality-v3-dimensions" placeholder="Show your working or explain the consequence for the task."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><ul class="lesson-list"><li>Width and height each halve, so pixel count falls to one quarter.</li><li>At the same bits per pixel, the raw pixel payload also falls to one quarter.</li><li>Fewer samples may remove fine detail, especially when shown at the same large size.</li><li>The smaller image can still be sufficient for a small display area; explain suitability in context.</li></ul></div></details></article><p class="exam-response-note">Drafts save in this browser. Guidance supports self-checking; it does not automatically award marks.</p></section>
+
+<section id="exam-practice-4" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Written practice 4: compare</h2><article class="exam-card" data-no-slide-advance><div class="exam-meta"><span class="exam-pill">4 marks · practice estimate</span><span class="exam-pill">Compare</span></div><p>A source row is 0, 0, 90, 90, 255. Decoder A produces the same row. Decoder B produces 0, 0, 85, 85, 255. Compare what this shows about preservation, and explain what you cannot conclude from the rows alone.</p><div class="exam-response-wrap"><label class="exam-response-label" for="quality-exam-4">Your answer</label><textarea id="quality-exam-4" class="exam-response" data-exam-response="quality-v3-reconstruction" placeholder="Show your working or explain the consequence for the task."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><ul class="lesson-list"><li>A has reconstructed the supplied values exactly in this example.</li><li>B has changed two values, so that result does not preserve the original row exactly.</li><li>A single matching example cannot prove an arbitrary method is lossless for every input; lossless is a guarantee of the method.</li><li>The rows alone do not reveal either file size, compression ratio or whether the visual difference matters for a task.</li></ul></div></details></article><p class="exam-response-note">Drafts save in this browser. Guidance supports self-checking; it does not automatically award marks.</p></section>
+
+<section id="exam-practice-5" class="lesson-section panel quality-section" data-lesson-section><p class="eyebrow">Image representation</p><h2>Written practice 5: evaluate</h2><article class="exam-card" data-no-slide-advance><div class="exam-meta"><span class="exam-pill">6 marks · practice estimate</span><span class="exam-pill">Evaluate</span></div><p>A wildlife organisation needs an exact archive of supplied photographs and a fast-loading gallery of previews. Evaluate suitable image settings and compression choices for these two uses.</p><div class="exam-response-wrap"><label class="exam-response-label" for="quality-exam-5">Your answer</label><textarea id="quality-exam-5" class="exam-response" data-exam-response="quality-v3-evaluate" placeholder="Show your working or explain the consequence for the task."></textarea></div><details class="exam-guidance"><summary>Show answer guide</summary><div class="exam-guidance-body"><ul class="lesson-list"><li>Keep original dimensions and values in the archive; lossless encoding supports exact reconstruction of the supplied data.</li><li>Create separate preview copies at dimensions appropriate to their display area; downsampling reduces raw pixel count.</li><li>Inspect suitable lossy compression for the photographic previews; lower transfer size can help the gallery, but useful detail must remain.</li><li>If a preview contains important labels or fine detail, revise the settings or consider lossless encoding.</li><li>Compare the consequences for both uses, and give a conditional judgement. Keep the archive separate from derived previews.</li></ul></div></details></article><p class="exam-response-note">Drafts save in this browser. Guidance supports self-checking; it does not automatically award marks.</p></section></main><aside class="lesson-rail"><section class="lesson-rail-card panel glossary-card"><p class="eyebrow">Glossary</p><h2>Quick reference</h2><dl class="glossary-list"><div class="glossary-item"><dt>Pixel dimensions</dt><dd>The width and height of an image in pixel samples.</dd></div><div class="glossary-item"><dt>Pixel density</dt><dd>The number of pixels placed in a physical length, often measured in PPI.</dd></div><div class="glossary-item"><dt>Resampling</dt><dd>Creating a new pixel grid from existing image samples.</dd></div><div class="glossary-item"><dt>Bit depth</dt><dd>Bits used for a sample, index or pixel; always state which.</dd></div><div class="glossary-item"><dt>Channel</dt><dd>One component value, such as red, green or blue.</dd></div><div class="glossary-item"><dt>Banding</dt><dd>Visible steps between tones when too few values are available.</dd></div><div class="glossary-item"><dt>Raw pixel payload</dt><dd>Uncompressed data allocated to pixel values, excluding extra file information.</dd></div><div class="glossary-item"><dt>Lossless compression</dt><dd>Encoding whose input data can be reconstructed exactly.</dd></div><div class="glossary-item"><dt>Lossy compression</dt><dd>Encoding that discards information, preventing exact reconstruction of its original input.</dd></div></dl></section><section class="lesson-rail-card panel"><h2>Image sources</h2><p>Photograph and diagram derivatives use the same reference pixel data within each comparison.</p><p><a href="../../assets/images/image-representation/CREDITS.md">Image credits and processing notes</a></p></section></aside></div><section class="lesson-sequence panel" aria-labelledby="lesson-sequence-heading"><p class="eyebrow">Keep going</p><h2 id="lesson-sequence-heading">Previous and next lesson</h2><div class="sequence-grid" data-role="lesson-sequence"></div></section></div><div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden><button type="button" class="slide-button" data-action="prev-slide">Previous</button><p class="slide-status" data-role="slide-status">Slide 1</p><button type="button" class="slide-button" data-action="next-slide">Next</button><button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button></div></body></html>

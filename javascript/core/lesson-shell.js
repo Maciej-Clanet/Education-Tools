@@ -418,7 +418,12 @@ function initExamPractice(config) {
   }
 
   function saveResponses() {
-    const nextResponses = {}
+    // A revised lesson can replace a prompt while retaining the same draft key.
+    // Keep retired response IDs so saving new work does not erase older drafts.
+    const storedResponses = readStorage(storageKey, {})
+    const nextResponses = storedResponses && typeof storedResponses === "object" && !Array.isArray(storedResponses)
+      ? { ...storedResponses }
+      : {}
 
     responseFields.forEach((field) => {
       const key = getFieldKey(field)

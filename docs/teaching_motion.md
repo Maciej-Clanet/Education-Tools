@@ -32,6 +32,11 @@ This policy does not change the user's saved accessibility/display preferences.
   Previous/Next step/Restart and offscreen/hidden pausing. Separate routes animate
   independent transfers together. See `stored_program_lesson.md`.
 - Packet travel retains its explanatory timing.
+- Character transmission sends the illustrative codes for `hello` between two
+  computers. Play/Pause/Resume, Next character and Restart retain pedagogical
+  motion under reduced motion. Playback ends after five arrivals and pauses when
+  the diagram or tab is hidden. `tests/character-encoding.browser.mjs` exercises
+  the controls and verifies decoded letters appear as codes arrive.
 - Queue entry/exit: reduced motion no longer removes the teaching loop. The new
   `javascript/core/teaching-animation.js` adds a native Pause/Play control and
   pauses when hidden/offscreen. The existing compact mobile static layout remains.
