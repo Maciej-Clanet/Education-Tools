@@ -228,7 +228,6 @@ the browser with `localStorage` where useful.
   `pages/topics/css-selectors.html`, and
   `pages/topics/styling-text-with-css.html`, and
   `pages/topics/colours-backgrounds-and-borders.html`,
-  `pages/topics/css-units.html`,
   `pages/topics/css-sizing.html`,
   `pages/topics/css-display.html`,
   `pages/topics/flexbox-basics.html`,
@@ -237,6 +236,16 @@ the browser with `localStorage` where useful.
   `pages/topics/variables-and-data-types.html`, and
   `pages/topics/working-with-strings.html`, and
   `pages/topics/operators-and-expressions.html`.
+- CSS Units and CSS Sizing are one lesson, **CSS Units and Sizing**, at
+  `pages/topics/css-sizing.html`, between Colours, backgrounds, and borders and
+  CSS Display. Teach references once, then apply size limits. Keep the sizing
+  explorers and product-card activity alongside font and viewport demonstrations.
+  `css-units.html` forwards legacy links with their context and section mapping;
+  the catalogue, resource hub and progress data contain one lesson entry.
+  The combined quiz uses `css-sizing` version 2 (12 questions, pass score 10),
+  so old sizing scores are stale rather than counting as combined completion.
+  Answers use `lesson-css-sizing-quiz-v2` to avoid restoring old question positions;
+  unchanged sizing practice prompts keep their existing local draft keys.
 - Live topic lessons now exist at
   `pages/topics/computer-system-types-and-internal-components.html`,
   `pages/topics/input-output-and-storage-devices.html`,

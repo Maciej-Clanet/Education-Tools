@@ -85,16 +85,10 @@ export const webDevelopmentProgressData = {
           quiz: { version: 1, totalQuestions: 21, passScore: 17 },
         },
         {
-          id: "css-units",
-          title: "CSS Units",
-          href: "../topics/css-units.html?context=web-development",
-          quiz: { version: 1, totalQuestions: 10, passScore: 8 },
-        },
-        {
           id: "css-sizing",
-          title: "CSS Sizing",
+          title: "CSS Units and Sizing",
           href: "../topics/css-sizing.html?context=web-development",
-          quiz: { version: 1, totalQuestions: 10, passScore: 8 },
+          quiz: { version: 2, totalQuestions: 12, passScore: 10 },
         },
         {
           id: "css-display",

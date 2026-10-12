@@ -20,10 +20,10 @@ const lessonConfig = {
         status: "Live",
       },
       next: {
-        title: "CSS Units",
-        href: "css-units.html",
+        title: "CSS Units and Sizing",
+        href: "css-sizing.html",
         description:
-          "Next, compare common CSS units and choose suitable units for different measurements.",
+          "Choose measurement references, explore parent and child sizes, and apply size limits.",
         status: "Live",
       },
     },

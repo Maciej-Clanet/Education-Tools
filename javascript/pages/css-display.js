@@ -9,7 +9,7 @@ const lessonConfig = {
   lessonId: 'css-display', defaultContext: 'web-development',
   contexts: { 'web-development': {
     label: 'Web Development', backHref: '../resources/web-development.html#css-basics', backLabel: 'Back to Web Development resources',
-    previous: { title: 'CSS Sizing', href: 'css-sizing.html', description: 'Explore sizes, parent references and min/max limits.', status: 'Live' },
+    previous: { title: 'CSS Units and Sizing', href: 'css-sizing.html', description: 'Explore sizes, parent references and min/max limits.', status: 'Live' },
     next: { title: 'Flexbox Basics', href: 'flexbox-basics.html', description: 'Arrange a parent’s children using direction, alignment and gap.', status: 'Live' },
   } },
   quiz: { storageKey: 'lesson-css-display-quiz', version: 1, totalQuestions: 10, passScore: 8 },

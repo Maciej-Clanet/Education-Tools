@@ -124,6 +124,9 @@ Before making major UI, content, or structure changes, read:
 - `pages/topics/styling-text-with-css.html` is the first lesson to use the
   reusable Live Code Example component extensively.
 - `pages/topics/linking-and-organising-css-files.html` is the first CSS Basics lesson.
+- CSS Units and Sizing is one lesson at `pages/topics/css-sizing.html`, after
+  Colours, backgrounds, and borders and before CSS Display. `css-units.html`
+  forwards legacy links; keep one catalogue and quiz-progress entry.
 - `pages/topics/flexbox-basics.html` follows CSS Display. Its incremental teaching
   plan is in `docs/flexbox_basics.md`; `javascript/core/flex-explorer.js` and
   `css/flex-explorer.css` provide reusable parent/child layout examples and axes.

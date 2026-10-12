@@ -2,6 +2,7 @@ import { initLessonPage } from '../core/lesson-shell.js'
 import { initLiveCodeExamples } from '../core/live-code-example.js?v=20260904-9'
 import { initDebugLabs } from '../core/debug-lab.js'
 import { initPairedScenarios } from '../core/paired-scenarios.js'
+import { initUnitReferenceVisuals } from '../core/css-unit-references.js'
 import { initSizeExplorers } from '../core/size-explorer.js'
 import { sizingRules, sizingReasons, sizingScenarioConfigs } from '../data/css-sizing-scenarios.js'
 
@@ -9,10 +10,10 @@ const lessonConfig = {
   lessonId: 'css-sizing', defaultContext: 'web-development',
   contexts: { 'web-development': {
     label: 'Web Development', backHref: '../resources/web-development.html#css-basics', backLabel: 'Back to Web Development resources',
-    previous: { title: 'CSS Units', href: 'css-units.html', description: 'Choose units by the reference they follow.', status: 'Live' },
+    previous: { title: 'Colours, backgrounds, and borders', href: 'colours-backgrounds-and-borders.html', description: 'Use colours and borders to style visible elements.', status: 'Live' },
     next: { title: 'CSS Display', href: 'css-display.html', description: 'Control how an element behaves around its neighbours.', status: 'Live' },
   } },
-  quiz: { storageKey: 'lesson-css-sizing-quiz', version: 1, totalQuestions: 10, passScore: 8 },
+  quiz: { storageKey: 'lesson-css-sizing-quiz-v2', version: 2, totalQuestions: 12, passScore: 10 },
   examPractice: { storageKey: 'lesson-css-sizing-exam-practice' },
 }
 
@@ -43,6 +44,12 @@ const liveExamples = [{
 h2 { font-size: 22px; } p { font-size: 16px; }` },
 }]
 const debugTasks = [{
+  id: 'units-missing-unit', mode: 'find-and-fix', title: 'A length declaration is ignored', goal: 'Give the badge a predictable width of 50 CSS pixels.',
+  files: [{ name: 'common.css', language: 'CSS', lines: ['.badge {', ['  width: ', { text: '50', regionId: 'missing-unit', label: 'unitless width value' }, ';'], '}'] }],
+  issues: [{ id: 'length-unit', regionId: 'missing-unit', correctRepairId: 'px', foundFeedback: 'This non-zero length needs a unit.', repairFeedback: 'The length now has the requested CSS pixel unit.', hints: ['The requested reference is CSS pixels.'] }],
+  repairOptions: [{ id: 'px', label: '50px', replacement: '50px' }, { id: 'quoted', label: '"50px"', replacement: '"50px"' }, { id: 'percent', label: '50%', replacement: '50%' }],
+  explanation: 'width: 50px is a valid length. Bare width: 50 is invalid; zero is a special case that can omit a length unit.',
+}, {
   id: 'sizing-ceiling', mode: 'find-and-fix', title: 'The article stays too wide',
   goal: 'Let the article shrink to 90% of its parent, while keeping an 800px upper limit.',
   files: [{ name: 'common.css', language: 'CSS', lines: ['.article {', '  width: 90%;', ['  ', { text: 'min-width', regionId: 'wrong-boundary', label: 'minimum width property' }, ': 800px;'], '}'] }],
@@ -52,7 +59,21 @@ const debugTasks = [{
   explanation: 'max-width is the ceiling; min-width is the floor. They serve different intentions.',
 }]
 
+// Keep bookmarks to sections consolidated during the merge useful.
+const sectionAliases = {
+  'units-recap': 'measurements', 'fixed-width': 'size-explorer',
+  'percentage-width': 'size-explorer', 'same-percentage': 'size-explorer',
+  'fit-parent': 'overflow', 'fixed-screen': 'overflow',
+  responsive: 'max-explorer', 'max-width': 'max-explorer',
+  'minimum-overflow': 'min-width', 'flexible-limits': 'summary',
+}
+const sectionId = window.location.hash.slice(1)
+if (sectionAliases[sectionId]) {
+  window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${sectionAliases[sectionId]}`)
+}
+
 initLessonPage(lessonConfig)
+initUnitReferenceVisuals()
 initSizeExplorers()
 document.querySelectorAll('[data-paired-scenario]').forEach(card => {
   for (const [type, options] of [['type', sizingRules], ['reason', sizingReasons]]) {
