@@ -1,4 +1,7 @@
-# Lessons
+# Lesson content helpers
 
-Store lesson or topic content here so future unit pages can load structured
-content without mixing it into layout code.
+Shared authored markup/examples live here, including collection diagrams,
+stack/queue explorer markup and application walkthroughs. They are imported by
+lesson generators; generated page HTML is not a separate authoring source.
+
+For discovery and current examples see [shared components](../../docs/shared_components.md).

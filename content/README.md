@@ -1,8 +1,10 @@
-# Content Structure
+# Authored content
 
-This folder is reserved for course, lesson, and tool content that can stay
-separate from shared UI code.
+Lesson source/data may live here or in `javascript/data/`; follow the existing
+lesson's source rather than relocating content as part of unrelated work.
+`lessons/` contains shared authored diagrams and examples; `raid-nas-sections.mjs`
+holds RAID/NAS teaching content. Browser behaviour belongs in `javascript/core/`.
+The `courses/` and `tools/` folders are available for content that needs them.
 
-- `courses/`: course-level metadata, spec notes, or structured catalog entries.
-- `lessons/`: lesson sections, revision content, and topic-page source files.
-- `tools/`: mini-tool content or configuration that may be shared across units.
+See [lesson authoring](../docs/lesson_authoring.md) and the source pointer in the
+corresponding `docs/lessons/<page-slug>.md`.

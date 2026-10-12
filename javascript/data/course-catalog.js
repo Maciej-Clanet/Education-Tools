@@ -693,7 +693,7 @@ export const catalogItems = [
     kicker: "D1 Data structures",
     title: "Stacks and queues",
     summary:
-      "A live revision lesson on LIFO and FIFO data structures with examples, an interactive visualiser, teacher slides, and a short quiz.",
+      "Learn why data structures matter, explore stack and queue operations, and apply them to undo, function calls, debugging and waiting jobs.",
     badges: ["Subject area: Data organisation"],
     keywords: [
       "stacks",
@@ -1124,7 +1124,7 @@ export const catalogItems = [
     kicker: "C2 Text representation",
     title: "Character sets, ASCII, and Unicode",
     summary:
-      "A visual lesson on character sets, ASCII, Unicode, UTF-8 bytes, code points, and compatibility issues in stored text.",
+      "See how computers exchange character codes, explore ASCII and Unicode, and investigate why text becomes garbled.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "character sets",
@@ -1151,7 +1151,7 @@ export const catalogItems = [
     kicker: "C3 Image representation",
     title: "Image storage: bitmap and vector images",
     summary:
-      "A visual lesson on bitmap pixels, vector drawing instructions, scaling, colour data, and image storage trade-offs.",
+      "Explore pixel storage and bit depth, compare raster and vector enlargement, and choose representations for photographs, logos and diagrams.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "image storage",
@@ -1179,7 +1179,7 @@ export const catalogItems = [
     kicker: "C3 Image representation",
     title: "Resolution, bit depth, and image compression",
     summary:
-      "A live revision lesson with a bit-depth visualiser, raw bitmap size explanation, and lossy versus lossless compression trade-offs.",
+      "Explore resolution and colour depth, calculate image storage, and compare real compressed images with measured file sizes.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "resolution",
@@ -1392,7 +1392,7 @@ export const catalogItems = [
     kicker: "D1 Data structures",
     title: "Arrays, lists, and data types",
     summary:
-      "A live revision lesson on arrays, lists, indexed access, linked structures, and why their storage model matters in software and hardware.",
+      "Learn indexed arrays, data types and records, then compare growing array-backed lists with linked nodes through interactive examples and practical software uses.",
     badges: ["Subject area: Data organisation"],
     keywords: [
       "arrays",

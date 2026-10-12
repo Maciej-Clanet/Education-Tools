@@ -1,4 +1,6 @@
 import { initLessonPage } from "../core/lesson-shell.js"
+import { initLessonWalkthroughs } from "../core/lesson-walkthrough.js"
+import { initArrayExplorers } from "../core/array-explorer.js"
 
 const lessonConfig = {
   lessonId: "arrays-lists-and-data-types",
@@ -23,8 +25,9 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-arrays-lists-and-data-types-quiz",
-    passScore: 4,
+    storageKey: "lesson-arrays-lists-and-data-types-quiz-v2",
+    passScore: 8,
+    version: 2,
   },
   examPractice: {
     storageKey: "lesson-arrays-lists-and-data-types-exam-practice",
@@ -32,3 +35,5 @@ const lessonConfig = {
 }
 
 initLessonPage(lessonConfig)
+initLessonWalkthroughs()
+initArrayExplorers()

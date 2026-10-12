@@ -99,7 +99,7 @@ content (or its divider, if declared); Previous → opener; Jump To → no opene
 
 `data-slide-break` on an empty direct child of a lesson section splits that
 section into teacher slides while preserving all student content and live form
-nodes. Collecting and processing data uses it for six separate transformation
-questions and three pairs of misconceptions. Native `details`/`summary` reveals
-remain keyboard/touch accessible; its page-scoped `.data-revision` supplements
-retain broader independent-reading examples but are hidden in Teacher Slides.
+nodes. See the [Data Processing lesson](../pages/topics/collecting-and-processing-data.html)
+for a current example. Native `details`/`summary` reveals remain keyboard/touch
+accessible. Keep optional revision supplements available in student view; reuse
+an appropriate page-scoped teacher-mode rule to hide them from first-teaching slides.

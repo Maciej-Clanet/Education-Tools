@@ -1,7 +1,8 @@
 # Pages
 
-Reserve this folder for future static page shells such as:
+Static pages live here: `topics/` for reusable lessons, `units/` and `resources/`
+for teaching hubs, `tools/` for standalone tools, and `exams/` for classroom practice.
 
-- course overview pages
-- unit or topic pages with sidebar navigation
-- shared tool host pages
+For lesson changes use [lesson authoring](../docs/lesson_authoring.md); generated
+lessons identify their source in `docs/lessons/<page-slug>.md`. Product/discovery
+rules are in [project requirements](../docs/project_requirements.md).

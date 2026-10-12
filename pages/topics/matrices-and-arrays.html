@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
+    <link rel="stylesheet" href="../../css/pages/matrices-and-arrays.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -31,7 +33,7 @@
       src="../../javascript/pages/matrices-and-arrays.js"
     ></script>
   </head>
-  <body>
+  <body class="matrices-lesson">
     <div class="page-shell">
       <header class="lesson-hero panel panel-accent">
         <p class="eyebrow">Indices and Matrices</p>
@@ -101,7 +103,7 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Interactive matrix practice, quiz scoring, and teacher slides need
+          Walkthrough playback, question generators, quiz scoring, and teacher slides need
           JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
@@ -112,15 +114,18 @@
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Overview</a>
             <a href="#matrices" data-section-link>Matrices</a>
+            <a href="#operations" data-section-link>Operations</a>
             <a href="#addition" data-section-link>Addition</a>
             <a href="#scalar-multiplication" data-section-link
               >Scalar multiplication</a
             >
+            <a href="#multiplication-size" data-section-link>Multiplication dimensions</a>
             <a href="#matrix-multiplication" data-section-link
               >Matrix multiplication</a
             >
+            <a href="#multiplication-practice" data-section-link>Multiplication practice</a>
             <a href="#arrays" data-section-link>Arrays</a>
-            <a href="#compare" data-section-link>Compare and choose</a>
+            <a href="#compare" data-section-link>Matrix and array</a>
             <a href="#mistakes" data-section-link>Common mistakes</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
             <a href="#exam-practice" data-section-link>Exam-style practice</a>
@@ -128,295 +133,77 @@
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
+<template data-teacher-opener><h2>Matrices and arrays</h2><p>From a grid of values to a calculation</p><ul><li>Read rows, columns and dimensions</li><li>Add, scale and multiply matrices</li><li>Find matrix elements in a 2D array</li></ul></template>
 
-            <p class="lesson-section-copy">
-              Matrices and arrays both help organise related values, but they
-              are not exactly the same idea. A matrix describes a grid of data
-              arranged in rows and columns, while arrays give programs an
-              indexed way to store and retrieve those values.
-            </p>
 
-            <div class="lesson-intro-grid">
-              <article class="lesson-card wide">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>Define a matrix using rows, columns, and elements.</li>
-                  <li>
-                    Explain the relationship between a matrix and an array.
-                  </li>
-                  <li>Describe simple matrix operations accurately.</li>
-                  <li>Link indexed access to how software stores the data.</li>
-                </ul>
-              </article>
+<section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
+  <p class="eyebrow">Start with a grid</p><h2>Two clubs order snack boxes</h2>
+  <p>Each club orders two kinds of box. A grid keeps the quantities in the right places.</p>
+<div class="ma-pair">
+<div class="ma-table-wrap"><table class="ma-table"><caption>Boxes ordered</caption><thead><tr><th scope="col">Club</th><th scope="col">Box 1</th><th scope="col">Box 2</th></tr></thead><tbody><tr><th scope="row">Art</th><td>2</td><td>1</td></tr><tr><th scope="row">Music</th><td>4</td><td>3</td></tr></tbody></table></div>
+<div><h3>Keep the numbers in the same order</h3><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Matrix A">
+  <span class="matrix-display__label">Matrix A</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div><p>A <strong>matrix</strong> is a rectangular arrangement of values in rows and columns.</p></div>
+</div><p class="ma-note">The labels tell us what the numbers mean: Art orders 2 of Box 1 and 1 of Box 2.</p>
+</section>
 
-              <article class="lesson-card slide-wide">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li>
-                    <strong>Matrix:</strong> a grid of values in rows and
-                    columns.
-                  </li>
-                  <li>
-                    <strong>Element:</strong> one value at a chosen position.
-                  </li>
-                  <li>
-                    <strong>2D array:</strong> one common way to store a matrix.
-                  </li>
-                  <li><strong>Dimensions:</strong> the size of the matrix.</li>
-                </ul>
-              </article>
 
-              <article class="lesson-card fullrow">
-                <h3>Where they appear</h3>
-                <p>
-                  Matrices appear in seating plans, image pixels, score tables,
-                  and sensor grids. Arrays help programs keep those values in a
-                  structure that can be addressed by position.
-                </p>
-              </article>
-            </div>
-          </section>
+<section id="matrices" class="lesson-section lesson-section--matrices panel" data-lesson-section>
+  <p class="eyebrow">Read a matrix</p><h2>Rows across, columns down</h2>
+  <p>Each value is an <strong>element</strong>. Its row and column identify its position.</p>
+<div class="ma-pair">
+<div class="ma-table-wrap"><table class="ma-table ma-coordinate-table"><caption>Matrix A · positions counted from 1</caption><thead><tr><td></td><th scope="col">Column 1 ↓</th><th scope="col">Column 2 ↓</th></tr></thead><tbody><tr><th scope="row">Row 1 →</th><td>2</td><td>1</td></tr><tr><th scope="row">Row 2 →</th><td class="ma-target">4</td><td>3</td></tr></tbody></table></div>
+<div><p class="ma-big-rule">2 rows × 2 columns</p><p>The <strong>dimensions</strong> are <strong>2 × 2</strong>: always rows first, then columns.</p><p>The outlined element is <strong>4</strong>, at <strong>row 2, column 1</strong>.</p></div>
+</div><p class="ma-note">A matrix with 2 rows and 3 columns is 2 × 3. It has 6 elements; it is still a two-dimensional grid.</p>
+</section>
 
-          <section
-            id="matrices"
-            class="lesson-section lesson-section--matrices panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Matrix</p>
-            <h2>A matrix stores values in rows and columns</h2>
-            <p class="lesson-section-copy">
-              A matrix is a rectangular arrangement of values. Each value is an
-              <strong>element</strong> and can be identified by its row and
-              column position. In exam questions, that structure matters because
-              it explains how values are grouped and which operations can be
-              performed on them.
-            </p>
+<template data-teacher-divider><h2>Calculating with matrices</h2><p>Three operations, three different rules</p></template>
+<section id="operations" class="lesson-section lesson-section--operations panel" data-lesson-section>
+  <p class="eyebrow">Three operations</p><h2>What do we want to calculate?</h2>
+  <p>These operations answer different questions. Each has its own rule.</p>
+<div class="ma-operation-grid">
+<article class="lesson-card"><span class="ma-operation-symbol">A + B</span><h3>Addition</h3><p>Combine two sets of orders.</p><strong>Add matching positions.</strong></article>
+<article class="lesson-card"><span class="ma-operation-symbol">3 × A</span><h3>Scalar multiplication</h3><p>Make three times the order.</p><strong>Multiply every element by 3.</strong></article>
+<article class="lesson-card"><span class="ma-operation-symbol">A × B</span><h3>Matrix multiplication</h3><p>Turn box counts into item totals.</p><strong>Use a row and a column.</strong></article>
+</div>
+</section>
 
-            <div class="example-strip" aria-label="Matrix features">
-              <span class="example-chip"
-                ><strong>Row</strong> a horizontal line of values</span
-              >
-              <span class="example-chip"
-                ><strong>Column</strong> a vertical line of values</span
-              >
-              <span class="example-chip"
-                ><strong>Element</strong> one value at a chosen position</span
-              >
-            </div>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Why it works</strong>
-                <span>
-                  Two coordinates identify one exact value inside the grid.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Typical software use</strong>
-                <span>
-                  Pixel data, room layouts, score grids, and timetable blocks.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Common operations</strong>
-                <span>
-                  Addition, scalar multiplication, and sometimes matrix
-                  multiplication.
-                </span>
-              </article>
-              <article class="term-card">
-                <strong>Key implication</strong>
-                <span>
-                  Dimensions matter, so not every pair of matrices can be
-                  combined.
-                </span>
-              </article>
-            </div>
-
-            <article class="lesson-card">
-              <h3>Worked example</h3>
-              <p>
-                A seating grid for two rows and three columns can be written as
-                this matrix:
-              </p>
-              <pre><code>[ [A1, A2, A3],
-  [B1, B2, B3] ]</code></pre>
-              <p>
-                The element in row 2, column 3 is <code>B3</code>. In a program
-                using zero-based indexes, that same position would often be
-                accessed with <code>seats[1][2]</code>.
-              </p>
-            </article>
-
-            <article class="lesson-card">
-              <h3>Matrix operations you should recognise</h3>
-              <div class="compare-table-wrap">
-                <table class="compare-table">
-                  <thead>
-                    <tr>
-                      <th>Operation</th>
-                      <th>Rule</th>
-                      <th>Exam point</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Addition</td>
-                      <td>Both matrices must have the same dimensions.</td>
-                      <td>Combine matching positions element by element.</td>
-                    </tr>
-                    <tr>
-                      <td>Scalar multiplication</td>
-                      <td>Multiply every element by the same number.</td>
-                      <td>Shape stays the same, but values change.</td>
-                    </tr>
-                    <tr>
-                      <td>Matrix multiplication</td>
-                      <td>
-                        The number of columns in the first matrix must match the
-                        number of rows in the second.
-                      </td>
-                      <td>
-                        Do not treat this like simple position-by-position
-                        multiplication.
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </article>
-          </section>
-
-          <section
-            id="addition"
-            class="lesson-section lesson-section--addition panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Addition</p>
-            <h2>Add matrices by combining matching positions</h2>
-            <p class="lesson-section-copy">
-              Matrix addition works only when both matrices have the same
-              dimensions. You add each element to the element in the same row
-              and column, so the answer keeps the same shape as the originals.
-            </p>
-
-            <div class="example-strip" aria-label="Matrix addition rules">
-              <span class="example-chip"
-                ><strong>Same dimensions</strong> rows and columns must
-                match</span
-              >
-              <span class="example-chip"
-                ><strong>Match positions</strong> add like-for-like
-                elements</span
-              >
-              <span class="example-chip"
-                ><strong>Same shape</strong> the result keeps the same
-                layout</span
-              >
-            </div>
-
-            <article class="lesson-card">
-              <h3>Worked visual example</h3>
-              <p>
-                Add the two matrices by pairing each position with the matching
-                position in the other matrix.
-              </p>
-              <div
-                class="matrix-equation"
-                aria-label="Example of matrix addition"
-              >
-                <div class="matrix-display" style="--matrix-columns: 2">
-                  <span class="matrix-display__label">Matrix A</span>
-                  <div class="matrix-display__body">
-                    <div class="matrix-grid">
-                      <span class="matrix-grid__cell matrix-grid__cell--warm"
-                        >2</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--warm"
-                        >1</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--warm"
-                        >4</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--warm"
-                        >3</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <span class="matrix-equation__operator">+</span>
-                <div class="matrix-display" style="--matrix-columns: 2">
-                  <span class="matrix-display__label">Matrix B</span>
-                  <div class="matrix-display__body">
-                    <div class="matrix-grid">
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >5</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >2</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >1</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >6</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <span class="matrix-equation__operator">=</span>
-                <div class="matrix-display" style="--matrix-columns: 2">
-                  <span class="matrix-display__label">Result</span>
-                  <div class="matrix-display__body">
-                    <div class="matrix-grid">
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >7</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >3</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >5</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >9</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="matrix-note-grid">
-                <article class="matrix-note-card">
-                  <strong>Top left element</strong>
-                  <span>Row 1, column 1 becomes <code>2 + 5 = 7</code>.</span>
-                </article>
-                <article class="matrix-note-card">
-                  <strong>Bottom right element</strong>
-                  <span>Row 2, column 2 becomes <code>3 + 6 = 9</code>.</span>
-                </article>
-                <article class="matrix-note-card">
-                  <strong>Why dimensions matter</strong>
-                  <span>
-                    Every position needs a matching partner, so the grids must
-                    be the same size.
-                  </span>
-                </article>
-              </div>
-            </article>
-
-            <div data-slide-break></div>
-
-            <article
+<section id="addition" class="lesson-section lesson-section--addition panel" data-lesson-section>
+  <p class="eyebrow">Operation 1 · Addition</p><h2>Add the matching positions</h2>
+  <p>A is the first order and B is an extra order. Both use the same clubs and box types, in the same order.</p>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="First order · A">
+  <span class="matrix-display__label">First order · A</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">+</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Extra order · B">
+  <span class="matrix-display__label">Extra order · B</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-column" aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Combined order">
+  <span class="matrix-display__label">Combined order</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-target" aria-label="Row 1, column 1: 7">7</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 3">3</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 5">5</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 9">9</span>
+  </div></div></div></div>
+<p class="ma-note"><strong>Row 1, column 1:</strong> 2 + 5 = 7. Repeat at each position.</p>
+<p><strong>Same dimensions required:</strong> every element needs a partner. The result keeps the same shape.</p>
+<div data-slide-break></div><article
               class="lesson-card matrix-practice-card"
-              data-matrix-practice="addition"
+              data-no-slide-advance data-matrix-practice="addition"
             >
               <div>
                 <h3>Addition quick check</h3>
@@ -465,129 +252,34 @@
                 Fill every result cell, then run a quick check.
               </p>
             </article>
-          </section>
+</section>
 
-          <section
-            id="scalar-multiplication"
-            class="lesson-section lesson-section--scalar-multiplication panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Scalar Multiplication</p>
-            <h2>Multiply every element by the same scalar</h2>
-            <p class="lesson-section-copy">
-              A scalar is just one number. In scalar multiplication, that number
-              multiplies every element in the matrix, so the values change but
-              the rows and columns stay in the same arrangement.
-            </p>
 
-            <div class="example-strip" aria-label="Scalar multiplication rules">
-              <span class="example-chip"
-                ><strong>One number</strong> the scalar multiplies every
-                element</span
-              >
-              <span class="example-chip"
-                ><strong>Same shape</strong> the matrix keeps its
-                dimensions</span
-              >
-              <span class="example-chip"
-                ><strong>Every cell changes</strong> multiply one by one</span
-              >
-            </div>
-
-            <article class="lesson-card">
-              <h3>Worked visual example</h3>
-              <p>
-                Start with the scalar, then apply it to every value in the
-                matrix.
-              </p>
-              <div
-                class="matrix-equation"
-                aria-label="Example of scalar multiplication on a matrix"
-              >
-                <span class="matrix-equation__token">3</span>
-                <span class="matrix-equation__operator">x</span>
-                <div class="matrix-display" style="--matrix-columns: 3">
-                  <span class="matrix-display__label">Matrix</span>
-                  <div class="matrix-display__body">
-                    <div class="matrix-grid">
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >2</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >0</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >4</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >1</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >5</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >2</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <span class="matrix-equation__operator">=</span>
-                <div class="matrix-display" style="--matrix-columns: 3">
-                  <span class="matrix-display__label">Result</span>
-                  <div class="matrix-display__body">
-                    <div class="matrix-grid">
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >6</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >0</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >12</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >3</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >15</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >6</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="matrix-note-grid">
-                <article class="matrix-note-card">
-                  <strong>Apply the scalar to each element</strong>
-                  <span
-                    ><code>3 x 2 = 6</code> and <code>3 x 4 = 12</code>.</span
-                  >
-                </article>
-                <article class="matrix-note-card">
-                  <strong>Zero still follows the same rule</strong>
-                  <span
-                    ><code>3 x 0 = 0</code>, so the middle top value stays
-                    zero.</span
-                  >
-                </article>
-                <article class="matrix-note-card">
-                  <strong>The shape does not change</strong>
-                  <span>
-                    The result is still a 2 x 3 matrix because only the values
-                    change, not the layout.
-                  </span>
-                </article>
-              </div>
-            </article>
-
-            <div data-slide-break></div>
-
-            <article
+<section id="scalar-multiplication" class="lesson-section lesson-section--scalar-multiplication panel" data-lesson-section>
+  <p class="eyebrow">Operation 2 · Scalar multiplication</p><h2>One number multiplies every element</h2>
+  <p>A <strong>scalar</strong> is a single number. To triple the order, multiply each quantity by 3.</p>
+<div class="matrix-equation"><span class="matrix-equation__token">3</span>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Original order · A">
+  <span class="matrix-display__label">Original order · A</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Tripled order">
+  <span class="matrix-display__label">Tripled order</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-target" aria-label="Row 1, column 1: 6">6</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 3">3</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 12">12</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 9">9</span>
+  </div></div></div></div>
+<p class="ma-note"><strong>Every position:</strong> 3 × 2 = 6; 3 × 1 = 3; 3 × 4 = 12; 3 × 3 = 9.</p>
+<p>The values change. The <strong>2 × 2 shape stays the same</strong>.</p>
+<div data-slide-break></div><article
               class="lesson-card matrix-practice-card"
-              data-matrix-practice="scalar"
+              data-no-slide-advance data-matrix-practice="scalar"
             >
               <div>
                 <h3>Scalar multiplication quick check</h3>
@@ -636,123 +328,260 @@
                 Fill every result cell, then run a quick check.
               </p>
             </article>
-          </section>
+</section>
 
-          <section
-            id="matrix-multiplication"
-            class="lesson-section lesson-section--matrix-multiplication panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Matrix Multiplication</p>
-            <h2>Multiply a row by a column, not just matching positions</h2>
-            <p class="lesson-section-copy">
-              Matrix multiplication follows a different rule from addition. The
-              number of columns in the first matrix must match the number of
-              rows in the second. Each result cell comes from multiplying along
-              a row and down a column, then adding those products together.
-            </p>
+<template data-teacher-divider><h2>Matrix × matrix</h2><p>Build one result cell at a time</p></template>
+<section id="multiplication-size" class="lesson-section lesson-section--multiplication-size panel" data-lesson-section>
+  <p class="eyebrow">Operation 3 · Check the dimensions</p><h2>Will each row have a complete column to pair with?</h2>
+  <p>For <strong>A × B</strong>, each row of A must contain as many elements as each column of B.</p>
+<div class="ma-dimension-rule" role="group" aria-label="2 by 3 times 3 by 4 gives 2 by 4. The inner 3s match. The outer 2 and 4 give the result dimensions.">
+<div><span>Matrix A</span><strong><b class="ma-outer">2</b> × <b class="ma-inner">3</b></strong></div><span>×</span>
+<div><span>Matrix B</span><strong><b class="ma-inner">3</b> × <b class="ma-outer">4</b></strong></div><span>=</span>
+<div><span>Result</span><strong><b class="ma-outer">2</b> × <b class="ma-outer">4</b></strong></div>
+</div>
+<div class="ma-pair ma-rule-pair"><p><strong>Inner numbers must match.</strong><br>3 values in each row of A pair with 3 values in each column of B.</p><p><strong>Outer numbers give the result.</strong><br>One cell for every row of A and column of B: 2 rows, 4 columns.</p></div>
+<p class="ma-note"><strong>Cannot multiply:</strong> (2 × 3) × (2 × 2). The inner numbers are 3 and 2, so one value would have no partner.</p>
+</section>
 
-            <div class="example-strip" aria-label="Matrix multiplication rules">
-              <span class="example-chip"
-                ><strong>Inner dimensions</strong> must match to make the
-                multiplication valid</span
-              >
-              <span class="example-chip"
-                ><strong>Row x column</strong> one row combines with one
-                column</span
-              >
-              <span class="example-chip"
-                ><strong>Outer dimensions</strong> decide the answer size</span
-              >
-            </div>
 
-            <article class="lesson-card">
-              <h3>Worked visual example</h3>
-              <p>
-                This example uses a 2 x 2 matrix multiplied by another 2 x 2
-                matrix, so the result is also 2 x 2.
-              </p>
-              <div
-                class="matrix-equation"
-                aria-label="Example of matrix multiplication"
-              >
-                <div class="matrix-display" style="--matrix-columns: 2">
-                  <span class="matrix-display__label">Matrix A</span>
-                  <div class="matrix-display__body">
-                    <div class="matrix-grid">
-                      <span class="matrix-grid__cell matrix-grid__cell--warm"
-                        >1</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--warm"
-                        >2</span
-                      >
-                      <span class="matrix-grid__cell">3</span>
-                      <span class="matrix-grid__cell">4</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="matrix-equation__operator">x</span>
-                <div class="matrix-display" style="--matrix-columns: 2">
-                  <span class="matrix-display__label">Matrix B</span>
-                  <div class="matrix-display__body">
-                    <div class="matrix-grid">
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >2</span
-                      >
-                      <span class="matrix-grid__cell">0</span>
-                      <span class="matrix-grid__cell matrix-grid__cell--cool"
-                        >1</span
-                      >
-                      <span class="matrix-grid__cell">5</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="matrix-equation__operator">=</span>
-                <div class="matrix-display" style="--matrix-columns: 2">
-                  <span class="matrix-display__label">Result</span>
-                  <div class="matrix-display__body">
-                    <div class="matrix-grid">
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >4</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >10</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >10</span
-                      >
-                      <span class="matrix-grid__cell matrix-grid__cell--result"
-                        >20</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
+<section id="matrix-multiplication" class="lesson-section lesson-section--matrix-multiplication panel" data-lesson-section>
+  <p class="eyebrow">Operation 3 · Worked walkthrough</p><h2>A row and a column make one result cell</h2>
+  <p>A counts boxes ordered by Art and Music. B lists each box’s contents: Box 1 has <strong>5 wraps, 2 drinks</strong>; Box 2 has <strong>1 wrap, 6 drinks</strong>.</p>
+<p class="ma-compact"><strong>(2 × 2) × (2 × 2) → a 2 × 2 result.</strong> Result rows are clubs; columns are wraps and drinks.</p>
+<div class="ma-walkthrough" data-lesson-walkthrough data-matrix-playback data-no-slide-advance>
+<div data-walkthrough-controls hidden>
+<p data-walkthrough-status role="status" aria-live="polite" aria-atomic="true"></p>
+<button type="button" class="structure-button" data-walkthrough-prev>Previous step</button>
+<button type="button" class="structure-button" data-walkthrough-next>Next step</button>
+<button type="button" class="structure-button" data-matrix-play aria-pressed="false">Play steps</button>
+<button type="button" class="structure-button" data-walkthrough-reset>Restart</button>
+</div>
+<div data-walkthrough-step="Choose a row and a column">
+<h3 class="ma-step-title">1. Choose a row and a column</h3>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="A · row 1 →">
+  <span class="matrix-display__label">A · row 1 →</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="B · column 1 ↓">
+  <span class="matrix-display__label">B · column 1 ↓</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-column" aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell ma-column" aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Result · (1, 1)">
+  <span class="matrix-display__label">Result · (1, 1)</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-target" aria-label="Row 1, column 1: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
+  </div></div></div></div>
+<div class="ma-calculation"><span class="ma-row-tag">Row 1 →</span> <span class="ma-column-tag">Column 1 ↓</span> <span>→ result (1, 1)</span></div><p class="ma-step-copy">To find result row 1, column 1, select <strong>row 1 of A: 2, 1</strong> and <strong>column 1 of B: 5, 1</strong>.</p>
+</div>
+<div data-walkthrough-step="Multiply the first pair">
+<h3 class="ma-step-title">2. Multiply the first pair</h3>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="A · row 1 →">
+  <span class="matrix-display__label">A · row 1 →</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-row ma-pair-active" aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="B · column 1 ↓">
+  <span class="matrix-display__label">B · column 1 ↓</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-column ma-pair-active" aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell ma-column" aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Result · (1, 1)">
+  <span class="matrix-display__label">Result · (1, 1)</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-target" aria-label="Row 1, column 1: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
+  </div></div></div></div>
+<div class="ma-calculation"><span class="ma-row-tag">2</span> × <span class="ma-column-tag">5</span> <span>= <strong>10</strong></span></div><p class="ma-step-copy">Pair the first value in the row with the first value in the column.</p>
+</div>
+<div data-walkthrough-step="Multiply the next pair">
+<h3 class="ma-step-title">3. Multiply the next pair</h3>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="A · row 1 →">
+  <span class="matrix-display__label">A · row 1 →</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell ma-row ma-pair-active" aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="B · column 1 ↓">
+  <span class="matrix-display__label">B · column 1 ↓</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-column" aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell ma-column ma-pair-active" aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Result · (1, 1)">
+  <span class="matrix-display__label">Result · (1, 1)</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-target" aria-label="Row 1, column 1: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
+  </div></div></div></div>
+<div class="ma-calculation"><span class="ma-row-tag">1</span> × <span class="ma-column-tag">1</span> <span>= <strong>1</strong></span></div><p class="ma-step-copy">Move one place along the row and one place down the column. Keep the first product, 10.</p>
+</div>
+<div data-walkthrough-step="Add and place the result">
+<h3 class="ma-step-title">4. Add and place the result</h3>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="A · row 1 →">
+  <span class="matrix-display__label">A · row 1 →</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="B · column 1 ↓">
+  <span class="matrix-display__label">B · column 1 ↓</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-column" aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell ma-column" aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Result · (1, 1)">
+  <span class="matrix-display__label">Result · (1, 1)</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-target" aria-label="Row 1, column 1: 11">11</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
+  </div></div></div></div>
+<div class="ma-calculation"><span>(2 × 5) + (1 × 1)</span><span>= 10 + 1 = <strong>11</strong></span></div><p class="ma-step-copy">Add both products. Put this one total in result <strong>row 1, column 1</strong>.</p>
+</div>
+<div data-walkthrough-step="Keep the row, change the column">
+<h3 class="ma-step-title">5. Keep the row, change the column</h3>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="A · row 1 →">
+  <span class="matrix-display__label">A · row 1 →</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell ma-row" aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="B · column 2 ↓">
+  <span class="matrix-display__label">B · column 2 ↓</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell ma-column" aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell ma-column" aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Result · (1, 2)">
+  <span class="matrix-display__label">Result · (1, 2)</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 11">11</span>
+  <span class="matrix-grid__cell ma-target" aria-label="Row 1, column 2: 10">10</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
+  </div></div></div></div>
+<div class="ma-calculation"><span>(2 × 2) + (1 × 6)</span><span>= 4 + 6 = <strong>10</strong></span></div><p class="ma-step-copy">Stay on row 1 of A. Use column 2 of B to calculate result <strong>row 1, column 2</strong>.</p>
+</div>
+<div data-walkthrough-step="Move to the next row">
+<h3 class="ma-step-title">6. Move to the next row</h3>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="A · row 2 →">
+  <span class="matrix-display__label">A · row 2 →</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell ma-row" aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell ma-row" aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="B · column 1 ↓">
+  <span class="matrix-display__label">B · column 1 ↓</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell ma-column" aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell ma-column" aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Result · (2, 1)">
+  <span class="matrix-display__label">Result · (2, 1)</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 11">11</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 10">10</span>
+  <span class="matrix-grid__cell ma-target" aria-label="Row 2, column 1: 23">23</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
+  </div></div></div></div>
+<div class="ma-calculation"><span>(4 × 5) + (3 × 1)</span><span>= 20 + 3 = <strong>23</strong></span></div><p class="ma-step-copy">Use row 2 of A and return to column 1 of B. This fills result <strong>row 2, column 1</strong>.</p>
+</div>
+<div data-walkthrough-step="Fill the final position">
+<h3 class="ma-step-title">7. Fill the final position</h3>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="A · row 2 →">
+  <span class="matrix-display__label">A · row 2 →</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell ma-row" aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell ma-row" aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="B · column 2 ↓">
+  <span class="matrix-display__label">B · column 2 ↓</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell ma-column" aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell ma-column" aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Result · (2, 2)">
+  <span class="matrix-display__label">Result · (2, 2)</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 11">11</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 10">10</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 23">23</span>
+  <span class="matrix-grid__cell ma-target" aria-label="Row 2, column 2: 26">26</span>
+  </div></div></div></div>
+<div class="ma-calculation"><span>(4 × 2) + (3 × 6)</span><span>= 8 + 18 = <strong>26</strong></span></div><p class="ma-step-copy">Use row 2 of A and column 2 of B. This fills result <strong>row 2, column 2</strong>.</p>
+</div>
+<div data-walkthrough-step="Read the completed matrix">
+<h3 class="ma-step-title">8. Read the completed matrix</h3>
+<div class="matrix-equation"><div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="A · boxes per club">
+  <span class="matrix-display__label">A · boxes per club</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="B · items per box">
+  <span class="matrix-display__label">B · items per box</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 5">5</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 2">2</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 1">1</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 6">6</span>
+  </div></div></div>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<div class="matrix-display" style="--matrix-columns: 2" role="group" aria-label="Items per club">
+  <span class="matrix-display__label">Items per club</span><div class="matrix-display__body"><div class="matrix-grid">
+  <span class="matrix-grid__cell " aria-label="Row 1, column 1: 11">11</span>
+  <span class="matrix-grid__cell " aria-label="Row 1, column 2: 10">10</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 1: 23">23</span>
+  <span class="matrix-grid__cell " aria-label="Row 2, column 2: 26">26</span>
+  </div></div></div></div>
+<div class="ma-calculation"><strong>Choose → multiply pairs → add → place</strong></div><p class="ma-step-copy">Art needs <strong>11 wraps and 10 drinks</strong>. Music needs <strong>23 wraps and 26 drinks</strong>. Each result used a whole row and column.</p>
+</div>
+</div>
+</section>
 
-              <div class="matrix-note-grid">
-                <article class="matrix-note-card">
-                  <strong>First result cell</strong>
-                  <span><code>(1 x 2) + (2 x 1) = 4</code></span>
-                </article>
-                <article class="matrix-note-card">
-                  <strong>Second result cell</strong>
-                  <span><code>(1 x 0) + (2 x 5) = 10</code></span>
-                </article>
-                <article class="matrix-note-card">
-                  <strong>Answer size</strong>
-                  <span>
-                    The outer dimensions are 2 rows by 2 columns, so the result
-                    is a 2 x 2 matrix.
-                  </span>
-                </article>
-              </div>
-            </article>
 
-            <div data-slide-break></div>
-
-            <article
+<section id="multiplication-practice" class="lesson-section lesson-section--multiplication-practice panel" data-lesson-section>
+  <p class="eyebrow">Your turn · Matrix multiplication</p><h2>Build the answer one cell at a time</h2>
+  <p>Check the dimensions. For each result position: choose a row, choose a column, multiply the pairs, then add.</p>
+<article
               class="lesson-card matrix-practice-card"
-              data-matrix-practice="multiplication"
+              data-no-slide-advance data-matrix-practice="multiplication"
             >
               <div>
                 <h3>Matrix multiplication quick check</h3>
@@ -802,235 +631,45 @@
                 Fill every result cell, then run a quick check.
               </p>
             </article>
-          </section>
+<details class="ma-revision" data-no-slide-advance><summary>Why can’t I just multiply matching positions?</summary><p>In our example the first result is (2 × 5) + (1 × 1) = 11. Using only 2 × 5 = 10 leaves out the wraps from Box 2.</p><p>Order also matters: A × B and B × A generally give different results. Reversing the order can even make the dimensions incompatible.</p></details>
+</section>
 
-          <section
-            id="arrays"
-            class="lesson-section lesson-section--arrays panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Array Storage</p>
-            <h2>Arrays let programs store matrix values with indexes</h2>
-            <p class="lesson-section-copy">
-              In computing, a matrix is often stored using arrays. A
-              one-dimensional array uses one index, while a two-dimensional
-              array uses a row index and a column index. That makes it easier
-              for software to retrieve a chosen element directly.
-            </p>
+<template data-teacher-divider><h2>From maths to software</h2><p>Store the grid and find an element</p></template>
+<section id="arrays" class="lesson-section lesson-section--arrays panel" data-lesson-section>
+  <p class="eyebrow">Store the same grid</p><h2>Two indexes locate one value</h2>
+  <p>A <strong>2D array</strong> can store the matrix. In this example the first index selects a row, and the second selects a column. Both start at 0.</p>
+<div class="ma-pair">
+<div class="ma-table-wrap"><table class="ma-table ma-coordinate-table"><caption>orders · zero-based indexes</caption><thead><tr><td></td><th scope="col">Column 0</th><th scope="col">Column 1</th></tr></thead><tbody><tr><th scope="row">Row 0</th><td>2</td><td>1</td></tr><tr><th scope="row">Row 1</th><td class="ma-target">4</td><td>3</td></tr></tbody></table></div>
+<div><pre><code>orders = [[2, 1],
+          [4, 3]]
 
-            <div class="example-strip" aria-label="Array storage features">
-              <span class="example-chip"
-                ><strong>1D array</strong> one position number</span
-              >
-              <span class="example-chip"
-                ><strong>2D array</strong> row index plus column index</span
-              >
-              <span class="example-chip"
-                ><strong>Direct access</strong> jump to a chosen position
-                quickly</span
-              >
-            </div>
+orders[1][0] → 4</code></pre><p><strong>Second row, first column.</strong> It is the same position we described with row and column numbers starting at 1.</p></div>
+</div><p class="ma-note"><strong>1D array:</strong> one index, such as scores[2]. <strong>2D array:</strong> two indexes, such as orders[1][0].</p>
+</section>
 
-            <div class="application-grid">
-              <article class="application-card">
-                <h3>Software view</h3>
-                <p>
-                  Programs can use syntax such as <code>scores[2][4]</code> to
-                  reach one exact value in a table.
-                </p>
-              </article>
-              <article class="application-card">
-                <h3>Hardware link</h3>
-                <p>
-                  Indexed array access supports predictable addressing rather
-                  than scanning every value one by one.
-                </p>
-              </article>
-              <article class="application-card">
-                <h3>Next step</h3>
-                <p>
-                  The deeper memory layout rules for multi-dimensional arrays
-                  come next when you study memory order.
-                </p>
-              </article>
-            </div>
 
-            <article class="lesson-card">
-              <h3>Worked storage example</h3>
-              <p>
-                A program storing points from two teams across three rounds
-                could use this two-dimensional array:
-              </p>
-              <pre><code>points = [
-  [12, 9, 15],
-  [10, 14, 11]
-]</code></pre>
-              <p>
-                With zero-based indexing, <code>points[1][0]</code> means the
-                first score in the second row. That is why a good answer links
-                row and column positions to indexed storage.
-              </p>
-            </article>
+<section id="compare" class="lesson-section lesson-section--compare panel" data-lesson-section>
+  <p class="eyebrow">Make the connection</p><h2>Matrix describes the maths; array provides indexed storage</h2>
+  <div class="ma-pair">
+<article class="lesson-card"><h3>Matrix</h3><p>A rectangular grid of values with mathematical operations.</p><p>“Multiply the 2 × 2 matrix by 3.”</p></article>
+<article class="lesson-card"><h3>Array</h3><p>A data structure for storing and accessing elements by index.</p><p>“Read or update <code>orders[1][1]</code>.”</p></article>
+</div><p class="ma-note">A 2D array can represent a matrix, but an array can also store other kinds of data. Using an array does not automatically perform matrix operations.</p>
+<p><strong>Next:</strong> a grid describes logical positions. The next lesson explores more dimensions and how values are arranged in memory.</p>
+</section>
 
-            <article class="lesson-card">
-              <h3>Relationship in one sentence</h3>
-              <p>
-                A matrix is the logical grid of values, while a two-dimensional
-                array is one common way a program stores that grid so each
-                element can be accessed by index.
-              </p>
-            </article>
-          </section>
 
-          <section
-            id="compare"
-            class="lesson-section lesson-section--compare panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Comparison</p>
-            <h2>Link matrix language to array storage</h2>
-            <p class="lesson-section-copy">
-              Strong Unit 2 answers often use both mathematical language and
-              computer systems language. You may need to describe the matrix as
-              a grid, then explain how software stores and accesses it.
-            </p>
+<section id="mistakes" class="lesson-section lesson-section--mistakes panel" data-lesson-section>
+  <p class="eyebrow">Quick recap</p><h2>Three checks before you calculate</h2>
+  <div class="ma-operation-grid">
+<article class="lesson-card"><h3>1. Read the position</h3><p><strong>Row, then column.</strong> Check whether positions start at 1 or indexes start at 0.</p></article>
+<article class="lesson-card"><h3>2. Check the shape</h3><p><strong>Addition:</strong> same dimensions.</p><p><strong>A × B:</strong> columns of A = rows of B.</p></article>
+<article class="lesson-card"><h3>3. Use the right rule</h3><p><strong>Scalar:</strong> every element.</p><p><strong>A × B:</strong> multiply row–column pairs, then add.</p></article>
+</div>
+</section>
 
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Idea</th>
-                    <th>Matrix view</th>
-                    <th>Array view</th>
-                    <th>Why it matters</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Position</td>
-                    <td>Row and column</td>
-                    <td>Indexes such as <code>[r][c]</code></td>
-                    <td>Lets the program identify one exact element.</td>
-                  </tr>
-                  <tr>
-                    <td>Shape</td>
-                    <td>Dimensions of the matrix</td>
-                    <td>Number of rows and values in each row</td>
-                    <td>Controls which operations are valid.</td>
-                  </tr>
-                  <tr>
-                    <td>Single value</td>
-                    <td>An element</td>
-                    <td>An indexed array entry</td>
-                    <td>
-                      Supports direct retrieval without checking every value.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Combining data</td>
-                    <td>Addition or multiplication rules</td>
-                    <td>Loops or calculations over matching positions</td>
-                    <td>Wrong dimensions lead to incorrect results.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+<template data-teacher-divider><h2>Check your understanding</h2><p>Use the rules and explain your choices</p></template>
 
-            <div class="lesson-intro-grid">
-              <article class="lesson-card">
-                <h3>Use matrix language when...</h3>
-                <p>
-                  The question focuses on rows, columns, dimensions, or
-                  mathematical operations.
-                </p>
-              </article>
-              <article class="lesson-card">
-                <h3>Use array language when...</h3>
-                <p>
-                  The question focuses on storage, indexed access, or how the
-                  program retrieves a chosen value.
-                </p>
-              </article>
-              <article class="lesson-card">
-                <h3>Exam reminder</h3>
-                <p>
-                  The strongest answers connect both views instead of treating
-                  the topic as maths only or programming only.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes students make with matrices and arrays</h2>
-            <p class="lesson-section-copy">
-              Most errors come from losing track of positions or using the wrong
-              rule for an operation. These are the traps written questions often
-              exploit.
-            </p>
-
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Mixing up row and column positions</h3>
-                <p>
-                  Students sometimes name the correct value type but put it in
-                  the wrong place because they reverse the coordinates.
-                </p>
-                <ul class="trap-list">
-                  <li>Row is the horizontal line of values.</li>
-                  <li>Column is the vertical line of values.</li>
-                  <li>Programming indexes often start at 0, not 1.</li>
-                </ul>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> State clearly whether you are using
-                  matrix positions or zero-based array indexes.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Ignoring dimension rules</h3>
-                <p>
-                  Some answers try to add or compare matrices without checking
-                  whether they have matching dimensions.
-                </p>
-                <ul class="trap-list">
-                  <li>Addition needs the same number of rows and columns.</li>
-                  <li>
-                    Matching positions must represent equivalent data points.
-                  </li>
-                </ul>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Mention the shape of the matrix before
-                  explaining the operation.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Treating matrix multiplication like addition</h3>
-                <p>
-                  Addition works element by element, but matrix multiplication
-                  follows a different rule and depends on inner dimensions.
-                </p>
-                <ul class="trap-list">
-                  <li>Do not multiply only the matching positions.</li>
-                  <li>
-                    The first matrix columns must match the second matrix rows.
-                  </li>
-                </ul>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> If the question mentions multiplication,
-                  check the rule before describing the result.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <section
+<section
             id="quiz"
             class="lesson-section lesson-section--quiz panel"
             data-lesson-section
@@ -1242,13 +881,13 @@
             </form>
           </section>
 
-          <section
+<section
             id="exam-practice"
             class="lesson-section lesson-section--exam-practice panel"
             data-lesson-section
           >
             <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Try longer answers like the ones used in written papers</h2>
+            <h2>Apply the ideas</h2>
             <p class="lesson-section-copy">
               These questions need fuller explanations than the quick quiz. Type
               your answers straight into the page, then compare your ideas with
@@ -1308,18 +947,17 @@
                   </div>
                 </details>
               </article>
-
-              <article class="exam-card">
+</div>
+<div data-slide-break></div>
+<div class="exam-grid">
+<article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">5 marks</span>
                   <span class="exam-pill">Explain and justify</span>
                 </div>
                 <h3>Question 2</h3>
                 <p>
-                  A school records weekly points for two classes in matrices of
-                  the same size, with one row per student and one column per
-                  week. Explain how the program could combine the matrices and
-                  why the dimensions must match.
+                  A school stores lesson points in one matrix and club points in another. Both use the same students as rows and the same weeks as columns, in the same order. Explain how the program could calculate total points for each student each week, and why the dimensions must match.
                 </p>
                 <div class="exam-response-wrap">
                   <label class="exam-response-label" for="exam-response-2">
@@ -1328,7 +966,7 @@
                   <textarea
                     id="exam-response-2"
                     class="exam-response"
-                    data-exam-response="question-2"
+                    data-exam-response="points-addition-v2"
                     placeholder="Explain the rule clearly and justify why matching dimensions matter."
                   ></textarea>
                 </div>
@@ -1364,7 +1002,7 @@
               </article>
             </div>
           </section>
-        </main>
+</main>
 
         <aside class="lesson-rail">
           <section class="lesson-rail-card panel glossary-card">
