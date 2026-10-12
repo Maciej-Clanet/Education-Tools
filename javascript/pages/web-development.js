@@ -1,4 +1,11 @@
 import { webChallenges, challengeKinds } from "../data/web-challenges.js"
+import { webDevelopmentProgressData } from "../data/unit-progress-data.js"
+import { initUnitProgress } from "../core/unit-progress.js"
+
+initUnitProgress({
+  ...webDevelopmentProgressData,
+  sections: webDevelopmentProgressData.sections.filter(section => section.id === "fastapi-backend"),
+})
 
 const requestedSection = new URL(location.href).searchParams.get("challenges")
 

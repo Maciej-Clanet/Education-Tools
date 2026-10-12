@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is a backend? | Education Tools</title>
+  <meta name="description"
+    content="Learn frontend, backend and database roles, where web code runs, and how API requests work through diagrams, a booking walkthrough and practice." />
+  <meta property="og:title" content="What is a backend? | Education Tools" />
+  <meta property="og:description"
+    content="Learn frontend, backend and database roles, where web code runs, and how API requests work through diagrams, a booking walkthrough and practice." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/code-snippets.css" />
+<link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
+  <link rel="stylesheet" href="../../css/backend-lessons.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/what-is-a-backend.js"></script>
+</head>
+
+<body>
+  <div class="page-shell backend-lesson">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">FastAPI Backend</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a>
+</li>
+          <li><a href="../resources/web-development.html#fastapi-backend" data-role="breadcrumb-unit-link">Web
+              Development</a>
+</li>
+          <li aria-current="page">What is a backend?</li>
+        </ol>
+      </nav>
+      <div class="lesson-header-row">
+        <div>
+          <h1>What is a backend?</h1>
+          <p class="lesson-hero-text">Explore what happens beyond the browser: where frontend and backend code runs, what each controls, and how requests turn into shared results.</p>
+        </div>
+      </div>
+      <div class="lesson-meta-grid">
+<article class="lesson-meta-card"><strong>Start here</strong><span>First FastAPI Backend lesson</span>
+</article>
+<article class="lesson-meta-card"><strong>Example</strong><span>Booking a workshop</span>
+</article>
+<article class="lesson-meta-card"><strong>Explore</strong><span>Diagrams and a request walkthrough</span>
+</article>
+<article class="lesson-meta-card"><strong>Check</strong><span>8 questions and written practice</span>
+</article>
+</div>
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" href="../resources/web-development.html#fastapi-backend"
+          data-role="back-to-unit">Back to FastAPI Backend</a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher
+          slides</button>
+      </div>
+    </header>
+    <noscript>
+<p class="panel lesson-sequence">The lesson content and code remain readable. Interactive controls, quiz marking and saving your work need JavaScript.</p>
+</noscript>
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections"><a href="#one-click" data-section-link>One click, two jobs</a>
+<a href="#frontend-backend" data-section-link>Frontend and backend</a>
+<a href="#where-they-live" data-section-link>Where they run</a>
+<a href="#local-and-live" data-section-link>Local and live</a>
+<a href="#what-each-controls" data-section-link>Who controls what?</a>
+<a href="#database" data-section-link>Backend versus database</a>
+<a href="#request-journey" data-section-link>Follow a request</a>
+<a href="#api" data-section-link>API and endpoints</a>
+<a href="#trust-boundary" data-section-link>Why server checks matter</a>
+<a href="#when-needed" data-section-link>Do you need a backend?</a>
+<a href="#misconceptions" data-section-link>Common mistakes</a>
+<a href="#quiz" data-section-link>Quick quiz</a>
+<a href="#practice" data-section-link>Apply it</a>
+<a href="#recap" data-section-link>Recap</a>
+</nav>
+      </aside>
+      <main class="lesson-main" data-role="lesson-main">
+<template data-teacher-opener>
+<h2>What is a backend?</h2>
+<p>Understand the idea, then follow it through a working example.</p>
+<ul>
+<li>Separate frontend, backend and database roles.</li>
+<li>Locate the code on a local and a hosted app.</li>
+<li>Trace a request and explain server-side checks.</li>
+</ul>
+</template>
+<section id="one-click" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Start with a booking</p>
+<h2>What happens after “Book a place”?</h2>
+<p>A student chooses a place on a college workshop. The button is visible in their browser, but the workshop has only one place left. Another student is trying to book it too.</p>
+<div class="backend-pair">
+<div class="backend-ticket">
+<p class="eyebrow">What the student sees</p>
+<h3>Web design workshop</h3>
+<p>Friday · 10:00 · 1 place left</p><span class="backend-ticket__button">Book a place</span>
+<p>Illustrative interface</p>
+</div>
+<div class="backend-node backend-node--server"><strong>What must be decided</strong>
+<p>Is the student allowed to book? Is a place still available? Has the booking actually been saved?</p>
+</div>
+</div>
+<p>The <strong>frontend</strong> handles the interface. The <strong>backend</strong> handles the shared rules and server-side work behind that interface.</p>
+</section>
+<section id="frontend-backend" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Two responsibilities</p>
+<h2>The screen and the service</h2>
+<figure class="backend-diagram">
+<div class="backend-flow ">
+<div class="backend-node "><strong>Frontend</strong>
+<p>Shows the workshop, collects a choice and displays the result.</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+</div>
+<div class="backend-node backend-node--server"><strong>Backend</strong>
+<p>Checks the request, applies booking rules and returns a result.</p>
+</div>
+</div>
+<figcaption>In this web app, the frontend runs in the browser and communicates with the backend over HTTP.</figcaption>
+</figure>
+<p>The frontend is the part the user interacts with: HTML structure, CSS styling and JavaScript behaviour. React helps build that interface.</p>
+<p>The backend is application code running on the server side. FastAPI helps build a Python backend that accepts requests and sends responses.</p>
+<details>
+<summary>Can they use the same language?</summary>
+<p>Yes. JavaScript can run in browsers and on servers. A language alone does not decide whether code is frontend or backend; its role and where it runs matter.</p>
+</details>
+</section>
+<template data-teacher-divider>
+<h2>Where does it run?</h2>
+<p>Separate where files are stored from where their code executes.</p>
+</template>
+<section id="where-they-live" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">From files to running software</p>
+<h2>Stored on a host, running in a browser</h2>
+<figure class="backend-diagram">
+<div class="backend-flow ">
+<div class="backend-node "><strong>Web host</strong>
+<p>Stores and serves the frontend’s HTML, CSS and JavaScript.</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">→</span><small>download files</small>
+</div>
+<div class="backend-node "><strong>Student’s browser</strong>
+<p>Loads the files and runs the frontend JavaScript.</p>
+</div>
+</div>
+<figcaption>Hosting a JavaScript file on a server does not mean the downloaded copy runs there.</figcaption>
+</figure>
+<figure class="backend-diagram">
+<div class="backend-flow ">
+<div class="backend-node "><strong>Student’s browser</strong>
+<p>Sends an API request when it needs server-side work.</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>HTTP messages</small>
+</div>
+<div class="backend-node backend-node--server"><strong>Backend server</strong>
+<p>Runs the application code and returns a response.</p>
+</div>
+</div>
+<figcaption>The backend’s Python source is not normally sent to the browser. Responses can still contain data the user can inspect.</figcaption>
+</figure>
+<p>A server is software that listens for requests, and the word also refers to the machine running it. The machine could be a local laptop, a college server or cloud infrastructure.</p>
+</section>
+<section id="local-and-live" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Same jobs, different locations</p>
+<h2>One laptop can run both sides</h2>
+<div class="backend-boundary">
+<h3>During development: your laptop</h3>
+<figure class="backend-diagram">
+<div class="backend-flow ">
+<div class="backend-node "><strong>Browser + Vite</strong>
+<p>Frontend served at<br><code>localhost:5173</code>
+</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">→</span><small>API request</small>
+</div>
+<div class="backend-node backend-node--server"><strong>Python + Uvicorn</strong>
+<p>Backend listening at<br><code>127.0.0.1:8001</code>
+</p>
+</div>
+</div>
+<figcaption>Two local services, with different ports. Vite serves the frontend files; Uvicorn runs the FastAPI application.</figcaption>
+</figure>
+</div>
+<p><code>localhost</code> and <code>127.0.0.1</code> refer back to the device using them. A <strong>port</strong> identifies a listening service on that device.</p>
+<div data-slide-break>
+</div>
+<h3>After deployment</h3>
+<figure class="backend-diagram">
+<div class="backend-flow ">
+<div class="backend-node "><strong>Student’s device</strong>
+<p>Runs the browser interface.</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">→</span><small>network</small>
+</div>
+<div class="backend-node backend-node--server"><strong>Hosted backend</strong>
+<p>Runs on infrastructure available to your users.</p>
+</div>
+</div>
+<figcaption>A remote user’s localhost means their own device, not the developer’s laptop.</figcaption>
+</figure>
+<p>The frontend and backend may share a host or use different hosts. Separate roles do not require separate physical computers. A cloud backend still runs on real computers.</p>
+</section>
+<section id="what-each-controls" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Split the work</p>
+<h2>Feedback in the browser, rules on the server</h2>
+<div class="backend-pair">
+<div class="backend-node"><strong>Frontend responsibilities</strong>
+<ul>
+<li>Render cards, forms and menus.</li>
+<li>Respond to clicks and keyboard input.</li>
+<li>Give quick feedback for an empty field.</li>
+<li>Show loading, success and error messages.</li>
+</ul>
+</div>
+<div class="backend-node backend-node--server"><strong>Backend responsibilities</strong>
+<ul>
+<li>Check submitted data again.</li>
+<li>Check identity and permission when needed.</li>
+<li>Apply rules such as capacity or prices.</li>
+<li>Read and update shared records.</li>
+</ul>
+</div>
+</div>
+<p>Both sides may validate the same field. Browser checks help the user; server checks protect the operation even if browser checks are bypassed.</p>
+<details>
+<summary>What else can a backend do?</summary>
+<p>It can call another service, send an email, process an image or return generated HTML. Returning JSON to React is one common arrangement, not the only one.</p>
+</details>
+</section>
+<section id="database" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">A third role</p>
+<h2>The database stores; the backend decides</h2>
+<figure class="backend-diagram">
+<div class="backend-flow backend-flow--three">
+<div class="backend-node "><strong>Browser</strong>
+<p>“Book workshop 42.”</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">→</span><small>request</small>
+</div>
+<div class="backend-node backend-node--server"><strong>Backend</strong>
+<p>Checks the rules and asks to save the booking.</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+</div>
+<div class="backend-node backend-node--data"><strong>Database</strong>
+<p>Stores workshops, capacities and bookings.</p>
+</div>
+</div>
+<figcaption>A common design keeps direct database access on the server side.</figcaption>
+</figure>
+<p>A <strong>database</strong> stores and retrieves organised data. It is not the same thing as a backend. The backend coordinates the operation and uses storage where needed.</p>
+<p>A backend can also work without a database: for example, it could convert units or return a fixed greeting. A database can live beside the app or on a separate service.</p>
+<p>Saving something in browser <code>localStorage</code> is different: that saved copy belongs to that browser and origin. It is not a shared booking record for every student.</p>
+</section>
+<template data-teacher-divider>
+<h2>How do the two sides communicate?</h2>
+<p>Follow a request from a click to a result.</p>
+</template>
+<section id="request-journey" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">One booking, step by step</p>
+<h2>Trace the whole journey</h2>
+<div data-lesson-walkthrough data-no-slide-advance>
+<div class="backend-stage" data-walkthrough-step="Choose">
+<h3>Student chooses a workshop</h3>
+<figure class="backend-diagram">
+<div class="backend-flow backend-flow--three">
+<div class="backend-node backend-node--active"><strong>Browser</strong>
+<p>Collect choice / show result</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+</div>
+<div class="backend-node backend-node--server "><strong>Backend</strong>
+<p>Validate and coordinate</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+</div>
+<div class="backend-node backend-node--data "><strong>Database</strong>
+<p>Keep shared records</p>
+</div>
+</div>
+<figcaption>The frontend collects workshop 42 and shows that a request is in progress. No booking is confirmed yet.</figcaption>
+</figure>
+</div>
+<div class="backend-stage" data-walkthrough-step="Request">
+<h3>Browser sends the request</h3>
+<figure class="backend-diagram">
+<div class="backend-flow backend-flow--three">
+<div class="backend-node "><strong>Browser</strong>
+<p>Collect choice / show result</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+</div>
+<div class="backend-node backend-node--server backend-node--active"><strong>Backend</strong>
+<p>Validate and coordinate</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+</div>
+<div class="backend-node backend-node--data "><strong>Database</strong>
+<p>Keep shared records</p>
+</div>
+</div>
+<figcaption>A POST request to /bookings carries the workshop ID. The backend must validate what it receives.</figcaption>
+</figure>
+</div>
+<div class="backend-stage" data-walkthrough-step="Check and save">
+<h3>Backend applies the rules</h3>
+<figure class="backend-diagram">
+<div class="backend-flow backend-flow--three">
+<div class="backend-node "><strong>Browser</strong>
+<p>Collect choice / show result</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+</div>
+<div class="backend-node backend-node--server "><strong>Backend</strong>
+<p>Validate and coordinate</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+</div>
+<div class="backend-node backend-node--data backend-node--active"><strong>Database</strong>
+<p>Keep shared records</p>
+</div>
+</div>
+<figcaption>It checks permission and remaining capacity, then coordinates a safe update with the database so two users cannot take the last place.</figcaption>
+</figure>
+</div>
+<div class="backend-stage" data-walkthrough-step="Respond">
+<h3>Backend returns the result</h3>
+<figure class="backend-diagram">
+<div class="backend-flow backend-flow--three">
+<div class="backend-node "><strong>Browser</strong>
+<p>Collect choice / show result</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+</div>
+<div class="backend-node backend-node--server backend-node--active"><strong>Backend</strong>
+<p>Validate and coordinate</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+</div>
+<div class="backend-node backend-node--data "><strong>Database</strong>
+<p>Keep shared records</p>
+</div>
+</div>
+<figcaption>A success response includes the booking reference. If full, it returns an error outcome instead of claiming a booking was made.</figcaption>
+</figure>
+</div>
+<div class="backend-stage" data-walkthrough-step="Display">
+<h3>Frontend updates the screen</h3>
+<figure class="backend-diagram">
+<div class="backend-flow backend-flow--three">
+<div class="backend-node backend-node--active"><strong>Browser</strong>
+<p>Collect choice / show result</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+</div>
+<div class="backend-node backend-node--server "><strong>Backend</strong>
+<p>Validate and coordinate</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+</div>
+<div class="backend-node backend-node--data "><strong>Database</strong>
+<p>Keep shared records</p>
+</div>
+</div>
+<figcaption>It shows the confirmation or explains the error. A network failure needs a visible message too.</figcaption>
+</figure>
+</div>
+<div data-walkthrough-controls hidden><button class="slide-button" type="button" data-walkthrough-prev>Previous</button><button class="slide-button" type="button" data-walkthrough-next>Next</button><button class="slide-button" type="button" data-walkthrough-reset>Restart</button>
+<p data-walkthrough-status aria-live="polite">
+</p>
+</div>
+</div>
+</section>
+<section id="api" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Agree on the messages</p>
+<h2>An API is the interface to the service</h2>
+<p>An <strong>API</strong> defines how software can ask another piece of software to do something. A web API exposes <strong>endpoints</strong>: defined operations reached through a method and URL path.</p>
+<figure class="backend-diagram">
+<div class="backend-flow ">
+<div class="backend-node "><strong>Request</strong>
+<p><code>GET /workshops/42</code><br>“Tell me about this workshop.”</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">→</span><small>handled by backend</small>
+</div>
+<div class="backend-node backend-node--server"><strong>Response</strong>
+<p><code>200 OK</code><br>Data describing workshop 42.</p>
+</div>
+</div>
+<figcaption>GET is normally used to retrieve data. POST commonly submits data for an operation such as making a booking.</figcaption>
+</figure>
+<div class="code-snippet" data-code-snippet="Example response body" data-no-slide-advance>
+<div class="code-snippet__toolbar"><span class="code-snippet__label">Example response body · JSON</span>
+</div><pre tabindex="0" aria-label="Example response body code"><code class="language-json">{
+  <span class="syntax-tag">&quot;id&quot;</span>: <span class="syntax-number">42</span>,
+  <span class="syntax-tag">&quot;title&quot;</span>: <span class="syntax-string">&quot;Web design workshop&quot;</span>,
+  <span class="syntax-tag">&quot;places_left&quot;</span>: <span class="syntax-number">1</span>
+}</code></pre></div>
+<p><strong>JSON</strong> is a text format for exchanging structured data. The frontend turns these values into a card or message; JSON is not the page design.</p>
+<details>
+<summary>What if the request cannot succeed?</summary>
+<p>The response includes a status code and may explain the problem. For example, 404 can mean no matching workshop, while 403 can mean the user is not allowed to perform an operation. The frontend should handle failure as well as success.</p>
+</details>
+</section>
+<section id="trust-boundary" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Shared decisions</p>
+<h2>A hidden button is not permission</h2>
+<figure class="backend-diagram">
+<div class="backend-flow ">
+<div class="backend-node "><strong>Browser can be changed</strong>
+<p>A user can edit a displayed price, unhide a button or send a request outside your UI.</p>
+</div>
+<div class="backend-arrow"><span aria-hidden="true">→</span><small>untrusted input</small>
+</div>
+<div class="backend-node backend-node--server"><strong>Backend must verify</strong>
+<p>Look up the real price, check permission and enforce the rule before saving.</p>
+</div>
+</div>
+<figcaption>Do not make the browser’s claimed values the authority for shared or restricted actions.</figcaption>
+</figure>
+<p>Hiding an admin button improves the interface, but the backend must still reject an unauthorised request. Keep private database credentials and service secrets on the server, not in JavaScript sent to users.</p>
+<p>Backend code is not automatically secure just because it is on a server. Its checks must be implemented correctly, and its responses must only reveal appropriate data.</p>
+</section>
+<section id="when-needed" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Choose for the task</p>
+<h2>Some sites only need static files</h2>
+<div class="backend-pair">
+<div class="backend-node"><strong>Usually no custom backend</strong>
+<p>A portfolio, revision notes or an in-browser calculator can run from static files. A quiz can save progress locally when cross-device sharing is not needed.</p>
+</div>
+<div class="backend-node backend-node--server"><strong>Shared server-side work</strong>
+<p>A booking system needs a shared record and centrally enforced rules. Accounts, private records and server-held API keys commonly need backend services.</p>
+</div>
+</div>
+<p>A static website still needs hosting to deliver its files, but that does not mean you must write your own backend application.</p>
+<p>FastAPI is one way to build a backend in Python. Uvicorn runs it as a web service. Next you will create a small app, test its endpoints and organise its files.</p>
+</section>
+<section id="misconceptions" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Check the distinction</p>
+<h2>Avoid these shortcuts</h2>
+<dl class="reference-files">
+<dt>“Backend means database.”</dt>
+<dd>The backend is application logic; a database is storage it may use.</dd>
+<dt>“Frontend means everything stored on my laptop.”</dt>
+<dd>A local laptop can run both sides. Frontend and backend describe roles, not permanent locations.</dd>
+<dt>“React routing calls my Python endpoint.”</dt>
+<dd>Changing the displayed React page and requesting backend data are separate operations. A page can do both, but one does not automatically cause the other.</dd>
+<dt>“If the frontend accepts it, it must be valid.”</dt>
+<dd>The backend must check inputs and permission independently.</dd>
+</dl>
+</section>
+<template data-teacher-divider>
+<h2>Apply the distinction</h2>
+<p>Check the key ideas, then explain a new example.</p>
+</template>
+<section id="quiz" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Check your understanding</p>
+<h2>Frontend, backend or database?</h2>
+<p>Answer eight questions. Your answers save on this device. Aim for 6 out of 8.</p>
+<form id="lesson-quiz" class="quiz-form">
+<fieldset class="quiz-question" data-question="q1" data-answer="a" data-success="Correct. The downloaded frontend code runs in the browser." data-feedback="The downloaded frontend code runs in the browser.">
+<legend>1. Where does the downloaded React frontend JavaScript normally run?</legend>
+<ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q1" value="a" /><span>In the browser</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q1" value="b" /><span>Inside the database</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q1" value="c" /><span>Only on the web host</span></label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q2" data-answer="b" data-success="Correct. The backend must check permission even when the UI hides the action." data-feedback="The backend must check permission even when the UI hides the action.">
+<legend>2. Who must enforce a booking permission?</legend>
+<ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q2" value="a" /><span>Only the hidden button</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q2" value="b" /><span>The backend handling the request</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q2" value="c" /><span>Only the CSS stylesheet</span></label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q3" data-answer="c" data-success="Correct. The database stores shared records; the backend applies the application rules." data-feedback="The database stores shared records; the backend applies the application rules.">
+<legend>3. What is the database’s main role here?</legend>
+<ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q3" value="a" /><span>Style the page</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q3" value="b" /><span>Replace the browser</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q3" value="c" /><span>Store shared booking records</span></label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q4" data-answer="a" data-success="Correct. Localhost loops back to the device making the request." data-feedback="Localhost loops back to the device making the request.">
+<legend>4. What does localhost refer to?</legend>
+<ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q4" value="a" /><span>The device using that address</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q4" value="b" /><span>Always the teacher’s computer</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q4" value="c" /><span>Every device on the internet</span></label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q5" data-answer="b" data-success="Correct. An endpoint is reached using a method and path to request a defined operation." data-feedback="An endpoint is reached using a method and path to request a defined operation.">
+<legend>5. What does a web API endpoint connect to?</legend>
+<ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q5" value="a" /><span>A screen colour</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q5" value="b" /><span>A defined operation at a method and path</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q5" value="c" /><span>A physical monitor</span></label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q6" data-answer="c" data-success="Correct. Client checks can be bypassed, so server-side checks remain necessary." data-feedback="Client checks can be bypassed, so server-side checks remain necessary.">
+<legend>6. Why validate on both sides?</legend>
+<ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q6" value="a" /><span>Browser validation guarantees security</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q6" value="b" /><span>Server checks only change colours</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q6" value="c" /><span>Browser checks help users; server checks enforce the rules</span></label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q7" data-answer="b" data-success="Correct. A browser can perform a local calculation without calling a custom backend." data-feedback="A browser can perform a local calculation without calling a custom backend.">
+<legend>7. Which could work without a custom backend?</legend>
+<ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q7" value="a" /><span>A shared seat booking system</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q7" value="b" /><span>A static page with an in-browser calculator</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q7" value="c" /><span>An account service with private shared records</span></label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<fieldset class="quiz-question" data-question="q8" data-answer="a" data-success="Correct. The interface should reflect the actual outcome, including network failures." data-feedback="The interface should reflect the actual outcome, including network failures.">
+<legend>8. A request fails. What should the frontend do?</legend>
+<ul class="quiz-answer-list">
+<li><label class="quiz-answer"><input type="radio" name="q8" value="a" /><span>Show an appropriate error or retry option</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q8" value="b" /><span>Always display booking confirmed</span></label>
+</li>
+<li><label class="quiz-answer"><input type="radio" name="q8" value="c" /><span>Delete the backend source</span></label>
+</li>
+</ul>
+<p class="quiz-feedback-note" data-question-feedback>
+</p>
+</fieldset>
+<div class="quiz-actions"><button type="submit" class="primary-link">Check answers</button><button type="button" class="lesson-secondary-action" data-action="reset-quiz">Reset quiz</button>
+</div>
+<p class="quiz-result" data-role="quiz-result" aria-live="polite">
+</p>
+</form>
+<noscript>
+<details>
+<summary>Answer guide</summary>
+<p>1 A, 2 B, 3 C, 4 A, 5 B, 6 C, 7 B, 8 A.</p>
+</details>
+</noscript>
+</section>
+<section id="practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Explain your reasoning</p>
+<h2>Use the idea in a new situation</h2>
+<p>Your written responses save automatically on this device.</p>
+<article class="exam-card">
+<h3>A library reservation</h3>
+<p>A library website lets students reserve a book. Explain one job for the frontend, one for the backend and one for the database.</p>
+<div class="exam-response-wrap"><label class="exam-response-label" for="practice-library">Write your explanation</label><textarea class="exam-response" rows="4" id="practice-library" data-exam-response="library"></textarea>
+</div>
+<details class="exam-guidance">
+<summary>Show answer guidance</summary>
+<div class="exam-guidance-body">
+<p>The frontend shows books and collects the selected title. The backend checks whether the student may reserve it and whether a copy is available. The database stores books and reservations. The frontend displays the result returned by the backend.</p>
+</div>
+</details>
+</article>
+<div data-slide-break>
+</div>
+<article class="exam-card">
+<h3>A changed price</h3>
+<p>A learner changes a £20 ticket price to £1 in browser developer tools. Explain why this should not change the amount the booking system accepts.</p>
+<div class="exam-response-wrap"><label class="exam-response-label" for="practice-price">Write your explanation</label><textarea class="exam-response" rows="4" id="practice-price" data-exam-response="price"></textarea>
+</div>
+<details class="exam-guidance">
+<summary>Show answer guidance</summary>
+<div class="exam-guidance-body">
+<p>The visible value is controlled by the browser and cannot be trusted as the real price. The backend must identify the ticket, look up its price in trusted data and calculate the total itself. Changing the interface should not change that stored price.</p>
+</div>
+</details>
+</article>
+</section>
+<section id="recap" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Ready to build</p>
+<h2>Keep the roles separate</h2>
+<ul>
+<li><strong>Frontend:</strong> the interface and browser behaviour.</li>
+<li><strong>Backend:</strong> server-side operations and centrally enforced rules.</li>
+<li><strong>Database:</strong> shared storage when the application needs it.</li>
+<li><strong>API:</strong> the agreed messages between software components.</li>
+</ul>
+<p>Follow the practical lesson to make a FastAPI service you can call and test.</p>
+<p>Further reading: <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction">MDN’s introduction to server-side programming</a>.</p>
+</section>
+</main>
+      <aside class="lesson-rail">
+<section class="lesson-rail-card panel glossary-card">
+<p class="eyebrow">Key words</p>
+<h2>Quick glossary</h2>
+<dl class="glossary-list">
+<div class="glossary-item">
+<dt>Frontend</dt>
+<dd>The interface and client-side behaviour users interact with.</dd>
+</div>
+<div class="glossary-item">
+<dt>Backend</dt>
+<dd>Server-side application code that handles requests and rules.</dd>
+</div>
+<div class="glossary-item">
+<dt>Server</dt>
+<dd>Software listening for requests, or the machine running it.</dd>
+</div>
+<div class="glossary-item">
+<dt>Database</dt>
+<dd>Organised storage for data.</dd>
+</div>
+<div class="glossary-item">
+<dt>API</dt>
+<dd>An interface for communication between software.</dd>
+</div>
+<div class="glossary-item">
+<dt>Endpoint</dt>
+<dd>An operation reached through an HTTP method and path.</dd>
+</div>
+<div class="glossary-item">
+<dt>Port</dt>
+<dd>A number identifying a listening network service.</dd>
+</div>
+</dl>
+</section>
+</aside>
+    </div>
+    <section class="lesson-sequence panel" aria-label="Lesson navigation"><a class="primary-link" href="starting-a-fastapi-backend.html?context=web-development">Next: Starting a FastAPI backend</a>
+</section>
+  </div>
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+    <p class="slide-status" data-role="slide-status">Slide 1</p>
+    <button type="button" class="slide-button" data-action="next-slide">Next</button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+  </div>
+</body>
+
+</html>

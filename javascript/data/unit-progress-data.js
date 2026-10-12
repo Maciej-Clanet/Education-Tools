@@ -3,6 +3,18 @@ export const webDevelopmentProgressData = {
   title: "Web Development",
   sections: [
     {
+      id: "fastapi-backend",
+      title: "FastAPI Backend",
+      lessons: [
+        {
+          id: "what-is-a-backend",
+          title: "What is a backend?",
+          href: "../topics/what-is-a-backend.html?context=web-development",
+          quiz: { version: 1, totalQuestions: 8, passScore: 6, storageKey: "lesson-what-is-a-backend-quiz" },
+        },
+      ],
+    },
+    {
       id: "html-basics",
       title: "HTML basics",
       lessons: [

@@ -40,6 +40,9 @@ must allow reusable topics to serve other units and qualifications.
   existing lessons in those sections; do not add planned lesson placeholders or
   infer their eventual sequence. Setup references can omit quizzes and use
   copyable, highlighted snippets instead of the Playground for unsupported runtimes.
+- The Backend introduction comes before the combined FastAPI setup/reference
+  lesson. These lessons teach server-side applications; the education site itself
+  remains static-first and does not require a backend.
 
 ## Design and accessibility
 

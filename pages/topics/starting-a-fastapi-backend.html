@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starting a FastAPI backend | Education Tools</title>
+  <meta name="description"
+    content="Set up a Python FastAPI backend with virtual environments, Uvicorn, API docs, middleware, CORS, Pydantic models and organised routers." />
+  <meta property="og:title" content="Starting a FastAPI backend | Education Tools" />
+  <meta property="og:description"
+    content="Set up a Python FastAPI backend with virtual environments, Uvicorn, API docs, middleware, CORS, Pydantic models and organised routers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/code-snippets.css" />
+  <link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
+  <link rel="stylesheet" href="../../css/backend-lessons.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/starting-a-fastapi-backend.js"></script>
+</head>
+
+<body>
+  <div class="page-shell backend-lesson">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">FastAPI Backend</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a>
+          </li>
+          <li><a href="../resources/web-development.html#fastapi-backend" data-role="breadcrumb-unit-link">Web
+              Development</a>
+          </li>
+          <li aria-current="page">Starting a FastAPI backend</li>
+        </ol>
+      </nav>
+      <div class="lesson-header-row">
+        <div>
+          <h1>Starting a FastAPI backend</h1>
+          <p class="lesson-hero-text">Build and understand a local Python API: environment setup, endpoints, interactive
+            docs, middleware, CORS, request models and organised route files.</p>
+        </div>
+      </div>
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Tools</strong><span>Python, VS Code and a terminal</span>
+        </article>
+        <article class="lesson-meta-card"><strong>Build</strong><span>A local FastAPI service</span>
+        </article>
+        <article class="lesson-meta-card"><strong>Reference</strong><span>Setup steps plus explanations</span>
+        </article>
+        <article class="lesson-meta-card"><strong>Test</strong><span>Root JSON and /docs</span>
+        </article>
+      </div>
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" href="../resources/web-development.html#fastapi-backend"
+          data-role="back-to-unit">Back to FastAPI Backend</a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher
+          slides</button>
+      </div>
+    </header>
+    <noscript>
+      <p class="panel lesson-sequence">The lesson content and code remain readable. Interactive controls, quiz marking
+        and saving your work need JavaScript.</p>
+    </noscript>
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Lesson sections"><a href="#before-you-start" data-section-link>Before you
+            start</a>
+          <a href="#project-folder" data-section-link>1. Open the project</a>
+          <a href="#virtual-environment" data-section-link>2. Create a venv</a>
+          <a href="#dependencies" data-section-link>3. Install packages</a>
+          <a href="#run-server" data-section-link>4. Run the server</a>
+          <a href="#test-endpoint" data-section-link>5. Test with /docs</a>
+          <a href="#save-dependencies" data-section-link>6. Save the setup</a>
+          <a href="#middleware" data-section-link>Understand middleware</a>
+          <a href="#cors" data-section-link>Understand CORS</a>
+          <a href="#configure-cors" data-section-link>7. Configure CORS</a>
+          <a href="#organise-files" data-section-link>8. Organise files</a>
+          <a href="#request-models" data-section-link>9. Define request models</a>
+          <a href="#route-file" data-section-link>10. Create the router</a>
+          <a href="#include-router" data-section-link>11. Attach the router</a>
+          <a href="#test-models" data-section-link>12. Test the final app</a>
+          <a href="#restart-and-fix" data-section-link>Restart and troubleshoot</a>
+        </nav>
+      </aside>
+      <main class="lesson-main" data-role="lesson-main">
+        <template data-teacher-opener>
+          <h2>Starting a FastAPI backend</h2>
+          <p>Understand the idea, then follow it through a working example.</p>
+          <ul>
+            <li>Create an isolated Python project and run it.</li>
+            <li>Explain middleware and CORS.</li>
+            <li>Connect models, routers and the app.</li>
+          </ul>
+        </template>
+        <section id="before-you-start" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Build a local API</p>
+          <h2>What you will have at the end</h2>
+          <p>Create a Python backend that returns JSON, exposes interactive API documentation and groups endpoints into
+            route files. Use the numbered steps to build it, and the explanations to understand why each part is there.
+          </p>
+          <ul>
+            <li>Use VS Code and a supported Python 3 installation.</li>
+            <li>Create a separate backend folder, such as <code>workshop_backend</code>, alongside your frontend
+              project.</li>
+            <li>No database or frontend connection is needed to test the first endpoint.</li>
+          </ul>
+          <p>For the big picture, start with <a href="what-is-a-backend.html?context=web-development">What is a
+              backend?</a>.</p>
+        </section>
+        <section id="project-folder" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 1</p>
+          <h2>Create the folder and main.py</h2>
+          <ol>
+            <li>Create the backend folder and open it with <strong>File → Open Folder</strong> in VS Code.</li>
+            <li>Open <strong>Terminal → New Terminal</strong>.</li>
+            <li>Create <code>main.py</code> directly in the project folder. Use lowercase consistently.</li>
+          </ol>
+          <div class="code-snippet" data-code-snippet="main.py — first endpoint" data-no-slide-advance
+            id="initial-main-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">main.py — first endpoint ·
+                PYTHON</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="main.py — first endpoint code"><code class="language-python"><span class="syntax-keyword">from</span> fastapi <span class="syntax-keyword">import</span> FastAPI
+
+app = FastAPI()
+
+
+@app.get(<span class="syntax-string">&quot;</span><span class="syntax-string">/</span><span class="syntax-string">&quot;</span>)
+<span class="syntax-keyword">def</span> <span class="syntax-function">read_root</span>():
+    <span class="syntax-keyword">return</span> {<span class="syntax-string">&quot;</span><span class="syntax-string">Hello</span><span class="syntax-string">&quot;</span>: <span class="syntax-string">&quot;</span><span class="syntax-string">World</span><span class="syntax-string">&quot;</span>}</code></pre>
+          </div>
+          <p><code>FastAPI()</code> creates the application object called <code>app</code>. <code>@app.get("/")</code>
+            connects a GET request for the root path to <code>read_root</code>. Its returned Python dictionary becomes a
+            JSON response.</p>
+        </section>
+        <section id="virtual-environment" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 2</p>
+          <h2>Keep this project’s packages together</h2>
+          <p>A virtual environment gives this project its own Python package installation location. It is not a virtual
+            machine or the backend server. Run the commands for your terminal from the project folder.</p>
+          <h3>Windows — PowerShell</h3>
+          <div class="code-snippet" data-code-snippet="Create and activate — PowerShell" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Create and activate — PowerShell ·
+                POWERSHELL</span>
+            </div>
+            <pre tabindex="0" aria-label="Create and activate — PowerShell code"><code class="language-powershell">py -m venv venv
+.\venv\Scripts\Activate.ps1</code></pre>
+          </div>
+          <div data-slide-break>
+          </div>
+          <h3>Windows — Command Prompt</h3>
+          <div class="code-snippet" data-code-snippet="Create and activate — Command Prompt" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Create and activate — Command Prompt ·
+                TEXT</span>
+            </div>
+            <pre tabindex="0" aria-label="Create and activate — Command Prompt code"><code class="language-text">py -m venv venv
+venv\Scripts\activate.bat</code></pre>
+          </div>
+          <div data-slide-break>
+          </div>
+          <h3>macOS / Linux — bash or zsh</h3>
+          <div class="code-snippet" data-code-snippet="Create and activate — macOS / Linux" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Create and activate — macOS / Linux ·
+                BASH</span>
+            </div>
+            <pre tabindex="0" aria-label="Create and activate — macOS / Linux code"><code class="language-bash">python3 -m venv venv
+<span class="syntax-function">source</span> venv/bin/activate</code></pre>
+          </div>
+          <figure><a href="../../assets/images/starting-a-fastapi-backend/active-venv.png"
+              aria-label="Open full-size screenshot: Terminal prompt beginning with (venv)."><img
+                src="../../assets/images/starting-a-fastapi-backend/active-venv.png"
+                alt="Terminal prompt beginning with (venv)." width="445" height="25" loading="lazy" /></a>
+            <figcaption>The (venv) prefix is a useful sign that this terminal has the environment active.</figcaption>
+          </figure>
+          <p>Activation applies to the current terminal. Activate again when you open a new one. If PowerShell blocks
+            the activation script, use Command Prompt or invoke <code>.\venv\Scripts\python.exe</code> directly for the
+            Python commands below.</p>
+          <details>
+            <summary>Check which Python is being used</summary>
+            <div class="code-snippet" data-code-snippet="Check the interpreter" data-no-slide-advance>
+              <div class="code-snippet__toolbar"><span class="code-snippet__label">Check the interpreter · BASH</span>
+              </div>
+              <pre tabindex="0"
+                aria-label="Check the interpreter code"><code class="language-bash">python -c <span class="syntax-string">&quot;import sys; print(sys.executable)&quot;</span></code></pre>
+            </div>
+            <p>The path should point inside this project’s <code>venv</code> folder. On Linux, if creating a venv
+              reports a missing system package, follow that message or ask your classroom administrator to install the
+              matching Python venv support.</p>
+          </details>
+        </section>
+        <section id="dependencies" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 3</p>
+          <h2>Install FastAPI and its server tools</h2>
+          <div class="code-snippet" data-code-snippet="Install into the active environment" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Install into the active environment ·
+                BASH</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="Install into the active environment code"><code class="language-bash">python -m pip install <span class="syntax-string">&quot;fastapi[standard]&quot;</span></code></pre>
+          </div>
+          <p><code>python -m pip</code> uses the selected Python interpreter to install packages. The
+            <code>standard</code> extra includes the usual server tooling, including Uvicorn. Pydantic is a FastAPI
+            dependency and will be available for the models later.</p>
+          <details>
+            <summary>What about pymongo?</summary>
+            <p><code>pymongo</code> is a Python driver for MongoDB. Install it when you add MongoDB access. Installing a
+              driver does not create or configure a database, and these examples do not connect to one.</p>
+          </details>
+        </section>
+        <section id="run-server" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 4</p>
+          <h2>Start Uvicorn on port 8001</h2>
+          <div class="code-snippet" data-code-snippet="Run from the folder containing main.py" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Run from the folder containing main.py
+                · BASH</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="Run from the folder containing main.py code"><code class="language-bash">python -m uvicorn main:app --reload --port <span class="syntax-number">8001</span></code></pre>
+          </div>
+          <figure><a href="../../assets/images/starting-a-fastapi-backend/uvicorn-running.png"
+              aria-label="Open full-size screenshot: Terminal showing Uvicorn running at http://127.0.0.1:8001 and application startup complete."><img
+                src="../../assets/images/starting-a-fastapi-backend/uvicorn-running.png"
+                alt="Terminal showing Uvicorn running at http://127.0.0.1:8001 and application startup complete."
+                width="726" height="136" loading="lazy" /></a>
+            <figcaption>Wait for “Application startup complete”. The screenshot invokes uvicorn directly; python -m
+              uvicorn runs the same server through your active interpreter.</figcaption>
+          </figure>
+          <dl class="reference-files">
+            <dt><code>main:app</code>
+            </dt>
+            <dd>Import the file <code>main.py</code> and use its <code>app</code> object. Do not write
+              <code>main.py:app</code>.</dd>
+            <dt><code>--reload</code>
+            </dt>
+            <dd>Restart automatically when source files change. This is a development convenience, not a production
+              setting.</dd>
+            <dt><code>--port 8001</code>
+            </dt>
+            <dd>Use port 8001 for this classroom setup. Uvicorn otherwise defaults to 8000, which may already be
+              occupied.</dd>
+          </dl>
+          <p>Use two normal hyphens before each option. Keep this terminal running while testing. Press <kbd>Ctrl</kbd>
+            + <kbd>C</kbd> to stop it.</p>
+        </section>
+        <section id="test-endpoint" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 5</p>
+          <h2>See the JSON, then try the endpoint</h2>
+          <p>Open <code>http://127.0.0.1:8001/</code> in your browser. You should see the greeting:</p>
+          <div class="code-snippet" data-code-snippet="Expected root response" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Expected root response · JSON</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="Expected root response code"><code class="language-json">{<span class="syntax-tag">&quot;Hello&quot;</span>: <span class="syntax-string">&quot;World&quot;</span>}</code></pre>
+          </div>
+          <figure><a href="../../assets/images/starting-a-fastapi-backend/hello-response.png"
+              aria-label="Open full-size screenshot: Browser at 127.0.0.1:8001 displaying the Hello World JSON response."><img
+                src="../../assets/images/starting-a-fastapi-backend/hello-response.png"
+                alt="Browser at 127.0.0.1:8001 displaying the Hello World JSON response." width="567" height="237"
+                loading="lazy" /></a>
+            <figcaption>This is the API response, not a React page. A frontend could use the same data to build its own
+              interface.</figcaption>
+          </figure>
+          <div data-slide-break>
+          </div>
+          <h3>Use the automatic API documentation</h3>
+          <ol>
+            <li>Open <code>http://127.0.0.1:8001/docs</code>.</li>
+            <li>Expand <strong>GET /</strong>.</li>
+            <li>Select <strong>Try it out</strong>, then <strong>Execute</strong>.</li>
+            <li>Check the response body and the <strong>200</strong> status.</li>
+          </ol>
+          <p>FastAPI generates this documentation from your endpoint definitions. It is a convenient client for testing
+            your backend before building frontend requests.</p>
+        </section>
+        <section id="save-dependencies" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 6</p>
+          <h2>Ignore generated files; record packages</h2>
+          <p>If using Git, create a <code>.gitignore</code> in the project folder:</p>
+          <div class="code-snippet" data-code-snippet=".gitignore" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">.gitignore · TEXT</span>
+            </div>
+            <pre tabindex="0" aria-label=".gitignore code"><code class="language-text">venv/
+__pycache__/
+*.pyc
+.env</code></pre>
+          </div>
+          <figure><a href="../../assets/images/starting-a-fastapi-backend/gitignore.png"
+              aria-label="Open full-size screenshot: VS Code showing a .gitignore file containing venv and __pycache__ entries."><img
+                src="../../assets/images/starting-a-fastapi-backend/gitignore.png"
+                alt="VS Code showing a .gitignore file containing venv and __pycache__ entries." width="573"
+                height="173" loading="lazy" /></a>
+            <figcaption>Virtual environments and Python caches are generated locally. Recreate them on another machine
+              rather than committing them.</figcaption>
+          </figure>
+          <p>With the venv active, save the installed versions:</p>
+          <div class="code-snippet" data-code-snippet="Write requirements.txt" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Write requirements.txt · BASH</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="Write requirements.txt code"><code class="language-bash">python -m pip freeze &gt; requirements.txt</code></pre>
+          </div>
+          <p>This records the current environment’s installed packages, including dependencies. Update it after changing
+            your project packages. Commit the source and requirements file; keep secret values out of Git.</p>
+          <details>
+            <summary>Restore the project on another machine</summary>
+            <p>Open the copied project, create and activate a fresh venv, then install its package list:</p>
+            <div class="code-snippet" data-code-snippet="Install recorded requirements" data-no-slide-advance>
+              <div class="code-snippet__toolbar"><span class="code-snippet__label">Install recorded requirements ·
+                  BASH</span>
+              </div>
+              <pre tabindex="0"
+                aria-label="Install recorded requirements code"><code class="language-bash">python -m pip install -r requirements.txt</code></pre>
+            </div>
+            <p>You can then run the same Uvicorn command. Do not copy the old venv between machines.</p>
+          </details>
+        </section>
+        <template data-teacher-divider>
+          <h2>Let the frontend read the API</h2>
+          <p>Understand middleware and the browser’s cross-origin rules.</p>
+        </template>
+        <section id="middleware" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">One shared layer</p>
+          <h2>Work around an endpoint</h2>
+          <figure class="backend-diagram">
+            <div class="backend-flow backend-flow--three">
+              <div class="backend-node "><strong>Request arrives</strong>
+                <p>Middleware can inspect or handle it before the endpoint.</p>
+              </div>
+              <div class="backend-arrow"><span aria-hidden="true">→</span><small>continue</small>
+              </div>
+              <div class="backend-node backend-node--server"><strong>Endpoint runs</strong>
+                <p>Performs this route’s operation.</p>
+              </div>
+              <div class="backend-arrow"><span aria-hidden="true">→</span><small>return</small>
+              </div>
+              <div class="backend-node backend-node--data"><strong>Response leaves</strong>
+                <p>Middleware can add headers or otherwise adjust the response.</p>
+              </div>
+            </div>
+            <figcaption>Shared behaviour can surround many endpoints without repeating it in every function.
+            </figcaption>
+          </figure>
+          <p>Middleware can support logging, timing or response headers. Some middleware can return a response early
+            without calling an endpoint. It does not replace every kind of route-specific validation or permission
+            check.</p>
+          <details>
+            <summary>Optional example: measure request time</summary>
+            <p>Add these imports and this function to <code>main.py</code> after the app has been created. This example
+              adds a response header and does not change your route functions.</p>
+            <div class="code-snippet" data-code-snippet="Optional timing middleware" data-no-slide-advance
+              id="timing-source">
+              <div class="code-snippet__toolbar"><span class="code-snippet__label">Optional timing middleware ·
+                  PYTHON</span>
+              </div>
+              <pre tabindex="0" aria-label="Optional timing middleware code"><code class="language-python"><span class="syntax-keyword">from</span> time <span class="syntax-keyword">import</span> perf_counter
+<span class="syntax-keyword">from</span> fastapi <span class="syntax-keyword">import</span> Request
+
+
+@app.middleware(<span class="syntax-string">&quot;</span><span class="syntax-string">http</span><span class="syntax-string">&quot;</span>)
+<span class="syntax-keyword">async</span> <span class="syntax-keyword">def</span> <span class="syntax-function">add_process_time</span>(request: Request, call_next):
+    start = perf_counter()
+    response = <span class="syntax-keyword">await</span> call_next(request)
+    response.headers[<span class="syntax-string">&quot;</span><span class="syntax-string">X-Process-Time</span><span class="syntax-string">&quot;</span>] = <span class="syntax-function">str</span>(perf_counter() - start)
+    <span class="syntax-keyword">return</span> response</code></pre>
+            </div>
+            <p>The timer starts before <code>await call_next(request)</code>. That call continues request handling;
+              after it returns, the code adds a header to the response. A custom middleware example needs valid Python
+              and the <code>await</code> shown here.</p>
+          </details>
+        </section>
+        <section id="cors" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Two origins</p>
+          <h2>Why /docs works but frontend JavaScript may not</h2>
+          <figure class="backend-diagram">
+            <div class="backend-flow ">
+              <div class="backend-node "><strong>Frontend origin</strong>
+                <p><code>http://localhost:5173</code>
+                </p>
+              </div>
+              <div class="backend-arrow"><span aria-hidden="true">→</span><small>cross-origin request</small>
+              </div>
+              <div class="backend-node backend-node--server"><strong>Backend origin</strong>
+                <p><code>http://127.0.0.1:8001</code>
+                </p>
+              </div>
+            </div>
+            <figcaption>An origin is the scheme, hostname and port. Changing any one makes a different origin.
+            </figcaption>
+          </figure>
+          <p>Browser JavaScript is restricted in what it can read from other origins. <strong>CORS</strong> is the
+            response-header mechanism that lets a backend permit selected origins to read cross-origin responses. Some
+            requests first trigger an <code>OPTIONS</code> preflight check.</p>
+          <p>The default <code>/docs</code> page and the API it calls are served from the same backend origin, so that
+            test does not need cross-origin permission. Your Vite page is at a different origin.</p>
+          <p class="reference-note">CORS is not authentication, a firewall or bot protection. Non-browser clients can
+            call an API regardless of the browser’s CORS rules. For some requests the server may do the work even when
+            the browser refuses to expose the response.</p>
+        </section>
+        <section id="configure-cors" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 7</p>
+          <h2>Allow the actual frontend origin</h2>
+          <p>Replace <code>main.py</code> with this version. It keeps the greeting and adds CORS for the two local Vite
+            addresses:</p>
+          <div class="code-snippet" data-code-snippet="main.py — with CORS" data-no-slide-advance id="cors-main-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">main.py — with CORS · PYTHON</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="main.py — with CORS code"><code class="language-python"><span class="syntax-keyword">from</span> fastapi <span class="syntax-keyword">import</span> FastAPI
+<span class="syntax-keyword">from</span> fastapi.middleware.cors <span class="syntax-keyword">import</span> CORSMiddleware
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        <span class="syntax-string">&quot;</span><span class="syntax-string">http://localhost:5173</span><span class="syntax-string">&quot;</span>,
+        <span class="syntax-string">&quot;</span><span class="syntax-string">http://127.0.0.1:5173</span><span class="syntax-string">&quot;</span>,
+    ],
+    allow_methods=[<span class="syntax-string">&quot;</span><span class="syntax-string">GET</span><span class="syntax-string">&quot;</span>, <span class="syntax-string">&quot;</span><span class="syntax-string">POST</span><span class="syntax-string">&quot;</span>],
+    allow_headers=[<span class="syntax-string">&quot;</span><span class="syntax-string">Content-Type</span><span class="syntax-string">&quot;</span>],
+)
+
+
+@app.get(<span class="syntax-string">&quot;</span><span class="syntax-string">/</span><span class="syntax-string">&quot;</span>)
+<span class="syntax-keyword">def</span> <span class="syntax-function">read_root</span>():
+    <span class="syntax-keyword">return</span> {<span class="syntax-string">&quot;</span><span class="syntax-string">Hello</span><span class="syntax-string">&quot;</span>: <span class="syntax-string">&quot;</span><span class="syntax-string">World</span><span class="syntax-string">&quot;</span>}</code></pre>
+          </div>
+          <p>Use the address in your frontend browser’s address bar. If Vite uses another port, change the matching
+            entry. An origin has no page path, so do not add <code>/about</code>. The documents show port 3000; the
+            React setup here uses 5173.</p>
+          <p><code>allow_methods</code> and <code>allow_headers</code> describe the cross-origin requests accepted by
+            this configuration. This example uses GET/POST and JSON’s Content-Type header. Add other methods or headers
+            when your app needs them. Deployed frontends need their actual origins in the list.</p>
+        </section>
+        <template data-teacher-divider>
+          <h2>Keep the project organised</h2>
+          <p>Separate request shapes, endpoint functions and app assembly.</p>
+        </template>
+        <section id="organise-files" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 8</p>
+          <h2>Group related models and routes</h2>
+          <p>As the app grows, keep related endpoints together and put request shapes in model files. Create this
+            structure, including the empty <code>__init__.py</code> files:</p>
+          <div class="code-snippet" data-code-snippet="Project structure" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Project structure · TEXT</span>
+            </div>
+            <pre tabindex="0" aria-label="Project structure code"><code class="language-text">workshop_backend/
+  main.py
+  models/
+    __init__.py
+    auth_models.py
+  routes/
+    __init__.py
+    auth_routes.py
+  venv/
+  .gitignore
+  requirements.txt</code></pre>
+          </div>
+          <figure><a href="../../assets/images/starting-a-fastapi-backend/project-folders.png"
+              aria-label="Open full-size screenshot: VS Code showing models, routes, venv, main.py and requirements.txt in a backend project."><img
+                src="../../assets/images/starting-a-fastapi-backend/project-folders.png"
+                alt="VS Code showing models, routes, venv, main.py and requirements.txt in a backend project."
+                width="236" height="319" loading="lazy" /></a>
+            <figcaption>The source screenshot shows a larger project with additional workout files. The smaller tree
+              above is all you need here.</figcaption>
+          </figure>
+          <p><code>main.py</code> assembles the app. The <code>models</code> folder describes accepted data. The
+            <code>routes</code> folder groups endpoint functions. Lowercase paths must match your imports.</p>
+        </section>
+        <section id="request-models" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 9</p>
+          <h2>Describe the expected JSON body</h2>
+          <p>Create <code>models/auth_models.py</code>. These examples mirror simple register and login form shapes:</p>
+          <div class="code-snippet" data-code-snippet="models/auth_models.py" data-no-slide-advance id="models-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">models/auth_models.py · PYTHON</span>
+            </div>
+            <pre tabindex="0" aria-label="models/auth_models.py code"><code class="language-python"><span class="syntax-keyword">from</span> pydantic <span class="syntax-keyword">import</span> BaseModel
+
+
+<span class="syntax-keyword">class</span> RegisterForm(BaseModel):
+    email: <span class="syntax-function">str</span>
+    password: <span class="syntax-function">str</span>
+    username: <span class="syntax-function">str</span>
+
+
+<span class="syntax-keyword">class</span> LoginForm(BaseModel):
+    email: <span class="syntax-function">str</span>
+    password: <span class="syntax-function">str</span></code></pre>
+          </div>
+          <p><code>BaseModel</code> comes from Pydantic. The field name goes on the left and the type on the right.
+            Fields without defaults are required. FastAPI uses these models to parse and validate JSON request bodies
+            and document their shapes.</p>
+          <p><code>email: str</code> means a string; it does not check that the text is a valid email address. These
+            models also do not establish password strength or prove anyone’s identity.</p>
+          <p class="reference-note">The following endpoints are request-handling exercises. Use made-up values. They do
+            not create accounts, store passwords or log anyone in.</p>
+        </section>
+        <section id="route-file" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 10</p>
+          <h2>Write endpoints in a separate file</h2>
+          <p>Create <code>routes/auth_routes.py</code>:</p>
+          <div class="code-snippet" data-code-snippet="routes/auth_routes.py" data-no-slide-advance id="router-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">routes/auth_routes.py · PYTHON</span>
+            </div>
+            <pre tabindex="0" aria-label="routes/auth_routes.py code"><code class="language-python"><span class="syntax-keyword">from</span> fastapi <span class="syntax-keyword">import</span> APIRouter
+<span class="syntax-keyword">from</span> models.auth_models <span class="syntax-keyword">import</span> LoginForm, RegisterForm
+
+auth_router = APIRouter()
+
+
+@auth_router.post(<span class="syntax-string">&quot;</span><span class="syntax-string">/register</span><span class="syntax-string">&quot;</span>)
+<span class="syntax-keyword">def</span> <span class="syntax-function">register</span>(register_data: RegisterForm):
+    public_data = register_data.model_dump(exclude={<span class="syntax-string">&quot;</span><span class="syntax-string">password</span><span class="syntax-string">&quot;</span>})
+    <span class="syntax-keyword">return</span> {<span class="syntax-string">&quot;</span><span class="syntax-string">message</span><span class="syntax-string">&quot;</span>: <span class="syntax-string">&quot;</span><span class="syntax-string">Practice request received</span><span class="syntax-string">&quot;</span>, <span class="syntax-string">&quot;</span><span class="syntax-string">data</span><span class="syntax-string">&quot;</span>: public_data}
+
+
+@auth_router.post(<span class="syntax-string">&quot;</span><span class="syntax-string">/login</span><span class="syntax-string">&quot;</span>)
+<span class="syntax-keyword">def</span> <span class="syntax-function">login</span>(login_data: LoginForm):
+    <span class="syntax-keyword">return</span> {
+        <span class="syntax-string">&quot;</span><span class="syntax-string">message</span><span class="syntax-string">&quot;</span>: <span class="syntax-string">&quot;</span><span class="syntax-string">Practice request received; no login performed</span><span class="syntax-string">&quot;</span>,
+        <span class="syntax-string">&quot;</span><span class="syntax-string">email</span><span class="syntax-string">&quot;</span>: login_data.email,
+    }</code></pre>
+          </div>
+          <p><code>APIRouter()</code> groups these routes. A parameter typed as <code>RegisterForm</code> or
+            <code>LoginForm</code> tells FastAPI to read the request body using that model.</p>
+          <p><code>model_dump()</code> converts the model to a dictionary. The <code>exclude={"password"}</code>
+            argument keeps the password out of the response. The login example reads <code>login_data.email</code>
+            without claiming that authentication succeeded.</p>
+          <p>These functions return practice messages only. Real account handling needs separate authentication and
+            storage work.</p>
+        </section>
+        <section id="include-router" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 11</p>
+          <h2>Assemble the final main.py</h2>
+          <p>Replace <code>main.py</code> with this complete version. It imports the router, attaches it to the
+            application and retains the CORS settings and root endpoint:</p>
+          <div class="code-snippet" data-code-snippet="main.py — complete app" data-no-slide-advance
+            id="final-main-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">main.py — complete app · PYTHON</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="main.py — complete app code"><code class="language-python"><span class="syntax-keyword">from</span> fastapi <span class="syntax-keyword">import</span> FastAPI
+<span class="syntax-keyword">from</span> fastapi.middleware.cors <span class="syntax-keyword">import</span> CORSMiddleware
+<span class="syntax-keyword">from</span> routes.auth_routes <span class="syntax-keyword">import</span> auth_router
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        <span class="syntax-string">&quot;</span><span class="syntax-string">http://localhost:5173</span><span class="syntax-string">&quot;</span>,
+        <span class="syntax-string">&quot;</span><span class="syntax-string">http://127.0.0.1:5173</span><span class="syntax-string">&quot;</span>,
+    ],
+    allow_methods=[<span class="syntax-string">&quot;</span><span class="syntax-string">GET</span><span class="syntax-string">&quot;</span>, <span class="syntax-string">&quot;</span><span class="syntax-string">POST</span><span class="syntax-string">&quot;</span>],
+    allow_headers=[<span class="syntax-string">&quot;</span><span class="syntax-string">Content-Type</span><span class="syntax-string">&quot;</span>],
+)
+
+app.include_router(
+    auth_router,
+    prefix=<span class="syntax-string">&quot;</span><span class="syntax-string">/auth</span><span class="syntax-string">&quot;</span>,
+    tags=[<span class="syntax-string">&quot;</span><span class="syntax-string">Auth</span><span class="syntax-string">&quot;</span>],
+)
+
+
+@app.get(<span class="syntax-string">&quot;</span><span class="syntax-string">/</span><span class="syntax-string">&quot;</span>)
+<span class="syntax-keyword">def</span> <span class="syntax-function">read_root</span>():
+    <span class="syntax-keyword">return</span> {<span class="syntax-string">&quot;</span><span class="syntax-string">Hello</span><span class="syntax-string">&quot;</span>: <span class="syntax-string">&quot;</span><span class="syntax-string">World</span><span class="syntax-string">&quot;</span>}</code></pre>
+          </div>
+          <div data-slide-break>
+          </div>
+          <h3>Prefix + route path = endpoint path</h3>
+          <figure class="backend-diagram">
+            <div class="backend-flow backend-flow--three">
+              <div class="backend-node "><strong>Router prefix</strong>
+                <p><code>/auth</code>
+                </p>
+              </div>
+              <div class="backend-arrow"><span aria-hidden="true">→</span><small>+</small>
+              </div>
+              <div class="backend-node backend-node--server"><strong>Route path</strong>
+                <p><code>/register</code>
+                </p>
+              </div>
+              <div class="backend-arrow"><span aria-hidden="true">→</span><small>=</small>
+              </div>
+              <div class="backend-node backend-node--data"><strong>Full endpoint</strong>
+                <p><code>POST /auth/register</code>
+                </p>
+              </div>
+            </div>
+            <figcaption>The HTTP method is still part of the operation. The tag “Auth” groups the endpoints in /docs.
+            </figcaption>
+          </figure>
+          <details>
+            <summary>Another prefix example from the recap</summary>
+            <figure><a href="../../assets/images/starting-a-fastapi-backend/router-prefix.png"
+                aria-label="Open full-size screenshot: Annotated API documentation showing /auth prefix joined with /delete_account in an older example."><img
+                  src="../../assets/images/starting-a-fastapi-backend/router-prefix.png"
+                  alt="Annotated API documentation showing /auth prefix joined with /delete_account in an older example."
+                  width="1010" height="440" loading="lazy" /></a>
+              <figcaption>This source illustration shows the same joining rule with /delete_account. This lesson
+                implements /register and /login, not the deletion example.</figcaption>
+            </figure>
+          </details>
+          <p>The router file must be imported and included. Creating it on disk alone does not register its endpoints.
+          </p>
+        </section>
+        <section id="test-models" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 12</p>
+          <h2>Send a request body in /docs</h2>
+          <ol>
+            <li>Keep Uvicorn running, or restart it from the active venv.</li>
+            <li>Refresh <code>http://127.0.0.1:8001/docs</code>.</li>
+            <li>Expand <strong>POST /auth/register</strong> under <strong>Auth</strong>.</li>
+            <li>Select <strong>Try it out</strong>, replace the sample body with the JSON below, then select
+              <strong>Execute</strong>.</li>
+          </ol>
+          <div class="code-snippet" data-code-snippet="Practice request body" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Practice request body · JSON</span>
+            </div>
+            <pre tabindex="0" aria-label="Practice request body code"><code class="language-json">{
+  <span class="syntax-tag">&quot;email&quot;</span>: <span class="syntax-string">&quot;learner@example.com&quot;</span>,
+  <span class="syntax-tag">&quot;password&quot;</span>: <span class="syntax-string">&quot;practice-only&quot;</span>,
+  <span class="syntax-tag">&quot;username&quot;</span>: <span class="syntax-string">&quot;learner&quot;</span>
+}</code></pre>
+          </div>
+          <p>Expect a 200 response with the practice message, email and username. The response must not contain the
+            password. Try omitting <code>username</code>: the model validation should return 422 instead of running the
+            endpoint normally.</p>
+          <p>Test <strong>POST /auth/login</strong> using email and password only. The response should explicitly say
+            that no login was performed.</p>
+          <details>
+            <summary>What should be listed in /docs?</summary>
+            <ul>
+              <li>GET /</li>
+              <li>POST /auth/register</li>
+              <li>POST /auth/login</li>
+            </ul>
+            <p>If you only see GET /, check the import and <code>app.include_router</code> in your saved main.py.</p>
+          </details>
+        </section>
+        <section id="restart-and-fix" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Keep this handy</p>
+          <h2>Return to the project</h2>
+          <ol>
+            <li>Open the existing backend folder.</li>
+            <li>Activate its venv in your new terminal.</li>
+            <li>Run the server command again.</li>
+            <li>Open the root response or /docs to check it.</li>
+          </ol>
+          <div class="code-snippet" data-code-snippet="Restart the server" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Restart the server · BASH</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="Restart the server code"><code class="language-bash">python -m uvicorn main:app --reload --port <span class="syntax-number">8001</span></code></pre>
+          </div>
+          <dl class="reference-files">
+            <dt>“No module named fastapi” or “uvicorn”</dt>
+            <dd>Check the selected Python and activate the project venv. Install the dependencies into that environment.
+            </dd>
+            <dt>Cannot import main</dt>
+            <dd>Run from the folder containing <code>main.py</code> and check the spelling of <code>main:app</code>.
+            </dd>
+            <dt>Address already in use</dt>
+            <dd>Stop an old server you started, or choose a free port and use that same port in the browser.</dd>
+            <dt>/docs works, but frontend fetch fails</dt>
+            <dd>Check the frontend’s exact origin against CORS settings, the requested API URL and browser network
+              errors. A stopped server is a different problem from CORS.</dd>
+            <dt>404 or 405 for a route</dt>
+            <dd>Check both the full path and method. Typing a POST route in the browser address bar sends GET; test it
+              through /docs instead.</dd>
+          </dl>
+          <p>Official references: <a href="https://fastapi.tiangolo.com/virtual-environments/">virtual environments</a>,
+            <a href="https://fastapi.tiangolo.com/tutorial/middleware/">middleware</a>, <a
+              href="https://fastapi.tiangolo.com/tutorial/cors/">CORS</a>, <a
+              href="https://fastapi.tiangolo.com/tutorial/body/">request bodies</a> and <a
+              href="https://fastapi.tiangolo.com/tutorial/bigger-applications/">multiple-file applications</a>.</p>
+        </section>
+      </main>
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Key words</p>
+          <h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item">
+              <dt>venv</dt>
+              <dd>A project-specific Python package environment.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>FastAPI</dt>
+              <dd>A Python framework for building APIs.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Uvicorn</dt>
+              <dd>A server that runs the FastAPI app.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Middleware</dt>
+              <dd>Shared request/response processing around endpoints.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Origin</dt>
+              <dd>A scheme, hostname and port combination.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>CORS</dt>
+              <dd>Headers that control browser access across origins.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Pydantic model</dt>
+              <dd>A declared data shape used to parse and validate input.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>APIRouter</dt>
+              <dd>A group of related endpoints included in an app.</dd>
+            </div>
+          </dl>
+        </section>
+      </aside>
+    </div>
+    <section class="lesson-sequence panel" aria-label="Lesson navigation"><a class="primary-link"
+        href="what-is-a-backend.html?context=web-development">Previous: What is a backend?</a>
+    </section>
+  </div>
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+    <p class="slide-status" data-role="slide-status">Slide 1</p>
+    <button type="button" class="slide-button" data-action="next-slide">Next</button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+  </div>
+</body>
+
+</html>

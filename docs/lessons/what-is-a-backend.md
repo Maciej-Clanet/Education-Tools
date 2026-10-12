@@ -1,0 +1,30 @@
+# What is a backend?
+
+Page: [what-is-a-backend.html](../../pages/topics/what-is-a-backend.html).
+Scope: the first Backend lesson, before the FastAPI setup reference. Assumes
+basic familiarity with websites; no Python knowledge required.
+
+1. **Introduced** — `#one-click`: a workshop booking has interface and shared-rule work.
+2. **Covered** — `#frontend-backend`: browser interface versus server application.
+3. **Covered** — `#where-they-live`: hosting files versus executing downloaded code.
+4. **Covered** — `#local-and-live`: local services/ports and hosted deployments;
+   localhost refers to the caller's device, not the developer's computer.
+5. **Covered** — `#what-each-controls`: presentation, feedback, validation and rules.
+6. **Covered** — `#database`: storage versus application logic; local browser storage
+   is not a shared record. A backend does not always require a database.
+7. **Developed** — `#request-journey`: manual five-step booking journey with the shared
+   walkthrough component. Concurrent booking correctness is mentioned, not implemented.
+8. **Introduced** — `#api`: methods, paths, endpoints, response status and JSON.
+9. **Covered** — `#trust-boundary`: untrusted browser input, permissions and secrets.
+10. **Covered** — `#when-needed`: static browser tools versus shared server work.
+11. **Practice** — `#misconceptions`, `#quiz`, `#practice`: distinctions, quiz and
+    saved explanations using new library/price scenarios.
+12. **Practice** — `#recap`: roles and link to the practical setup lesson.
+
+The page HTML is the authored source. Original diagrams use semantic HTML and
+`css/backend-lessons.css`; arrows are supplemented by text descriptions. No external
+diagram assets or generated raster images. The walkthrough works by manual steps,
+including under reduced motion, and all states remain readable without JavaScript.
+Teacher opener/dividers use shared inert templates. Quiz metadata is in the page
+script and progress registry; written work uses the lesson shell's local storage.
+Authentication, databases, HTTP implementation and deployment setup are not taught.

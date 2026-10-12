@@ -1,0 +1,37 @@
+.backend-lesson figure { margin: 1.1rem 0; }
+.backend-lesson figure > a > img { display: block; max-width: 100%; height: auto; border: 1px solid #c8d0da; border-radius: 8px; }
+.backend-lesson figcaption { margin-top: .6rem; color: var(--muted-ink); font-size: .92rem; }
+.backend-lesson li + li { margin-top: .5rem; }
+.backend-lesson .reference-note { padding: 1rem; border-left: 4px solid #55958a; border-radius: 0 8px 8px 0; background: #eff7f3; }
+.backend-lesson .reference-files { overflow-wrap: anywhere; }
+.backend-lesson .reference-files dt { font-weight: 700; margin-top: .8rem; }
+.backend-lesson .reference-files dd { margin: .3rem 0 0; }
+.backend-diagram { padding: 1rem; border: 1px solid #c8d0da; border-radius: 16px; background: #f7fafb; }
+.backend-flow { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: .8rem; }
+.backend-flow--three { grid-template-columns: minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr); }
+.backend-node { min-width: 0; padding: 1rem; border: 2px solid #36738b; border-radius: 12px; background: #edf7ff; overflow-wrap: anywhere; }
+.backend-node strong { display: block; margin-bottom: .5rem; font-size: 1.15em; }
+.backend-node p { margin: .5rem 0 0; }
+.backend-node--server { background: #eef8ec; border-color: #59804f; }
+.backend-node--data { background: #fff4dc; border-color: #9c7529; }
+.backend-node--active { outline: 4px solid #a26c00; outline-offset: 3px; }
+.backend-arrow { color: #345365; font-size: 1.5rem; font-weight: 700; text-align: center; }
+.backend-arrow small { display: block; max-width: 7rem; font-size: .75rem; }
+.backend-boundary { padding: 1rem; border: 2px dashed #62788b; border-radius: 16px; margin: .8rem 0; }
+.backend-boundary > h3 { margin-top: 0; }
+.backend-pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
+.backend-ticket { border: 2px solid #36738b; border-radius: 14px; padding: 1.2rem; background: #fff; }
+.backend-ticket__button { display: inline-block; padding: .6rem 1.1rem; border-radius: 7px; background: #235c6c; color: #fff; font-weight: 700; }
+.backend-stage { margin: 1rem 0; padding: 1rem; border: 1px solid #c8d0da; border-radius: 14px; background: #fbfcff; }
+.backend-stage h3 { margin-top: 0; }
+.backend-lesson .exam-response { width: 100%; }
+.backend-lesson .code-snippet__label { overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+  .backend-flow, .backend-flow--three, .backend-pair { grid-template-columns: minmax(0,1fr); }
+  .backend-arrow { transform: none; font-size: 0; }
+  .backend-arrow::before { content: '↓'; font-size: 1.5rem; }
+  .backend-arrow small { max-width: none; font-size: .8rem; }
+}
+@media print {
+  .backend-diagram, .backend-stage { break-inside: avoid; }
+}
