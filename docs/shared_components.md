@@ -34,6 +34,8 @@ preserve whitespace. Copy uses code textContent, excluding markup and labels.
 The status announces success; denied/unavailable clipboard access selects the
 code and gives manual-copy instructions. No persistence or code execution.
 Example: [React setup reference](../pages/topics/starting-a-react-project.html).
+React reference lessons share `css/react-reference.css` for screenshots, notes
+and file descriptions; the routing reference uses the same snippet component.
 
 ## Sequences and motion
 

@@ -67,6 +67,20 @@ export const catalogItems = [
     href: "pages/topics/starting-a-react-project.html?context=web-development",
   },
   {
+    id: "topic-react-multi-page-routing",
+    status: "live",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "React Frontend",
+    title: "Setting up multi-page routing",
+    summary:
+      "Create Home and About pages with React Router, connect URL paths to components, and add Link, NavLink and active navigation styling.",
+    badges: ["Subject area: Web development", "React", "Routing reference"],
+    keywords: ["react", "react router", "multi page routing", "multipage", "pages", "browserrouter", "routes", "route", "link", "navlink", "active link", "single page application", "jsx"],
+    actionLabel: "Open reference lesson",
+    href: "pages/topics/react-multi-page-routing.html?context=web-development",
+  },
+  {
     id: "tool-code-playground",
     status: "live",
     type: "tool",

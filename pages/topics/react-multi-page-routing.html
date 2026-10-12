@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting Up Multi-Page Routing in React | Education Tools</title>
+  <meta name="description"
+    content="Set up Home and About pages in React with BrowserRouter, Routes, Route, Link and NavLink. A practical routing reference with copyable JSX and screenshots." />
+  <meta property="og:title" content="Setting Up Multi-Page Routing in React | Education Tools" />
+  <meta property="og:description"
+    content="Create page components, map URL paths and add active navigation links with React Router." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/code-snippets.css" />
+  <link rel="stylesheet" href="../../css/react-reference.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/react-multi-page-routing.js"></script>
+</head>
+
+<body>
+  <div class="page-shell react-reference">
+    <header class="lesson-hero panel panel-accent">
+      <p class="eyebrow">React Frontend · Routing reference</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#react-frontend" data-role="breadcrumb-unit-link">Web
+              Development</a></li>
+          <li aria-current="page">Setting up multi-page routing</li>
+        </ol>
+      </nav>
+      <div class="lesson-header-row">
+        <div>
+          <h1>Setting up multi-page routing</h1>
+          <p class="lesson-hero-text">Create Home and About pages, connect them to URL paths, and add navigation that
+            shows which page is open.</p>
+        </div>
+      </div>
+      <div class="lesson-meta-grid">
+        <article class="lesson-meta-card"><strong>Tools</strong><span>An existing Vite + React project</span></article>
+        <article class="lesson-meta-card"><strong>Code</strong><span>JavaScript + JSX and CSS</span></article>
+        <article class="lesson-meta-card"><strong>Outcome</strong><span>Home and About routes</span></article>
+        <article class="lesson-meta-card"><strong>Use this as</strong><span>A basic routing reference</span></article>
+      </div>
+      <div class="lesson-hero-actions">
+        <a class="primary-link" href="../../index.html">Back to home search</a>
+        <a class="lesson-secondary-action" href="../resources/web-development.html#react-frontend"
+          data-role="back-to-unit">Back to React Frontend</a>
+        <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher
+          slides</button>
+      </div>
+    </header>
+    <noscript>
+      <p class="panel lesson-sequence">You can read every step and select code to copy. Copy buttons and teacher slides
+        need JavaScript.</p>
+    </noscript>
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow">Jump To</p>
+        <nav class="section-nav" aria-label="Routing steps"><a href="#before-you-start" data-section-link>Before you
+            start</a>
+          <a href="#install-router" data-section-link>1. Install React Router</a>
+          <a href="#browser-router" data-section-link>2. Enable routing</a>
+          <a href="#page-files" data-section-link>3. Create the files</a>
+          <a href="#page-components" data-section-link>4. Write the pages</a>
+          <a href="#define-routes" data-section-link>5. Define the routes</a>
+          <a href="#connect-app" data-section-link>6. Render pages & links</a>
+          <a href="#active-links" data-section-link>7. Use NavLink</a>
+          <a href="#style-navigation" data-section-link>8. Style the navigation</a>
+          <a href="#check-routing" data-section-link>Check the result</a>
+          <a href="#common-mistakes" data-section-link>Common mistakes</a>
+        </nav>
+      </aside>
+      <main class="lesson-main" data-role="lesson-main">
+        <section id="before-you-start" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">React Router basics</p>
+          <h2>Two pages, one React app</h2>
+          <p>You already have a React app running. Now give it a Home page at <code>/</code> and an About page at
+            <code>/about</code>, with links to move between them.
+          </p>
+          <p>These are different views inside a <strong>single-page application</strong>. React Router matches the URL
+            to a component and changes the content without loading a whole new HTML document during normal in-app
+            navigation.</p>
+          <p>Start with a working Vite + React JavaScript project. If you need one, use <a
+              href="starting-a-react-project.html?context=web-development">Starting a React project</a>. Keep its
+            <code>index.css</code> layout styles.
+          </p>
+          <div class="compare-table-wrap" tabindex="0" role="region" aria-label="Route mapping">
+            <table class="compare-table">
+              <caption>The routes you will build</caption>
+              <thead>
+                <tr>
+                  <th scope="col">URL path</th>
+                  <th scope="col">Page component</th>
+                  <th scope="col">Content</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/</code></td>
+                  <td><code>Home</code></td>
+                  <td>Home content</td>
+                </tr>
+                <tr>
+                  <td><code>/about</code></td>
+                  <td><code>About</code></td>
+                  <td>About content</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="install-router" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 1</p>
+          <h2>Install the dependency</h2>
+          <p>Open the project folder in VS Code and its terminal. Check that the terminal is in the folder containing
+            <code>package.json</code>. If the development server is running, stop it with <kbd>Ctrl</kbd> +
+            <kbd>C</kbd>.
+          </p>
+          <div class="code-snippet" data-code-snippet="Install React Router" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Install React Router · BASH</span>
+            </div>
+            <pre tabindex="0"
+              aria-label="Install React Router code"><code class="language-bash">npm install react-router</code></pre>
+          </div>
+          <p>This adds the routing package to this project. You only need to install it once for this setup. If npm
+            reports an unsupported Node.js version, update to a supported LTS release before continuing. The examples
+            below import routing components from <code>react-router</code>.</p>
+        </section>
+        <section id="browser-router" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 2</p>
+          <h2>Wrap the app in BrowserRouter</h2>
+          <p>Open <code>src/main.jsx</code>. Add the <code>BrowserRouter</code> import and wrap
+            <code>&lt;App /&gt;</code> with it. For the Vite project from the setup lesson, the complete file is:
+          </p>
+          <div class="code-snippet" data-code-snippet="src/main.jsx" data-no-slide-advance id="main-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">src/main.jsx · JSX</span></div>
+            <pre tabindex="0" aria-label="src/main.jsx code"><code class="language-jsx"><span class="syntax-keyword">import</span> { StrictMode } <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;react&#x27;</span>
+<span class="syntax-keyword">import</span> { createRoot } <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;react-dom/client&#x27;</span>
+<span class="syntax-keyword">import</span> { BrowserRouter } <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;react-router&#x27;</span>
+<span class="syntax-keyword">import</span> <span class="syntax-string">&#x27;./index.css&#x27;</span>
+<span class="syntax-keyword">import</span> App <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;./App.jsx&#x27;</span>
+
+createRoot(<span class="syntax-function">document</span>.getElementById(<span class="syntax-string">&#x27;root&#x27;</span>)).render(
+  &lt;<span class="syntax-tag">StrictMode</span>&gt;
+    &lt;<span class="syntax-tag">BrowserRouter</span>&gt;
+      &lt;<span class="syntax-tag">App</span> /&gt;
+    &lt;/<span class="syntax-tag">BrowserRouter</span>&gt;
+  &lt;/<span class="syntax-tag">StrictMode</span>&gt;,
+)</code></pre>
+          </div>
+          <p><code>BrowserRouter</code> connects the components inside it to browser routing. Because <code>App</code>
+            is inside the wrapper, the pages and navigation it renders can use the router too.</p>
+          <p class="reference-note">Keep the existing imports, including <code>index.css</code>. Add the router once
+            here; you do not need a second <code>BrowserRouter</code> in <code>App.jsx</code>.</p>
+        </section>
+        <section id="page-files" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 3</p>
+          <h2>Organise your page files</h2>
+          <p>Inside <code>src</code>, create a <code>pages</code> folder. Add a folder for each page, keeping its JSX
+            and CSS files together:</p>
+          <div class="code-snippet" data-code-snippet="Page folder structure" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Page folder structure · TEXT</span>
+            </div>
+            <pre tabindex="0" aria-label="Page folder structure code"><code class="language-text">src/
+  pages/
+    home/
+      Home.jsx
+      Home.css
+    about/
+      About.jsx
+      About.css</code></pre>
+          </div>
+          <figure><a href="../../assets/images/react-multi-page-routing/page-folders.png"
+              aria-label="Open full-size screenshot: VS Code Explorer showing src/pages/about with About.css and About.jsx, and src/pages/home with Home.css and Home.jsx."><img
+                src="../../assets/images/react-multi-page-routing/page-folders.png" width="143" height="285"
+                loading="lazy"
+                alt="VS Code Explorer showing src/pages/about with About.css and About.jsx, and src/pages/home with Home.css and Home.jsx." /></a>
+            <figcaption>Keep each page component beside its stylesheet. Match the uppercase filenames and lowercase
+              folder names.</figcaption>
+          </figure>
+          <p>Leave <code>Home.css</code> and <code>About.css</code> empty for now, but create both files so the imports
+            work.</p>
+          <p>In this setup, folders organise your code; they do not create routes automatically. You will connect URL
+            paths to page components explicitly.</p>
+        </section>
+        <section id="page-components" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 4</p>
+          <h2>Create Home and About components</h2>
+          <p>Put this component in <code>src/pages/home/Home.jsx</code>:</p>
+          <div class="code-snippet" data-code-snippet="src/pages/home/Home.jsx" data-no-slide-advance id="home-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">src/pages/home/Home.jsx · JSX</span>
+            </div>
+            <pre tabindex="0" aria-label="src/pages/home/Home.jsx code"><code class="language-jsx"><span class="syntax-keyword">import</span> <span class="syntax-string">&#x27;./Home.css&#x27;</span>
+
+<span class="syntax-keyword">export</span> <span class="syntax-keyword">default</span> <span class="syntax-keyword">function</span> Home() {
+  <span class="syntax-keyword">return</span> (
+    &lt;&gt;
+      &lt;<span class="syntax-tag">h1</span>&gt;Home&lt;/<span class="syntax-tag">h1</span>&gt;
+      &lt;<span class="syntax-tag">p</span>&gt;Home content&lt;/<span class="syntax-tag">p</span>&gt;
+    &lt;/&gt;
+  )
+}</code></pre>
+          </div>
+          <div data-slide-break></div>
+          <h3>The About page</h3>
+          <p>Put this component in <code>src/pages/about/About.jsx</code>:</p>
+          <div class="code-snippet" data-code-snippet="src/pages/about/About.jsx" data-no-slide-advance
+            id="about-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">src/pages/about/About.jsx · JSX</span>
+            </div>
+            <pre tabindex="0" aria-label="src/pages/about/About.jsx code"><code class="language-jsx"><span class="syntax-keyword">import</span> <span class="syntax-string">&#x27;./About.css&#x27;</span>
+
+<span class="syntax-keyword">export</span> <span class="syntax-keyword">default</span> <span class="syntax-keyword">function</span> About() {
+  <span class="syntax-keyword">return</span> (
+    &lt;&gt;
+      &lt;<span class="syntax-tag">h1</span>&gt;About&lt;/<span class="syntax-tag">h1</span>&gt;
+      &lt;<span class="syntax-tag">p</span>&gt;About content&lt;/<span class="syntax-tag">p</span>&gt;
+    &lt;/&gt;
+  )
+}</code></pre>
+          </div>
+          <p>Each file exports a component and imports its own CSS. The capitalised names <code>Home</code> and
+            <code>About</code> let you use them as JSX components.
+          </p>
+        </section>
+        <section id="define-routes" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 5</p>
+          <h2>Map paths to components</h2>
+          <p>Create <code>src/routing.jsx</code> beside <code>App.jsx</code>. Keeping the route list in its own file
+            makes it easy to find.</p>
+          <figure><a href="../../assets/images/react-multi-page-routing/routing-file.png"
+              aria-label="Open full-size screenshot: VS Code Explorer showing routing.jsx directly inside src, beside App.jsx and main.jsx."><img
+                src="../../assets/images/react-multi-page-routing/routing-file.png" width="174" height="177"
+                loading="lazy"
+                alt="VS Code Explorer showing routing.jsx directly inside src, beside App.jsx and main.jsx." /></a>
+            <figcaption>The routes file belongs directly in src for the relative imports used below.</figcaption>
+          </figure>
+          <div data-slide-break></div>
+          <h3>routing.jsx</h3>
+          <div class="code-snippet" data-code-snippet="src/routing.jsx" data-no-slide-advance id="routes-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">src/routing.jsx · JSX</span></div>
+            <pre tabindex="0" aria-label="src/routing.jsx code"><code class="language-jsx"><span class="syntax-keyword">import</span> { Routes, Route } <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;react-router&#x27;</span>
+<span class="syntax-keyword">import</span> Home <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;./pages/home/Home.jsx&#x27;</span>
+<span class="syntax-keyword">import</span> About <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;./pages/about/About.jsx&#x27;</span>
+
+<span class="syntax-keyword">export</span> <span class="syntax-keyword">default</span> <span class="syntax-keyword">function</span> Pages() {
+  <span class="syntax-keyword">return</span> (
+    &lt;<span class="syntax-tag">Routes</span>&gt;
+      &lt;<span class="syntax-tag">Route</span> <span class="syntax-attribute">index</span> <span class="syntax-attribute">element</span>={&lt;<span class="syntax-tag">Home</span> /&gt;} /&gt;
+      &lt;<span class="syntax-tag">Route</span> <span class="syntax-attribute">path</span>=<span class="syntax-string">&quot;about&quot;</span> <span class="syntax-attribute">element</span>={&lt;<span class="syntax-tag">About</span> /&gt;} /&gt;
+    &lt;/<span class="syntax-tag">Routes</span>&gt;
+  )
+}</code></pre>
+          </div>
+          <dl class="reference-files">
+            <dt><code>Routes</code></dt>
+            <dd>Contains the route definitions and chooses the matching route for the current URL.</dd>
+            <dt><code>Route</code></dt>
+            <dd>Connects a path to the JSX in its <code>element</code> prop.</dd>
+            <dt><code>index</code></dt>
+            <dd>The default route at this level. In this top-level example, it renders <code>Home</code> at
+              <code>/</code>.
+            </dd>
+            <dt><code>path="about"</code></dt>
+            <dd>Matches <code>/about</code> in this top-level route list and renders <code>About</code>.</dd>
+          </dl>
+          <p>The imports load your page components. Use <code>element={&lt;Home /&gt;}</code>, with JSX inside braces,
+            rather than a text name.</p>
+        </section>
+        <section id="connect-app" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 6</p>
+          <h2>Show the routes inside App</h2>
+          <p>Defining <code>Pages</code> is not enough: <code>App</code> must render it. Replace
+            <code>src/App.jsx</code> with this complete example. <code>&lt;Pages /&gt;</code> replaces the fixed text
+            inside the main content area.
+          </p>
+          <div class="code-snippet" data-code-snippet="src/App.jsx — with Link" data-no-slide-advance
+            id="app-link-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">src/App.jsx — with Link · JSX</span>
+            </div>
+            <pre tabindex="0" aria-label="src/App.jsx — with Link code"><code class="language-jsx"><span class="syntax-keyword">import</span> { Link } <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;react-router&#x27;</span>
+<span class="syntax-keyword">import</span> Pages <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;./routing.jsx&#x27;</span>
+<span class="syntax-keyword">import</span> <span class="syntax-string">&#x27;./App.css&#x27;</span>
+
+<span class="syntax-keyword">export</span> <span class="syntax-keyword">default</span> <span class="syntax-keyword">function</span> App() {
+  <span class="syntax-keyword">return</span> (
+    &lt;&gt;
+      &lt;<span class="syntax-tag">header</span>&gt;
+        &lt;<span class="syntax-tag">nav</span> <span class="syntax-attribute">className</span>=<span class="syntax-string">&quot;site-nav&quot;</span> <span class="syntax-attribute">aria-label</span>=<span class="syntax-string">&quot;Main navigation&quot;</span>&gt;
+          &lt;<span class="syntax-tag">Link</span> <span class="syntax-attribute">to</span>=<span class="syntax-string">&quot;/&quot;</span>&gt;Home&lt;/<span class="syntax-tag">Link</span>&gt;
+          &lt;<span class="syntax-tag">Link</span> <span class="syntax-attribute">to</span>=<span class="syntax-string">&quot;/about&quot;</span>&gt;About&lt;/<span class="syntax-tag">Link</span>&gt;
+        &lt;/<span class="syntax-tag">nav</span>&gt;
+      &lt;/<span class="syntax-tag">header</span>&gt;
+      &lt;<span class="syntax-tag">main</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">&quot;main-content&quot;</span>&gt;
+        &lt;<span class="syntax-tag">Pages</span> /&gt;
+      &lt;/<span class="syntax-tag">main</span>&gt;
+      &lt;<span class="syntax-tag">footer</span>&gt;some footer&lt;/<span class="syntax-tag">footer</span>&gt;
+    &lt;/&gt;
+  )
+}</code></pre>
+          </div>
+          <div data-slide-break></div>
+          <h3>Use Link for in-app navigation</h3>
+          <p><code>Link</code> uses <code>to</code> for the destination. Here <code>to="/about"</code> changes the URL
+            and shows the About component without a full document reload. These destinations are URL paths, not paths to
+            JSX files.</p>
+          <p>An ordinary <code>&lt;a href="/about"&gt;</code> can navigate too, but normally requests a new document.
+            Use <code>Link</code> or <code>NavLink</code> for pages within this React app. Normal anchors are still
+            appropriate for external websites and downloads.</p>
+          <p>The header and footer stay in <code>App</code>; the route determines which page appears inside
+            <code>main</code>.
+          </p>
+        </section>
+        <section id="active-links" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 7</p>
+          <h2>Show which page is active</h2>
+          <p>Use <code>NavLink</code> when a navigation item should identify the current page. It adds an
+            <code>active</code> class when its destination matches.
+          </p>
+          <p>Replace the <code>Link</code> version of <code>src/App.jsx</code> with this version:</p>
+          <div class="code-snippet" data-code-snippet="src/App.jsx — with NavLink" data-no-slide-advance
+            id="app-navlink-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">src/App.jsx — with NavLink · JSX</span>
+            </div>
+            <pre tabindex="0" aria-label="src/App.jsx — with NavLink code"><code class="language-jsx"><span class="syntax-keyword">import</span> { NavLink } <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;react-router&#x27;</span>
+<span class="syntax-keyword">import</span> Pages <span class="syntax-keyword">from</span> <span class="syntax-string">&#x27;./routing.jsx&#x27;</span>
+<span class="syntax-keyword">import</span> <span class="syntax-string">&#x27;./App.css&#x27;</span>
+
+<span class="syntax-keyword">export</span> <span class="syntax-keyword">default</span> <span class="syntax-keyword">function</span> App() {
+  <span class="syntax-keyword">return</span> (
+    &lt;&gt;
+      &lt;<span class="syntax-tag">header</span>&gt;
+        &lt;<span class="syntax-tag">nav</span> <span class="syntax-attribute">className</span>=<span class="syntax-string">&quot;site-nav&quot;</span> <span class="syntax-attribute">aria-label</span>=<span class="syntax-string">&quot;Main navigation&quot;</span>&gt;
+          &lt;<span class="syntax-tag">NavLink</span> <span class="syntax-attribute">to</span>=<span class="syntax-string">&quot;/&quot;</span> <span class="syntax-attribute">end</span> <span class="syntax-attribute">className</span>=<span class="syntax-string">&quot;nav-link&quot;</span>&gt;Home&lt;/<span class="syntax-tag">NavLink</span>&gt;
+          &lt;<span class="syntax-tag">NavLink</span> <span class="syntax-attribute">to</span>=<span class="syntax-string">&quot;/about&quot;</span> <span class="syntax-attribute">className</span>=<span class="syntax-string">&quot;nav-link&quot;</span>&gt;About&lt;/<span class="syntax-tag">NavLink</span>&gt;
+        &lt;/<span class="syntax-tag">nav</span>&gt;
+      &lt;/<span class="syntax-tag">header</span>&gt;
+      &lt;<span class="syntax-tag">main</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">&quot;main-content&quot;</span>&gt;
+        &lt;<span class="syntax-tag">Pages</span> /&gt;
+      &lt;/<span class="syntax-tag">main</span>&gt;
+      &lt;<span class="syntax-tag">footer</span>&gt;some footer&lt;/<span class="syntax-tag">footer</span>&gt;
+    &lt;/&gt;
+  )
+}</code></pre>
+          </div>
+          <p><code>className="nav-link"</code> supplies your base styling class. The active link also gets
+            <code>active</code>, so CSS can target both together. The Home link uses <code>end</code> to express an
+            exact destination match.
+          </p>
+        </section>
+        <section id="style-navigation" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Step 8</p>
+          <h2>Style the active link</h2>
+          <p>Add these rules to <code>src/App.css</code>. It is already imported by <code>App.jsx</code>.</p>
+          <div class="code-snippet" data-code-snippet="src/App.css" data-no-slide-advance id="app-css-source">
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">src/App.css · CSS</span></div>
+            <pre tabindex="0" aria-label="src/App.css code"><code class="language-css">
+
+.nav-link {
+  <span class="syntax-keyword">background-color</span>: <span class="syntax-keyword">black</span>;
+  <span class="syntax-keyword">color</span>: <span class="syntax-keyword">white</span>;
+  <span class="syntax-keyword">padding</span>: <span class="syntax-number">8</span><span class="syntax-keyword">px</span>;
+  <span class="syntax-keyword">border-radius</span>: <span class="syntax-number">4</span><span class="syntax-keyword">px</span>;
+  <span class="syntax-keyword">text-decoration</span>: <span class="syntax-keyword">none</span>;
+}
+
+.nav-link.active {
+  <span class="syntax-keyword">color</span>: <span class="syntax-keyword">red</span>;
+  <span class="syntax-keyword">text-decoration</span>: <span class="syntax-keyword">underline</span>;
+}
+</code></pre>
+          </div>
+          <p><code>.nav-link.active</code> selects an element that has <strong>both</strong> classes. The current page’s
+            link becomes red and underlined; the underline also distinguishes it without relying on colour alone.</p>
+          <figure><a href="../../assets/images/react-multi-page-routing/active-about-link.png"
+              aria-label="Open full-size screenshot: Browser at localhost:5173/about showing Home in white and About in red on black navigation, followed by About content."><img
+                src="../../assets/images/react-multi-page-routing/active-about-link.png" width="446" height="99"
+                loading="lazy"
+                alt="Browser at localhost:5173/about showing Home in white and About in red on black navigation, followed by About content." /></a>
+            <figcaption>The document’s example shows About in red at /about. The code above also adds an underline and a
+              visible keyboard-focus outline.</figcaption>
+          </figure>
+        </section>
+        <section id="check-routing" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Try it</p>
+          <h2>Run and test both routes</h2>
+          <p>Save your files, then restart the development server:</p>
+          <div class="code-snippet" data-code-snippet="Start the app" data-no-slide-advance>
+            <div class="code-snippet__toolbar"><span class="code-snippet__label">Start the app · BASH</span></div>
+            <pre tabindex="0" aria-label="Start the app code"><code class="language-bash">npm run dev</code></pre>
+          </div>
+          <ol>
+            <li>Open the Local address printed by Vite. At <code>/</code>, you should see the Home heading and content.
+            </li>
+            <li>Select <strong>About</strong>. The URL should end in <code>/about</code>, and the content should change
+              to About.</li>
+            <li>Select <strong>Home</strong> to return to <code>/</code>.</li>
+            <li>Check that only the current navigation link is red and underlined.</li>
+            <li>Use the browser’s Back and Forward buttons to move between the pages.</li>
+            <li>Open <code>/about</code> directly and refresh it while the development server is running.</li>
+          </ol>
+          <p class="reference-note">When publishing later, a host using <code>BrowserRouter</code> needs to serve the
+            app’s <code>index.html</code> for route URLs such as <code>/about</code>. A deployed page that works via
+            links but fails on refresh often needs this host configuration.</p>
+        </section>
+        <section id="common-mistakes" class="lesson-section panel" data-lesson-section>
+          <p class="eyebrow">Quick fixes</p>
+          <h2>Check the connections</h2>
+          <dl class="reference-files">
+            <dt>The route content never appears</dt>
+            <dd>Import <code>Pages</code> into <code>App.jsx</code> and render <code>&lt;Pages /&gt;</code> inside
+              <code>main</code>. Saving <code>routing.jsx</code> alone does not display it.
+            </dd>
+            <dt>A router-context error appears</dt>
+            <dd>Wrap <code>App</code> in one <code>BrowserRouter</code> in <code>main.jsx</code>. Both navigation and
+              routes must be inside it.</dd>
+            <dt>A page import cannot be found</dt>
+            <dd>Match the folder path and filename case, such as <code>./pages/home/Home.jsx</code>. Create the CSS
+              files imported by the page components.</dd>
+            <dt>The link does not open the expected page</dt>
+            <dd>Use <code>to="/about"</code>, not <code>href</code> or a filename. Check for <code>path="about"</code>
+              in the route list.</dd>
+            <dt>The active style is missing</dt>
+            <dd>Use <code>NavLink</code>, include <code>className="nav-link"</code>, and check that <code>App.css</code>
+              is imported. The selector is <code>.nav-link.active</code> with no space.</dd>
+          </dl>
+          <p>For the underlying API, see the official React Router guides to <a
+              href="https://reactrouter.com/start/declarative/installation">installation</a>, <a
+              href="https://reactrouter.com/start/declarative/routing">routing</a> and <a
+              href="https://reactrouter.com/start/declarative/navigating">navigation</a>.</p>
+        </section>
+      </main>
+      <aside class="lesson-rail">
+        <section class="lesson-rail-card panel glossary-card">
+          <p class="eyebrow">Glossary</p>
+          <h2>Quick glossary</h2>
+          <dl class="glossary-list">
+            <div class="glossary-item">
+              <dt>Route</dt>
+              <dd>A connection between a URL path and the component shown there.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>BrowserRouter</dt>
+              <dd>Provides browser routing to the app inside it.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Page component</dt>
+              <dd>A React component representing a page’s content.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>Link</dt>
+              <dd>A link for navigating within the app.</dd>
+            </div>
+            <div class="glossary-item">
+              <dt>NavLink</dt>
+              <dd>A link that also identifies when its route is active.</dd>
+            </div>
+          </dl>
+        </section>
+        <section class="lesson-rail-card panel revision-card">
+          <p class="eyebrow">Remember</p>
+          <h2>The connections</h2>
+          <ul class="memory-list">
+            <li>main.jsx enables routing.</li>
+            <li>Page files hold the content.</li>
+            <li>routing.jsx maps paths.</li>
+            <li>App.jsx renders Pages and navigation.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+    <section class="lesson-sequence panel" aria-label="Resource navigation"><a class="primary-link"
+        href="../resources/web-development.html#react-frontend">Back to React Frontend</a></section>
+  </div>
+  <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+    <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+    <p class="slide-status" data-role="slide-status">Slide 1</p>
+    <button type="button" class="slide-button" data-action="next-slide">Next</button>
+    <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+  </div>
+</body>
+
+</html>
