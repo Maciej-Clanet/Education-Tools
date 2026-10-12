@@ -1,0 +1,106 @@
+/* Illustrated, code-native diagrams for the backend concepts lesson. */
+.arch-diagram {
+  --arch-blue: #26607f;
+  --arch-green: #34634e;
+  --arch-gold: #805e21;
+  position: relative;
+  padding: 1.25rem;
+  border: 1px solid #d0dce3;
+  border-radius: 20px;
+  background: radial-gradient(#d9e3e9 .7px, transparent .7px) 0 0 / 14px 14px, #f8fbfc;
+  color: #253449;
+  container-type: inline-size;
+}
+.arch-diagram__heading {
+  margin: 0 0 1rem;
+  font-size: .85rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #526676;
+}
+.arch-scene { display: grid; grid-template-columns: minmax(0,1fr) 106px minmax(0,1fr); gap: .8rem; align-items: center; }
+.arch-scene--three { grid-template-columns: minmax(0,1fr) 72px minmax(0,1fr) 72px minmax(0,1fr); gap: .45rem; }
+.arch-device { position: relative; min-width: 0; text-align: center; padding: .45rem; border: 2px solid transparent; border-radius: 14px; }
+.arch-location { display: block; margin-bottom: .6rem; color: #4a6072; font-size: .66rem; font-weight: 800; letter-spacing: .1em; }
+.arch-art { display: block; width: 100%; height: 144px; margin-inline: auto; }
+.arch-role { display: block; margin-top: .75rem; font-size: 1.15rem; color: var(--arch-blue); }
+.arch-device--server .arch-role, .arch-device--shield .arch-role { color: var(--arch-green); }
+.arch-device--database .arch-role { color: var(--arch-gold); }
+.arch-description { margin: .35rem 0 0 !important; font-size: .88rem; line-height: 1.5; text-wrap: pretty; overflow-wrap: anywhere; }
+.arch-browser { margin: 0 auto; max-width: 230px; height: 144px; text-align: left; border: 2px solid #41718e; border-radius: 9px; background: #fff; overflow: hidden; box-shadow: 0 6px 0 #dfebf0; }
+.arch-browser__bar { display: flex; align-items: center; gap: 4px; height: 25px; padding: 0 7px; border-bottom: 1px solid #cbdbe4; background: #e4eff7; }
+.arch-browser__bar i { width: 5px; height: 5px; border-radius: 50%; background: #7299b3; flex-shrink: 0; }
+.arch-browser__bar span { flex: 1; overflow: hidden; white-space: nowrap; margin-left: 3px; padding: 1px 5px; font: 8px/1.5 ui-monospace, monospace; border-radius: 3px; color: #436076; background: #fff; }
+.arch-browser__page { padding: 9px; }
+.arch-poster { position: relative; display: flex; gap: 8px; align-items: center; height: 49px; padding: 7px; border-radius: 5px; color: #fff; background: #285f79; overflow: hidden; }
+.arch-poster::after { content: ''; position: absolute; width: 75px; height: 75px; right: -10px; top: -19px; border: 12px solid #639bb0; border-radius: 50%; opacity: .45; }
+.arch-poster > span { font: bold 18px/1 ui-monospace, monospace; color: #b4e2d6; }
+.arch-poster b { font: 800 10px/1.15 system-ui, sans-serif; letter-spacing: .06em; }
+.arch-poster em { margin-left: auto; font: 800 23px/1 system-ui, sans-serif; z-index: 1; }
+.arch-browser__status { display: block; margin: 6px 0 4px; font: 9px/1 system-ui, sans-serif; color: #476074; }
+.arch-browser__button { display: block; padding: 4px; border-radius: 4px; text-align: center; font: 700 9px/1.2 system-ui, sans-serif; color: #fff; background: #2d7086; }
+.arch-browser__button--waiting { color: #6c521e; background: #ffe6a9; }
+.arch-browser__button--done { background: #3c7556; }
+.arch-browser__button--changed { background: #9d4336; }
+.arch-connection { display: grid; gap: .8rem; }
+.arch-wire { display: grid; gap: 5px; text-align: center; color: #286789; }
+.arch-wire span { font: 700 .7rem/1.25 system-ui, sans-serif; overflow-wrap: anywhere; }
+.arch-wire svg { display: block; width: 100%; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.arch-wire--reply { color: #427350; }
+.arch-wire--reverse svg { transform: rotate(180deg); }
+.arch-connection--quiet { color: #7a8790; opacity: .62; }
+.arch-connection--quiet path:first-child { stroke-dasharray: 4 5; }
+.arch-message { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: .45rem 1rem; padding: .75rem; margin-top: 1rem; border: 1px solid #d6e1e6; border-radius: 9px; background: #fff; font-size: .8rem; line-height: 1.45; }
+.arch-message b { color: #3c5262; }
+.arch-message code { font-size: .8rem; }
+.arch-diagram figcaption { padding-top: .7rem; margin-top: .8rem; border-top: 1px dashed #b9c9d3; line-height: 1.45; }
+.arch-device.is-current { background: #fff9e9; border-color: #ad7c21; box-shadow: 0 0 0 4px #f4e5c1; }
+.arch-current { position: absolute; top: -.7rem; right: .5rem; display: inline-block; padding: .2rem .6rem; background: #f2dc9b; border-radius: 50px; color: #674e1d; font: 800 .65rem/1.4 system-ui, sans-serif; text-transform: uppercase; letter-spacing: .05em; }
+.arch-record { display: block; padding: .15rem .25rem; margin: .25rem 0; background: #fff7e1; border-bottom: 1px solid #d8c792; font: 700 .75rem/1.4 ui-monospace, monospace; }
+.arch-laptop { position: relative; margin-bottom: 2rem; border: 7px solid #627b8d; border-top-width: 16px; border-radius: 18px 18px 7px 7px; background: #edf3f7; padding: .85rem; }
+.arch-laptop::before { content: ''; position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #deedf4; top: -10px; left: calc(50% - 2px); }
+.arch-laptop::after { content: ''; position: absolute; left: -7px; right: -7px; bottom: -18px; height: 14px; border-radius: 3px 3px 50% 50%; background: linear-gradient(90deg,#b8c9d3 40%,#8aa1b2 40%,#8aa1b2 60%,#b8c9d3 60%); border-bottom: 3px solid #8098aa; }
+.arch-laptop > h3 { font-size: 1rem; color: #354e60; }
+.arch-laptop .arch-diagram { margin-bottom: 0; }
+.arch-claim { color: #9b3c32; font-weight: 700; }
+.arch-verified { color: #35654a; font-weight: 700; }
+.arch-opening-ticket > .arch-browser { margin: 0 0 1.2rem; width: 100%; max-width: 260px; }
+
+@container (max-width: 490px) {
+  .arch-scene, .arch-scene--three { grid-template-columns: minmax(0,1fr); gap: .65rem; }
+  .arch-device { width: 100%; max-width: 290px; justify-self: center; }
+  .arch-connection { grid-template-columns: repeat(2,minmax(0,1fr)); justify-self: center; width: 160px; }
+  .arch-connection:not(:has(.arch-wire--reply)) { grid-template-columns: minmax(0,1fr); width: 120px; }
+  .arch-wire { position: relative; padding-bottom: 28px; }
+  .arch-wire svg { position: absolute; width: 40px; bottom: 0; left: calc(50% - 20px); transform: rotate(90deg); }
+  .arch-wire--reverse svg { transform: rotate(-90deg); }
+  .arch-message { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .arch-diagram { padding: .85rem; }
+  .arch-laptop { padding: .45rem; }
+}
+.teacher-mode-active .arch-diagram { padding: .65rem 1.25rem; margin-block: .65rem; }
+.teacher-mode-active .arch-art, .teacher-mode-active .arch-browser { height: 144px; }
+.teacher-mode-active .arch-description { font-size: 1rem; }
+.teacher-mode-active .arch-role { font-size: 1.25rem; }
+.teacher-mode-active .arch-location { font-size: .7rem; }
+.teacher-mode-active .arch-diagram figcaption { font-size: .85rem; }
+.teacher-mode-active .arch-role { margin-top: .4rem; }
+.teacher-mode-active .arch-location { margin-bottom: .35rem; }
+.teacher-mode-active .arch-message { padding: .4rem; margin-top: .5rem; }
+.teacher-mode-active .arch-diagram figcaption { padding-top: .4rem; margin-top: .5rem; }
+.teacher-mode-active .backend-stage { padding: .7rem; margin-block: .5rem; }
+.teacher-mode-active .backend-stage h3 { margin-bottom: .5rem; }
+.teacher-mode-active [data-walkthrough-controls] { margin-block: .5rem; }
+.teacher-mode-active [data-walkthrough-status] { flex-basis: auto; font-size: 1rem; }
+@media (forced-colors: active) {
+  .arch-diagram, .arch-device, .arch-browser, .arch-message { border-color: CanvasText; }
+  .arch-device.is-current { outline: 3px solid Highlight; }
+  .arch-wire { color: CanvasText; }
+}
+@media print {
+  .arch-diagram { break-inside: avoid; background: white; }
+  .arch-art { print-color-adjust: exact; }
+}

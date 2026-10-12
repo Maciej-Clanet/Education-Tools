@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="../../css/code-snippets.css" />
 <link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
   <link rel="stylesheet" href="../../css/backend-lessons.css" />
+  <link rel="stylesheet" href="../../css/pages/backend-concepts.css" />
   <link rel="stylesheet" href="../../css/accessibility.css" />
   <script type="module" src="../../javascript/accessibility.js"></script>
   <script type="module" src="../../javascript/pages/what-is-a-backend.js"></script>
@@ -102,11 +103,9 @@
 <h2>What happens after “Book a place”?</h2>
 <p>A student chooses a place on a college workshop. The button is visible in their browser, but the workshop has only one place left. Another student is trying to book it too.</p>
 <div class="backend-pair">
-<div class="backend-ticket">
-<p class="eyebrow">What the student sees</p>
-<h3>Web design workshop</h3>
-<p>Friday · 10:00 · 1 place left</p><span class="backend-ticket__button">Book a place</span>
-<p>Illustrative interface</p>
+<div class="backend-ticket arch-opening-ticket"><div class="arch-browser" aria-hidden="true"><div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span></div><div class="arch-browser__page"><div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em></div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span></div></div>
+<h3>What the student sees</h3>
+<p>A workshop card, one available place and a “Book a place” button.</p>
 </div>
 <div class="backend-node backend-node--server"><strong>What must be decided</strong>
 <p>Is the student allowed to book? Is a place still available? Has the booking actually been saved?</p>
@@ -117,16 +116,44 @@
 <section id="frontend-backend" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">Two responsibilities</p>
 <h2>The screen and the service</h2>
-<figure class="backend-diagram">
-<div class="backend-flow ">
-<div class="backend-node "><strong>Frontend</strong>
-<p>Shows the workshop, collects a choice and displays the result.</p>
+<figure class="arch-diagram">
+<div class="arch-scene">
+<div class="arch-device arch-device--browser"><span class="arch-location">IN THE BROWSER</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span>
 </div>
-<div class="backend-node backend-node--server"><strong>Backend</strong>
-<p>Checks the request, applies booking rules and returns a result.</p>
 </div>
+<strong class="arch-role">Frontend</strong>
+<p class="arch-description">Draw the page. Collect a choice.</p>
+</div>
+<div class="arch-connection">
+<div class="arch-wire"><span>Request</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+<div class="arch-wire arch-wire--reverse arch-wire--reply"><span>Response</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--server"><span class="arch-location">ON THE SERVER</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Backend</strong>
+<p class="arch-description">Check the rules. Decide the result.</p>
+</div>
+</div>
+<div class="arch-message"><span>React interface</span><b>Two jobs, one application</b><span>Python + FastAPI</span>
 </div>
 <figcaption>In this web app, the frontend runs in the browser and communicates with the backend over HTTP.</figcaption>
 </figure>
@@ -144,29 +171,81 @@
 <section id="where-they-live" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">From files to running software</p>
 <h2>Stored on a host, running in a browser</h2>
-<figure class="backend-diagram">
-<div class="backend-flow ">
-<div class="backend-node "><strong>Web host</strong>
-<p>Stores and serves the frontend’s HTML, CSS and JavaScript.</p>
+<figure class="arch-diagram">
+<p class="arch-diagram__heading">1 / Deliver the interface</p>
+<div class="arch-scene">
+<div class="arch-device arch-device--files"><span class="arch-location">FILES AT REST</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#files">
+</use>
+</svg>
+<strong class="arch-role">Web host</strong>
+<p class="arch-description">Stores HTML, CSS and JavaScript.</p>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">→</span><small>download files</small>
+<div class="arch-connection">
+<div class="arch-wire"><span>Download</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
 </div>
-<div class="backend-node "><strong>Student’s browser</strong>
-<p>Loads the files and runs the frontend JavaScript.</p>
+</div>
+<div class="arch-device arch-device--browser"><span class="arch-location">CODE RUNNING</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
+</div>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span>
+</div>
+</div>
+<strong class="arch-role">Browser</strong>
+<p class="arch-description">Runs the downloaded JavaScript.</p>
 </div>
 </div>
 <figcaption>Hosting a JavaScript file on a server does not mean the downloaded copy runs there.</figcaption>
 </figure>
-<figure class="backend-diagram">
-<div class="backend-flow ">
-<div class="backend-node "><strong>Student’s browser</strong>
-<p>Sends an API request when it needs server-side work.</p>
+<div data-slide-break></div>
+<h3>The backend code stays on the server</h3>
+<figure class="arch-diagram">
+<p class="arch-diagram__heading">2 / Ask the backend</p>
+<div class="arch-scene">
+<div class="arch-device arch-device--browser"><span class="arch-location">CLIENT</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>HTTP messages</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span>
 </div>
-<div class="backend-node backend-node--server"><strong>Backend server</strong>
-<p>Runs the application code and returns a response.</p>
 </div>
+<strong class="arch-role">Browser</strong>
+<p class="arch-description">Asks the service to do some work.</p>
+</div>
+<div class="arch-connection">
+<div class="arch-wire"><span>API request</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+<div class="arch-wire arch-wire--reverse arch-wire--reply"><span>JSON result</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--server"><span class="arch-location">SERVER</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Backend server</strong>
+<p class="arch-description">Runs Python and returns data.</p>
+</div>
+</div>
+<div class="arch-message"><b>What travels back?</b><span>Response data — not the Python source.</span>
 </div>
 <figcaption>The backend’s Python source is not normally sent to the browser. Responses can still contain data the user can inspect.</figcaption>
 </figure>
@@ -175,18 +254,44 @@
 <section id="local-and-live" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">Same jobs, different locations</p>
 <h2>One laptop can run both sides</h2>
-<div class="backend-boundary">
+<div class="backend-boundary arch-laptop">
 <h3>During development: your laptop</h3>
-<figure class="backend-diagram">
-<div class="backend-flow ">
-<div class="backend-node "><strong>Browser + Vite</strong>
-<p>Frontend served at<br><code>localhost:5173</code>
+<figure class="arch-diagram arch-diagram--laptop">
+<div class="arch-scene">
+<div class="arch-device arch-device--browser"><span class="arch-location">FRONTEND SERVICE</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
+</div>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span>
+</div>
+</div>
+<strong class="arch-role">Browser + Vite</strong>
+<p class="arch-description"><code>localhost:5173</code>
 </p>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">→</span><small>API request</small>
+<div class="arch-connection">
+<div class="arch-wire"><span>Local request</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
 </div>
-<div class="backend-node backend-node--server"><strong>Python + Uvicorn</strong>
-<p>Backend listening at<br><code>127.0.0.1:8001</code>
+<div class="arch-wire arch-wire--reverse arch-wire--reply"><span>Local response</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--server"><span class="arch-location">BACKEND SERVICE</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Python + Uvicorn</strong>
+<p class="arch-description"><code>127.0.0.1:8001</code>
 </p>
 </div>
 </div>
@@ -197,16 +302,44 @@
 <div data-slide-break>
 </div>
 <h3>After deployment</h3>
-<figure class="backend-diagram">
-<div class="backend-flow ">
-<div class="backend-node "><strong>Student’s device</strong>
-<p>Runs the browser interface.</p>
+<figure class="arch-diagram">
+<div class="arch-scene">
+<div class="arch-device arch-device--browser"><span class="arch-location">ON THEIR DEVICE</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">→</span><small>network</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span>
 </div>
-<div class="backend-node backend-node--server"><strong>Hosted backend</strong>
-<p>Runs on infrastructure available to your users.</p>
 </div>
+<strong class="arch-role">Student’s device</strong>
+<p class="arch-description">Runs the browser interface.</p>
+</div>
+<div class="arch-connection">
+<div class="arch-wire"><span>Internet</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+<div class="arch-wire arch-wire--reverse arch-wire--reply"><span>Response</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--cloud"><span class="arch-location">REMOTE INFRASTRUCTURE</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#cloud">
+</use>
+</svg>
+<strong class="arch-role">Hosted backend</strong>
+<p class="arch-description">Runs on infrastructure shared by users.</p>
+</div>
+</div>
+<div class="arch-message"><b>Different locations</b><span>The same request / response relationship.</span>
 </div>
 <figcaption>A remote user’s localhost means their own device, not the developer’s laptop.</figcaption>
 </figure>
@@ -242,25 +375,60 @@
 <section id="database" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">A third role</p>
 <h2>The database stores; the backend decides</h2>
-<figure class="backend-diagram">
-<div class="backend-flow backend-flow--three">
-<div class="backend-node "><strong>Browser</strong>
-<p>“Book workshop 42.”</p>
+<figure class="arch-diagram">
+<div class="arch-scene arch-scene--three">
+<div class="arch-device arch-device--browser"><span class="arch-location">CHOOSE</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">→</span><small>request</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span>
 </div>
-<div class="backend-node backend-node--server"><strong>Backend</strong>
-<p>Checks the rules and asks to save the booking.</p>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+<strong class="arch-role">Browser</strong>
+<p class="arch-description">“Book workshop 42.”</p>
 </div>
-<div class="backend-node backend-node--data"><strong>Database</strong>
-<p>Stores workshops, capacities and bookings.</p>
+<div class="arch-connection">
+<div class="arch-wire"><span>Send</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
 </div>
+</div>
+<div class="arch-device arch-device--server"><span class="arch-location">DECIDE</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Backend</strong>
+<p class="arch-description">Check permission and availability.</p>
+</div>
+<div class="arch-connection">
+<div class="arch-wire"><span>Read / write</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--database"><span class="arch-location">STORE</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#database">
+</use>
+</svg>
+<strong class="arch-role">Database</strong>
+<p class="arch-description">Keep the shared booking records.</p>
+</div>
+</div>
+<div class="arch-message"><b>Browser → backend → database</b><span>The browser does not directly edit the booking table.</span>
 </div>
 <figcaption>A common design keeps direct database access on the server side.</figcaption>
 </figure>
 <p>A <strong>database</strong> stores and retrieves organised data. It is not the same thing as a backend. The backend coordinates the operation and uses storage where needed.</p>
+<div data-slide-break></div>
+<h3>Shared storage is a separate choice</h3>
 <p>A backend can also work without a database: for example, it could convert units or return a fixed greeting. A database can live beside the app or on a separate service.</p>
 <p>Saving something in browser <code>localStorage</code> is different: that saved copy belongs to that browser and origin. It is not a shared booking record for every student.</p>
 </section>
@@ -274,105 +442,275 @@
 <div data-lesson-walkthrough data-no-slide-advance>
 <div class="backend-stage" data-walkthrough-step="Choose">
 <h3>Student chooses a workshop</h3>
-<figure class="backend-diagram">
-<div class="backend-flow backend-flow--three">
-<div class="backend-node backend-node--active"><strong>Browser</strong>
-<p>Collect choice / show result</p>
+<figure class="arch-diagram arch-diagram--step arch-diagram--step-1">
+<div class="arch-scene arch-scene--three">
+<div class="arch-device arch-device--browser is-current"><span class="arch-location">INTERFACE</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
-</div>
-<div class="backend-node backend-node--server "><strong>Backend</strong>
-<p>Validate and coordinate</p>
-</div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
-</div>
-<div class="backend-node backend-node--data "><strong>Database</strong>
-<p>Keep shared records</p>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span>
 </div>
 </div>
-<figcaption>The frontend collects workshop 42 and shows that a request is in progress. No booking is confirmed yet.</figcaption>
+<strong class="arch-role">Browser</strong>
+<p class="arch-description">Collect the student’s choice.</p><span class=arch-current>Current step</span>
+</div>
+<div class="arch-connection arch-connection--quiet">
+<div class="arch-wire"><span>Not sent</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--server"><span class="arch-location">RULES</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Backend</strong>
+<p class="arch-description">Ready to receive</p>
+</div>
+<div class="arch-connection arch-connection--quiet">
+<div class="arch-wire"><span>No change</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--database"><span class="arch-location">SHARED DATA</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#database">
+</use>
+</svg>
+<strong class="arch-role">Database</strong>
+<p class="arch-description"><span class="arch-record">1 place left</span><span class="arch-record">No booking yet</span>
+</p>
+</div>
+</div>
+<div class="arch-message"><b>01 · Choose</b><span>Workshop <code>42</code> selected. No place is reserved yet.</span>
+</div>
+<figcaption>The frontend collects the choice of workshop 42. The request has not been sent and no booking is confirmed yet.</figcaption>
 </figure>
 </div>
 <div class="backend-stage" data-walkthrough-step="Request">
 <h3>Browser sends the request</h3>
-<figure class="backend-diagram">
-<div class="backend-flow backend-flow--three">
-<div class="backend-node "><strong>Browser</strong>
-<p>Collect choice / show result</p>
+<figure class="arch-diagram arch-diagram--step arch-diagram--step-2">
+<div class="arch-scene arch-scene--three">
+<div class="arch-device arch-device--browser"><span class="arch-location">INTERFACE</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">Request sent</span><span class="arch-browser__button arch-browser__button--waiting">Waiting for a reply…</span>
 </div>
-<div class="backend-node backend-node--server backend-node--active"><strong>Backend</strong>
-<p>Validate and coordinate</p>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+<strong class="arch-role">Browser</strong>
+<p class="arch-description">Show a waiting state.</p>
 </div>
-<div class="backend-node backend-node--data "><strong>Database</strong>
-<p>Keep shared records</p>
+<div class="arch-connection">
+<div class="arch-wire"><span>POST</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
 </div>
+</div>
+<div class="arch-device arch-device--server is-current"><span class="arch-location">RULES</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Backend</strong>
+<p class="arch-description">Validate the request</p><span class=arch-current>Current step</span>
+</div>
+<div class="arch-connection arch-connection--quiet">
+<div class="arch-wire"><span>Not yet</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--database"><span class="arch-location">SHARED DATA</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#database">
+</use>
+</svg>
+<strong class="arch-role">Database</strong>
+<p class="arch-description"><span class="arch-record">1 place left</span><span class="arch-record">No booking yet</span>
+</p>
+</div>
+</div>
+<div class="arch-message"><b>02 · Request →</b><code>POST /bookings</code><span>{ workshop_id: 42 }</span>
 </div>
 <figcaption>A POST request to /bookings carries the workshop ID. The backend must validate what it receives.</figcaption>
 </figure>
 </div>
 <div class="backend-stage" data-walkthrough-step="Check and save">
 <h3>Backend applies the rules</h3>
-<figure class="backend-diagram">
-<div class="backend-flow backend-flow--three">
-<div class="backend-node "><strong>Browser</strong>
-<p>Collect choice / show result</p>
+<figure class="arch-diagram arch-diagram--step arch-diagram--step-3">
+<div class="arch-scene arch-scene--three">
+<div class="arch-device arch-device--browser"><span class="arch-location">INTERFACE</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">Request sent</span><span class="arch-browser__button arch-browser__button--waiting">Waiting for a reply…</span>
 </div>
-<div class="backend-node backend-node--server "><strong>Backend</strong>
-<p>Validate and coordinate</p>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+<strong class="arch-role">Browser</strong>
+<p class="arch-description">Show a waiting state.</p>
 </div>
-<div class="backend-node backend-node--data backend-node--active"><strong>Database</strong>
-<p>Keep shared records</p>
+<div class="arch-connection">
+<div class="arch-wire"><span>Waiting</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
 </div>
+</div>
+<div class="arch-device arch-device--server"><span class="arch-location">RULES</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Backend</strong>
+<p class="arch-description">Check, then save</p>
+</div>
+<div class="arch-connection">
+<div class="arch-wire"><span>Save</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--database is-current"><span class="arch-location">SHARED DATA</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#database">
+</use>
+</svg>
+<strong class="arch-role">Database</strong>
+<p class="arch-description"><span class="arch-record">1 → 0 places</span><span class="arch-record">BK-104 saved</span>
+</p><span class=arch-current>Current step</span>
+</div>
+</div>
+<div class="arch-message"><b>03 · Shared record changes</b><span>One place is reserved; a booking reference is created.</span>
 </div>
 <figcaption>It checks permission and remaining capacity, then coordinates a safe update with the database so two users cannot take the last place.</figcaption>
 </figure>
 </div>
 <div class="backend-stage" data-walkthrough-step="Respond">
 <h3>Backend returns the result</h3>
-<figure class="backend-diagram">
-<div class="backend-flow backend-flow--three">
-<div class="backend-node "><strong>Browser</strong>
-<p>Collect choice / show result</p>
+<figure class="arch-diagram arch-diagram--step arch-diagram--step-4">
+<div class="arch-scene arch-scene--three">
+<div class="arch-device arch-device--browser"><span class="arch-location">INTERFACE</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">Request sent</span><span class="arch-browser__button arch-browser__button--waiting">Waiting for a reply…</span>
 </div>
-<div class="backend-node backend-node--server backend-node--active"><strong>Backend</strong>
-<p>Validate and coordinate</p>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+<strong class="arch-role">Browser</strong>
+<p class="arch-description">Show a waiting state.</p>
 </div>
-<div class="backend-node backend-node--data "><strong>Database</strong>
-<p>Keep shared records</p>
+<div class="arch-connection">
+<div class="arch-wire arch-wire--reverse"><span>201 Created</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
 </div>
+</div>
+<div class="arch-device arch-device--server is-current"><span class="arch-location">RULES</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Backend</strong>
+<p class="arch-description">Send confirmation</p><span class=arch-current>Current step</span>
+</div>
+<div class="arch-connection arch-connection--quiet">
+<div class="arch-wire"><span>Saved</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--database"><span class="arch-location">SHARED DATA</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#database">
+</use>
+</svg>
+<strong class="arch-role">Database</strong>
+<p class="arch-description"><span class="arch-record">0 places left</span><span class="arch-record">BK-104 saved</span>
+</p>
+</div>
+</div>
+<div class="arch-message"><b>04 · ← Response</b><code>201 Created</code><span>{ booking_id: "BK-104" }</span>
 </div>
 <figcaption>A success response includes the booking reference. If full, it returns an error outcome instead of claiming a booking was made.</figcaption>
 </figure>
 </div>
 <div class="backend-stage" data-walkthrough-step="Display">
 <h3>Frontend updates the screen</h3>
-<figure class="backend-diagram">
-<div class="backend-flow backend-flow--three">
-<div class="backend-node backend-node--active"><strong>Browser</strong>
-<p>Collect choice / show result</p>
+<figure class="arch-diagram arch-diagram--step arch-diagram--step-5">
+<div class="arch-scene arch-scene--three">
+<div class="arch-device arch-device--browser is-current"><span class="arch-location">INTERFACE</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>request / response</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">Booking BK-104</span><span class="arch-browser__button arch-browser__button--done">Place confirmed ✓</span>
 </div>
-<div class="backend-node backend-node--server "><strong>Backend</strong>
-<p>Validate and coordinate</p>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">⇄</span><small>read / write</small>
+<strong class="arch-role">Browser</strong>
+<p class="arch-description">Show “Place confirmed”.</p><span class=arch-current>Current step</span>
 </div>
-<div class="backend-node backend-node--data "><strong>Database</strong>
-<p>Keep shared records</p>
+<div class="arch-connection">
+<div class="arch-wire arch-wire--reverse"><span>Received</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
 </div>
+</div>
+<div class="arch-device arch-device--server"><span class="arch-location">RULES</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Backend</strong>
+<p class="arch-description">Request completed</p>
+</div>
+<div class="arch-connection arch-connection--quiet">
+<div class="arch-wire"><span>Saved</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--database"><span class="arch-location">SHARED DATA</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#database">
+</use>
+</svg>
+<strong class="arch-role">Database</strong>
+<p class="arch-description"><span class="arch-record">0 places left</span><span class="arch-record">BK-104 saved</span>
+</p>
+</div>
+</div>
+<div class="arch-message"><b>05 · Display</b><span>The browser shows the confirmed booking <code>BK-104</code>.</span>
 </div>
 <figcaption>It shows the confirmation or explains the error. A network failure needs a visible message too.</figcaption>
 </figure>
@@ -387,19 +725,50 @@
 <p class="eyebrow">Agree on the messages</p>
 <h2>An API is the interface to the service</h2>
 <p>An <strong>API</strong> defines how software can ask another piece of software to do something. A web API exposes <strong>endpoints</strong>: defined operations reached through a method and URL path.</p>
-<figure class="backend-diagram">
-<div class="backend-flow ">
-<div class="backend-node "><strong>Request</strong>
-<p><code>GET /workshops/42</code><br>“Tell me about this workshop.”</p>
+<figure class="arch-diagram">
+<div class="arch-scene">
+<div class="arch-device arch-device--browser"><span class="arch-location">ASK FOR DATA</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">→</span><small>handled by backend</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">1 place available</span><span class="arch-browser__button arch-browser__button--choose">Book a place</span>
 </div>
-<div class="backend-node backend-node--server"><strong>Response</strong>
-<p><code>200 OK</code><br>Data describing workshop 42.</p>
 </div>
+<strong class="arch-role">Request</strong>
+<p class="arch-description"><code>GET /workshops/42</code>
+</p>
+</div>
+<div class="arch-connection">
+<div class="arch-wire"><span>GET</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+<div class="arch-wire arch-wire--reverse arch-wire--reply"><span>200 OK</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--server"><span class="arch-location">RETURN A RESULT</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#server">
+</use>
+</svg>
+<strong class="arch-role">Response</strong>
+<p class="arch-description">Data describing workshop 42.</p>
+</div>
+</div>
+<div class="arch-message"><b>Method + path</b><span>Identify the operation you want the backend to handle.</span>
 </div>
 <figcaption>GET is normally used to retrieve data. POST commonly submits data for an operation such as making a booking.</figcaption>
 </figure>
+<div data-slide-break></div>
+<h3>The response body carries data</h3>
 <div class="code-snippet" data-code-snippet="Example response body" data-no-slide-advance>
 <div class="code-snippet__toolbar"><span class="code-snippet__label">Example response body · JSON</span>
 </div><pre tabindex="0" aria-label="Example response body code"><code class="language-json">{
@@ -416,16 +785,38 @@
 <section id="trust-boundary" class="lesson-section panel" data-lesson-section>
 <p class="eyebrow">Shared decisions</p>
 <h2>A hidden button is not permission</h2>
-<figure class="backend-diagram">
-<div class="backend-flow ">
-<div class="backend-node "><strong>Browser can be changed</strong>
-<p>A user can edit a displayed price, unhide a button or send a request outside your UI.</p>
+<figure class="arch-diagram arch-diagram--trust">
+<div class="arch-scene">
+<div class="arch-device arch-device--browser"><span class="arch-location">USER-CONTROLLED</span>
+<div class="arch-browser" aria-hidden="true">
+<div class="arch-browser__bar"><i></i><i></i><i></i><span>workshops / 42</span>
 </div>
-<div class="backend-arrow"><span aria-hidden="true">→</span><small>untrusted input</small>
+<div class="arch-browser__page">
+<div class="arch-poster"><span>&lt;/&gt;</span><b>WEB<br>DESIGN</b><em>42</em>
+</div><span class="arch-browser__status">Price edited locally</span><span class="arch-browser__button arch-browser__button--changed">£20 → £1</span>
 </div>
-<div class="backend-node backend-node--server"><strong>Backend must verify</strong>
-<p>Look up the real price, check permission and enforce the rule before saving.</p>
 </div>
+<strong class="arch-role">Browser input</strong>
+<p class="arch-description">A displayed price can be edited.</p>
+</div>
+<div class="arch-connection">
+<div class="arch-wire"><span>Untrusted value</span>
+<svg viewBox="0 0 100 18" aria-hidden="true">
+<path d="M2 9h90"/>
+<path d="m83 2 10 7-10 7"/>
+</svg>
+</div>
+</div>
+<div class="arch-device arch-device--shield"><span class="arch-location">SERVER-ENFORCED</span>
+<svg class="arch-art" viewBox="0 0 240 150" aria-hidden="true" focusable="false">
+<use href="../../assets/images/backend-concepts/architecture-symbols.svg#shield">
+</use>
+</svg>
+<strong class="arch-role">Server checks</strong>
+<p class="arch-description">Use the real price and check permission.</p>
+</div>
+</div>
+<div class="arch-message"><span class="arch-claim">Browser claims: £1</span><b>Verify against trusted data</b><span class="arch-verified">Stored price: £20</span>
 </div>
 <figcaption>Do not make the browser’s claimed values the authority for shared or restricted actions.</figcaption>
 </figure>

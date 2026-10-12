@@ -21,10 +21,17 @@ basic familiarity with websites; no Python knowledge required.
     saved explanations using new library/price scenarios.
 12. **Practice** — `#recap`: roles and link to the practical setup lesson.
 
-The page HTML is the authored source. Original diagrams use semantic HTML and
-`css/backend-lessons.css`; arrows are supplemented by text descriptions. No external
-diagram assets or generated raster images. The walkthrough works by manual steps,
-including under reduced motion, and all states remain readable without JavaScript.
+The page HTML is the authored source. Illustrated diagrams use semantic HTML,
+the shared `css/backend-lessons.css` foundations, and
+`css/pages/backend-concepts.css`. Original SVG symbols live in
+`assets/images/backend-concepts/architecture-symbols.svg`; no third-party imagery
+is used. Browser interfaces, server racks, database records, a laptop boundary and
+cloud hosting make each location and responsibility visible. Labelled request and
+response arrows also have text descriptions; narrow layouts stack vertically.
+The manual five-step walkthrough changes the browser state, request/response payload
+and shared record (one place becomes zero; booking BK-104 is saved). The current
+actor is marked with a label and border as well as colour. Controls work under
+reduced motion, and all states remain readable without JavaScript.
 Teacher opener/dividers use shared inert templates. Quiz metadata is in the page
 script and progress registry; written work uses the lesson shell's local storage.
 Authentication, databases, HTTP implementation and deployment setup are not taught.
