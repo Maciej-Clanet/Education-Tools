@@ -1,0 +1,72 @@
+.fastapi-lesson .setup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.fastapi-lesson .setup-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fastapi-lesson .setup-grid--command { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.fastapi-lesson .setup-code-notes { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+.fastapi-lesson .setup-card {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--line, #c8d0da);
+  border-radius: 12px;
+  background: #f7fafb;
+  overflow-wrap: anywhere;
+}
+.fastapi-lesson .setup-card h3 { margin: 0 0 .6rem; font-size: 1.15em; }
+.fastapi-lesson .setup-card p:last-child { margin-bottom: 0; }
+.fastapi-lesson .setup-card > :first-child { margin-top: 0; }
+.fastapi-lesson .setup-grid > .code-snippet { margin-top: 0; }
+.fastapi-lesson .setup-notes { margin: 0; display: grid; gap: .7rem; }
+.fastapi-lesson .setup-notes > div {
+  padding: .65rem .85rem;
+  border-left: 3px solid #36738b;
+  background: #f1f7fb;
+  border-radius: 0 8px 8px 0;
+  overflow-wrap: anywhere;
+}
+.fastapi-lesson .setup-notes dt { font-weight: 700; }
+.fastapi-lesson .setup-notes dd { margin: .25rem 0 0; }
+.fastapi-lesson .setup-number { display: block; color: #345365; font-size: .8em; font-weight: 700; margin-bottom: .45rem; }
+.fastapi-lesson .setup-environment { margin-top: .9rem; padding: 1rem; border: 2px dashed #59804f; border-radius: 10px; background: #eef8ec; }
+.fastapi-lesson .setup-environment strong { display: block; }
+.fastapi-lesson .setup-equation { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin: .5rem 0; }
+.fastapi-lesson .setup-equation code { padding: .6rem .8rem; border: 1px solid #c8d0da; background: #edf7ff; }
+.fastapi-lesson .setup-equation span { font-size: 1.5em; font-weight: 700; }
+.fastapi-lesson .setup-docs { border: 1px solid #83baab; border-radius: 9px; background: #edf8f3; padding: .8rem 1rem; }
+.fastapi-lesson .setup-docs strong { margin-right: .8rem; }
+.fastapi-lesson .setup-status { display: inline-block; padding: .1rem .5rem; background: #236954; color: white; border-radius: 5px; font-size: .9em; }
+.fastapi-lesson .setup-screenshot img { max-height: 145px; width: auto; }
+.fastapi-lesson .setup-file-tree pre { font-size: 1rem; }
+body.teacher-mode-active .fastapi-lesson .setup-grid { margin-top: .8rem; }
+body.teacher-mode-active .fastapi-lesson .lesson-section:has(> h3:not(.teacher-slide-chunk-hidden)) > h2 { display: none; }
+body.teacher-mode-active .fastapi-lesson .lesson-section > h3:not(.teacher-slide-chunk-hidden) {
+  margin: .65rem 0 1rem;
+  font-family: var(--font-heading, Georgia, serif);
+  font-size: 2.2rem;
+  line-height: 1.15;
+}
+body.teacher-mode-active .fastapi-lesson .setup-notes { font-size: 1rem; line-height: 1.45; }
+body.teacher-mode-active .fastapi-lesson .setup-grid--command { font-size: 1rem; line-height: 1.45; }
+body.teacher-mode-active .fastapi-lesson .code-snippet pre { font-size: 1rem; line-height: 1.5; }
+body.teacher-mode-active .fastapi-lesson .setup-final-code pre { font-size: 1rem; line-height: 1.4; }
+body.teacher-mode-active .fastapi-lesson .lesson-section > p:not(.eyebrow) { margin-block: .8rem; }
+body.teacher-mode-active .fastapi-lesson .setup-card p { margin-block: .7rem; }
+body.teacher-mode-active .fastapi-lesson .backend-diagram { margin-block: .9rem; }
+@media (max-width: 1100px) {
+  body:not(.teacher-mode-active) .fastapi-lesson .setup-grid--command { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body:not(.teacher-mode-active) .fastapi-lesson .setup-code-notes { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  .fastapi-lesson .setup-grid,
+  .fastapi-lesson .setup-grid--three,
+  .fastapi-lesson .setup-grid--command,
+  .fastapi-lesson .setup-code-notes,
+  body:not(.teacher-mode-active) .fastapi-lesson .setup-grid--command { grid-template-columns: minmax(0, 1fr); }
+}
+@media print {
+  .fastapi-lesson .setup-grid { display: block; }
+  .fastapi-lesson .setup-card, .fastapi-lesson .setup-notes > div { break-inside: avoid; margin-block: .7rem; }
+}

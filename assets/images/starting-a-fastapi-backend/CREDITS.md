@@ -13,6 +13,8 @@ was stated. Edits: none; PNG bytes were extracted directly from the DOCX archive
 | project-folders.png | Starting a backend project.docx | word/media/image5.png |
 | router-prefix.png | Backend Reacap Doc.docx | word/media/image1.png |
 
-Captions distinguish the larger source project and older deletion-route example
-from the smaller runnable lesson. The JSON screenshot shows the root response,
-not /docs. All other diagrams are original semantic HTML/CSS within the lessons.
+The lesson uses active-venv.png and hello-response.png.
+The other extracted images remain archived here with their provenance. The JSON
+screenshot shows the root response, not /docs. The current router explanation
+uses an original, always-visible HTML/CSS diagram matching /auth/register.
+All other diagrams are original semantic HTML/CSS within the lessons.
