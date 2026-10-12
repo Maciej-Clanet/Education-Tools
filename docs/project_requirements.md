@@ -36,6 +36,10 @@ must allow reusable topics to serve other units and qualifications.
 - Web basics sections offer lessons and numbered challenge grids. Challenges open
   the shared Playground, save independently, and expose skills on hover/focus/tap;
   opening an exercise does not establish completion. See [challenges](web_challenges.md).
+- Web Development also has React Frontend and FastAPI Backend sections. Link only
+  existing lessons in those sections; do not add planned lesson placeholders or
+  infer their eventual sequence. Setup references can omit quizzes and use
+  copyable, highlighted snippets instead of the Playground for unsupported runtimes.
 
 ## Design and accessibility
 

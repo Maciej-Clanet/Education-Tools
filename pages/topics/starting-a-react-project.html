@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starting a React Project | Education Tools</title>
+  <meta name="description" content="A step-by-step React and Vite setup reference: create a project in VS Code, start and restart the server, and replace the starter JSX and CSS." />
+  <meta property="og:title" content="Starting a React Project | Education Tools" />
+  <meta property="og:description" content="Set up React with Vite, follow the screenshots, and copy the JSX and CSS for a simple header, main and footer layout." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Education Tools" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/pages/lesson.css" />
+  <link rel="stylesheet" href="../../css/code-snippets.css" />
+  <link rel="stylesheet" href="../../css/pages/starting-a-react-project.css" />
+  <link rel="stylesheet" href="../../css/accessibility.css" />
+  <script type="module" src="../../javascript/accessibility.js"></script>
+  <script type="module" src="../../javascript/pages/starting-a-react-project.js"></script>
+</head>
+<body>
+<div class="page-shell react-reference">
+  <header class="lesson-hero panel panel-accent">
+    <p class="eyebrow">React Frontend · Setup reference</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol class="breadcrumb-list">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../resources/web-development.html#react-frontend" data-role="breadcrumb-unit-link">Web Development</a></li>
+      <li aria-current="page">Starting a React project</li>
+    </ol></nav>
+    <div class="lesson-header-row"><div><h1>Starting a React project</h1>
+    <p class="lesson-hero-text">From an empty folder to a working React page. Follow the steps in VS Code, or jump straight to the command or file you need.</p></div></div>
+    <div class="lesson-meta-grid">
+      <article class="lesson-meta-card"><strong>Tools</strong><span>VS Code, Node.js and Vite</span></article>
+      <article class="lesson-meta-card"><strong>Code</strong><span>JavaScript + JSX and CSS</span></article>
+      <article class="lesson-meta-card"><strong>Outcome</strong><span>A header, main content and footer</span></article>
+      <article class="lesson-meta-card"><strong>Use this as</strong><span>A setup and restart reference</span></article>
+    </div>
+    <div class="lesson-hero-actions">
+      <a class="primary-link" href="../../index.html">Back to home search</a>
+      <a class="lesson-secondary-action" href="../resources/web-development.html#react-frontend" data-role="back-to-unit">Back to React Frontend</a>
+      <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher slides</button>
+    </div>
+  </header>
+  <noscript><p class="panel lesson-sequence">You can read every step and select code to copy. Copy buttons and teacher slides need JavaScript.</p></noscript>
+  <div class="lesson-layout">
+    <aside class="lesson-sidebar panel"><p class="eyebrow">Jump To</p><nav class="section-nav" aria-label="Setup steps"><a href="#before-you-start" data-section-link>Before you start</a>
+<a href="#open-folder" data-section-link>1. Open a folder</a>
+<a href="#create-project" data-section-link>2. Create the project</a>
+<a href="#start-server" data-section-link>3. Start the server</a>
+<a href="#open-website" data-section-link>4. Open the website</a>
+<a href="#restart-server" data-section-link>Restart the server</a>
+<a href="#project-files" data-section-link>5. Find your files</a>
+<a href="#replace-app" data-section-link>6. Replace App.jsx</a>
+<a href="#replace-css" data-section-link>7. Reset the CSS</a>
+<a href="#layout-explained" data-section-link>Understand the layout</a>
+<a href="#check-and-troubleshoot" data-section-link>Final check & fixes</a></nav></aside>
+    <main class="lesson-main" data-role="lesson-main">
+      <section id="before-you-start" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Before you start</p>
+<h2>What you need</h2>
+<p>Use this guide whenever you need a fresh React project: create it with Vite, run it locally, then replace the starter page with a header, main content and footer.</p>
+<ul><li><strong>Visual Studio Code</strong> and a web browser.</li><li><strong>Node.js and npm.</strong> Install a supported LTS release from <a href="https://nodejs.org/en/download">Node.js</a> if needed. npm comes with Node.js.</li><li><strong>An internet connection</strong> to download the project tools and packages.</li></ul>
+<p>In a terminal, check that both commands print a version number:</p>
+<div class="code-snippet" data-code-snippet="Check your installation" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Check your installation · BASH</span></div>
+  <pre tabindex="0" aria-label="Check your installation code"><code class="language-bash">node --version
+npm --version</code></pre>
+</div>
+<p>If either command is not recognised, install Node.js and reopen VS Code. If Vite reports an unsupported Node version, update Node.js to a supported LTS release.</p>
+</section><section id="open-folder" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 1</p>
+<h2>Open your projects folder</h2>
+<ol><li>Create a folder for your projects, such as <strong>React Projects</strong>.</li><li>In VS Code, choose <strong>File → Open Folder</strong> and select it.</li><li>Choose <strong>Terminal → New Terminal</strong>. The terminal should start inside the folder you opened.</li></ol>
+<p>This is your <strong>parent folder</strong>. Vite will create a separate project folder inside it.</p>
+</section><section id="create-project" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 2</p>
+<h2>Create a React project</h2>
+<p>Run this command in the terminal. <code>my-app</code> is the name of the new project folder; you can choose a different name.</p>
+<div class="code-snippet" data-code-snippet="Create the project" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Create the project · BASH</span></div>
+  <pre tabindex="0" aria-label="Create the project code"><code class="language-bash">npm create vite@latest my-app</code></pre>
+</div>
+<ol><li>If npm asks to install <code>create-vite</code>, confirm to continue.</li><li>Use the arrow keys and Enter to select <strong>React</strong> as the framework.</li><li>Select <strong>JavaScript</strong> as the variant/template.</li><li>If asked to install with npm and start now, you can accept. Otherwise, use the commands in the next step.</li></ol>
+<p>Prompt wording can vary between Vite versions.</p>
+<figure><a href="../../assets/images/starting-a-react-project/project-folder.png" aria-label="Open full-size screenshot: VS Code Explorer showing an example-app folder inside React Projects."><img src="../../assets/images/starting-a-react-project/project-folder.png" width="207" height="79" loading="lazy" alt="VS Code Explorer showing an example-app folder inside React Projects." /></a><figcaption>The new folder appears inside your projects folder. These screenshots use <code>example-app</code>; the commands in this guide use <code>my-app</code>.</figcaption></figure>
+</section><section id="start-server" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 3</p>
+<h2>Install packages and start the server</h2>
+<p>If the setup has already started a server and shows a <strong>Local</strong> address, go to Step 4. Otherwise, run these commands one at a time from the parent folder:</p>
+<div class="code-snippet" data-code-snippet="Install and start" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Install and start · BASH</span></div>
+  <pre tabindex="0" aria-label="Install and start code"><code class="language-bash"><span class="syntax-function">cd</span> my-app
+npm install
+npm run dev</code></pre>
+</div>
+<ul><li><code>cd my-app</code> moves into your project. Skip it if the terminal is already there.</li><li><code>npm install</code> downloads the project dependencies. You normally need it on first setup, not every restart.</li><li><code>npm run dev</code> starts Vite’s development server.</li></ul>
+<figure><a href="../../assets/images/starting-a-react-project/vite-server.png" aria-label="Open full-size screenshot: Vite terminal output showing a ready message and Local address http://localhost:5173/."><img src="../../assets/images/starting-a-react-project/vite-server.png" width="405" height="152" loading="lazy" alt="Vite terminal output showing a ready message and Local address http://localhost:5173/." /></a><figcaption>A ready message and Local address mean the development server is running. Leave this terminal open while working.</figcaption></figure>
+</section><section id="open-website" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 4</p>
+<h2>Open the website</h2>
+<p>Hold <kbd>Ctrl</kbd> and click the terminal’s <strong>Local</strong> link, or copy the address into your browser. It is usually <code>http://localhost:5173/</code>; use the address the terminal actually shows if the port is different.</p>
+<figure><a href="../../assets/images/starting-a-react-project/vite-react-starter.png" aria-label="Open full-size screenshot: The Vite and React starter page with two logos, a Vite + React heading and a counter button."><img src="../../assets/images/starting-a-react-project/vite-react-starter.png" width="1920" height="922" loading="lazy" alt="The Vite and React starter page with two logos, a Vite + React heading and a counter button." /></a><figcaption>You should see a starter page. The exact design may differ from this screenshot as the template changes.</figcaption></figure>
+<p><code>localhost</code> means this computer. The site is running locally for development.</p>
+</section><section id="restart-server" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Returning to your project</p>
+<h2>Restart from the correct folder</h2>
+<p>To stop the server, focus its terminal and press <kbd>Ctrl</kbd> + <kbd>C</kbd>. To start again later, first check the terminal path: it must be the project folder containing <code>package.json</code>.</p>
+<figure><a href="../../assets/images/starting-a-react-project/terminal-parent-folder.png" aria-label="Open full-size screenshot: Terminal prompt ending in React Projects, the parent folder."><img src="../../assets/images/starting-a-react-project/terminal-parent-folder.png" width="462" height="26" loading="lazy" alt="Terminal prompt ending in React Projects, the parent folder." /></a><figcaption>Wrong folder for <code>npm run dev</code>: the terminal is still in the parent folder.</figcaption></figure>
+<figure><a href="../../assets/images/starting-a-react-project/terminal-project-folder.png" aria-label="Open full-size screenshot: Terminal prompt ending in React Projects/example-app, the project folder."><img src="../../assets/images/starting-a-react-project/terminal-project-folder.png" width="561" height="24" loading="lazy" alt="Terminal prompt ending in React Projects/example-app, the project folder." /></a><figcaption>Correct folder: the path ends with the app’s folder name.</figcaption></figure>
+<p>From the parent folder, run:</p>
+<div class="code-snippet" data-code-snippet="Restart the server" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Restart the server · BASH</span></div>
+  <pre tabindex="0" aria-label="Restart the server code"><code class="language-bash"><span class="syntax-function">cd</span> my-app
+npm run dev</code></pre>
+</div>
+<p>Alternatively, use <strong>File → Open Folder</strong> to open <code>my-app</code> directly in VS Code, then open a new terminal and run just <code>npm run dev</code>.</p>
+<figure><a href="../../assets/images/starting-a-react-project/restart-server.png" aria-label="Open full-size screenshot: Terminal commands cd example-app followed by npm run dev from inside that folder."><img src="../../assets/images/starting-a-react-project/restart-server.png" width="636" height="44" loading="lazy" alt="Terminal commands cd example-app followed by npm run dev from inside that folder." /></a><figcaption>The screenshot uses <code>example-app</code>. Substitute your own project folder name.</figcaption></figure>
+<p class="reference-note">You do not need to create the project again. Open the existing folder and restart its server.</p>
+</section><section id="project-files" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 5</p>
+<h2>Find the files you will edit</h2>
+<p>Expand the project folder in VS Code’s Explorer, then open <code>src</code>.</p>
+<dl class="reference-files"><dt><code>src/App.jsx</code></dt><dd>The main React component you will edit for this starter page.</dd><dt><code>src/App.css</code></dt><dd>Styles imported by <code>App.jsx</code>.</dd><dt><code>src/index.css</code></dt><dd>Global styles, including the page layout and margin reset.</dd><dt><code>index.html</code> (in the project folder)</dt><dd>The HTML entry page. You can update the tab title and other metadata in its <code>&lt;head&gt;</code>.</dd></dl>
+<p>Match the filenames exactly: <code>App.jsx</code> and <code>App.css</code> begin with a capital A; <code>index.css</code> uses lowercase.</p>
+</section><section id="replace-app" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 6</p>
+<h2>Replace the starter component</h2>
+<p>Replace all the contents of <code>src/App.jsx</code> with this JSX, then save:</p>
+<div class="code-snippet" data-code-snippet="src/App.jsx" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">src/App.jsx · JSX</span></div>
+  <pre tabindex="0" aria-label="src/App.jsx code"><code class="language-jsx"><span class="syntax-keyword">import</span> <span class="syntax-string">&#x27;./App.css&#x27;</span>
+
+<span class="syntax-keyword">function</span> App() {
+  <span class="syntax-keyword">return</span> (
+    &lt;&gt;
+      &lt;<span class="syntax-tag">header</span>&gt;
+        some header
+      &lt;/<span class="syntax-tag">header</span>&gt;
+      &lt;<span class="syntax-tag">main</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">&quot;main-content&quot;</span>&gt;
+        main content here
+      &lt;/<span class="syntax-tag">main</span>&gt;
+      &lt;<span class="syntax-tag">footer</span>&gt;
+        some footer
+      &lt;/<span class="syntax-tag">footer</span>&gt;
+    &lt;/&gt;
+  )
+}
+
+<span class="syntax-keyword">export</span> <span class="syntax-keyword">default</span> App</code></pre>
+</div>
+<p><strong>JSX</strong> lets you write HTML-like markup inside JavaScript. <code>App</code> returns the page content. The <code>&lt;&gt;...&lt;/&gt;</code> wrapper is a <strong>fragment</strong>: it groups the header, main and footer without adding another HTML element.</p>
+<p>Keep <code>import './App.css'</code> and <code>export default App</code>. The import connects the stylesheet; the export makes the component available to the app’s entry code.</p>
+</section><section id="replace-css" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 7</p>
+<h2>Reset the CSS and set up the layout</h2>
+<ol><li>Open <code>src/App.css</code>, delete its starter styles and save the empty file. Keep the file itself.</li><li>Replace all the contents of <code>src/index.css</code> with the following CSS, then save.</li></ol>
+<div class="code-snippet" data-code-snippet="src/index.css" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">src/index.css · CSS</span></div>
+  <pre tabindex="0" aria-label="src/index.css code"><code class="language-css">:root {
+  <span class="syntax-keyword">font-family</span>: system-ui, Avenir, Helvetica, Arial, <span class="syntax-keyword">sans-serif</span>;
+  <span class="syntax-keyword">line-height</span>: <span class="syntax-number">1.5</span>;
+  <span class="syntax-keyword">font-weight</span>: <span class="syntax-number">400</span>;
+
+  <span class="syntax-comment">/* Keep the template&#x27;s font rendering settings. */</span>
+  <span class="syntax-keyword">font-synthesis</span>: <span class="syntax-keyword">none</span>;
+  text-rendering: <span class="syntax-keyword">optimizeLegibility</span>;
+  <span class="syntax-keyword">-webkit-</span>font-smoothing: antialiased;
+  <span class="syntax-keyword">-moz-</span>osx-font-smoothing: grayscale;
+}
+
+<span class="syntax-comment">/* Remove default margins and include padding/borders in sizes. */</span>
+*, *::before, *::after {
+  <span class="syntax-keyword">margin</span>: <span class="syntax-number">0</span>;
+  <span class="syntax-keyword">box-sizing</span>: <span class="syntax-keyword">border-box</span>;
+}
+
+<span class="syntax-comment">/* Make the app at least as tall as the viewport. */</span>
+#root {
+  <span class="syntax-keyword">display</span>: <span class="syntax-keyword">flex</span>;
+  <span class="syntax-keyword">flex-direction</span>: <span class="syntax-keyword">column</span>;
+  <span class="syntax-keyword">min-height</span>: <span class="syntax-number">100</span><span class="syntax-keyword">vh</span>;
+  <span class="syntax-keyword">width</span>: <span class="syntax-number">100</span><span class="syntax-keyword">%</span>;
+}
+
+<span class="syntax-comment">/* Let the main content grow to push the footer down. */</span>
+#main-content {
+  <span class="syntax-keyword">flex</span>: <span class="syntax-number">1</span>;
+}</code></pre>
+</div>
+<p>The default colours and starter layout have been removed. This is a simple starting point for a page with a header, content in the middle and a footer.</p>
+</section><section id="layout-explained" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Understand the setup</p>
+<h2>Why the footer stays at the bottom</h2>
+<h3>Remove default margins</h3><p><code>*</code> selects every element. <code>*::before</code> and <code>*::after</code> include their generated pseudo-elements. <code>margin: 0</code> removes the browser’s default margins, so you can add spacing deliberately to match your design. <code>box-sizing: border-box</code> includes padding and borders within an element’s declared size.</p>
+<h3>Make the app fill the page</h3><p><code>:root</code> selects the document’s root element (normally <code>&lt;html&gt;</code>); <code>#root</code> selects the element with <code>id="root"</code>, where React renders the app. They are different selectors.</p>
+<figure><a href="../../assets/images/starting-a-react-project/root-inspector.png" aria-label="Open full-size screenshot: Browser developer tools highlighting div id=root, with header and footer inside it."><img src="../../assets/images/starting-a-react-project/root-inspector.png" width="490" height="185" loading="lazy" alt="Browser developer tools highlighting div id=root, with header and footer inside it." /></a><figcaption>Developer tools show the app inside <code>#root</code>. This screenshot highlights the container; your completed example also includes <code>main</code> between the header and footer.</figcaption></figure>
+<p><code>display: flex</code> and <code>flex-direction: column</code> stack the root’s children vertically. <code>min-height: 100vh</code> makes it at least as tall as the viewport, while still allowing a longer page to grow.</p>
+<h3>Let the main content take the spare space</h3><p><code>#main-content { flex: 1; }</code> lets the main area grow into the remaining vertical space, pushing the footer to the bottom on a short page. The fragment adds no wrapper, so header, main and footer are direct children of <code>#root</code>.</p>
+<p>This is not a fixed footer: on a longer page it follows the content. More complex designs may need a different layout.</p>
+</section><section id="check-and-troubleshoot" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Final check</p>
+<h2>Save, check and keep building</h2>
+<ol><li>Keep the development server running and save all three edited files.</li><li>Look at the browser: you should see “some header”, “main content here” and “some footer”, with the starter logos and counter removed.</li><li>On a short page, check that the footer sits at the bottom. Change the text in <code>App.jsx</code>, save, and check that the browser updates.</li></ol>
+<h3>Common setup problems</h3><dl class="reference-files"><dt>npm cannot find <code>package.json</code></dt><dd>Check the terminal path. Move into the project folder before running <code>npm install</code> or <code>npm run dev</code>.</dd><dt>The browser cannot connect</dt><dd>Make sure the server is still running. Use the Local address printed by Vite, including its port number.</dd><dt>The old layout or colours remain</dt><dd>Clear <code>App.css</code>, replace <code>index.css</code> completely and save both files.</dd><dt>The page is blank or shows an error</dt><dd>Check the terminal and browser error message. Confirm the filename, JSX closing tags, <code>return</code> parentheses and <code>export default App</code>.</dd></dl>
+<p>For more detail, see <a href="https://vite.dev/guide/">Vite’s getting started guide</a> and <a href="https://react.dev/learn/writing-markup-with-jsx">React’s guide to JSX</a>.</p>
+</section>
+    </main>
+    <aside class="lesson-rail">
+      <section class="lesson-rail-card panel glossary-card"><p class="eyebrow">Glossary</p><h2>Quick glossary</h2><dl class="glossary-list">
+        <div class="glossary-item"><dt>React</dt><dd>A JavaScript library for building user interfaces from components.</dd></div>
+        <div class="glossary-item"><dt>Vite</dt><dd>A development tool that sets up, serves and builds the project.</dd></div>
+        <div class="glossary-item"><dt>npm</dt><dd>A tool for installing packages and running project scripts.</dd></div>
+        <div class="glossary-item"><dt>JSX</dt><dd>HTML-like markup written inside JavaScript.</dd></div>
+        <div class="glossary-item"><dt>Working directory</dt><dd>The folder where the terminal is currently running commands.</dd></div>
+      </dl></section>
+      <section class="lesson-rail-card panel revision-card"><p class="eyebrow">Coming back later?</p><h2>Restart checklist</h2><ul class="memory-list"><li>Open your existing project.</li><li>Check the terminal folder.</li><li>Run <code>npm run dev</code>.</li><li>Open the Local address.</li></ul><a href="#restart-server">See the restart steps</a></section>
+    </aside>
+  </div>
+  <section class="lesson-sequence panel" aria-label="Resource navigation"><a class="primary-link" href="../resources/web-development.html#react-frontend">Back to React Frontend</a></section>
+</div>
+<div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+  <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+  <p class="slide-status" data-role="slide-status">Slide 1</p>
+  <button type="button" class="slide-button" data-action="next-slide">Next</button>
+  <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+</div>
+</body>
+</html>

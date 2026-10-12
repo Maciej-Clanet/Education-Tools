@@ -21,6 +21,20 @@ empty **direct child** of a lesson section; it cannot split a nested form.
 Use `data-no-slide-advance` around activity regions. Assessment migration rules
 live once in [lesson authoring](lesson_authoring.md#components-and-learner-work).
 
+## Read-only code snippets
+
+Use `css/code-snippets.css` and `initCodeSnippets()` from
+`javascript/core/code-snippets.js` for reference code that should not run in the
+Playground. Host: `[data-code-snippet="Descriptive filename or command label"]`
+with `data-no-slide-advance`; include `.code-snippet__toolbar` with a
+`.code-snippet__label`, then `pre[tabindex="0"] > code`. Give the pre an accessible
+label. Optional authored `syntax-keyword/tag/attribute/property/string/number/
+comment/function` spans provide static highlighting; escape code as HTML and
+preserve whitespace. Copy uses code textContent, excluding markup and labels.
+The status announces success; denied/unavailable clipboard access selects the
+code and gives manual-copy instructions. No persistence or code execution.
+Example: [React setup reference](../pages/topics/starting-a-react-project.html).
+
 ## Sequences and motion
 
 | Need | Source | Current example |

@@ -32,8 +32,8 @@ export const catalogItems = [
     kicker: "Teaching resources",
     title: "Web Development",
     summary:
-      "A starter hub for web development teaching resources, beginning with HTML basics, CSS basics, and JavaScript basics.",
-    badges: ["Subject area: Web development", "HTML", "CSS", "JavaScript"],
+      "Web development resources for HTML, CSS, JavaScript and React, with a FastAPI Backend section.",
+    badges: ["Subject area: Web development", "HTML", "CSS", "JavaScript", "React"],
     keywords: [
       "web development",
       "web dev",
@@ -42,6 +42,8 @@ export const catalogItems = [
       "css basics",
       "javascript",
       "javascript basics",
+      "react frontend",
+      "fastapi backend",
       "teaching resources",
       "web development resources",
       "coding",
@@ -49,6 +51,20 @@ export const catalogItems = [
     ],
     actionLabel: "Open Web Development hub",
     href: "pages/resources/web-development.html",
+  },
+  {
+    id: "topic-starting-a-react-project",
+    status: "live",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "React Frontend",
+    title: "Starting a React project",
+    summary:
+      "A step-by-step setup reference for React with Vite and VS Code, with screenshots, terminal commands, JSX and a simple page layout.",
+    badges: ["Subject area: Web development", "React", "Setup reference"],
+    keywords: ["react", "react frontend", "vite", "npm", "node", "jsx", "vs code", "starting a react project", "dev server", "localhost", "header main footer"],
+    actionLabel: "Open reference lesson",
+    href: "pages/topics/starting-a-react-project.html?context=web-development",
   },
   {
     id: "tool-code-playground",
