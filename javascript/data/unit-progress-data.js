@@ -323,7 +323,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "units-of-digital-data",
           title: "Units of digital data",
           href: "../topics/units-of-digital-data.html?context=btec-level-3-unit-2",
-          quiz: { version: 4, totalQuestions: 12, passScore: 9 },
+          quiz: { version: 6, totalQuestions: 8, passScore: 6, storageKey: "lesson-units-of-digital-data-quiz-v6" },
         },
         {
           id: "binary-and-bcd",

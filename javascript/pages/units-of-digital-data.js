@@ -1,7 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
-import { readStorage, removeStorage, writeStorage } from "../core/storage.js"
 import { initConversionSteppers } from "../core/conversion-stepper.js"
 import { nextKernelState } from "../core/kernel-visualiser.js"
+import { readStorage, removeStorage, writeStorage } from "../core/storage.js"
 
 const lessonConfig = {
   lessonId: "units-of-digital-data",
@@ -26,10 +26,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-units-of-digital-data-quiz-v4",
-    passScore: 9,
-    totalQuestions: 12,
-    version: 4,
+    storageKey: "lesson-units-of-digital-data-quiz-v6",
+    passScore: 6,
+    totalQuestions: 8,
+    version: 6,
   },
   examPractice: {
     storageKey: "lesson-units-of-digital-data-exam-practice",
@@ -98,18 +98,6 @@ function formatNumber(value) {
   }).format(value)
 }
 
-function getDirectionHint(fromUnit, toUnit) {
-  const stepDifference = UNIT_POWERS[toUnit] - UNIT_POWERS[fromUnit]
-  const stepCount = Math.abs(stepDifference)
-  const stepWord = stepCount === 1 ? "step" : "steps"
-
-  if (stepDifference > 0) {
-    return `Hint: ${toUnit} is a larger unit, so divide ${stepCount} ${stepWord}.`
-  }
-
-  return `Hint: ${toUnit} is a smaller unit, so multiply ${stepCount} ${stepWord}.`
-}
-
 function parseAnswer(rawValue, expectedUnit) {
   const cleanedValue = rawValue.trim().replaceAll(",", "")
 
@@ -174,78 +162,34 @@ function createTaskCard(task) {
   const card = document.createElement("article")
   card.className = "practice-task-card"
   card.dataset.taskId = task.id.toString()
-
-  const top = document.createElement("div")
-  top.className = "practice-task-top"
-
-  const label = document.createElement("span")
-  label.className = "practice-task-label"
-  label.textContent = task.level
-
   const title = document.createElement("h3")
   title.className = "practice-task-title"
-  title.textContent = `Convert ${formatNumber(task.value)} ${task.from} to ${task.to}`
-
-  const note = document.createElement("p")
-  note.className = "practice-task-note"
-  note.textContent = `Type the answer in ${task.to}.`
-
-  top.append(label, title, note)
-
+  title.textContent = task.id + ". " + formatNumber(task.value) + " " + task.from + " → " + task.to
   const form = document.createElement("form")
   form.className = "practice-task-form"
   form.dataset.taskId = task.id.toString()
-
-  const inputLabel = document.createElement("label")
-  inputLabel.className = "sr-only"
-  inputLabel.setAttribute("for", `practice-task-${task.id}`)
-  inputLabel.textContent = `Answer for conversion task ${task.id}`
-
-  const answerWrap = document.createElement("div")
-  answerWrap.className = "practice-answer-wrap"
-
+  const label = document.createElement("label")
+  label.className = "sr-only"
+  label.htmlFor = "practice-task-" + task.id
+  label.textContent = "Question " + task.id + ": answer in " + task.to
   const input = document.createElement("input")
-  input.id = `practice-task-${task.id}`
+  input.id = label.htmlFor
   input.className = "practice-task-input"
   input.type = "text"
   input.inputMode = "decimal"
   input.autocomplete = "off"
-  input.placeholder = "Enter your answer"
-
-  const unit = document.createElement("span")
-  unit.className = "practice-unit-pill"
-  unit.textContent = task.to
-
-  answerWrap.append(input, unit)
-
+  input.placeholder = "Answer in " + task.to
   const button = document.createElement("button")
-  button.className = "primary-link"
+  button.className = "lesson-secondary-action"
   button.type = "submit"
-  button.textContent = "Check answer"
-
-  form.append(inputLabel, answerWrap, button)
-
-  const hint = document.createElement("p")
-  hint.className = "practice-task-hint"
-  hint.textContent = getDirectionHint(task.from, task.to)
-
+  button.textContent = "Check"
+  button.setAttribute("aria-label", "Check question " + task.id)
+  form.append(label, input, button)
   const feedback = document.createElement("p")
   feedback.className = "practice-feedback is-empty"
-  feedback.setAttribute("aria-live", "polite")
+  feedback.setAttribute("role", "status")
   feedback.textContent = DEFAULT_FEEDBACK
-
-  card.append(top, form, hint, feedback)
-  const steps = document.createElement("button")
-  steps.type = "button"
-  steps.className = "lesson-secondary-action"
-  steps.textContent = "Show me the steps (decimal)"
-  steps.addEventListener("click", () => {
-    const stepper = document.querySelector('#conversion-stepper [data-conversion-stepper]')
-    stepper.dispatchEvent(new CustomEvent('conversion:load', { detail: { ...task, base: 1000 } }))
-    document.querySelector('[data-section-link][href="#conversion-stepper"]').click()
-    stepper.querySelector('[data-convert-action=step]').focus({ preventScroll: true })
-  })
-  card.append(steps)
+  card.append(title, form, feedback)
   return card
 }
 
@@ -357,33 +301,6 @@ function initPracticeZone() {
   }
 
   taskGrid?.replaceChildren(...tasks.map((task) => createTaskCard(task)))
-  // Present one existing question at a time in Teacher Slides; keep all student cards.
-  let presentation = { index: 0, playing: false }
-  const presentationControls = document.createElement('div')
-  presentationControls.className = 'du-controls du-workshop-controls'
-  presentationControls.dataset.noSlideAdvance = ''
-  const previousTask = document.createElement('button')
-  const nextTask = document.createElement('button')
-  const taskStatus = document.createElement('span')
-  previousTask.type = nextTask.type = 'button'
-  previousTask.textContent = 'Previous question'
-  nextTask.textContent = 'Next question'
-  previousTask.dataset.workshopPrevious = ''
-  nextTask.dataset.workshopNext = ''
-  taskStatus.setAttribute('role', 'status')
-  function presentTask() {
-    taskGrid.querySelectorAll('.practice-task-card').forEach((card, index) => {
-      card.toggleAttribute('data-workshop-current', index === presentation.index)
-    })
-    previousTask.disabled = presentation.index === 0
-    nextTask.disabled = presentation.index === tasks.length - 1
-    taskStatus.textContent = `Question ${presentation.index + 1} of ${tasks.length}`
-  }
-  previousTask.addEventListener('click', () => { presentation = nextKernelState(presentation, 'previous', tasks.length); presentTask() })
-  nextTask.addEventListener('click', () => { presentation = nextKernelState(presentation, 'step', tasks.length); presentTask() })
-  presentationControls.append(previousTask, taskStatus, nextTask)
-  taskGrid.before(presentationControls)
-  presentTask()
   restoreState()
   updateProgress()
 
@@ -427,7 +344,7 @@ function initPracticeZone() {
         card,
         feedback,
         "correct",
-        `Correct. Decimal: ${formatNumber(task.decimalAnswer)} ${task.to}. Binary: ${formatNumber(task.binaryAnswer)} ${task.to}.`
+        "Correct."
       )
     } else {
       completedTaskIds.delete(task.id)
@@ -435,7 +352,7 @@ function initPracticeZone() {
         card,
         feedback,
         "incorrect",
-        `Not quite. Accepted answers include ${formatNumber(task.decimalAnswer)} ${task.to} using base 1000 and ${formatNumber(task.binaryAnswer)} ${task.to} using base 1024.`
+        `Try again. 1000: ${formatNumber(task.decimalAnswer)} ${task.to}; 1024: ${formatNumber(task.binaryAnswer)} ${task.to}.`
       )
     }
 
@@ -485,30 +402,84 @@ function initPracticeZone() {
   })
 }
 
-initLessonPage(lessonConfig)
-initConversionSteppers()
-initPracticeZone()
+// Map retired section links to the matching teaching section.
+const SECTION_ALIASES = {
+  "decimal-units": "two-systems",
+  "binary-units": "two-systems",
+  "conversion-strategy": "conversion-stepper",
+  "worked-decimal": "conversion-stepper",
+  "worked-binary": "conversion-stepper",
+  "worked-multiple": "conversion-stepper",
+  "one-byte": "unit-ladder",
+  "bits-to-bytes": "same-prefix",
+  "capacity-and-rate": "unit-labels",
+  "transfer-rate": "unit-labels",
+  "mistakes": "quiz",
+  "exam-practice": "transfer-practice",
+}
+
+function resolveSectionAlias() {
+  const section = SECTION_ALIASES[window.location.hash.slice(1)]
+  if (!section) return
+  window.history.replaceState(null, "", "#" + section)
+  document.getElementById(section)?.scrollIntoView()
+}
 
 function initBitPatterns() {
   const host = document.querySelector('[data-bit-patterns]')
-  if (!host) return
   const counts = [1, 2, 3, 8]
   let state = { index: 0, playing: false }
+  host.querySelector('[data-pattern-controls]').hidden = false
   function render() {
     const bits = counts[state.index]
-    host.querySelector('[data-pattern-label]').textContent = `${bits} ${bits === 1 ? 'bit' : 'bits'} → ${2 ** bits} possible patterns${bits === 8 ? ' (five more doublings from 3 bits)' : ''}`
+    host.querySelector('[data-pattern-label]').textContent = bits + (bits === 1 ? ' bit' : ' bits') + ' → ' + 2 ** bits + ' possible patterns'
     const patterns = bits === 8 ? ['00000000', '…', '11111111'] : Array.from({ length: 2 ** bits }, (_, i) => i.toString(2).padStart(bits, '0'))
     host.querySelector('[data-pattern-values]').replaceChildren(...patterns.map(value => {
-      const code = document.createElement('code'); code.textContent = value; return code
+      const code = document.createElement('code')
+      code.textContent = value
+      return code
     }))
     host.querySelector('[data-pattern-previous]').disabled = state.index === 0
     host.querySelector('[data-pattern-next]').disabled = state.index === counts.length - 1
   }
   for (const [selector, action] of [['previous', 'previous'], ['next', 'step'], ['reset', 'reset']]) {
-    host.querySelector(`[data-pattern-${selector}]`).addEventListener('click', () => {
-      state = nextKernelState(state, action, counts.length); render()
+    host.querySelector('[data-pattern-' + selector + ']').addEventListener('click', () => {
+      state = nextKernelState(state, action, counts.length)
+      render()
     })
   }
   render()
 }
+
+function initTransferTasks() {
+  document.querySelectorAll('[data-transfer-task]').forEach(form => {
+    const rate = Number(form.dataset.bitRate) / 8
+    const seconds = Number(form.dataset.fileSize) / rate
+    const feedback = form.querySelector('.du-task-feedback')
+    form.querySelector('button').disabled = false
+    form.addEventListener('input', () => {
+      feedback.textContent = ''
+      form.classList.remove('is-correct', 'is-incorrect')
+    })
+    form.addEventListener('submit', event => {
+      event.preventDefault()
+      const rateAnswer = form.querySelector('[data-rate-answer]').value
+      const timeAnswer = form.querySelector('[data-time-answer]').value
+      const correct = rateAnswer.trim() !== '' && timeAnswer.trim() !== '' &&
+        isAcceptedAnswer(Number(rateAnswer), rate) && isAcceptedAnswer(Number(timeAnswer), seconds)
+      form.classList.toggle('is-correct', correct)
+      form.classList.toggle('is-incorrect', !correct)
+      feedback.textContent = (correct ? 'Correct. ' : 'Try again. ') +
+        form.dataset.bitRate + ' ÷ 8 = ' + rate + ' MB/s. ' +
+        formatNumber(Number(form.dataset.fileSize)) + ' ÷ ' + rate + ' = ' + seconds + ' seconds.'
+    })
+  })
+}
+
+resolveSectionAlias()
+window.addEventListener("hashchange", resolveSectionAlias)
+initLessonPage(lessonConfig)
+initConversionSteppers()
+initPracticeZone()
 initBitPatterns()
+initTransferTasks()

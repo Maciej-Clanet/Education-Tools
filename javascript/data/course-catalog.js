@@ -1262,7 +1262,7 @@ export const catalogItems = [
     kicker: "C1 Number systems",
     title: "Units of digital data",
     summary:
-      "A live revision lesson on bits, bytes, decimal and binary data units, conversion strategy, and storage versus transfer-rate units.",
+      "Learn about bits and bytes, convert decimal and binary data units, distinguish MB from Mb, and calculate file transfer times.",
     badges: ["Subject area: Data representation"],
     keywords: [
       "units of digital data",
@@ -1277,6 +1277,7 @@ export const catalogItems = [
       "binary units",
       "storage capacity",
       "data rate",
+      "file transfer time",
       "btec unit 2 c1",
       "computer systems",
     ],
