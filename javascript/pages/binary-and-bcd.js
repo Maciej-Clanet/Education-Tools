@@ -27,10 +27,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-binary-and-bcd-quiz-v3",
+    storageKey: "lesson-binary-and-bcd-quiz-v4",
     passScore: 9,
     totalQuestions: 12,
-    version: 3,
+    version: 4,
   },
   examPractice: {
     storageKey: "lesson-binary-and-bcd-exam-practice",

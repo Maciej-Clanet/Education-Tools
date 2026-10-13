@@ -24,10 +24,10 @@ const lessonConfig = {
     },
   },
   quiz: {
-    storageKey: "lesson-hexadecimal-numbers-quiz-v2",
+    storageKey: "lesson-hexadecimal-numbers-quiz-v3",
     passScore: 8,
     totalQuestions: 10,
-    version: 2,
+    version: 3,
   },
   examPractice: {
     storageKey: "lesson-hexadecimal-numbers-exam-practice",

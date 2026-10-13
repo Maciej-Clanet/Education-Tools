@@ -12,6 +12,8 @@ section to decide what to assume, introduce, develop or leave for later.
   in comparisons and state what stays fixed. Introduce controls as their concepts
   are taught. Use fresh examples for independent application.
 - Keep fuller revision explanations available to students without crowding slides.
+  Show essential first-teaching steps in a clear, visible sequence; use accordions
+  for optional detail or answer guidance, not for the steps students need to learn.
   Use static HTML/SVG/CSS diagrams for processes and relationships, real photos
   for equipment recognition. Record source, creator, licence and edits beside
   third-party assets; preserve attribution and reproducible image derivatives.

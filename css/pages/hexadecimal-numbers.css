@@ -410,14 +410,85 @@ body.teacher-mode-active .trap-grid {
 .hx-letter-map { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: .6rem; }
 .hx-letter-map .hx-reveal { padding: .6rem; text-align: center; }
 .hx-letter-map .hx-equation { font-size: 1.4rem; }
-.hx-place-path { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 2rem; max-width: 38rem; margin: 1rem auto; }
-.hx-place-path > div { display: grid; gap: .4rem; justify-items: center; padding: .8rem; border-bottom: 4px solid var(--lesson-accent-heading); background: rgba(31,135,125,.05); border-radius: 12px; font-size: 1.35rem; }
-.hx-place-path strong { font: 800 2.7rem monospace; }
-.hx-place-path b { font-size: 2rem; }
-.hx-place-progression { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .5rem; margin-top: .7rem; }
-.hx-place-progression > span { display: grid; gap: .3rem; text-align: center; }
-.hx-place-progression strong { font-size: 1.4rem; }
-.hx-place-progression small { color: var(--muted-ink); }
+.hx-worked-steps {
+  display: grid;
+  gap: .65rem;
+  max-width: 64rem;
+  margin: 1rem auto;
+  padding: 0;
+  list-style: none;
+}
+.hx-worked-steps > li {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: start;
+  gap: .9rem;
+  padding: .75rem 1rem;
+  border: 1px solid rgba(37, 52, 66, .16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .8);
+}
+.hx-step-number {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--lesson-accent-heading);
+  color: #fff;
+  font-weight: 800;
+}
+.hx-step-content h3 {
+  margin: .1rem 0 .4rem;
+  font-family: inherit;
+  font-size: 1.12rem;
+  line-height: 1.4;
+  color: var(--page-ink);
+}
+.hx-step-content .hx-step-equation,
+.hx-result {
+  margin: .3rem 0 0;
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  line-height: 1.45;
+}
+.hx-equation-gap { display: inline-block; width: 1.5rem; }
+.hx-calculations,
+.hx-step-mapping {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  max-width: 36rem;
+}
+.hx-calculations > div,
+.hx-step-mapping > div {
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  background: rgba(31, 135, 125, .07);
+}
+.hx-calculations span { font-size: .95rem; color: var(--muted-ink); }
+.hx-calculations p { margin: .2rem 0 0; font-size: clamp(1.2rem, 2vw, 1.65rem); }
+.hx-step-mapping { max-width: 28rem; }
+.hx-step-mapping > div { display: grid; justify-items: center; gap: .1rem; }
+.hx-step-mapping code,
+.hx-step-mapping strong { font: 800 clamp(1.2rem, 2vw, 1.65rem) monospace; }
+.hx-step-mapping span { line-height: 1; }
+.hx-step-content .hx-step-note { margin: .4rem 0 0; font-size: 1rem; }
+.hx-added-bits { background: #fff0b5; border-bottom: 3px solid var(--lesson-accent-heading); }
+.hx-place-note,
+.hx-result { max-width: 64rem; margin: .8rem auto 0; }
+.hx-place-note { font-size: 1rem; line-height: 1.5; }
+.hx-result { padding-left: 1rem; border-left: 4px solid var(--lesson-accent-heading); }
+.hx-visible-example { padding: .8rem 1rem; border-left: 4px solid var(--lesson-accent-heading); background: rgba(31, 135, 125, .05); }
+.hx-visible-example h3 { margin: 0; font-family: inherit; font-size: 1.15rem; }
+.hx-visible-example p:last-child { margin-bottom: 0; }
+.hx-visible-example .hx-address-binary { margin: .75rem 0; }
+.hx-visible-example .hx-equation { margin: .6rem 0 0; }
+body.teacher-mode-active .hx-step-content h3 { font-size: 1em; }
+body.teacher-mode-active .hx-step-content .hx-step-equation,
+body.teacher-mode-active .hx-calculations p,
+body.teacher-mode-active .hx-step-mapping code,
+body.teacher-mode-active .hx-step-mapping strong,
+body.teacher-mode-active .hx-result { font-size: 1.375em; }
 .hx-bridge { padding-left: 1.6rem; }
 .hx-bridge li { margin: .65rem 0; }
 .hx-bridge p { margin: .4rem 0; }
@@ -448,8 +519,11 @@ body.teacher-mode-active #exam-practice .exam-guidance-body p { margin: .4rem 0;
   .hx-channels > div { padding: .7rem .1rem; }
   body.teacher-mode-active .hex-practice-layout { grid-template-columns: 1fr; }
 }
-.hx-side-by-side { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 1.2rem; align-items: start; }
-.hx-side-by-side > div { min-width: 0; }
-.hx-side-by-side .hx-place-path { margin-top: 0; }
-.hx-side-by-side .hx-key { margin-top: 0; }
-@media (max-width: 900px) { .hx-side-by-side { grid-template-columns: 1fr; } }
+@media (max-width: 520px) {
+  .hx-worked-steps > li { grid-template-columns: 1.65rem minmax(0, 1fr); gap: .5rem; padding: .7rem .5rem; }
+  .hx-step-number { width: 1.65rem; height: 1.65rem; }
+  .hx-calculations { grid-template-columns: 1fr; }
+  .hx-step-mapping { gap: .4rem; }
+  .hx-step-mapping > div { padding: .5rem .2rem; }
+  .hx-equation-gap { width: .4rem; }
+}

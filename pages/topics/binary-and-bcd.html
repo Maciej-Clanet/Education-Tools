@@ -1666,7 +1666,7 @@
    Check binary and BCD understanding
   </h2>
   <p class="quiz-intro">
-   Check the representation rules as well as both conversion directions. Aim for 9 out of 12.
+   Check how binary and BCD represent data, and when each is useful. Aim for 9 out of 12.
   </p>
   <form class="quiz-form" id="lesson-quiz">
    <fieldset class="quiz-question" data-answer="b" data-feedback="Binary matters because computer hardware can reliably represent two states." data-question="q1" data-success="Correct. Binary fits hardware that stores two stable states.">
@@ -1835,71 +1835,57 @@
     <p class="quiz-feedback-note" data-question-feedback="">
     </p>
    </fieldset>
-   <fieldset class="quiz-question" data-answer="c" data-feedback="Add 128 + 32 + 8 + 4 + 1 to get 173." data-question="q6" data-success="Correct. Add 128 + 32 + 8 + 4 + 1 to get 173.">
+   <fieldset class="quiz-question" data-answer="a" data-feedback="A 0 leaves that place value out of the total. A 1 includes it." data-question="q6" data-success="Correct. A 0 leaves that place value out of the total. A 1 includes it.">
     <legend>
-     6. What is 10101101 as an unsigned denary number?
+     6. What does a 0 mean in a binary place-value column?
     </legend>
     <ul class="quiz-answer-list">
      <li>
       <label class="quiz-answer">
        <input name="q6" type="radio" value="a"/>
-       <span>
-        109
-       </span>
+       <span>That column does not add to the total</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q6" type="radio" value="b"/>
-       <span>
-        237
-       </span>
+       <span>All columns to its left must also be 0</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q6" type="radio" value="c"/>
-       <span>
-        173
-       </span>
+       <span>The number has no value</span>
       </label>
      </li>
     </ul>
-    <p class="quiz-feedback-note" data-question-feedback="">
-    </p>
+    <p class="quiz-feedback-note" data-question-feedback=""></p>
    </fieldset>
-   <fieldset class="quiz-question" data-answer="a" data-feedback="42 = 32 + 8 + 2, giving 00101010." data-question="q7" data-success="Correct. 42 = 32 + 8 + 2, giving 00101010.">
+   <fieldset class="quiz-question" data-answer="c" data-feedback="Leading zeros add no value. They can fill unused positions in a fixed-width binary number." data-question="q7" data-success="Correct. Leading zeros add no value. They can fill unused positions in a fixed-width binary number.">
     <legend>
-     7. Which eight-bit binary pattern represents denary 42?
+     7. What happens when leading zeros are added to an unsigned binary number?
     </legend>
     <ul class="quiz-answer-list">
      <li>
       <label class="quiz-answer">
        <input name="q7" type="radio" value="a"/>
-       <span>
-        00101010
-       </span>
+       <span>Its value becomes larger</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q7" type="radio" value="b"/>
-       <span>
-        01000010
-       </span>
+       <span>It becomes a BCD number</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q7" type="radio" value="c"/>
-       <span>
-        00100100
-       </span>
+       <span>Its value stays the same</span>
       </label>
      </li>
     </ul>
-    <p class="quiz-feedback-note" data-question-feedback="">
-    </p>
+    <p class="quiz-feedback-note" data-question-feedback=""></p>
    </fieldset>
    <fieldset class="quiz-question" data-answer="b" data-feedback="Eight unsigned bits represent 256 values, from 0 to 255." data-question="q8" data-success="Correct. Eight unsigned bits represent 256 values, from 0 to 255.">
     <legend>
@@ -1967,104 +1953,83 @@
     <p class="quiz-feedback-note" data-question-feedback="">
     </p>
    </fieldset>
-   <fieldset class="quiz-question" data-answer="b" data-feedback="Encode 4 as 0100 and 2 as 0010, keeping digit order." data-question="q10" data-success="Correct. Encode 4 as 0100 and 2 as 0010, keeping digit order.">
+   <fieldset class="quiz-question" data-answer="b" data-feedback="BCD keeps each decimal digit in its own group, which makes the digits convenient to use in a decimal display." data-question="q10" data-success="Correct. BCD keeps each decimal digit in its own group, which makes the digits convenient to use in a decimal display.">
     <legend>
-     10. How is decimal 42 encoded in BCD?
+     10. Why can BCD be useful for a decimal display?
     </legend>
     <ul class="quiz-answer-list">
      <li>
       <label class="quiz-answer">
        <input name="q10" type="radio" value="a"/>
-       <span>
-        00101010
-       </span>
+       <span>It always uses fewer bits than pure binary</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q10" type="radio" value="b"/>
-       <span>
-        0100 0010
-       </span>
+       <span>Each decimal digit is stored separately</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q10" type="radio" value="c"/>
-       <span>
-        0010 0100
-       </span>
+       <span>It removes the need for a representation rule</span>
       </label>
      </li>
     </ul>
-    <p class="quiz-feedback-note" data-question-feedback="">
-    </p>
+    <p class="quiz-feedback-note" data-question-feedback=""></p>
    </fieldset>
-   <fieldset class="quiz-question" data-answer="a" data-feedback="Each group is one decimal digit: 2, 8, 4, 9." data-question="q11" data-success="Correct. Each group is one decimal digit: 2, 8, 4, 9.">
+   <fieldset class="quiz-question" data-answer="a" data-feedback="BCD uses four bits for every decimal digit, so it often needs more storage than pure binary." data-question="q11" data-success="Correct. BCD uses four bits for every decimal digit, so it often needs more storage than pure binary.">
     <legend>
-     11. Decode the BCD value 0010 1000 0100 1001.
+     11. What is a common disadvantage of BCD compared with pure binary?
     </legend>
     <ul class="quiz-answer-list">
      <li>
       <label class="quiz-answer">
        <input name="q11" type="radio" value="a"/>
-       <span>
-        2849
-       </span>
+       <span>It often needs more bits to store the same value</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q11" type="radio" value="b"/>
-       <span>
-        2489
-       </span>
+       <span>It cannot represent the digit zero</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q11" type="radio" value="c"/>
-       <span>
-        23
-       </span>
+       <span>It changes the order of the decimal digits</span>
       </label>
      </li>
     </ul>
-    <p class="quiz-feedback-note" data-question-feedback="">
-    </p>
+    <p class="quiz-feedback-note" data-question-feedback=""></p>
    </fieldset>
-   <fieldset class="quiz-question" data-answer="c" data-feedback="Pure binary converts the whole value; BCD encodes 2 and 7 separately." data-question="q12" data-success="Correct. Pure binary converts the whole value; BCD encodes 2 and 7 separately.">
+   <fieldset class="quiz-question" data-answer="c" data-feedback="Read each group as one decimal digit and keep the digit order. Do not add the group values together." data-question="q12" data-success="Correct. Read each group as one decimal digit and keep the digit order. Do not add the group values together.">
     <legend>
-     12. Which comparison for denary 27 is correct?
+     12. Why must the four-bit groups in BCD stay in order?
     </legend>
     <ul class="quiz-answer-list">
      <li>
       <label class="quiz-answer">
        <input name="q12" type="radio" value="a"/>
-       <span>
-        Pure binary and BCD both use 00011011
-       </span>
+       <span>The group values must be added together</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q12" type="radio" value="b"/>
-       <span>
-        Pure binary uses 00100111; BCD uses 0001 1011
-       </span>
+       <span>The largest digit must always come first</span>
       </label>
      </li>
      <li>
       <label class="quiz-answer">
        <input name="q12" type="radio" value="c"/>
-       <span>
-        Pure binary uses 00011011; BCD uses 0010 0111
-       </span>
+       <span>Each group represents a digit in its original position</span>
       </label>
      </li>
     </ul>
-    <p class="quiz-feedback-note" data-question-feedback="">
-    </p>
+    <p class="quiz-feedback-note" data-question-feedback=""></p>
    </fieldset>
    <div class="quiz-actions">
     <button class="primary-link" type="submit">
@@ -2350,7 +2315,7 @@
               Type <code>0</code> or <code>1</code> in the scratch row while you
               work through practice questions.
             </p>
-            <div class="scratch-table-wrap" tabindex="0" role="group" aria-label="Scratch table; scroll on narrow screens">
+            <div class="scratch-table-wrap" role="group" aria-label="8-bit binary scratch table">
               <table class="binary-scratch-table">
                 <caption class="sr-only">
                   Scratch binary place value table

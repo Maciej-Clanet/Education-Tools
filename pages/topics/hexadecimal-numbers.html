@@ -115,7 +115,27 @@
       <div class="lesson-layout">
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
-          <nav class="section-nav" aria-label="Lesson sections"><a data-section-link href="#overview">What is awkward about this?</a><a data-section-link href="#nibbles">Four bits give us sixteen patterns</a><a data-section-link href="#compact-binary">One symbol for each four-bit group</a><a data-section-link href="#uses">Web colours: two hex digits per channel</a><a data-section-link href="#memory-addresses">An address is easier to inspect in hex</a><a data-section-link href="#raw-bytes">Two hex digits make a byte easy to scan</a><a data-section-link href="#base-sixteen">Ten digit symbols are not enough</a><a data-section-link href="#converter">Pick a hex digit and inspect its four bits</a><a data-section-link href="#place-value">2F: two sixteens and fifteen ones</a><a data-section-link href="#hex-to-denary">Try the same method with 3A</a><a data-section-link href="#conversion-methods">Hex → binary: one digit at a time</a><a data-section-link href="#binary-to-hex">Binary → hex: group from the right</a><a data-section-link href="#denary-to-hex">Denary → hex: use the binary bridge</a><a data-section-link href="#practice-zone">Conversion Workshop</a><a data-section-link href="#mistakes">Spot the misconception</a><a data-section-link href="#summary">Four bits at a time</a><a data-section-link href="#quiz">Check the ideas and the conversions</a><a data-section-link href="#exam-practice">Explain, convert and apply</a></nav>
+          <nav class="section-nav" aria-label="Lesson sections">
+            <a data-section-link href="#overview">What is awkward about this?</a>
+            <a data-section-link href="#nibbles">Four bits give us sixteen patterns</a>
+            <a data-section-link href="#compact-binary">One symbol for each four-bit group</a>
+            <a data-section-link href="#uses">Web colours: two hex digits per channel</a>
+            <a data-section-link href="#memory-addresses">An address is easier to inspect in hex</a>
+            <a data-section-link href="#raw-bytes">Two hex digits make a byte easy to scan</a>
+            <a data-section-link href="#base-sixteen">Ten digit symbols are not enough</a>
+            <a data-section-link href="#converter">Pick a hex digit and inspect its four bits</a>
+            <a data-section-link href="#place-value">Convert 2F from hex to denary</a>
+            <a data-section-link href="#hex-to-denary">Convert 3A from hex to denary</a>
+            <a data-section-link href="#conversion-methods">Hex to binary: one digit at a time</a>
+            <a data-section-link href="#binary-to-hex">Binary to hex: group from the right</a>
+            <a href="#padding-binary" data-section-link>If the first group has fewer than four bits</a>
+            <a data-section-link href="#denary-to-hex">Denary → hex: use the binary bridge</a>
+            <a data-section-link href="#practice-zone">Conversion Workshop</a>
+            <a data-section-link href="#mistakes">Spot the misconception</a>
+            <a data-section-link href="#summary">Four bits at a time</a>
+            <a data-section-link href="#quiz">Check your understanding of hexadecimal</a>
+            <a data-section-link href="#exam-practice">Explain, convert and apply</a>
+          </nav>
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
@@ -156,10 +176,8 @@
  <p>
   Binary uses 0 and 1. As we saw in the previous lesson, agreed rules give these patterns meaning.
  </p>
- <details class="hx-reveal" data-no-slide-advance="">
-  <summary>
-   Make the pattern easier to inspect
-  </summary>
+ <div class="hx-visible-example">
+  <h3>Make the pattern easier to inspect</h3>
   <div class="hx-bit-groups">
    <code>
     1110
@@ -177,7 +195,7 @@
   <p>
    Grouping helps us keep our place when reading or copying.
   </p>
- </details>
+ </div>
  <p class="hx-key">
   Binary suits digital hardware. Long strings of bits are harder for humans to read, copy and recognise.
  </p>
@@ -419,17 +437,15 @@
   An address is easier to inspect in hex
  </h2>
  <p>
-  A memory address identifies a location in memory. Here is one illustrative 32-bit address:
+  A memory address identifies a location in memory. Here is one example:
  </p>
  <p class="hx-address-binary">
   <code>
    11010110101100101111000100101100
   </code>
  </p>
- <details class="hx-reveal" data-no-slide-advance="">
-  <summary>
-   Group and shorten it
-  </summary>
+ <div class="hx-visible-example">
+  <h3>Group and shorten it</h3>
   <p class="hx-address-binary">
    <code>
     1101 0110 1011 0010 1111 0001 0010 1100
@@ -441,23 +457,13 @@
     D6B2F12C
    </code>
   </p>
- </details>
- <p class="hx-equation">
-  <code>
-   <span class="hx-prefix">
-    0x
-   </span>
-   D6B2F12C
-  </code>
- </p>
+ </div>
  <p>
-  <strong>
-   0x
-  </strong>
-  is a common programming/debugging prefix meaning “this value is hexadecimal”. It is notation, not an extra digit.
+  In code, this is often written as <code><span class="hx-prefix">0x</span>D6B2F12C</code>.
+  The prefix <strong>0x</strong> means hexadecimal. It is not part of the number.
  </p>
  <p class="hx-caption">
-  Address widths vary. This example shows compactness, not a rule that all addresses have 32 bits.
+  This example uses a 32-bit address. Address widths vary.
  </p>
 </section>
 <section class="lesson-section panel" data-lesson-section="" id="raw-bytes">
@@ -735,180 +741,74 @@
  </article>
 </section>
 <section class="lesson-section panel" data-lesson-section="" id="place-value">
- <p class="eyebrow">
-  Hexadecimal
- </p>
- <h2>
-  2F: two sixteens and fifteen ones
- </h2>
- <p>
-  <strong>
-   F = 15.
-  </strong>
-  Multiply each digit by the value of its position.
- </p>
- <div class="hx-side-by-side">
-  <div>
-   <div class="hx-place-path">
-    <div>
-     <span>
-      16s
-     </span>
-     <strong>
-      2
-     </strong>
-     <span>
-      ↓
-     </span>
-     <span>
-      2 × 16
-     </span>
-     <b>
-      32
-     </b>
-    </div>
-    <div>
-     <span>
-      1s
-     </span>
-     <strong>
-      F
-     </strong>
-     <span>
-      ↓
-     </span>
-     <span>
-      15 × 1
-     </span>
-     <b>
-      15
-     </b>
+ <p class="eyebrow">Hexadecimal</p>
+ <h2>Convert 2F from hex to denary</h2>
+ <ol class="hx-worked-steps" role="list">
+  <li>
+   <span class="hx-step-number" aria-hidden="true">1</span>
+   <div class="hx-step-content">
+    <h3>Find the value of each digit</h3>
+    <p class="hx-step-equation"><code>2</code> = 2 <span class="hx-equation-gap"></span> <code>F</code> = 15</p>
+   </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">2</span>
+   <div class="hx-step-content">
+    <h3>Multiply each digit by its place value</h3>
+    <div class="hx-calculations">
+     <div>
+      <span>Sixteens column</span><p>2 &times; 16 = <strong>32</strong></p>
+     </div>
+     <div>
+      <span>Ones column</span><p>15 &times; 1 = <strong>15</strong></p>
+     </div>
     </div>
    </div>
-   <details class="hx-reveal" data-no-slide-advance="">
-    <summary>
-     Add the contributions
-    </summary>
-    <p class="hx-equation">
-     32 + 15 =
-     <strong>
-      47 denary
-     </strong>
-    </p>
-   </details>
-  </div>
-  <div>
-   <p class="hx-key">
-    Multiply each digit by its hexadecimal place value, then add.
-   </p>
-   <details class="hx-reveal" data-no-slide-advance="">
-    <summary>
-     How do the places continue?
-    </summary>
-    <div class="hx-place-progression">
-     <span>
-      <strong>
-       4096
-      </strong>
-      <small>
-       16³
-      </small>
-     </span>
-     <span>
-      <strong>
-       256
-      </strong>
-      <small>
-       16²
-      </small>
-     </span>
-     <span>
-      <strong>
-       16
-      </strong>
-      <small>
-       16¹
-      </small>
-     </span>
-     <span>
-      <strong>
-       1
-      </strong>
-      <small>
-       16⁰
-      </small>
-     </span>
-    </div>
-    <p>
-     Moving one position left multiplies the place value by 16.
-    </p>
-   </details>
-  </div>
- </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">3</span>
+   <div class="hx-step-content">
+    <h3>Add the results</h3>
+    <p class="hx-step-equation">32 + 15 = <strong>47 denary</strong></p>
+   </div>
+  </li>
+ </ol>
+ <p class="hx-place-note"><strong>Place values from left to right:</strong> 4096, 256, 16, 1.<br>Each place is 16 times the place to its right.</p>
 </section>
 <section class="lesson-section panel" data-lesson-section="" id="hex-to-denary">
- <p class="eyebrow">
-  Hexadecimal
- </p>
- <h2>
-  Try the same method with 3A
- </h2>
- <p>
-  <strong>
-   A = 10.
-  </strong>
-  The places are still 16s and 1s.
- </p>
- <div class="hx-place-path">
-  <div>
-   <span>
-    16s
-   </span>
-   <strong>
-    3
-   </strong>
-   <span>
-    ↓
-   </span>
-   <span>
-    3 × 16
-   </span>
-   <b>
-    48
-   </b>
-  </div>
-  <div>
-   <span>
-    1s
-   </span>
-   <strong>
-    A
-   </strong>
-   <span>
-    ↓
-   </span>
-   <span>
-    10 × 1
-   </span>
-   <b>
-    10
-   </b>
-  </div>
- </div>
- <details class="hx-reveal" data-no-slide-advance="">
-  <summary>
-   Add the contributions
-  </summary>
-  <p class="hx-equation">
-   48 + 10 =
-   <strong>
-    58 denary
-   </strong>
-  </p>
- </details>
- <p class="hx-key">
-  3A in hexadecimal = 58 in denary.
- </p>
+ <p class="eyebrow">Hexadecimal</p>
+ <h2>Convert 3A from hex to denary</h2>
+ <ol class="hx-worked-steps" role="list">
+  <li>
+   <span class="hx-step-number" aria-hidden="true">1</span>
+   <div class="hx-step-content">
+    <h3>Find the value of each digit</h3>
+    <p class="hx-step-equation"><code>3</code> = 3 <span class="hx-equation-gap"></span> <code>A</code> = 10</p>
+   </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">2</span>
+   <div class="hx-step-content">
+    <h3>Multiply each digit by its place value</h3>
+    <div class="hx-calculations">
+     <div>
+      <span>Sixteens column</span><p>3 &times; 16 = <strong>48</strong></p>
+     </div>
+     <div>
+      <span>Ones column</span><p>10 &times; 1 = <strong>10</strong></p>
+     </div>
+    </div>
+   </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">3</span>
+   <div class="hx-step-content">
+    <h3>Add the results</h3>
+    <p class="hx-step-equation">48 + 10 = <strong>58 denary</strong></p>
+   </div>
+  </li>
+ </ol>
+ <p class="hx-key">3A hexadecimal = 58 denary.</p>
 </section>
 <template data-teacher-divider="">
  <h2>
@@ -916,162 +816,108 @@
  </h2>
 </template>
 <section class="lesson-section panel" data-lesson-section="" id="conversion-methods">
- <p class="eyebrow">
-  Hexadecimal
- </p>
- <h2>
-  Hex → binary: one digit at a time
- </h2>
- <p class="hx-equation">
-  Hex
-  <strong>
-   3A
-  </strong>
- </p>
- <details class="hx-reveal" data-no-slide-advance="">
-  <summary>
-   Expand each digit to four bits
-  </summary>
-  <figure class="hx-mapping">
-   <figcaption>
-    Hex digits ↓ Binary nibbles
-   </figcaption>
-   <div class="hx-groups">
-    <div>
-     <code>
-      3
-     </code>
-     <span aria-hidden="true">
-      ↓
-     </span>
-     <strong>
-      0011
-     </strong>
-    </div>
-    <div>
-     <code>
-      A
-     </code>
-     <span aria-hidden="true">
-      ↓
-     </span>
-     <strong>
-      1010
-     </strong>
+ <p class="eyebrow">Hexadecimal</p>
+ <h2>Hex to binary: one digit at a time</h2>
+ <ol class="hx-worked-steps" role="list">
+  <li>
+   <span class="hx-step-number" aria-hidden="true">1</span>
+   <div class="hx-step-content">
+    <h3>Read the hex digits from left to right</h3>
+    <p class="hx-step-equation"><code>3A</code> &rarr; <code>3 | A</code></p>
+   </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">2</span>
+   <div class="hx-step-content">
+    <h3>Write four bits for each digit</h3>
+    <div class="hx-step-mapping">
+     <div>
+      <code>3</code><span aria-hidden="true">&darr;</span><strong>0011</strong>
+     </div>
+     <div>
+      <code>A</code><span aria-hidden="true">&darr;</span><strong>1010</strong>
+     </div>
     </div>
    </div>
-  </figure>
-  <p class="hx-equation">
-   <code>
-    3A
-   </code>
-   =
-   <code>
-    0011 1010
-   </code>
-  </p>
- </details>
- <p class="hx-key">
-  One hex digit = four bits. Keep the leading zeros inside each nibble.
- </p>
- <p>
-  3 becomes
-  <code>
-   0011
-  </code>
-  , not just
-  <code>
-   11
-  </code>
-  , so its group keeps all four positions.
- </p>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">3</span>
+   <div class="hx-step-content">
+    <h3>Join the groups in the same order</h3>
+    <p class="hx-step-equation"><strong>3A hex = <code>0011 1010</code> binary</strong></p>
+   </div>
+  </li>
+ </ol>
+ <p class="hx-place-note">Keep all four bits in each group, including leading zeros: 3 becomes <code>0011</code>.</p>
 </section>
 <section class="lesson-section panel" data-lesson-section="" id="binary-to-hex">
- <p class="eyebrow">
-  Hexadecimal
- </p>
- <h2>
-  Binary → hex: group from the right
- </h2>
- <p class="hx-equation">
-  <code>
-   1100 0111
-  </code>
- </p>
- <div class="hx-side-by-side">
-  <div>
-   <details class="hx-reveal" data-no-slide-advance="">
-    <summary>
-     Map the two groups
-    </summary>
-    <figure class="hx-mapping">
-     <figcaption>
-      Binary nibbles ↓ Hex digits
-     </figcaption>
-     <div class="hx-groups">
-      <div>
-       <code>
-        1100
-       </code>
-       <span aria-hidden="true">
-        ↓
-       </span>
-       <strong>
-        C
-       </strong>
-      </div>
-      <div>
-       <code>
-        0111
-       </code>
-       <span aria-hidden="true">
-        ↓
-       </span>
-       <strong>
-        7
-       </strong>
-      </div>
+ <p class="eyebrow">Hexadecimal</p>
+ <h2>Binary to hex: group from the right</h2>
+ <ol class="hx-worked-steps" role="list">
+  <li>
+   <span class="hx-step-number" aria-hidden="true">1</span>
+   <div class="hx-step-content">
+    <h3>Split the bits into groups of four, starting from the right</h3>
+    <p class="hx-step-equation"><code>11000111</code> &rarr; <code>1100 | 0111</code></p>
+   </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">2</span>
+   <div class="hx-step-content">
+    <h3>Match each group to one hex digit</h3>
+    <div class="hx-step-mapping">
+     <div>
+      <code>1100</code><span aria-hidden="true">&darr;</span><strong>C</strong>
      </div>
-    </figure>
-    <p class="hx-equation">
-     Result:
-     <strong>
-      C7
-     </strong>
-    </p>
-   </details>
-  </div>
-  <div>
-   <p class="hx-key">
-    Group binary from the right into groups of four.
-   </p>
-   <details class="hx-reveal" data-no-slide-advance="">
-    <summary>
-     What if the first group is short?
-    </summary>
-    <p>
-     <code>
-      101101
-     </code>
-     →
-     <code>
-      10 | 1101
-     </code>
-     →
-     <code>
-      0010 | 1101
-     </code>
-     →
-     <strong>
-      2D
-     </strong>
-    </p>
-    <p>
-     Add zeros only on the left. This preserves the value while completing the first nibble.
-    </p>
-   </details>
-  </div>
- </div>
+     <div>
+      <code>0111</code><span aria-hidden="true">&darr;</span><strong>7</strong>
+     </div>
+    </div>
+   </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">3</span>
+   <div class="hx-step-content">
+    <h3>Write the hex digits in the same order</h3>
+    <p class="hx-step-equation"><code>1100 0111</code> binary = <strong>C7 hex</strong></p>
+   </div>
+  </li>
+ </ol>
+</section>
+<section class="lesson-section panel" data-lesson-section="" id="padding-binary">
+ <p class="eyebrow">Hexadecimal</p>
+ <h2>If the first group has fewer than four bits</h2>
+ <ol class="hx-worked-steps" role="list">
+  <li>
+   <span class="hx-step-number" aria-hidden="true">1</span>
+   <div class="hx-step-content">
+    <h3>Group from the right</h3>
+    <p class="hx-step-equation"><code>101101</code> &rarr; <code>10 | 1101</code></p>
+   </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">2</span>
+   <div class="hx-step-content">
+    <h3>Add zeros to the left of the first group</h3>
+    <p class="hx-step-equation"><code><span class="hx-added-bits">00</span>10 | 1101</code></p><p class="hx-step-note">The two added zeros complete the first group. The value stays the same.</p>
+   </div>
+  </li>
+  <li>
+   <span class="hx-step-number" aria-hidden="true">3</span>
+   <div class="hx-step-content">
+    <h3>Match the groups to hex digits</h3>
+    <div class="hx-step-mapping">
+     <div>
+      <code>0010</code><span aria-hidden="true">&darr;</span><strong>2</strong>
+     </div>
+     <div>
+      <code>1101</code><span aria-hidden="true">&darr;</span><strong>D</strong>
+     </div>
+    </div>
+   </div>
+  </li>
+ </ol>
+ <p class="hx-result"><code>101101</code> binary = <strong>2D hex</strong></p>
 </section>
 <section class="lesson-section panel" data-lesson-section="" id="denary-to-hex">
  <p class="eyebrow">
@@ -1400,10 +1246,10 @@
   Quiz
  </p>
  <h2>
-  Check the ideas and the conversions
+  Check your understanding of hexadecimal
  </h2>
  <p class="quiz-intro">
-  Use the four-bit mapping and place values. Aim for 8 out of 10.
+  Check the representation rules, place values and uses of hex. Aim for 8 out of 10.
  </p>
  <form class="quiz-form" id="lesson-quiz">
   <fieldset class="quiz-question" data-answer="b" data-feedback="Hexadecimal uses sixteen possible digit values." data-question="q1" data-success="Correct. Hexadecimal is base 16.">
@@ -1571,137 +1417,41 @@
    <p class="quiz-feedback-note" data-question-feedback="">
    </p>
   </fieldset>
-  <fieldset class="quiz-question" data-answer="b" data-feedback="F represents 15; sixteen is written 10 in hexadecimal." data-question="q6" data-success="Correct. F represents 15; sixteen is written 10 in hexadecimal.">
-   <legend>
-    6. What denary value does F represent?
-   </legend>
+  <fieldset class="quiz-question" data-answer="b" data-question="q6" data-feedback="Base 16 needs sixteen digit symbols. The letters A to F supply the six symbols after 0 to 9." data-success="Correct. Base 16 needs sixteen digit symbols. The letters A to F supply the six symbols after 0 to 9.">
+   <legend>6. Why does hexadecimal use the letters A to F?</legend>
    <ul class="quiz-answer-list">
-    <li>
-     <label class="quiz-answer">
-      <input name="q6" type="radio" value="a"/>
-      <span>
-       6
-      </span>
-     </label>
-    </li>
-    <li>
-     <label class="quiz-answer">
-      <input name="q6" type="radio" value="b"/>
-      <span>
-       15
-      </span>
-     </label>
-    </li>
-    <li>
-     <label class="quiz-answer">
-      <input name="q6" type="radio" value="c"/>
-      <span>
-       16
-      </span>
-     </label>
-    </li>
+    <li><label class="quiz-answer"><input name="q6" type="radio" value="a"/><span>They show which values are negative</span></label></li>
+    <li><label class="quiz-answer"><input name="q6" type="radio" value="b"/><span>They provide six extra digit symbols for values 10 to 15</span></label></li>
+    <li><label class="quiz-answer"><input name="q6" type="radio" value="c"/><span>They separate bytes without changing their values</span></label></li>
    </ul>
-   <p class="quiz-feedback-note" data-question-feedback="">
-   </p>
+   <p class="quiz-feedback-note" data-question-feedback=""></p>
   </fieldset>
-  <fieldset class="quiz-question" data-answer="a" data-feedback="3 maps to 0011 and A maps to 1010. Keep four bits for each digit." data-question="q7" data-success="Correct. 3 maps to 0011 and A maps to 1010. Keep four bits for each digit.">
-   <legend>
-    7. Which binary pattern represents hexadecimal 3A?
-   </legend>
+  <fieldset class="quiz-question" data-answer="a" data-question="q7" data-feedback="Each hex digit needs its own complete four-bit group. Keep the leading zeros within each group." data-success="Correct. Each hex digit needs its own complete four-bit group. Keep the leading zeros within each group.">
+   <legend>7. What must you keep when writing each hex digit as binary?</legend>
    <ul class="quiz-answer-list">
-    <li>
-     <label class="quiz-answer">
-      <input name="q7" type="radio" value="a"/>
-      <span>
-       0011 1010
-      </span>
-     </label>
-    </li>
-    <li>
-     <label class="quiz-answer">
-      <input name="q7" type="radio" value="b"/>
-      <span>
-       11 10
-      </span>
-     </label>
-    </li>
-    <li>
-     <label class="quiz-answer">
-      <input name="q7" type="radio" value="c"/>
-      <span>
-       0010 1011
-      </span>
-     </label>
-    </li>
+    <li><label class="quiz-answer"><input name="q7" type="radio" value="a"/><span>All four bits in its group, including leading zeros</span></label></li>
+    <li><label class="quiz-answer"><input name="q7" type="radio" value="b"/><span>Only the bits that are 1</span></label></li>
+    <li><label class="quiz-answer"><input name="q7" type="radio" value="c"/><span>The bits in reverse order</span></label></li>
    </ul>
-   <p class="quiz-feedback-note" data-question-feedback="">
-   </p>
+   <p class="quiz-feedback-note" data-question-feedback=""></p>
   </fieldset>
-  <fieldset class="quiz-question" data-answer="a" data-feedback="1100 maps to C and 0111 maps to 7, in the same order." data-question="q8" data-success="Correct. 1100 maps to C and 0111 maps to 7, in the same order.">
-   <legend>
-    8. What is binary 1100 0111 in hexadecimal?
-   </legend>
+  <fieldset class="quiz-question" data-answer="a" data-question="q8" data-feedback="Add zeros on the left to complete the first four-bit group without changing the value." data-success="Correct. Add zeros on the left to complete the first four-bit group without changing the value.">
+   <legend>8. Where should zeros go if the leftmost binary group has fewer than four bits?</legend>
    <ul class="quiz-answer-list">
-    <li>
-     <label class="quiz-answer">
-      <input name="q8" type="radio" value="a"/>
-      <span>
-       C7
-      </span>
-     </label>
-    </li>
-    <li>
-     <label class="quiz-answer">
-      <input name="q8" type="radio" value="b"/>
-      <span>
-       7C
-      </span>
-     </label>
-    </li>
-    <li>
-     <label class="quiz-answer">
-      <input name="q8" type="radio" value="c"/>
-      <span>
-       C8
-      </span>
-     </label>
-    </li>
+    <li><label class="quiz-answer"><input name="q8" type="radio" value="a"/><span>On the left of that group</span></label></li>
+    <li><label class="quiz-answer"><input name="q8" type="radio" value="b"/><span>On the right of the whole binary number</span></label></li>
+    <li><label class="quiz-answer"><input name="q8" type="radio" value="c"/><span>After every bit that is 1</span></label></li>
    </ul>
-   <p class="quiz-feedback-note" data-question-feedback="">
-   </p>
+   <p class="quiz-feedback-note" data-question-feedback=""></p>
   </fieldset>
-  <fieldset class="quiz-question" data-answer="c" data-feedback="2 × 16 + 15 × 1 = 47." data-question="q9" data-success="Correct. 2 × 16 + 15 × 1 = 47.">
-   <legend>
-    9. What is hexadecimal 2F in denary?
-   </legend>
+  <fieldset class="quiz-question" data-answer="c" data-question="q9" data-feedback="Hexadecimal is base 16, so each place value is sixteen times the one to its right." data-success="Correct. Hexadecimal is base 16, so each place value is sixteen times the one to its right.">
+   <legend>9. How do hexadecimal place values change as you move one position left?</legend>
    <ul class="quiz-answer-list">
-    <li>
-     <label class="quiz-answer">
-      <input name="q9" type="radio" value="a"/>
-      <span>
-       215
-      </span>
-     </label>
-    </li>
-    <li>
-     <label class="quiz-answer">
-      <input name="q9" type="radio" value="b"/>
-      <span>
-       32
-      </span>
-     </label>
-    </li>
-    <li>
-     <label class="quiz-answer">
-      <input name="q9" type="radio" value="c"/>
-      <span>
-       47
-      </span>
-     </label>
-    </li>
+    <li><label class="quiz-answer"><input name="q9" type="radio" value="a"/><span>They increase by one</span></label></li>
+    <li><label class="quiz-answer"><input name="q9" type="radio" value="b"/><span>They multiply by ten</span></label></li>
+    <li><label class="quiz-answer"><input name="q9" type="radio" value="c"/><span>They multiply by sixteen</span></label></li>
    </ul>
-   <p class="quiz-feedback-note" data-question-feedback="">
-   </p>
+   <p class="quiz-feedback-note" data-question-feedback=""></p>
   </fieldset>
   <fieldset class="quiz-question" data-answer="b" data-feedback="One byte has eight bits, which divide into two four-bit nibbles." data-question="q10" data-success="Correct. One byte has eight bits, which divide into two four-bit nibbles.">
    <legend>
@@ -2059,7 +1809,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 28</p>
+      <p class="slide-status" data-role="slide-status">Slide 1 of 29</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

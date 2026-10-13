@@ -15,7 +15,7 @@ Depth: [definitions](../lesson_authoring.md#coverage-outline-format). Section ID
 6. **Covered** — Whole-number binary versus separately coded decimal digits. (`bcd-compare`)
 7. **Covered** — Decimal-display application and BCD storage overhead. (`bcd-display`)
 8. **Practice** — Decode digit groups in order and choose the representation rule. (`bcd-decoder`)
-9. **Practice** — Misconceptions, recap, quiz and written conversion/application. (`mistakes`)
+9. **Practice** — Misconceptions, recap, a concept quiz on representation rules and BCD trade-offs, and written conversion/application. (`mistakes`)
 
 ## Boundaries
 

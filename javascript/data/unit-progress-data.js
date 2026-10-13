@@ -329,13 +329,13 @@ export const btecLevel3Unit2ProgressData = {
           id: "binary-and-bcd",
           title: "Binary and BCD",
           href: "../topics/binary-and-bcd.html?context=btec-level-3-unit-2",
-          quiz: { version: 3, totalQuestions: 12, passScore: 9 },
+          quiz: { version: 4, totalQuestions: 12, passScore: 9, storageKey: "lesson-binary-and-bcd-quiz-v4" },
         },
         {
           id: "hexadecimal-numbers",
           title: "Hexadecimal numbers",
           href: "../topics/hexadecimal-numbers.html?context=btec-level-3-unit-2",
-          quiz: { version: 2, totalQuestions: 10, passScore: 8 },
+          quiz: { version: 3, totalQuestions: 10, passScore: 8, storageKey: "lesson-hexadecimal-numbers-quiz-v3" },
         },
         {
           id: "binary-arithmetic",
