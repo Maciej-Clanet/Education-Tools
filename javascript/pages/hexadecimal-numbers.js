@@ -1,4 +1,5 @@
 import { initLessonPage } from "../core/lesson-shell.js"
+import { initLiveCodeExamples } from "../core/live-code-example.js"
 import { readStorage, writeStorage } from "../core/storage.js"
 
 const lessonConfig = {
@@ -34,44 +35,72 @@ const lessonConfig = {
   },
 }
 
-const HEX_DIGITS = "0123456789ABCDEF".split("")
-const HEX_EXPLORER_STORAGE_KEY = "lesson-hexadecimal-nibble-explorer"
-const HEX_PRACTICE_STORAGE_KEY = "lesson-hexadecimal-practice"
+// New question types must not inherit answers from the former binary workshop.
+const HEX_PRACTICE_STORAGE_KEY = "lesson-hexadecimal-practice-v2"
+const PRACTICE_MODES = ["binaryToHex", "hexToBinary", "hexToDenary", "denaryToHex"]
 const DEFAULT_FEEDBACK = "Type your answer, then check it."
 
-function createElement(tagName, className, textContent) {
-  const element = document.createElement(tagName)
+const liveCodeExamples = [{
+  id: "hex-colours",
+  title: "Change a hex colour",
+  defaultSplit: 56,
+  sources: [{
+    id: "css",
+    type: "css",
+    label: "CSS",
+    code: `h3 { color: #253442; }
 
-  if (className) {
-    element.className = className
-  }
+.card { background-color: #FFF4E6; }
 
-  if (textContent !== undefined) {
-    element.textContent = textContent
-  }
+button { background-color: #FF8000; }`,
+  }],
+  scaffold: {
+    html: `<article class="card"><h3>Study group</h3><p>Build your skills together.</p><button>Join the group</button></article>`,
+    css: `body { margin: 0; padding: 16px; font: 18px/1.5 system-ui, sans-serif; color: #253442; background: #FFFFFF; }
+.card { padding: 16px; border: 2px solid #253442; border-radius: 16px; }
+h3 { margin: 0 0 8px; font-size: 24px; }
+p { margin: 8px 0 12px; }
+button { padding: 8px 16px; border: 2px solid #253442; border-radius: 8px; color: #253442; font: inherit; }`,
+  },
+}]
 
-  return element
+// Retired demonstrations leave their saved state untouched.
+const SECTION_ALIASES = {
+  "compact-binary": "nibbles",
+  converter: "base-sixteen",
+  "padding-binary": "binary-to-hex",
+  summary: "mistakes",
 }
 
-function toFourBitBinary(value) {
-  return value.toString(2).padStart(4, "0")
+function resolveSectionAlias() {
+  const section = SECTION_ALIASES[window.location.hash.slice(1)]
+  if (!section) return
+  window.history.replaceState(null, "", "#" + section)
+  document.getElementById(section)?.scrollIntoView()
 }
 
-function toEightBitBinary(value) {
-  return value.toString(2).padStart(8, "0")
-}
-
-function formatBinaryNibbles(binaryValue) {
-  return binaryValue.match(/.{1,4}/g)?.join(" ") ?? binaryValue
-}
-
-function normaliseHexDigit(value) {
-  const digit = String(value ?? "").trim().toUpperCase().charAt(0)
-  return HEX_DIGITS.includes(digit) ? digit : "A"
-}
-
-function cleanBinary(value) {
-  return String(value ?? "").trim().replace(/[\s_]/g, "")
+function initHexTables() {
+  document.querySelectorAll("[data-hex-table]").forEach((table) => {
+    const rows = [...table.tBodies[0].rows]
+    rows.forEach((row) => {
+      const cell = row.cells[0]
+      const choice = document.createElement("button")
+      choice.type = "button"
+      choice.className = "hx-row-choice"
+      choice.textContent = cell.textContent
+      choice.setAttribute("aria-label", `Highlight denary ${cell.textContent}, binary ${row.cells[1].textContent}, hex ${row.cells[2].textContent}`)
+      choice.setAttribute("aria-pressed", "false")
+      cell.replaceChildren(choice)
+      row.addEventListener("click", () => {
+        const selected = !row.classList.contains("is-selected")
+        rows.forEach((other) => {
+          const active = other === row && selected
+          other.classList.toggle("is-selected", active)
+          other.querySelector("button").setAttribute("aria-pressed", String(active))
+        })
+      })
+    })
+  })
 }
 
 function cleanHex(value) {
@@ -82,232 +111,202 @@ function cleanHex(value) {
     .toUpperCase()
 }
 
-function getRandomByte() {
-  return Math.floor(Math.random() * 240) + 16
+function initBinaryWorking() {
+  const table = document.querySelector(".hx-binary-reference")
+  if (!table) return
+  const inputs = [...table.querySelectorAll("[data-binary-working-bit]")]
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/[^01]/g, "").slice(0, 1)
+    })
+  })
+  const clear = table.querySelector("[data-clear-binary-working]")
+  clear.hidden = false
+  clear.addEventListener("click", () => {
+    inputs.forEach((input) => { input.value = "" })
+    inputs[0]?.focus()
+  })
 }
 
-function getQuestionFromState(state) {
-  const mode = state.mode === "binaryToHex" ? "binaryToHex" : "hexToBinary"
-  const value = Number.isInteger(state.value) ? state.value : getRandomByte()
-  const binary = toEightBitBinary(value)
-  const hex = value.toString(16).toUpperCase().padStart(2, "0")
+function isPracticeValue(value) {
+  return Number.isInteger(value) && value >= 16 && value <= 255
+}
 
+function createPracticeQuestion(previousValue) {
+  // Skip the previous value so New question always changes the number.
+  const hasPrevious = isPracticeValue(previousValue)
+  let value = Math.floor(Math.random() * (hasPrevious ? 239 : 240)) + 16
+  if (hasPrevious && value >= previousValue) value += 1
+  return { value, answer: "", checked: null, feedback: DEFAULT_FEEDBACK }
+}
+
+function getQuestionFromState(mode, question) {
+  const hex = question.value.toString(16).toUpperCase()
+  const binary = question.value.toString(2).padStart(8, "0").replace(/(.{4})(.{4})/, "$1 $2")
   if (mode === "binaryToHex") {
     return {
-      mode,
-      value,
-      prompt: formatBinaryNibbles(binary),
+      prompt: binary,
       answer: hex,
+      sourceBase: "binary",
+      targetBase: "hex",
       label: "Binary to hexadecimal",
+      answerLabel: "Your hex answer",
       placeholder: "Example: AF",
-      hint: "Group the binary into two 4-bit nibbles, then map each nibble to one hex digit.",
+      hint: "Write one hex digit for each group of four bits.",
+      retry: "Check each group of four bits in the table.",
     }
   }
-
-  return {
-    mode,
-    value,
-    prompt: hex,
-    answer: binary,
-    label: "Hexadecimal to binary",
-    placeholder: "Example: 1010 1111",
-    hint: "Convert each hex digit into its own 4-bit binary nibble.",
-  }
-}
-
-function renderExplorer(explorer, selectedDigit) {
-  const digit = normaliseHexDigit(selectedDigit)
-  const denaryValue = HEX_DIGITS.indexOf(digit)
-  const binaryValue = toFourBitBinary(denaryValue)
-  const buttons = explorer.querySelector("[data-role='hex-digit-buttons']")
-  const bits = explorer.querySelector("[data-role='nibble-bits']")
-
-  if (buttons && buttons.children.length === 0) {
-    HEX_DIGITS.forEach((hexDigit) => {
-      const button = createElement("button", "hex-digit-button", hexDigit)
-      button.type = "button"
-      button.dataset.hexDigit = hexDigit
-      button.addEventListener("click", () => {
-        writeStorage(HEX_EXPLORER_STORAGE_KEY, { digit: hexDigit })
-        renderExplorer(explorer, hexDigit)
-      })
-      buttons.append(button)
-    })
-  }
-
-  explorer.querySelectorAll("[data-hex-digit]").forEach((button) => {
-    button.classList.toggle("is-selected", button.dataset.hexDigit === digit)
-    button.setAttribute(
-      "aria-pressed",
-      button.dataset.hexDigit === digit ? "true" : "false"
-    )
-  })
-
-  if (bits) {
-    bits.replaceChildren()
-
-    const placeValues = [8, 4, 2, 1]
-    placeValues.forEach((placeValue, index) => {
-      const bit = binaryValue[index]
-      const cell = createElement("span", bit === "1" ? "is-on" : "is-off")
-      const placeValueLabel = createElement("strong", "", placeValue.toString())
-      const bitLabel = createElement("em", "", bit)
-      cell.append(placeValueLabel, bitLabel)
-      bits.append(cell)
-    })
-  }
-
-  const digitLabel = explorer.querySelector("[data-role='explorer-hex']")
-  const binaryLabel = explorer.querySelector("[data-role='explorer-binary']")
-  const denaryLabel = explorer.querySelector("[data-role='explorer-denary']")
-
-  if (digitLabel) {
-    digitLabel.textContent = digit
-  }
-
-  if (binaryLabel) {
-    binaryLabel.textContent = binaryValue
-  }
-
-  if (denaryLabel) {
-    denaryLabel.textContent = denaryValue.toString()
-  }
-
-  const sumLabel = explorer.querySelector("[data-role='explorer-sum']")
-  if (sumLabel) {
-    const included = [8, 4, 2, 1].filter((_, index) => binaryValue[index] === "1")
-    sumLabel.textContent = `${included.length ? included.join(" + ") : "No active places (0)"} = ${denaryValue} denary = ${digit} hex`
-  }
-}
-
-function initHexExplorer() {
-  const explorer = document.querySelector("[data-role='hex-explorer']")
-
-  if (!explorer) {
-    return
-  }
-
-  const savedState = readStorage(HEX_EXPLORER_STORAGE_KEY, { digit: "A" })
-  renderExplorer(explorer, savedState?.digit)
-}
-
-function createPracticeState() {
-  return {
-    mode: Math.random() > 0.5 ? "binaryToHex" : "hexToBinary",
-    value: getRandomByte(),
-    feedback: DEFAULT_FEEDBACK,
-    answer: "",
-    checked: null,
-  }
-}
-
-function renderPractice(practice, state) {
-  const question = getQuestionFromState(state)
-  const input = practice.querySelector("[data-role='practice-answer']")
-  const feedback = practice.querySelector("[data-role='practice-feedback']")
-  const card = practice.querySelector("[data-role='practice-card']")
-
-  practice.querySelector("[data-role='practice-mode']").textContent =
-    question.label
-  practice.querySelector("[data-role='practice-question']").textContent =
-    question.prompt
-  practice.querySelector("[data-role='practice-hint']").textContent =
-    question.hint
-
-  if (input) {
-    input.value = state.answer ?? ""
-    input.placeholder = question.placeholder
-  }
-
-  if (feedback) {
-    feedback.textContent = state.feedback || DEFAULT_FEEDBACK
-    feedback.classList.toggle("is-correct", state.checked === true)
-    feedback.classList.toggle("is-incorrect", state.checked === false)
-  }
-
-  if (card) {
-    card.classList.toggle("is-correct", state.checked === true)
-    card.classList.toggle("is-incorrect", state.checked === false)
-  }
-}
-
-function checkPracticeAnswer(state) {
-  const question = getQuestionFromState(state)
-  const given =
-    question.mode === "hexToBinary"
-      ? cleanBinary(state.answer)
-      : cleanHex(state.answer)
-  const expected =
-    question.mode === "hexToBinary"
-      ? question.answer
-      : cleanHex(question.answer)
-
-  if (given === expected) {
+  if (mode === "hexToBinary") {
     return {
-      ...state,
-      checked: true,
-      feedback:
-        question.mode === "hexToBinary"
-          ? `Correct. ${question.prompt} maps to ${formatBinaryNibbles(question.answer)}.`
-          : `Correct. ${question.prompt} maps to ${question.answer}.`,
+      prompt: hex,
+      answer: binary,
+      sourceBase: "hex",
+      targetBase: "binary",
+      label: "Hexadecimal to binary",
+      answerLabel: "Your eight-bit binary answer",
+      placeholder: "Example: 1010 1111",
+      hint: "Write four bits for each hex digit.",
+      retry: "Write four bits for each hex digit. Keep zeros at the start.",
     }
   }
-
+  if (mode === "denaryToHex") {
+    return {
+      prompt: String(question.value),
+      answer: hex,
+      sourceBase: "denary",
+      targetBase: "hex",
+      label: "Denary (decimal) to hexadecimal",
+      answerLabel: "Your hex answer",
+      placeholder: "Example: AF",
+      hint: "Use binary to convert the number to hex.",
+      retry: "Convert to binary first. Then use one hex digit per four bits.",
+    }
+  }
   return {
-    ...state,
-    checked: false,
-    feedback:
-      question.mode === "hexToBinary"
-        ? "Not quite. Convert each hex digit into a separate 4-bit nibble."
-        : "Not quite. Split the binary into 4-bit groups, then map each group to a hex digit.",
+    prompt: hex,
+    answer: String(question.value),
+    sourceBase: "hex",
+    targetBase: "denary",
+    label: "Hexadecimal to denary (decimal)",
+    answerLabel: "Your denary (decimal) answer",
+    placeholder: "Example: 175",
+    hint: "Use the 16s and 1s columns.",
+    retry: "Multiply the left digit value by 16. Add the right digit value.",
+  }
+}
+
+function checkPracticeAnswer(mode, question) {
+  const display = getQuestionFromState(mode, question)
+  const toHex = display.targetBase === "hex"
+  const toBinary = display.targetBase === "binary"
+  const given = toHex
+    ? cleanHex(question.answer)
+    : toBinary ? question.answer.replace(/[\s_]/g, "") : question.answer.trim()
+  const valid = toHex
+    ? /^[0-9A-F]+$/.test(given)
+    : toBinary ? /^[01]{8}$/.test(given) : /^[0-9]+$/.test(given)
+  const correct = valid && Number.parseInt(given, toHex ? 16 : toBinary ? 2 : 10) === question.value
+  return {
+    ...question,
+    checked: correct,
+    feedback: correct
+      ? `Correct. ${display.prompt} ${display.sourceBase} = ${display.answer} ${display.targetBase}.`
+      : display.retry,
   }
 }
 
 function initPractice() {
   const practice = document.querySelector("[data-role='hex-practice']")
+  if (!practice) return
 
-  if (!practice) {
-    return
+  const saved = readStorage(HEX_PRACTICE_STORAGE_KEY, {})
+  const state = {
+    mode: PRACTICE_MODES.includes(saved?.mode) ? saved.mode : PRACTICE_MODES[0],
+    questions: {},
   }
+  PRACTICE_MODES.forEach((mode) => {
+    const previous = saved?.questions?.[mode]
+    const question = isPracticeValue(previous?.value)
+      ? { value: previous.value, answer: typeof previous.answer === "string" ? previous.answer : "", checked: null, feedback: DEFAULT_FEEDBACK }
+      : createPracticeQuestion()
+    state.questions[mode] = typeof previous?.checked === "boolean"
+      ? checkPracticeAnswer(mode, question)
+      : question
+  })
 
-  let state = readStorage(HEX_PRACTICE_STORAGE_KEY, createPracticeState())
-  state = {
-    ...createPracticeState(),
-    ...state,
-  }
-
+  const tabs = [...practice.querySelectorAll("[data-practice-mode]")]
   const input = practice.querySelector("[data-role='practice-answer']")
+  const feedback = practice.querySelector("[data-role='practice-feedback']")
+  const card = practice.querySelector("[data-role='practice-card']")
 
-  function saveAndRender(nextState) {
-    state = nextState
-    writeStorage(HEX_PRACTICE_STORAGE_KEY, state)
-    renderPractice(practice, state)
+  function render() {
+    const question = state.questions[state.mode]
+    const display = getQuestionFromState(state.mode, question)
+    tabs.forEach((tab) => {
+      const selected = tab.dataset.practiceMode === state.mode
+      tab.setAttribute("aria-selected", String(selected))
+      tab.tabIndex = selected ? 0 : -1
+      if (selected) card.setAttribute("aria-labelledby", tab.id)
+    })
+    practice.querySelector("[data-role='practice-mode']").textContent = display.label
+    practice.querySelector("[data-role='practice-question']").textContent = display.prompt
+    practice.querySelector("[data-role='practice-hint']").textContent = display.hint
+    practice.querySelector("label[for='hex-practice-answer']").textContent = display.answerLabel
+    input.value = question.answer
+    input.placeholder = display.placeholder
+    input.inputMode = state.mode === "hexToDenary" ? "numeric" : "text"
+    feedback.textContent = question.feedback
+    for (const element of [feedback, card]) {
+      element.classList.toggle("is-correct", question.checked === true)
+      element.classList.toggle("is-incorrect", question.checked === false)
+    }
   }
 
-  input?.addEventListener("input", () => {
-    saveAndRender({
-      ...state,
-      answer: input.value,
-      checked: null,
-      feedback: DEFAULT_FEEDBACK,
+  function saveAndRender() {
+    writeStorage(HEX_PRACTICE_STORAGE_KEY, state)
+    render()
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+      state.mode = tab.dataset.practiceMode
+      saveAndRender()
+    })
+    tab.addEventListener("keydown", (event) => {
+      const next = {
+        ArrowRight: (index + 1) % tabs.length,
+        ArrowLeft: (index + tabs.length - 1) % tabs.length,
+        Home: 0,
+        End: tabs.length - 1,
+      }[event.key]
+      if (next === undefined) return
+      event.preventDefault()
+      tabs[next].focus()
+      tabs[next].click()
     })
   })
 
-  practice
-    .querySelector("[data-action='check-practice']")
-    ?.addEventListener("click", () => {
-      saveAndRender(checkPracticeAnswer(state))
-    })
+  input.addEventListener("input", () => {
+    Object.assign(state.questions[state.mode], {answer: input.value, checked: null, feedback: DEFAULT_FEEDBACK})
+    saveAndRender()
+  })
+  practice.querySelector("[data-action='check-practice']").addEventListener("click", () => {
+    state.questions[state.mode] = checkPracticeAnswer(state.mode, state.questions[state.mode])
+    saveAndRender()
+  })
+  practice.querySelector("[data-action='new-practice']").addEventListener("click", () => {
+    state.questions[state.mode] = createPracticeQuestion(state.questions[state.mode].value)
+    saveAndRender()
+  })
 
-  practice
-    .querySelector("[data-action='new-practice']")
-    ?.addEventListener("click", () => {
-      saveAndRender(createPracticeState())
-    })
-
-  renderPractice(practice, state)
+  practice.querySelector("[role='tablist']").hidden = false
+  render()
 }
 
+resolveSectionAlias()
 initLessonPage(lessonConfig)
-initHexExplorer()
+initHexTables()
+initLiveCodeExamples(liveCodeExamples)
 initPractice()
+initBinaryWorking()
+window.addEventListener("hashchange", resolveSectionAlias)
