@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add MongoDB to FastAPI | Education Tools</title>
+    <meta
+      name="description"
+      content="Connect FastAPI to local MongoDB with PyMongo. Build database.py and use simple examples to add, find, change and delete documents."
+    />
+    <meta
+      property="og:title"
+      content="Add MongoDB to FastAPI | Education Tools"
+    />
+    <meta
+      property="og:description"
+      content="Connect FastAPI to local MongoDB with PyMongo. Build database.py and use simple examples to add, find, change and delete documents."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Education Tools" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/code-snippets.css" />
+    <link rel="stylesheet" href="../../css/backend-lessons.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/pages/starting-a-fastapi-backend.css"
+    />
+    <link rel="stylesheet" href="../../css/accessibility.css" />
+    <script type="module" src="../../javascript/accessibility.js"></script>
+    <script
+      type="module"
+      src="../../javascript/pages/adding-mongodb-to-fastapi.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="page-shell backend-lesson fastapi-lesson">
+      <header class="lesson-hero panel panel-accent">
+        <p class="eyebrow">FastAPI Backend</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><ol class="breadcrumb-list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../resources/web-development.html#fastapi-backend" data-role="breadcrumb-unit-link">Web Development</a></li>
+          <li aria-current="page">Add MongoDB to FastAPI</li>
+        </ol></nav>
+        <div class="lesson-header-row"><div>
+          <h1>Add MongoDB to FastAPI</h1>
+          <p class="lesson-hero-text">Connect Python to MongoDB. Store a practice user. Find, change and delete documents with short code examples.</p>
+        </div></div>
+        <div class="lesson-meta-grid">
+          <article class="lesson-meta-card"><strong>Tools</strong><span>FastAPI, PyMongo and local MongoDB</span></article>
+          <article class="lesson-meta-card"><strong>Build</strong><span>database.py</span></article>
+          <article class="lesson-meta-card"><strong>Reference</strong><span>Common database operations</span></article>
+          <article class="lesson-meta-card"><strong>Check</strong><span>New documents and duplicate emails</span></article>
+        </div>
+        <div class="lesson-hero-actions">
+          <a class="primary-link" href="../../index.html">Back to home search</a>
+          <a class="lesson-secondary-action" href="../resources/web-development.html#fastapi-backend" data-role="back-to-unit">Back to FastAPI Backend</a>
+          <button class="teacher-toggle" type="button" data-action="toggle-teacher-mode" aria-pressed="false">Teacher slides</button>
+        </div>
+      </header>
+      <noscript><p class="panel lesson-sequence">You can read the lesson and code without JavaScript. Copy buttons and Teacher Slides need JavaScript.</p></noscript>
+      <div class="lesson-layout">
+        <aside class="lesson-sidebar panel"><p class="eyebrow">Jump To</p>
+          <nav class="section-nav" aria-label="Lesson sections"><a href="#before-you-start" data-section-link>Before you start</a>
+<a href="#documents" data-section-link>Database, collection, document</a>
+<a href="#install-driver" data-section-link>1. Prepare MongoDB and PyMongo</a>
+<a href="#connect-client" data-section-link>2. Import and connect</a>
+<a href="#select-database" data-section-link>3. Select the data store</a>
+<a href="#email-index" data-section-link>4. Make email unique</a>
+<a href="#database-file" data-section-link>5. Complete database.py</a>
+<a href="#crud-reference" data-section-link>Reference: common operations</a>
+<a href="#add-item" data-section-link>Add one document</a>
+<a href="#find-item" data-section-link>Find one document</a>
+<a href="#list-items" data-section-link>List documents</a>
+<a href="#update-item" data-section-link>Change one document</a>
+<a href="#delete-item" data-section-link>Delete one document</a>
+<a href="#count-items" data-section-link>Count documents</a>
+<a href="#sources" data-section-link>Official references</a></nav>
+        </aside>
+        <main class="lesson-main" data-role="lesson-main">
+          <template data-teacher-opener>
+            <h2>Add MongoDB to FastAPI</h2>
+            <p>Keep data between API requests and restarts.</p>
+            <ul><li>Explain each line of database.py.</li><li>Add, find, change and delete a document.</li><li>Handle a duplicate email value.</li></ul>
+          </template>
+<section id="before-you-start" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Your next backend lesson</p>
+<h2>Keep data after the API stops</h2>
+
+<p>A Python variable loses its value when the program stops. A database can keep the data for the next run.</p>
+<figure class="backend-diagram">
+  <div class="backend-flow backend-flow--three">
+    <div class="backend-node"><strong>FastAPI</strong><p>Receives a request.</p></div>
+    <div class="backend-arrow" aria-hidden="true">→</div>
+    <div class="backend-node backend-node--server"><strong>PyMongo</strong><p>Sends a database command.</p></div>
+    <div class="backend-arrow" aria-hidden="true">→</div>
+    <div class="backend-node backend-node--data"><strong>MongoDB</strong><p>Stores or finds data.</p></div>
+  </div>
+  <figcaption>The result returns through PyMongo to FastAPI.</figcaption>
+</figure>
+<p>First, complete <a href="starting-a-fastapi-backend.html?context=web-development">Starting a FastAPI backend</a>. Use the same project folder and virtual environment.</p>
+<p>You will create <code>database.py</code>. You will then store and find a practice user.</p>
+<p class="reference-note">Use <strong>database.py</strong> for Python code. MongoDB stores the data separately. This lesson does not create a <code>database.db</code> file.</p>
+
+</section>
+<section id="documents" class="lesson-section panel" data-lesson-section>
+
+<h2>Store one user in one document</h2>
+<div class="setup-grid setup-code-notes"><div class="code-snippet" data-code-snippet="Example document" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Example document</span></div>
+  <pre tabindex="0" aria-label="Example document"><code class="language-python">{<span class="syntax-string">&quot;email&quot;</span>: <span class="syntax-string">&quot;luma@example.test&quot;</span>, <span class="syntax-string">&quot;username&quot;</span>: <span class="syntax-string">&quot;Luma&quot;</span>}</code></pre>
+</div><dl class="setup-notes"><div><dt>Database: <code>arcane_avenue</code></dt><dd>A named store that contains collections.</dd></div><div><dt>Collection: <code>users</code></dt><dd>A group of related documents.</dd></div><div><dt>Document</dt><dd>One stored item. PyMongo uses a Python dictionary to represent it.</dd></div><div><dt>Field</dt><dd>A named value in a document. Here, <code>email</code> and <code>username</code> are fields.</dd></div></dl></div><p>Use these names throughout the lesson. Use only the fictional practice data.</p>
+</section>
+<section id="install-driver" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 1 · Prepare the tools</p>
+<h2>Start the MongoDB server</h2>
+
+<ol>
+  <li>Install <a href="https://www.mongodb.com/docs/manual/administration/install-community/">MongoDB Community Server</a> for your operating system, if necessary.</li>
+  <li>Follow the start instructions on that installation page.</li>
+  <li>Keep the server running on this computer at port <code>27017</code>.</li>
+</ol>
+<p>Use a local practice server without database authentication for this lesson. A college computer may already have this server.</p>
+<p class="reference-note">MongoDB is the database server. PyMongo is the Python package that communicates with it. MongoDB Compass is an optional viewer.</p>
+<div data-slide-break></div>
+<h3>Install PyMongo in your project</h3>
+<p>Open the terminal in your backend folder. Activate the virtual environment from the previous lesson.</p>
+<div class="code-snippet" data-code-snippet="Terminal · install the driver" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Terminal · install the driver</span></div>
+  <pre tabindex="0" aria-label="Terminal · install the driver"><code class="language-bash">python -m pip install pymongo</code></pre>
+</div>
+<p><code>python -m pip</code> runs the package installer for this Python environment. <code>install pymongo</code> adds the driver.</p>
+<p>This command does not install or start the MongoDB server.</p>
+<div class="code-snippet" data-code-snippet="Terminal · save the package list" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Terminal · save the package list</span></div>
+  <pre tabindex="0" aria-label="Terminal · save the package list"><code class="language-bash">python -m pip freeze &gt; requirements.txt</code></pre>
+</div>
+<p>Run this command in the same environment. It updates the project package list.</p>
+
+</section>
+<section id="connect-client" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 2 · Connect Python to MongoDB</p>
+<h2>Import MongoClient</h2>
+
+<p>Create <code>database.py</code> beside <code>main.py</code>. Add this line at the top.</p>
+<div class="setup-grid setup-code-notes"><div class="code-snippet" data-code-snippet="database.py · import" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">database.py · import</span></div>
+  <pre tabindex="0" aria-label="database.py · import"><code class="language-python"><span class="syntax-keyword">from</span> pymongo <span class="syntax-keyword">import</span> MongoClient</code></pre>
+</div><dl class="setup-notes"><div><dt><code>from pymongo</code></dt><dd>Select the installed PyMongo package.</dd></div><div><dt><code>import MongoClient</code></dt><dd>Make the <code>MongoClient</code> class available in this file. A class is a template for objects.</dd></div></dl></div><p>This is the only import that <code>database.py</code> needs.</p><div data-slide-break></div>
+<h3>Create the client</h3><div class="setup-grid setup-code-notes"><div class="code-snippet" data-code-snippet="database.py · add below the import" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">database.py · add below the import</span></div>
+  <pre tabindex="0" aria-label="database.py · add below the import"><code class="language-python">client = MongoClient(
+    <span class="syntax-string">&quot;mongodb://localhost:27017/&quot;</span>,
+    serverSelectionTimeoutMS=<span class="syntax-number">5000</span>
+)</code></pre>
+</div><dl class="setup-notes"><div><dt><code>client = MongoClient(...)</code></dt><dd>Create a client object. Store it in <code>client</code>. This object manages communication with MongoDB.</dd></div><div><dt><code>mongodb://</code></dt><dd>Use the MongoDB connection format.</dd></div><div><dt><code>localhost:27017</code></dt><dd><code>localhost</code> means this computer. <code>27017</code> is the MongoDB port.</dd></div></dl></div><p>The quoted text is the <strong>connection string</strong>. The round brackets group the settings across several lines.</p><div data-slide-break></div>
+<h3>Set the server selection timeout</h3><div class="code-snippet" data-code-snippet="database.py · connection setting" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">database.py · connection setting</span></div>
+  <pre tabindex="0" aria-label="database.py · connection setting"><code class="language-python">serverSelectionTimeoutMS=<span class="syntax-number">5000</span></code></pre>
+</div>
+<p><code>5000</code> milliseconds is <strong>5 seconds</strong>.</p>
+<p>This setting limits how long PyMongo waits to find a suitable server for a database operation.</p>
+<p>If PyMongo cannot find a server, it raises <code>ServerSelectionTimeoutError</code>.</p>
+<p>This is not a time limit for every query. Creating the client alone does not confirm that MongoDB is available.</p>
+
+</section>
+<section id="select-database" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 3 · Select the data</p>
+<h2>Select the database and collection</h2>
+
+<p>Add these lines below the client code.</p>
+<div class="setup-grid setup-code-notes"><div class="code-snippet" data-code-snippet="database.py · select the data" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">database.py · select the data</span></div>
+  <pre tabindex="0" aria-label="database.py · select the data"><code class="language-python">db = client[<span class="syntax-string">&quot;arcane_avenue&quot;</span>]
+
+users = db[<span class="syntax-string">&quot;users&quot;</span>]</code></pre>
+</div><dl class="setup-notes"><div><dt><code>client["arcane_avenue"]</code></dt><dd>Select the database named <code>arcane_avenue</code>. Store the database object in <code>db</code>.</dd></div><div><dt><code>db["users"]</code></dt><dd>Select its <code>users</code> collection. Store the collection object in <code>users</code>.</dd></div></dl></div><p>These lines select objects. They do not add a document or load all users into Python.</p>
+<p>MongoDB creates the missing database and collection when you first store data or create an index.</p>
+</section>
+<section id="email-index" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 4 · Add a rule</p>
+<h2>Prevent the same email value twice</h2>
+
+<p>Add this line below <code>users = db["users"]</code>.</p>
+<div class="code-snippet" data-code-snippet="database.py · create an index" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">database.py · create an index</span></div>
+  <pre tabindex="0" aria-label="database.py · create an index"><code class="language-python">users.create_index(<span class="syntax-string">&quot;email&quot;</span>, unique=<span class="syntax-keyword">True</span>)</code></pre>
+</div><dl class="setup-notes"><div><dt><code>create_index("email", ...)</code></dt><dd>Create an index on the <code>email</code> field. An index helps MongoDB find documents by that field.</dd></div><div><dt><code>unique=True</code></dt><dd>Reject an insert or update that would give two documents the same email value.</dd></div></dl><p>This line contacts MongoDB. Start the server before you run or import this file.</p><div data-slide-break></div>
+<h3>Know what this index checks</h3>
+<ul>
+  <li>An insert with an existing email value raises <code>DuplicateKeyError</code>.</li>
+  <li>The index does not check the email format or who owns the address.</li>
+  <li>By default, upper-case and lower-case letters are different. Keep practice email values in lower case.</li>
+  <li>Creating the index can fail if existing documents have duplicate email values.</li>
+</ul>
+<p>Include an email in each practice document. A unique index does not make the field required.</p>
+<p>You can run the same index command again. An identical index is reused.</p>
+
+</section>
+<section id="database-file" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Step 5 · Save the file</p>
+<h2>Check the complete database.py file</h2>
+
+<p>Save this code in <code>database.py</code>, beside <code>main.py</code>.</p>
+<div class="code-snippet" data-code-snippet="database.py · complete file" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">database.py · complete file</span></div>
+  <pre tabindex="0" aria-label="database.py · complete file"><code class="language-python"><span class="syntax-keyword">from</span> pymongo <span class="syntax-keyword">import</span> MongoClient
+
+client = MongoClient(
+    <span class="syntax-string">&quot;mongodb://localhost:27017/&quot;</span>,
+    serverSelectionTimeoutMS=<span class="syntax-number">5000</span>
+)
+
+db = client[<span class="syntax-string">&quot;arcane_avenue&quot;</span>]
+
+
+users = db[<span class="syntax-string">&quot;users&quot;</span>]
+users.create_index(<span class="syntax-string">&quot;email&quot;</span>, unique=<span class="syntax-keyword">True</span>)</code></pre>
+</div>
+<p><code>from database import users</code> imports the collection object from <code>database.py</code>.</p>
+</section>
+<section id="crud-reference" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Quick reference</p>
+<h2>Choose a database operation</h2>
+
+<p><strong>CRUD</strong> means Create, Read, Update and Delete. These are four common database operations.</p>
+<div class="compare-table-wrap" tabindex="0" role="region" aria-label="Database operation reference">
+<table class="compare-table">
+  <thead><tr><th scope="col">Task</th><th scope="col">Method</th><th scope="col">Result to check</th></tr></thead>
+  <tbody>
+    <tr><td><a href="#add-item">Add one document</a></td><td><code>insert_one()</code></td><td><code>inserted_id</code></td></tr>
+    <tr><td><a href="#find-item">Find one document</a></td><td><code>find_one()</code></td><td>A dictionary or <code>None</code></td></tr>
+    <tr><td><a href="#list-items">Find several documents</a></td><td><code>find()</code></td><td>A cursor to use in a loop</td></tr>
+    <tr><td><a href="#update-item">Change one document</a></td><td><code>update_one()</code></td><td><code>matched_count</code>, <code>modified_count</code></td></tr>
+    <tr><td><a href="#delete-item">Delete one document</a></td><td><code>delete_one()</code></td><td><code>deleted_count</code></td></tr>
+    <tr><td><a href="#count-items">Count documents</a></td><td><code>count_documents()</code></td><td>A number</td></tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="add-item" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Create</p>
+<h2>Add one document</h2>
+<div class="code-snippet" data-code-snippet="Python · add one document" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Python · add one document</span></div>
+  <pre tabindex="0" aria-label="Python · add one document"><code class="language-python"><span class="syntax-keyword">from</span> database <span class="syntax-keyword">import</span> users
+
+result = users.insert_one({
+    <span class="syntax-string">&quot;email&quot;</span>: <span class="syntax-string">&quot;luma@example.test&quot;</span>,
+    <span class="syntax-string">&quot;username&quot;</span>: <span class="syntax-string">&quot;Luma&quot;</span>
+})
+
+print(result.inserted_id)</code></pre>
+</div>
+<p><code>insert_one()</code> stores one document. MongoDB adds a unique <code>_id</code> field if it is absent.</p>
+<p><code>result.inserted_id</code> is the new document ID. Your ID will differ from another student's ID.</p>
+<p>Run this example once. A second run with the same email raises <code>DuplicateKeyError</code>.</p>
+<p>The document stays in MongoDB after the Python script stops.</p>
+
+<div data-slide-break></div>
+<h3>Handle a duplicate email</h3>
+<div class="setup-grid setup-code-notes">
+  <div class="code-snippet" data-code-snippet="Python · handle a duplicate email" data-no-slide-advance>
+    <div class="code-snippet__toolbar"><span class="code-snippet__label">Python · handle a duplicate email</span></div>
+    <pre tabindex="0" aria-label="Python · handle a duplicate email"><code class="language-python"><span class="syntax-keyword">from</span> database <span class="syntax-keyword">import</span> users
+<span class="syntax-keyword">from</span> pymongo.errors <span class="syntax-keyword">import</span> DuplicateKeyError
+
+<span class="syntax-keyword">try</span>:
+    result = users.insert_one({
+        <span class="syntax-string">&quot;email&quot;</span>: <span class="syntax-string">&quot;luma@example.test&quot;</span>,
+        <span class="syntax-string">&quot;username&quot;</span>: <span class="syntax-string">&quot;Luma&quot;</span>
+    })
+    print(result.inserted_id)
+<span class="syntax-keyword">except</span> DuplicateKeyError:
+    print(<span class="syntax-string">&quot;This email is already in use.&quot;</span>)</code></pre>
+  </div>
+  <dl class="setup-notes">
+    <div><dt><code>from pymongo.errors import DuplicateKeyError</code></dt><dd>Import the error type for a duplicate value in a unique index.</dd></div>
+    <div><dt><code>try</code></dt><dd>Run the insert. If it succeeds, print the new document ID.</dd></div>
+    <div><dt><code>except DuplicateKeyError</code></dt><dd>If the email already exists, print the message. The failed insert does not add another document.</dd></div>
+  </dl>
+</div>
+<p>After the first insert, this example prints <code>This email is already in use.</code></p>
+
+</section>
+<section id="find-item" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Read</p>
+<h2>Find one document by email</h2>
+<div class="code-snippet" data-code-snippet="Python · find one document" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Python · find one document</span></div>
+  <pre tabindex="0" aria-label="Python · find one document"><code class="language-python"><span class="syntax-keyword">from</span> database <span class="syntax-keyword">import</span> users
+
+user = users.find_one({<span class="syntax-string">&quot;email&quot;</span>: <span class="syntax-string">&quot;luma@example.test&quot;</span>})
+
+<span class="syntax-keyword">if</span> user <span class="syntax-keyword">is</span> <span class="syntax-keyword">None</span>:
+    print(<span class="syntax-string">&quot;User not found.&quot;</span>)
+<span class="syntax-keyword">else</span>:
+    print(user[<span class="syntax-string">&quot;username&quot;</span>])</code></pre>
+</div>
+<p><code>{"email": "luma@example.test"}</code> is a <strong>filter</strong>. It selects documents with that exact email value.</p>
+<p><code>find_one()</code> returns one matching document as a dictionary. It returns <code>None</code> when there is no match.</p>
+<p>Check for <code>None</code> before you read a field. After the insert, this example prints <code>Luma</code>.</p>
+
+</section>
+<section id="list-items" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Read several</p>
+<h2>Read documents with a loop</h2>
+<div class="code-snippet" data-code-snippet="Python · list documents" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Python · list documents</span></div>
+  <pre tabindex="0" aria-label="Python · list documents"><code class="language-python"><span class="syntax-keyword">from</span> database <span class="syntax-keyword">import</span> users
+
+<span class="syntax-keyword">for</span> user <span class="syntax-keyword">in</span> users.find({}):
+    print(user[<span class="syntax-string">&quot;email&quot;</span>], user[<span class="syntax-string">&quot;username&quot;</span>])</code></pre>
+</div>
+<p>The empty filter <code>{}</code> matches every document in <code>users</code>.</p>
+<p><code>find()</code> returns a <strong>cursor</strong>. The loop reads its results one document at a time.</p>
+<p>If there are no matches, the loop prints nothing.</p>
+<div data-slide-break></div>
+<h3>Filter, sort and limit a list</h3><div class="code-snippet" data-code-snippet="Python · list matching documents" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Python · list matching documents</span></div>
+  <pre tabindex="0" aria-label="Python · list matching documents"><code class="language-python"><span class="syntax-keyword">from</span> database <span class="syntax-keyword">import</span> users
+
+matches = users.find({<span class="syntax-string">&quot;username&quot;</span>: <span class="syntax-string">&quot;Luma&quot;</span>})
+
+<span class="syntax-keyword">for</span> user <span class="syntax-keyword">in</span> matches.sort(<span class="syntax-string">&quot;email&quot;</span>, <span class="syntax-number">1</span>).limit(<span class="syntax-number">5</span>):
+    print(user[<span class="syntax-string">&quot;email&quot;</span>])</code></pre>
+</div>
+<p>The filter selects documents whose username is <code>Luma</code>.</p>
+<p><code>sort("email", 1)</code> puts results in ascending email order. Use <code>-1</code> for descending order.</p>
+<p><code>limit(5)</code> returns at most five documents.</p>
+
+</section>
+<section id="update-item" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Update</p>
+<h2>Change a username</h2>
+<div class="code-snippet" data-code-snippet="Python · change one document" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Python · change one document</span></div>
+  <pre tabindex="0" aria-label="Python · change one document"><code class="language-python"><span class="syntax-keyword">from</span> database <span class="syntax-keyword">import</span> users
+
+result = users.update_one(
+    {<span class="syntax-string">&quot;email&quot;</span>: <span class="syntax-string">&quot;luma@example.test&quot;</span>},
+    {<span class="syntax-string">&quot;$set&quot;</span>: {<span class="syntax-string">&quot;username&quot;</span>: <span class="syntax-string">&quot;Luma Star&quot;</span>}}
+)
+
+print(result.matched_count)
+print(result.modified_count)</code></pre>
+</div>
+<p>The first dictionary selects the document. <code>$set</code> changes the named field. The email and other fields stay the same.</p>
+<p>After the insert, the first run prints <code>1</code> and <code>1</code>: one match and one change.</p>
+<p>A second run prints <code>1</code> and <code>0</code>. The username already has that value.</p>
+<p>With no match, both counts are <code>0</code>. This command does not insert a new document.</p>
+
+</section>
+<section id="delete-item" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Delete</p>
+<h2>Delete one document by email</h2>
+<div class="code-snippet" data-code-snippet="Python · delete one document" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Python · delete one document</span></div>
+  <pre tabindex="0" aria-label="Python · delete one document"><code class="language-python"><span class="syntax-keyword">from</span> database <span class="syntax-keyword">import</span> users
+
+result = users.delete_one({<span class="syntax-string">&quot;email&quot;</span>: <span class="syntax-string">&quot;luma@example.test&quot;</span>})
+
+print(result.deleted_count)</code></pre>
+</div>
+<p><code>delete_one()</code> removes at most one matching document.</p>
+<p><code>deleted_count</code> is <code>1</code> if a document was removed. It is <code>0</code> if there was no match.</p>
+<p>Use a specific filter for changes and deletions. An empty filter matches every document.</p>
+<p class="reference-note">This command removes the practice document from MongoDB. To use it again, run the <a href="#add-item">insert example</a>.</p>
+
+</section>
+<section id="count-items" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Count</p>
+<h2>Count all or matching documents</h2>
+<div class="code-snippet" data-code-snippet="Python · count documents" data-no-slide-advance>
+  <div class="code-snippet__toolbar"><span class="code-snippet__label">Python · count documents</span></div>
+  <pre tabindex="0" aria-label="Python · count documents"><code class="language-python"><span class="syntax-keyword">from</span> database <span class="syntax-keyword">import</span> users
+
+total = users.count_documents({})
+matches = users.count_documents({<span class="syntax-string">&quot;email&quot;</span>: <span class="syntax-string">&quot;luma@example.test&quot;</span>})
+
+print(total)
+print(matches)</code></pre>
+</div>
+<p>The empty filter counts all documents. The email filter counts only documents with that email value.</p>
+<p>Each result is a number. The matching count is <code>0</code> after deletion and <code>1</code> after you insert the practice user again.</p>
+
+</section>
+<section id="sources" class="lesson-section panel" data-lesson-section>
+
+<h2>Read more</h2>
+
+<ul>
+  <li><a href="https://www.mongodb.com/docs/manual/administration/install-community/">Install and start MongoDB Community Server</a></li>
+  <li><a href="https://www.mongodb.com/docs/languages/python/pymongo-driver/current/get-started/">Install PyMongo</a></li>
+  <li><a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/mongo_client.html">MongoClient settings and server selection timeout</a></li>
+  <li><a href="https://www.mongodb.com/docs/languages/python/pymongo-driver/current/indexes/">MongoDB indexes</a></li>
+  <li><a href="https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/insert/">Insert documents</a> · <a href="https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/query/find/">Find documents</a></li>
+  <li><a href="https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/update/">Update documents</a> · <a href="https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/delete/">Delete documents</a></li>
+  <li><a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/errors.html#pymongo.errors.DuplicateKeyError">PyMongo DuplicateKeyError</a></li>
+</ul>
+</section>
+        </main>
+        <aside class="lesson-rail">
+          <section class="lesson-rail-card panel glossary-card">
+            <p class="eyebrow">Key words</p><h2>Quick glossary</h2>
+            <dl class="glossary-list"><div class="glossary-item"><dt>Driver</dt><dd>A package that lets a program communicate with a database.</dd></div><div class="glossary-item"><dt>Client</dt><dd>The object that manages communication with MongoDB.</dd></div><div class="glossary-item"><dt>Collection</dt><dd>A group of documents in a database.</dd></div><div class="glossary-item"><dt>Document</dt><dd>One stored item, with fields and values.</dd></div><div class="glossary-item"><dt>Filter</dt><dd>A set of conditions that selects documents.</dd></div><div class="glossary-item"><dt>Index</dt><dd>A structure that helps the database find documents.</dd></div><div class="glossary-item"><dt>Cursor</dt><dd>An object that lets a loop read query results.</dd></div><div class="glossary-item"><dt>CRUD</dt><dd>Create, Read, Update and Delete.</dd></div></dl>
+          </section>
+        </aside>
+      </div>
+      <section class="lesson-sequence panel" aria-label="Lesson navigation">
+        <a class="primary-link" href="starting-a-fastapi-backend.html?context=web-development">Previous: Starting a FastAPI backend</a>
+      </section>
+    </div>
+    <div class="teacher-controls panel" data-role="teacher-controls" data-no-slide-advance hidden>
+      <button type="button" class="slide-button" data-action="prev-slide">Previous</button>
+      <p class="slide-status" data-role="slide-status">Slide 1</p>
+      <button type="button" class="slide-button" data-action="next-slide">Next</button>
+      <button type="button" class="slide-button slide-button--exit" data-action="exit-teacher-mode">Exit slides</button>
+    </div>
+  </body>
+</html>

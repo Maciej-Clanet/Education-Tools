@@ -13,7 +13,8 @@ and basic Python familiarity. Python 3.10+; no prior FastAPI knowledge assumed.
    PowerShell and macOS/Linux creation and activation side by side.
 4. **Introduced / Covered** — `#dependencies`: FastAPI as a framework, pip as an
    installer and Uvicorn as the server; install the FastAPI standard extra into
-   the active venv. Database drivers are deferred.
+   the active venv. Database drivers are taught in
+   [Add MongoDB to FastAPI](adding-mongodb-to-fastapi.md).
 5. **Covered** — `#first-endpoint`: import, app object, GET decorator, function and
    return, with code and matching explanations alongside each other.
 6. **Covered** — `#run-server`, `#test-endpoint`: command parts in order, main:app,

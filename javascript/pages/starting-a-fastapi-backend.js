@@ -13,6 +13,10 @@ initLessonPage({
         title: "What is a backend?",
         href: "what-is-a-backend.html",
       },
+      next: {
+        title: "Add MongoDB to FastAPI",
+        href: "adding-mongodb-to-fastapi.html",
+      },
     },
   },
 })

@@ -109,6 +109,20 @@ export const catalogItems = [
     href: "pages/topics/starting-a-fastapi-backend.html?context=web-development",
   },
   {
+    id: "topic-adding-mongodb-to-fastapi",
+    status: "live",
+    type: "topic",
+    typeLabel: "Topic page",
+    kicker: "FastAPI Backend",
+    title: "Add MongoDB to FastAPI",
+    summary:
+      "Connect to local MongoDB with PyMongo. Build database.py, explain each line, and use examples to add, find, change and delete documents.",
+    badges: ["Subject area: Web development", "FastAPI", "MongoDB"],
+    keywords: ["mongodb", "pymongo", "fastapi", "database.py", "database connection", "mongoclient", "crud", "insert", "find", "update", "delete", "unique email", "index", "arcane_avenue"],
+    actionLabel: "Open reference lesson",
+    href: "pages/topics/adding-mongodb-to-fastapi.html?context=web-development",
+  },
+  {
     id: "tool-code-playground",
     status: "live",
     type: "tool",
