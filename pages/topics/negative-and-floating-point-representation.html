@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Negative and Floating Point Representation Revision Lesson | Education
+      Negative and Floating Point Representation Lesson | Education
       Tools
     </title>
     <meta
       name="description"
-      content="Revise negative binary, two's complement, floating point normalisation, range, precision, and rounding for BTEC Level 3 Computing Unit 2."
+      content="Learn negative binary and floating point with animated steps, clear diagrams, and saved practice for BTEC Level 3 Computing Unit 2."
     />
     <meta
       property="og:title"
-      content="Negative and Floating Point Representation Revision Lesson | Education Tools"
+      content="Negative and Floating Point Representation Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise negative binary, two's complement, floating point normalisation, range, precision, and rounding for BTEC Level 3 Computing Unit 2."
+      content="Learn negative binary and floating point with animated steps, clear diagrams, and saved practice for BTEC Level 3 Computing Unit 2."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -61,13 +61,9 @@
         <div class="lesson-header-row">
           <div>
             <h1>Negative and floating point representation</h1>
-            <p class="lesson-hero-text">
-              See how computers store values below zero, why two's complement is
-              easier for binary arithmetic, and how floating point stores
-              fractions or values with a very large range.
-            </p>
+            <p class="lesson-hero-text">Use bits to represent negative values and fractions. Follow each change, then try the method yourself.</p>
             <p class="lesson-hero-support">
-              In the current lesson context, this sits inside
+              Part of
               <span data-role="context-label"
                 >BTEC Level 3 Computing Unit 2</span
               >.
@@ -123,330 +119,119 @@
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#range" data-section-link>Bit width and range</a>
-            <a href="#negative-numbers" data-section-link>Negative numbers</a>
-            <a href="#twos-complement" data-section-link>Two's complement</a>
-            <a href="#twos-practice" data-section-link>Practice</a>
-            <a href="#floating-point" data-section-link>Floating point</a>
-            <a href="#normalisation" data-section-link>Normalisation</a>
-            <a href="#precision" data-section-link>Precision and limits</a>
-            <a href="#compare" data-section-link>Compare</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
-            <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam-style practice</a>
-          </nav>
+<a href="#overview" data-section-link>How can bits show a value below zero?</a>
+<a href="#negative-methods" data-section-link>Two ways to represent a negative whole number</a>
+<a href="#negative-numbers" data-section-link>Method 1: use a separate sign bit</a>
+<a href="#twos-place-value" data-section-link>Method 2: give the first bit a negative value</a>
+<a href="#twos-complement" data-section-link>Make −5: invert the bits, then add 1</a>
+<a href="#decode-negative" data-section-link>Read −5 using the signed place values</a>
+<a href="#range" data-section-link>The same 256 patterns give different ranges</a>
+<a href="#signed-addition" data-section-link>The extra carry falls outside the stored bits</a>
+<a href="#signed-overflow" data-section-link>127 + 1: the answer does not fit</a>
+<a href="#twos-practice" data-section-link>Your turn: write a negative value</a>
+<a href="#binary-point" data-section-link>How can a sensor store half a degree?</a>
+<a href="#fractions" data-section-link>Binary place values continue after the point</a>
+<a href="#fraction-practice" data-section-link>Your turn: read a binary fraction</a>
+<a href="#floating-need" data-section-link>One storage format must cover very different sizes</a>
+<a href="#powers-of-two" data-section-link>Multiply by 2: the point moves right</a>
+<a href="#exponents" data-section-link>An exponent counts the steps of ×2</a>
+<a href="#floating-point" data-section-link>Store the digits and a multiplier</a>
+<a href="#normalisation" data-section-link>Move the point left and increase the exponent</a>
+<a href="#small-values" data-section-link>A small positive value needs a negative exponent</a>
+<a href="#float-storage" data-section-link>Store the parts as groups of bits</a>
+<a href="#read-float" data-section-link>Read a floating point value in the reverse order</a>
+<a href="#float-practice" data-section-link>Your turn: use the floating point parts</a>
+<a href="#precision" data-section-link>More exponent bits leave fewer mantissa bits</a>
+<a href="#rounding" data-section-link>Some values fall between the stored values</a>
+<a href="#limits" data-section-link>A format also has limits at both ends</a>
+<a href="#compare" data-section-link>Choose a rule that fits the data</a>
+<a href="#mistakes" data-section-link>Check the rule before you read the bits</a>
+<a href="#quiz" data-section-link>Quick quiz</a>
+<a href="#exam-practice" data-section-link>Written practice</a>
+</nav>
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>Binary patterns need an agreed interpretation</h2>
-            <p class="lesson-section-copy">
-              A pattern such as <code>11111011</code> is just eight bits. It
-              only becomes a value when the system knows the representation
-              being used. The same pattern can mean an unsigned integer, a
-              negative two's complement value, part of a floating point number,
-              or something else entirely.
-            </p>
+<template data-teacher-opener><h2>Negative and floating point representation</h2><p>Use bits for values below zero and values between whole numbers.</p><ul><li>Write and read negative whole numbers.</li><li>Follow the binary point through each step.</li><li>Explain range and precision.</li></ul></template>
+<section id="overview" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>How can bits show a value below zero?</h2>
 
-            <div class="representation-map">
-              <article
-                class="representation-card representation-card--unsigned"
-              >
-                <span
-                  class="representation-icon representation-icon--unsigned"
-                ></span>
-                <h3>Unsigned binary</h3>
-                <p>Uses every bit for size, so values run from zero upwards.</p>
-              </article>
+<p>A temperature sensor records +5°C and −5°C. The computer must store the difference.</p>
+<div class="nf-temperature"><div><span>Above zero</span><strong>+5°C</strong></div><span class="nf-zero">0°C</span><div><span>Below zero</span><strong>−5°C</strong></div></div>
+<p><strong>Unsigned binary</strong> represents zero and positive whole numbers. We need another rule for negative values.</p>
+<p class="nf-key">The bits store a value only when we know the rule for reading them.</p>
+</section>
 
-              <article class="representation-card representation-card--twos">
-                <span
-                  class="representation-icon representation-icon--twos"
-                ></span>
-                <h3>Two's complement</h3>
-                <p>
-                  Uses the bit pattern range to cover positive and negative
-                  whole numbers.
-                </p>
-              </article>
+<template data-teacher-divider><h2>Negative whole numbers</h2></template>
+<section id="negative-methods" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative whole numbers</p><h2>Two ways to represent a negative whole number</h2>
 
-              <article class="representation-card representation-card--float">
-                <span
-                  class="representation-icon representation-icon--float"
-                ></span>
-                <h3>Floating point</h3>
-                <p>
-                  Splits storage into sign, exponent, and significand so the
-                  point can move.
-                </p>
-              </article>
-            </div>
+<p>We will use two different rules to store the same temperature: <strong>−5°C</strong>.</p>
+<div class="nf-method-map">
+<article class="nf-method-one"><span class="nf-method-number">Method 1</span><h3>Sign and magnitude</h3><div class="nf-method-symbol"><b>−</b><strong>5</strong></div><p>Store the sign separately from the size.</p></article>
+<article class="nf-method-two"><span class="nf-method-number">Method 2</span><h3>Two's complement</h3><div class="nf-method-symbol"><strong>11111011</strong></div><p>Give the first bit a negative place value. Read the whole pattern.</p></article>
+</div><p class="nf-key">Choose one rule before you read the bits. These are two separate methods.</p>
+</section>
+<section id="negative-numbers" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Method 1 · Sign and magnitude</p><h2>Method 1: use a separate sign bit</h2>
 
-            <div class="lesson-intro-grid">
-              <article class="lesson-card">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>
-                    Explain why unsigned binary cannot represent negatives.
-                  </li>
-                  <li>Convert small values using 8-bit two's complement.</li>
-                  <li>
-                    Describe sign, exponent, and significand in floating point.
-                  </li>
-                  <li>
-                    Explain range, precision, rounding, overflow, and underflow.
-                  </li>
-                </ul>
-              </article>
+<p><strong>Magnitude</strong> means the size without the sign. Both +5 and −5 have a magnitude of 5.</p>
+<div class="nf-sign-pair"><div><span>+5</span><code><b>0</b> 0000101</code><span>0 means positive</span></div><div><span>−5</span><code><b>1</b> 0000101</code><span>1 means negative</span></div></div>
+<p>The first bit gives the sign. The other seven bits give the magnitude.</p>
+<p class="nf-key">Only the sign bit changes. This method has two zero patterns: 00000000 and 10000000.</p>
+</section>
 
-              <article class="lesson-card">
-                <h3>The big idea</h3>
-                <p>
-                  The CPU does not store a minus symbol or a decimal point as a
-                  handwritten mark. It stores bits, then interprets those bits
-                  according to a chosen format.
-                </p>
-              </article>
-            </div>
-          </section>
+<template data-teacher-divider><h2>Method 2: two's complement</h2><p>Use a different rule for the whole pattern.</p></template>
+<section id="twos-place-value" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Method 2 · Two's complement</p>
+<h2>Method 2: give the first bit a negative value</h2>
 
-          <section
-            id="range"
-            class="lesson-section lesson-section--range panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Bit Width</p>
-            <h2>The number of bits controls the range</h2>
-            <p class="lesson-section-copy">
-              A fixed number of bits gives a fixed number of patterns. With 8
-              bits there are 256 patterns. Unsigned binary spends all 256 on
-              values from <code>0</code> to <code>255</code>. Two's complement
-              splits them across negative and non-negative values, from
-              <code>-128</code> to <code>127</code>.
-            </p>
+<p>This method uses the whole pattern to give the value. In eight bits, the leftmost place value is <strong>−128</strong>.</p>
+<div class="nf-table-scroll" tabindex="0" role="group" aria-label="The same eight positions, with a different first place value" data-no-slide-advance><table class="nf-table"><caption>The same eight positions, with a different first place value</caption><thead><tr><th scope="col">Rule</th><th scope="col">First</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th><th scope="col">Last</th></tr></thead><tbody><tr><th scope="row">Unsigned</th><td>128</td><td>64</td><td>32</td><td>16</td><td>8</td><td>4</td><td>2</td><td>1</td></tr><tr><th scope="row">Two's complement</th><td><strong>−128</strong></td><td>64</td><td>32</td><td>16</td><td>8</td><td>4</td><td>2</td><td>1</td></tr></tbody></table></div><p class="nf-key">The first bit has a negative place value. It is not a separate minus sign.</p>
+</section>
 
-            <div class="range-board" aria-label="8-bit range comparison">
-              <article class="range-card range-card--unsigned">
-                <h3>8-bit unsigned</h3>
-                <div class="range-line">
-                  <span>0</span>
-                  <span>255</span>
-                </div>
-                <p>All patterns represent zero or a positive whole number.</p>
-              </article>
+<section id="twos-complement" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Method 2 · Two's complement</p><h2>Make −5: invert the bits, then add 1</h2>
+<div data-number-demo="twos" data-no-slide-advance><div class="nf-static-method"><p><strong>Invert</strong> means change each 0 to 1 and each 1 to 0. This example needs no carry.</p><div class="nf-table-scroll" tabindex="0" role="group" aria-label="Make −5; keep eight bits" data-no-slide-advance><table class="nf-calculation-table"><caption>Make −5; keep eight bits</caption><thead><tr><th scope="col">Step</th><th scope="col">128</th><th scope="col">64</th><th scope="col">32</th><th scope="col">16</th><th scope="col">8</th><th scope="col">4</th><th scope="col">2</th><th scope="col">1</th></tr></thead><tbody><tr><th scope="row">Step 1 · Positive 5</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr><tr><th scope="row">Carry (none needed)</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><th scope="row">Step 2 · Invert bits</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><th scope="row">+ Step 3 · Add 1</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr><tr><th scope="row">= Step 4 · Result</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr></tbody></table></div><p class="nf-key">11111010 + 00000001 = 11111011. The last column is 0 + 1 = 1.</p></div></div>
+</section>
 
-              <article class="range-card range-card--twos">
-                <h3>8-bit two's complement</h3>
-                <div class="range-line range-line--split">
-                  <span>-128</span>
-                  <span>0</span>
-                  <span>127</span>
-                </div>
-                <p>The same 256 patterns are interpreted around zero.</p>
-              </article>
-            </div>
+<section id="decode-negative" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Method 2 · Two's complement</p><h2>Read −5 using the signed place values</h2>
+<p>Add the place values where the bit is 1. Include −128.</p><div class="nf-table-scroll" tabindex="0" role="group" aria-label="Read 11111011 as eight-bit two's complement" data-no-slide-advance><table class="nf-table"><caption>Read 11111011 as eight-bit two's complement</caption><thead><tr><th scope="col">Place value</th><th scope="col">−128</th><th scope="col">64</th><th scope="col">32</th><th scope="col">16</th><th scope="col">8</th><th scope="col">4</th><th scope="col">2</th><th scope="col">1</th></tr></thead><tbody><tr><th scope="row">Bit</th><td><b>1</b></td><td><b>1</b></td><td><b>1</b></td><td><b>1</b></td><td><b>1</b></td><td>0</td><td><b>1</b></td><td><b>1</b></td></tr></tbody></table></div><p class="nf-equation">−128 + 64 + 32 + 16 + 8 + 2 + 1 = <strong>−5</strong></p><p class="nf-key">The negative first place and the other places together give −5.</p>
+</section>
 
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Bit width</th>
-                    <th>Number of patterns</th>
-                    <th>Unsigned range</th>
-                    <th>Two's complement range</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>4 bits</td>
-                    <td>16</td>
-                    <td>0 to 15</td>
-                    <td>-8 to 7</td>
-                  </tr>
-                  <tr>
-                    <td>8 bits</td>
-                    <td>256</td>
-                    <td>0 to 255</td>
-                    <td>-128 to 127</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+<section id="range" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p><h2>The same 256 patterns give different ranges</h2>
 
-          <section
-            id="negative-numbers"
-            class="lesson-section lesson-section--negative-numbers panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Negative Numbers</p>
-            <h2>Negative binary is a representation choice</h2>
-            <p class="lesson-section-copy">
-              A simple approach is sign and magnitude: use the leftmost bit for
-              the sign and the remaining bits for the size. That is easy to
-              understand, but it creates awkward arithmetic cases. Two's
-              complement is the common method because addition and subtraction
-              can use the same binary hardware.
-            </p>
+<span id="range-limits" class="nf-anchor"></span>
+<p><strong>Range</strong> means the values a format can represent. Eight bits give 256 different patterns.</p>
+<div class="nf-range-map">
+<article><h3>Unsigned</h3><div class="nf-range-points"><div><strong>0</strong><code>00000000</code></div><div><strong>255</strong><code>11111111</code></div></div><p>256 values: zero and positive whole numbers.</p></article>
+<article><h3>Two's complement</h3><div class="nf-range-points nf-range-points-signed"><div><strong>−128</strong><code>10000000</code></div><div><strong>0</strong><code>00000000</code></div><div><strong>127</strong><code>01111111</code></div></div><div class="nf-range-counts"><span>128 negative values</span><span>Zero + 127 positive values</span></div></article>
+</div><p class="nf-key">Zero takes one of the 128 patterns that start with 0. This leaves 127 positive values.</p>
+</section>
 
-            <div class="method-grid">
-              <article class="method-card method-card--sign">
-                <h3>Sign and magnitude</h3>
-                <div class="bit-demo-row">
-                  <span class="bit-cell is-sign is-one">1</span>
-                  <span class="bit-cell">0</span>
-                  <span class="bit-cell">0</span>
-                  <span class="bit-cell">0</span>
-                  <span class="bit-cell">0</span>
-                  <span class="bit-cell">1</span>
-                  <span class="bit-cell">0</span>
-                  <span class="bit-cell">1</span>
-                </div>
-                <p>
-                  The sign bit says negative, and the remaining bits show the
-                  magnitude. The idea is readable, but arithmetic is less neat.
-                </p>
-              </article>
 
-              <article class="method-card method-card--twos">
-                <h3>Two's complement</h3>
-                <div
-                  class="twos-wheel"
-                  aria-label="Two's complement wrap around"
-                >
-                  <span>11111111 = -1</span>
-                  <span>00000000 = 0</span>
-                  <span>00000001 = 1</span>
-                </div>
-                <p>
-                  The bit patterns wrap around zero. This means adding
-                  <code>00000001</code> to <code>11111111</code> produces
-                  <code>00000000</code>, just like -1 + 1 = 0.
-                </p>
-              </article>
-            </div>
-          </section>
+<section id="signed-addition" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p><h2>The extra carry falls outside the stored bits</h2>
+<p>A value rises from −5 to 0 when we add 5. Add the two eight-bit patterns.</p><div class="nf-table-scroll nf-store-scroll" tabindex="0" role="group" aria-label="Eight-bit signed addition" data-no-slide-advance><table class="nf-store-table"><thead><tr><th></th><th class="nf-outside">Outside storage</th><th colspan="8" class="nf-stored-heading">Eight stored positions</th></tr><tr><th scope="col">Place value</th><th scope="col" class="nf-outside">Extra carry</th><th scope="col" class="nf-first-stored">−128</th><th scope="col">64</th><th scope="col">32</th><th scope="col">16</th><th scope="col">8</th><th scope="col">4</th><th scope="col">2</th><th scope="col">1</th></tr></thead><tbody><tr><th scope="row">Carry</th><td class="nf-outside"></td><td class="nf-first-stored ">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">0</td></tr><tr><th scope="row">−5</th><td class="nf-outside"></td><td class="nf-first-stored ">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">0</td><td class="">1</td><td class="">1</td></tr><tr><th scope="row">+ 5</th><td class="nf-outside"></td><td class="nf-first-stored ">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">1</td><td class="">0</td><td class="">1</td></tr><tr class="nf-store-result"><th scope="row">Stored result</th><td class="nf-outside"><strong class="nf-discarded-one">1</strong><small>↓ Ignored</small></td><td class="nf-first-stored ">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td></tr></tbody></table></div><div class="nf-store-outcome"><p class="nf-ignored">The extra <strong>1</strong> is ignored.<br>It is <strong>not stored</strong>.</p><p class="nf-kept"><strong>00000000 = 0</strong><br>These eight bits are stored.</p></div><p class="nf-key">Two's complement lets the same addition circuit work with positive and negative whole numbers.</p>
+</section>
 
-          <section
-            id="twos-complement"
-            class="lesson-section lesson-section--twos-complement panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Two's Complement</p>
-            <h2>
-              To make a negative value, invert the positive bits and add 1
-            </h2>
-            <p class="lesson-section-copy">
-              For an 8-bit negative value, start with the positive magnitude,
-              flip every bit, then add <code>1</code>. Keep the full 8-bit
-              pattern, including leading bits.
-            </p>
+<section id="signed-overflow" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p><h2>127 + 1: the answer does not fit</h2>
+<p>A counter should rise from 127 to 128. But the largest eight-bit two's complement value is 127.</p><div class="nf-table-scroll nf-store-scroll" tabindex="0" role="group" aria-label="Eight-bit signed addition" data-no-slide-advance><table class="nf-store-table"><thead><tr><th></th><th colspan="8" class="nf-stored-heading">Eight stored positions</th></tr><tr><th scope="col">Place value</th><th scope="col" class="nf-first-stored">−128</th><th scope="col">64</th><th scope="col">32</th><th scope="col">16</th><th scope="col">8</th><th scope="col">4</th><th scope="col">2</th><th scope="col">1</th></tr></thead><tbody><tr><th scope="row">Carry</th><td class="nf-first-stored ">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">0</td></tr><tr><th scope="row">127</th><td class="nf-first-stored ">0</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td><td class="">1</td></tr><tr><th scope="row">+ 1</th><td class="nf-first-stored ">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">1</td></tr><tr class="nf-store-result"><th scope="row">Stored result</th><td class="nf-first-stored nf-wrong-sign">1</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td></tr></tbody></table></div><div class="nf-overflow-outcome"><div><span>Expected: positive + positive</span><strong>+128</strong><p>Outside the range. Cannot be stored.</p></div><span class="nf-not-equal">≠</span><div><span>Stored: first bit is now 1</span><strong>−128</strong><p>The pattern represents a negative value.</p></div></div><p class="nf-key"><strong>Overflow:</strong> the result is outside the available range. Here, two positive inputs produce a negative stored result.</p>
+</section>
 
-            <article
-              class="twos-tool"
-              data-role="twos-complement-tool"
-              aria-labelledby="twos-tool-heading"
-            >
+<template data-teacher-divider><h2>Practice with negative values</h2></template>
+<section id="twos-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Your turn: write a negative value</h2>
+<p>Complete steps 1, 2 and 4. Step 3 always adds 1. Use the carry row if needed.</p><article class="practice-panel" data-no-slide-advance data-role="twos-practice">
               <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Interactive</p>
-                  <h3 id="twos-tool-heading">8-bit two's complement viewer</h3>
-                </div>
-                <span class="tool-pill">Range -128 to 127</span>
-              </div>
-
-              <form class="twos-form" data-role="twos-form">
-                <label>
-                  Denary value
-                  <input
-                    type="number"
-                    min="-128"
-                    max="127"
-                    step="1"
-                    data-role="twos-input"
-                  />
-                </label>
-                <input
-                  class="twos-slider"
-                  type="range"
-                  min="-128"
-                  max="127"
-                  step="1"
-                  data-role="twos-slider"
-                  aria-label="Choose denary value"
-                />
-                <button class="lesson-secondary-action" type="submit">
-                  Update
-                </button>
-              </form>
-
-              <div class="twos-range-track" aria-hidden="true">
-                <span>-128</span>
-                <span data-role="twos-range-marker" class="twos-range-marker"
-                  >-5</span
-                >
-                <span>127</span>
-              </div>
-
-              <div class="twos-output">
-                <div class="twos-byte-row" data-role="twos-byte"></div>
-                <div class="twos-summary">
-                  <article>
-                    <span>Denary</span>
-                    <strong data-role="twos-denary">-5</strong>
-                  </article>
-                  <article>
-                    <span>Stored pattern</span>
-                    <strong data-role="twos-result">11111011</strong>
-                  </article>
-                  <article>
-                    <span>First bit suggests</span>
-                    <strong data-role="twos-sign">negative range</strong>
-                  </article>
-                </div>
-              </div>
-
-              <div class="twos-step-grid" aria-label="Two's complement steps">
-                <article>
-                  <span>1. Positive magnitude</span>
-                  <code data-role="twos-magnitude">00000101</code>
-                </article>
-                <article>
-                  <span>2. Invert bits</span>
-                  <code data-role="twos-invert">11111010</code>
-                </article>
-                <article>
-                  <span>3. Add 1</span>
-                  <code data-role="twos-add-one">11111011</code>
-                </article>
-              </div>
-
-              <p class="tool-note" data-role="twos-note">
-                To store -5, start with 5, invert every bit, then add 1.
-              </p>
-            </article>
-          </section>
-
-          <section
-            id="twos-practice"
-            class="lesson-section lesson-section--twos-practice panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Practice</p>
-            <h2>Try one two's complement question at a time</h2>
-
-            <article class="practice-panel" data-role="twos-practice">
-              <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Auto-generated</p>
-                  <h3>Two's complement practice</h3>
-                </div>
+                <p class="practice-question" data-role="twos-practice-prompt">
+                  Represent −5 in 8-bit two's complement.
+                </p>
                 <button
                   class="lesson-secondary-action"
                   type="button"
@@ -457,11 +242,9 @@
               </div>
 
               <form class="practice-form" data-role="twos-practice-form">
-                <p class="practice-question" data-role="twos-practice-prompt">
-                  Represent -5 in 8-bit two's complement.
-                </p>
+
                 <div
-                  class="twos-practice-table-wrap"
+                  class="twos-practice-table-wrap" tabindex="0" role="group" aria-label="Two's complement working table; scroll to see all places"
                   data-role="twos-practice-table"
                 ></div>
                 <div class="practice-answer-row">
@@ -483,655 +266,188 @@
                 ></div>
               </form>
             </article>
-          </section>
 
-          <section
-            id="floating-point"
-            class="lesson-section lesson-section--floating-point panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Floating Point</p>
-            <h2>Floating point stores the point position separately</h2>
-            <p class="lesson-section-copy">
-              Floating point is useful when a value might be fractional, very
-              large, or very small. It works like scientific notation: store the
-              sign, store the main digits, and store a power that scales the
-              value.
-            </p>
+</section>
 
-            <div class="float-part-board" aria-label="Floating point parts">
-              <article class="float-part float-part--sign">
-                <span>Sign</span>
-                <strong>0 or 1</strong>
-                <p>Whether the value is positive or negative.</p>
-              </article>
-              <article class="float-part float-part--significand">
-                <span>Significand</span>
-                <strong>1.xxxxx</strong>
-                <p>The main precision bits, sometimes called the mantissa.</p>
-              </article>
-              <article class="float-part float-part--exponent">
-                <span>Exponent</span>
-                <strong>2^n</strong>
-                <p>How far the binary point has moved.</p>
-              </article>
-            </div>
+<template data-teacher-divider><h2>Binary fractions</h2></template>
+<section id="binary-point" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Binary fractions</p><h2>How can a sensor store half a degree?</h2>
 
-            <article class="lesson-card float-example-card">
-              <h3>Worked idea</h3>
-              <p>
-                The binary value <code>1101.01</code> can be written as
-                <code>1.10101 x 2^3</code>. The significand is
-                <code>1.10101</code> and the exponent is <code>3</code>
-                because the point moved three places left.
-              </p>
-            </article>
-          </section>
+<p>A sensor reads <strong>5.5°C</strong>. A whole-number answer of 5 or 6 would lose the half degree.</p>
+<div class="nf-half-line"><span>5°C</span><strong>5.5°C</strong><span>6°C</span></div>
+<div class="nf-point-comparison"><article><h3>Denary</h3><div><strong>5</strong><b>.</b><strong>5</strong></div><p>Five whole degrees + half a degree.</p></article><article><h3>Binary</h3><div><strong>101</strong><b>.</b><strong>1</strong></div><p>101 is five. The first fraction place is ½.</p></article></div>
+<p class="nf-key">The point separates the whole-number part from the fraction part. In binary, we call it the binary point.</p>
+</section>
+<section id="fractions" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Binary place values continue after the point</h2>
 
-          <section
-            id="normalisation"
-            class="lesson-section lesson-section--normalisation panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Normalisation</p>
-            <h2>Normalising keeps one non-zero digit before the point</h2>
-            <p class="lesson-section-copy">
-              A normalised binary floating point value is usually written with
-              one leading <code>1</code> before the binary point. Moving the
-              point left gives a positive exponent. Moving it right gives a
-              negative exponent.
-            </p>
+<p>A sensor can also record quarter degrees. Each binary place to the right is half the previous place.</p><div class="nf-halving" aria-label="Halve each place value: 1, one half, one quarter, one eighth"><strong>1</strong><span>÷ 2 →</span><strong>½</strong><span>÷ 2 →</span><strong>¼</strong><span>÷ 2 →</span><strong>⅛</strong></div>
+<div class="nf-table-scroll" tabindex="0" role="group" aria-label="Read 1101.01 in binary" data-no-slide-advance><table class="nf-table"><caption>Read 1101.01 in binary</caption><thead><tr><th scope="col">Place value</th><th scope="col">8</th><th scope="col">4</th><th scope="col">2</th><th scope="col">1</th><th scope="col">Point</th><th scope="col">½</th><th scope="col">¼</th></tr></thead><tbody><tr><th scope="row">Bit</th><td>1</td><td>1</td><td>0</td><td>1</td><td><strong>.</strong></td><td>0</td><td>1</td></tr></tbody></table></div><p class="nf-equation">8 + 4 + 1 + ¼ = <strong>13.25</strong></p><p class="nf-key">The first fraction places are ½, ¼, ⅛ and ¹⁄₁₆.</p>
+</section>
 
-            <article
-              class="normaliser-tool"
-              data-role="floating-normaliser"
-              aria-labelledby="normaliser-heading"
-            >
-              <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Visualiser</p>
-                  <h3 id="normaliser-heading">Floating point normaliser</h3>
-                </div>
-                <div class="normaliser-actions" aria-label="Example choices">
-                  <button
-                    class="lesson-secondary-action"
-                    type="button"
-                    data-normalise-case="large"
-                  >
-                    1101.01
-                  </button>
-                  <button
-                    class="lesson-secondary-action"
-                    type="button"
-                    data-normalise-case="fraction"
-                  >
-                    0.001101
-                  </button>
-                  <button
-                    class="lesson-secondary-action"
-                    type="button"
-                    data-normalise-case="negative"
-                  >
-                    -101.1
-                  </button>
-                </div>
-              </div>
+<section id="fraction-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p><h2>Your turn: read a binary fraction</h2>
 
-              <div class="normaliser-flow">
-                <article>
-                  <span>Original</span>
-                  <code data-role="normalise-raw">1101.01</code>
-                </article>
-                <article>
-                  <span>Move point</span>
-                  <p data-role="normalise-movement">
-                    Move the point 3 places left so the value starts 1.x.
-                  </p>
-                </article>
-                <article>
-                  <span>Normalised</span>
-                  <code data-role="normalise-result">1.10101 x 2^3</code>
-                </article>
-              </div>
+<div class="practice-panel" data-fraction-practice data-no-slide-advance>
+<div class="tool-heading"><p>Convert <strong><code data-fraction-question>0010.101</code></strong> to denary.</p><button class="lesson-secondary-action" type="button" data-fraction-new data-fraction-js hidden>New question</button></div>
+<div class="nf-table-scroll" tabindex="0" role="group" aria-label="Binary fraction place values" data-no-slide-advance><table class="nf-table"><caption>Read each place with a 1</caption><thead><tr><th scope="col">8</th><th scope="col">4</th><th scope="col">2</th><th scope="col">1</th><th scope="col">Point</th><th scope="col">½</th><th scope="col">¼</th><th scope="col">⅛</th></tr></thead><tbody><tr><td data-fraction-bit>0</td><td data-fraction-bit>0</td><td data-fraction-bit>1</td><td data-fraction-bit>0</td><td>.</td><td data-fraction-bit>1</td><td data-fraction-bit>0</td><td data-fraction-bit>1</td></tr></tbody></table></div><form class="nf-fraction-form"><label class="nf-answer" for="fraction-answer">Denary value<input id="fraction-answer" data-fraction-answer inputmode="decimal" type="text" autocomplete="off"></label><button class="primary-link" type="submit" data-fraction-js hidden>Check answer</button></form>
+<p class="practice-feedback" data-fraction-feedback aria-live="polite">Add the places with a 1.</p>
+<p class="nf-caption">The question and your answer save in this browser.</p></div>
+<noscript><p>For 0010.101: 2 + ½ + ⅛ = 2.625. New questions and checking need JavaScript.</p></noscript>
+</section>
 
-              <div class="float-register-strip">
-                <article>
-                  <span>Sign</span>
-                  <strong data-role="normalise-sign">0</strong>
-                </article>
-                <article>
-                  <span>Exponent</span>
-                  <strong data-role="normalise-exponent">+3</strong>
-                </article>
-                <article>
-                  <span>Significand</span>
-                  <strong data-role="normalise-significand">1.10101</strong>
-                </article>
-              </div>
-            </article>
-          </section>
+<template data-teacher-divider><h2>Why floating point?</h2><p>Store measurements across a wide range.</p></template>
+<section id="floating-need" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Why floating point?</p><h2>One storage format must cover very different sizes</h2>
 
-          <section
-            id="precision"
-            class="lesson-section lesson-section--precision panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Precision</p>
-            <h2>Floating point trades exactness for range</h2>
-            <p class="lesson-section-copy">
-              A floating point format has a limited number of bits. Giving more
-              bits to the exponent increases range. Giving more bits to the
-              significand increases precision. You cannot maximise both in the
-              same fixed-size format.
-            </p>
+<p>A science program stores measurements of very small and very large objects.</p>
+<div class="nf-size-context"><article><span>Small measurement</span><strong>0.00025 m</strong><div class="nf-tiny-object" aria-hidden="true"></div></article><article><span>Large measurement</span><strong>250000 m</strong><div class="nf-large-object" aria-hidden="true"></div></article></div>
+<p>The computer has a limited number of bits for each value.</p>
+<p class="nf-key"><strong>Floating point</strong> stores the main digits and a separate scale. Each value can use the scale it needs.</p>
+</section>
+<section id="powers-of-two" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Understand the scale</p><h2>Multiply by 2: the point moves right</h2>
+<p>A program doubles a measurement. Watch the binary point move as the value increases.</p><div data-number-demo="scale" data-no-slide-advance><div class="nf-static-method"><div class="nf-table-scroll" tabindex="0" role="group" aria-label="Double the measurement once per row" data-no-slide-advance><table class="nf-table"><caption>Double the measurement once per row</caption><thead><tr><th scope="col">Action</th><th scope="col">Binary</th><th scope="col">Denary</th></tr></thead><tbody><tr><th scope="row">Start</th><td>1.010</td><td>1.25</td></tr><tr><th scope="row">× 2</th><td>10.10</td><td>2.5</td></tr><tr><th scope="row">× 2 again</th><td>101.0</td><td>5</td></tr></tbody></table></div></div></div>
+</section>
 
-            <article
-              class="tradeoff-tool"
-              data-role="float-tradeoff"
-              aria-labelledby="tradeoff-heading"
-            >
-              <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Toy model</p>
-                  <h3 id="tradeoff-heading">Split 8 storage bits</h3>
-                </div>
-                <span class="tool-pill">1 sign bit + 7 shared bits</span>
-              </div>
+<section id="exponents" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Understand the scale</p><h2>An exponent counts the steps of ×2</h2>
 
-              <label class="tradeoff-slider-label">
-                Exponent bits
-                <input
-                  type="range"
-                  min="2"
-                  max="5"
-                  step="1"
-                  data-role="tradeoff-slider"
-                />
-              </label>
+<p>Three steps of ×2 multiply a value by 8. We write this multiplier as <strong>2³</strong>.</p>
+<div class="nf-scale-chain"><div><span>Start</span><strong>1.25</strong></div><b>×2 →</b><div><span>Step 1</span><strong>2.5</strong></div><b>×2 →</b><div><span>Step 2</span><strong>5</strong></div><b>×2 →</b><div><span>Step 3</span><strong>10</strong></div></div>
+<p class="nf-equation">2<sup class="nf-exponent-mark">3</sup> = 2 × 2 × 2 = <strong>8</strong></p>
+<p>The raised number, 3, is the <strong>exponent</strong>. It records how many steps we use.</p>
+<div class="nf-exponent-rules"><p><strong>2⁰ = 1</strong><br>Zero steps. The value stays the same.</p><p><strong>2⁻³ = ⅛</strong><br>Three steps of ÷2 make the value smaller.</p></div>
+</section>
+<template data-teacher-divider><h2>The floating point parts</h2></template>
+<section id="floating-point" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Store the digits and a multiplier</h2>
 
-              <div class="tradeoff-grid">
-                <article class="tradeoff-card tradeoff-card--range">
-                  <span>Exponent bits</span>
-                  <strong data-role="tradeoff-exponent-bits">3</strong>
-                  <div class="tradeoff-bar">
-                    <span></span>
-                  </div>
-                  <p>
-                    Scale choices:
-                    <strong data-role="tradeoff-range-levels">8</strong>
-                  </p>
-                </article>
-                <article class="tradeoff-card tradeoff-card--precision">
-                  <span>Significand bits</span>
-                  <strong data-role="tradeoff-significand-bits">4</strong>
-                  <div class="tradeoff-bar">
-                    <span></span>
-                  </div>
-                  <p>
-                    Detail steps:
-                    <strong data-role="tradeoff-precision-steps">16</strong>
-                  </p>
-                </article>
-              </div>
+<p>Store the measurement <strong>13.25</strong> as binary digits and a scale. The scale restores the original size.</p>
+<div class="nf-formula"><span class="nf-positive">+</span><span class="nf-mantissa">1.10101</span><span>×</span><span class="nf-exponent">2<sup>3</sup></span><span>= 13.25</span></div>
+<div class="nf-cards"><article><h3>Sign</h3><p>Positive or negative.</p></article><article><h3>Mantissa</h3><p>The main binary digits of the value. This part is also called the <strong>significand</strong>.</p></article><article><h3>Exponent</h3><p>The power of two that multiplies the mantissa.</p></article></div><p class="nf-key">Put one 1 before the mantissa point. A fixed position means we do not store a dot. The exponent restores the original size.</p>
+</section>
 
-              <p class="tool-note" data-role="tradeoff-note">
-                This setup balances range and precision.
-              </p>
-            </article>
+<section id="normalisation" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Move the point left and increase the exponent</h2>
 
-            <div class="term-grid">
-              <article class="term-card">
-                <strong>Rounding</strong>
-                <span>The closest representable value is stored.</span>
-              </article>
-              <article class="term-card">
-                <strong>Overflow</strong>
-                <span>The value is too large for the exponent range.</span>
-              </article>
-              <article class="term-card">
-                <strong>Underflow</strong>
-                <span
-                  >The value is too close to zero to represent accurately.</span
-                >
-              </article>
-              <article class="term-card">
-                <strong>Precision loss</strong>
-                <span
-                  >Small detail is lost because there are not enough bits.</span
-                >
-              </article>
-            </div>
-          </section>
+<p>We need the mantissa to fit the same storage rule each time. <strong>Normalisation</strong> puts one 1 before its point.</p><p class="nf-demo-goal">Target: <strong>1.xxxxx × 2<sup>exponent</sup></strong> · Keep the measurement at <strong>13.25</strong>.</p>
+<div data-number-demo="large" data-no-slide-advance><div class="nf-static-method"><div class="nf-table-scroll" tabindex="0" role="group" aria-label="Each row still represents 13.25" data-no-slide-advance><table class="nf-table"><caption>Each row still represents 13.25</caption><thead><tr><th scope="col">Step</th><th scope="col">Binary expression</th><th scope="col">Multiplier</th></tr></thead><tbody><tr><th scope="row">Start</th><td>1101.01 × 2⁰</td><td>1</td></tr><tr><th scope="row">Move left once</th><td>110.101 × 2¹</td><td>2</td></tr><tr><th scope="row">Move left again</th><td>11.0101 × 2²</td><td>4</td></tr><tr><th scope="row">Finish</th><td>1.10101 × 2³</td><td>8</td></tr></tbody></table></div></div></div>
+</section>
 
-          <section
-            id="compare"
-            class="lesson-section lesson-section--compare panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Compare</p>
-            <h2>Choose the representation for the kind of value</h2>
-            <div class="compare-table-wrap">
-              <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th>Representation</th>
-                    <th>Best for</th>
-                    <th>Key limitation</th>
-                    <th>Exam phrase to remember</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Unsigned binary</td>
-                    <td>
-                      Counts, addresses, sizes, and positive whole numbers
-                    </td>
-                    <td>No negative values</td>
-                    <td>All bits contribute to magnitude</td>
-                  </tr>
-                  <tr>
-                    <td>Two's complement</td>
-                    <td>Positive and negative integers</td>
-                    <td>Range depends on bit width</td>
-                    <td>Invert and add 1 for a negative value</td>
-                  </tr>
-                  <tr>
-                    <td>Floating point</td>
-                    <td>
-                      Fractions, measurements, and very large or small values
-                    </td>
-                    <td>May store an approximation</td>
-                    <td>Range and precision are a trade-off</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+<section id="small-values" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>A small positive value needs a negative exponent</h2>
 
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with negative and floating point values</h2>
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Dropping leading bits</h3>
-                <p>
-                  In two's complement, the full bit width matters. Removing a
-                  leading <code>1</code> can change the value completely.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Keep all bits stated by the question,
-                  especially in 8-bit examples.
-                </p>
-              </article>
+<p>Start with <code>0.001101</code>. Move the point right until one 1 is before the point.</p>
+<div data-number-demo="small" data-no-slide-advance><div class="nf-static-method"><div class="nf-table-scroll" tabindex="0" role="group" aria-label="Each row still represents 0.203125" data-no-slide-advance><table class="nf-table"><caption>Each row still represents 0.203125</caption><thead><tr><th scope="col">Step</th><th scope="col">Binary expression</th></tr></thead><tbody><tr><th scope="row">Start</th><td>0.001101 × 2⁰</td></tr><tr><th scope="row">Move right once</th><td>00.01101 × 2⁻¹</td></tr><tr><th scope="row">Move right again</th><td>000.1101 × 2⁻²</td></tr><tr><th scope="row">Finish</th><td>1.101 × 2⁻³</td></tr></tbody></table></div></div></div>
+</section>
 
-              <article class="trap-card">
-                <h3>Treating every first bit as just a sign</h3>
-                <p>
-                  In two's complement the leftmost bit helps indicate the
-                  negative range, but the whole pattern determines the value.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Decode the whole bit pattern, not only
-                  the first bit.
-                </p>
-              </article>
+<section id="float-storage" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Store the parts as groups of bits</h2>
 
-              <article class="trap-card">
-                <h3>Assuming floating point is exact</h3>
-                <p>
-                  Some values cannot be represented exactly with the available
-                  significand bits.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Mention rounding, precision loss, or
-                  approximation when asked about limitations.
-                </p>
-              </article>
-            </div>
-          </section>
+<p>This example uses a <strong>simple 10-bit format</strong>. Its exponent uses three-bit two's complement.</p>
+<div class="nf-storage" data-float-sign data-no-slide-advance>
+<div class="nf-storage-parts"><div><span>Sign · 1 bit</span><strong data-sign-bit>0</strong><small>0 positive · 1 negative</small></div><div><span>Exponent · 3 bits</span><strong>011</strong><small>+3 in two's complement</small></div><div><span>Mantissa · 6 bits</span><strong>110101</strong><small>Read as 1.10101</small></div></div>
+<p class="nf-equation" data-signed-value>+1.10101 × 2³ = +13.25</p>
+<div class="nf-sign-controls" hidden><button type="button" class="lesson-secondary-action" data-sign="0" aria-pressed="true">Positive</button><button type="button" class="lesson-secondary-action" data-sign="1" aria-pressed="false">Negative</button></div>
+<p>Change only the sign bit to store −13.25.</p>
+</div>
+<p class="nf-key">The point is understood to follow the first mantissa bit. The computer does not store a dot.</p><details class="exam-guidance nf-reference" data-no-slide-advance><summary>Other floating point formats</summary><div class="exam-guidance-body"><p>Other formats use different rules. Some combine the sign with a two's complement mantissa. Always use the format in the question.</p><p>This lesson uses a simple format to show how the parts work. Real formats can use different bit layouts.</p></div></details>
+</section>
 
-          <section
-            id="quiz"
-            class="lesson-section lesson-section--quiz panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Quiz</p>
-            <h2>Check the ideas, not the conversions</h2>
-            <p class="quiz-intro">
-              The practice tool handles two's complement conversion. This quiz
-              checks the concepts that explain why the representations work.
-            </p>
+<section id="read-float" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Read a floating point value in the reverse order</h2>
 
-            <form id="lesson-quiz" class="quiz-form">
-              <fieldset
-                class="quiz-question"
-                data-question="q1"
-                data-answer="b"
-                data-success="Correct. Bit width controls how many patterns are available."
-                data-feedback="A fixed bit width gives a fixed number of patterns, which limits the range."
-              >
-                <legend>
-                  1. Why does bit width matter for stored numbers?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="a" />
-                      <span>It decides which keyboard is attached</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="b" />
-                      <span
-                        >It limits how many different bit patterns exist</span
-                      >
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="c" />
-                      <span>It means binary cannot store whole numbers</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
+<p>Read the sign as positive, the mantissa as <code>1.10101</code>, and the exponent as +3.</p>
+<div data-number-demo="decode" data-no-slide-advance><div class="nf-static-method"><div class="nf-table-scroll" tabindex="0" role="group" aria-label="Use the multiplier: move the point right three times" data-no-slide-advance><table class="nf-table"><caption>Use the multiplier: move the point right three times</caption><thead><tr><th scope="col">Step</th><th scope="col">Expression</th></tr></thead><tbody><tr><th scope="row">Start</th><td>1.10101 × 2³</td></tr><tr><th scope="row">Multiply by 2</th><td>11.0101 × 2²</td></tr><tr><th scope="row">Multiply by 2 again</th><td>110.101 × 2¹</td></tr><tr><th scope="row">Finish</th><td>1101.01 × 2⁰ = 13.25</td></tr></tbody></table></div></div></div>
+</section>
 
-              <fieldset
-                class="quiz-question"
-                data-question="q2"
-                data-answer="a"
-                data-success="Correct. Two's complement lets the same binary arithmetic circuits handle signed values."
-                data-feedback="Two's complement is useful because it works neatly with normal binary addition and subtraction."
-              >
-                <legend>2. Why is two's complement widely used?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="a" />
-                      <span
-                        >It makes signed integer arithmetic easier for the
-                        CPU</span
-                      >
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="b" />
-                      <span>It is used only for text characters</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="c" />
-                      <span>It removes the need for a fixed bit width</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
+<template data-teacher-divider><h2>Practice with floating point</h2></template>
+<section id="float-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Your turn: use the floating point parts</h2>
 
-              <fieldset
-                class="quiz-question"
-                data-question="q3"
-                data-answer="c"
-                data-success="Correct. The first bit helps indicate the negative range, but the full pattern matters."
-                data-feedback="A two's complement value is decoded from the whole bit pattern, not from the first bit alone."
-              >
-                <legend>
-                  3. What should you remember about the leftmost bit in two's
-                  complement?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="a" />
-                      <span>It can be ignored when decoding the value</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="b" />
-                      <span>It always stores the exact denary magnitude</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="c" />
-                      <span
-                        >It helps indicate negative range, but the whole pattern
-                        matters</span
-                      >
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
+<div class="nf-practice-pair" data-no-slide-advance>
+<article><h3>Write a normalised value</h3><p>Start with <code>101.1</code>. Use one 1 before the point.</p>
+<label class="nf-answer" for="float-mantissa-v3">Mantissa in binary<input id="float-mantissa-v3" type="text" autocomplete="off" data-exam-response="float-mantissa-v3"></label><label class="nf-answer" for="float-exponent-v3">Exponent in denary<input id="float-exponent-v3" type="text" autocomplete="off" data-exam-response="float-exponent-v3"></label><details class="exam-guidance" data-no-slide-advance><summary>Show answer guide</summary><div class="exam-guidance-body"><p><strong>1.011 × 2²</strong>. The point moves two places left.</p></div></details></article>
+<article><h3>Read the parts</h3><p>Sign: negative. Mantissa: <code>1.01</code>. Exponent: −1.</p>
+<label class="nf-answer" for="float-decode-v3">Value in denary<input id="float-decode-v3" type="text" autocomplete="off" data-exam-response="float-decode-v3"></label><details class="exam-guidance" data-no-slide-advance><summary>Show answer guide</summary><div class="exam-guidance-body"><p>1.01 in binary is 1.25 in denary. Divide by 2, then apply the negative sign: <strong>−0.625</strong>.</p></div></details></article></div><p class="nf-caption">Your answers save in this browser.</p>
+</section>
 
-              <fieldset
-                class="quiz-question"
-                data-question="q4"
-                data-answer="b"
-                data-success="Correct. Floating point stores the main digits and a scale."
-                data-feedback="Floating point uses a sign, significand, and exponent."
-              >
-                <legend>4. Which parts describe a floating point value?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="a" />
-                      <span>Opcode, operand, and register</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="b" />
-                      <span>Sign, significand, and exponent</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="c" />
-                      <span>Parity bit, checksum, and packet header</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
+<template data-teacher-divider><h2>Precision and limits</h2></template>
+<section id="precision" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>More exponent bits leave fewer mantissa bits</h2>
 
-              <fieldset
-                class="quiz-question"
-                data-question="q5"
-                data-answer="a"
-                data-success="Correct. More range can mean fewer precision bits in a fixed-size format."
-                data-feedback="A fixed-size floating point format must divide bits between exponent range and significand precision."
-              >
-                <legend>
-                  5. What is the main range and precision trade-off in floating
-                  point?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="a" />
-                      <span
-                        >More exponent range can leave fewer bits for
-                        precision</span
-                      >
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="b" />
-                      <span
-                        >Floating point always stores every value exactly</span
-                      >
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="c" />
-                      <span>Floating point cannot store negative values</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
+<p><strong>Precision</strong> is the detail a format can keep. Keep the total at 10 bits, with one separate sign bit.</p>
+<div class="nf-allocation" data-allocation data-no-slide-advance>
+<div data-allocation-controls hidden><label for="nf-exponent-bits">Number of exponent bits <input id="nf-exponent-bits" type="range" min="2" max="5" step="1" value="3"></label></div>
+<div class="nf-allocation-strip" data-allocation-strip aria-label="One sign bit, three exponent bits and six mantissa bits"><span>S</span><span>E</span><span>E</span><span>E</span><span>M</span><span>M</span><span>M</span><span>M</span><span>M</span><span>M</span></div>
+<p class="nf-caption">S = sign · E = exponent · M = mantissa</p>
+<div class="nf-allocation-facts" aria-live="polite"><p data-allocation-range>3 exponent bits: exponents −4 to +3.</p><p data-allocation-precision>6 mantissa bits: values near 1 are 0.03125 apart.</p></div>
+<div class="nf-number-line" data-precision-line aria-label="Values from 1 to 2, with a gap of 0.03125"><span>1</span><div data-precision-ticks></div><span>2</span></div>
+<p data-allocation-note>More mantissa bits give smaller gaps between values at the same exponent.</p>
+</div>
+<noscript><p>With 5 exponent bits, the exponents run from −16 to +15. Only 4 mantissa bits remain. Values near 1 are then 0.125 apart.</p></noscript>
+<p class="nf-key">More exponent bits increase range. More mantissa bits increase precision.</p>
+</section>
 
-              <div class="quiz-actions">
-                <button class="primary-link" type="submit">Check score</button>
-                <button
-                  class="lesson-secondary-action"
-                  type="button"
-                  data-action="reset-quiz"
-                >
-                  Reset quiz
-                </button>
-              </div>
+<section id="rounding" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Some values fall between the stored values</h2>
 
-              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
-                Your answers save automatically on this device once you start.
-              </p>
-            </form>
-          </section>
+<p>For this example, keep only <strong>three mantissa bits</strong>: one before the point and two after it.</p>
+<figure class="nf-rounding"><figcaption>Nearest stored values around 1.3</figcaption><div class="nf-round-track"><div class="nf-round-low"><strong>1.25</strong><code>1.01</code></div><div class="nf-round-target"><strong>1.3</strong><span>Wanted</span></div><div class="nf-round-high"><strong>1.5</strong><code>1.10</code></div></div></figure>
+<p>1.3 is 0.05 from 1.25 and 0.20 from 1.5. If we round to the nearest value, we store <strong>1.25</strong>.</p>
+<p class="nf-key">Rounding replaces a value with a nearby value that fits. Some values, such as 1.25, fit exactly.</p><details class="exam-guidance" data-no-slide-advance><summary>Show answer guide</summary><div class="exam-guidance-body"><p>Denary 0.1 has a repeating binary fraction. A fixed number of bits cannot store it exactly.</p></div></details>
+</section>
 
-          <section
-            id="exam-practice"
-            class="lesson-section lesson-section--exam-practice panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam-Style Practice</p>
-            <h2>Explain the representation and the trade-off</h2>
-            <p class="lesson-section-copy">
-              Exam answers usually need the method and the reason. Type your
-              answers into the page, then compare your ideas with the guide.
-            </p>
-            <p class="exam-response-note">
-              Draft answers save automatically in this browser.
-            </p>
+<section id="limits" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>A format also has limits at both ends</h2>
 
-            <div class="exam-grid">
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">4 marks</span>
-                  <span class="exam-pill">Describe</span>
-                </div>
-                <h3>Question 1</h3>
-                <p>
-                  Describe how a computer can represent a negative integer using
-                  8-bit two's complement.
-                </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-1">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-1"
-                    class="exam-response"
-                    data-exam-response="question-1"
-                    placeholder="Mention bit width, positive magnitude, invert bits, and add 1."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Show answer guide</summary>
-                  <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>
-                        State that the bit width is fixed, such as 8 bits.
-                      </li>
-                      <li>Write the positive magnitude in binary.</li>
-                      <li>Invert every bit.</li>
-                      <li>Add 1 and keep the full 8-bit pattern.</li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
+<p>Use the simple format with three exponent bits. Its exponents run from −4 to +3.</p>
+<div class="nf-cards"><article><h3>Overflow</h3><p class="nf-big">32 = 1.0 × 2⁵</p><p>The required exponent, +5, is too large. The value is outside the range.</p></article><article><h3>Underflow</h3><p class="nf-big">0.03125 = 1.0 × 2⁻⁵</p><p>The required exponent, −5, is too small. The nonzero value is too close to zero for this format.</p></article></div><p class="nf-key">This simple format has no extra rule for very small values. Real formats can handle these limits in different ways.</p>
+</section>
 
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">6 marks</span>
-                  <span class="exam-pill">Explain and evaluate</span>
-                </div>
-                <h3>Question 2</h3>
-                <p>
-                  A weather station stores sensor readings that include very
-                  small decimal values and occasional very large values. Explain
-                  why floating point is suitable, and evaluate one possible
-                  limitation.
-                </p>
-                <div class="exam-response-wrap">
-                  <label class="exam-response-label" for="exam-response-2">
-                    Your answer
-                  </label>
-                  <textarea
-                    id="exam-response-2"
-                    class="exam-response"
-                    data-exam-response="question-2"
-                    placeholder="Link fractions and range to exponent/significand, then discuss precision."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Show answer guide</summary>
-                  <div class="exam-guidance-body">
-                    <ul class="exam-points">
-                      <li>
-                        Floating point is suitable because it can store
-                        fractional values.
-                      </li>
-                      <li>
-                        The exponent lets the format represent very large or
-                        very small values.
-                      </li>
-                      <li>
-                        The significand stores the precision of the main digits.
-                      </li>
-                      <li>
-                        A limitation is that some readings may be rounded or
-                        approximated because the number of bits is limited.
-                      </li>
-                      <li>
-                        A strong answer links this to possible precision loss in
-                        later calculations or reports.
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-            </div>
-          </section>
-        </main>
+<template data-teacher-divider><h2>Check your understanding</h2></template>
+<section id="compare" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Choose a rule that fits the data</h2>
+<div class="nf-table-scroll" tabindex="0" role="group" aria-label="Compare the representations taught in this lesson" data-no-slide-advance><table class="nf-table"><caption>Compare the representations taught in this lesson</caption><thead><tr><th scope="col">Data</th><th scope="col">Suitable representation</th><th scope="col">Reason</th></tr></thead><tbody><tr><th scope="row">Number of files</th><td>Unsigned whole number</td><td>The count cannot be negative</td></tr><tr><th scope="row">Whole-number temperature below zero</th><td>Two's complement</td><td>It represents positive and negative whole numbers</td></tr><tr><th scope="row">Measurements across a wide range</th><td>Floating point</td><td>It represents fractions with a separate scale</td></tr></tbody></table></div><p class="nf-key">Choose enough bits for the required range and precision.</p>
+</section>
+
+<section id="mistakes" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Check the rule before you read the bits</h2>
+<div class="nf-cards"><article><h3>Two's complement</h3><p><code>11110100</code> means −12 with eight-bit two's complement. It means 244 as an unsigned value.</p><p>Keep the stated bit width.</p></article><article><h3>Sign and exponent</h3><p>A negative sign gives a negative value. A negative exponent makes the magnitude smaller.</p><p>These have different jobs.</p></article><article><h3>Precision</h3><p>Floating point does not store every value exactly. A value may need rounding.</p><p>More exponent bits alone do not increase precision.</p></article></div>
+</section>
+
+<section id="quiz" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Quick quiz</h2>
+<p>Select one answer for each question.</p><form id="lesson-quiz" class="quiz-form" data-no-slide-advance><fieldset class="quiz-question" data-question="q1" data-answer="b" data-success="Correct. The first place value is −128. Add it when its bit is 1." data-feedback="The first place value is −128. Add it when its bit is 1."><legend>1. What does the first place represent in eight-bit two&#x27;s complement?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a"><span>A separate minus sign</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b"><span>−128</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c"><span>+128</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q2" data-answer="a" data-success="Correct. Keep eight bits. Invert every bit, then add 1." data-feedback="Keep eight bits. Invert every bit, then add 1."><legend>2. Which steps give the negative of a positive value that fits in eight-bit two&#x27;s complement?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a"><span>Invert all eight bits, then add 1</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b"><span>Change only the first bit</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c"><span>Remove the zeros on the left</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q3" data-answer="c" data-success="Correct. The range is −128 to 127." data-feedback="The range is −128 to 127."><legend>3. Why can eight-bit two&#x27;s complement not store +128?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a"><span>Binary cannot store positive values</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b"><span>The first bit must always be 1</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c"><span>Its largest positive value is 127</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q4" data-answer="a" data-success="Correct. The fraction places start with ½, then ¼, then ⅛." data-feedback="The fraction places start with ½, then ¼, then ⅛."><legend>4. What is the first place value after the binary point?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a"><span>½</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b"><span>10</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c"><span>−1</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q5" data-answer="b" data-success="Correct. 2⁻³ means divide by 8. The sign is separate." data-feedback="2⁻³ means divide by 8. The sign is separate."><legend>5. What does the exponent −3 mean in a floating point expression?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a"><span>Make the value negative</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b"><span>Divide the mantissa by 8</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c"><span>Remove three bits</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q6" data-answer="c" data-success="Correct. The mantissa halves. Increasing the exponent by 1 compensates for this." data-feedback="The mantissa halves. Increasing the exponent by 1 compensates for this."><legend>6. You move the point one place left during normalisation. How do you keep the same value?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a"><span>Decrease the exponent by 1</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b"><span>Change the sign</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c"><span>Increase the exponent by 1</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q7" data-answer="a" data-success="Correct. More exponent bits leave fewer mantissa bits for precision." data-feedback="More exponent bits leave fewer mantissa bits for precision."><legend>7. The total number of bits is fixed. What happens if you give more bits to the exponent?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a"><span>The range can increase, but fewer mantissa bits remain</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b"><span>Every value becomes exact</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c"><span>The sign no longer needs a bit</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q8" data-answer="b" data-success="Correct. Some values fall between the values that the available bits can represent." data-feedback="Some values fall between the values that the available bits can represent."><legend>8. Why can a floating point value need rounding?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a"><span>All floating point values are negative</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b"><span>The exact value may not fit in the available bits</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c"><span>The computer stores a dot as a bit</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><div class="quiz-actions"><button class="primary-link" type="submit">Check answers</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div><p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save in this browser.</p></form>
+</section>
+
+<template data-teacher-divider><h2>Apply the methods</h2></template>
+<section id="exam-practice" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Negative and floating point</p>
+<h2>Written practice</h2>
+<p>Show your method. Your answers save in this browser.</p><article class="exam-card" data-no-slide-advance><h3>1. Write and check a negative value</h3><p>Write −18 in eight-bit two's complement. Show each step. Check the result with the signed place values.</p><div class="exam-response-wrap"><label class="exam-response-label" for="negative-method-v3">Your answer</label><textarea id="negative-method-v3" class="exam-response" data-exam-response="negative-method-v3"></textarea></div><details class="exam-guidance" data-no-slide-advance><summary>Show answer guide</summary><div class="exam-guidance-body"><p>18 = 00010010. Invert: 11101101. Add 1: <strong>11101110</strong>.</p><p>−128 + 64 + 32 + 8 + 4 + 2 = −18.</p></div></details></article><div data-slide-break></div><article class="exam-card" data-no-slide-advance><h3>2. Write a floating point value</h3><p>Write binary 110.01 in normalised form. Use one 1 before the point. Give the mantissa and exponent.</p><div class="exam-response-wrap"><label class="exam-response-label" for="float-method-v3">Your answer</label><textarea id="float-method-v3" class="exam-response" data-exam-response="float-method-v3"></textarea></div><details class="exam-guidance" data-no-slide-advance><summary>Show answer guide</summary><div class="exam-guidance-body"><p>Move the point two places left: <strong>1.1001 × 2²</strong>.</p><p>Mantissa: 1.1001. Exponent: +2. Multiplication by 4 keeps the value at 6.25.</p></div></details></article><div data-slide-break></div><article class="exam-card" data-no-slide-advance><h3>3. Separate the sign from the exponent</h3><p>A value has a negative sign, mantissa 1.1 in binary, and exponent −2. Find its denary value.</p><div class="exam-response-wrap"><label class="exam-response-label" for="float-small-v3">Your answer</label><textarea id="float-small-v3" class="exam-response" data-exam-response="float-small-v3"></textarea></div><details class="exam-guidance" data-no-slide-advance><summary>Show answer guide</summary><div class="exam-guidance-body"><p>The mantissa is 1.5 in denary. Divide by 4 to get 0.375. Apply the sign: <strong>−0.375</strong>.</p></div></details></article><div data-slide-break></div><article class="exam-card" data-no-slide-advance><h3>4. Explain a choice</h3><p>A sensor records fractions across a wide range. Explain why floating point is suitable. Explain one limit that can affect the readings.</p><div class="exam-response-wrap"><label class="exam-response-label" for="sensor-choice-v3">Your answer</label><textarea id="sensor-choice-v3" class="exam-response" data-exam-response="sensor-choice-v3"></textarea></div><details class="exam-guidance" data-no-slide-advance><summary>Show answer guide</summary><div class="exam-guidance-body"><p>The exponent provides a wide range. The mantissa keeps the significant digits, including fractions.</p><p>Some readings need rounding because the mantissa has limited bits. Small differences between readings can be lost.</p></div></details></article>
+</section>
+</main>
 
         <aside class="lesson-rail">
           <section class="lesson-rail-card panel glossary-card">
             <p class="eyebrow">Glossary</p>
             <h2>Quick glossary</h2>
-            <dl class="glossary-list">
-              <div class="glossary-item">
-                <dt>Two's complement</dt>
-                <dd>A common method for representing signed integers.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Significand</dt>
-                <dd>The main precision digits in a floating point value.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Exponent</dt>
-                <dd>The part that scales a floating point value.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Overflow</dt>
-                <dd>A value is too large for the available range.</dd>
-              </div>
-              <div class="glossary-item">
-                <dt>Underflow</dt>
-                <dd>A value is too close to zero to represent accurately.</dd>
-              </div>
-            </dl>
+            <dl class="glossary-list"><div class="glossary-item"><dt>Integer</dt><dd>A whole number, such as −12, 0 or 12.</dd></div><div class="glossary-item"><dt>Magnitude</dt><dd>The size of a value without its sign.</dd></div><div class="glossary-item"><dt>Two's complement</dt><dd>A rule for signed whole numbers. The leftmost place value is negative.</dd></div><div class="glossary-item"><dt>Binary point</dt><dd>The point between whole-number places and fraction places.</dd></div><div class="glossary-item"><dt>Mantissa (significand)</dt><dd>The main digits of a floating point value.</dd></div><div class="glossary-item"><dt>Exponent</dt><dd>The power of two that multiplies the mantissa.</dd></div><div class="glossary-item"><dt>Normalisation</dt><dd>Writing the mantissa in the standard form for a format.</dd></div><div class="glossary-item"><dt>Range</dt><dd>The values a format can represent.</dd></div><div class="glossary-item"><dt>Precision</dt><dd>The detail a format can keep.</dd></div><div class="glossary-item"><dt>Overflow</dt><dd>A value is outside the available range at the large end.</dd></div><div class="glossary-item"><dt>Underflow</dt><dd>A nonzero value is too close to zero for the available format.</dd></div></dl>
           </section>
 
           <section class="lesson-rail-card panel revision-card">
@@ -1140,7 +456,7 @@
             <ul class="memory-list">
               <li>Unsigned binary cannot represent negative values.</li>
               <li>Two's complement is for signed whole numbers.</li>
-              <li>Floating point uses sign, significand, and exponent.</li>
+              <li>Our floating point format uses a sign, mantissa and exponent.</li>
               <li>More range can mean less precision in a fixed size.</li>
             </ul>
           </section>
@@ -1166,7 +482,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 12</p>
+      <p class="slide-status" data-role="slide-status">Slide 1</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

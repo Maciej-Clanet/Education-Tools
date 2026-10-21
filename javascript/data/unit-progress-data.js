@@ -347,7 +347,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "negative-and-floating-point-representation",
           title: "Negative and floating point representation",
           href: "../topics/negative-and-floating-point-representation.html?context=btec-level-3-unit-2",
-          quiz: { version: 2, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 3, totalQuestions: 8, passScore: 6, storageKey: "lesson-negative-and-floating-point-representation-quiz-v3" },
         },
       ],
     },
