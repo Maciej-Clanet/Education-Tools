@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boolean Logic Revision Lesson | Education Tools</title>
+    <title>Boolean Logic Lesson | Education Tools</title>
     <meta
       name="description"
-      content="Revise Boolean logic with AND, OR, and NOT, truth tables, data-flow decisions, exam traps, exam-style practice, and a short end-of-lesson quiz."
+      content="Learn AND, OR and NOT with a hotel card example, interactive truth tables, and saved two-input and three-input practice."
     />
     <meta
       property="og:title"
-      content="Boolean Logic Revision Lesson | Education Tools"
+      content="Boolean Logic Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise Boolean logic with AND, OR, and NOT, truth tables, data-flow decisions, exam traps, exam-style practice, and a short end-of-lesson quiz."
+      content="Learn AND, OR and NOT with a hotel card example, interactive truth tables, and saved two-input and three-input practice."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../../css/components.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
+    <link rel="stylesheet" href="../../css/live-code-example.css" />
     <link rel="stylesheet" href="../../css/pages/boolean-logic.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
@@ -50,13 +51,9 @@
         <div class="lesson-header-row">
           <div>
             <h1>Boolean logic</h1>
-            <p class="lesson-hero-text">
-              Learn how AND, OR, and NOT decisions work, how to read and build
-              truth tables, and how Boolean logic helps you model data flow and
-              solve system problems clearly.
-            </p>
+            <p class="lesson-hero-text">Review true and false, explore a hotel card lock, then complete and check truth tables for AND, OR and NOT.</p>
             <p class="lesson-hero-support">
-              In the current lesson context, this sits inside
+              Part of
               <span data-role="context-label"
                 >BTEC Level 3 Computing Unit 2</span
               >.
@@ -107,761 +104,197 @@
       <div class="lesson-layout">
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
-          <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#operators" data-section-link>Logic operators</a>
-            <a href="#truth-tables" data-section-link>Truth tables</a>
-            <a href="#flow" data-section-link>Data flow and problem solving</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
-            <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam-style practice</a>
-          </nav>
+          <nav class="section-nav" aria-label="Lesson sections"><a href="#boolean-recap" data-section-link>Boolean recap</a><a href="#overview" data-section-link>When should a hotel room unlock?</a><a href="#operators" data-section-link>Three Boolean operations</a><a href="#hotel-rule" data-section-link>AND: both checks must be true</a><a href="#truth-tables" data-section-link>A truth table lists every input combination</a><a href="#and-table" data-section-link>Complete the hotel truth table</a><a href="#or-rule" data-section-link>OR: at least one check must be true</a><a href="#or-table" data-section-link>Complete the alarm truth table</a><a href="#not-rule" data-section-link>NOT: reverse one Boolean value</a><a href="#not-table" data-section-link>Complete the door-warning truth table</a><a href="#choose-rule" data-section-link>Choose the rule that matches the decision</a><a href="#comparisons" data-section-link>A comparison produces a Boolean value</a><a href="#combine" data-section-link>Combine rules one step at a time</a><a href="#compound-two-table" data-section-link>Use a working column for NOT B</a><a href="#flow" data-section-link>Complete the armed-alarm table</a><a href="#brackets" data-section-link>Brackets can change the result</a><a href="#college-rule" data-section-link>Turn a new situation into a rule</a><a href="#college-table" data-section-link>Complete the college entry table</a><a href="#mistakes" data-section-link>Check these three common mistakes</a><a href="#truth-practice" data-section-link>Your turn: complete a truth table</a><a href="#quiz" data-section-link>Check your knowledge</a><a href="#exam-practice" data-section-link>Explain why the hotel door stays locked</a><a href="#college-practice" data-section-link>Explain the college entry decision</a></nav>
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>What you should know by the end of this lesson</h2>
-            <p class="lesson-section-copy">
-              Boolean logic reduces decisions to two states: true or false, 1
-              or 0, on or off. That makes it useful for system control,
-              decision making, and explaining how inputs combine to produce an
-              output.
-            </p>
+<template data-teacher-opener><h2>Boolean logic</h2><p>From true and false to a working decision.</p><ul><li>Use AND, OR and NOT</li><li>Complete truth tables</li><li>Explain the result of a rule</li></ul></template>
+<section id="boolean-recap" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Boolean recap</h2>
+<span id="boolean-values" class="bl-anchor"></span><span id="code-example" class="bl-anchor"></span>
+<div data-live-code-example-id="boolean-recap-code" data-no-slide-advance></div>
+<div class="bl-code-static"><pre><code>// Boolean values are true or false.
+// console.log displays a value.
+console.log(true);
+console.log(false);
 
-            <div class="logic-map">
-              <article class="logic-map-card logic-map-card--inputs">
-                <span class="logic-icon logic-icon--inputs" aria-hidden="true"></span>
-                <h3>Inputs become 1 or 0</h3>
-                <p>
-                  Sensors, buttons, checks, and conditions can be represented
-                  as true or false values.
-                </p>
-              </article>
+// A comparison gives a Boolean value.
+console.log(20 &gt;= 18); // true
+console.log(16 &gt;= 18); // false
 
-              <article class="logic-map-card logic-map-card--rule">
-                <span class="logic-icon logic-icon--rule" aria-hidden="true"></span>
-                <h3>A rule combines them</h3>
-                <p>
-                  AND, OR, and NOT describe exactly how the input states affect
-                  the result.
-                </p>
-              </article>
+// Use the result to make a decision.
+// Allow entry if the age check is true.
+// Change 16 to 19, then select Run.</code></pre><p>The starting results are true, false, true and false.</p></div>
+</section>
 
-              <article class="logic-map-card logic-map-card--output">
-                <span class="logic-icon logic-icon--output" aria-hidden="true"></span>
-                <h3>The output controls action</h3>
-                <p>
-                  The result can unlock a door, start a fan, sound an alarm, or
-                  route data through a process.
-                </p>
-              </article>
-            </div>
+<section id="overview" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>When should a hotel room unlock?</h2>
+<p class="bl-lead">Our simplified rule: unlock the door only when both conditions are true.</p>
+<div class="bl-hotel-context">
+<figure><img src="../../assets/images/boolean-logic/hotel-card-lock.png" width="630" height="420" alt="A guest holds a room card against an electronic door lock."><figcaption>A card reader checks the guest’s room card.</figcaption></figure>
+<div class="bl-hotel-conditions"><p><span>CONDITION 1</span><strong>The card is active</strong></p><b>AND</b><p><span>CONDITION 2</span><strong>The card matches this room</strong></p></div></div>
+<p class="bl-key">A <strong>Boolean operation</strong> combines these true/false values into one result: unlock the door or keep it locked.</p>
+</section>
 
-            <div class="lesson-intro-grid">
-              <article class="model-answer-card">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>Explain what Boolean logic represents.</li>
-                  <li>Use AND, OR, and NOT correctly.</li>
-                  <li>Read and complete simple truth tables.</li>
-                  <li>Apply logic to short system scenarios.</li>
-                </ul>
-              </article>
+<section id="operators" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Three Boolean operations</h2>
+<p class="bl-lead">An <strong>input</strong> is a value given to an operation. The <strong>output</strong> is the result.</p>
+<div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">Operation</th><th scope="col">Description</th></tr></thead><tbody><tr><td>AND</td><td>The result is true only when both inputs are true.</td></tr><tr><td>OR</td><td>The result is true when one or both inputs are true.</td></tr><tr><td>NOT</td><td>Reverse one input: true becomes false, and false becomes true.</td></tr></tbody></table></div><p class="bl-caption">Other logic gates include XOR, NAND and NOR. This lesson uses AND, OR and NOT.</p>
+</section>
 
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>AND:</strong> both conditions must be true.</li>
-                  <li><strong>OR:</strong> at least one condition is true.</li>
-                  <li><strong>NOT:</strong> flips the value.</li>
-                  <li><strong>Truth table:</strong> all possible inputs.</li>
-                </ul>
-              </article>
+<template data-teacher-divider><h2>AND and truth tables</h2></template>
+<section id="hotel-rule" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>AND: both checks must be true</h2>
+<p class="bl-lead">Change one check at a time. An active card for a different room must not unlock this door.</p>
+<div data-boolean-demo="hotel" data-no-slide-advance><div data-boolean-demo-fallback><p class="bl-expression">Unlock = card is active <b>AND</b> room matches</p><div class="bl-table-wrap"><table class="bl-truth-table "><thead><tr><th scope="col">Card active</th><th scope="col">Room matches</th><th scope="col">Unlock</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody></table></div><p class="bl-key">Only 1 AND 1 gives 1.</p></div></div>
+</section>
 
-              <article class="model-answer-card fullrow">
-                <h3>Why it matters</h3>
-                <p>
-                  Exam questions often describe alarms, sensors, access control,
-                  or control systems in words. Boolean logic gives you a precise
-                  way to turn that wording into a clear rule for the output.
-                </p>
-              </article>
-            </div>
-          </section>
+<section id="truth-tables" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>A truth table lists every input combination</h2>
+<p class="bl-lead">We use <strong>1 for true</strong> and <strong>0 for false</strong>. Two inputs give four combinations.</p>
+<div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">A: card active</th><th scope="col">B: room matches</th></tr></thead><tbody><tr><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td></tr></tbody></table></div><p class="bl-key">The table records every possible combination of inputs, once each.</p>
+</section>
 
-          <section
-            id="operators"
-            class="lesson-section lesson-section--operators panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Operators</p>
-            <h2>Logic operators describe how conditions combine</h2>
-            <p class="lesson-section-copy">
-              Each operator has a simple rule. The key is to read the wording
-              carefully and match it to the correct logic relationship.
-            </p>
+<section id="and-table" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Complete the hotel truth table</h2>
+<p class="bl-lead">A = card is active. B = card matches this room.</p>
+<div data-boolean-table="and" data-no-slide-advance><div data-boolean-table-fallback><div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">A</th><th scope="col">B</th><th scope="col">A AND B</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody></table></div></div></div>
+</section>
 
-            <div class="example-strip" aria-label="Boolean logic summary">
-              <span class="example-chip"
-                ><strong>AND</strong> both inputs needed</span
-              >
-              <span class="example-chip"
-                ><strong>OR</strong> either input is enough</span
-              >
-              <span class="example-chip"
-                ><strong>NOT</strong> reverse the state</span
-              >
-            </div>
+<template data-teacher-divider><h2>OR and NOT</h2></template>
+<section id="or-rule" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>OR: at least one check must be true</h2>
+<p class="bl-lead">A fire alarm sounds if a smoke sensor or a heat sensor is active.</p>
 
-            <div class="operator-grid">
-              <article class="operator-card operator-card--and">
-                <div class="gate-visual gate-visual--and" aria-hidden="true">
-                  <span>A</span>
-                  <strong>AND</strong>
-                  <span>B</span>
-                </div>
-                <h3>AND</h3>
-                <p>
-                  Output is true only when every required condition is true.
-                  Use it for wording such as "both" or "only when all".
-                </p>
-              </article>
+<div class="bl-sensor-map"><article><span>SMOKE DETECTED</span><strong>1</strong></article><b>OR</b><article><span>HEAT DETECTED</span><strong>1</strong></article><b aria-hidden="true">→</b><article class="bl-sensor-result"><span>ALARM SOUNDS</span><strong>1</strong></article></div>
+<p class="bl-key">OR includes <strong>both</strong>. If both sensors are active, the alarm still sounds.</p>
+<p>These inputs are independent: smoke and heat can be detected at the same time.</p>
+</section>
 
-              <article class="operator-card operator-card--or">
-                <div class="gate-visual gate-visual--or" aria-hidden="true">
-                  <span>A</span>
-                  <strong>OR</strong>
-                  <span>B</span>
-                </div>
-                <h3>OR</h3>
-                <p>
-                  Output is true when at least one condition is true. Use it
-                  when either input is enough.
-                </p>
-              </article>
+<section id="or-table" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Complete the alarm truth table</h2>
+<p class="bl-lead">A = smoke detected. B = heat detected.</p>
+<div data-boolean-table="or" data-no-slide-advance><div data-boolean-table-fallback><div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">A</th><th scope="col">B</th><th scope="col">A OR B</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody></table></div></div></div>
+</section>
 
-              <article class="operator-card operator-card--not">
-                <div class="gate-visual gate-visual--not" aria-hidden="true">
-                  <span>A</span>
-                  <strong>NOT</strong>
-                  <span>Y</span>
-                </div>
-                <h3>NOT</h3>
-                <p>
-                  Output becomes the opposite of the original input. Use it for
-                  wording such as "not", "unless", or "is false".
-                </p>
-              </article>
+<section id="not-rule" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>NOT: reverse one Boolean value</h2>
+<p class="bl-lead">A sensor reports whether a door is closed. We want a warning when it is not closed.</p>
 
-              <article class="operator-card operator-card--values">
-                <div class="state-visual" aria-hidden="true">
-                  <span>0</span>
-                  <span>1</span>
-                </div>
-                <h3>Boolean values</h3>
-                <p>
-                  Systems usually store logic as true or false, or as binary
-                  values 1 and 0.
-                </p>
-              </article>
-            </div>
+<div class="bl-not-cases"><div><span>Door is closed</span><strong>1</strong><b>NOT →</b><strong>0</strong><span>Warning off</span></div><div><span>Door is closed</span><strong>0</strong><b>NOT →</b><strong>1</strong><span>Warning on</span></div></div>
+<p class="bl-key">NOT has <strong>one input</strong>. It changes 1 to 0, and 0 to 1.</p>
+</section>
 
-            <article class="model-answer-card">
-              <h3>From words to logic</h3>
-              <p>
-                If a door alarm sounds only when the system is armed
-                <strong>and</strong> the door opens, the rule is:
-              </p>
-              <pre><code>alarm = armed AND doorOpen</code></pre>
-              <p>
-                If a warning light turns on when the battery is low
-                <strong>or</strong> the temperature is too high, the rule is:
-              </p>
-              <pre><code>warning = lowBattery OR highTemperature</code></pre>
-            </article>
+<section id="not-table" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Complete the door-warning truth table</h2>
+<p class="bl-lead">A = door is closed. The warning is NOT A.</p>
+<div data-boolean-table="not" data-no-slide-advance><div data-boolean-table-fallback><div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">A</th><th scope="col">NOT A</th></tr></thead><tbody><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr></tbody></table></div></div></div>
+</section>
 
-            <article class="model-answer-card">
-              <h3>What NOT changes</h3>
-              <p>
-                NOT is often used when the sensor signal is the opposite of the
-                condition you want to test. For example, if
-                <code>doorClosed</code> is true, then <code>NOT doorClosed</code>
-                means the door is open.
-              </p>
-            </article>
-          </section>
+<section id="choose-rule" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Choose the rule that matches the decision</h2>
+<p class="bl-lead">Read what the system must do. Then choose AND, OR or NOT.</p>
 
-          <section
-            id="truth-tables"
-            class="lesson-section lesson-section--truth-tables panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Truth Tables</p>
-            <h2>Truth tables show every possible input combination</h2>
-            <p class="lesson-section-copy">
-              A truth table is a reliable way to test logic because it lists
-              all possible input states and the output for each one. With two
-              inputs there are four rows: 00, 01, 10, and 11.
-            </p>
+<div class="bl-scenario-list">
+<article><p>A printer must be online <strong>and</strong> have paper before it can print.</p><details><summary>Show the rule</summary><p><strong>AND</strong>: both conditions must be true.</p></details></article>
+<article><p>A fan starts if the temperature is high <strong>or</strong> a manual switch is on.</p><details><summary>Show the rule</summary><p><strong>OR</strong>: either condition is enough, including when both are true.</p></details></article>
+<article><p>A warning shows when a cover is <strong>not</strong> closed.</p><details><summary>Show the rule</summary><p><strong>NOT</strong>: reverse the “cover is closed” value.</p></details></article>
+</div>
+</section>
 
-            <article
-              class="logic-lab"
-              data-role="logic-lab"
-              aria-labelledby="logic-lab-heading"
-            >
-              <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Logic Lab</p>
-                  <h3 id="logic-lab-heading">Build and test a truth table</h3>
-                </div>
-                <span class="tool-pill" data-role="logic-output-pill"
-                  >Selected output 0</span
-                >
-              </div>
+<template data-teacher-divider><h2>Comparisons</h2></template>
+<section id="comparisons" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>A comparison produces a Boolean value</h2>
+<span id="calculations" class="bl-anchor"></span>
+<p class="bl-lead">A <strong>comparison</strong> tests two values. For example, is the temperature at least 25 °C?</p>
 
-              <div class="logic-lab-controls">
-                <label class="tool-select-label" for="logic-expression">
-                  Logic expression
-                  <select id="logic-expression" data-role="logic-expression">
-                    <option value="and">A AND B</option>
-                    <option value="or">A OR B</option>
-                    <option value="notA">NOT A</option>
-                    <option value="alarm">A AND (B OR C)</option>
-                    <option value="secure">(A OR B) AND NOT C</option>
-                  </select>
-                </label>
+<div class="bl-comparison"><span>Temperature <b>27 °C</b></span><strong>27 ≥ 25</strong><span>TRUE <b>1</b></span></div>
+<div class="bl-table-wrap"><table class="bl-truth-table bl-comparison-table"><thead><tr><th scope="col">Operator</th><th scope="col">Meaning</th><th scope="col">Example that is true</th></tr></thead><tbody><tr><td>=</td><td>Equal to</td><td>4 = 4</td></tr><tr><td>&lt;&gt;</td><td>Not equal to</td><td>4 <> 5</td></tr><tr><td>&lt;</td><td>Less than</td><td>4 < 5</td></tr><tr><td>&gt;</td><td>Greater than</td><td>5 > 4</td></tr><tr><td>&lt;=</td><td>Less than or equal to</td><td>4 <= 4</td></tr><tr><td>&gt;=</td><td>Greater than or equal to</td><td>5 >= 5</td></tr></tbody></table></div><p class="bl-caption">In written rules, &gt;= means ≥ and &lt;= means ≤.</p>
+</section>
 
-                <div class="input-toggle-grid" data-role="logic-inputs"></div>
-              </div>
+<template data-teacher-divider><h2>Combine operations</h2></template>
+<section id="combine" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Combine rules one step at a time</h2>
+<p class="bl-lead">Assume the card matches this room. Now check that it is active and not blocked.</p>
 
-              <div class="logic-expression-card">
-                <span>Current rule</span>
-                <strong data-role="logic-expression-text">A AND B</strong>
-              </div>
+<p class="bl-expression">Unlock = A AND (NOT B)</p>
+<p class="bl-caption">A = card is active. B = card is blocked.</p>
+<div class="bl-worked-steps"><article><span>INPUTS</span><strong>A = 1 · B = 0</strong><p>The card is active and not blocked.</p></article><article><span>1 · INSIDE BRACKETS</span><strong>NOT 0 = 1</strong><p>The card passes the blocked check.</p></article><article><span>2 · COMBINE</span><strong>1 AND 1 = 1</strong><p>The door can unlock.</p></article></div>
+<p class="bl-key">An <strong>expression</strong> is a written rule. Work out the part inside brackets first.</p>
+</section>
 
-              <div class="logic-live-flow" data-role="logic-live-flow"></div>
+<section id="compound-two-table" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Use a working column for NOT B</h2>
+<p class="bl-lead">A = card is active. B = card is blocked. Find NOT B, then complete the final column.</p>
+<div data-boolean-table="card" data-no-slide-advance><div data-boolean-table-fallback><div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">A</th><th scope="col">B</th><th scope="col">NOT B</th><th scope="col">A AND (NOT B)</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td>0</td></tr></tbody></table></div></div></div><p class="bl-caption">Working columns are calculated results. They are not extra inputs.</p>
+</section>
 
-              <div class="truth-table-wrap">
-                <table class="truth-table" data-role="logic-truth-table"></table>
-              </div>
-              <p class="tool-note" data-role="logic-note"></p>
-            </article>
+<section id="flow" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Complete the armed-alarm table</h2>
+<p class="bl-lead">The alarm must be armed, and the door or window must be open. Change the inputs to highlight a row.</p>
+<span id="three-inputs" class="bl-anchor"></span><span id="compound-table" class="bl-anchor"></span><div data-boolean-table="alarm" data-no-slide-advance><div data-boolean-table-fallback><div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">B OR C</th><th scope="col">A AND (B OR C)</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr></tbody></table></div></div></div>
+</section>
 
-            <article class="model-answer-card">
-              <h3>Core patterns to remember</h3>
-              <div class="compare-table-wrap">
-                <table class="compare-table">
-                  <thead>
-                    <tr>
-                      <th>Input A</th>
-                      <th>Input B</th>
-                      <th>A AND B</th>
-                      <th>A OR B</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>0</td>
-                      <td>1</td>
-                      <td>0</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </article>
+<section id="brackets" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Brackets can change the result</h2>
+<p class="bl-lead">Keep the same inputs: A = 0 (not armed), B = 1, C = 1.</p>
 
-            <article class="model-answer-card">
-              <h3>Worked NOT example</h3>
-              <p>
-                If <code>safeMode</code> is 1, then <code>NOT safeMode</code>
-                is 0. If <code>safeMode</code> is 0, then
-                <code>NOT safeMode</code> is 1. The operator always flips the
-                state.
-              </p>
-            </article>
+<div class="bl-two-columns bl-bracket-pair"><article><span>CHECK BOTH SENSORS FIRST</span><h3>A AND (B OR C)</h3><p>0 AND <mark>(1 OR 1)</mark></p><p>0 AND <mark>1</mark></p><strong>0 · Alarm stays off</strong></article><article><span>A DIFFERENT RULE</span><h3>(A AND B) OR C</h3><p><mark>(0 AND 1)</mark> OR 1</p><p><mark>0</mark> OR 1</p><strong>1 · Alarm sounds</strong></article></div>
+<p class="bl-key">In the second rule, C alone can trigger the alarm. The brackets change what is checked first.</p>
+</section>
 
-            <article class="model-answer-card">
-              <h3>How to read exam wording</h3>
-              <ul class="lesson-list">
-                <li>
-                  "Only when both" usually signals <strong>AND</strong>.
-                </li>
-                <li>
-                  "If either" usually signals <strong>OR</strong>.
-                </li>
-                <li>
-                  "When not" or "unless" often signals
-                  <strong>NOT</strong>.
-                </li>
-                <li>
-                  A truth table is often the easiest way to prove your answer.
-                </li>
-              </ul>
-            </article>
-          </section>
+<section id="college-rule" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Turn a new situation into a rule</h2>
+<p class="bl-lead">A college entry system needs a valid ID, a current enrolment and an account that is not blocked.</p>
 
-          <section
-            id="flow"
-            class="lesson-section lesson-section--flow panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Application</p>
-            <h2>Boolean logic helps model data flow and solve system problems</h2>
-            <p class="lesson-section-copy">
-              In a real system, sensor or user inputs feed into a logical rule.
-              The result decides whether an output should happen. That makes
-              Boolean logic useful for security, automation, and process
-              control.
-            </p>
+<div class="bl-rule-strip"><span><b>A</b> ID is valid</span><span><b>B</b> Enrolment is current</span><span><b>C</b> Account is blocked</span></div>
+<p class="bl-expression">Entry = (A AND B) AND (NOT C)</p>
+<div class="bl-worked-steps"><article><span>FIRST CHECK</span><strong>A AND B</strong><p>Are both conditions true?</p></article><article><span>SECOND CHECK</span><strong>NOT C</strong><p>Is the account unblocked?</p></article><article><span>FINAL CHECK</span><strong>Both results are 1</strong><p>Allow entry.</p></article></div>
+<p class="bl-key">Define each input before you write the rule. C means <strong>blocked</strong>, so the rule needs NOT C.</p>
+</section>
 
-            <div class="data-flow-visual" aria-label="Boolean data flow">
-              <article>
-                <span>Inputs</span>
-                <strong>armed, doorOpen</strong>
-              </article>
-              <span class="flow-symbol" aria-hidden="true">+</span>
-              <article>
-                <span>Logic rule</span>
-                <strong>armed AND doorOpen</strong>
-              </article>
-              <span class="flow-symbol" aria-hidden="true">=</span>
-              <article>
-                <span>Output</span>
-                <strong>alarm</strong>
-              </article>
-            </div>
+<section id="college-table" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Complete the college entry table</h2>
+<p class="bl-lead">A = valid ID. B = current enrolment. C = blocked account.</p>
+<div data-boolean-table="college" data-no-slide-advance><div data-boolean-table-fallback><div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">A AND B</th><th scope="col">NOT C</th><th scope="col">(A AND B) AND (NOT C)</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr></tbody></table></div></div></div>
+</section>
 
-            <article class="model-answer-card">
-              <h3>Access control example</h3>
-              <p>
-                A secure door opens only when a valid passcode is entered and
-                the account is active:
-              </p>
-              <pre><code>doorOpen = validCode AND accountActive</code></pre>
-              <p>
-                If either condition is false, the door stays locked.
-              </p>
-            </article>
+<section id="mistakes" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Check these three common mistakes</h2>
 
-            <article class="model-answer-card">
-              <h3>Alarm example</h3>
-              <p>
-                A home alarm may trigger when a window sensor or a door sensor
-                reports a breach while the system is armed:
-              </p>
-              <pre><code>alarm = armed AND (windowOpen OR doorOpen)</code></pre>
-              <p>
-                This shows how logic can combine conditions to reflect the real
-                behaviour of a system.
-              </p>
-            </article>
 
-            <article class="model-answer-card">
-              <h3>How to build a logic answer</h3>
-              <div class="compare-table-wrap">
-                <table class="compare-table">
-                  <thead>
-                    <tr>
-                      <th>Step</th>
-                      <th>What to do</th>
-                      <th>Why it helps</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Identify the inputs</td>
-                      <td>Clarifies what the system is checking</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Spot the condition words</td>
-                      <td>Links the scenario to AND, OR, or NOT</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Write the logic rule</td>
-                      <td>Turns the description into a precise expression</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Test it with a truth table</td>
-                      <td>Checks whether the output matches the scenario</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </article>
-          </section>
+<div class="bl-scenario-list bl-mistakes">
+<article><h3>OR includes both</h3><p><strong>1 OR 1 = 1</strong>. “At least one” includes two true inputs.</p></article>
+<article><h3>NOT applies to a specific part</h3><p><strong>A AND (NOT B)</strong> reverses B. <strong>NOT (A AND B)</strong> reverses the combined result.</p></article>
+<article><h3>Keep all input combinations</h3><p>Two inputs need <strong>4 rows</strong>. Three inputs need <strong>8 rows</strong>. Working columns do not add rows.</p></article>
+</div>
+</section>
 
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with Boolean logic</h2>
-            <p class="lesson-section-copy">
-              Most errors happen because the wording in the scenario is read too
-              quickly or because students describe the result but not the logic
-              behind it.
-            </p>
+<template data-teacher-divider><h2>Practice and check</h2></template>
+<section id="truth-practice" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Your turn: complete a truth table</h2>
+<p class="bl-lead">Choose two or three inputs. Fill the working columns and the final column, then check your answer.</p>
+<div data-boolean-practice data-no-slide-advance><div data-boolean-practice-fallback><div class="bl-table-wrap"><table class="bl-truth-table"><thead><tr><th scope="col">A</th><th scope="col">B</th><th scope="col">NOT B</th><th scope="col">A AND (NOT B)</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>…</td><td>…</td></tr><tr><td>0</td><td>1</td><td>…</td><td>…</td></tr><tr><td>1</td><td>0</td><td>…</td><td>…</td></tr><tr><td>1</td><td>1</td><td>…</td><td>…</td></tr></tbody></table></div><noscript><p>Enable JavaScript to generate questions and check your answers.</p></noscript></div></div>
+</section>
 
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Mixing up AND and OR</h3>
-                <p>
-                  Students often write OR when a system needs every condition to
-                  be true.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Ask whether one input is enough or
-                  whether all inputs are required.
-                </p>
-              </article>
+<section id="quiz" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Check your knowledge</h2>
+<p class="bl-lead">Answer eight questions about the key ideas. Aim for six correct.</p>
+<form id="lesson-quiz" class="quiz-form" data-no-slide-advance><fieldset class="quiz-question" data-question="q1" data-answer="a" data-success="Correct. A Boolean value is true or false." data-feedback="A Boolean value is true or false."><legend>1. Which pair gives the two possible Boolean values?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q1" value="a"><span>True and false</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="b"><span>Positive and negative</span></label></li><li><label class="quiz-answer"><input type="radio" name="q1" value="c"><span>Any two numbers</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q2" data-answer="c" data-success="Correct. A system can use a true or false result to decide which action to take." data-feedback="A system can use a true or false result to decide which action to take."><legend>2. Why are Boolean values useful in computer systems?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q2" value="a"><span>They store all the text in a program</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="b"><span>They make every calculation faster</span></label></li><li><label class="quiz-answer"><input type="radio" name="q2" value="c"><span>They let a system test conditions and make decisions</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q3" data-answer="b" data-success="Correct. An input is a value given to an operation. The output is its result." data-feedback="An input is a value given to an operation. The output is its result."><legend>3. What is an input to a Boolean operation?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q3" value="a"><span>The result of the operation</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="b"><span>A value given to the operation</span></label></li><li><label class="quiz-answer"><input type="radio" name="q3" value="c"><span>A list of all possible results</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q4" data-answer="a" data-success="Correct. A truth table records every possible input combination and its result." data-feedback="A truth table records every possible input combination and its result."><legend>4. What is the purpose of a truth table?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q4" value="a"><span>To record every input combination and its result</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="b"><span>To list only the cases with a true result</span></label></li><li><label class="quiz-answer"><input type="radio" name="q4" value="c"><span>To show which input occurred first</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q5" data-answer="b" data-success="Correct. AND requires both conditions to be true." data-feedback="AND requires both conditions to be true."><legend>5. Which description matches AND?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q5" value="a"><span>At least one condition must be true</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="b"><span>Both conditions must be true</span></label></li><li><label class="quiz-answer"><input type="radio" name="q5" value="c"><span>One condition is reversed</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q6" data-answer="c" data-success="Correct. OR includes one true input and the case where both are true." data-feedback="OR includes one true input and the case where both are true."><legend>6. In Boolean logic, what does OR include?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q6" value="a"><span>Only the case where both inputs are true</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="b"><span>Exactly one true input, but never both</span></label></li><li><label class="quiz-answer"><input type="radio" name="q6" value="c"><span>One true input or both true inputs</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q7" data-answer="a" data-success="Correct. NOT works on one input and reverses true and false." data-feedback="NOT works on one input and reverses true and false."><legend>7. How does NOT differ from the two-input AND and OR operations?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q7" value="a"><span>It reverses a single input value</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="b"><span>It adds a third Boolean value</span></label></li><li><label class="quiz-answer"><input type="radio" name="q7" value="c"><span>It leaves its input unchanged</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><fieldset class="quiz-question" data-question="q8" data-answer="b" data-success="Correct. Working columns show the result of each part before the final operation." data-feedback="Working columns show the result of each part before the final operation."><legend>8. Why use working columns in a combined truth table?</legend><ul class="quiz-answer-list"><li><label class="quiz-answer"><input type="radio" name="q8" value="a"><span>They create more independent inputs</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="b"><span>They make each stage of the calculation visible</span></label></li><li><label class="quiz-answer"><input type="radio" name="q8" value="c"><span>They remove the need for a final result</span></label></li></ul><p class="quiz-feedback-note" data-question-feedback></p></fieldset><div class="quiz-actions"><button class="primary-link" type="submit">Check answers</button><button class="lesson-secondary-action" type="button" data-action="reset-quiz">Reset quiz</button></div><p class="quiz-result" data-role="quiz-result" aria-live="polite">Your answers save on this device.</p></form>
+</section>
 
-              <article class="trap-card">
-                <h3>Forgetting what NOT flips</h3>
-                <p>
-                  NOT changes the state of the input or condition it applies to.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Rewrite the statement in plain English,
-                  for example "NOT locked" means "unlocked".
-                </p>
-              </article>
+<section id="exam-practice" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Explain why the hotel door stays locked</h2>
+<p class="bl-lead">A guest has an active card for room 215. The guest tries the door for room 214.</p>
+<article class="exam-card" data-no-slide-advance><p>Use AND to explain why the door stays locked. State both input values and the output.</p><label class="exam-response-label" for="hotel-explain-v2">Your answer</label><textarea id="hotel-explain-v2" class="exam-response" rows="5" data-exam-response="hotel-explain-v2" placeholder="Write your explanation here."></textarea><p class="exam-response-status" data-exam-status aria-live="polite">Your answer saves on this device.</p><details class="exam-guidance"><summary>Show answer guidance</summary><p>Card active = 1. Room matches = 0. The rule is active AND roomMatches. 1 AND 0 gives 0, so the door stays locked. Both inputs must be 1 to unlock it.</p></details></article>
+</section>
 
-              <article class="trap-card">
-                <h3>Skipping the truth table</h3>
-                <p>
-                  Some answers sound reasonable but are not checked against all
-                  input combinations.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Build the table when the question asks
-                  you to justify or verify the logic.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="quiz"
-            class="lesson-section lesson-section--quiz panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Quick Quiz</p>
-            <h2>Check your Boolean logic understanding</h2>
-            <p class="quiz-intro">
-              Answer all five questions, then check your score. Your best score
-              is saved on this device.
-            </p>
-
-            <form id="lesson-quiz" class="quiz-form">
-              <fieldset
-                class="quiz-question"
-                data-question="q1"
-                data-answer="b"
-                data-feedback="AND means both conditions must be true before the output becomes true."
-              >
-                <legend>1. What does the AND operator require?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="a" />
-                      <span>At least one input must be true</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="b" />
-                      <span>Both inputs must be true</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q1" value="c" />
-                      <span>The output is always true</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q2"
-                data-answer="c"
-                data-feedback="OR becomes true when one or more inputs are true."
-              >
-                <legend>2. When is A OR B false?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="a" />
-                      <span>When A is true</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="b" />
-                      <span>When B is true</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q2" value="c" />
-                      <span>When both A and B are false</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q3"
-                data-answer="a"
-                data-feedback="NOT reverses the original Boolean state."
-              >
-                <legend>3. If sensorActive = 1, what is NOT sensorActive?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="a" />
-                      <span>0</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="b" />
-                      <span>1</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q3" value="c" />
-                      <span>It depends on the operator before it</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q4"
-                data-answer="b"
-                data-feedback="Two Boolean inputs create four possible rows in a truth table."
-              >
-                <legend>4. How many rows are needed for a two-input truth table?</legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="a" />
-                      <span>2</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="b" />
-                      <span>4</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q4" value="c" />
-                      <span>8</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <fieldset
-                class="quiz-question"
-                data-question="q5"
-                data-answer="c"
-                data-feedback="A security system that needs both conditions uses AND."
-              >
-                <legend>
-                  5. A secure door opens only when the correct code is entered
-                  and the account is active. Which operator links the two
-                  conditions?
-                </legend>
-                <ul class="quiz-answer-list">
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="a" />
-                      <span>OR</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="b" />
-                      <span>NOT</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="quiz-answer">
-                      <input type="radio" name="q5" value="c" />
-                      <span>AND</span>
-                    </label>
-                  </li>
-                </ul>
-                <p class="quiz-feedback-note" data-question-feedback></p>
-              </fieldset>
-
-              <div class="quiz-actions">
-                <button class="primary-link" type="submit">Check answers</button>
-                <button
-                  class="lesson-secondary-action"
-                  type="button"
-                  data-action="reset-quiz"
-                >
-                  Reset quiz
-                </button>
-              </div>
-
-              <p class="quiz-result" data-role="quiz-result" aria-live="polite">
-                Answer the questions and check your score.
-              </p>
-            </form>
-          </section>
-
-          <section
-            id="exam-practice"
-            class="lesson-section lesson-section--exam-practice panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Practice</p>
-            <h2>Practise the kind of logic explanation the exam expects</h2>
-            <p class="lesson-section-copy">
-              These tasks need fuller reasoning than the quick quiz. Type your
-              response into the boxes and then compare it with the guidance.
-            </p>
-            <p class="exam-response-note">
-              Your written responses are saved on this device for later review.
-            </p>
-
-            <div class="exam-grid">
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">4 marks</span>
-                  <span class="exam-pill">Explain</span>
-                </div>
-                <h3>Alarm control logic</h3>
-                <p>
-                  A building alarm should sound only when the system is armed
-                  and a motion sensor detects movement. Explain how Boolean
-                  logic can represent this rule.
-                </p>
-                <div class="exam-response-wrap">
-                  <label
-                    class="exam-response-label"
-                    for="boolean-logic-exam-1"
-                    >Your response</label
-                  >
-                  <textarea
-                    id="boolean-logic-exam-1"
-                    class="exam-response"
-                    data-exam-response="question-1"
-                    placeholder="Write a short exam-style explanation here."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Answer guidance</summary>
-                  <div class="exam-guidance-body">
-                    <p>
-                      A strong answer should explain that the two inputs are
-                      <code>armed</code> and <code>motionDetected</code>, and
-                      that the output should only become true when both inputs
-                      are true, so the expression is:
-                    </p>
-                    <pre><code>alarm = armed AND motionDetected</code></pre>
-                    <ul class="exam-points">
-                      <li>Identify the inputs clearly.</li>
-                      <li>State that AND needs both conditions to be true.</li>
-                      <li>Link the expression to the alarm output.</li>
-                      <li>Use accurate Boolean vocabulary.</li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-
-              <article class="exam-card">
-                <div class="exam-meta">
-                  <span class="exam-pill">6 marks</span>
-                  <span class="exam-pill">Apply</span>
-                </div>
-                <h3>Truth table reasoning</h3>
-                <p>
-                  A cooling fan turns on when the temperature is high or when a
-                  manual override switch is pressed. Explain how you would use a
-                  truth table to test this logic.
-                </p>
-                <div class="exam-response-wrap">
-                  <label
-                    class="exam-response-label"
-                    for="boolean-logic-exam-2"
-                    >Your response</label
-                  >
-                  <textarea
-                    id="boolean-logic-exam-2"
-                    class="exam-response"
-                    data-exam-response="question-2"
-                    placeholder="Explain the logic and how the truth table proves it."
-                  ></textarea>
-                </div>
-                <details class="exam-guidance">
-                  <summary>Answer guidance</summary>
-                  <div class="exam-guidance-body">
-                    <p>
-                      A strong answer should say that the expression is:
-                    </p>
-                    <pre><code>fan = highTemperature OR manualOverride</code></pre>
-                    <p>
-                      The truth table should include the four possible input
-                      combinations and show that the fan is only off when both
-                      inputs are false.
-                    </p>
-                    <ul class="exam-points">
-                      <li>State the correct OR relationship.</li>
-                      <li>Explain that two inputs create four rows.</li>
-                      <li>Show that 00 gives 0.</li>
-                      <li>Show that 01, 10, and 11 give 1.</li>
-                      <li>Link the output back to the scenario.</li>
-                    </ul>
-                  </div>
-                </details>
-              </article>
-            </div>
-          </section>
-        </main>
+<section id="college-practice" class="lesson-section panel bl-section" data-lesson-section>
+<p class="eyebrow">Boolean logic</p><h2>Explain the college entry decision</h2>
+<p class="bl-lead">A = valid ID. B = current enrolment. C = blocked account.</p>
+<p class="bl-expression">Entry = (A AND B) AND (NOT C)</p><article class="exam-card" data-no-slide-advance><p>A student has a valid ID and current enrolment, but the account is blocked. Work through the rule. Explain what changes if the block is removed.</p><label class="exam-response-label" for="college-entry-v2">Your answer</label><textarea id="college-entry-v2" class="exam-response" rows="5" data-exam-response="college-entry-v2" placeholder="Write your explanation here."></textarea><p class="exam-response-status" data-exam-status aria-live="polite">Your answer saves on this device.</p><details class="exam-guidance"><summary>Show answer guidance</summary><p>Initially A = 1, B = 1, C = 1. A AND B gives 1, but NOT C gives 0. The final result is 1 AND 0 = 0, so entry is refused.</p><p>Removing the block changes C to 0. NOT C becomes 1. The final result becomes 1, so entry is allowed.</p></details></article>
+</section>
+</main>
 
         <aside class="lesson-rail">
           <section class="lesson-rail-card panel glossary-card">
@@ -918,7 +351,7 @@
       <button type="button" class="slide-button" data-action="prev-slide">
         Previous
       </button>
-      <p class="slide-status" data-role="slide-status">Slide 1 of 7</p>
+      <p class="slide-status" data-role="slide-status">Slide 1</p>
       <button type="button" class="slide-button" data-action="next-slide">
         Next
       </button>

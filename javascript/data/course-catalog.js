@@ -1712,7 +1712,7 @@ export const catalogItems = [
     kicker: "F1 Boolean logic",
     title: "Boolean logic",
     summary:
-      "A live revision lesson on AND, OR, and NOT decisions, truth tables, and using Boolean logic to model data flow and solve problems.",
+      "Learn AND, OR and NOT through a hotel card example, interactive truth tables, and checked practice with two or three inputs.",
     badges: ["Subject area: Logic and data flow"],
     keywords: [
       "boolean logic",
@@ -1720,7 +1720,7 @@ export const catalogItems = [
       "truth tables",
       "data flow",
       "and or not",
-      "logic gates",
+      "truth table practice",
       "btec unit 2 f1",
       "computer systems",
     ],

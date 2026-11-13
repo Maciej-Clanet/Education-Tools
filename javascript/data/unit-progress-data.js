@@ -479,7 +479,7 @@ export const btecLevel3Unit2ProgressData = {
           id: "boolean-logic",
           title: "Boolean logic",
           href: "../topics/boolean-logic.html?context=btec-level-3-unit-2",
-          quiz: { version: 1, totalQuestions: 5, passScore: 4 },
+          quiz: { version: 3, totalQuestions: 8, passScore: 6, storageKey: "lesson-boolean-logic-quiz-v3" },
         },
       ],
     },
