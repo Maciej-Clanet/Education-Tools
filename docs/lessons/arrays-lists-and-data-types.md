@@ -12,10 +12,10 @@ Depth: [definitions](../lesson_authoring.md#coverage-outline-format). Section ID
 3. **Covered** — Integer, real, Boolean and string values; element type versus collection structure. (`data-types`)
 4. **Developed** — Records with differently typed fields as one element type; no record implementation. (`typed-collections`)
 5. **Covered** — Adjacent slots and direct access by known index versus searching. (`array-memory`)
-6. **Covered** — Ordered, changing list contents and distinction between the interface and storage. (`list`)
-7. **Covered** — Array-backed count/capacity and resizing/copying. (`dynamic-list`)
+6. **Covered** — Ordered, changing list contents and distinction between the interface and storage. Track artwork and duration identify the same item when its position changes. (`list`)
+7. **Covered** — Array-backed count/capacity and resizing/copying. Show the old and larger arrays together with equal-width slots, then separately create storage, copy the items and append to the new array. (`dynamic-list`)
 8. **Covered** — Linked nodes and sequential traversal from the head. (`linked-list`)
-9. **Covered** — Ordered insertion: shifting array entries versus changing links; finding a node still has a cost. (`insertion`)
+9. **Covered** — Ordered insertion: shifting array entries versus changing links; finding a node still has a cost. Show the new B node outside the chain with B pointing to C before A is redirected to B. C and D retain their diagram positions and memory locations. (`insertion`)
 10. **Covered** — Storage/processor trade-offs and selection for monitoring, search results and editing. (`compare`)
 11. **Practice** — Misconceptions, quiz and written monitoring/list-growth/insertion tasks. (`mistakes`)
 

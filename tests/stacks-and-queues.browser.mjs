@@ -129,7 +129,7 @@ try {
 
   await click('[data-action=toggle-teacher-mode]')
   const totalSlides=Number((await s.text('[data-role=slide-status]')).match(/of (\d+)/)[1])
-  assert.equal(totalSlides,26)
+  assert.equal(totalSlides,23)
   for (const height of [768,900]) {
     await s.send('Emulation.setDeviceMetricsOverride',{width:1366,height,deviceScaleFactor:1,mobile:false})
     while(await currentSlide()>1)await click('[data-action=prev-slide]')
@@ -140,6 +140,23 @@ try {
     }
   }
   console.log(`Baseline slides checked: ${failures.length} layout failures.`,failures)
+
+  // Familiar features: each selection changes the example, retains focus and stays on the slide.
+  await s.send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false})
+  assert.deepEqual(slideIds.slice(0,5),['overview--opener','overview','structure-parts','why-structure','developer-context'])
+  for (const id of ['compare','programmer-bridge','limits']) assert.ok(!slideIds.includes(id), 'Removed using-structures slides stay removed')
+  await goto('developer-context')
+  await s.ev('document.querySelector("[data-feature-choice=print]").focus()')
+  await s.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'})
+  await s.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13})
+  assert.equal(await s.ev('document.querySelector("[data-software-features]").dataset.selectedFeature'),'print')
+  assert.equal(await s.ev('document.activeElement.dataset.featureChoice'),'print')
+  for (const id of ['undo','print','music']) {
+    await click(`[data-feature-choice=${id}]`)
+    assert.deepEqual(await s.ev('[...document.querySelectorAll("[data-feature-panel]")].filter(e=>!e.hidden).map(e=>e.dataset.featurePanel)'),[id])
+    assert.equal(await s.ev('location.hash'),'#developer-context')
+    await fit(`feature-${id}`,true)
+  }
 
   await s.send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false})
   for(const id of ['undo','call-stack','file-scanning']){
@@ -219,10 +236,30 @@ try {
   console.log(`PASS all15 walkthrough states and explorer operations; ${failures.length} layout failures so far.`)
 
   await click('[data-action=exit-teacher-mode]')
+  await s.send('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:1})
   for(const width of [390,320]){
-    await s.send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:true});await frame()
+    await s.send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:true})
+    // Start at the mobile viewport without the desktop explorer input retaining focus.
+    await s.load(); await frame()
     await checkPageWidth(`mobile-${width}`)
     await s.ev('scrollTo(0,0)');await s.screenshot(`mobile-${width}`)
+    for(const id of ['overview','structure-parts','why-structure','developer-context','stack','queue']) {
+      await s.ev(`document.getElementById('${id}').scrollIntoView({block:'start',behavior:'instant'})`)
+      await frame()
+      await s.screenshot(`${id}-mobile-${width}`)
+      await checkPageWidth(`${id}-mobile-${width}`)
+    }
+    await click('[data-feature-choice=music]')
+    for(const feature of ['undo','print','music']) {
+      await s.ev(`document.querySelector('[data-feature-choice=${feature}]').scrollIntoView({block:'center',behavior:'instant'})`)
+      await frame()
+      const point=await s.ev(`(()=>{const r=document.querySelector('[data-feature-choice=${feature}]').getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}})()`)
+      assert.equal(await s.ev(`document.elementFromPoint(${point.x},${point.y})?.closest('[data-feature-choice]')?.dataset.featureChoice`),feature,'Touch lands on the selected feature control')
+      await s.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]})
+      await s.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]})
+      await s.waitFor(`document.querySelector('[data-software-features]').dataset.selectedFeature==='${feature}'`)
+      await checkPageWidth(`feature-${feature}-mobile-${width}`)
+    }
     for(const id of ['undo','call-stack','file-scanning']){
       await click(`#${id} [data-walkthrough-reset]`)
       for(let step=1;step<=5;step++){
@@ -244,12 +281,18 @@ try {
   assert.deepEqual((await explorerState('stack')).items,['A','B','C'])
   assert.deepEqual((await explorerState('queue')).items,['A','B','C'])
   await checkLegacy()
+  await s.send('Emulation.setEmulatedMedia',{media:'print'})
+  assert.ok(await s.ev('[...document.querySelectorAll("[data-feature-panel]")].every(e=>getComputedStyle(e).display!=="none")'))
+  assert.equal(await s.ev('getComputedStyle(document.querySelector("[data-feature-controls]")).display'),'none')
+  await s.send('Emulation.setEmulatedMedia',{media:''})
   await s.send('Emulation.setScriptExecutionDisabled',{value:true})
   await s.load(path,'true')
   assert.equal(await s.ev('document.querySelectorAll("[data-walkthrough-step]").length'),15)
   assert.ok(await s.ev('[...document.querySelectorAll("[data-walkthrough-step]")].every(e=>!e.hidden)'))
   assert.ok(await s.ev('[...document.querySelectorAll("[data-walkthrough-controls], [data-sx-controls]")].every(e=>e.hidden)'))
   assert.equal(await s.ev('document.querySelectorAll(".structure-explorer .sx-occupied").length'),6)
+  assert.ok(await s.ev('[...document.querySelectorAll("[data-feature-panel]")].every(e=>!e.hidden)'))
+  assert.ok(await s.ev('document.querySelector("[data-feature-controls]").hidden'))
   await checkPageWidth('no-js-mobile-320')
   await s.ev('document.querySelector("#undo").scrollIntoView()');await s.screenshot('no-js-undo')
   await s.send('Emulation.setScriptExecutionDisabled',{value:false})
@@ -276,4 +319,4 @@ try {
   await s.close()
 }
 assert.deepEqual(failures,[],'Classroom or mobile layout failures')
-console.log('PASS stacks and queues:26slides,15walkthrough states, explorer operations, quiz/draft migration and responsive layouts.')
+console.log('PASS stacks and queues:23 slides, familiar-feature selector,15 walkthrough states, explorer operations, quiz/draft migration and responsive layouts.')

@@ -31,3 +31,18 @@ const lessonConfig = {
 initLessonPage(lessonConfig)
 initLessonWalkthroughs()
 initStructureExplorers()
+
+// Keep all examples readable without JavaScript; selection is temporary.
+document.querySelectorAll('[data-software-features]').forEach(host => {
+  const choices = [...host.querySelectorAll('[data-feature-choice]')]
+  const panels = [...host.querySelectorAll('[data-feature-panel]')]
+  function select(id, announce = true) {
+    choices.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.featureChoice === id)))
+    panels.forEach(panel => { panel.hidden = panel.dataset.featurePanel !== id })
+    host.dataset.selectedFeature = id
+    if (announce) host.querySelector('[data-feature-status]').textContent = `${panels.find(panel => panel.dataset.featurePanel === id).querySelector('h3').textContent} example shown.`
+  }
+  choices.forEach(button => button.addEventListener('click', () => select(button.dataset.featureChoice)))
+  select(choices[0].dataset.featureChoice, false)
+  host.querySelector('[data-feature-controls]').hidden = false
+})

@@ -97,19 +97,45 @@ try {
     }
   }
   await s.send('Emulation.setDeviceMetricsOverride', { width: 1366, height: 768, deviceScaleFactor: 1, mobile: false })
+  let appendedTrack
   for (const id of ['list', 'dynamic-list', 'linked-list', 'insertion']) {
     await goto(id)
-    for (let step = 1; step <= 3; step++) {
+    const steps = id === 'dynamic-list' ? 5 : 3
+    for (let step = 1; step <= steps; step++) {
       assert.equal(await s.ev(`document.querySelectorAll('#${id} [data-walkthrough-step]:not([hidden])').length`), 1)
+      if (id === 'list' && step >= 2) {
+        const track = await s.ev(`(()=>{const e=document.querySelector('#list [data-walkthrough-step]:not([hidden]) [data-track="first-light"]');return {colour:getComputedStyle(e.querySelector('.al-album')).backgroundColor,time:e.querySelector('.al-track-time').textContent,position:e.querySelector('.al-track-number').textContent}})()`)
+        if (step === 2) appendedTrack = track
+        else {
+          assert.equal(track.colour,appendedTrack.colour,'The moved track keeps its artwork colour')
+          assert.equal(track.time,appendedTrack.time,'The moved track keeps its duration')
+          assert.equal(track.position,'2')
+          assert.equal(await s.ev('document.querySelectorAll(\'#list [data-walkthrough-step]:not([hidden]) [data-track="night-drive"]\').length'),0)
+        }
+      }
+      if (id === 'dynamic-list' && step >= 3) {
+        const arrays = await s.ev(`(()=>{const e=document.querySelector('#dynamic-list [data-walkthrough-step]:not([hidden])');return ['old','new'].map(kind=>{const cells=[...e.querySelectorAll('[data-growth-array="'+kind+'"] .al-growth-cell')];return{count:cells.length,width:cells[0].getBoundingClientRect().width,items:cells.map(c=>c.dataset.item||null)}})})()`)
+        assert.equal(arrays[0].count,4);assert.equal(arrays[1].count,6)
+        assert.ok(Math.abs(arrays[0].width-arrays[1].width)<1,'Old and new array slots use the same visual width')
+        assert.deepEqual(arrays[1].items,step===3?Array(6).fill(null):step===4?['A','B','C','D',null,null]:['A','B','C','D','E',null])
+      }
+      if (id === 'insertion' && step >= 2) {
+        const nodes = await s.ev(`(()=>{const e=document.querySelector('#insertion [data-walkthrough-step]:not([hidden])');return ['A','B','C','D'].map(id=>{const n=e.querySelector('[data-node="'+id+'"]');return {id,next:n.dataset.next,y:n.getBoundingClientRect().y,shown:n.getBoundingClientRect().height>0}})})()`)
+        assert.ok(nodes[1].shown,'The new B node is drawn')
+        assert.equal(nodes[1].next,'128')
+        assert.equal(nodes[0].next,step===2?'128':'320')
+        if(step===2)assert.ok(nodes[1].y>nodes[2].y,'B is outside the chain before A is redirected')
+        else assert.ok(Math.abs(nodes[1].y-nodes[2].y)<1,'B joins the chain after A is redirected')
+      }
       await fit(`${id}-step-${step}`, true)
       await click(`#${id} [data-walkthrough-next]`)
       assert.equal(await s.ev('location.hash'), '#' + id)
     }
     assert.equal(await s.ev(`document.querySelector('#${id} [data-walkthrough-next]').getAttribute('aria-disabled')`), 'true')
     await click(`#${id} [data-walkthrough-prev]`)
-    assert.match(await s.text(`#${id} [data-walkthrough-status]`), /Step 2 of 3/)
+    assert.match(await s.text(`#${id} [data-walkthrough-status]`), new RegExp(`Step ${steps-1} of ${steps}`))
     await click(`#${id} [data-walkthrough-reset]`)
-    assert.match(await s.text(`#${id} [data-walkthrough-status]`), /Step 1 of 3/)
+    assert.match(await s.text(`#${id} [data-walkthrough-status]`), new RegExp(`Step 1 of ${steps}`))
   }
   await goto('array-explorer')
   assert.deepEqual(await values(), [3, 8, 2, 12, 5, 4])
@@ -152,8 +178,13 @@ try {
       await s.ev(`document.getElementById('${id}').scrollIntoView()`); await s.screenshot(`${id}-mobile-${width}`)
     }
     for (const id of ['list', 'dynamic-list', 'linked-list', 'insertion']) {
-      for (let step = 1; step <= 3; step++) {
+      const steps = id === 'dynamic-list' ? 5 : 3
+      for (let step = 1; step <= steps; step++) {
         await pageWidth(`${id}-${step}-mobile-${width}`)
+        if (id === 'dynamic-list' || id === 'insertion') {
+          await s.ev(`document.getElementById('${id}').scrollIntoView({block:'start',behavior:'instant'})`);await frame()
+          await s.screenshot(`${id}-step-${step}-mobile-${width}`)
+        }
         await click(`#${id} [data-walkthrough-next]`)
       }
       await click(`#${id} [data-walkthrough-reset]`)
@@ -161,7 +192,7 @@ try {
   }
   await s.load(); assert.deepEqual(await values(), [3, 8, 2, 12, 5, 4]); await legacy()
   await s.send('Emulation.setScriptExecutionDisabled', { value: true }); await s.load(path, 'true')
-  assert.equal(await s.ev('document.querySelectorAll("[data-walkthrough-step]").length'), 12)
+  assert.equal(await s.ev('document.querySelectorAll("[data-walkthrough-step]").length'), 14)
   assert.ok(await s.ev('[...document.querySelectorAll("[data-walkthrough-step]")].every(e=>!e.hidden)'))
   assert.ok(await s.ev('[...document.querySelectorAll("[data-walkthrough-controls],[data-array-controls]")].every(e=>e.hidden)'))
   assert.deepEqual(await values(), [3, 8, 2, 12, 5, 4]); await pageWidth('no-js-320')
@@ -191,4 +222,4 @@ try {
   await s.close()
 }
 assert.deepEqual(failures, [], 'Teacher Slides or mobile overflow')
-console.log('PASS: 21 slides, 12 sequence states, array operations, mobile/static fallback, quiz and draft migration, D1 total20.')
+console.log('PASS: 21 slides, 14 sequence states, stable track identity, visible array replacement and new linked node, array operations, mobile/static fallback, quiz and draft migration, D1 total20.')
