@@ -3,6 +3,56 @@
   --ma-soft: #edf5f4;
 }
 
+/* Use the same quiet cards and clear cell boundaries as the revised D1 lessons. */
+.matrices-lesson .lesson-card { padding: 1.1rem; border: 1px solid #bdccc4; border-radius: 12px; background: #f7f9f4; box-shadow: none; }
+.matrices-lesson .lesson-card h3 { margin-top: 0; }
+.matrices-lesson .matrix-display__label { color: #35564f; text-transform: none; letter-spacing: 0; font-size: 1rem; }
+.matrices-lesson .matrix-display__body { color: #5b7b73; }
+.matrices-lesson .matrix-grid { gap: .3rem; }
+.matrices-lesson .matrix-grid__cell, .matrices-lesson .matrix-answer-cell { border-radius: 5px; border: 1px solid #b6c8c0; box-shadow: none; font-variant-numeric: tabular-nums; font-size: 1.3rem; }
+.matrices-lesson .matrix-answer-cell { appearance: textfield; -moz-appearance: textfield; background: #fff; }
+.matrices-lesson .matrix-answer-cell.is-correct { background: #e5f1df; border-color: #4d783d; color: #234619; }
+.matrices-lesson .matrix-answer-cell.is-incorrect { background: #fce3e3; border-color: #a13c3c; color: #702626; }
+.matrices-lesson .matrix-answer-cell::-webkit-inner-spin-button, .matrices-lesson .matrix-answer-cell::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.matrices-lesson .matrix-answer-cell:focus-visible { outline: 3px solid #22687b; outline-offset: 2px; }
+.matrices-lesson .matrix-practice-status { border: 0; border-left: 3px solid #698b7b; border-radius: 0; padding: .5rem .75rem; font-size: .88em; background: #edf3ed; }
+.matrices-lesson .matrix-practice-status.is-correct { background: #e5f1df; border-color: #4d783d; }
+.matrices-lesson .matrix-practice-status:is(.is-incorrect,.is-warning) { background: #fff0db; border-color: #9f652d; }
+.ma-definition { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: center; margin: 2rem 0; }
+.ma-definition>div>p { font-size: clamp(1.3rem,2.1vw,1.85rem); line-height: 1.55; }
+.ma-definition strong { color: #245e61; }
+.ma-definition figure { margin: 0; padding: 1.5rem; border: 1px solid #bdd0c5; border-radius: 14px; background: #f2f6ef; text-align: center; }
+.ma-definition-columns,.ma-definition figcaption { margin: .6rem 0; color: #4e6b60; font-size: .9em; font-weight: 700; }
+.ma-definition .matrix-display__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.matrices-lesson .ma-definition .matrix-grid { grid-template-columns: repeat(3,4rem); }
+.matrices-lesson .ma-definition .matrix-grid__cell { min-height: 4rem; font-size: 1.6rem; background: #fffefa; }
+.ma-size-example { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.2rem; margin: 1.6rem 0; }
+.ma-size-example figure { margin: 0; display: grid; gap: .7rem; justify-items: center; }
+.ma-size-example figcaption { font-size: .8em; text-align: center; }
+.matrices-lesson .ma-result-cell { cursor: pointer; }
+.matrices-lesson .ma-result-cell:hover { border-color: #527d3c; }
+.matrices-lesson .ma-result-cell:focus-visible { outline: 3px solid #22687b; outline-offset: 3px; }
+.ma-match-rule { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem; padding: .5rem; }
+.ma-match-rule>span { font-size: .9em; }
+.ma-calculation.ma-calculation--build { display: grid; gap: .1rem; text-align: center; font-variant-numeric: tabular-nums; }
+.ma-formula { font-weight: 700; }
+.ma-running-total { font-size: 1.1em; }
+.ma-pending { color: #66796d; border-bottom: 2px dotted #8da092; padding-inline: .3rem; }
+.ma-practice-layout { display: grid; gap: 1.3rem; }
+.matrix-practice-question { min-width: 0; }
+.ma-scratch { min-width: 0; }
+.ma-scratch-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem; margin-bottom: .5rem; }
+.ma-scratch-heading label { font-weight: 750; }
+.matrices-lesson .ma-scratch-heading button { font-size: .8rem; min-height: 40px; padding: .35rem .6rem; }
+.ma-scratch-input { width: 100%; min-height: 12rem; resize: vertical; padding: .65rem; border: 1px solid #9fb7aa; border-radius: 6px; color: #233e35; background: repeating-linear-gradient(#fffefa 0 1.7rem,#e3eadf 1.7rem calc(1.7rem + 1px)); font: 1rem/1.7rem ui-monospace,Consolas,monospace; }
+.ma-scratch-input:focus-visible { outline: 3px solid #22687b; outline-offset: 2px; }
+.ma-scratch-note { margin: .4rem 0 0; font-size: .75em; color: #52695c; }
+.matrices-lesson .ma-code { margin-block: 0; }
+.matrices-lesson .ma-code pre { font-size: clamp(1.1rem,1.7vw,1.45rem); line-height: 1.5; }
+.ma-code-row { color: #673717; background: #fae9db; border-bottom: 2px solid #8a481d; }
+.ma-code-column { color: #21516c; background: #e4f0f8; border-bottom: 2px solid #2e6784; }
+.ma-code-key { display: flex; flex-wrap: wrap; gap: .5rem; font-size: .8em; }
+
 .matrices-lesson .ma-pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -14,6 +64,7 @@
 .ma-pair > *, .ma-operation-grid > * { min-width: 0; }
 .ma-table-wrap { overflow-x: auto; }
 .ma-table { border-collapse: separate; border-spacing: 0; width: 100%; text-align: center; }
+.ma-coordinate-table { table-layout: fixed; }
 .ma-table caption { font-weight: 700; margin-bottom: .7rem; text-align: left; }
 .ma-table th, .ma-table td { padding: .8rem .5rem; border-bottom: 1px solid var(--ma-line); }
 .ma-table th { font-size: .85em; color: var(--teal-deep); background: var(--ma-soft); }
@@ -62,13 +113,31 @@ body.teacher-mode-active.matrices-lesson .ma-compact { font-size: .88em; }
 body.teacher-mode-active.matrices-lesson .ma-revision { display: none; }
 body.teacher-mode-active.matrices-lesson .matrix-practice-card > div:first-child > p { display: none; }
 body.teacher-mode-active.matrices-lesson .matrix-practice-card { padding: .8rem 1rem; }
+body.teacher-mode-active.matrices-lesson .matrix-practice-question>.matrix-practice-copy { font-size: .85em; }
+body.teacher-mode-active.matrices-lesson .ma-walkthrough [data-walkthrough-status] { flex: 1 1 24rem; }
+body.teacher-mode-active.matrices-lesson .ma-scratch-input { min-height: 10rem; height: 10rem; }
 body.teacher-mode-active.matrices-lesson .matrix-answer-cell { width: var(--teacher-slide-matrix-cell-size, 3.2rem); }
 body.teacher-mode-active.matrices-lesson .matrix-practice-workspace > .matrix-practice-copy:nth-child(2),
 body.teacher-mode-active.matrices-lesson #multiplication-practice > p:not(.eyebrow),
 body.teacher-mode-active.matrices-lesson #multiplication-practice .matrix-practice-card > div:first-child { display: none; }
 
+@media (min-width: 1001px) {
+  body.teacher-mode-active.matrices-lesson .ma-practice-layout { grid-template-columns: minmax(0,1fr) 19rem; align-items: start; }
+  body.teacher-mode-active.matrices-lesson .ma-practice-layout .matrix-answer-cell { width: 3rem; }
+  body.teacher-mode-active.matrices-lesson .ma-practice-layout .matrix-grid { --teacher-slide-matrix-cell-size: 3rem; }
+}
+
 @media (max-width: 700px) {
   .matrices-lesson .ma-pair, .ma-operation-grid { grid-template-columns: minmax(0, 1fr); }
+  .ma-definition { grid-template-columns: 1fr; gap: 1rem; margin-block: 1rem; }
+  .ma-definition figure { padding: .7rem; }
+  .matrices-lesson .ma-definition .matrix-grid { grid-template-columns: repeat(3,3rem); }
+  .matrices-lesson .ma-definition .matrix-grid__cell { min-height: 3rem; }
+  .ma-size-example { flex-direction: column; gap: .9rem; }
+  .ma-size-example .matrix-grid { grid-template-columns: repeat(var(--matrix-columns),2.6rem); }
+  .matrices-lesson .ma-size-example .matrix-grid__cell { min-width: 2.6rem; min-height: 2.6rem; padding: .25rem; }
+  .ma-match-rule { gap: .4rem; font-size: .85em; }
+  .matrices-lesson .ma-code pre { font-size: 1rem; padding: .8rem; }
   .ma-dimension-rule { gap: .5rem; }
   .ma-dimension-rule strong { font-size: 1.15em; gap: .15rem; }
   .ma-dimension-rule b { padding: .2rem; }
@@ -88,6 +157,9 @@ body.teacher-mode-active.matrices-lesson #multiplication-practice .matrix-practi
 }
 
 @media print {
+  [data-match-instruction] { display: none; }
   .ma-walkthrough[data-walkthrough-ready] .ma-step-title { display: block; }
   .ma-walkthrough [data-walkthrough-step] { break-inside: avoid; margin-bottom: 1rem !important; }
+  .ma-scratch-heading button { display: none; }
+  .ma-scratch-input { background: white; }
 }

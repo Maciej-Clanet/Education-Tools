@@ -70,6 +70,44 @@ try {
     }
   }
   await s.send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false})
+  assert.ok(!slides.includes('row-major')&&!slides.includes('column-major'),'Separate order slides have been replaced')
+  assert.equal(slides[slides.indexOf('memory-order')+1],'storage-orders')
+  assert.equal(slides[slides.indexOf('storage-orders')+1],'memory-visualiser')
+  assert.ok(!await s.ev('document.querySelector("#memory-order").textContent.includes("row-major")'))
+  for(const id of ['row-major','column-major'])assert.equal(await s.ev(`document.getElementById('${id}').closest('[data-lesson-section]').id`),'storage-orders','Old anchors remain in the introduction')
+  for(const [id,shape,values]of [
+    ['one-dimensional',[3],[11,12,13]],
+    ['two-dimensional',[2,3],[11,12,13,21,22,23]],
+    ['multi-dimensional',[2,2,3],[11,12,13,21,22,23,14,15,16,24,25,26]],
+  ]){
+    await goto(id)
+    const axes=await s.ev(`[...document.querySelectorAll('#${id} [data-index-axis]')].map(e=>e.dataset.indexAxis)`)
+    assert.equal(axes.length,shape.length)
+    for(const [flat,value]of values.entries()){
+      const coordinates=shape.map((size,i)=>Math.floor(flat/shape.slice(i+1).reduce((a,b)=>a*b,1))%size)
+      for(const [i,axis]of axes.entries())await s.input(`#${id} [data-index-axis=${axis}]`,coordinates[i],'input')
+      assert.equal(await s.ev(`document.querySelector('#${id} [data-index-cell].mo-target').dataset.indexCell`),coordinates.join(','))
+      assert.equal(await s.ev(`document.querySelectorAll('#${id} [data-index-cell].mo-target').length`),1)
+      assert.equal(await s.text(`#${id} [data-index-value]`),`${value}°C`)
+      if(shape.length===3)assert.equal(await s.ev(`document.querySelector('#${id} .mo-layer--selected').dataset.indexLayer`),String(coordinates[0]))
+    }
+    await fit(`${id}-edited`)
+    for(const invalid of ['', '-1', '1.5', '99', 'x']){
+      await s.input(`#${id} [data-index-axis=${axes[0]}]`,invalid,'input')
+      assert.equal(await s.ev(`document.querySelectorAll('#${id} [data-index-cell].mo-target').length`),0,'Invalid indexes clear the selection')
+      assert.equal(await s.text(`#${id} [data-index-value]`),'—')
+      assert.match(await s.text(`#${id} [data-index-status]`),/Enter a whole/)
+      assert.equal(await s.ev(`document.querySelector('#${id} [data-index-axis]').getAttribute('aria-invalid')`),'true')
+    }
+    await s.send('Page.bringToFront')
+    await s.ev(`document.querySelector('#${id} [data-index-axis]').focus();document.querySelector('#${id} [data-index-axis]').select()`)
+    await s.send('Input.insertText',{text:'0'})
+    assert.equal(await s.ev('location.hash'),`#${id}`)
+    assert.equal(await s.ev('document.activeElement.dataset.indexAxis'),axes[0])
+    assert.equal(await s.ev(`document.querySelector('#${id} [data-index-axis]').getAttribute('aria-invalid')`),'false')
+    await click('[data-action=next-slide]');await click('[data-action=prev-slide]')
+    assert.equal(await s.ev(`document.querySelector('#${id} [data-index-axis]').value`),'0','Index edits survive slide navigation')
+  }
   await goto('memory-visualiser')
   for(const [mode,sequence]of [['row-major',[11,12,13,21,22,23]],['column-major',[11,21,12,22,13,23]]]){
     await order(mode);await click('[data-memory-step=reset]')
@@ -104,7 +142,7 @@ try {
   for(const width of [390,320]){
     await s.send('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:true})
     assert.ok(await s.ev('document.documentElement.scrollWidth<=innerWidth+1'),`Page width at ${width}px`)
-    for(const id of ['one-dimensional','two-dimensional','multi-dimensional','row-major','column-major','memory-visualiser','software-exchange']){
+    for(const id of ['one-dimensional','two-dimensional','multi-dimensional','storage-orders','memory-visualiser','software-exchange']){
       await s.ev(`document.getElementById('${id}').scrollIntoView()`);await frame();await s.screenshot(`${id}-${width}`)
     }
     const boxes=await s.ev('[...document.querySelectorAll(".memory-order-grid__cell")].map(e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y}})')
@@ -112,6 +150,13 @@ try {
     assert.ok(boxes[0].x<boxes[1].x&&boxes[1].x<boxes[2].x)
     assert.ok(await s.ev('(()=>{const e=document.querySelector(".memory-order-track");e.scrollLeft=e.scrollWidth;return e.scrollLeft>0&&e.scrollLeft+e.clientWidth>=e.scrollWidth-1})()'))
   }
+  await s.ev('document.querySelector("#multi-dimensional-hour-index").scrollIntoView({block:"center"})');await frame()
+  const indexPoint=await s.ev('(()=>{const r=document.querySelector("#multi-dimensional-hour-index").getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()')
+  await s.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[indexPoint]});await s.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]})
+  assert.equal(await s.ev('document.activeElement.id'),'multi-dimensional-hour-index')
+  await s.ev('document.activeElement.select()');await s.send('Input.insertText',{text:'1'})
+  assert.equal(await s.text('#multi-dimensional [data-index-value]'),'22°C')
+  await s.screenshot('multi-dimensional-touch-editor')
   await s.ev('document.querySelector("[data-memory-step=next]").scrollIntoView({block:"center"})');await frame()
   const point=await s.ev('(()=>{const r=document.querySelector("[data-memory-step=next]").getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()')
   await s.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await s.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]})
@@ -126,6 +171,7 @@ try {
   assert.deepEqual(await storage(keys.old),legacy)
   assert.equal((await storage(keys.drafts))['retired-prompt'],drafts['retired-prompt'])
   assert.equal(await step(),0)
+  assert.deepEqual(await s.ev('[...document.querySelectorAll("[data-index-axis]")].map(e=>e.value)'),['2','1','2','1','0','2'],'Reload restores demonstration defaults')
   await s.send('Emulation.setEmulatedMedia',{media:'print'})
   assert.equal(await s.ev('getComputedStyle(document.querySelector(".mo-static-layout")).display'),'block')
   assert.equal(await s.ev('getComputedStyle(document.querySelector("[data-memory-order-controls]")).display'),'none')
@@ -135,6 +181,8 @@ try {
   assert.equal(await s.ev('document.querySelector("[data-memory-order-controls]").hidden'),true)
   assert.equal(await s.ev('document.querySelectorAll(".memory-order-grid__value").length'),6)
   assert.match(await s.text('.mo-static-layout'),/Column-major: 11, 21, 12, 22, 13, 23/)
+  assert.equal(await s.ev('document.querySelectorAll("[data-index-expression]").length'),3,'Authored array expressions remain without JavaScript')
+  assert.equal(await s.ev('document.querySelectorAll("[data-index-demo] .mo-target").length'),3)
   await s.send('Emulation.setScriptExecutionDisabled',{value:false})
 
   // The legacy fallback must count the new raw quiz only, never the old answers.
@@ -156,4 +204,4 @@ try {
   await s.close()
 }
 assert.deepEqual(failures,[],'Teaching slides fit without overflow')
-console.log('PASS: all slides, both memory orders at every step, keyboard/touch, mobile grid geometry, print/no-JS, quiz migration, retained drafts and D2 progress.')
+console.log('PASS: all slides, editable 1D/2D/3D indexes and bounds, both memory orders at every step, keyboard/touch, mobile grid geometry, print/no-JS, quiz migration, retained drafts and D2 progress.')

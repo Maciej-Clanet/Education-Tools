@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matrices and Arrays Revision Lesson | Education Tools</title>
+    <title>Matrices and Arrays Lesson | Education Tools</title>
     <meta
       name="description"
-      content="Revise matrices and arrays with rows and columns, matrix operations, indexed storage, exam traps, exam-style practice, and a short end-of-lesson quiz."
+      content="Learn to read matrices, add and multiply them, and store their values in arrays. Use visual steps and practice with saved working."
     />
     <meta
       property="og:title"
-      content="Matrices and Arrays Revision Lesson | Education Tools"
+      content="Matrices and Arrays Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise matrices and arrays with rows and columns, matrix operations, indexed storage, exam traps, exam-style practice, and a short end-of-lesson quiz."
+      content="Learn to read matrices, add and multiply them, and store their values in arrays. Use visual steps and practice with saved working."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/pages/lesson.css" />
     <link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
+    <link rel="stylesheet" href="../../css/code-snippets.css" />
     <link rel="stylesheet" href="../../css/pages/matrices-and-arrays.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
@@ -112,7 +113,8 @@
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
+            <a href="#introduction" data-section-link>What is a matrix?</a>
+            <a href="#overview" data-section-link>A real example</a>
             <a href="#matrices" data-section-link>Matrices</a>
             <a href="#operations" data-section-link>Operations</a>
             <a href="#addition" data-section-link>Addition</a>
@@ -136,6 +138,15 @@
 <template data-teacher-opener><h2>Matrices and arrays</h2><p>From a grid of values to a calculation</p><ul><li>Read rows, columns and dimensions</li><li>Add, scale and multiply matrices</li><li>Find matrix elements in a 2D array</li></ul></template>
 
 
+<section id="introduction" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Start here</p><h2>What is a matrix?</h2>
+<div class="ma-definition">
+  <div><p>A <strong>matrix</strong> is a rectangular grid of numbers.</p><p>The numbers are arranged in <strong>rows</strong> and <strong>columns</strong>.</p></div>
+  <figure><div class="ma-definition-columns">Columns go down ↓</div><div class="matrix-display" style="--matrix-columns: 3" role="group" aria-label="A matrix with 2 rows and 3 columns"><span class="matrix-display__label">A matrix with 2 rows and 3 columns</span><div class="matrix-display__body"><div class="matrix-grid"><span class="matrix-grid__cell" aria-label="Row 1, column 1: 2">2</span><span class="matrix-grid__cell" aria-label="Row 1, column 2: 1">1</span><span class="matrix-grid__cell" aria-label="Row 1, column 3: 3">3</span><span class="matrix-grid__cell" aria-label="Row 2, column 1: 4">4</span><span class="matrix-grid__cell" aria-label="Row 2, column 2: 3">3</span><span class="matrix-grid__cell" aria-label="Row 2, column 3: 2">2</span></div></div></div><figcaption>Rows go across →</figcaption></figure>
+</div>
+<p class="ma-note">Each row has the same number of values. We can use the grid in calculations.</p>
+</section>
+
 <section id="overview" class="lesson-section lesson-section--overview panel" data-lesson-section>
   <p class="eyebrow">Start with a grid</p><h2>Two clubs order snack boxes</h2>
   <p>Each club orders two kinds of box. A grid keeps the quantities in the right places.</p>
@@ -147,7 +158,7 @@
   <span class="matrix-grid__cell " aria-label="Row 1, column 2: 1">1</span>
   <span class="matrix-grid__cell " aria-label="Row 2, column 1: 4">4</span>
   <span class="matrix-grid__cell " aria-label="Row 2, column 2: 3">3</span>
-  </div></div></div><p>A <strong>matrix</strong> is a rectangular arrangement of values in rows and columns.</p></div>
+  </div></div></div><p>Each position keeps its meaning: a club and a box type.</p></div>
 </div><p class="ma-note">The labels tell us what the numbers mean: Art orders 2 of Box 1 and 1 of Box 2.</p>
 </section>
 
@@ -173,6 +184,7 @@
 </section>
 
 
+<template data-teacher-divider><h2>Matrix addition</h2><p>Add the values in matching positions</p></template>
 <section id="addition" class="lesson-section lesson-section--addition panel" data-lesson-section>
   <p class="eyebrow">Operation 1 · Addition</p><h2>Add the matching positions</h2>
   <p>A is the first order and B is an extra order. Both use the same clubs and box types, in the same order.</p>
@@ -206,7 +218,7 @@
               data-no-slide-advance data-matrix-practice="addition"
             >
               <div>
-                <h3>Addition quick check</h3>
+                <h3>Try matrix addition</h3>
                 <p class="matrix-practice-copy">
                   Fill in the result matrix. The current question, your answers,
                   and your latest check save in this browser.
@@ -224,21 +236,21 @@
               <div class="matrix-practice-actions">
                 <button
                   type="button"
-                  class="structure-button"
+                  class="primary-link"
                   data-matrix-practice-action="check"
                 >
-                  Quick check
+                  Check answers
                 </button>
                 <button
                   type="button"
-                  class="structure-button"
+                  class="lesson-secondary-action"
                   data-matrix-practice-action="clear"
                 >
-                  Clear section
+                  Clear answers
                 </button>
                 <button
                   type="button"
-                  class="structure-button"
+                  class="lesson-secondary-action"
                   data-matrix-practice-action="new"
                 >
                   New question
@@ -255,6 +267,7 @@
 </section>
 
 
+<template data-teacher-divider><h2>Scalar multiplication</h2><p>One number multiplies every element</p></template>
 <section id="scalar-multiplication" class="lesson-section lesson-section--scalar-multiplication panel" data-lesson-section>
   <p class="eyebrow">Operation 2 · Scalar multiplication</p><h2>One number multiplies every element</h2>
   <p>A <strong>scalar</strong> is a single number. To triple the order, multiply each quantity by 3.</p>
@@ -282,7 +295,7 @@
               data-no-slide-advance data-matrix-practice="scalar"
             >
               <div>
-                <h3>Scalar multiplication quick check</h3>
+                <h3>Try scalar multiplication</h3>
                 <p class="matrix-practice-copy">
                   Multiply every element by the scalar shown in the question,
                   then check your answer when you are ready.
@@ -300,21 +313,21 @@
               <div class="matrix-practice-actions">
                 <button
                   type="button"
-                  class="structure-button"
+                  class="primary-link"
                   data-matrix-practice-action="check"
                 >
-                  Quick check
+                  Check answers
                 </button>
                 <button
                   type="button"
-                  class="structure-button"
+                  class="lesson-secondary-action"
                   data-matrix-practice-action="clear"
                 >
-                  Clear section
+                  Clear answers
                 </button>
                 <button
                   type="button"
-                  class="structure-button"
+                  class="lesson-secondary-action"
                   data-matrix-practice-action="new"
                 >
                   New question
@@ -330,17 +343,19 @@
             </article>
 </section>
 
-<template data-teacher-divider><h2>Matrix × matrix</h2><p>Build one result cell at a time</p></template>
-<section id="multiplication-size" class="lesson-section lesson-section--multiplication-size panel" data-lesson-section>
-  <p class="eyebrow">Operation 3 · Check the dimensions</p><h2>Will each row have a complete column to pair with?</h2>
-  <p>For <strong>A × B</strong>, each row of A must contain as many elements as each column of B.</p>
-<div class="ma-dimension-rule" role="group" aria-label="2 by 3 times 3 by 4 gives 2 by 4. The inner 3s match. The outer 2 and 4 give the result dimensions.">
-<div><span>Matrix A</span><strong><b class="ma-outer">2</b> × <b class="ma-inner">3</b></strong></div><span>×</span>
-<div><span>Matrix B</span><strong><b class="ma-inner">3</b> × <b class="ma-outer">4</b></strong></div><span>=</span>
-<div><span>Result</span><strong><b class="ma-outer">2</b> × <b class="ma-outer">4</b></strong></div>
+<template data-teacher-divider><h2>Matrix multiplication</h2><p>Build one result cell at a time</p></template>
+<section id="multiplication-size" class="lesson-section panel" data-lesson-section data-matrix-matching>
+<p class="eyebrow">Operation 3 · Check the dimensions</p><h2>Match a row of A with a column of B</h2>
+<p>For A × B, the row and column must have the <strong>same number of values</strong>. <span data-match-instruction hidden>Select a result cell.</span></p>
+<div class="ma-size-example" data-no-slide-advance>
+<figure><div class="matrix-display" style="--matrix-columns: 3" role="group" aria-label="A · 2 × 3"><span class="matrix-display__label">A · 2 × 3</span><div class="matrix-display__body"><div class="matrix-grid" data-match-grid="a" data-columns="3"><span class="matrix-grid__cell ma-row" aria-label="Row 1, column 1: 2">2</span><span class="matrix-grid__cell ma-row" aria-label="Row 1, column 2: 1">1</span><span class="matrix-grid__cell ma-row" aria-label="Row 1, column 3: 3">3</span><span class="matrix-grid__cell" aria-label="Row 2, column 1: 4">4</span><span class="matrix-grid__cell" aria-label="Row 2, column 2: 3">3</span><span class="matrix-grid__cell" aria-label="Row 2, column 3: 2">2</span></div></div></div><figcaption><span class="ma-row-tag" data-match-row-label>Row 1 · 3 values across</span></figcaption></figure>
+<span class="matrix-equation__operator" aria-hidden="true">×</span>
+<figure><div class="matrix-display" style="--matrix-columns: 4" role="group" aria-label="B · 3 × 4"><span class="matrix-display__label">B · 3 × 4</span><div class="matrix-display__body"><div class="matrix-grid" data-match-grid="b" data-columns="4"><span class="matrix-grid__cell" aria-label="Row 1, column 1: 5">5</span><span class="matrix-grid__cell ma-column" aria-label="Row 1, column 2: 2">2</span><span class="matrix-grid__cell" aria-label="Row 1, column 3: 1">1</span><span class="matrix-grid__cell" aria-label="Row 1, column 4: 4">4</span><span class="matrix-grid__cell" aria-label="Row 2, column 1: 1">1</span><span class="matrix-grid__cell ma-column" aria-label="Row 2, column 2: 6">6</span><span class="matrix-grid__cell" aria-label="Row 2, column 3: 2">2</span><span class="matrix-grid__cell" aria-label="Row 2, column 4: 3">3</span><span class="matrix-grid__cell" aria-label="Row 3, column 1: 2">2</span><span class="matrix-grid__cell ma-column" aria-label="Row 3, column 2: 1">1</span><span class="matrix-grid__cell" aria-label="Row 3, column 3: 4">4</span><span class="matrix-grid__cell" aria-label="Row 3, column 4: 1">1</span></div></div></div><figcaption><span class="ma-column-tag" data-match-column-label>Column 2 · 3 values down</span></figcaption></figure>
+<span class="matrix-equation__operator" aria-hidden="true">=</span>
+<figure><div class="matrix-display" style="--matrix-columns: 4" role="group" aria-label="Result · 2 × 4"><span class="matrix-display__label">Result · 2 × 4</span><div class="matrix-display__body"><div class="matrix-grid" data-match-grid="result"><span class="matrix-grid__cell" aria-label="Row 1, column 1: ·">·</span><span class="matrix-grid__cell ma-target" aria-label="Row 1, column 2: ?">?</span><span class="matrix-grid__cell" aria-label="Row 1, column 3: ·">·</span><span class="matrix-grid__cell" aria-label="Row 1, column 4: ·">·</span><span class="matrix-grid__cell" aria-label="Row 2, column 1: ·">·</span><span class="matrix-grid__cell" aria-label="Row 2, column 2: ·">·</span><span class="matrix-grid__cell" aria-label="Row 2, column 3: ·">·</span><span class="matrix-grid__cell" aria-label="Row 2, column 4: ·">·</span></div></div></div><figcaption>2 rows from A · 4 columns from B</figcaption></figure>
 </div>
-<div class="ma-pair ma-rule-pair"><p><strong>Inner numbers must match.</strong><br>3 values in each row of A pair with 3 values in each column of B.</p><p><strong>Outer numbers give the result.</strong><br>One cell for every row of A and column of B: 2 rows, 4 columns.</p></div>
-<p class="ma-note"><strong>Cannot multiply:</strong> (2 × 3) × (2 × 2). The inner numbers are 3 and 2, so one value would have no partner.</p>
+<div class="ma-match-rule"><strong><span class="ma-row-tag">3 row values</span> = <span class="ma-column-tag">3 column values</span></strong><span data-match-status aria-live="polite">Row 1 of A × column 2 of B</span></div>
+<p class="ma-note">If A had 3 columns but B had only 2 rows, one value would have no partner. You could not multiply them in that order.</p>
 </section>
 
 
@@ -351,10 +366,10 @@
 <div class="ma-walkthrough" data-lesson-walkthrough data-matrix-playback data-no-slide-advance>
 <div data-walkthrough-controls hidden>
 <p data-walkthrough-status role="status" aria-live="polite" aria-atomic="true"></p>
-<button type="button" class="structure-button" data-walkthrough-prev>Previous step</button>
-<button type="button" class="structure-button" data-walkthrough-next>Next step</button>
-<button type="button" class="structure-button" data-matrix-play aria-pressed="false">Play steps</button>
-<button type="button" class="structure-button" data-walkthrough-reset>Restart</button>
+<button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+<button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+<button type="button" class="lesson-secondary-action" data-matrix-play aria-pressed="false">Play steps</button>
+<button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
 </div>
 <div data-walkthrough-step="Choose a row and a column">
 <h3 class="ma-step-title">1. Choose a row and a column</h3>
@@ -381,7 +396,7 @@
   <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
   <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
   </div></div></div></div>
-<div class="ma-calculation"><span class="ma-row-tag">Row 1 →</span> <span class="ma-column-tag">Column 1 ↓</span> <span>→ result (1, 1)</span></div><p class="ma-step-copy">To find result row 1, column 1, select <strong>row 1 of A: 2, 1</strong> and <strong>column 1 of B: 5, 1</strong>.</p>
+<div class="ma-calculation ma-calculation--build"><div class="ma-formula">(2 × 5) + (1 × 1)</div><div class="ma-running-total">= <span class="ma-pending">?</span> + <span class="ma-pending">?</span></div></div><p class="ma-step-copy">To find result row 1, column 1, select <strong>row 1 of A: 2, 1</strong> and <strong>column 1 of B: 5, 1</strong>.</p>
 </div>
 <div data-walkthrough-step="Multiply the first pair">
 <h3 class="ma-step-title">2. Multiply the first pair</h3>
@@ -408,7 +423,7 @@
   <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
   <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
   </div></div></div></div>
-<div class="ma-calculation"><span class="ma-row-tag">2</span> × <span class="ma-column-tag">5</span> <span>= <strong>10</strong></span></div><p class="ma-step-copy">Pair the first value in the row with the first value in the column.</p>
+<div class="ma-calculation ma-calculation--build"><div class="ma-formula">(2 × 5) + (1 × 1)</div><div class="ma-running-total">= <strong>10</strong> + <span class="ma-pending">?</span></div></div><p class="ma-step-copy">Pair the first value in the row with the first value in the column.</p>
 </div>
 <div data-walkthrough-step="Multiply the next pair">
 <h3 class="ma-step-title">3. Multiply the next pair</h3>
@@ -435,7 +450,7 @@
   <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
   <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
   </div></div></div></div>
-<div class="ma-calculation"><span class="ma-row-tag">1</span> × <span class="ma-column-tag">1</span> <span>= <strong>1</strong></span></div><p class="ma-step-copy">Move one place along the row and one place down the column. Keep the first product, 10.</p>
+<div class="ma-calculation ma-calculation--build"><div class="ma-formula">(2 × 5) + (1 × 1)</div><div class="ma-running-total">= <strong>10</strong> + <strong>1</strong></div></div><p class="ma-step-copy">The first product stays 10. Multiply the second pair: 1 × 1 = 1.</p>
 </div>
 <div data-walkthrough-step="Add and place the result">
 <h3 class="ma-step-title">4. Add and place the result</h3>
@@ -462,7 +477,7 @@
   <span class="matrix-grid__cell " aria-label="Row 2, column 1: not calculated">·</span>
   <span class="matrix-grid__cell " aria-label="Row 2, column 2: not calculated">·</span>
   </div></div></div></div>
-<div class="ma-calculation"><span>(2 × 5) + (1 × 1)</span><span>= 10 + 1 = <strong>11</strong></span></div><p class="ma-step-copy">Add both products. Put this one total in result <strong>row 1, column 1</strong>.</p>
+<div class="ma-calculation ma-calculation--build"><div class="ma-formula">(2 × 5) + (1 × 1)</div><div class="ma-running-total">= 10 + 1 = <strong>11</strong></div></div><p class="ma-step-copy">Add both products. Put this one total in result <strong>row 1, column 1</strong>.</p>
 </div>
 <div data-walkthrough-step="Keep the row, change the column">
 <h3 class="ma-step-title">5. Keep the row, change the column</h3>
@@ -584,7 +599,7 @@
               data-no-slide-advance data-matrix-practice="multiplication"
             >
               <div>
-                <h3>Matrix multiplication quick check</h3>
+                <h3>Try matrix multiplication</h3>
                 <p class="matrix-practice-copy">
                   Build each answer cell from one row of the first matrix and
                   one column of the second matrix. Your current question saves
@@ -603,21 +618,21 @@
               <div class="matrix-practice-actions">
                 <button
                   type="button"
-                  class="structure-button"
+                  class="primary-link"
                   data-matrix-practice-action="check"
                 >
-                  Quick check
+                  Check answers
                 </button>
                 <button
                   type="button"
-                  class="structure-button"
+                  class="lesson-secondary-action"
                   data-matrix-practice-action="clear"
                 >
-                  Clear section
+                  Clear answers
                 </button>
                 <button
                   type="button"
-                  class="structure-button"
+                  class="lesson-secondary-action"
                   data-matrix-practice-action="new"
                 >
                   New question
@@ -640,10 +655,15 @@
   <p>A <strong>2D array</strong> can store the matrix. In this example the first index selects a row, and the second selects a column. Both start at 0.</p>
 <div class="ma-pair">
 <div class="ma-table-wrap"><table class="ma-table ma-coordinate-table"><caption>orders · zero-based indexes</caption><thead><tr><td></td><th scope="col">Column 0</th><th scope="col">Column 1</th></tr></thead><tbody><tr><th scope="row">Row 0</th><td>2</td><td>1</td></tr><tr><th scope="row">Row 1</th><td class="ma-target">4</td><td>3</td></tr></tbody></table></div>
-<div><pre><code>orders = [[2, 1],
-          [4, 3]]
+<div><div class="code-snippet ma-code" data-code-snippet="Read a 2D array" data-no-slide-advance>
+<div class="code-snippet__toolbar"><span class="code-snippet__label">Read a 2D array · Pseudocode</span></div>
+<pre tabindex="0" aria-label="Pseudocode stores two rows, then reads row index 1 and column index 0"><code><span class="syntax-property">orders</span> = [
+  [<span class="syntax-number">2</span>, <span class="syntax-number">1</span>],
+  [<span class="syntax-number">4</span>, <span class="syntax-number">3</span>]
+]
 
-orders[1][0] → 4</code></pre><p><strong>Second row, first column.</strong> It is the same position we described with row and column numbers starting at 1.</p></div>
+<span class="syntax-property">orders</span>[<span class="ma-code-row">1</span>][<span class="ma-code-column">0</span>] → <span class="syntax-number">4</span></code></pre>
+</div><p class="ma-code-key"><span class="ma-row-tag">1 → second row</span><span class="ma-column-tag">0 → first column</span></p></div>
 </div><p class="ma-note"><strong>1D array:</strong> one index, such as scores[2]. <strong>2D array:</strong> two indexes, such as orders[1][0].</p>
 </section>
 

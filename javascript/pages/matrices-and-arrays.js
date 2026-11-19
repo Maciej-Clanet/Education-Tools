@@ -1,6 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 import { readStorage, writeStorage } from "../core/storage.js"
 import { initLessonWalkthroughs } from "../core/lesson-walkthrough.js"
+import { initCodeSnippets } from "../core/code-snippets.js"
 
 const lessonConfig = {
   lessonId: "matrices-and-arrays",
@@ -76,7 +77,7 @@ function flattenMatrix(matrix) {
 }
 
 function getMatrixDimensions(matrix) {
-  return `${matrix.length} x ${matrix[0].length}`
+  return `${matrix.length} × ${matrix[0].length}`
 }
 
 function isFiniteNumber(value) {
@@ -191,6 +192,7 @@ function createPracticeEntry(type, message) {
     question,
     answers: Array(flattenMatrix(question.answer).length).fill(""),
     feedback: createFeedback(type, "neutral", message),
+    ...(type === "multiplication" ? { scratch: "" } : {}),
   }
 }
 
@@ -277,6 +279,7 @@ function normalisePracticeState(value) {
           question: entry.question,
           answers: normaliseAnswers(entry.question, entry.answers),
           feedback: normaliseFeedback(type, entry.feedback, totalCells),
+          ...(type === "multiplication" ? { scratch: typeof entry.scratch === "string" ? entry.scratch : "" } : {}),
         },
       ]
     })
@@ -314,14 +317,17 @@ function createMatrixDisplay(matrix, options = {}) {
 
       if (options.interactive) {
         const input = document.createElement("input")
-        input.type = "number"
+        input.type = "text"
         input.inputMode = "numeric"
+        input.autocomplete = "off"
+        input.spellcheck = false
         input.className = "matrix-answer-cell"
         input.dataset.matrixAnswer = String(cellIndex)
         input.value = options.answers?.[cellIndex] ?? ""
+        const checkedState = options.checkedCells?.[cellIndex]
         input.setAttribute(
           "aria-label",
-          `${options.label ?? "Answer"} row ${rowIndex + 1} column ${columnIndex + 1}`
+          `${options.label ?? "Answer"} row ${rowIndex + 1} column ${columnIndex + 1}${checkedState ? `: ${checkedState}` : ""}`
         )
 
         if (options.checkedCells?.[cellIndex] === "correct") {
@@ -330,6 +336,7 @@ function createMatrixDisplay(matrix, options = {}) {
 
         if (options.checkedCells?.[cellIndex] === "incorrect") {
           input.classList.add("is-incorrect")
+          input.setAttribute("aria-invalid", "true")
         }
 
         grid.append(input)
@@ -372,18 +379,6 @@ function getPracticePrompt(type, question) {
   return `Multiply the ${getMatrixDimensions(question.left)} matrix by the ${getMatrixDimensions(question.right)} matrix. The answer will be ${getMatrixDimensions(question.answer)}.`
 }
 
-function getPracticeHelper(type, question) {
-  if (type === "addition") {
-    return "Add each row-and-column position to the matching position in the other matrix."
-  }
-
-  if (type === "scalar") {
-    return "Apply the scalar to every single element before moving to the next cell."
-  }
-
-  return "Each answer cell comes from one row of the first matrix and one column of the second."
-}
-
 function createPracticeEquation(type, entry) {
   const equation = createElement("div", "matrix-practice-equation")
   const answerDisplay = createMatrixDisplay(entry.question.answer, {
@@ -408,7 +403,7 @@ function createPracticeEquation(type, entry) {
   if (type === "scalar") {
     equation.append(
       createToken(String(entry.question.scalar)),
-      createOperator("x"),
+      createOperator("×"),
       createMatrixDisplay(entry.question.matrix, { label: "Matrix" }),
       createOperator("="),
       answerDisplay
@@ -419,7 +414,7 @@ function createPracticeEquation(type, entry) {
 
   equation.append(
     createMatrixDisplay(entry.question.left, { label: "Matrix A" }),
-    createOperator("x"),
+    createOperator("×"),
     createMatrixDisplay(entry.question.right, { label: "Matrix B" }),
     createOperator("="),
     answerDisplay
@@ -430,11 +425,38 @@ function createPracticeEquation(type, entry) {
 
 function createPracticeWorkspace(type, entry) {
   const fragment = document.createDocumentFragment()
-  fragment.append(
+  const question = createElement("div", "matrix-practice-question")
+  question.append(
     createElement("p", "matrix-practice-copy", getPracticePrompt(type, entry.question)),
-    createElement("p", "matrix-practice-copy", getPracticeHelper(type, entry.question)),
     createPracticeEquation(type, entry)
   )
+  if (type !== "multiplication") {
+    fragment.append(question)
+    return fragment
+  }
+
+  const layout = createElement("div", "ma-practice-layout")
+  const scratch = createElement("div", "ma-scratch")
+  const heading = createElement("div", "ma-scratch-heading")
+  const label = createElement("label", "", "Working out")
+  label.htmlFor = "matrix-multiplication-working"
+  const clear = createElement("button", "lesson-secondary-action", "Clear working")
+  clear.type = "button"
+  clear.dataset.matrixScratchClear = ""
+  heading.append(label, clear)
+  const input = createElement("textarea", "ma-scratch-input")
+  input.id = label.htmlFor
+  input.dataset.matrixScratch = ""
+  input.value = entry.scratch
+  input.rows = 5
+  input.spellcheck = false
+  input.placeholder = "Row 1, column 1:\n(… × …) + (… × …) = …"
+  input.setAttribute("aria-describedby", "matrix-working-note")
+  const note = createElement("p", "ma-scratch-note", "Working saves with this question. New question starts fresh.")
+  note.id = "matrix-working-note"
+  scratch.append(heading, input, note)
+  layout.append(question, scratch)
+  fragment.append(layout)
 
   return fragment
 }
@@ -527,6 +549,17 @@ function initOperationPractice() {
 
     workspace.replaceChildren(createPracticeWorkspace(type, state[type]))
 
+    const scratch = workspace.querySelector("[data-matrix-scratch]")
+    scratch?.addEventListener("input", () => {
+      state[type].scratch = scratch.value
+      saveState()
+    })
+    workspace.querySelector("[data-matrix-scratch-clear]")?.addEventListener("click", () => {
+      state[type].scratch = ""
+      scratch.value = ""
+      saveState()
+    })
+
     workspace.querySelectorAll("[data-matrix-answer]").forEach((input) => {
       input.addEventListener("input", () => {
         const index = Number.parseInt(input.dataset.matrixAnswer ?? "-1", 10)
@@ -549,9 +582,11 @@ function initOperationPractice() {
           updateStatus(type)
           card
             .querySelectorAll(".matrix-answer-cell")
-            .forEach((field) =>
+            .forEach((field) => {
               field.classList.remove("is-correct", "is-incorrect")
-            )
+              field.removeAttribute("aria-invalid")
+              field.setAttribute("aria-label", field.getAttribute("aria-label").replace(/: (?:correct|incorrect)$/, ""))
+            })
         }
 
         saveState()
@@ -578,7 +613,7 @@ function initOperationPractice() {
     }
 
     const checkedCells = answers.map((value, index) =>
-      Number(value) === expected[index] ? "correct" : "incorrect"
+      /^[+-]?(?:\d+\.?\d*|\.\d+)$/.test(value) && Number(value) === expected[index] ? "correct" : "incorrect"
     )
     const incorrectCount = checkedCells.filter(
       (cellState) => cellState === "incorrect"
@@ -607,8 +642,9 @@ function initOperationPractice() {
       feedback: createFeedback(
         type,
         "neutral",
-        "This section has been cleared. Fill the matrix and check when ready."
+        "Answer cells cleared. Fill the matrix and check when ready."
       ),
+      ...(type === "multiplication" ? { scratch: state[type].scratch } : {}),
     }
 
     saveState()
@@ -647,6 +683,50 @@ function initOperationPractice() {
   })
 
   saveState()
+}
+
+function initMatrixMatching() {
+  const host = document.querySelector("[data-matrix-matching]")
+  if (!host) return
+
+  const grids = Object.fromEntries(
+    Array.from(host.querySelectorAll("[data-match-grid]")).map((grid) => [grid.dataset.matchGrid, grid])
+  )
+  const cellsA = Array.from(grids.a.children)
+  const cellsB = Array.from(grids.b.children)
+  const columnsA = Number(grids.a.dataset.columns)
+  const columnsB = Number(grids.b.dataset.columns)
+  const resultCells = Array.from(grids.result.children)
+  const initialIndex = resultCells.findIndex((cell) => cell.classList.contains("ma-target"))
+
+  const buttons = resultCells.map((cell, index) => {
+    const row = Math.floor(index / columnsB)
+    const column = index % columnsB
+    const button = createElement("button", "matrix-grid__cell ma-result-cell", cell.textContent)
+    button.type = "button"
+    button.setAttribute("aria-label", `Select result row ${row + 1}, column ${column + 1}`)
+    button.addEventListener("click", () => selectCell(index))
+    cell.replaceWith(button)
+    return button
+  })
+
+  function selectCell(index) {
+    const row = Math.floor(index / columnsB)
+    const column = index % columnsB
+    cellsA.forEach((cell, i) => cell.classList.toggle("ma-row", Math.floor(i / columnsA) === row))
+    cellsB.forEach((cell, i) => cell.classList.toggle("ma-column", i % columnsB === column))
+    buttons.forEach((button, i) => {
+      button.classList.toggle("ma-target", i === index)
+      button.setAttribute("aria-pressed", String(i === index))
+      button.textContent = i === index ? "?" : "·"
+    })
+    host.querySelector("[data-match-row-label]").textContent = `Row ${row + 1} · ${columnsA} values across`
+    host.querySelector("[data-match-column-label]").textContent = `Column ${column + 1} · ${cellsB.length / columnsB} values down`
+    host.querySelector("[data-match-status]").textContent = `Row ${row + 1} of A × column ${column + 1} of B`
+  }
+
+  selectCell(initialIndex < 0 ? 0 : initialIndex)
+  host.querySelector("[data-match-instruction]").hidden = false
 }
 
 // Optional playback uses the shared walkthrough's authored, printable states.
@@ -702,5 +782,7 @@ function initMatrixPlayback() {
 
 initLessonPage(lessonConfig)
 initOperationPractice()
+initMatrixMatching()
 initLessonWalkthroughs()
 initMatrixPlayback()
+initCodeSnippets()

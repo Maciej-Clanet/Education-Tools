@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Multi-dimensional Arrays and Memory Order Revision Lesson | Education
+      Multi-dimensional Arrays and Memory Order Lesson | Education
       Tools
     </title>
     <meta
       name="description"
-      content="Revise single, two-dimensional, and multi-dimensional arrays plus row-major and column-major memory order with examples, exam traps, exam-style practice, and a short end-of-lesson quiz."
+      content="Explore one, two and three array indexes, then compare row-major and column-major storage with interactive diagrams and practice."
     />
     <meta
       property="og:title"
-      content="Multi-dimensional Arrays and Memory Order Revision Lesson | Education Tools"
+      content="Multi-dimensional Arrays and Memory Order Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise single, two-dimensional, and multi-dimensional arrays plus row-major and column-major memory order with examples, exam traps, exam-style practice, and a short end-of-lesson quiz."
+      content="Explore one, two and three array indexes, then compare row-major and column-major storage with interactive diagrams and practice."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -125,8 +125,7 @@
 <a href="#two-dimensional" data-section-link>2D · Two indexes</a>
 <a href="#multi-dimensional" data-section-link>3D · Three indexes</a>
 <a href="#memory-order" data-section-link>From grid to memory</a>
-<a href="#row-major" data-section-link>Row-major order</a>
-<a href="#column-major" data-section-link>Column-major order</a>
+<a href="#storage-orders" data-section-link>Two storage orders</a>
 <a href="#memory-visualiser" data-section-link>Explore the layout</a>
 <a href="#compare" data-section-link>Keep the ideas separate</a>
 <a href="#software-dimensions" data-section-link>In software · Choose the axes</a>
@@ -151,27 +150,27 @@
 </section>
 
 
-<section id="one-dimensional" class="lesson-section lesson-section--one-dimensional panel" data-lesson-section><p class="eyebrow">1D · One index</p><h2>Choose one hour</h2>
+<section id="one-dimensional" class="lesson-section lesson-section--one-dimensional panel" data-lesson-section data-index-demo data-index-axes="hour" data-index-shape="3" data-index-selected="2"><p class="eyebrow">1D · One index</p><h2>Choose one hour</h2>
 <p>Start with one sensor on one day. A <strong>one-dimensional array</strong> holds three hourly temperatures in °C.</p>
-<div class="mo-pair"><div class="mo-hour-strip" role="group" aria-label="Hourly readings: hour 0 is 11, hour 1 is 12, hour 2 is 13 degrees Celsius"><div class=""><span>Hour 0</span><strong>11</strong><code>[0]</code></div><div class=""><span>Hour 1</span><strong>12</strong><code>[1]</code></div><div class="mo-target"><span>Hour 2</span><strong>13</strong><code>[2]</code></div></div>
-<div><p class="mo-expression"><code>readings[2]</code> → <strong>13</strong></p><p>Index <strong>2</strong> selects the <strong>third</strong> reading.</p></div></div>
+<div class="mo-pair"><div class="mo-hour-strip" role="group" aria-label="Hourly readings: hour 0 is 11, hour 1 is 12, hour 2 is 13 degrees Celsius"><div class="" data-index-cell="0"><span>Hour 0</span><strong>11</strong><code>[0]</code></div><div class="" data-index-cell="1"><span>Hour 1</span><strong>12</strong><code>[1]</code></div><div class="mo-target" data-index-cell="2"><span>Hour 2</span><strong>13</strong><code>[2]</code></div></div>
+<div class="mo-index-readout"><p class="mo-expression" data-index-expression><code>readings[2]</code> → <strong>13</strong></p><p data-index-status>Index <strong>2</strong> selects the <strong>third</strong> reading.</p></div></div>
 <p class="mo-note">The valid indexes are <strong>0, 1 and 2</strong>. Three elements do not mean three dimensions.</p>
 </section>
 
 
-<section id="two-dimensional" class="lesson-section lesson-section--two-dimensional panel" data-lesson-section><p class="eyebrow">2D · Two indexes</p><h2>Choose a day, then an hour</h2>
+<section id="two-dimensional" class="lesson-section lesson-section--two-dimensional panel" data-lesson-section data-index-demo data-index-axes="day,hour" data-index-shape="2,3" data-index-selected="1,2"><p class="eyebrow">2D · Two indexes</p><h2>Choose a day, then an hour</h2>
 <p>Add a second day for the same sensor. Each row is a day; each column is an hour. The readings are still temperatures in °C.</p>
-<div class="mo-pair"><div class="mo-table-wrap"><table class="mo-table"><caption>One sensor · two days × three hours</caption><thead><tr><td></td><th scope="col">Hour 0</th><th scope="col">Hour 1</th><th scope="col">Hour 2</th></tr></thead><tbody><tr><th scope="row">Day 0</th><td class=""><strong>11</strong></td><td class=""><strong>12</strong></td><td class=""><strong>13</strong></td></tr><tr><th scope="row">Day 1</th><td class=""><strong>21</strong></td><td class=""><strong>22</strong></td><td class="mo-target "><strong>23</strong></td></tr></tbody></table></div>
-<div><p class="mo-expression"><code>readings[1][2]</code> → <strong>23</strong></p><ol class="mo-index-path"><li><strong>[1]</strong> selects the second day.</li><li><strong>[2]</strong> selects its third hour.</li></ol></div></div>
+<div class="mo-pair"><div class="mo-table-wrap"><table class="mo-table"><caption>One sensor · two days × three hours</caption><thead><tr><td></td><th scope="col">Hour 0</th><th scope="col">Hour 1</th><th scope="col">Hour 2</th></tr></thead><tbody><tr><th scope="row">Day 0</th><td data-index-cell="0,0" class=""><strong>11</strong></td><td data-index-cell="0,1" class=""><strong>12</strong></td><td data-index-cell="0,2" class=""><strong>13</strong></td></tr><tr><th scope="row">Day 1</th><td data-index-cell="1,0" class=""><strong>21</strong></td><td data-index-cell="1,1" class=""><strong>22</strong></td><td data-index-cell="1,2" class="mo-target "><strong>23</strong></td></tr></tbody></table></div>
+<div class="mo-index-readout"><p class="mo-expression" data-index-expression><code>readings[1][2]</code> → <strong>23</strong></p><p data-index-status>Second day → third hour.</p></div></div>
 <p class="mo-note"><strong>2 dimensions</strong>, a <strong>2 × 3 shape</strong>, and <strong>6 elements</strong>. These describe different features of the same array.</p>
 </section>
 
 
-<section id="multi-dimensional" class="lesson-section lesson-section--multi-dimensional panel" data-lesson-section><p class="eyebrow">3D · Three indexes</p><h2>Choose a sensor, then a day, then an hour</h2>
+<section id="multi-dimensional" class="lesson-section lesson-section--multi-dimensional panel" data-lesson-section data-index-demo data-index-axes="sensor,day,hour" data-index-shape="2,2,3" data-index-selected="1,0,2"><p class="eyebrow">3D · Three indexes</p><h2>Choose a sensor, then a day, then an hour</h2>
 <p>Add a second sensor. Each sensor has its own 2D grid of readings: the extra dimension selects a <strong>layer</strong>.</p>
-<div class="mo-pair mo-layers"><article class="mo-layer"><div class="mo-table-wrap"><table class="mo-table"><caption>Sensor 0 · first layer</caption><thead><tr><td></td><th scope="col">Hour 0</th><th scope="col">Hour 1</th><th scope="col">Hour 2</th></tr></thead><tbody><tr><th scope="row">Day 0</th><td class=""><strong>11</strong></td><td class=""><strong>12</strong></td><td class=""><strong>13</strong></td></tr><tr><th scope="row">Day 1</th><td class=""><strong>21</strong></td><td class=""><strong>22</strong></td><td class=""><strong>23</strong></td></tr></tbody></table></div></article><article class="mo-layer mo-layer--selected"><div class="mo-table-wrap"><table class="mo-table"><caption>Sensor 1 · second layer</caption><thead><tr><td></td><th scope="col">Hour 0</th><th scope="col">Hour 1</th><th scope="col">Hour 2</th></tr></thead><tbody><tr><th scope="row">Day 0</th><td class=""><strong>14</strong></td><td class=""><strong>15</strong></td><td class="mo-target "><strong>16</strong></td></tr><tr><th scope="row">Day 1</th><td class=""><strong>24</strong></td><td class=""><strong>25</strong></td><td class=""><strong>26</strong></td></tr></tbody></table></div></article></div>
-<p class="mo-expression"><code>readings[1][0][2]</code> → <strong>16°C</strong></p>
-<p class="mo-note"><strong>Second sensor → first day → third hour.</strong> Shape: 2 sensors × 2 days × 3 hours = 12 readings. The array has 3 dimensions, not 12.</p>
+<div class="mo-pair mo-layers"><article class="mo-layer" data-index-layer="0"><div class="mo-table-wrap"><table class="mo-table"><caption>Sensor 0 · first layer</caption><thead><tr><td></td><th scope="col">Hour 0</th><th scope="col">Hour 1</th><th scope="col">Hour 2</th></tr></thead><tbody><tr><th scope="row">Day 0</th><td data-index-cell="0,0,0" class=""><strong>11</strong></td><td data-index-cell="0,0,1" class=""><strong>12</strong></td><td data-index-cell="0,0,2" class=""><strong>13</strong></td></tr><tr><th scope="row">Day 1</th><td data-index-cell="0,1,0" class=""><strong>21</strong></td><td data-index-cell="0,1,1" class=""><strong>22</strong></td><td data-index-cell="0,1,2" class=""><strong>23</strong></td></tr></tbody></table></div></article><article class="mo-layer mo-layer--selected" data-index-layer="1"><div class="mo-table-wrap"><table class="mo-table"><caption>Sensor 1 · second layer</caption><thead><tr><td></td><th scope="col">Hour 0</th><th scope="col">Hour 1</th><th scope="col">Hour 2</th></tr></thead><tbody><tr><th scope="row">Day 0</th><td data-index-cell="1,0,0" class=""><strong>14</strong></td><td data-index-cell="1,0,1" class=""><strong>15</strong></td><td data-index-cell="1,0,2" class="mo-target "><strong>16</strong></td></tr><tr><th scope="row">Day 1</th><td data-index-cell="1,1,0" class=""><strong>24</strong></td><td data-index-cell="1,1,1" class=""><strong>25</strong></td><td data-index-cell="1,1,2" class=""><strong>26</strong></td></tr></tbody></table></div></article></div>
+<div class="mo-index-readout mo-index-readout--wide"><p class="mo-expression" data-index-expression><code>readings[1][0][2]</code> → <strong>16°C</strong></p><p data-index-status>Second sensor → first day → third hour.</p></div>
+<p class="mo-note">Shape: 2 sensors × 2 days × 3 hours = 12 readings. The array has 3 dimensions, not 12.</p>
 <p class="mo-small">An axis can represent time or a category. “3D” does not have to mean a physical object with depth.</p>
 </section>
 
@@ -180,22 +179,22 @@
 <p>The program uses rows and columns, but memory addresses form a <strong>linear sequence</strong>. A packed array stores equal-sized elements in consecutive slots.</p>
 <div class="mo-pair"><div class="mo-table-wrap"><table class="mo-table"><caption>Logical view · same six readings</caption><thead><tr><td></td><th scope="col">Col 0</th><th scope="col">Col 1</th><th scope="col">Col 2</th></tr></thead><tbody><tr><th scope="row">Row 0</th><td class=""><strong>11</strong></td><td class=""><strong>12</strong></td><td class=""><strong>13</strong></td></tr><tr><th scope="row">Row 1</th><td class=""><strong>21</strong></td><td class=""><strong>22</strong></td><td class=""><strong>23</strong></td></tr></tbody></table></div>
 <div><h3>Which value follows 11?</h3><p>Across the row: <strong>12</strong>.</p><p>Down the column: <strong>21</strong>.</p><p>A <strong>memory order</strong> chooses which neighbours are stored together.</p></div></div>
-<p class="mo-note">Two common rules are <strong>row-major</strong> and <strong>column-major</strong>. Neither changes which value belongs at a particular row and column.</p>
 <details class="mo-revision" data-no-slide-advance><summary>About this memory model</summary><p>Each illustrated slot holds one element, not necessarily one byte. We use a packed numeric array; some languages implement nested collections using references instead. Index notation here is illustrative.</p></details>
 </section>
 
 
-<section id="row-major" class="lesson-section lesson-section--row-major panel" data-lesson-section><p class="eyebrow">Row-major order</p><h2>Finish one row before starting the next</h2>
-<p>In <strong>row-major order</strong>, values from a row occupy consecutive memory slots. Read across row 0, then across row 1.</p>
-<div class="mo-pair"><div class="mo-table-wrap"><table class="mo-table"><caption>Logical grid · badges show storage slots</caption><thead><tr><td></td><th scope="col">Col 0</th><th scope="col">Col 1</th><th scope="col">Col 2</th></tr></thead><tbody><tr><th scope="row">Row 0</th><td class="mo-group-0"><small>Slot 1</small><strong>11</strong></td><td class="mo-group-0"><small>Slot 2</small><strong>12</strong></td><td class="mo-group-0"><small>Slot 3</small><strong>13</strong></td></tr><tr><th scope="row">Row 1</th><td class="mo-group-1"><small>Slot 4</small><strong>21</strong></td><td class="mo-group-1"><small>Slot 5</small><strong>22</strong></td><td class="mo-group-1"><small>Slot 6</small><strong>23</strong></td></tr></tbody></table></div><div><ol class="mo-index-path"><li><strong>Row 0 →</strong> 11, 12, 13</li><li><strong>Row 1 →</strong> 21, 22, 23</li></ol></div></div>
-<figure class="mo-strip-figure"><figcaption>Consecutive memory slots →</figcaption><div class="mo-scroll" tabindex="0" role="region" aria-label="Consecutive memory slots →"><ol class="mo-strip"><li class="mo-group-0"><small>Slot 1</small><strong>11</strong></li><li class="mo-group-0"><small>Slot 2</small><strong>12</strong></li><li class="mo-group-0"><small>Slot 3</small><strong>13</strong></li><li class="mo-group-1"><small>Slot 4</small><strong>21</strong></li><li class="mo-group-1"><small>Slot 5</small><strong>22</strong></li><li class="mo-group-1"><small>Slot 6</small><strong>23</strong></li></ol></div></figure>
-</section>
-
-
-<section id="column-major" class="lesson-section lesson-section--column-major panel" data-lesson-section><p class="eyebrow">Column-major order</p><h2>Finish one column before starting the next</h2>
-<p>In <strong>column-major order</strong>, values from a column occupy consecutive memory slots. Read down column 0, then columns 1 and 2.</p>
-<div class="mo-pair"><div class="mo-table-wrap"><table class="mo-table"><caption>Same logical grid · different storage slots</caption><thead><tr><td></td><th scope="col">Col 0</th><th scope="col">Col 1</th><th scope="col">Col 2</th></tr></thead><tbody><tr><th scope="row">Row 0</th><td class="mo-group-0"><small>Slot 1</small><strong>11</strong></td><td class="mo-group-1"><small>Slot 3</small><strong>12</strong></td><td class="mo-group-2"><small>Slot 5</small><strong>13</strong></td></tr><tr><th scope="row">Row 1</th><td class="mo-group-0"><small>Slot 2</small><strong>21</strong></td><td class="mo-group-1"><small>Slot 4</small><strong>22</strong></td><td class="mo-group-2"><small>Slot 6</small><strong>23</strong></td></tr></tbody></table></div><div><ol class="mo-index-path"><li><strong>Column 0 ↓</strong> 11, 21</li><li><strong>Column 1 ↓</strong> 12, 22</li><li><strong>Column 2 ↓</strong> 13, 23</li></ol></div></div>
-<figure class="mo-strip-figure"><figcaption>Consecutive memory slots →</figcaption><div class="mo-scroll" tabindex="0" role="region" aria-label="Consecutive memory slots →"><ol class="mo-strip"><li class="mo-group-0"><small>Slot 1</small><strong>11</strong></li><li class="mo-group-0"><small>Slot 2</small><strong>21</strong></li><li class="mo-group-1"><small>Slot 3</small><strong>12</strong></li><li class="mo-group-1"><small>Slot 4</small><strong>22</strong></li><li class="mo-group-2"><small>Slot 5</small><strong>13</strong></li><li class="mo-group-2"><small>Slot 6</small><strong>23</strong></li></ol></div></figure>
+<section id="storage-orders" class="lesson-section panel" data-lesson-section>
+<p class="eyebrow">Choose a storage rule</p><h2>Two common storage orders</h2>
+<p>We can store the same grid row by row or column by column.</p>
+<div class="mo-pair mo-orders">
+<article id="row-major" class="lesson-card"><h3>Row-major order</h3>
+<div class="mo-order-direction" aria-hidden="true"><div class="mo-order-icon mo-order-icon--row"><span></span><span></span><span></span><span></span><span></span><span></span></div><span>→</span></div>
+<p><strong>Across each row.</strong></p><p>Store one complete row. Then move to the next row.</p></article>
+<article id="column-major" class="lesson-card"><h3>Column-major order</h3>
+<div class="mo-order-direction" aria-hidden="true"><div class="mo-order-icon mo-order-icon--column"><span></span><span></span><span></span><span></span><span></span><span></span></div><span>↓</span></div>
+<p><strong>Down each column.</strong></p><p>Store one complete column. Then move to the next column.</p></article>
+</div>
+<p class="mo-note">Both rules keep the same grid. Only the sequence in memory changes.</p>
 </section>
 
 
@@ -203,14 +202,14 @@
 <p>Choose an order and reveal one slot at a time. The small badges show when each grid value is stored.</p>
 <article class="lesson-card memory-order-visual-card" data-no-slide-advance>
 <div class="memory-order-visualiser" data-memory-order-visualiser>
-<div class="memory-order-panel"><h3>Logical grid · positions stay fixed</h3>
-<div class="memory-order-toggle" role="group" aria-label="Choose memory order" data-memory-order-controls hidden><button type="button" class="structure-button is-active" data-memory-order-mode="row-major" aria-pressed="true">Row-major</button><button type="button" class="structure-button" data-memory-order-mode="column-major" aria-pressed="false">Column-major</button></div>
+<div class="memory-order-panel"><h3>Grid · positions stay fixed</h3>
+<div class="memory-order-toggle" role="group" aria-label="Choose memory order" data-memory-order-controls hidden><button type="button" class="lesson-secondary-action is-active" data-memory-order-mode="row-major" aria-pressed="true">Row-major</button><button type="button" class="lesson-secondary-action" data-memory-order-mode="column-major" aria-pressed="false">Column-major</button></div>
 <div class="memory-order-grid" data-role="memory-order-grid" aria-label="Logical array: two rows and three columns"><article class="memory-order-grid__cell"><span class="memory-order-grid__index">[0][0]</span><strong class="memory-order-grid__value">11</strong></article><article class="memory-order-grid__cell"><span class="memory-order-grid__index">[0][1]</span><strong class="memory-order-grid__value">12</strong></article><article class="memory-order-grid__cell"><span class="memory-order-grid__index">[0][2]</span><strong class="memory-order-grid__value">13</strong></article><article class="memory-order-grid__cell"><span class="memory-order-grid__index">[1][0]</span><strong class="memory-order-grid__value">21</strong></article><article class="memory-order-grid__cell"><span class="memory-order-grid__index">[1][1]</span><strong class="memory-order-grid__value">22</strong></article><article class="memory-order-grid__cell"><span class="memory-order-grid__index">[1][2]</span><strong class="memory-order-grid__value">23</strong></article></div></div>
 <div class="memory-order-panel"><h3>Consecutive memory slots →</h3><div class="memory-order-track" tabindex="0" role="region" aria-label="Six consecutive memory slots; scroll horizontally on small screens"><ol class="memory-order-memory" data-role="memory-order-memory" aria-label="Memory storage sequence"><li class="memory-order-slot"><span class="memory-order-slot__label">Slot 1</span><strong class="memory-order-slot__value">11</strong><span class="memory-order-slot__meta">[0][0]</span></li><li class="memory-order-slot"><span class="memory-order-slot__label">Slot 2</span><strong class="memory-order-slot__value">12</strong><span class="memory-order-slot__meta">[0][1]</span></li><li class="memory-order-slot"><span class="memory-order-slot__label">Slot 3</span><strong class="memory-order-slot__value">13</strong><span class="memory-order-slot__meta">[0][2]</span></li><li class="memory-order-slot"><span class="memory-order-slot__label">Slot 4</span><strong class="memory-order-slot__value">21</strong><span class="memory-order-slot__meta">[1][0]</span></li><li class="memory-order-slot"><span class="memory-order-slot__label">Slot 5</span><strong class="memory-order-slot__value">22</strong><span class="memory-order-slot__meta">[1][1]</span></li><li class="memory-order-slot"><span class="memory-order-slot__label">Slot 6</span><strong class="memory-order-slot__value">23</strong><span class="memory-order-slot__meta">[1][2]</span></li></ol></div><p class="memory-order-sequence" data-role="memory-order-sequence">Row-major: 11, 12, 13, 21, 22, 23.</p></div>
 <div class="memory-order-step-controls" data-memory-order-controls hidden>
 <div class="memory-order-slider-row"><label for="memory-order-step">Storage step</label><output data-role="memory-order-step-output" for="memory-order-step">Step 0 of 6</output></div>
 <input id="memory-order-step" class="memory-order-slider" type="range" min="0" max="6" value="0" step="1" data-role="memory-order-step" />
-<div class="memory-order-buttons"><button type="button" class="structure-button" data-memory-step="previous">Previous step</button><button type="button" class="structure-button" data-memory-step="next">Next step</button><button type="button" class="structure-button" data-memory-step="reset">Restart</button></div>
+<div class="memory-order-buttons"><button type="button" class="lesson-secondary-action" data-memory-step="previous">Previous step</button><button type="button" class="primary-link" data-memory-step="next">Next step</button><button type="button" class="lesson-secondary-action" data-memory-step="reset">Restart</button></div>
 </div>
 <p class="memory-order-status" data-role="memory-order-status" aria-live="polite" aria-atomic="true"></p>
 </div>

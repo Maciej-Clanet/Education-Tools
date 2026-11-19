@@ -71,6 +71,90 @@ function createSequence(matrix, order) {
   )
 }
 
+function initIndexExamples() {
+  document.querySelectorAll("[data-index-demo]").forEach((host) => {
+    const axes = host.dataset.indexAxes.split(",")
+    const shape = host.dataset.indexShape.split(",").map(Number)
+    const selected = host.dataset.indexSelected.split(",")
+    const cells = Array.from(host.querySelectorAll("[data-index-cell]"))
+    const layers = Array.from(host.querySelectorAll("[data-index-layer]"))
+    const status = host.querySelector("[data-index-status]")
+    const editor = createElement("div", "mo-access-editor")
+    editor.dataset.noSlideAdvance = ""
+    editor.append(createElement("p", "mo-access-prompt", axes.length === 1 ? "Change the index" : "Change the indexes"))
+    const expression = createElement("div", "mo-access-expression")
+    expression.append(createElement("code", "mo-access-name", "readings"))
+    const indexGroup = createElement("div", "mo-access-indexes")
+    const inputs = axes.map((axis, index) => {
+      const id = `${host.id}-${axis}-index`
+      const field = createElement("div", "mo-index-field")
+      const label = createElement("label", "", axis[0].toUpperCase() + axis.slice(1))
+      label.htmlFor = id
+      const bracket = createElement("span", "mo-index-brackets")
+      const input = createElement("input", "mo-index-input")
+      input.id = id
+      input.type = "text"
+      input.inputMode = "numeric"
+      input.autocomplete = "off"
+      input.spellcheck = false
+      input.value = selected[index]
+      input.dataset.indexAxis = axis
+      input.setAttribute("aria-describedby", `${id}-range`)
+      const start = createElement("span", "", "[")
+      const end = createElement("span", "", "]")
+      start.setAttribute("aria-hidden", "true")
+      end.setAttribute("aria-hidden", "true")
+      bracket.append(start, input, end)
+      const range = createElement("small", "", `0–${shape[index] - 1}`)
+      range.id = `${id}-range`
+      field.append(label, bracket, range)
+      indexGroup.append(field)
+      input.addEventListener("input", render)
+      return input
+    })
+    const value = createElement("strong", "mo-access-value")
+    value.dataset.indexValue = ""
+    const result = createElement("span", "mo-access-result")
+    result.append(createElement("span", "", "→"), value)
+    expression.append(indexGroup, result)
+    editor.append(expression)
+    host.querySelector("[data-index-expression]").replaceWith(editor)
+    status.setAttribute("aria-live", "polite")
+    status.setAttribute("aria-atomic", "true")
+
+    function render() {
+      const indexes = inputs.map((input) => Number(input.value.trim()))
+      const valid = inputs.map((input, index) => {
+        const isValid = /^\d+$/.test(input.value.trim()) && indexes[index] < shape[index]
+        input.setAttribute("aria-invalid", String(!isValid))
+        return isValid
+      })
+      const selectedCell = valid.every(Boolean)
+        ? cells.find((cell) => cell.dataset.indexCell === indexes.join(","))
+        : null
+      cells.forEach((cell) => {
+        cell.classList.toggle("mo-target", cell === selectedCell)
+        if (cell === selectedCell) cell.setAttribute("aria-current", "true")
+        else cell.removeAttribute("aria-current")
+      })
+      layers.forEach((layer) => layer.classList.toggle("mo-layer--selected", Boolean(selectedCell) && Number(layer.dataset.indexLayer) === indexes[0]))
+      if (!selectedCell) {
+        const invalid = valid.indexOf(false)
+        value.textContent = "—"
+        status.textContent = `Enter a whole ${axes[invalid]} index from 0 to ${shape[invalid] - 1}.`
+        return
+      }
+      const reading = selectedCell.querySelector("strong").textContent
+      const ordinals = ["first", "second", "third"]
+      const positions = indexes.map((index, i) => `${ordinals[index]} ${axes[i]}`).join(" → ")
+      value.textContent = `${reading}°C`
+      status.textContent = `${positions[0].toUpperCase()}${positions.slice(1)}. Value: ${reading}°C.`
+    }
+
+    render()
+  })
+}
+
 function formatCoordinate(rowIndex, columnIndex) {
   return `[${rowIndex}][${columnIndex}]`
 }
@@ -295,4 +379,5 @@ function initMemoryOrderVisualiser() {
 }
 
 initLessonPage(lessonConfig)
+initIndexExamples()
 initMemoryOrderVisualiser()
