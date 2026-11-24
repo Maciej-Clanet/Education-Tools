@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Packet Data, Packet Switching, and Protocols Revision Lesson |
+      Packet Data, Packet Switching, and Protocols Lesson |
       Education Tools
     </title>
     <meta
       name="description"
-      content="Revise packet contents, packet switching, routing, reassembly, error handling, and protocols used to control data transmission."
+      content="Explore packet contents, packet switching, routing, reassembly, error handling, and protocols used to control data transmission."
     />
     <meta
       property="og:title"
-      content="Packet Data, Packet Switching, and Protocols Revision Lesson | Education Tools"
+      content="Packet Data, Packet Switching, and Protocols Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise packet contents, packet switching, routing, reassembly, error handling, and protocols with an interactive packet switching simulator."
+      content="Explore packet contents, packet switching, routing, reassembly, error handling, and protocols with an interactive packet switching simulator."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -31,6 +31,7 @@
       rel="stylesheet"
       href="../../css/pages/packet-data-packet-switching-and-protocols.css"
     />
+    <link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -38,7 +39,7 @@
       src="../../javascript/pages/packet-data-packet-switching-and-protocols.js"
     ></script>
   </head>
-  <body>
+  <body class="packet-lesson">
     <div class="page-shell">
       <header class="lesson-hero panel panel-accent">
         <p class="eyebrow">Transmitting Data</p>
@@ -123,402 +124,598 @@
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#packets" data-section-link>Inside a packet</a>
-            <a href="#simulator" data-section-link>Simulator</a>
+            <a href="#overview" data-section-link>Start here</a>
+            <a href="#split" data-section-link>Build the packets</a>
+            <a href="#packets" data-section-link>Packet contents</a>
+            <a href="#field-roles" data-section-link>Field roles</a>
             <a href="#switching" data-section-link>Packet switching</a>
-            <a href="#protocols" data-section-link>Protocols</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#routes" data-section-link>Network routes</a>
+            <a href="#route-change" data-section-link>An alternative route</a>
+            <a href="#sharing" data-section-link>Share a link</a>
+            <a href="#arrival-order" data-section-link>Arrival order</a>
+            <a href="#protocols" data-section-link>Why rules matter</a>
+            <a href="#protocol-examples" data-section-link>IP and TCP</a>
+            <a href="#missing" data-section-link>Missing data</a>
+            <a href="#damaged" data-section-link>Changed data</a>
+            <a href="#simulator" data-section-link>Packet simulator</a>
+            <a href="#rebuild-task" data-section-link>Rebuild the message</a>
+            <a href="#file-judgement" data-section-link>File judgement</a>
+            <a href="#call-judgement" data-section-link>Live-call judgement</a>
+            <a href="#mistakes" data-section-link>Recap</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam practice</a>
+            <a href="#exam-practice" data-section-link>Written practice</a>
           </nav>
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>Packets make large messages manageable</h2>
-            <p class="lesson-section-copy">
-              A network does not usually send a whole file as one giant block.
-              It can split the data into smaller packets, send those packets
-              across available routes, then rebuild the message at the
-              destination.
-            </p>
-
-            <div class="packet-overview-map">
-              <article class="packet-overview-card packet-overview-card--split">
-                <span class="packet-icon packet-icon--split"></span>
-                <h3>Split</h3>
-                <p>The message is broken into numbered packets.</p>
+          <template data-teacher-opener>
+            <h2>Packets, packet switching and protocols</h2>
+            <p>How does a message cross a busy network?</p>
+            <ul>
+              <li>Explain what travels inside a packet</li>
+              <li>Follow packets from sender to receiver</li>
+              <li>Explain why devices need shared rules</li>
+            </ul>
+          </template>
+          <section id="overview" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Start here</p>
+            <h2>Send a message to a friend</h2>
+            <div class="pk-conversation">
+              <div class="pk-device">
+                <svg class="pk-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                </svg>
+                <strong>Your phone</strong>
+              </div>
+              <div class="pk-message">MEET AT THE GATE AT FOUR<span>Message to send →</span>
+              </div>
+              <div class="pk-device">
+                <svg class="pk-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                </svg>
+                <strong>Your friend’s phone</strong>
+              </div>
+            </div>
+            <p>The message travels as bits. It can be split into smaller pieces for the journey.</p>
+            <p class="pk-note">A <strong>packet</strong> carries a piece of data plus information that helps devices handle it.</p>
+          </section>
+          <section id="split" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Prepare the data</p>
+            <h2>Build packets from the message</h2>
+            <div class="pk-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Split the data">
+                <h3 class="pk-static-title">Split the data</h3>
+                <div class="pk-message pk-message--small">MEET AT THE GATE AT FOUR</div>
+                <div class="pk-strip">
+                  <div class="pk-piece pk-piece--1 "><strong>Packet 1</strong><span>MEET AT</span>
+                  </div>
+                  <div class="pk-piece pk-piece--2 "><strong>Packet 2</strong><span>THE GATE</span>
+                  </div>
+                  <div class="pk-piece pk-piece--3 "><strong>Packet 3</strong><span>AT FOUR</span>
+                  </div>
+                </div>
+                <p class="pk-note">Each piece is a <strong>payload</strong>: the useful data carried by that packet.</p>
+              </div>
+              <div data-walkthrough-step="Add handling information">
+                <h3 class="pk-static-title">Add handling information</h3>
+                <div class="pk-message pk-message--small">MEET AT THE GATE AT FOUR</div>
+                <div class="pk-strip">
+                  <div class="pk-piece pk-piece--1 "><strong>Packet 1</strong><span>MEET AT</span><div class="pk-handling">From A · To B · Position 1</div>
+                  </div>
+                  <div class="pk-piece pk-piece--2 "><strong>Packet 2</strong><span>THE GATE</span><div class="pk-handling">From A · To B · Position 2</div>
+                  </div>
+                  <div class="pk-piece pk-piece--3 "><strong>Packet 3</strong><span>AT FOUR</span><div class="pk-handling">From A · To B · Position 3</div>
+                  </div>
+                </div>
+                <div class="pk-added">Added information identifies the sender, receiver and data order.</div>
+                <p class="pk-note">The pieces are numbered here so we can follow their order. Real packet sizes and numbering rules depend on the protocol.</p>
+              </div>
+            </div>
+          </section>
+          <template data-teacher-divider>
+            <h2>What is inside a packet?</h2>
+            <p>Data plus information that helps devices handle it</p>
+          </template>
+          <section id="packets" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Packet data</p>
+            <h2>A packet is more than its payload</h2>
+            <p>This is a simplified model of packet information.</p>
+            <div class="pk-anatomy">
+              <article><span>Header</span><strong>Delivery and control details</strong>
+                <p>For example: addresses and sequence information.</p>
               </article>
-              <article class="packet-overview-card packet-overview-card--route">
-                <span class="packet-icon packet-icon--route"></span>
-                <h3>Route</h3>
-                <p>Packets can travel across different network paths.</p>
+              <article><span>Payload</span><strong>THE GATE</strong>
+                <p>The piece of the original message.</p>
               </article>
-              <article class="packet-overview-card packet-overview-card--rebuild">
-                <span class="packet-icon packet-icon--rebuild"></span>
-                <h3>Rebuild</h3>
-                <p>The receiver checks, orders, and reassembles the packets.</p>
+              <article><span>Error-checking data</span><strong>A calculated check value</strong>
+                <p>Helps detect changes during transfer.</p>
               </article>
             </div>
-
-            <div class="lesson-intro-grid">
+            <p class="pk-note">The exact fields and their positions vary. Check data can be in a header or a <strong>trailer</strong>, which is information at the end.</p>
+          </section>
+          <section id="field-roles" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Packet data</p>
+            <h2>Inspect packet 2</h2>
+            <p>Select a field to see how it helps with delivery or rebuilding the message.</p>
+            <div class="pk-field-tool" data-packet-fields data-no-slide-advance>
+              <div class="pk-fields">
+                <button type="button" class="pk-field" data-packet-field="source" aria-controls="packet-field-source"><span>Source</span><strong>Device A</strong>
+                </button>
+                <button type="button" class="pk-field" data-packet-field="destination" aria-controls="packet-field-destination"><span>Destination</span><strong>Device B</strong>
+                </button>
+                <button type="button" class="pk-field" data-packet-field="sequence" aria-controls="packet-field-sequence"><span>Sequence</span><strong>2</strong>
+                </button>
+                <button type="button" class="pk-field" data-packet-field="payload" aria-controls="packet-field-payload"><span>Payload</span><strong>THE GATE</strong>
+                </button>
+                <button type="button" class="pk-field" data-packet-field="check" aria-controls="packet-field-check"><span>Check data</span><strong>Check value</strong>
+                </button>
+              </div>
+              <article class="pk-field-panel" id="packet-field-source" data-field-panel="source">
+                <h3>Where did it come from?</h3>
+                <p>The source address identifies the sender. It can be used when a reply is needed.</p>
+              </article>
+              <article class="pk-field-panel" id="packet-field-destination" data-field-panel="destination">
+                <h3>Where should it go?</h3>
+                <p>Network devices use the destination address to send a packet towards the receiving device.</p>
+              </article>
+              <article class="pk-field-panel" id="packet-field-sequence" data-field-panel="sequence">
+                <h3>Where does this piece belong?</h3>
+                <p>Sequence information helps the receiver restore the data order. In this example, THE GATE belongs in position 2.</p>
+              </article>
+              <article class="pk-field-panel" id="packet-field-payload" data-field-panel="payload">
+                <h3>What is the useful data?</h3>
+                <p>The payload carries the message piece. Addresses and control information are not part of this message piece.</p>
+              </article>
+              <article class="pk-field-panel" id="packet-field-check" data-field-panel="check">
+                <h3>Did the data change?</h3>
+                <p>The receiver checks the received data against the transmitted check value. A mismatch shows an error. The check does not repair the data.</p>
+              </article>
+            </div>
+            <p class="pk-note">Device A and Device B stand for addresses. This model groups the information we need; it is not a real IP header layout.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>How do packets cross a network?</h2>
+            <p>Forward, share the links, then restore the order</p>
+          </template>
+          <section id="switching" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Packet switching</p>
+            <h2>A router forwards a packet</h2>
+            <p>A <strong>router</strong> is a device that forwards packets between networks.</p>
+            <div class="pk-forward">
+              <div class="pk-device">
+                <svg class="pk-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                </svg>
+                <strong>Sender</strong>
+              </div>
+              <div class="pk-router">Router<strong>Read the destination</strong><span>Choose the next link →</span>
+              </div>
+              <div class="pk-device">
+                <svg class="pk-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                </svg>
+                <strong>Next device</strong>
+              </div>
+            </div>
+            <p class="pk-note"><strong>Packet switching</strong> forwards data as separate packets. A whole message does not reserve one dedicated end-to-end path.</p>
+            <p><strong>Example:</strong> your phone’s message passes through network devices on its way to your friend.</p>
+          </section>
+          <section id="routes" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Follow the journey</p>
+            <h2>Packets can use different routes</h2>
+            <p>Both packets are going from A to B. They do not have to use the same route.</p>
+            <div class="pk-route-demo" data-teaching-animation="packet travel" data-no-slide-advance>
+              <div class="pk-network-scroll" tabindex="0" aria-label="Two routes from device A to device B">
+                <svg class="pk-network" viewBox="0 0 900 300" role="img" aria-label="Device A connects through router 1. An upper route uses router 2 and a lower route uses router 3. Both reach router 4 and device B."><path class="pk-network-link" d="M65 150H240M240 150L440 240L640 150H825"/><path class="pk-network-link " d="M240 150L440 60L640 150"/><g transform="translate(65 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Device A</text></g><g transform="translate(240 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 1</text></g><g transform="translate(440 60)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 2</text></g><g transform="translate(440 240)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 3</text></g><g transform="translate(640 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 4</text></g><g transform="translate(825 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Device B</text></g><g class="pk-traveller pk-traveller--upper"><rect x="-17" y="-16" width="34" height="32" rx="6"/><text text-anchor="middle" y="6">1</text></g><g class="pk-traveller pk-traveller--lower"><rect x="-17" y="-16" width="34" height="32" rx="6"/><text text-anchor="middle" y="6">3</text></g>
+                </svg>
+              </div>
+            </div>
+            <p class="pk-note">The route depends on the network’s forwarding rules and available links. Packets can also use the <strong>same route</strong>. The movement here is an illustration.</p>
+          </section>
+          <section id="route-change" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Why routes matter</p>
+            <h2>An alternative route can help</h2>
+            <div class="pk-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Two routes are available">
+                <h3 class="pk-static-title">Two routes are available</h3>
+                <div class="pk-network-scroll" tabindex="0" aria-label="Two routes from device A to device B">
+                  <svg class="pk-network" viewBox="0 0 900 300" role="img" aria-label="Device A connects through router 1. An upper route uses router 2 and a lower route uses router 3. Both reach router 4 and device B."><path class="pk-network-link" d="M65 150H240M240 150L440 240L640 150H825"/><path class="pk-network-link " d="M240 150L440 60L640 150"/><g transform="translate(65 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Device A</text></g><g transform="translate(240 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 1</text></g><g transform="translate(440 60)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 2</text></g><g transform="translate(440 240)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 3</text></g><g transform="translate(640 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 4</text></g><g transform="translate(825 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Device B</text></g>
+                  </svg>
+                </div>
+                <p class="pk-note">The network has an upper route and a lower route to B.</p>
+              </div>
+              <div data-walkthrough-step="An upper link becomes unavailable">
+                <h3 class="pk-static-title">An upper link becomes unavailable</h3>
+                <div class="pk-network-scroll" tabindex="0" aria-label="Two routes from device A to device B">
+                  <svg class="pk-network" viewBox="0 0 900 300" role="img" aria-label="The link between router 1 and router 2 is unavailable. The lower route through router 3 still connects device A to device B."><path class="pk-network-link" d="M65 150H240M240 150L440 240L640 150H825"/><path class="pk-network-link pk-blocked" d="M240 150L440 60"/><path class="pk-network-link" d="M440 60L640 150"/><g transform="translate(65 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Device A</text></g><g transform="translate(240 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 1</text></g><g transform="translate(440 60)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 2</text></g><g transform="translate(440 240)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 3</text></g><g transform="translate(640 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Router 4</text></g><g transform="translate(825 150)"><rect x="-47" y="-23" width="94" height="46" rx="9"/><text text-anchor="middle" y="5">Device B</text></g><path d="M330 95L350 115M350 95L330 115" stroke="#a4382f" stroke-width="4"/><text class="pk-fault" x="320" y="60" text-anchor="middle">Link unavailable</text>
+                  </svg>
+                </div>
+                <p class="pk-note">After routing information updates, packets can use the lower route. Some packets may be lost while the network reacts.</p>
+              </div>
+            </div>
+            <p><strong>Benefit:</strong> a working alternative can keep communication possible. It does not guarantee delivery in every failure.</p>
+          </section>
+          <section id="sharing" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Shared network use</p>
+            <h2>Many users can share one link</h2>
+            <p>A large photo and a short chat message can use the same network link.</p>
+            <div class="pk-sharing">
+              <div class="pk-sharing-sources"><span>Photo → many packets</span><span>Chat → a small packet</span>
+              </div>
+              <div class="pk-link-strip"><span class="pk-photo">Photo 1</span><span class="pk-chat">Chat</span><span class="pk-photo">Photo 2</span><span class="pk-web">Web page</span>
+              </div>
+              <strong>Packets taking turns on one link →</strong>
+            </div>
+            <div class="pk-two">
               <article class="lesson-card">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>Describe the key fields inside a data packet.</li>
-                  <li>Explain packet switching and reassembly.</li>
-                  <li>Explain why protocols are needed.</li>
-                  <li>Link packet methods to reliability and network sharing.</li>
-                </ul>
+                <h3>Benefit</h3>
+                <p>Other traffic can use the link between packets. One file does not need to reserve the whole path.</p>
               </article>
-
               <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>Packet:</strong> one manageable chunk of data.</li>
-                  <li><strong>Header:</strong> addressing and control details.</li>
-                  <li><strong>Payload:</strong> the actual user data.</li>
-                  <li><strong>Protocol:</strong> agreed communication rules.</li>
-                </ul>
+                <h3>Limit</h3>
+                <p>A busy link can make packets wait in a queue. This adds delay; a full queue can lead to loss.</p>
               </article>
             </div>
           </section>
-
-          <section
-            id="packets"
-            class="lesson-section lesson-section--packets panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Packet Data</p>
-            <h2>A packet contains the message piece and handling details</h2>
-            <p class="lesson-section-copy">
-              A packet is not just raw data. It also needs information that
-              helps the network deliver it and helps the receiver rebuild the
-              original message correctly.
-            </p>
-
-            <div class="packet-frame" aria-label="Simplified packet fields">
-              <article class="packet-frame-part packet-frame-part--header">
-                <span>Header</span>
-                <strong>Source, destination, sequence number</strong>
-              </article>
-              <article class="packet-frame-part packet-frame-part--payload">
-                <span>Payload</span>
-                <strong>The actual piece of user data</strong>
-              </article>
-              <article class="packet-frame-part packet-frame-part--trailer">
-                <span>Trailer or check data</span>
-                <strong>Error check such as a checksum</strong>
-              </article>
-            </div>
-
-            <div class="field-grid">
-              <article class="field-card">
-                <h3>Source address</h3>
-                <p>Identifies where the packet came from.</p>
-              </article>
-              <article class="field-card">
-                <h3>Destination address</h3>
-                <p>Shows where the packet should be delivered.</p>
-              </article>
-              <article class="field-card">
-                <h3>Sequence information</h3>
-                <p>Helps the receiver place packets back into order.</p>
-              </article>
-              <article class="field-card">
-                <h3>Error-checking data</h3>
-                <p>Helps detect whether the packet changed in transit.</p>
-              </article>
-              <article class="field-card">
-                <h3>Payload</h3>
-                <p>The actual piece of the message or file.</p>
-              </article>
+          <section id="arrival-order" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">At the receiver</p>
+            <h2>Arrival order can change</h2>
+            <div class="pk-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Packets arrive in this order">
+                <h3 class="pk-static-title">Packets arrive in this order</h3>
+                <div class="pk-strip">
+                  <div class="pk-piece pk-piece--3 "><strong>Packet 3</strong><span>AT FOUR</span>
+                  </div>
+                  <div class="pk-piece pk-piece--1 "><strong>Packet 1</strong><span>MEET AT</span>
+                  </div>
+                  <div class="pk-piece pk-piece--2 "><strong>Packet 2</strong><span>THE GATE</span>
+                  </div>
+                </div>
+                <p class="pk-note">Packet 3 arrives before packet 1. Different routes or delays can change the arrival order.</p>
+              </div>
+              <div data-walkthrough-step="Use sequence information">
+                <h3 class="pk-static-title">Use sequence information</h3>
+                <div class="pk-strip">
+                  <div class="pk-piece pk-piece--1 "><strong>Packet 1</strong><span>MEET AT</span>
+                  </div>
+                  <div class="pk-piece pk-piece--2 "><strong>Packet 2</strong><span>THE GATE</span>
+                  </div>
+                  <div class="pk-piece pk-piece--3 "><strong>Packet 3</strong><span>AT FOUR</span>
+                  </div>
+                </div>
+                <div class="pk-message pk-message--small">MEET AT THE GATE AT FOUR</div>
+                <p class="pk-note">The receiving system places each piece in its correct position before rebuilding this message.</p>
+              </div>
             </div>
           </section>
-
-          <section
-            id="simulator"
-            class="lesson-section lesson-section--simulator panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Interactive</p>
-            <h2>Packet switching simulator</h2>
-            <p class="lesson-section-copy">
-              Split a short message into packets, send them across network
-              routes, and watch the receiver check and rebuild the message.
-            </p>
-
-            <article
-              class="packet-simulator"
-              data-role="packet-simulator"
-              aria-labelledby="packet-simulator-heading"
-            >
-              <div class="simulator-heading">
+          <template data-teacher-divider>
+            <h2>Why do devices need protocols?</h2>
+            <p>Shared rules for format, meaning and what happens next</p>
+          </template>
+          <section id="protocols" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Communication rules</p>
+            <h2>Agree on what each field means</h2>
+            <p>A <strong>protocol</strong> is an agreed set of rules for communication.</p>
+            <div class="pk-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="The devices expect different field orders">
+                <h3 class="pk-static-title">The devices expect different field orders</h3>
+                <div class="pk-code-strip">A | B | 2 | THE GATE</div>
+                <div class="pk-two">
+                  <article class="lesson-card">
+                    <h3>Sender’s rule</h3>
+                    <p>First field = source. Second field = destination.<br><strong>Send from A to B.</strong>
+                    </p>
+                  </article>
+                  <article class="lesson-card">
+                    <h3>Receiver’s wrong rule</h3>
+                    <p>First field = destination. Second field = source.<br><strong>It reads the addresses the wrong way round.</strong>
+                    </p>
+                  </article>
+                </div>
+              </div>
+              <div data-walkthrough-step="Use the same rule">
+                <h3 class="pk-static-title">Use the same rule</h3>
+                <div class="pk-code-strip">Source A | Destination B | Sequence 2 | THE GATE</div>
+                <article class="lesson-card">
+                  <h3>Both devices agree</h3>
+                  <p>They read the same fields in the same way. Rules also specify when to send, confirm receipt or retry.</p>
+                </article>
+              </div>
+            </div>
+            <p class="pk-note">This invented format shows why shared rules matter. Real protocols specify their own fields and behaviour.</p>
+          </section>
+          <section id="protocol-examples" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Two useful examples</p>
+            <h2>Different protocols do different jobs</h2>
+            <div class="pk-two">
+              <article class="lesson-card">
+                <h3>IP · Internet Protocol</h3>
+                <p>Provides addressing and rules for delivering packets across networks. IP alone does not guarantee delivery or arrival order.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>TCP · Transmission Control Protocol</h3>
+                <p>Works with IP to provide reliable, ordered data delivery. It uses sequence information, acknowledgements and retransmission.</p>
+              </article>
+            </div>
+            <div class="pk-protocol-chain"><span>Application data</span><b>↔</b><span>TCP: ordered, reliable delivery</span><b>↔</b><span>IP: delivery across networks</span>
+            </div>
+            <p class="pk-note">An <strong>acknowledgement</strong> confirms that data was received. <strong>Retransmission</strong> means sending data again. These protocols work together; they are not alternatives.</p>
+          </section>
+          <section id="missing" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Reliable delivery</p>
+            <h2>What if packet 2 never arrives?</h2>
+            <div class="pk-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="The receiver has a gap">
+                <h3 class="pk-static-title">The receiver has a gap</h3>
+                <div class="pk-strip">
+                  <div class="pk-piece pk-piece--1 "><strong>Packet 1</strong><span>MEET AT</span>
+                  </div>
+                  <div class="pk-piece pk-piece--2 is-missing"><strong>Packet 2</strong><span>Missing</span>
+                  </div>
+                  <div class="pk-piece pk-piece--3 "><strong>Packet 3</strong><span>AT FOUR</span>
+                  </div>
+                </div>
+                <p class="pk-note">The message is incomplete. The receiver cannot invent the missing data.</p>
+              </div>
+              <div data-walkthrough-step="The sender waits for confirmation">
+                <h3 class="pk-static-title">The sender waits for confirmation</h3>
+                <div class="pk-confirm"><span>Sender keeps a copy</span><strong>No confirmation for packet 2</strong><span>Wait limit reached → send again</span>
+                </div>
+                <p class="pk-note">In this reliable-delivery model, the sender resends data if it is not confirmed in time.</p>
+              </div>
+              <div data-walkthrough-step="Packet 2 is sent again">
+                <h3 class="pk-static-title">Packet 2 is sent again</h3>
+                <div class="pk-strip">
+                  <div class="pk-piece pk-piece--1 "><strong>Packet 1</strong><span>MEET AT</span>
+                  </div>
+                  <div class="pk-piece pk-piece--2 "><strong>Packet 2</strong><span>THE GATE</span>
+                  </div>
+                  <div class="pk-piece pk-piece--3 "><strong>Packet 3</strong><span>AT FOUR</span>
+                  </div>
+                </div>
+                <div class="pk-message pk-message--small">MEET AT THE GATE AT FOUR</div>
+                <p class="pk-note">The receiver now has all three pieces. Only the missing data needed another attempt.</p>
+              </div>
+            </div>
+            <p class="pk-note">Recovery depends on the protocol. Packet switching alone does not make retries happen.</p>
+          </section>
+          <section id="damaged" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Checking the data</p>
+            <h2>A check can detect changed data</h2>
+            <p>A packet can arrive with bits that changed during transfer.</p>
+            <div class="pk-two">
+              <article class="lesson-card">
+                <h3>Data sent</h3>
+                <p><span class="pk-code">THE GATE</span><br>Check value calculated before sending.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Data received</h3>
+                <p><span class="pk-code">THE G<span class="pk-error">?</span>TE</span><br>The receiver’s check does not match.</p>
+              </article>
+            </div>
+            <div class="pk-check-result"><strong>Check fails → reject this copy</strong><span>A reliable protocol can arrange another attempt.</span>
+            </div>
+            <p class="pk-note">A <strong>checksum</strong> is one kind of check value. It can detect errors; it does not restore the original data. How checks are calculated is covered in the error-detection lesson.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Try the packet journey</h2>
+            <p>Change one condition and follow what happens</p>
+          </template>
+          <section id="simulator" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Explore</p>
+            <h2>Follow one event at a time</h2>
+            <div class="pk-simulator" data-packet-simulator data-no-slide-advance>
+              <div class="pk-sim-controls" data-simulator-controls hidden>
+                <div class="pk-compose">
+                  <label for="packet-message-input">Message</label>
+                  <input id="packet-message-input" data-packet-message maxlength="120" value="MEET AT THE GATE AT FOUR"/>
+                  <label for="packet-case">Condition</label>
+                  <select id="packet-case" data-packet-case>
+                    <option value="normal">Normal delivery</option>
+                    <option value="reorder">Changed arrival order</option>
+                    <option value="loss">Packet loss</option>
+                    <option value="damage">Changed data</option>
+                  </select>
+                </div>
+                <div class="pk-actions">
+                  <button type="button" class="lesson-secondary-action" data-journey-prev>Previous step</button>
+                  <button type="button" class="primary-link" data-journey-next>Next step</button>
+                  <button type="button" class="lesson-secondary-action" data-journey-reset>Restart transfer</button>
+                  <span data-journey-step></span>
+                </div>
+              </div>
+              <p class="pk-sim-status" data-journey-status aria-live="polite">The receiver uses packet numbers to restore the message order.</p>
+              <div class="pk-sim-board">
                 <div>
-                  <p class="eyebrow">Simulator</p>
-                  <h3 id="packet-simulator-heading">Send a message as packets</h3>
+                  <h3>Journey events</h3>
+                  <div class="pk-events" data-journey-events><span>Packet 3 arrives</span><span>Packet 1 arrives</span><span>Packet 2 arrives</span>
+                  </div>
                 </div>
-                <span class="status-pill" data-role="packet-status">Ready</span>
-              </div>
-
-              <div class="simulator-composer">
-                <div class="message-wrap">
-                  <label class="message-label" for="packet-message-input">
-                    Message to transmit
-                  </label>
-                  <textarea
-                    id="packet-message-input"
-                    maxlength="120"
-                    rows="3"
-                    data-role="packet-message"
-                  ></textarea>
-                  <button
-                    type="button"
-                    class="random-message-button"
-                    data-action="random-message"
-                  >
-                    Random example
-                  </button>
-                </div>
-              </div>
-
-              <div class="setting-grid">
-                <label class="setting-card">
-                  <input type="checkbox" data-setting="out-of-order" />
-                  <span>Out-of-order arrival</span>
-                  <small>Packets use different routes, so the order may change.</small>
-                </label>
-                <label class="setting-card">
-                  <input type="checkbox" data-setting="packet-loss" />
-                  <span>Packet loss</span>
-                  <small>One packet fails to reach the receiver.</small>
-                </label>
-                <label class="setting-card">
-                  <input type="checkbox" data-setting="corruption" />
-                  <span>Corrupted packet</span>
-                  <small>One packet arrives with changed data.</small>
-                </label>
-                <label class="setting-card">
-                  <input type="checkbox" data-setting="auto-resend" />
-                  <span>Auto resend</span>
-                  <small>Missing or corrupted packets are queued again.</small>
-                </label>
-              </div>
-
-              <div class="simulator-actions simulator-actions--main">
-                <button
-                  type="button"
-                  class="primary-link"
-                  data-action="next-packet"
-                >
-                  Send next packet
-                </button>
-                <button
-                  type="button"
-                  class="lesson-secondary-action"
-                  data-action="run-all"
-                >
-                  Run remaining
-                </button>
-                <button
-                  type="button"
-                  class="lesson-secondary-action"
-                  data-action="resend-packets"
-                >
-                  Queue resend
-                </button>
-                <button
-                  type="button"
-                  class="lesson-secondary-action"
-                  data-action="reset-simulation"
-                >
-                  Reset
-                </button>
-              </div>
-
-              <div class="simulator-stats">
-                <article>
-                  <span>Sender</span>
-                  <strong data-role="sender-count">0 prepared</strong>
-                </article>
-                <article>
-                  <span>Network queue</span>
-                  <strong data-role="queue-count">0 waiting</strong>
-                </article>
-                <article>
-                  <span>Arrivals</span>
-                  <strong data-role="arrival-count">0 arrivals</strong>
-                </article>
-              </div>
-
-              <div class="packet-board">
-                <section class="network-column network-column--stage">
-                  <h4>Network routes</h4>
-                  <div class="network-stage" data-role="network-stage"></div>
-                </section>
-
-                <section class="packet-column">
-                  <h4>Sender packets</h4>
-                  <div class="packet-list" data-role="sender-packets"></div>
-                </section>
-
-                <section class="packet-column">
-                  <h4>Arrival order</h4>
-                  <div class="packet-list" data-role="arrival-packets"></div>
-                </section>
-
-                <section class="log-card packet-board-log">
-                  <h4>Transmission log</h4>
-                  <ul class="packet-log" data-role="packet-log"></ul>
-                </section>
-              </div>
-
-              <div class="reassembly-panel">
                 <div>
-                  <h4>Reassembly at the receiver</h4>
-                  <div
-                    class="reassembly-slots"
-                    data-role="reassembly-slots"
-                  ></div>
+                  <h3>Receiver positions</h3>
+                  <div class="pk-received" data-journey-received>
+                    <div class="pk-strip">
+                      <div class="pk-piece pk-piece--1 "><strong>Packet 1</strong><span>MEET AT</span>
+                      </div>
+                      <div class="pk-piece pk-piece--2 "><strong>Packet 2</strong><span>THE GATE</span>
+                      </div>
+                      <div class="pk-piece pk-piece--3 "><strong>Packet 3</strong><span>AT FOUR</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <article class="final-message-card">
-                  <h4>Reconstructed message</h4>
-                  <p data-role="final-message">
-                    The reconstructed message will appear here.
-                  </p>
-                </article>
               </div>
-            </article>
-          </section>
-
-          <section
-            id="switching"
-            class="lesson-section lesson-section--switching panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Packet Switching</p>
-            <h2>Packet switching routes separate pieces through the network</h2>
-            <p class="lesson-section-copy">
-              In packet switching, packets do not need one fixed dedicated path
-              from start to finish. The network can forward each packet using
-              available routes, and the receiver can reassemble the message
-              afterwards.
-            </p>
-
-            <div class="switching-grid">
-              <article class="switching-card">
-                <h3>Flexible routing</h3>
-                <p>Packets can take different paths around congestion or failure.</p>
-              </article>
-              <article class="switching-card">
-                <h3>Shared network use</h3>
-                <p>Many users can share the same network infrastructure.</p>
-              </article>
-              <article class="switching-card">
-                <h3>Reassembly needed</h3>
-                <p>Packets may arrive out of order, so sequence data matters.</p>
-              </article>
-              <article class="switching-card">
-                <h3>Retransmission possible</h3>
-                <p>Lost or corrupted packets can be requested again.</p>
-              </article>
+              <p class="pk-final" data-journey-message>MEET AT THE GATE AT FOUR</p>
             </div>
           </section>
-
-          <section
-            id="protocols"
-            class="lesson-section lesson-section--protocols panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Protocols</p>
-            <h2>Protocols are the agreed rules that make packets usable</h2>
-            <p class="lesson-section-copy">
-              A protocol tells devices how to format, address, send, receive,
-              and sometimes confirm data. Without agreed rules, packets might
-              arrive but still be unusable because the receiver would not know
-              how to interpret them.
-            </p>
-
-            <div class="protocol-grid">
-              <article class="protocol-card">
-                <h3>Format</h3>
-                <p>Defines what fields are included and where they belong.</p>
-              </article>
-              <article class="protocol-card">
-                <h3>Addressing</h3>
-                <p>Helps packets reach the correct device or service.</p>
-              </article>
-              <article class="protocol-card">
-                <h3>Control</h3>
-                <p>Defines when to send, wait, acknowledge, or retry.</p>
-              </article>
-              <article class="protocol-card">
-                <h3>Interoperability</h3>
-                <p>Allows different systems to communicate using the same rules.</p>
-              </article>
-            </div>
-
-            <article class="model-answer-card">
-              <h3>Protocol examples</h3>
-              <p>
-                IP helps with addressing and routing. TCP helps manage reliable
-                ordered delivery. The exact protocol details vary, but the core
-                idea is always agreed rules for communication.
+          <section id="rebuild-task" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Your turn</p>
+            <h2>Rebuild the message</h2>
+            <div class="pk-order-task" data-order-task data-no-slide-advance>
+              <div class="pk-strip">
+                <div class="pk-piece pk-piece--3 "><strong>Packet 3</strong><span>AT FOUR</span>
+                </div>
+                <div class="pk-piece pk-piece--1 "><strong>Packet 1</strong><span>MEET AT</span>
+                </div>
+                <div class="pk-piece pk-piece--2 "><strong>Packet 2</strong><span>THE GATE</span>
+                </div>
+              </div>
+              <p>Choose the packet for each position in the rebuilt message.</p>
+              <div class="pk-order-choices">
+                <label>Position 1<select data-order-slot="1" aria-label="Packet for position 1">
+                    <option value="">Choose…</option>
+                    <option value="1">Packet 1</option>
+                    <option value="2">Packet 2</option>
+                    <option value="3">Packet 3</option>
+                  </select>
+                </label>
+                <label>Position 2<select data-order-slot="2" aria-label="Packet for position 2">
+                    <option value="">Choose…</option>
+                    <option value="1">Packet 1</option>
+                    <option value="2">Packet 2</option>
+                    <option value="3">Packet 3</option>
+                  </select>
+                </label>
+                <label>Position 3<select data-order-slot="3" aria-label="Packet for position 3">
+                    <option value="">Choose…</option>
+                    <option value="1">Packet 1</option>
+                    <option value="2">Packet 2</option>
+                    <option value="3">Packet 3</option>
+                  </select>
+                </label>
+              </div>
+              <div class="pk-actions">
+                <button type="button" class="primary-link" data-check-order>Check order</button>
+                <button type="button" class="lesson-secondary-action" data-reset-order>Clear</button>
+              </div>
+              <p data-order-feedback aria-live="polite">
               </p>
-            </article>
-          </section>
-
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with packets and protocols</h2>
-
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Calling the whole packet the payload</h3>
-                <p>
-                  The payload is only the useful data part, not the addressing
-                  or control information.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Use "header plus payload" in your
-                  explanation.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Assuming all packets take the same path</h3>
-                <p>
-                  In packet-switched networks, packets may travel by different
-                  routes and arrive out of order.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Mention flexible routing and reassembly.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Treating protocols as optional extras</h3>
-                <p>
-                  Protocols define how systems format, send, receive, and
-                  interpret packet data.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Describe protocols as agreed rules.
-                </p>
-              </article>
+              <details>
+                <summary>Answer guide</summary>
+                <p>Use 1, 2, 3: MEET AT THE GATE AT FOUR. Arrival order does not determine the original message order.</p>
+              </details>
             </div>
           </section>
-
+          <section id="file-judgement" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Make a judgement</p>
+            <h2>A complete file matters</h2>
+            <div class="pk-task" data-paired-scenario="file-judgement" data-no-slide-advance>
+              <div class="pk-task-context">
+                <svg class="pk-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                </svg>
+                <p>A student downloads a project file. One part is missing. The file must match the original before it can be used correctly.</p>
+              </div>
+              <div>
+                <label for="file-judgement-choice">What should the system do?</label>
+                <select id="file-judgement-choice" data-choice="type">
+                  <option value="">Choose…</option>
+                  <option value="recover">Recover the missing data</option>
+                  <option value="continue">Continue past this late fragment</option>
+                </select>
+                <label for="file-judgement-reason">Main reason</label>
+                <select id="file-judgement-reason" data-choice="reason">
+                  <option value="">Choose…</option>
+                  <option value="complete">Every part is needed</option>
+                  <option value="delay">Keep the conversation current</option>
+                  <option value="none">Protocols are unnecessary</option>
+                </select>
+                <div class="pk-actions">
+                  <button type="button" class="primary-link" data-check-pair>Check choice</button>
+                  <button type="button" class="lesson-secondary-action" data-reset-pair>Clear choice</button>
+                </div>
+                <p data-pair-feedback aria-live="polite">
+                </p>
+              </div>
+            </div>
+            <label class="pk-draft-label" for="file-judgement-draft">Explain your choice and one cost of it.</label>
+            <textarea id="file-judgement-draft" class="exam-response pk-draft" data-exam-response="file-judgement-v1" placeholder="Your explanation saves in this browser."></textarea>
+            <details class="exam-guidance">
+              <summary>Compare your explanation</summary>
+              <p>Recover the missing data before using the file. Waiting adds delay, but an incomplete file may be unusable. A reliable-delivery protocol can arrange retries.</p>
+            </details>
+          </section>
+          <section id="call-judgement" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Make a judgement</p>
+            <h2>A late fragment may no longer help</h2>
+            <div class="pk-task" data-paired-scenario="call-judgement" data-no-slide-advance>
+              <div class="pk-task-context">
+                <svg class="pk-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                </svg>
+                <p>During a live voice call, a short fragment is already too late to play. The app can hide a small gap. Waiting would hold up the conversation.</p>
+              </div>
+              <div>
+                <label for="call-judgement-choice">What should the system do?</label>
+                <select id="call-judgement-choice" data-choice="type">
+                  <option value="">Choose…</option>
+                  <option value="recover">Recover the missing data</option>
+                  <option value="continue">Continue past this late fragment</option>
+                </select>
+                <label for="call-judgement-reason">Main reason</label>
+                <select id="call-judgement-reason" data-choice="reason">
+                  <option value="">Choose…</option>
+                  <option value="complete">Every part is needed</option>
+                  <option value="delay">Keep the conversation current</option>
+                  <option value="none">Protocols are unnecessary</option>
+                </select>
+                <div class="pk-actions">
+                  <button type="button" class="primary-link" data-check-pair>Check choice</button>
+                  <button type="button" class="lesson-secondary-action" data-reset-pair>Clear choice</button>
+                </div>
+                <p data-pair-feedback aria-live="polite">
+                </p>
+              </div>
+            </div>
+            <label class="pk-draft-label" for="call-judgement-draft">Explain your choice and one cost of it.</label>
+            <textarea id="call-judgement-draft" class="exam-response pk-draft" data-exam-response="call-judgement-v1" placeholder="Your explanation saves in this browser."></textarea>
+            <details class="exam-guidance">
+              <summary>Compare your explanation</summary>
+              <p>For this already-late fragment, continue and hide the small gap. Waiting could make the conversation harder to follow. The app still needs rules for ordering, timing and loss; this is not a rule to ignore every lost packet.</p>
+            </details>
+          </section>
+          <section id="mistakes" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Quick recap</p>
+            <h2>Keep the roles separate</h2>
+            <div class="pk-three">
+              <article class="lesson-card">
+                <h3>Payload is the data piece</h3>
+                <p>The whole packet also has delivery and control information.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Different routes are possible</h3>
+                <p>Packets do not have to use different routes, and delivery is not guaranteed.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Rules control recovery</h3>
+                <p>A check detects a problem. A protocol specifies what happens next.</p>
+              </article>
+            </div>
+            <p class="pk-note">Explain the role: addresses help delivery, sequence information helps order, and checking data helps detect changes.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Check your understanding</h2>
+            <p>Explain the packet fields, journey and rules</p>
+          </template>
           <section
             id="quiz"
             class="lesson-section lesson-section--quiz panel"
@@ -717,16 +914,13 @@
             <p class="eyebrow">Exam-Style Practice</p>
             <h2>Explain the process</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers into the page, then compare your ideas with the
-              answer guide.
+              Explain your ideas. Then compare your answer with the guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
             </p>
 
-            <div class="exam-grid">
-              <article class="exam-card">
+            <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">4 marks</span>
                   <span class="exam-pill">Describe</span>
@@ -772,7 +966,7 @@
                   </div>
                 </details>
               </article>
-
+              <div data-slide-break></div>
               <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">5 marks</span>
@@ -823,7 +1017,6 @@
                   </div>
                 </details>
               </article>
-            </div>
           </section>
         </main>
 

@@ -64,5 +64,5 @@ await s.click('#call-stack [data-walkthrough-prev]');
 assert.equal((await callState()).running,'verifyPassword()');
 await s.click('#call-stack [data-walkthrough-reset]');
 assert.deepEqual(await callState(),{running:'main()',frames:['main()']});
-await s.load('/pages/topics/packet-data-packet-switching-and-protocols.html','document.querySelector("[data-action=next-packet]")?.disabled===false');await s.ev('document.querySelector("[data-action=next-packet]").scrollIntoView()');await s.click('[data-action=next-packet]');assert.ok(await s.ev('parseFloat(getComputedStyle(document.querySelector(".moving-packet")).animationDuration)>=1'));
+await s.load('/pages/topics/packet-data-packet-switching-and-protocols.html','document.body.dataset.packetLessonReady');await s.ev('document.querySelector("#routes").scrollIntoView()');await s.waitFor('!document.querySelector("#routes [data-teaching-animation]").classList.contains("teaching-animation-paused")');assert.ok(await s.ev('parseFloat(getComputedStyle(document.querySelector(".pk-traveller")).animationDuration)>=1'));
 assert.deepEqual(s.errors.filter(e=>!e.includes('favicon.ico')),[]);console.log('PASS: RAID, kernel playback, both sorting demos, architecture signal, stack/queue operations, manual call-stack steps and packet travel remain available under reduced motion.');await s.close();
