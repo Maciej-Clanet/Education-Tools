@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       Transmission Methods: Synchronous, Asynchronous, Serial, and Parallel
-      Revision Lesson | Education Tools
+      Lesson | Education Tools
     </title>
     <meta
       name="description"
-      content="Revise synchronous and asynchronous timing, serial and parallel transmission, framing, timing skew, overhead, and method selection for BTEC Level 3 Computing Unit 2."
+      content="Explore synchronous and asynchronous timing, serial and parallel transmission, framing, timing skew, overhead, and method selection for BTEC Level 3 Computing Unit 2."
     />
     <meta
       property="og:title"
-      content="Transmission Methods: Synchronous, Asynchronous, Serial, and Parallel Revision Lesson | Education Tools"
+      content="Transmission Methods: Synchronous, Asynchronous, Serial, and Parallel Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise synchronous and asynchronous timing, serial and parallel data paths, visual examples, and transmission method trade-offs."
+      content="Explore synchronous and asynchronous timing, serial and parallel data paths, visual examples, and transmission method trade-offs."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -31,6 +31,7 @@
       rel="stylesheet"
       href="../../css/pages/transmission-methods-synchronous-asynchronous-serial-and-parallel.css"
     />
+    <link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -38,7 +39,7 @@
       src="../../javascript/pages/transmission-methods-synchronous-asynchronous-serial-and-parallel.js"
     ></script>
   </head>
-  <body>
+  <body class="transmission-lesson">
     <div class="page-shell">
       <header class="lesson-hero panel panel-accent">
         <p class="eyebrow">Transmitting Data</p>
@@ -90,7 +91,7 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Interactive focus</strong>
-            <span>Transmission method viewer</span>
+            <span>Animated diagrams and scenario judgements</span>
           </article>
         </div>
 
@@ -118,7 +119,7 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, the transmission viewer, and teacher
+          Quiz scoring, answer saving, the step controls and scenario checks, and teacher
           slides need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
@@ -127,334 +128,767 @@
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#timing" data-section-link>Timing methods</a>
-            <a href="#data-paths" data-section-link>Serial and parallel</a>
-            <a href="#viewer" data-section-link>Viewer</a>
-            <a href="#selection" data-section-link>Choosing a method</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#overview" data-section-link>Start here</a>
+            <a href="#two-questions" data-section-link>Two questions</a>
+            <a href="#data-paths" data-section-link>Serial</a>
+            <a href="#parallel" data-section-link>Parallel</a>
+            <a href="#viewer" data-section-link>Compare transfers</a>
+            <a href="#skew" data-section-link>Timing skew</a>
+            <a href="#timing" data-section-link>Why timing matters</a>
+            <a href="#synchronous" data-section-link>Synchronous</a>
+            <a href="#asynchronous" data-section-link>Asynchronous</a>
+            <a href="#start-stop" data-section-link>Start and stop bits</a>
+            <a href="#overhead" data-section-link>Overhead</a>
+            <a href="#compare-timing" data-section-link>Compare timing</a>
+            <a href="#combine" data-section-link>Combine the descriptions</a>
+            <a href="#selection" data-section-link>Worked judgement</a>
+            <a href="#path-choice" data-section-link>Choose data paths</a>
+            <a href="#timing-choice" data-section-link>Choose timing</a>
+            <a href="#mistakes" data-section-link>Recap</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam practice</a>
+            <a href="#exam-practice" data-section-link>Written practice</a>
           </nav>
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>There are two separate comparisons to keep clear</h2>
-            <p class="lesson-section-copy">
-              Synchronous versus asynchronous is about timing. Serial versus
-              parallel is about the number of data paths. They can be combined
-              in real systems, so the first job is to identify which comparison
-              the question is asking about.
-            </p>
-
-            <div class="transmission-map">
-              <article class="transmission-card transmission-card--timing">
-                <span class="transmission-icon transmission-icon--timing"></span>
-                <h3>Timing</h3>
-                <p>Synchronous and asynchronous explain how sender and receiver stay in step.</p>
-              </article>
-              <article class="transmission-card transmission-card--path">
-                <span class="transmission-icon transmission-icon--path"></span>
-                <h3>Data paths</h3>
-                <p>Serial and parallel explain how many lines carry the bits.</p>
-              </article>
-              <article class="transmission-card transmission-card--choice">
-                <span class="transmission-icon transmission-icon--choice"></span>
-                <h3>Choice</h3>
-                <p>The best option depends on distance, speed, cost, and reliability.</p>
-              </article>
+          <template data-teacher-opener>
+            <h2>Transmission methods</h2>
+            <p>How can a receiver read the right bits at the right time?</p>
+            <ul>
+              <li>Follow bits across a link</li>
+              <li>Compare two ways to control timing</li>
+              <li>Choose a method for a real task</li>
+            </ul>
+          </template>
+          <section id="overview" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Start here</p>
+            <h2>How does a reading reach the screen?</h2>
+            <p>A temperature sensor sends a reading to a computer. The reading travels as <strong>bits</strong>: 0s and 1s.</p>
+            <div class="tm-journey">
+              <div class="tm-device">
+                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                </svg>
+                <strong>Temperature sensor</strong><span>Measures the room</span>
+              </div>
+              <div class="tm-journey-data">
+                <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
+                </div>
+                <strong>Data travels →</strong>
+              </div>
+              <div class="tm-device">
+                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                </svg>
+                <strong>Computer</strong><span>Displays the reading</span>
+              </div>
             </div>
-
-            <div class="lesson-intro-grid">
-              <article class="lesson-card">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>Explain synchronous and asynchronous transmission.</li>
-                  <li>Compare serial and parallel transmission accurately.</li>
-                  <li>Explain overhead, timing skew, and distance trade-offs.</li>
-                  <li>Justify a suitable method for a scenario.</li>
-                </ul>
-              </article>
-
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>Synchronous:</strong> shared timing.</li>
-                  <li><strong>Asynchronous:</strong> start and stop framing.</li>
-                  <li><strong>Serial:</strong> one bit path.</li>
-                  <li><strong>Parallel:</strong> multiple bit paths together.</li>
-                </ul>
-              </article>
-            </div>
+            <p class="tm-note">The receiver must recognise <strong>each bit</strong> and keep the bits in the correct order. The four bits above are an illustration, not a temperature code.</p>
           </section>
-
-          <section
-            id="timing"
-            class="lesson-section lesson-section--timing panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Timing Methods</p>
-            <h2>Synchronous and asynchronous transmission solve timing differently</h2>
-            <p class="lesson-section-copy">
-              The receiver must know when to read each bit. Synchronous
-              transmission keeps the sender and receiver aligned using shared
-              timing. Asynchronous transmission frames smaller units so each one
-              can be recognised even if data arrives irregularly.
-            </p>
-
-            <div class="timing-grid">
-              <article class="timing-card timing-card--sync">
-                <h3>Synchronous</h3>
-                <div class="timing-visual">
-                  <div class="clock-row" aria-label="Clock ticks">
-                    <span>tick</span><span>tick</span><span>tick</span><span>tick</span>
-                  </div>
-                  <div class="bit-stream" aria-label="Timed stream">
-                    <span>1</span><span>0</span><span>1</span><span>1</span>
+          <section id="two-questions" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Transmission methods</p>
+            <h2>Two questions about the same transfer</h2>
+            <div class="tm-two">
+              <article class="lesson-card">
+                <h3>How do the bits travel?</h3>
+                <p><strong>Serial or parallel</strong><br>One after another, or several at the same time?</p>
+              </article>
+              <article class="lesson-card">
+                <h3>When does the receiver read them?</h3>
+                <p><strong>Synchronous or asynchronous</strong><br>How do the devices agree on bit timing?</p>
+              </article>
+            </div>
+            <p class="tm-note">These are separate questions. A link can be <strong>serial and synchronous</strong>. We will build up to that example.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>How do the bits travel?</h2>
+            <p>Serial and parallel transmission</p>
+          </template>
+          <section id="data-paths" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Data paths</p>
+            <h2>Serial: one bit after another</h2>
+            <p class="tm-rule">Bits follow each other on <strong>one data path</strong>.</p>
+            <div class="tm-flow tm-serial" data-teaching-animation="bit movement" data-no-slide-advance>
+              <div class="tm-link">
+                <div class="tm-device">
+                  <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                  </svg>
+                  <strong>Sender</strong>
+                </div>
+                <div class="tm-tracks">
+                  <div class="tm-track"><span class="tm-path-label">One data path</span><b class="tm-moving" style="--i:0">1</b><b class="tm-moving" style="--i:1">0</b><b class="tm-moving" style="--i:2">1</b><b class="tm-moving" style="--i:3">1</b>
                   </div>
                 </div>
-                <p>
-                  Data is sent as a timed stream. Once both sides are aligned,
-                  less extra control information is needed for each bit or byte.
-                </p>
-              </article>
-
-              <article class="timing-card timing-card--async">
-                <h3>Asynchronous</h3>
-                <div class="frame-visual" aria-label="Asynchronous frame">
-                  <span class="control-bit">start</span>
-                  <span>1</span><span>0</span><span>1</span><span>1</span>
-                  <span class="control-bit">stop</span>
+                <div class="tm-device">
+                  <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                  </svg>
+                  <strong>Receiver</strong>
                 </div>
-                <p>
-                  Each unit is framed, often with start and stop bits. This is
-                  useful for irregular data, but adds overhead.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="data-paths"
-            class="lesson-section lesson-section--data-paths panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Data Paths</p>
-            <h2>Serial and parallel transmission use different numbers of lines</h2>
-            <p class="lesson-section-copy">
-              Serial transmission sends bits one after another on one path.
-              Parallel transmission sends several bits at the same time over
-              multiple paths. Parallel can look faster, but keeping several
-              paths aligned becomes harder over distance.
-            </p>
-
-            <div class="path-grid">
-              <article class="path-card path-card--serial">
-                <h3>Serial</h3>
-                <div class="serial-visual" aria-label="Serial bit stream">
-                  <span class="wire-line"></span>
-                  <span>1</span><span>0</span><span>1</span><span>1</span>
-                </div>
-                <ul class="lesson-list">
-                  <li>One bit stream travels on one path.</li>
-                  <li>Cabling is simpler.</li>
-                  <li>Often better for longer distances.</li>
-                </ul>
-              </article>
-
-              <article class="path-card path-card--parallel">
-                <h3>Parallel</h3>
-                <div class="parallel-visual" aria-label="Parallel bit paths">
-                  <span class="wire-line"></span><span>1</span>
-                  <span class="wire-line"></span><span>0</span>
-                  <span class="wire-line"></span><span>1</span>
-                  <span class="wire-line"></span><span>1</span>
-                </div>
-                <ul class="lesson-list">
-                  <li>Several bits travel at the same time.</li>
-                  <li>Can be fast over short distances.</li>
-                  <li>Needs more lines and careful timing.</li>
-                </ul>
-              </article>
-            </div>
-
-            <article class="skew-card">
-              <h3>Why parallel is not always the winner</h3>
-              <p>
-                Parallel transmission can suffer from timing skew. This means
-                bits travelling on different lines arrive at slightly different
-                times. Over longer distances, that makes the receiver's job
-                harder, so serial links are often preferred.
-              </p>
-            </article>
-          </section>
-
-          <section
-            id="viewer"
-            class="lesson-section lesson-section--viewer panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Interactive</p>
-            <h2>Inspect the four transmission ideas</h2>
-            <p class="lesson-section-copy">
-              Switch views to compare timing methods with data-path methods.
-              Notice that synchronous and asynchronous are not opposites of
-              serial and parallel.
-            </p>
-
-            <article
-              class="transmission-viewer"
-              data-role="transmission-viewer"
-              aria-labelledby="viewer-heading"
-            >
-              <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Transmission viewer</p>
-                  <h3 id="viewer-heading" data-role="viewer-heading">
-                    Synchronous transmission
-                  </h3>
-                </div>
-                <span class="viewer-pill" data-role="viewer-type">Timing method</span>
               </div>
-
-              <div
-                class="viewer-button-row"
-                data-role="viewer-buttons"
-                aria-label="Choose a transmission method"
-              ></div>
-
-              <div
-                class="viewer-diagram"
-                data-role="viewer-diagram"
-                aria-label="Transmission method diagram"
-              ></div>
-
-              <div class="viewer-summary">
-                <article>
-                  <span>Best suited to</span>
-                  <strong data-role="viewer-best">Continuous streams</strong>
-                </article>
-                <article>
-                  <span>Watch out for</span>
-                  <strong data-role="viewer-caution">Needs timing agreement</strong>
+              <p class="tm-caption">Four data bits shown: <strong>1 0 1 1</strong>. Movement is slowed down for the diagram.</p>
+            </div>
+            <p><strong>Example:</strong> a simple sensor link sends the bits of each reading in order.</p>
+            <p class="tm-note">A data path is a route for one stream of bits. It does not always mean one physical wire.</p>
+          </section>
+          <section id="parallel" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Data paths</p>
+            <h2>Parallel: several bits together</h2>
+            <p class="tm-rule">Several data paths carry <strong>different bits at the same time</strong>.</p>
+            <div class="tm-flow tm-parallel" data-teaching-animation="bit movement" data-no-slide-advance>
+              <div class="tm-link">
+                <div class="tm-device">
+                  <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                  </svg>
+                  <strong>Sender</strong>
+                </div>
+                <div class="tm-tracks">
+                  <div class="tm-track"><span class="tm-path-label">Path 1</span><b class="tm-moving" style="--i:0">1</b>
+                  </div>
+                  <div class="tm-track"><span class="tm-path-label">Path 2</span><b class="tm-moving" style="--i:1">0</b>
+                  </div>
+                  <div class="tm-track"><span class="tm-path-label">Path 3</span><b class="tm-moving" style="--i:2">1</b>
+                  </div>
+                  <div class="tm-track"><span class="tm-path-label">Path 4</span><b class="tm-moving" style="--i:3">1</b>
+                  </div>
+                </div>
+                <div class="tm-device">
+                  <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                  </svg>
+                  <strong>Receiver</strong>
+                </div>
+              </div>
+              <p class="tm-caption">Four data bits shown: <strong>1 0 1 1</strong>. Movement is slowed down for the diagram.</p>
+            </div>
+            <p><strong>Example:</strong> a memory data bus inside a computer transfers a group of bits across several lines.</p>
+          </section>
+          <section id="viewer" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Compare</p>
+            <h2>Compare the same four bits</h2>
+            <p>Use the same four bits. Here, each path sends <strong>one bit per equal time interval</strong>.</p>
+            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Before the transfer">
+                <h3 class="tm-static-title">Before the transfer</h3>
+                <div class="tm-two">
+                  <article class="lesson-card">
+                    <h3>Serial · one path</h3>
+                    <p>Bits received: <strong>0 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span>
+                    </div>
+                  </article>
+                  <article class="lesson-card">
+                    <h3>Parallel · four paths</h3>
+                    <p>Bits received: <strong>0 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span>
+                    </div>
+                  </article>
+                </div>
+                <p class="tm-note">Here, every path carries one bit per interval. Both methods must deliver the same four bits in the correct order.</p>
+              </div>
+              <div data-walkthrough-step="After 1 transfer interval">
+                <h3 class="tm-static-title">After 1 transfer interval</h3>
+                <div class="tm-two">
+                  <article class="lesson-card">
+                    <h3>Serial · one path</h3>
+                    <p>Bits received: <strong>1 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-filled is-current">1</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span>
+                    </div>
+                  </article>
+                  <article class="lesson-card">
+                    <h3>Parallel · four paths</h3>
+                    <p>Bits received: <strong>4 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
+                    </div>
+                  </article>
+                </div>
+                <p class="tm-note">Here, every path carries one bit per interval. Parallel has received all four bits. Serial needs more intervals.</p>
+              </div>
+              <div data-walkthrough-step="After 2 transfer intervals">
+                <h3 class="tm-static-title">After 2 transfer intervals</h3>
+                <div class="tm-two">
+                  <article class="lesson-card">
+                    <h3>Serial · one path</h3>
+                    <p>Bits received: <strong>2 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled is-current">0</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span>
+                    </div>
+                  </article>
+                  <article class="lesson-card">
+                    <h3>Parallel · four paths</h3>
+                    <p>Bits received: <strong>4 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
+                    </div>
+                  </article>
+                </div>
+                <p class="tm-note">Here, every path carries one bit per interval. Parallel has received all four bits. Serial needs more intervals.</p>
+              </div>
+              <div data-walkthrough-step="After 3 transfer intervals">
+                <h3 class="tm-static-title">After 3 transfer intervals</h3>
+                <div class="tm-two">
+                  <article class="lesson-card">
+                    <h3>Serial · one path</h3>
+                    <p>Bits received: <strong>3 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled is-current">1</span><span class="tm-bit is-empty ">–</span>
+                    </div>
+                  </article>
+                  <article class="lesson-card">
+                    <h3>Parallel · four paths</h3>
+                    <p>Bits received: <strong>4 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
+                    </div>
+                  </article>
+                </div>
+                <p class="tm-note">Here, every path carries one bit per interval. Parallel has received all four bits. Serial needs more intervals.</p>
+              </div>
+              <div data-walkthrough-step="After 4 transfer intervals">
+                <h3 class="tm-static-title">After 4 transfer intervals</h3>
+                <div class="tm-two">
+                  <article class="lesson-card">
+                    <h3>Serial · one path</h3>
+                    <p>Bits received: <strong>4 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled is-current">1</span>
+                    </div>
+                  </article>
+                  <article class="lesson-card">
+                    <h3>Parallel · four paths</h3>
+                    <p>Bits received: <strong>4 of 4</strong>
+                    </p>
+                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
+                    </div>
+                  </article>
+                </div>
+                <p class="tm-note">Here, every path carries one bit per interval. Both methods must deliver the same four bits in the correct order.</p>
+              </div>
+            </div>
+            <p class="tm-note">Real links can use different <strong>bit rates</strong>: the number of bits sent each second. A serial link is not always slower.</p>
+          </section>
+          <section id="skew" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">A limit of parallel transmission</p>
+            <h2>What if one bit arrives late?</h2>
+            <p><strong>Timing skew</strong> means bits on different paths arrive at different times.</p>
+            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Paths stay in step">
+                <h3 class="tm-static-title">Paths stay in step</h3>
+                <div class="tm-skew" role="img" aria-label="All four bits reach the receiver in time.">
+                  <div class="tm-skew-head"><span>Sender →</span><strong>Receiver reads here</strong>
+                  </div>
+                  <div class="tm-skew-row"><span>Path 1</span>
+                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
+                    </div>
+                    <strong>Ready</strong>
+                  </div>
+                  <div class="tm-skew-row"><span>Path 2</span>
+                    <div class="tm-skew-line"><b style="--position:88%" class="">0</b><i></i>
+                    </div>
+                    <strong>Ready</strong>
+                  </div>
+                  <div class="tm-skew-row"><span>Path 3</span>
+                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
+                    </div>
+                    <strong>Ready</strong>
+                  </div>
+                  <div class="tm-skew-row"><span>Path 4</span>
+                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
+                    </div>
+                    <strong>Ready</strong>
+                  </div>
+                </div>
+                <p class="tm-note">At this read time, all four bits are ready.</p>
+              </div>
+              <div data-walkthrough-step="One path has a longer delay">
+                <h3 class="tm-static-title">One path has a longer delay</h3>
+                <div class="tm-skew" role="img" aria-label="The fourth bit has not reached the receiver at its read time.">
+                  <div class="tm-skew-head"><span>Sender →</span><strong>Receiver reads here</strong>
+                  </div>
+                  <div class="tm-skew-row"><span>Path 1</span>
+                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
+                    </div>
+                    <strong>Ready</strong>
+                  </div>
+                  <div class="tm-skew-row"><span>Path 2</span>
+                    <div class="tm-skew-line"><b style="--position:88%" class="">0</b><i></i>
+                    </div>
+                    <strong>Ready</strong>
+                  </div>
+                  <div class="tm-skew-row"><span>Path 3</span>
+                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
+                    </div>
+                    <strong>Ready</strong>
+                  </div>
+                  <div class="tm-skew-row"><span>Path 4</span>
+                    <div class="tm-skew-line"><b style="--position:52%" class="tm-late">1</b><i></i>
+                    </div>
+                    <strong>Late</strong>
+                  </div>
+                </div>
+                <p class="tm-note">The receiver could read an incomplete group. The system must allow enough time for every path.</p>
+              </div>
+            </div>
+            <p><strong>Example:</strong> a short memory connection can keep its lines closely matched. Longer parallel cables make this harder.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>When should the receiver read?</h2>
+            <p>Synchronous and asynchronous transmission</p>
+          </template>
+          <section id="timing" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Why timing matters</p>
+            <h2>A signal change does not mark every bit</h2>
+            <p>The signal stays at 1 for several bits, then stays at 0. How many bits does it represent?</p>
+            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="See the signal">
+                <h3 class="tm-static-title">See the signal</h3>
+                <div class="tm-signal"><span class="tm-high">1</span><span class="tm-low">0</span>
+                </div>
+                <p class="tm-note">The receiver needs to know <strong>how long each bit lasts</strong>. A change from 1 to 0 is not enough.</p>
+              </div>
+              <div data-walkthrough-step="Add the bit times">
+                <h3 class="tm-static-title">Add the bit times</h3>
+                <div class="tm-time-label">Equal bit times →</div>
+                <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">0</span>
+                </div>
+                <p class="tm-note">With this timing, the signal represents <strong>1 1 1 0 0 0</strong>. The receiver reads once in each bit time.</p>
+              </div>
+            </div>
+            <p>A <strong>clock</strong> is a regular timing signal. It helps a device decide when to read a bit.</p>
+          </section>
+          <section id="synchronous" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Timing methods</p>
+            <h2>Synchronous: keep the devices in step</h2>
+            <p>The sender and receiver use <strong>shared timing</strong> to read a stream of bits.</p>
+            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Read bit 1">
+                <h3 class="tm-static-title">Read bit 1</h3>
+                <div class="tm-clock-grid">
+                  <div class="tm-clock-cell is-current">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 1</span><b>1</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 2</span><b>0</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 3</span><b>1</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 4</span><b>1</b>
+                  </div>
+                </div>
+                <p class="tm-received">Received so far: <strong>1</strong>
+                </p>
+              </div>
+              <div data-walkthrough-step="Read bit 2">
+                <h3 class="tm-static-title">Read bit 2</h3>
+                <div class="tm-clock-grid">
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 1</span><b>1</b>
+                  </div>
+                  <div class="tm-clock-cell is-current">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 2</span><b>0</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 3</span><b>1</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 4</span><b>1</b>
+                  </div>
+                </div>
+                <p class="tm-received">Received so far: <strong>1 0</strong>
+                </p>
+              </div>
+              <div data-walkthrough-step="Read bit 3">
+                <h3 class="tm-static-title">Read bit 3</h3>
+                <div class="tm-clock-grid">
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 1</span><b>1</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 2</span><b>0</b>
+                  </div>
+                  <div class="tm-clock-cell is-current">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 3</span><b>1</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 4</span><b>1</b>
+                  </div>
+                </div>
+                <p class="tm-received">Received so far: <strong>1 0 1</strong>
+                </p>
+              </div>
+              <div data-walkthrough-step="Read bit 4">
+                <h3 class="tm-static-title">Read bit 4</h3>
+                <div class="tm-clock-grid">
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 1</span><b>1</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 2</span><b>0</b>
+                  </div>
+                  <div class="tm-clock-cell ">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 3</span><b>1</b>
+                  </div>
+                  <div class="tm-clock-cell is-current">
+                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
+                    </svg>
+                    <span>Read 4</span><b>1</b>
+                  </div>
+                </div>
+                <p class="tm-received">Received so far: <strong>1 0 1 1</strong>
+                </p>
+              </div>
+            </div>
+            <p><strong>Example:</strong> a computer reads a sensor using a clock signal alongside the data.</p>
+            <p class="tm-note">Some links send a separate clock signal. Others recover timing from the data signal. Both keep the receiver in step.</p>
+          </section>
+          <section id="asynchronous" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Timing methods</p>
+            <h2>Asynchronous: a unit can start when it is ready</h2>
+            <p>Each small group of data is sent as a <strong>unit</strong>. Units can start at <strong>irregular times</strong>.</p>
+            <div class="tm-bursts" role="img" aria-label="A reading, a long gap, another reading, a short gap, then a third reading"><strong>Reading 1</strong><span>Long gap</span><strong>Reading 2</strong><span>Gap</span><strong>Reading 3</strong>
+            </div>
+            <p class="tm-time-label">Time →</p>
+            <div class="tm-two">
+              <article class="lesson-card">
+                <h3>Mark each unit</h3>
+                <p>A start bit helps the receiver find the beginning. Stop bits mark its end.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Keep time within the unit</h3>
+                <p>The devices agree on the bit speed. Each bit still has a set duration.</p>
+              </article>
+            </div>
+            <p><strong>Example:</strong> a simple sensor sends a short reading only when its value changes.</p>
+            <p class="tm-note">There is no continuous shared clock between units. The receiver starts its local timing again at each start bit.</p>
+          </section>
+          <section id="start-stop" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Step by step</p>
+            <h2>Follow one asynchronous unit</h2>
+            <p>One common format: <strong>1 start bit + 8 data bits + 1 stop bit</strong>. Read left to right in sending order.</p>
+            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Find the start">
+                <h3 class="tm-static-title">Find the start</h3>
+                <div class="tm-frame-scroll" tabindex="0" aria-label="Asynchronous unit, in sending order">
+                  <div class="tm-frame"><span class="tm-idle">Idle<br>1</span><span class="tm-control is-current">Start<br><b>0</b></span><span class="tm-frame-data "><small>Data 1</small><b>1</b></span><span class="tm-frame-data "><small>Data 2</small><b>0</b></span><span class="tm-frame-data "><small>Data 3</small><b>1</b></span><span class="tm-frame-data "><small>Data 4</small><b>1</b></span><span class="tm-frame-data "><small>Data 5</small><b>0</b></span><span class="tm-frame-data "><small>Data 6</small><b>0</b></span><span class="tm-frame-data "><small>Data 7</small><b>1</b></span><span class="tm-frame-data "><small>Data 8</small><b>0</b></span><span class="tm-control ">Stop<br><b>1</b></span><span class="tm-idle">Idle<br>1</span>
+                  </div>
+                </div>
+                <p class="tm-note">The line is idle at 1. A start bit of 0 tells the receiver to begin timing this unit.</p>
+              </div>
+              <div data-walkthrough-step="Read eight data bits">
+                <h3 class="tm-static-title">Read eight data bits</h3>
+                <div class="tm-frame-scroll" tabindex="0" aria-label="Asynchronous unit, in sending order">
+                  <div class="tm-frame"><span class="tm-idle">Idle<br>1</span><span class="tm-control ">Start<br><b>0</b></span><span class="tm-frame-data is-current"><small>Data 1</small><b>1</b></span><span class="tm-frame-data is-current"><small>Data 2</small><b>0</b></span><span class="tm-frame-data is-current"><small>Data 3</small><b>1</b></span><span class="tm-frame-data is-current"><small>Data 4</small><b>1</b></span><span class="tm-frame-data is-current"><small>Data 5</small><b>0</b></span><span class="tm-frame-data is-current"><small>Data 6</small><b>0</b></span><span class="tm-frame-data is-current"><small>Data 7</small><b>1</b></span><span class="tm-frame-data is-current"><small>Data 8</small><b>0</b></span><span class="tm-control ">Stop<br><b>1</b></span><span class="tm-idle">Idle<br>1</span>
+                  </div>
+                </div>
+                <p class="tm-note">The receiver reads eight data bits at the agreed speed. These are the useful data.</p>
+              </div>
+              <div data-walkthrough-step="Check the stop bit">
+                <h3 class="tm-static-title">Check the stop bit</h3>
+                <div class="tm-frame-scroll" tabindex="0" aria-label="Asynchronous unit, in sending order">
+                  <div class="tm-frame"><span class="tm-idle">Idle<br>1</span><span class="tm-control ">Start<br><b>0</b></span><span class="tm-frame-data "><small>Data 1</small><b>1</b></span><span class="tm-frame-data "><small>Data 2</small><b>0</b></span><span class="tm-frame-data "><small>Data 3</small><b>1</b></span><span class="tm-frame-data "><small>Data 4</small><b>1</b></span><span class="tm-frame-data "><small>Data 5</small><b>0</b></span><span class="tm-frame-data "><small>Data 6</small><b>0</b></span><span class="tm-frame-data "><small>Data 7</small><b>1</b></span><span class="tm-frame-data "><small>Data 8</small><b>0</b></span><span class="tm-control is-current">Stop<br><b>1</b></span><span class="tm-idle">Idle<br>1</span>
+                  </div>
+                </div>
+                <p class="tm-note">A stop bit of 1 ends this unit. The line can remain idle until the next unit starts.</p>
+              </div>
+            </div>
+            <p class="tm-note">Start and stop bits are control information. They are not part of the eight data bits.</p>
+          </section>
+          <section id="overhead" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Why the choice matters</p>
+            <h2>Control bits take time too</h2>
+            <p><strong>Overhead</strong> is extra information sent to support the transfer.</p>
+            <div class="tm-overhead">
+              <div><strong>1</strong><span>start bit</span>
+              </div>
+              <b>+</b>
+              <div class="tm-useful"><strong>8</strong><span>data bits</span>
+              </div>
+              <b>+</b>
+              <div><strong>1</strong><span>stop bit</span>
+              </div>
+              <b>=</b>
+              <div><strong>10</strong><span>bits sent</span>
+              </div>
+            </div>
+            <div class="tm-two">
+              <article class="lesson-card">
+                <h3>A short sensor message</h3>
+                <p>The extra bits can be acceptable when readings are occasional.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>A long stream</h3>
+                <p>Synchronous transfer can avoid start/stop bits around every byte. Other control information may still be needed.</p>
+              </article>
+            </div>
+            <p class="tm-note">A byte is eight bits. In this example, sending one byte uses ten bit times. More control bits leave less time for useful data.</p>
+          </section>
+          <section id="compare-timing" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Bring the ideas together</p>
+            <h2>Compare the timing methods</h2>
+            <div class="tm-table-wrap" tabindex="0" aria-label="Timing methods comparison">
+              <table class="tm-table">
+                <thead>
+                  <tr>
+                    <th>Question</th>
+                    <th>Synchronous</th>
+                    <th>Asynchronous start/stop example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>How is timing set?</th>
+                    <td>Shared timing keeps the stream in step.</td>
+                    <td>A start bit aligns the receiver for each unit.</td>
+                  </tr>
+                  <tr>
+                    <th>What must agree?</th>
+                    <td>Clock timing and the data format.</td>
+                    <td>Bit speed and the data format.</td>
+                  </tr>
+                  <tr>
+                    <th>What often suits it?</th>
+                    <td>Large blocks or streams of data.</td>
+                    <td>Small units sent at irregular times.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="tm-note">These are useful choices, not fixed rules. A synchronous link can pause, and an asynchronous link can send units back to back.</p>
+          </section>
+          <section id="combine" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Two descriptions, one link</p>
+            <h2>One transfer can be serial and synchronous</h2>
+            <p>A computer reads a sensor. One path carries data; another carries the clock.</p>
+            <div class="tm-combined">
+              <div class="tm-device">
+                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                </svg>
+                <strong>Sensor</strong>
+              </div>
+              <div>
+                <div class="tm-labelled-line"><strong>Data: one bit after another →</strong>
+                </div>
+                <div class="tm-labelled-line tm-clock-line"><strong>← Clock from the computer</strong>
+                </div>
+              </div>
+              <div class="tm-device">
+                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                </svg>
+                <strong>Computer</strong>
+              </div>
+            </div>
+            <div class="tm-two">
+              <article class="lesson-card">
+                <h3>Serial describes the data</h3>
+                <p>There is one data path in this direction. The clock line does not carry another data bit.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Synchronous describes timing</h3>
+                <p>The clock keeps the sender and receiver in step.</p>
+              </article>
+            </div>
+            <p class="tm-note">This is a simplified sensor interface. Power and other control connections are not shown.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Choose for the task</h2>
+            <p>Use the requirements, then explain the trade-off</p>
+          </template>
+          <section id="selection" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Worked judgement</p>
+            <h2>Build a reason from the situation</h2>
+            <p class="tm-situation">A machine sends a long stream of camera data to its computer.</p>
+            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Identify the need">
+                <h3 class="tm-static-title">Identify the need</h3>
+                <article class="lesson-card">
+                  <h3>Need</h3>
+                  <p>A large amount of data must keep moving. Repeated control bits use time that could carry image data.</p>
                 </article>
               </div>
-
-              <p class="viewer-note" data-role="viewer-note">
-                Sender and receiver use shared timing so the stream can be read
-                in step.
-              </p>
-            </article>
-          </section>
-
-          <section
-            id="selection"
-            class="lesson-section lesson-section--selection panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Selection</p>
-            <h2>Choose by matching the method to the problem</h2>
-            <p class="lesson-section-copy">
-              There is no method that is always best. In a scenario, identify
-              the type of data, how often it is sent, how far it travels, and
-              how reliable the link must be.
-            </p>
-
-            <div class="selection-grid">
-              <article class="selection-card">
-                <h3>Continuous data</h3>
-                <p>Synchronous timing often suits long streams because the transfer stays aligned.</p>
-              </article>
-              <article class="selection-card">
-                <h3>Irregular data</h3>
-                <p>Asynchronous framing can suit characters or bursts that arrive unpredictably.</p>
-              </article>
-              <article class="selection-card">
-                <h3>Long distance</h3>
-                <p>Serial links are easier to keep aligned across longer cable runs.</p>
-              </article>
-              <article class="selection-card">
-                <h3>Short internal path</h3>
-                <p>Parallel may be useful where several lines can stay closely synchronised.</p>
-              </article>
-              <article class="selection-card">
-                <h3>Low overhead</h3>
-                <p>Synchronous transfer can reduce repeated framing overhead for large transfers.</p>
-              </article>
-              <article class="selection-card">
-                <h3>Simple hardware</h3>
-                <p>Serial transmission can need fewer lines and simpler cabling.</p>
-              </article>
-            </div>
-
-            <article class="model-answer-card">
-              <h3>Model answer shape</h3>
-              <p>
-                Name the method, explain the scenario need, then state the
-                trade-off.
-              </p>
-              <p>
-                <strong>Example:</strong> Serial transmission is suitable for a
-                longer connection because one data path is easier to keep
-                reliable than several parallel lines that might fall out of
-                step.
-              </p>
-            </article>
-          </section>
-
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with transmission methods</h2>
-
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Mixing timing with path width</h3>
-                <p>
-                  Synchronous and asynchronous are about timing. Serial and
-                  parallel are about how many paths carry the bits.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Ask whether the question is about
-                  coordination or physical data lines.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Calling asynchronous "no timing"</h3>
-                <p>
-                  Asynchronous still needs the receiver to identify the data. It
-                  uses framing such as start and stop bits.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Say it does not rely on one continuous
-                  shared timing stream.
-                </p>
-              </article>
-
-              <article class="trap-card">
-                <h3>Assuming parallel is always faster</h3>
-                <p>
-                  Parallel sends several bits at once, but timing skew and
-                  interference can make it less reliable over distance.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Compare raw bit width with reliability
-                  and distance.
-                </p>
-              </article>
+              <div data-walkthrough-step="Connect the feature">
+                <h3 class="tm-static-title">Connect the feature</h3>
+                <article class="lesson-card">
+                  <h3>Feature</h3>
+                  <p>Synchronous transfer keeps the stream in step. It can avoid start and stop bits around each byte.</p>
+                </article>
+              </div>
+              <div data-walkthrough-step="Make a judgement">
+                <h3 class="tm-static-title">Make a judgement</h3>
+                <article class="lesson-card">
+                  <h3>Choice and condition</h3>
+                  <p>Use synchronous transmission for this stream to reduce repeated start/stop overhead. The equipment must support shared timing.</p>
+                </article>
+                <p class="tm-note">This is a choice about timing. It does not decide whether the data paths are serial or parallel.</p>
+              </div>
             </div>
           </section>
-
+          <section id="path-choice" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Your judgement</p>
+            <h2>A sensor at the far end of a greenhouse</h2>
+            <div class="tm-task" data-paired-scenario="path-choice" data-no-slide-advance>
+              <div class="tm-task-context">
+                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                </svg>
+                <p>A sensor is far from its computer. Its readings are small. Both devices support either proposed link, but the cable must be cheap and easy to install.</p>
+                <p><strong>Which data-path method would you choose?</strong>
+                </p>
+              </div>
+              <div class="tm-task-answer">
+                <label for="path-choice-method">Method</label>
+                <select id="path-choice-method" data-choice="type">
+                  <option value="">Choose…</option>
+                  <option value="serial">Serial</option>
+                  <option value="parallel">Parallel</option>
+                </select>
+                <label for="path-choice-reason">Main reason</label>
+                <select id="path-choice-reason" data-choice="reason">
+                  <option value="">Choose…</option>
+                  <option value="width">Several bits at once</option>
+                  <option value="simple">Fewer data paths to align</option>
+                  <option value="timing">No timing is needed</option>
+                </select>
+                <div class="tm-actions">
+                  <button type="button" class="primary-link" data-check-pair>Check choice</button>
+                  <button type="button" class="lesson-secondary-action" data-reset-pair>Clear choice</button>
+                </div>
+                <p data-pair-feedback aria-live="polite">
+                </p>
+              </div>
+            </div>
+            <label class="tm-draft-label" for="path-choice-draft">Explain why your choice fits. Give one disadvantage of the other option.</label>
+            <textarea class="exam-response tm-draft" id="path-choice-draft" data-exam-response="path-choice-v1" placeholder="Your explanation saves in this browser.">
+            </textarea>
+            <details class="exam-guidance">
+              <summary>Compare your explanation</summary>
+              <p>Serial suits the longer cable and small readings. It uses fewer data paths, so there are fewer lines to keep aligned. Parallel can send a group at once, but adds lines and timing concerns.</p>
+            </details>
+          </section>
+          <section id="timing-choice" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Your judgement</p>
+            <h2>A sensor that reports a change</h2>
+            <div class="tm-task" data-paired-scenario="timing-choice" data-no-slide-advance>
+              <div class="tm-task-context">
+                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                </svg>
+                <p>A simple alarm sensor sends one short reading when a door opens. There may be long gaps. Both devices support either timing method, and the data rate is low.</p>
+                <p><strong>Which timing method would you choose?</strong>
+                </p>
+              </div>
+              <div class="tm-task-answer">
+                <label for="timing-choice-method">Method</label>
+                <select id="timing-choice-method" data-choice="type">
+                  <option value="">Choose…</option>
+                  <option value="sync">Synchronous</option>
+                  <option value="async">Asynchronous</option>
+                </select>
+                <label for="timing-choice-reason">Main reason</label>
+                <select id="timing-choice-reason" data-choice="reason">
+                  <option value="">Choose…</option>
+                  <option value="speed">Always the fastest method</option>
+                  <option value="units">Start each short unit separately</option>
+                  <option value="none">No agreed bit speed</option>
+                </select>
+                <div class="tm-actions">
+                  <button type="button" class="primary-link" data-check-pair>Check choice</button>
+                  <button type="button" class="lesson-secondary-action" data-reset-pair>Clear choice</button>
+                </div>
+                <p data-pair-feedback aria-live="polite">
+                </p>
+              </div>
+            </div>
+            <label class="tm-draft-label" for="timing-choice-draft">Explain your choice. Is the start/stop overhead an important problem in this situation?</label>
+            <textarea class="exam-response tm-draft" id="timing-choice-draft" data-exam-response="timing-choice-v1" placeholder="Your explanation saves in this browser.">
+            </textarea>
+            <details class="exam-guidance">
+              <summary>Compare your explanation</summary>
+              <p>Asynchronous transmission suits the occasional short readings. Each unit can start when it is ready. Start and stop bits add overhead, but the low data rate makes that a reasonable cost. Synchronous transmission could work, but its timing arrangement is not needed for a long stream here.</p>
+            </details>
+          </section>
+          <section id="mistakes" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Quick recap</p>
+            <h2>Keep these three distinctions clear</h2>
+            <div class="tm-three">
+              <article class="lesson-card">
+                <h3>Serial ≠ asynchronous</h3>
+                <p>Serial describes the data paths. Asynchronous describes timing.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Asynchronous ≠ no timing</h3>
+                <p>The receiver still needs an agreed bit speed and a way to find each unit.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Parallel ≠ always faster</h3>
+                <p>Compare the actual bit rate, distance and number of data paths.</p>
+              </article>
+            </div>
+            <p class="tm-note">A strong answer explains what the method changes, then connects that change to the task.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Check your understanding</h2>
+            <p>Explain the methods and apply them</p>
+          </template>
           <section
             id="quiz"
             class="lesson-section lesson-section--quiz panel"
@@ -656,16 +1090,13 @@
             <p class="eyebrow">Exam-Style Practice</p>
             <h2>Explain the trade-off</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers into the page, then compare your ideas with the
-              answer guide.
+              Explain your choice. Then compare your answer with the guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
             </p>
 
-            <div class="exam-grid">
-              <article class="exam-card">
+            <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">4 marks</span>
                   <span class="exam-pill">Explain</span>
@@ -711,7 +1142,7 @@
                   </div>
                 </details>
               </article>
-
+              <div data-slide-break></div>
               <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">5 marks</span>
@@ -762,7 +1193,6 @@
                   </div>
                 </details>
               </article>
-            </div>
           </section>
         </main>
 
