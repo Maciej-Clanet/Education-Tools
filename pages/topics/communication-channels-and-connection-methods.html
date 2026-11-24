@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Communication Channels and Connection Methods Revision Lesson |
+      Communication Channels and Connection Methods Lesson |
       Education Tools
     </title>
     <meta
       name="description"
-      content="Revise simplex, half-duplex, full-duplex, point-to-point, multi-drop, and how to choose suitable wired or wireless connection methods."
+      content="Explore simplex, half-duplex, full-duplex, point-to-point, multi-drop, and how to choose suitable wired or wireless connection methods."
     />
     <meta
       property="og:title"
-      content="Communication Channels and Connection Methods Revision Lesson | Education Tools"
+      content="Communication Channels and Connection Methods Lesson | Education Tools"
     />
     <meta
       property="og:description"
-      content="Revise communication channel direction, device arrangements, wired and wireless methods, and how to justify a suitable connection for a scenario."
+      content="Explore communication channel direction, device arrangements, wired and wireless methods, and how to justify a suitable connection for a scenario."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Education Tools" />
@@ -31,6 +31,7 @@
       rel="stylesheet"
       href="../../css/pages/communication-channels-and-connection-methods.css"
     />
+    <link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -38,7 +39,7 @@
       src="../../javascript/pages/communication-channels-and-connection-methods.js"
     ></script>
   </head>
-  <body>
+  <body class="communication-lesson">
     <div class="page-shell">
       <header class="lesson-hero panel panel-accent">
         <p class="eyebrow">Transmitting Data</p>
@@ -86,7 +87,7 @@
           </article>
           <article class="lesson-meta-card">
             <strong>Interactive focus</strong>
-            <span>Scenario-based connection chooser</span>
+            <span>Channel and connection matching tasks</span>
           </article>
         </div>
 
@@ -114,7 +115,7 @@
 
       <noscript>
         <p class="panel lesson-sequence">
-          Quiz scoring, answer saving, the scenario chooser, and teacher slides
+          Quiz scoring, answer saving, the matching tasks, and teacher slides
           need JavaScript, but the lesson notes still work without it.
         </p>
       </noscript>
@@ -123,398 +124,1017 @@
         <aside class="lesson-sidebar panel">
           <p class="eyebrow">Jump To</p>
           <nav class="section-nav" aria-label="Lesson sections">
-            <a href="#overview" data-section-link>Overview</a>
-            <a href="#direction" data-section-link>Direction</a>
-            <a href="#arrangement" data-section-link>Arrangement</a>
+            <a href="#overview" data-section-link>Communication channels</a>
+            <a href="#channel-and-method" data-section-link>Channel or method?</a>
+            <a href="#direction" data-section-link>Simplex</a>
+            <a href="#half-duplex" data-section-link>Half-duplex</a>
+            <a href="#full-duplex" data-section-link>Full-duplex</a>
+            <a href="#arrangement" data-section-link>Point-to-point</a>
+            <a href="#multi-drop" data-section-link>Multi-drop</a>
+            <a href="#channel-practice" data-section-link>Match the channel</a>
             <a href="#connection-methods" data-section-link>Connection methods</a>
-            <a href="#scenario-chooser" data-section-link>Scenario chooser</a>
-            <a href="#selection" data-section-link>Choosing the link</a>
-            <a href="#mistakes" data-section-link>Common mistakes</a>
+            <a href="#ethernet" data-section-link>Ethernet over copper</a>
+            <a href="#fibre" data-section-link>Fibre-optic cable</a>
+            <a href="#usb" data-section-link>USB</a>
+            <a href="#wifi" data-section-link>Wi-Fi</a>
+            <a href="#bluetooth" data-section-link>Bluetooth</a>
+            <a href="#cellular" data-section-link>Cellular data</a>
+            <a href="#scenario-chooser" data-section-link>Match the method</a>
+            <a href="#selection" data-section-link>Choose for the task</a>
+            <a href="#justify-link" data-section-link>Build an explanation</a>
+            <a href="#mistakes" data-section-link>Quick recap</a>
             <a href="#quiz" data-section-link>Quick quiz</a>
-            <a href="#exam-practice" data-section-link>Exam practice</a>
+            <a href="#exam-practice" data-section-link>Written practice</a>
           </nav>
         </aside>
 
         <main class="lesson-main" data-role="lesson-main">
-          <section
-            id="overview"
-            class="lesson-section lesson-section--overview panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Overview</p>
-            <h2>Communication questions are really choice questions</h2>
-            <p class="lesson-section-copy">
-              A communication channel describes how data can move. A connection
-              method describes the practical link used to join devices. In exam
-              answers, the strongest responses name the method and explain why
-              it fits the task.
+          <template data-teacher-opener>
+            <h2>Communication channels and connection methods</h2>
+            <p>How does data get from one device to another?</p>
+            <ul>
+              <li>Follow the direction of data</li>
+              <li>Identify who shares a path</li>
+              <li>Choose a connection that fits the task</li>
+            </ul>
+          </template>
+          <section id="overview" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Start here</p>
+            <h2>Devices need a path for data</h2>
+            <p>A <strong>communication channel</strong> is a path that carries data from a sender to a receiver.</p>
+            <div class="cc-three cc-intro">
+              <article class="lesson-card">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#receiver"/>
+                </svg>
+                <h3>Listen to a radio station</h3>
+                <p>The station sends. Your radio receives.</p>
+                <strong class="cc-direction-mark">One way →</strong>
+              </article>
+              <article class="lesson-card">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#radio"/>
+                </svg>
+                <h3>Use a staff radio</h3>
+                <p>Each person waits for the other to finish.</p>
+                <strong class="cc-direction-mark">Take turns ⇄</strong>
+              </article>
+              <article class="lesson-card">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                </svg>
+                <h3>Make a phone call</h3>
+                <p>Both people can speak and hear at the same time.</p>
+                <strong class="cc-direction-mark">Both ways ⇆</strong>
+              </article>
+            </div>
+            <p class="cc-note">Different tasks need different channels. Start by asking: <strong>who sends, who receives, and when?</strong>
             </p>
-
-            <div class="communication-map">
-              <article class="communication-card communication-card--direction">
-                <span class="communication-icon communication-icon--direction"></span>
-                <h3>Direction</h3>
-                <p>Simplex, half-duplex, and full-duplex describe data flow.</p>
-              </article>
-              <article class="communication-card communication-card--arrangement">
-                <span class="communication-icon communication-icon--arrangement"></span>
-                <h3>Arrangement</h3>
-                <p>Point-to-point and multi-drop describe device sharing.</p>
-              </article>
-              <article class="communication-card communication-card--method">
-                <span class="communication-icon communication-icon--method"></span>
-                <h3>Method</h3>
-                <p>Ethernet, fibre, Wi-Fi, Bluetooth, and cellular are links.</p>
-              </article>
-            </div>
-
-            <div class="lesson-intro-grid">
-              <article class="lesson-card">
-                <h3>Learning goals</h3>
-                <ul class="lesson-list">
-                  <li>Define simplex, half-duplex, and full-duplex.</li>
-                  <li>Explain point-to-point and multi-drop arrangements.</li>
-                  <li>Compare common wired and wireless methods.</li>
-                  <li>Justify a suitable connection method for a scenario.</li>
-                </ul>
-              </article>
-
-              <article class="lesson-card">
-                <h3>Quick memory hooks</h3>
-                <ul class="memory-list">
-                  <li><strong>Simplex:</strong> one direction only.</li>
-                  <li><strong>Half-duplex:</strong> both ways, taking turns.</li>
-                  <li><strong>Full-duplex:</strong> both ways at the same time.</li>
-                  <li><strong>Multi-drop:</strong> several devices share one path.</li>
-                </ul>
-              </article>
-            </div>
           </section>
-
-          <section
-            id="direction"
-            class="lesson-section lesson-section--direction panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Direction</p>
-            <h2>Simplex and duplex describe the direction of communication</h2>
-            <p class="lesson-section-copy">
-              Direction is about whether data can travel one way, both ways by
-              taking turns, or both ways simultaneously. Do not mix this up with
-              how many devices share the link.
+          <section id="channel-and-method" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Two different questions</p>
+            <h2>Channel or connection method?</h2>
+            <div class="cc-link cc-link--full">
+              <div class="cc-device">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                </svg>
+                <strong>Your phone</strong>
+              </div>
+              <div class="cc-lanes">
+                <div class="cc-lane cc-lane--out"><span>Your voice →</span><i class="cc-dot" aria-hidden="true"></i>
+                </div>
+                <div class="cc-lane cc-lane--back"><span>← Their voice</span><i class="cc-dot" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="cc-device">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                </svg>
+                <strong>Your friend's phone</strong>
+              </div>
+            </div>
+            <div class="cc-two">
+              <article class="lesson-card">
+                <h3>Channel: how can data flow?</h3>
+                <p>The call carries voice data <strong>both ways at once</strong>.</p>
+                <p>Both people can speak and hear at the same time.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Method: what connects the devices?</h3>
+                <p>This example uses a <strong>mobile network</strong>.</p>
+                <p><strong>Radio signals</strong> connect each phone to the network.</p>
+              </article>
+            </div>
+            <p class="cc-note">The phones connect <strong>through the mobile network</strong>. The arrows show the direction of voice data during the call.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Which way can data travel?</h2>
+            <p>One direction, taking turns, or both directions at once</p>
+          </template>
+          <section id="direction" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Channel direction</p>
+            <h2>Simplex</h2>
+            <p class="cc-rule">Data travels in one direction only.</p>
+            <div class="cc-flow cc-flow--simplex" data-teaching-animation="data flow" data-no-slide-advance>
+              <div class="cc-link cc-link--simplex">
+                <div class="cc-device">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#tower"/>
+                  </svg>
+                  <strong>Radio station</strong>
+                </div>
+                <div class="cc-lanes">
+                  <div class="cc-lane cc-lane--out"><span>Broadcast →</span><i class="cc-dot" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="cc-device">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#receiver"/>
+                  </svg>
+                  <strong>Digital radio</strong>
+                </div>
+              </div>
+            </div>
+            <p class="cc-example"><strong>Example:</strong> The station broadcasts programmes. The radio receives them; it does not reply on that channel.</p>
+            <p class="cc-note">A simplex channel has <strong>no return direction</strong>.</p>
+          </section>
+          <section id="half-duplex" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Channel direction</p>
+            <h2>Half-duplex</h2>
+            <p class="cc-rule">Both ends can send, but they must take turns.</p>
+            <div class="cc-flow cc-flow--half" data-teaching-animation="data flow" data-no-slide-advance>
+              <div class="cc-link cc-link--half">
+                <div class="cc-device">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#radio"/>
+                  </svg>
+                  <strong>Staff radio A</strong>
+                </div>
+                <div class="cc-lanes">
+                  <div class="cc-lane cc-lane--out"><span>A speaks →</span><i class="cc-dot" aria-hidden="true"></i>
+                  </div>
+                  <div class="cc-lane cc-lane--back"><span>← B speaks</span><i class="cc-dot" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="cc-device">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#radio"/>
+                  </svg>
+                  <strong>Staff radio B</strong>
+                </div>
+              </div>
+              <div class="cc-phase" aria-hidden="true"><span class="cc-phase-a">A sends · B listens</span><span class="cc-phase-b">B sends · A listens</span>
+              </div>
+            </div>
+            <p class="cc-example"><strong>Example:</strong> A member of staff holds the talk button. The other person listens, then replies.</p>
+            <p class="cc-note">Both ends can send. <strong>Only one direction is active at a time.</strong>
             </p>
-
-            <div class="channel-visual-grid">
-              <article class="channel-card channel-card--simplex">
-                <h3>Simplex</h3>
-                <div
-                  class="channel-diagram channel-diagram--simplex"
-                  aria-label="Simplex diagram showing data from device A to device B only"
-                >
-                  <span class="device-node">A</span>
-                  <span class="signal-line signal-line--right"></span>
-                  <span class="device-node">B</span>
+          </section>
+          <section id="full-duplex" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Channel direction</p>
+            <h2>Full-duplex</h2>
+            <p class="cc-rule">Both ends can send and receive at the same time.</p>
+            <div class="cc-flow cc-flow--full" data-teaching-animation="data flow" data-no-slide-advance>
+              <div class="cc-link cc-link--full">
+                <div class="cc-device">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                  </svg>
+                  <strong>Office PC</strong>
                 </div>
-                <p>
-                  Data travels in one direction only. The receiver does not send
-                  back on the same channel.
-                </p>
-              </article>
-
-              <article class="channel-card channel-card--half">
-                <h3>Half-duplex</h3>
-                <div
-                  class="channel-diagram channel-diagram--half"
-                  aria-label="Half-duplex diagram showing devices taking turns"
-                >
-                  <span class="device-node">A</span>
-                  <span class="signal-stack">
-                    <span class="signal-line signal-line--right"></span>
-                    <span class="signal-line signal-line--left"></span>
-                  </span>
-                  <span class="device-node">B</span>
+                <div class="cc-lanes">
+                  <div class="cc-lane cc-lane--out"><span>PC sends →</span><i class="cc-dot" aria-hidden="true"></i>
+                  </div>
+                  <div class="cc-lane cc-lane--back"><span>← Switch sends</span><i class="cc-dot" aria-hidden="true"></i>
+                  </div>
                 </div>
-                <p>
-                  Both devices can send, but only one sends at a time. They
-                  must take turns.
-                </p>
-              </article>
-
-              <article class="channel-card channel-card--full">
+                <div class="cc-device">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#switch"/>
+                  </svg>
+                  <strong>Network switch</strong>
+                </div>
+              </div>
+            </div>
+            <p class="cc-example"><strong>Example:</strong> A <strong>network switch</strong> connects devices on a network. Its Ethernet link to a PC can carry data both ways at the same time.</p>
+            <p class="cc-note">Full-duplex means <strong>at the same time</strong>, not merely “both directions”.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Who shares the path?</h2>
+            <p>The arrangement is a separate question from the direction</p>
+          </template>
+          <section id="arrangement" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Channel arrangement</p>
+            <h2>Point-to-point: one link, two devices</h2>
+            <div class="cc-link cc-link--full">
+              <div class="cc-device">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                </svg>
+                <strong>One PC</strong>
+              </div>
+              <div class="cc-lanes">
+                <div class="cc-lane cc-lane--out"><span>Dedicated link →</span><i class="cc-dot" aria-hidden="true"></i>
+                </div>
+                <div class="cc-lane cc-lane--back"><span>← Switch sends</span><i class="cc-dot" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="cc-device">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#switch"/>
+                </svg>
+                <strong>One switch</strong>
+              </div>
+            </div>
+            <p class="cc-rule">A <strong>point-to-point</strong> link joins exactly two devices.</p>
+            <p><strong>Example:</strong> one office PC has its own Ethernet cable to a switch.</p>
+            <p class="cc-note">Look at <strong>this one cable</strong>. The switch can have other cables to other PCs.</p>
+          </section>
+          <section id="multi-drop" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Channel arrangement</p>
+            <h2>Multi-drop: several devices share one path</h2>
+            <p>A <strong>multi-drop</strong> link connects several devices to the same communication path.</p>
+            <div class="cc-bus" data-shared-bus data-no-slide-advance>
+              <div class="cc-bus-controller">
+                <div class="cc-device">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                  </svg>
+                  <strong>Controller</strong>
+                </div>
+              </div>
+              <div class="cc-bus-trunk"><span>One shared cable</span>
+              </div>
+              <div class="cc-bus-meters">
+                <div class="cc-bus-branch">
+                  <button type="button" class="cc-meter" data-meter="1" aria-pressed="true">
+                    <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                    </svg>
+                    <strong>Meter 1</strong>
+                  </button>
+                </div>
+                <div class="cc-bus-branch">
+                  <button type="button" class="cc-meter" data-meter="2" aria-pressed="false">
+                    <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                    </svg>
+                    <strong>Meter 2</strong>
+                  </button>
+                </div>
+                <div class="cc-bus-branch">
+                  <button type="button" class="cc-meter" data-meter="3" aria-pressed="false">
+                    <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                    </svg>
+                    <strong>Meter 3</strong>
+                  </button>
+                </div>
+              </div>
+              <p class="cc-bus-status" data-bus-status aria-live="polite">The controller asks Meter 1 for a reading. Only Meter 1 replies.</p>
+            </div>
+            <p><strong>Example:</strong> a building controller reads several energy meters on one shared cable. Select a meter to request its reading.</p>
+          </section>
+          <section id="combine-descriptions" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Put the ideas together</p>
+            <h2>One link can have two descriptions</h2>
+            <div class="cc-link cc-link--full">
+              <div class="cc-device">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                </svg>
+                <strong>Office PC</strong>
+              </div>
+              <div class="cc-lanes">
+                <div class="cc-lane cc-lane--out"><span>Data →</span><i class="cc-dot" aria-hidden="true"></i>
+                </div>
+                <div class="cc-lane cc-lane--back"><span>← Switch sends</span><i class="cc-dot" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="cc-device">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#switch"/>
+                </svg>
+                <strong>Network switch</strong>
+              </div>
+            </div>
+            <div class="cc-two">
+              <article class="lesson-card"><span class="cc-label">Direction</span>
                 <h3>Full-duplex</h3>
-                <div
-                  class="channel-diagram channel-diagram--full"
-                  aria-label="Full-duplex diagram showing simultaneous two-way data"
-                >
-                  <span class="device-node">A</span>
-                  <span class="signal-stack">
-                    <span class="signal-line signal-line--right is-live"></span>
-                    <span class="signal-line signal-line--left is-live"></span>
-                  </span>
-                  <span class="device-node">B</span>
-                </div>
-                <p>
-                  Sending and receiving can happen at the same time. This suits
-                  live calls and switched network links.
-                </p>
+                <p>Both devices can send at the same time.</p>
               </article>
-            </div>
-          </section>
-
-          <section
-            id="arrangement"
-            class="lesson-section lesson-section--arrangement panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Arrangement</p>
-            <h2>Point-to-point and multi-drop describe who shares the path</h2>
-            <p class="lesson-section-copy">
-              Arrangement is about how devices are connected. A point-to-point
-              link is dedicated to two devices. A multi-drop link has several
-              devices sharing the same communication path.
-            </p>
-
-            <div class="topology-grid">
-              <article class="topology-card">
+              <article class="lesson-card"><span class="cc-label">Arrangement</span>
                 <h3>Point-to-point</h3>
-                <div class="topology-diagram topology-diagram--point">
-                  <span class="device-node">A</span>
-                  <span class="topology-line"></span>
-                  <span class="device-node">B</span>
-                </div>
-                <ul class="lesson-list">
-                  <li>Exactly two devices are directly linked.</li>
-                  <li>Performance is more predictable.</li>
-                  <li>Faults can be easier to isolate.</li>
-                </ul>
-              </article>
-
-              <article class="topology-card">
-                <h3>Multi-drop</h3>
-                <div class="topology-diagram topology-diagram--drop">
-                  <span class="bus-line"></span>
-                  <span class="device-node">A</span>
-                  <span class="device-node">B</span>
-                  <span class="device-node">C</span>
-                  <span class="device-node">D</span>
-                </div>
-                <ul class="lesson-list">
-                  <li>Several devices share one path.</li>
-                  <li>It can reduce cabling.</li>
-                  <li>Access must be managed to avoid clashes.</li>
-                </ul>
+                <p>This path joins two devices.</p>
               </article>
             </div>
+            <p class="cc-note">Do not choose between these labels. They answer <strong>different questions</strong> about the same link.</p>
           </section>
-
-          <section
-            id="connection-methods"
-            class="lesson-section lesson-section--connection-methods panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Connection Methods</p>
-            <h2>Different links suit different jobs</h2>
-            <p class="lesson-section-copy">
-              A connection method is the real link used to transmit data. The
-              best method depends on speed, distance, mobility, reliability,
-              interference, cost, and security.
-            </p>
-
-            <div class="method-grid">
-              <article class="method-card">
-                <span class="method-icon method-icon--ethernet"></span>
-                <h3>Ethernet cable</h3>
-                <p>Good for fixed devices that need stable, low-latency links.</p>
-                <strong>Trade-off: devices are tethered to the network point.</strong>
-              </article>
-              <article class="method-card">
-                <span class="method-icon method-icon--fibre"></span>
-                <h3>Fibre optic</h3>
-                <p>Good for high bandwidth, longer runs, and low interference.</p>
-                <strong>Trade-off: installation can cost more.</strong>
-              </article>
-              <article class="method-card">
-                <span class="method-icon method-icon--wifi"></span>
-                <h3>Wi-Fi</h3>
-                <p>Good for mobile devices and spaces where cabling is awkward.</p>
-                <strong>Trade-off: signal quality and interference can vary.</strong>
-              </article>
-              <article class="method-card">
-                <span class="method-icon method-icon--bluetooth"></span>
-                <h3>Bluetooth</h3>
-                <p>Good for short-range peripherals and low-power pairing.</p>
-                <strong>Trade-off: range and bandwidth are limited.</strong>
-              </article>
-              <article class="method-card">
-                <span class="method-icon method-icon--cellular"></span>
-                <h3>Cellular data</h3>
-                <p>Good for remote devices away from local networks.</p>
-                <strong>Trade-off: data costs and coverage can vary.</strong>
-              </article>
-            </div>
-          </section>
-
-          <section
-            id="scenario-chooser"
-            class="lesson-section lesson-section--scenario-chooser panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Interactive</p>
-            <h2>Match a connection method to the scenario</h2>
-            <p class="lesson-section-copy">
-              Choose a scenario and inspect the recommendation. Focus on the
-              reason, not just the name of the method.
-            </p>
-
-            <article
-              class="scenario-tool"
-              data-role="scenario-tool"
-              aria-labelledby="scenario-tool-heading"
-            >
-              <div class="tool-heading">
-                <div>
-                  <p class="eyebrow">Scenario chooser</p>
-                  <h3 id="scenario-tool-heading">What does the task need?</h3>
-                </div>
-                <span class="scenario-pill" data-role="scenario-pill"
-                  >Classroom PCs</span
-                >
+          <section id="channel-practice" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Your turn · Channels</p>
+            <h2>Match the channel to the situation</h2>
+            <p>Read what the devices do. Choose a direction and an arrangement.</p>
+            <div class="cc-practice" data-practice="channels" data-no-slide-advance>
+              <div class="cc-practice-nav" data-practice-controls hidden>
+                <button type="button" class="lesson-secondary-action" data-practice-prev>Previous task</button>
+                <span data-practice-progress aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-practice-next>Next task</button>
               </div>
-
-              <div
-                class="scenario-button-row"
-                data-role="scenario-buttons"
-                aria-label="Choose a connection scenario"
-              ></div>
-
-              <div class="scenario-output">
-                <article>
-                  <span>Need</span>
-                  <strong data-role="scenario-need">Stable fixed access</strong>
-                </article>
-                <article>
-                  <span>Recommended method</span>
-                  <strong data-role="scenario-method">Ethernet</strong>
-                </article>
-                <article>
-                  <span>Channel idea</span>
-                  <strong data-role="scenario-channel"
-                    >Full-duplex point-to-point</strong
-                  >
-                </article>
-              </div>
-
-              <div class="scenario-reasoning">
-                <h4>Reasoning</h4>
-                <ul data-role="scenario-reasons">
-                  <li>Fixed devices benefit from a reliable wired connection.</li>
-                  <li>Switched Ethernet gives each device a predictable link.</li>
-                </ul>
-              </div>
-            </article>
-          </section>
-
-          <section
-            id="selection"
-            class="lesson-section lesson-section--selection panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Selection</p>
-            <h2>Justify the link by matching it to the task</h2>
-            <p class="lesson-section-copy">
-              A strong answer compares the job requirements with the strengths
-              and trade-offs of the method. Avoid answers that only say a method
-              is "faster" or "wireless" without context.
-            </p>
-
-            <div class="selection-grid">
-              <article class="selection-card">
-                <h3>Speed and bandwidth</h3>
-                <p>Backups, video, and many users need more capacity.</p>
+              <article class="cc-task" data-practice-card data-paired-scenario="channels-sensor">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                  </svg>
+                  <h3>A remote sensor</h3>
+                  <p>A sensor sends readings to one recorder on a dedicated link. The recorder never sends data back.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="channels-sensor-type">Direction</label>
+                  <select id="channels-sensor-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="simplex">Simplex</option>
+                    <option value="half">Half-duplex</option>
+                    <option value="full">Full-duplex</option>
+                  </select>
+                  <label for="channels-sensor-reason">Arrangement</label>
+                  <select id="channels-sensor-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="point">Point-to-point</option>
+                    <option value="multi">Multi-drop</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>Only the sensor sends, so the channel is simplex. The dedicated path joins two devices, so it is point-to-point.</p>
+                </div>
               </article>
-              <article class="selection-card">
-                <h3>Distance</h3>
-                <p>Short-range peripherals and building backbones need different links.</p>
+              <article class="cc-task" data-practice-card data-paired-scenario="channels-radios">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#radio"/>
+                  </svg>
+                  <h3>Two staff radios</h3>
+                  <p>Only two radios use this link. Either person can speak, but they must wait for the other to finish.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="channels-radios-type">Direction</label>
+                  <select id="channels-radios-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="simplex">Simplex</option>
+                    <option value="half">Half-duplex</option>
+                    <option value="full">Full-duplex</option>
+                  </select>
+                  <label for="channels-radios-reason">Arrangement</label>
+                  <select id="channels-radios-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="point">Point-to-point</option>
+                    <option value="multi">Multi-drop</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>The radios take turns, so the channel is half-duplex. This link is between the two radios.</p>
+                </div>
               </article>
-              <article class="selection-card">
-                <h3>Mobility</h3>
-                <p>Moving devices often need wireless access.</p>
+              <article class="cc-task" data-practice-card data-paired-scenario="channels-office">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                  </svg>
+                  <h3>An office PC</h3>
+                  <p>One PC has its own cable to a switch. The PC and switch can send to each other at the same time.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="channels-office-type">Direction</label>
+                  <select id="channels-office-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="simplex">Simplex</option>
+                    <option value="half">Half-duplex</option>
+                    <option value="full">Full-duplex</option>
+                  </select>
+                  <label for="channels-office-reason">Arrangement</label>
+                  <select id="channels-office-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="point">Point-to-point</option>
+                    <option value="multi">Multi-drop</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>Sending at the same time is full-duplex. This one cable is a point-to-point link.</p>
+                </div>
               </article>
-              <article class="selection-card">
-                <h3>Reliability</h3>
-                <p>Critical systems may need stable links with less interference.</p>
+              <article class="cc-task" data-practice-card data-paired-scenario="channels-meters">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                  </svg>
+                  <h3>Energy meters</h3>
+                  <p>A controller and four meters share one cable. The controller asks one meter at a time, then waits for its reply.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="channels-meters-type">Direction</label>
+                  <select id="channels-meters-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="simplex">Simplex</option>
+                    <option value="half">Half-duplex</option>
+                    <option value="full">Full-duplex</option>
+                  </select>
+                  <label for="channels-meters-reason">Arrangement</label>
+                  <select id="channels-meters-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="point">Point-to-point</option>
+                    <option value="multi">Multi-drop</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>Requests and replies take turns: half-duplex. Several devices share the cable: multi-drop.</p>
+                </div>
               </article>
-              <article class="selection-card">
-                <h3>Security</h3>
-                <p>Wireless links often need careful authentication and encryption.</p>
-              </article>
-              <article class="selection-card">
-                <h3>Cost</h3>
-                <p>The best technical link still has to be affordable to install.</p>
+              <article class="cc-task" data-practice-card data-paired-scenario="channels-alerts">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#receiver"/>
+                  </svg>
+                  <h3>An alert system</h3>
+                  <p>One unit sends alerts to several receivers on a shared cable. The receivers do not reply.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="channels-alerts-type">Direction</label>
+                  <select id="channels-alerts-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="simplex">Simplex</option>
+                    <option value="half">Half-duplex</option>
+                    <option value="full">Full-duplex</option>
+                  </select>
+                  <label for="channels-alerts-reason">Arrangement</label>
+                  <select id="channels-alerts-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="point">Point-to-point</option>
+                    <option value="multi">Multi-drop</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>The receivers never send back, so this is simplex. Several devices use the same path, so it is multi-drop.</p>
+                </div>
               </article>
             </div>
-
-            <article class="model-answer-card">
-              <h3>Model answer shape</h3>
-              <p>
-                Name the method, link it to the scenario, then compare against
-                at least one weaker option.
-              </p>
-              <p>
-                <strong>Example:</strong> Wi-Fi is suitable for warehouse
-                tablets because staff move between aisles. Ethernet would be
-                more stable, but a cable would restrict movement and could be a
-                safety issue.
-              </p>
-            </article>
           </section>
-
-          <section
-            id="mistakes"
-            class="lesson-section lesson-section--mistakes panel"
-            data-lesson-section
-          >
-            <p class="eyebrow">Exam Traps</p>
-            <h2>Common mistakes with channels and connections</h2>
-
-            <div class="trap-grid">
-              <article class="trap-card">
-                <h3>Mixing up direction and arrangement</h3>
-                <p>
-                  Simplex describes direction. Point-to-point describes how many
-                  devices are on the link.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Ask "which way can data move?" and
-                  "who shares the path?" as separate questions.
-                </p>
+          <template data-teacher-divider>
+            <h2>Connection methods</h2>
+            <p>Recognise the equipment and choose a suitable link</p>
+          </template>
+          <section id="connection-methods" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Connection methods</p>
+            <h2>A cable, or a wireless link?</h2>
+            <div class="cc-two">
+              <article class="lesson-card">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#switch"/>
+                </svg>
+                <h3>Wired</h3>
+                <p>A cable carries the data.</p>
+                <p>Copper uses electrical signals. Fibre uses light.</p>
               </article>
-
-              <article class="trap-card">
-                <h3>Forgetting the timing difference</h3>
-                <p>
-                  Half-duplex and full-duplex both allow two-way communication,
-                  but only full-duplex allows it at the same time.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Use the phrase "at the same time" for
-                  full-duplex.
-                </p>
+              <article class="lesson-card">
+                <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#tower"/>
+                </svg>
+                <h3>Wireless</h3>
+                <p>Radio signals carry the data through the air.</p>
+                <p>A device can move within the covered area.</p>
               </article>
-
-              <article class="trap-card">
-                <h3>Naming a method without a reason</h3>
-                <p>
-                  "Use fibre" is weaker than explaining why fibre suits the
-                  distance, bandwidth, or interference problem.
-                </p>
-                <p class="trap-fix">
-                  <strong>Fix:</strong> Always add a because-clause.
-                </p>
+            </div>
+            <p class="cc-note">Choose for the task. A fixed office PC and a moving handheld scanner do not have the same needs.</p>
+          </section>
+          <section id="ethernet" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Connection method · Wired · A fixed network link</p>
+            <h2>Ethernet over copper</h2>
+            <p>A cable links the device to a network switch. Data travels as electrical signals.</p>
+            <div class="cc-method">
+              <figure class="cc-photo"><img src="../../assets/images/communication/ethernet.jpg" alt="Cut-open Ethernet cable showing four twisted pairs and its clear plug." width="960" height="720" loading="lazy"/>
+                <figcaption>Copper pairs inside an Ethernet cable<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:Ethernet_cable.JPG">Dmitry G</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></small>
+                </figcaption>
+              </figure>
+              <div class="cc-method-copy">
+                <div><span class="cc-label">Example</span>
+                  <h3>A room of desktop PCs shares files with a local server.</h3>
+                </div>
+                <div><span class="cc-label">Why it fits</span>
+                  <p>The PCs stay at their desks. A cable gives each PC a link without Wi-Fi radio competition.</p>
+                </div>
+                <div><span class="cc-label">Check the limit</span>
+                  <p>A cable must reach each desk. It restricts movement.</p>
+                </div>
+              </div>
+            </div>
+            <p class="cc-note">Ethernet can also run over fibre. This photograph shows a copper cable.</p>
+          </section>
+          <section id="fibre" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Connection method · Wired · Light carries the data</p>
+            <h2>Fibre-optic cable</h2>
+            <p>Thin glass or plastic fibres carry data as light.</p>
+            <div class="cc-method">
+              <figure class="cc-photo"><img src="../../assets/images/communication/fibre.jpg" alt="Close view of two LC fibre-optic connectors." width="960" height="720" loading="lazy"/>
+                <figcaption>Fibre-optic connectors<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:LC-optical-fiber-connector-hdr-0a.jpg">Adamantios</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></small>
+                </figcaption>
+              </figure>
+              <div class="cc-method-copy">
+                <div><span class="cc-label">Example</span>
+                  <h3>Two college buildings need a link for large file transfers.</h3>
+                </div>
+                <div><span class="cc-label">Why it fits</span>
+                  <p>Fibre can carry large amounts of data over long links. Electrical noise does not affect the light signal.</p>
+                </div>
+                <div><span class="cc-label">Check the limit</span>
+                  <p>Installation and suitable equipment can cost more. The cable needs careful handling.</p>
+                </div>
+              </div>
+            </div>
+            <p class="cc-note">Fibre is the cable material. It can carry an Ethernet connection.</p>
+          </section>
+          <section id="usb" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Connection method · Wired · Connect a nearby device</p>
+            <h2>USB</h2>
+            <p>A USB cable can transfer data between a computer and a compatible device.</p>
+            <div class="cc-method">
+              <figure class="cc-photo"><img src="../../assets/images/communication/usb.jpg" alt="USB Type-C cable with its small reversible connector." width="960" height="720" loading="lazy"/>
+                <figcaption>A USB-C cable<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:USB_Type_C.jpg">FarGah1</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></small>
+                </figcaption>
+              </figure>
+              <div class="cc-method-copy">
+                <div><span class="cc-label">Example</span>
+                  <h3>A photographer copies photos from a camera to a laptop.</h3>
+                </div>
+                <div><span class="cc-label">Why it fits</span>
+                  <p>The camera can transfer its files directly. An internet connection is not needed.</p>
+                </div>
+                <div><span class="cc-label">Check the limit</span>
+                  <p>Check the ports and cable. The cable must support data transfer, not only charging.</p>
+                </div>
+              </div>
+            </div>
+            <p class="cc-note">USB-C names a connector shape. It does not tell you the data speed by itself.</p>
+          </section>
+          <section id="wifi" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Connection method · Wireless · Join a local network</p>
+            <h2>Wi-Fi</h2>
+            <p>A wireless access point connects nearby devices to the network using radio.</p>
+            <div class="cc-method">
+              <figure class="cc-photo"><img src="../../assets/images/communication/wifi.jpg" alt="White TP-Link Wi-Fi router with an antenna." width="960" height="720" loading="lazy"/>
+                <figcaption>A Wi-Fi router includes an access point<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:TP-Link_TL-WR740N_router_HS2.jpg">Hayden Schiff</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
+                </figcaption>
+              </figure>
+              <div class="cc-method-copy">
+                <div><span class="cc-label">Example</span>
+                  <h3>Staff carry scanners around a warehouse.</h3>
+                </div>
+                <div><span class="cc-label">Why it fits</span>
+                  <p>Staff can move without a cable. Access points can provide coverage across the working area.</p>
+                </div>
+                <div><span class="cc-label">Check the limit</span>
+                  <p>Walls, distance and other radio use can reduce performance. Access to the network must be protected.</p>
+                </div>
+              </div>
+            </div>
+            <p class="cc-note">Typical Wi-Fi uses half-duplex radio: devices take turns quickly. It can still support a two-way video call.</p>
+          </section>
+          <section id="bluetooth" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Connection method · Wireless · Link nearby devices</p>
+            <h2>Bluetooth</h2>
+            <p>Bluetooth connects compatible devices over radio, often with low power use.</p>
+            <div class="cc-method">
+              <figure class="cc-photo"><img src="../../assets/images/communication/bluetooth.jpg" alt="Black Sony wireless Bluetooth headphones." width="960" height="720" loading="lazy"/>
+                <figcaption>Bluetooth headphones<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:Sony-WH-1000XM3-kabellose-Bluetooth-Noise-Cancelling-Kopfhoerer.jpg">www.digitalpush.net</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
+                </figcaption>
+              </figure>
+              <div class="cc-method-copy">
+                <div><span class="cc-label">Example</span>
+                  <h3>A student connects headphones to a phone.</h3>
+                </div>
+                <div><span class="cc-label">Why it fits</span>
+                  <p>The devices are near each other. They can exchange audio without a cable or a Wi-Fi network.</p>
+                </div>
+                <div><span class="cc-label">Check the limit</span>
+                  <p>It is not the usual choice for transferring large files across a building. Both devices must support it.</p>
+                </div>
+              </div>
+            </div>
+            <p class="cc-note">The working range depends on the devices and surroundings. Do not assume one fixed distance.</p>
+          </section>
+          <section id="cellular" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Connection method · Wireless · Use a mobile network</p>
+            <h2>Cellular data</h2>
+            <p>A phone or modem connects by radio to a mobile network base station. Examples include 4G and 5G.</p>
+            <div class="cc-method">
+              <figure class="cc-photo"><img src="../../assets/images/communication/cellular.jpg" alt="Antennas mounted on a mobile phone mast." width="960" height="720" loading="lazy"/>
+                <figcaption>Mobile network antennas<small>Photo: <a href="https://commons.wikimedia.org/wiki/File:Mobile_phone_mast_antenna.jpg">Santeri Viinamäki</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></small>
+                </figcaption>
+              </figure>
+              <div class="cc-method-copy">
+                <div><span class="cc-label">Example</span>
+                  <h3>A maintenance worker sends reports from different outdoor sites.</h3>
+                </div>
+                <div><span class="cc-label">Why it fits</span>
+                  <p>The worker can connect where there is mobile coverage, even with no local Wi-Fi.</p>
+                </div>
+                <div><span class="cc-label">Check the limit</span>
+                  <p>Coverage and signal strength vary. A data service usually has an ongoing cost.</p>
+                </div>
+              </div>
+            </div>
+            <p class="cc-note">Mobile data and Wi-Fi are different ways for a phone to get network access.</p>
+          </section>
+          <section id="scenario-chooser" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Your turn · Connection methods</p>
+            <h2>Choose the method and its main reason</h2>
+            <p>Use the needs in the situation. Match the method to a reason that supports it.</p>
+            <div class="cc-practice" data-practice="methods" data-no-slide-advance>
+              <div class="cc-practice-nav" data-practice-controls hidden>
+                <button type="button" class="lesson-secondary-action" data-practice-prev>Previous task</button>
+                <span data-practice-progress aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-practice-next>Next task</button>
+              </div>
+              <article class="cc-task" data-practice-card data-paired-scenario="methods-desks">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                  </svg>
+                  <h3>Fixed office computers</h3>
+                  <p>Twelve desktop PCs stay at their desks. Network sockets already reach each desk. Staff often transfer large files to a local server.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="methods-desks-type">Connection method</label>
+                  <select id="methods-desks-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="ethernet">Ethernet over copper</option>
+                    <option value="fibre">Fibre-optic cable</option>
+                    <option value="usb">USB</option>
+                    <option value="wifi">Wi-Fi</option>
+                    <option value="bluetooth">Bluetooth</option>
+                    <option value="cellular">Cellular data</option>
+                  </select>
+                  <label for="methods-desks-reason">Main reason</label>
+                  <select id="methods-desks-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="move">Staff need to move</option>
+                    <option value="fixed">Fixed PCs; fitted cables</option>
+                    <option value="outside">Mobile coverage outdoors</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>Ethernet over copper suits fixed PCs with existing sockets. Each PC gets its own wired link.</p>
+                </div>
+              </article>
+              <article class="cc-task" data-practice-card data-paired-scenario="methods-buildings">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#switch"/>
+                  </svg>
+                  <h3>Two buildings</h3>
+                  <p>Two college buildings are 250 metres apart. A cable route is available. The link must carry large files and pass equipment that creates electrical noise.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="methods-buildings-type">Connection method</label>
+                  <select id="methods-buildings-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="ethernet">Ethernet over copper</option>
+                    <option value="fibre">Fibre-optic cable</option>
+                    <option value="usb">USB</option>
+                    <option value="wifi">Wi-Fi</option>
+                    <option value="bluetooth">Bluetooth</option>
+                    <option value="cellular">Cellular data</option>
+                  </select>
+                  <label for="methods-buildings-reason">Main reason</label>
+                  <select id="methods-buildings-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="distance">Long link; electrical noise</option>
+                    <option value="pair">Pair nearby devices</option>
+                    <option value="charge">Charge the devices only</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>Fibre suits a long, high-capacity cable link and is not affected by electrical interference.</p>
+                </div>
+              </article>
+              <article class="cc-task" data-practice-card data-paired-scenario="methods-camera">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#camera"/>
+                  </svg>
+                  <h3>Copy photos without internet</h3>
+                  <p>A camera and laptop are on the same desk. Both have compatible USB data ports. The photographer needs to copy photos without a network.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="methods-camera-type">Connection method</label>
+                  <select id="methods-camera-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="ethernet">Ethernet over copper</option>
+                    <option value="fibre">Fibre-optic cable</option>
+                    <option value="usb">USB</option>
+                    <option value="wifi">Wi-Fi</option>
+                    <option value="bluetooth">Bluetooth</option>
+                    <option value="cellular">Cellular data</option>
+                  </select>
+                  <label for="methods-camera-reason">Main reason</label>
+                  <select id="methods-camera-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="wide">Mobile access across towns</option>
+                    <option value="direct">Direct data transfer</option>
+                    <option value="broadcast">Broadcast an alert</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>USB provides a direct data connection between these nearby compatible devices.</p>
+                </div>
+              </article>
+              <article class="cc-task" data-practice-card data-paired-scenario="methods-warehouse">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                  </svg>
+                  <h3>Moving scanners</h3>
+                  <p>Workers carry scanners around a warehouse. Installed access points already cover the aisles, and the scanners must reach the stock system.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="methods-warehouse-type">Connection method</label>
+                  <select id="methods-warehouse-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="ethernet">Ethernet over copper</option>
+                    <option value="fibre">Fibre-optic cable</option>
+                    <option value="usb">USB</option>
+                    <option value="wifi">Wi-Fi</option>
+                    <option value="bluetooth">Bluetooth</option>
+                    <option value="cellular">Cellular data</option>
+                  </select>
+                  <label for="methods-warehouse-reason">Main reason</label>
+                  <select id="methods-warehouse-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="fixed">Keep scanners at a desk</option>
+                    <option value="move">Move on the local network</option>
+                    <option value="point">Charge the scanner only</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>Wi-Fi uses the existing coverage while workers move. Check coverage in every aisle.</p>
+                </div>
+              </article>
+              <article class="cc-task" data-practice-card data-paired-scenario="methods-headphones">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#headphones"/>
+                  </svg>
+                  <h3>Listen from a phone</h3>
+                  <p>A person wants to connect wireless headphones to a nearby phone. Both support Bluetooth. No Wi-Fi network is available.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="methods-headphones-type">Connection method</label>
+                  <select id="methods-headphones-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="ethernet">Ethernet over copper</option>
+                    <option value="fibre">Fibre-optic cable</option>
+                    <option value="usb">USB</option>
+                    <option value="wifi">Wi-Fi</option>
+                    <option value="bluetooth">Bluetooth</option>
+                    <option value="cellular">Cellular data</option>
+                  </select>
+                  <label for="methods-headphones-reason">Main reason</label>
+                  <select id="methods-headphones-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="long">Cable between buildings</option>
+                    <option value="internet">Internet access anywhere</option>
+                    <option value="near">Nearby wireless devices</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>Bluetooth suits a nearby phone and headphones. A Wi-Fi network is not required.</p>
+                </div>
+              </article>
+              <article class="cc-task" data-practice-card data-paired-scenario="methods-field">
+                <div class="cc-task-situation">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#tower"/>
+                  </svg>
+                  <h3>Send a report from a site</h3>
+                  <p>An engineer visits outdoor sites with no local Wi-Fi. Mobile network coverage is available, and reports must be sent before leaving.</p>
+                </div>
+                <div class="cc-task-answers">
+                  <label for="methods-field-type">Connection method</label>
+                  <select id="methods-field-type" data-choice="type">
+                    <option value="">Choose…</option>
+                    <option value="ethernet">Ethernet over copper</option>
+                    <option value="fibre">Fibre-optic cable</option>
+                    <option value="usb">USB</option>
+                    <option value="wifi">Wi-Fi</option>
+                    <option value="bluetooth">Bluetooth</option>
+                    <option value="cellular">Cellular data</option>
+                  </select>
+                  <label for="methods-field-reason">Main reason</label>
+                  <select id="methods-field-reason" data-choice="reason">
+                    <option value="">Choose…</option>
+                    <option value="coverage">Mobile access; no Wi-Fi</option>
+                    <option value="cable">Cable to an office switch</option>
+                    <option value="offline">Store without sending</option>
+                  </select>
+                  <div class="cc-actions">
+                    <button class="primary-link" type="button" data-check-pair>Check answers</button>
+                    <button class="lesson-secondary-action" type="button" data-reset-pair>Clear</button>
+                  </div>
+                  <p class="cc-feedback" data-pair-feedback aria-live="polite">
+                  </p>
+                </div>
+                <div class="cc-static-answer">
+                  <h4>Answer guide</h4>
+                  <p>Cellular data uses the available mobile network. Check coverage and data costs.</p>
+                </div>
               </article>
             </div>
           </section>
-
+          <template data-teacher-divider>
+            <h2>Explain your choice</h2>
+            <p>Connect a feature to a need in the situation</p>
+          </template>
+          <section id="selection" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Choose for the task</p>
+            <h2>Find the requirement that matters</h2>
+            <p>There is no best connection for every task. Select a factor to see what to check.</p>
+            <div class="cc-factor-tool" data-factor-tool data-no-slide-advance>
+              <div class="cc-factor-buttons" data-factor-controls hidden>
+                <button class="lesson-secondary-action" type="button" data-factor="mobility">Mobility</button>
+                <button class="lesson-secondary-action" type="button" data-factor="capacity">Capacity</button>
+                <button class="lesson-secondary-action" type="button" data-factor="distance">Distance</button>
+                <button class="lesson-secondary-action" type="button" data-factor="reliability">Reliability</button>
+                <button class="lesson-secondary-action" type="button" data-factor="security">Security</button>
+                <button class="lesson-secondary-action" type="button" data-factor="cost">Cost</button>
+              </div>
+              <div>
+                <article class="cc-factor-panel" id="factor-mobility" data-factor-panel="mobility">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#phone"/>
+                  </svg>
+                  <h3>Must the device move?</h3>
+                  <p><strong>A handheld scanner moves between shelves.</strong>
+                  </p>
+                  <p>Use a wireless link so the worker is not tied to a cable.</p>
+                </article>
+                <article class="cc-factor-panel" id="factor-capacity" data-factor-panel="capacity">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                  </svg>
+                  <h3>How much data must move?</h3>
+                  <p><strong>An editing team transfers large video files.</strong>
+                  </p>
+                  <p>Check bandwidth: the amount of data a link can carry each second.</p>
+                </article>
+                <article class="cc-factor-panel" id="factor-distance" data-factor-panel="distance">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#switch"/>
+                  </svg>
+                  <h3>How far must it reach?</h3>
+                  <p><strong>Two buildings need to exchange data.</strong>
+                  </p>
+                  <p>Check the link distance and obstacles. Fibre may suit a long cable route.</p>
+                </article>
+                <article class="cc-factor-panel" id="factor-reliability" data-factor-panel="reliability">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
+                  </svg>
+                  <h3>What could interrupt the link?</h3>
+                  <p><strong>A live stock system must remain available.</strong>
+                  </p>
+                  <p>Check damaged cables, poor radio coverage and interference: unwanted signals that can disrupt communication.</p>
+                </article>
+                <article class="cc-factor-panel" id="factor-security" data-factor-panel="security">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
+                  </svg>
+                  <h3>Who can access the data?</h3>
+                  <p><strong>A staff network holds private records.</strong>
+                  </p>
+                  <p>Restrict access and protect the data. A cable alone does not make a system secure.</p>
+                </article>
+                <article class="cc-factor-panel" id="factor-cost" data-factor-panel="cost">
+                  <svg class="cc-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#switch"/>
+                  </svg>
+                  <h3>What must be paid for?</h3>
+                  <p><strong>A small office already has network sockets.</strong>
+                  </p>
+                  <p>Include equipment, installation and ongoing charges. Reuse suitable equipment where possible.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+          <section id="justify-link" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Build an explanation</p>
+            <h2>Need → feature → benefit</h2>
+            <p class="cc-situation">A warehouse needs handheld scanners that stay connected while staff move.</p>
+            <div class="cc-justify" data-lesson-walkthrough data-no-slide-advance>
+              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
+                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
+                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
+              </div>
+              <div data-walkthrough-step="Find the need">
+                <h3 class="cc-static-step">1. Find the need</h3>
+                <ol class="cc-reason-chain">
+                  <li class="is-current"><span>Need</span>
+                    <p>Workers must move with their scanners.</p>
+                  </li>
+                  <li class="is-pending"><span>Feature</span>
+                    <p>Next step</p>
+                  </li>
+                  <li class="is-pending"><span>Benefit</span>
+                    <p>Next step</p>
+                  </li>
+                </ol>
+                <p class="cc-note">The task tells us that mobility matters.</p>
+              </div>
+              <div data-walkthrough-step="Connect a feature">
+                <h3 class="cc-static-step">2. Connect a feature</h3>
+                <ol class="cc-reason-chain">
+                  <li class="is-complete"><span>Need</span>
+                    <p>Workers must move with their scanners.</p>
+                  </li>
+                  <li class="is-current"><span>Feature</span>
+                    <p>Wi-Fi connects devices without a cable.</p>
+                  </li>
+                  <li class="is-pending"><span>Benefit</span>
+                    <p>Next step</p>
+                  </li>
+                </ol>
+                <p class="cc-note">This feature supports movement around the warehouse.</p>
+              </div>
+              <div data-walkthrough-step="Explain the benefit">
+                <h3 class="cc-static-step">3. Explain the benefit</h3>
+                <ol class="cc-reason-chain">
+                  <li class="is-complete"><span>Need</span>
+                    <p>Workers must move with their scanners.</p>
+                  </li>
+                  <li class="is-complete"><span>Feature</span>
+                    <p>Wi-Fi connects devices without a cable.</p>
+                  </li>
+                  <li class="is-current"><span>Benefit</span>
+                    <p>Use Wi-Fi because staff can keep using the stock system while moving between shelves.</p>
+                  </li>
+                </ol>
+                <p class="cc-note">Check coverage in every aisle. A cable would restrict movement.</p>
+              </div>
+            </div>
+          </section>
+          <section id="mistakes" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Quick recap</p>
+            <h2>Check the meaning of your answer</h2>
+            <div class="cc-three">
+              <article class="lesson-card">
+                <h3>Both ways is not enough</h3>
+                <p>Say whether devices take turns or send at the same time.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Count devices on the path</h3>
+                <p>Point-to-point is one link between two devices. Multi-drop shares one path.</p>
+              </article>
+              <article class="lesson-card">
+                <h3>Give a reason from the task</h3>
+                <p>Explain how the chosen method helps this person or organisation.</p>
+              </article>
+            </div>
+            <p class="cc-note">Wireless does not automatically mean full-duplex. Wired does not automatically mean secure.</p>
+          </section>
+          <template data-teacher-divider>
+            <h2>Check your understanding</h2>
+            <p>Use the terms, then explain a choice</p>
+          </template>
           <section
             id="quiz"
             class="lesson-section lesson-section--quiz panel"
@@ -715,16 +1335,13 @@
             <p class="eyebrow">Exam-Style Practice</p>
             <h2>Explain and justify your choice</h2>
             <p class="lesson-section-copy">
-              These questions need fuller explanations than the quick quiz.
-              Type your answers into the page, then compare your ideas with the
-              answer guide.
+              Explain your choice. Then compare your answer with the guide.
             </p>
             <p class="exam-response-note">
               Draft answers save automatically in this browser.
             </p>
 
-            <div class="exam-grid">
-              <article class="exam-card">
+            <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">4 marks</span>
                   <span class="exam-pill">Explain</span>
@@ -770,7 +1387,7 @@
                   </div>
                 </details>
               </article>
-
+              <div data-slide-break></div>
               <article class="exam-card">
                 <div class="exam-meta">
                   <span class="exam-pill">5 marks</span>
@@ -806,11 +1423,12 @@
                         the warehouse.
                       </li>
                       <li>
-                        Ethernet would be more reliable but is impractical for a
-                        handheld moving device.
+                        A wired Ethernet link avoids competition for the Wi-Fi radio channel, but a cable
+                        is impractical for a handheld moving device.
                       </li>
                       <li>
-                        Bluetooth may be too short-range for a large warehouse.
+                        Bluetooth normally links nearby devices. It would need suitable
+                        gateways and coverage to reach this stock system.
                       </li>
                       <li>
                         A strong answer may also mention coverage,
@@ -820,7 +1438,6 @@
                   </div>
                 </details>
               </article>
-            </div>
           </section>
         </main>
 

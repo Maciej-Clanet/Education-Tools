@@ -1,5 +1,9 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 import { readStorage, writeStorage } from "../core/storage.js"
+import { initPairedScenarios } from "../core/paired-scenarios.js"
+import { initTeachingAnimations } from "../core/teaching-animation.js"
+import { initLessonWalkthroughs } from "../core/lesson-walkthrough.js"
+import { communicationScenarios } from "../data/communication-scenarios.js"
 
 const lessonConfig = {
   lessonId: "communication-channels-and-connection-methods",
@@ -16,8 +20,7 @@ const lessonConfig = {
         href: "../topics/multi-dimensional-arrays-and-memory-order.html",
       },
       next: {
-        title:
-          "Transmission methods: synchronous, asynchronous, serial, and parallel",
+        title: "Transmission methods: synchronous, asynchronous, serial, and parallel",
         description: "Next in E1 Transmitting data.",
         status: "Live",
         href: "../topics/transmission-methods-synchronous-asynchronous-serial-and-parallel.html",
@@ -29,139 +32,88 @@ const lessonConfig = {
     passScore: 4,
     version: 2,
   },
-  examPractice: {
-    storageKey:
-      "lesson-communication-channels-and-connection-methods-exam-practice",
-  },
+  examPractice: { storageKey: "lesson-communication-channels-and-connection-methods-exam-practice" },
 }
 
-const SCENARIO_STORAGE_KEY = "lesson-communication-scenario-tool"
+// New activities do not reuse the retired scenario chooser's saved selection.
+const PRACTICE_KEY = "lesson-communication-matching-v1"
 
-const SCENARIOS = {
-  classroom: {
-    label: "Classroom PCs",
-    need: "Stable fixed access",
-    method: "Ethernet cable",
-    channel: "Full-duplex point-to-point through a switch",
-    reasons: [
-      "The PCs stay in one place, so a cable will not restrict users.",
-      "Switched Ethernet gives each device a stable, predictable link.",
-      "It is usually less affected by wireless interference than Wi-Fi.",
-    ],
-  },
-  warehouse: {
-    label: "Warehouse scanners",
-    need: "Mobility across aisles",
-    method: "Wi-Fi",
-    channel: "Wireless full-duplex network access",
-    reasons: [
-      "Staff need to move, so a fixed cable would be impractical.",
-      "Wi-Fi can cover a wider working area than Bluetooth.",
-      "Security and coverage planning are still needed for reliability.",
-    ],
-  },
-  backbone: {
-    label: "Building backbone",
-    need: "High bandwidth over distance",
-    method: "Fibre optic",
-    channel: "Point-to-point backbone link",
-    reasons: [
-      "Fibre supports high data rates over longer cable runs.",
-      "It is less affected by electromagnetic interference than copper cable.",
-      "The higher installation cost can be justified for a critical backbone.",
-    ],
-  },
-  sensors: {
-    label: "Factory sensors",
-    need: "Many low-rate devices",
-    method: "Multi-drop sensor bus",
-    channel: "Multi-drop shared path",
-    reasons: [
-      "Many sensors can share one communication path.",
-      "This can reduce cabling for simple low-rate readings.",
-      "Access must be controlled so devices do not transmit over each other.",
-    ],
-  },
-}
-
-function createElement(tagName, className, textContent) {
-  const element = document.createElement(tagName)
-
-  if (className) {
-    element.className = className
-  }
-
-  if (textContent !== undefined) {
-    element.textContent = textContent
-  }
-
-  return element
-}
-
-function getScenarioKey(value) {
-  return Object.prototype.hasOwnProperty.call(SCENARIOS, value)
-    ? value
-    : "classroom"
-}
-
-function setText(root, role, value) {
-  const element = root.querySelector(`[data-role='${role}']`)
-
-  if (element) {
-    element.textContent = value
-  }
-}
-
-function renderScenario(tool, scenarioKey) {
-  const safeKey = getScenarioKey(scenarioKey)
-  const scenario = SCENARIOS[safeKey]
-  const buttonContainer = tool.querySelector("[data-role='scenario-buttons']")
-  const reasonList = tool.querySelector("[data-role='scenario-reasons']")
-
-  if (buttonContainer && buttonContainer.children.length === 0) {
-    Object.entries(SCENARIOS).forEach(([key, item]) => {
-      const button = createElement("button", "scenario-button", item.label)
-      button.type = "button"
-      button.dataset.scenario = key
-      button.addEventListener("click", () => {
-        writeStorage(SCENARIO_STORAGE_KEY, { scenario: key })
-        renderScenario(tool, key)
+function initMatchingPractice() {
+  const saved = readStorage(PRACTICE_KEY, {})
+  const groups = [...document.querySelectorAll('[data-practice]')]
+  const state = {}
+  const save = () => writeStorage(PRACTICE_KEY, state)
+  groups.forEach(group => {
+    const key = group.dataset.practice
+    const cards = [...group.querySelectorAll('[data-practice-card]')]
+    const previous = group.querySelector('[data-practice-prev]')
+    const next = group.querySelector('[data-practice-next]')
+    const progress = group.querySelector('[data-practice-progress]')
+    const stored = saved?.[key]
+    state[key] = { index: Number.isInteger(stored?.index) ? stored.index : 0, answers: {} }
+    const show = requested => {
+      const index = Math.max(0, Math.min(cards.length - 1, requested))
+      state[key].index = index
+      cards.forEach((card, i) => { card.hidden = i !== index })
+      previous.setAttribute('aria-disabled', String(index === 0))
+      next.setAttribute('aria-disabled', String(index === cards.length - 1))
+      progress.textContent = `Task ${index + 1} of ${cards.length}`
+    }
+    cards.forEach(card => {
+      const id = card.dataset.pairedScenario
+      const selects = [...card.querySelectorAll('[data-choice]')]
+      const record = () => {
+        state[key].answers[id] = Object.fromEntries(selects.map(select => [select.dataset.choice, select.value]))
+      }
+      selects.forEach(select => {
+        const value = stored?.answers?.[id]?.[select.dataset.choice]
+        if (typeof value === 'string' && [...select.options].some(option => option.value === value)) select.value = value
+        select.addEventListener('change', () => { record(); save() })
       })
-      buttonContainer.append(button)
+      record()
+      // The shared component clears the fields before this persistence listener runs.
+      card.querySelector('[data-reset-pair]').addEventListener('click', () => { record(); save() })
     })
-  }
-
-  tool.querySelectorAll("[data-scenario]").forEach((button) => {
-    const isSelected = button.dataset.scenario === safeKey
-    button.classList.toggle("is-selected", isSelected)
-    button.setAttribute("aria-pressed", isSelected ? "true" : "false")
+    previous.addEventListener('click', () => { show(state[key].index - 1); save() })
+    next.addEventListener('click', () => { show(state[key].index + 1); save() })
+    group.dataset.practiceReady = 'true'
+    group.querySelector('[data-practice-controls]').hidden = false
+    show(state[key].index)
   })
-
-  if (reasonList) {
-    reasonList.replaceChildren(
-      ...scenario.reasons.map((reason) => createElement("li", "", reason))
-    )
-  }
-
-  setText(tool, "scenario-pill", scenario.label)
-  setText(tool, "scenario-need", scenario.need)
-  setText(tool, "scenario-method", scenario.method)
-  setText(tool, "scenario-channel", scenario.channel)
 }
 
-function initScenarioTool() {
-  const tool = document.querySelector("[data-role='scenario-tool']")
+function initSharedBus() {
+  const bus = document.querySelector('[data-shared-bus]')
+  const meters = [...bus.querySelectorAll('[data-meter]')]
+  meters.forEach(meter => meter.addEventListener('click', () => {
+    meters.forEach(button => button.setAttribute('aria-pressed', String(button === meter)))
+    const number = meter.dataset.meter
+    bus.querySelector('[data-bus-status]').textContent = `The controller asks Meter ${number} for a reading. Only Meter ${number} replies.`
+  }))
+}
 
-  if (!tool) {
-    return
+function initFactors() {
+  const tool = document.querySelector('[data-factor-tool]')
+  const buttons = [...tool.querySelectorAll('[data-factor]')]
+  const panels = [...tool.querySelectorAll('[data-factor-panel]')]
+  const show = key => {
+    panels.forEach(panel => { panel.hidden = panel.dataset.factorPanel !== key })
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.factor === key)))
   }
-
-  const savedState = readStorage(SCENARIO_STORAGE_KEY, {
-    scenario: "classroom",
+  buttons.forEach(button => {
+    button.setAttribute('aria-controls', `factor-${button.dataset.factor}`)
+    button.addEventListener('click', () => show(button.dataset.factor))
   })
-
-  renderScenario(tool, savedState?.scenario)
+  tool.dataset.factorReady = 'true'
+  tool.querySelector('[data-factor-controls]').hidden = false
+  show(buttons[0].dataset.factor)
 }
 
 initLessonPage(lessonConfig)
-initScenarioTool()
+initPairedScenarios(communicationScenarios)
+initMatchingPractice()
+initSharedBus()
+initFactors()
+initLessonWalkthroughs()
+initTeachingAnimations()
+document.body.dataset.communicationReady = 'true'
