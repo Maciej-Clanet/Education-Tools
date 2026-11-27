@@ -32,6 +32,8 @@
       href="../../css/pages/transmission-methods-synchronous-asynchronous-serial-and-parallel.css"
     />
     <link rel="stylesheet" href="../../css/lesson-walkthrough.css" />
+    <link rel="stylesheet" href="../../css/transmission-comparison.css" />
+    <link rel="stylesheet" href="../../css/transmission-timing.css" />
     <link rel="stylesheet" href="../../css/accessibility.css" />
     <script type="module" src="../../javascript/accessibility.js"></script>
     <script
@@ -130,17 +132,15 @@
           <nav class="section-nav" aria-label="Lesson sections">
             <a href="#overview" data-section-link>Start here</a>
             <a href="#two-questions" data-section-link>Two questions</a>
-            <a href="#data-paths" data-section-link>Serial</a>
-            <a href="#parallel" data-section-link>Parallel</a>
-            <a href="#viewer" data-section-link>Compare transfers</a>
+            <a href="#data-paths" data-section-link>Serial and parallel</a>
             <a href="#skew" data-section-link>Timing skew</a>
             <a href="#timing" data-section-link>Why timing matters</a>
+            <a href="#clock" data-section-link>What is a clock?</a>
             <a href="#synchronous" data-section-link>Synchronous</a>
             <a href="#asynchronous" data-section-link>Asynchronous</a>
             <a href="#start-stop" data-section-link>Start and stop bits</a>
             <a href="#overhead" data-section-link>Overhead</a>
             <a href="#compare-timing" data-section-link>Compare timing</a>
-            <a href="#combine" data-section-link>Combine the descriptions</a>
             <a href="#selection" data-section-link>Worked judgement</a>
             <a href="#path-choice" data-section-link>Choose data paths</a>
             <a href="#timing-choice" data-section-link>Choose timing</a>
@@ -162,495 +162,563 @@
           </template>
           <section id="overview" class="lesson-section panel" data-lesson-section>
             <p class="eyebrow">Start here</p>
-            <h2>How does a reading reach the screen?</h2>
-            <p>A temperature sensor sends a reading to a computer. The reading travels as <strong>bits</strong>: 0s and 1s.</p>
-            <div class="tm-journey">
-              <div class="tm-device">
-                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
-                </svg>
-                <strong>Temperature sensor</strong><span>Measures the room</span>
-              </div>
-              <div class="tm-journey-data">
-                <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
-                </div>
-                <strong>Data travels →</strong>
-              </div>
-              <div class="tm-device">
-                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
-                </svg>
-                <strong>Computer</strong><span>Displays the reading</span>
-              </div>
+            <h2>Send a brightness setting</h2>
+            <p>A computer sends a setting to a lamp. In this example, <strong>11110001</strong> means brightness level <strong>241</strong>.</p>
+            <div class="tt-intro">
+            <article>
+            <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true">
+            <use href="../../assets/images/communication/devices.svg#pc"/>
+            </svg>
+            <strong>Computer · sender</strong>
+            <span class="tt-intro-code">11110001</span>
+            </article>
+            <div class="tt-intro-transfer">
+            <strong>A signal carries the bits →</strong>
+            <svg class="tt-link-wave" viewBox="0 0 400 100" aria-hidden="true">
+            <path d="M10 25H190V75H325V25H390" class="tt-signal"/>
+            <path d="M374 15L390 25L374 35" class="tt-signal"/>
+            </svg>
+            <span>The receiver must read<br>the same eight bits.</span>
             </div>
-            <p class="tm-note">The receiver must recognise <strong>each bit</strong> and keep the bits in the correct order. The four bits above are an illustration, not a temperature code.</p>
-          </section>
-          <section id="two-questions" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">Transmission methods</p>
-            <h2>Two questions about the same transfer</h2>
+            <article>
+            <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true">
+            <path d="M42 65C12 30 34 5 60 5S108 30 78 65L75 80H45Z" fill="#ffe195" stroke="currentColor" stroke-width="4"/>
+            <path d="M45 87H75M48 96H72" fill="none" stroke="currentColor" stroke-width="5"/>
+            </svg>
+            <strong>Lamp controller · receiver</strong>
+            <span>Sets the brightness</span>
+            </article>
+            </div>
+            <p class="tm-note">Transmission must preserve both the <strong>bit values</strong> and their <strong>order</strong>. The devices also need to know when to read.</p>
+            </section>
+<section id="two-questions" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Two choices</p>
+            <h2>Paths and timing are separate choices</h2>
             <div class="tm-two">
-              <article class="lesson-card">
-                <h3>How do the bits travel?</h3>
-                <p><strong>Serial or parallel</strong><br>One after another, or several at the same time?</p>
-              </article>
-              <article class="lesson-card">
-                <h3>When does the receiver read them?</h3>
-                <p><strong>Synchronous or asynchronous</strong><br>How do the devices agree on bit timing?</p>
-              </article>
+            <article class="lesson-card">
+            <h3>How many data paths?</h3>
+            <div class="tm-keyword-pair">
+            <strong>Serial</strong>
+            <strong>Parallel</strong>
             </div>
-            <p class="tm-note">These are separate questions. A link can be <strong>serial and synchronous</strong>. We will build up to that example.</p>
-          </section>
-          <template data-teacher-divider>
+            <p>One bit after another, or several bits at once?</p>
+            </article>
+            <article class="lesson-card">
+            <h3>How are read times set?</h3>
+            <div class="tm-keyword-pair tm-keyword-pair--timing">
+            <strong>Synchronous</strong>
+            <strong>Asynchronous</strong>
+            </div>
+            <p>How do the sender and receiver keep the bit timing in step?</p>
+            </article>
+            </div>
+            <p class="tm-note">A transfer uses <strong>both descriptions</strong>. For example, it can be serial and synchronous.</p>
+            </section>
+<template data-teacher-divider>
             <h2>How do the bits travel?</h2>
-            <p>Serial and parallel transmission</p>
-          </template>
-          <section id="data-paths" class="lesson-section panel" data-lesson-section>
+            <p>Compare the data paths, then change the bit rate</p>
+            </template>
+<section id="data-paths" class="lesson-section panel" data-lesson-section>
             <p class="eyebrow">Data paths</p>
-            <h2>Serial: one bit after another</h2>
-            <p class="tm-rule">Bits follow each other on <strong>one data path</strong>.</p>
-            <div class="tm-flow tm-serial" data-teaching-animation="bit movement" data-no-slide-advance>
-              <div class="tm-link">
-                <div class="tm-device">
-                  <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
-                  </svg>
-                  <strong>Sender</strong>
-                </div>
-                <div class="tm-tracks">
-                  <div class="tm-track"><span class="tm-path-label">One data path</span><b class="tm-moving" style="--i:0">1</b><b class="tm-moving" style="--i:1">0</b><b class="tm-moving" style="--i:2">1</b><b class="tm-moving" style="--i:3">1</b>
-                  </div>
-                </div>
-                <div class="tm-device">
-                  <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
-                  </svg>
-                  <strong>Receiver</strong>
-                </div>
-              </div>
-              <p class="tm-caption">Four data bits shown: <strong>1 0 1 1</strong>. Movement is slowed down for the diagram.</p>
+            <h2>Serial and parallel: compare one transfer</h2>
+            <span id="parallel" class="tm-anchor-alias">
+            </span>
+            <span id="viewer" class="tm-anchor-alias">
+            </span>
+            <div class="tc-tool" data-transmission-comparison data-no-slide-advance>
+  <div class="tc-controls" data-tc-controls hidden>
+    <label class="tc-rate">Serial bit rate
+      <select data-tc-rate aria-label="Serial bit rate compared with each parallel path">
+        <option value="1">1× parallel</option>
+            <option value="2">2× parallel</option>
+            <option value="4">4× parallel</option>
+            <option value="8">8× parallel</option>
+      </select>
+    </label>
+    <div class="tc-buttons">
+            <button type="button" class="primary-link" data-tc-play>Play</button>
+            <button type="button" class="lesson-secondary-action" data-tc-reset>Restart</button>
             </div>
-            <p><strong>Example:</strong> a simple sensor link sends the bits of each reading in order.</p>
-            <p class="tm-note">A data path is a route for one stream of bits. It does not always mean one physical wire.</p>
-          </section>
-          <section id="parallel" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">Data paths</p>
-            <h2>Parallel: several bits together</h2>
-            <p class="tm-rule">Several data paths carry <strong>different bits at the same time</strong>.</p>
-            <div class="tm-flow tm-parallel" data-teaching-animation="bit movement" data-no-slide-advance>
-              <div class="tm-link">
-                <div class="tm-device">
-                  <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
-                  </svg>
-                  <strong>Sender</strong>
-                </div>
-                <div class="tm-tracks">
-                  <div class="tm-track"><span class="tm-path-label">Path 1</span><b class="tm-moving" style="--i:0">1</b>
-                  </div>
-                  <div class="tm-track"><span class="tm-path-label">Path 2</span><b class="tm-moving" style="--i:1">0</b>
-                  </div>
-                  <div class="tm-track"><span class="tm-path-label">Path 3</span><b class="tm-moving" style="--i:2">1</b>
-                  </div>
-                  <div class="tm-track"><span class="tm-path-label">Path 4</span><b class="tm-moving" style="--i:3">1</b>
-                  </div>
-                </div>
-                <div class="tm-device">
-                  <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
-                  </svg>
-                  <strong>Receiver</strong>
-                </div>
-              </div>
-              <p class="tm-caption">Four data bits shown: <strong>1 0 1 1</strong>. Movement is slowed down for the diagram.</p>
+    <label class="tc-time">Time<input type="range" min="0" max="4.5" step="0.01" value="0" data-tc-time aria-label="Transfer time"/>
+            <output data-tc-clock>0 / 4.5 units</output>
+            </label>
+  </div>
+  <div class="tc-panels">
+    <article class="tc-panel" data-tc-panel="serial">
+      <h3>Serial <span>· one data path</span>
+            </h3>
+      <svg class="tc-diagram" viewBox="0 0 430 160" role="img" aria-label="Serial sends the four bits 1 0 1 1 along one data path, one after another.">
+        <text x="18" y="18">Sender: 1 0 1 1</text>
+            <text x="412" y="18" text-anchor="end">Receiver</text>
+        <path class="tc-path" d="M40 83H390"/>
+            <path class="tc-direction" d="M390 78L400 83L390 88Z"/>
+        <g data-tc-bit="0" transform="translate(330 83)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+        <g data-tc-bit="1" transform="translate(260 83)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">0</text>
+            </g>
+        <g data-tc-bit="2" transform="translate(190 83)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+        <g data-tc-bit="3" transform="translate(120 83)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+      <g class="tc-static">
+            <g class="tc-static-bit" transform="translate(330 83)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+            <g class="tc-static-bit" transform="translate(260 83)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">0</text>
+            </g>
+            <g class="tc-static-bit" transform="translate(190 83)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+            <g class="tc-static-bit" transform="translate(120 83)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+            </g>
+            </svg>
+      <div class="tc-receipt tc-live">
+            <strong data-tc-count>4 / 4 received</strong>
+            <div class="tc-boxes">
+            <span data-tc-received>1</span>
+            <span data-tc-received>0</span>
+            <span data-tc-received>1</span>
+            <span data-tc-received>1</span>
             </div>
-            <p><strong>Example:</strong> a memory data bus inside a computer transfers a group of bits across several lines.</p>
-          </section>
-          <section id="viewer" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">Compare</p>
-            <h2>Compare the same four bits</h2>
-            <p>Use the same four bits. Here, each path sends <strong>one bit per equal time interval</strong>.</p>
-            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
-              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
-                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
-              </div>
-              <div data-walkthrough-step="Before the transfer">
-                <h3 class="tm-static-title">Before the transfer</h3>
-                <div class="tm-two">
-                  <article class="lesson-card">
-                    <h3>Serial · one path</h3>
-                    <p>Bits received: <strong>0 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span>
-                    </div>
-                  </article>
-                  <article class="lesson-card">
-                    <h3>Parallel · four paths</h3>
-                    <p>Bits received: <strong>0 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span>
-                    </div>
-                  </article>
-                </div>
-                <p class="tm-note">Here, every path carries one bit per interval. Both methods must deliver the same four bits in the correct order.</p>
-              </div>
-              <div data-walkthrough-step="After 1 transfer interval">
-                <h3 class="tm-static-title">After 1 transfer interval</h3>
-                <div class="tm-two">
-                  <article class="lesson-card">
-                    <h3>Serial · one path</h3>
-                    <p>Bits received: <strong>1 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-filled is-current">1</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span>
-                    </div>
-                  </article>
-                  <article class="lesson-card">
-                    <h3>Parallel · four paths</h3>
-                    <p>Bits received: <strong>4 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
-                    </div>
-                  </article>
-                </div>
-                <p class="tm-note">Here, every path carries one bit per interval. Parallel has received all four bits. Serial needs more intervals.</p>
-              </div>
-              <div data-walkthrough-step="After 2 transfer intervals">
-                <h3 class="tm-static-title">After 2 transfer intervals</h3>
-                <div class="tm-two">
-                  <article class="lesson-card">
-                    <h3>Serial · one path</h3>
-                    <p>Bits received: <strong>2 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled is-current">0</span><span class="tm-bit is-empty ">–</span><span class="tm-bit is-empty ">–</span>
-                    </div>
-                  </article>
-                  <article class="lesson-card">
-                    <h3>Parallel · four paths</h3>
-                    <p>Bits received: <strong>4 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
-                    </div>
-                  </article>
-                </div>
-                <p class="tm-note">Here, every path carries one bit per interval. Parallel has received all four bits. Serial needs more intervals.</p>
-              </div>
-              <div data-walkthrough-step="After 3 transfer intervals">
-                <h3 class="tm-static-title">After 3 transfer intervals</h3>
-                <div class="tm-two">
-                  <article class="lesson-card">
-                    <h3>Serial · one path</h3>
-                    <p>Bits received: <strong>3 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled is-current">1</span><span class="tm-bit is-empty ">–</span>
-                    </div>
-                  </article>
-                  <article class="lesson-card">
-                    <h3>Parallel · four paths</h3>
-                    <p>Bits received: <strong>4 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
-                    </div>
-                  </article>
-                </div>
-                <p class="tm-note">Here, every path carries one bit per interval. Parallel has received all four bits. Serial needs more intervals.</p>
-              </div>
-              <div data-walkthrough-step="After 4 transfer intervals">
-                <h3 class="tm-static-title">After 4 transfer intervals</h3>
-                <div class="tm-two">
-                  <article class="lesson-card">
-                    <h3>Serial · one path</h3>
-                    <p>Bits received: <strong>4 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled is-current">1</span>
-                    </div>
-                  </article>
-                  <article class="lesson-card">
-                    <h3>Parallel · four paths</h3>
-                    <p>Bits received: <strong>4 of 4</strong>
-                    </p>
-                    <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span>
-                    </div>
-                  </article>
-                </div>
-                <p class="tm-note">Here, every path carries one bit per interval. Both methods must deliver the same four bits in the correct order.</p>
-              </div>
             </div>
-            <p class="tm-note">Real links can use different <strong>bit rates</strong>: the number of bits sent each second. A serial link is not always slower.</p>
-          </section>
-          <section id="skew" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">A limit of parallel transmission</p>
-            <h2>What if one bit arrives late?</h2>
-            <p><strong>Timing skew</strong> means bits on different paths arrive at different times.</p>
-            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
-              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
-                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
-              </div>
-              <div data-walkthrough-step="Paths stay in step">
-                <h3 class="tm-static-title">Paths stay in step</h3>
-                <div class="tm-skew" role="img" aria-label="All four bits reach the receiver in time.">
-                  <div class="tm-skew-head"><span>Sender →</span><strong>Receiver reads here</strong>
-                  </div>
-                  <div class="tm-skew-row"><span>Path 1</span>
-                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
-                    </div>
-                    <strong>Ready</strong>
-                  </div>
-                  <div class="tm-skew-row"><span>Path 2</span>
-                    <div class="tm-skew-line"><b style="--position:88%" class="">0</b><i></i>
-                    </div>
-                    <strong>Ready</strong>
-                  </div>
-                  <div class="tm-skew-row"><span>Path 3</span>
-                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
-                    </div>
-                    <strong>Ready</strong>
-                  </div>
-                  <div class="tm-skew-row"><span>Path 4</span>
-                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
-                    </div>
-                    <strong>Ready</strong>
-                  </div>
-                </div>
-                <p class="tm-note">At this read time, all four bits are ready.</p>
-              </div>
-              <div data-walkthrough-step="One path has a longer delay">
-                <h3 class="tm-static-title">One path has a longer delay</h3>
-                <div class="tm-skew" role="img" aria-label="The fourth bit has not reached the receiver at its read time.">
-                  <div class="tm-skew-head"><span>Sender →</span><strong>Receiver reads here</strong>
-                  </div>
-                  <div class="tm-skew-row"><span>Path 1</span>
-                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
-                    </div>
-                    <strong>Ready</strong>
-                  </div>
-                  <div class="tm-skew-row"><span>Path 2</span>
-                    <div class="tm-skew-line"><b style="--position:88%" class="">0</b><i></i>
-                    </div>
-                    <strong>Ready</strong>
-                  </div>
-                  <div class="tm-skew-row"><span>Path 3</span>
-                    <div class="tm-skew-line"><b style="--position:88%" class="">1</b><i></i>
-                    </div>
-                    <strong>Ready</strong>
-                  </div>
-                  <div class="tm-skew-row"><span>Path 4</span>
-                    <div class="tm-skew-line"><b style="--position:52%" class="tm-late">1</b><i></i>
-                    </div>
-                    <strong>Late</strong>
-                  </div>
-                </div>
-                <p class="tm-note">The receiver could read an incomplete group. The system must allow enough time for every path.</p>
-              </div>
+      <span class="tc-finish tc-live" data-tc-finish>At equal rates, this takes four bit times to send.</span>
+      <p class="tc-static">One path sends 1, then 0, then 1, then 1.</p>
+    </article>
+    <article class="tc-panel" data-tc-panel="parallel">
+      <h3>Parallel <span>· four data paths</span>
+            </h3>
+      <svg class="tc-diagram" viewBox="0 0 430 160" role="img" aria-label="Parallel sends the four bits 1 0 1 1 at the same time on four data paths.">
+        <text x="18" y="18">Sender: 1 0 1 1</text>
+            <text x="412" y="18" text-anchor="end">Receiver</text>
+        <path class="tc-path" d="M40 35H390M40 67H390M40 99H390M40 131H390"/>
+            <path class="tc-direction" d="M390 30L400 35L390 40ZM390 62L400 67L390 72ZM390 94L400 99L390 104ZM390 126L400 131L390 136Z"/>
+        <g data-tc-bit="0" transform="translate(220 35)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+        <g data-tc-bit="1" transform="translate(220 67)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">0</text>
+            </g>
+        <g data-tc-bit="2" transform="translate(220 99)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+        <g data-tc-bit="3" transform="translate(220 131)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+      <g class="tc-static">
+            <g class="tc-static-bit" transform="translate(220 35)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+            <g class="tc-static-bit" transform="translate(220 67)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">0</text>
+            </g>
+            <g class="tc-static-bit" transform="translate(220 99)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+            <g class="tc-static-bit" transform="translate(220 131)">
+            <rect x="-14" y="-14" width="28" height="28" rx="5"/>
+            <text text-anchor="middle" y="6">1</text>
+            </g>
+            </g>
+            </svg>
+      <div class="tc-receipt tc-live">
+            <strong data-tc-count>4 / 4 received</strong>
+            <div class="tc-boxes">
+            <span data-tc-received>1</span>
+            <span data-tc-received>0</span>
+            <span data-tc-received>1</span>
+            <span data-tc-received>1</span>
             </div>
-            <p><strong>Example:</strong> a short memory connection can keep its lines closely matched. Longer parallel cables make this harder.</p>
-          </section>
-          <template data-teacher-divider>
+            </div>
+      <span class="tc-finish tc-live" data-tc-finish>At equal rates, this takes one bit time to send.</span>
+      <p class="tc-static">Four paths send 1, 0, 1, 1 together. A faster serial bit rate can change which finishes first.</p>
+    </article>
+  </div>
+  <p class="tc-summary" data-tc-summary aria-live="polite">At the same bit rate per path, parallel sends all four bits while serial sends one.</p>
+  <p class="tc-note">Bit rate controls how often bits enter the path. Both links have the same travel delay. The time units are for this demonstration.</p>
+</div>
+</section>
+<section id="skew" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Parallel timing</p>
+            <h2>A longer path can leave one bit late</h2>
+            <p>The sender changes <strong>0000 → 1011</strong>. A longer path can add delay. <strong>Timing skew</strong> means the changes do not arrive together.</p>
+            <div data-skew-tool data-no-slide-advance>
+            <div class="tt-options">
+            <label>
+            <input type="checkbox" checked data-long-path> Longer path 4</label>
+            <label>
+            <input type="checkbox" data-read-later> Read later</label>
+            </div>
+            <div class="tt-controls" data-time-controls hidden>
+            <button type="button" class="primary-link" data-time-play>Play</button>
+            <button type="button" class="lesson-secondary-action" data-time-next>Next read</button>
+            <button type="button" class="lesson-secondary-action" data-time-reset>Restart</button>
+            <label>Transfer time<input type="range" min="0" max="2.2" step="0.01" value="0" data-time-range>
+            <output data-time-clock>0.00</output>
+            </label>
+            </div>
+            <div class="tt-scroll" tabindex="0" aria-label="Four paths and current receiver values">
+            <svg class="tt-skew-svg" viewBox="0 0 960 275" role="img" aria-label="Four parallel data paths. Path 4 has extra bends and is longer. At an early read, its new 1 has not replaced the old 0.">
+            <text x="75" y="25">Send together</text>
+            <text x="740" y="25" data-skew-live-label>Values at receiver</text>
+            <text x="20" y="76">Path 1</text>
+            <rect x="104" y="52" width="42" height="36" rx="6"/>
+            <text x="125" y="76" text-anchor="middle">1</text>
+            <path class="tt-skew-path " data-skew-path d="M170 70H790"/>
+            <g data-skew-token>
+            <rect x="-16" y="-16" width="32" height="32" rx="5"/>
+            <text y="6" text-anchor="middle">1</text>
+            </g>
+            <rect x="809" y="52" width="42" height="36" rx="6"/>
+            <text x="830" y="76" text-anchor="middle" data-skew-value>1</text>
+            <text x="20" y="122">Path 2</text>
+            <rect x="104" y="98" width="42" height="36" rx="6"/>
+            <text x="125" y="122" text-anchor="middle">0</text>
+            <path class="tt-skew-path " data-skew-path d="M170 116H790"/>
+            <g data-skew-token>
+            <rect x="-16" y="-16" width="32" height="32" rx="5"/>
+            <text y="6" text-anchor="middle">0</text>
+            </g>
+            <rect x="809" y="98" width="42" height="36" rx="6"/>
+            <text x="830" y="122" text-anchor="middle" data-skew-value>0</text>
+            <text x="20" y="168">Path 3</text>
+            <rect x="104" y="144" width="42" height="36" rx="6"/>
+            <text x="125" y="168" text-anchor="middle">1</text>
+            <path class="tt-skew-path " data-skew-path d="M170 162H790"/>
+            <g data-skew-token>
+            <rect x="-16" y="-16" width="32" height="32" rx="5"/>
+            <text y="6" text-anchor="middle">1</text>
+            </g>
+            <rect x="809" y="144" width="42" height="36" rx="6"/>
+            <text x="830" y="168" text-anchor="middle" data-skew-value>1</text>
+            <text x="20" y="214">Path 4</text>
+            <rect x="104" y="190" width="42" height="36" rx="6"/>
+            <text x="125" y="214" text-anchor="middle">1</text>
+            <path class="tt-skew-path tt-delayed" data-skew-path d="M170 208H280V178H400V238H520V178H640V208H790"/>
+            <g data-skew-token>
+            <rect x="-16" y="-16" width="32" height="32" rx="5"/>
+            <text y="6" text-anchor="middle">1</text>
+            </g>
+            <rect x="809" y="190" width="42" height="36" rx="6"/>
+            <text x="830" y="214" text-anchor="middle" data-skew-value>0</text>
+            </svg>
+            </div>
+            <div class="tt-report">
+            <div class="tt-output">
+            <span>Stored at the read time</span>
+            <output data-skew-output>1010</output>
+            </div>
+            <p class="tt-status" data-skew-status aria-live="polite">
+            </p>
+            </div>
+            <p class="tm-note" data-time-static>At the early read, path 4 still holds 0. The receiver stores 1010 instead of 1011. A later read gives all four new values time to arrive.</p>
+            </div>
+            </section>
+<template data-teacher-divider>
             <h2>When should the receiver read?</h2>
-            <p>Synchronous and asynchronous transmission</p>
-          </template>
-          <section id="timing" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">Why timing matters</p>
-            <h2>A signal change does not mark every bit</h2>
-            <p>The signal stays at 1 for several bits, then stays at 0. How many bits does it represent?</p>
-            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
-              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
-                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
-              </div>
-              <div data-walkthrough-step="See the signal">
-                <h3 class="tm-static-title">See the signal</h3>
-                <div class="tm-signal"><span class="tm-high">1</span><span class="tm-low">0</span>
-                </div>
-                <p class="tm-note">The receiver needs to know <strong>how long each bit lasts</strong>. A change from 1 to 0 is not enough.</p>
-              </div>
-              <div data-walkthrough-step="Add the bit times">
-                <h3 class="tm-static-title">Add the bit times</h3>
-                <div class="tm-time-label">Equal bit times →</div>
-                <div class="tm-bits"><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">1</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">0</span><span class="tm-bit is-filled ">0</span>
-                </div>
-                <p class="tm-note">With this timing, the signal represents <strong>1 1 1 0 0 0</strong>. The receiver reads once in each bit time.</p>
-              </div>
+            <p>A signal needs an agreed timing rule</p>
+            </template>
+<section id="timing" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Read the signal</p>
+            <h2>One long high level can contain several 1s</h2>
+            <p>The signal below carries <strong>11110001</strong>. It stays high for four bit times, low for three, then high for one.</p>
+            <div data-wave-tool="timing" data-no-slide-advance>
+            <div class="tt-options">
+            <label>
+            <input type="checkbox" data-show-times> Show read times</label>
+            <label>Time between reads <select data-read-period>
+            <option value="1">1 time unit</option>
+            <option value="2">2 time units</option>
+            <option value="0.5">½ time unit</option>
+            </select>
+            </label>
             </div>
-            <p>A <strong>clock</strong> is a regular timing signal. It helps a device decide when to read a bit.</p>
-          </section>
-          <section id="synchronous" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">Timing methods</p>
-            <h2>Synchronous: keep the devices in step</h2>
-            <p>The sender and receiver use <strong>shared timing</strong> to read a stream of bits.</p>
-            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
-              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
-                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
-              </div>
-              <div data-walkthrough-step="Read bit 1">
-                <h3 class="tm-static-title">Read bit 1</h3>
-                <div class="tm-clock-grid">
-                  <div class="tm-clock-cell is-current">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 1</span><b>1</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 2</span><b>0</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 3</span><b>1</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 4</span><b>1</b>
-                  </div>
-                </div>
-                <p class="tm-received">Received so far: <strong>1</strong>
-                </p>
-              </div>
-              <div data-walkthrough-step="Read bit 2">
-                <h3 class="tm-static-title">Read bit 2</h3>
-                <div class="tm-clock-grid">
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 1</span><b>1</b>
-                  </div>
-                  <div class="tm-clock-cell is-current">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 2</span><b>0</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 3</span><b>1</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 4</span><b>1</b>
-                  </div>
-                </div>
-                <p class="tm-received">Received so far: <strong>1 0</strong>
-                </p>
-              </div>
-              <div data-walkthrough-step="Read bit 3">
-                <h3 class="tm-static-title">Read bit 3</h3>
-                <div class="tm-clock-grid">
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 1</span><b>1</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 2</span><b>0</b>
-                  </div>
-                  <div class="tm-clock-cell is-current">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 3</span><b>1</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 4</span><b>1</b>
-                  </div>
-                </div>
-                <p class="tm-received">Received so far: <strong>1 0 1</strong>
-                </p>
-              </div>
-              <div data-walkthrough-step="Read bit 4">
-                <h3 class="tm-static-title">Read bit 4</h3>
-                <div class="tm-clock-grid">
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 1</span><b>1</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 2</span><b>0</b>
-                  </div>
-                  <div class="tm-clock-cell ">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 3</span><b>1</b>
-                  </div>
-                  <div class="tm-clock-cell is-current">
-                    <svg viewBox="0 0 100 45" aria-hidden="true"><path d="M0 35H25V8H65V35H100"/>
-                    </svg>
-                    <span>Read 4</span><b>1</b>
-                  </div>
-                </div>
-                <p class="tm-received">Received so far: <strong>1 0 1 1</strong>
-                </p>
-              </div>
+            <div class="tt-controls" data-time-controls hidden>
+            <button type="button" class="primary-link" data-time-play>Play</button>
+            <button type="button" class="lesson-secondary-action" data-time-next>Next read</button>
+            <button type="button" class="lesson-secondary-action" data-time-reset>Restart</button>
+            <label>Read position<input type="range" min="0" max="8" step="0.01" value="0" data-time-range>
+            <output data-time-clock>0.00</output>
+            </label>
             </div>
-            <p><strong>Example:</strong> a computer reads a sensor using a clock signal alongside the data.</p>
-            <p class="tm-note">Some links send a separate clock signal. Others recover timing from the data signal. Both keep the receiver in step.</p>
-          </section>
-          <section id="asynchronous" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">Timing methods</p>
-            <h2>Asynchronous: a unit can start when it is ready</h2>
-            <p>Each small group of data is sent as a <strong>unit</strong>. Units can start at <strong>irregular times</strong>.</p>
-            <div class="tm-bursts" role="img" aria-label="A reading, a long gap, another reading, a short gap, then a third reading"><strong>Reading 1</strong><span>Long gap</span><strong>Reading 2</strong><span>Gap</span><strong>Reading 3</strong>
+            <div class="tt-scroll" tabindex="0" aria-label="Signal and read times">
+            <div class="tt-wave-scene">
+            <svg class="tt-wave" viewBox="0 0 960 198" role="img" aria-label="The data signal stays high for four time units, low for three, then high for one.">
+            <text x="24" y="30">Data</text>
+            <text x="60" y="48">1</text>
+            <text x="60" y="106">0</text>
+            <path class="tt-signal" d="M100 42H200.000V42H300.000V42H400.000V42H500.000V100H600.000V100H700.000V100H800.000V42H900.000"/>
+            <g data-wave-grid>
+            <line class="tt-read-line is-read" x1="150.0" x2="150.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="150.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="150.0" y="152" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="250.0" x2="250.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="250.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="250.0" y="152" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="350.0" x2="350.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="350.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="350.0" y="152" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="450.0" x2="450.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="450.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="450.0" y="152" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="550.0" x2="550.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="550.0" cy="100" r="6"/>
+            <text class="tt-read-digit" x="550.0" y="152" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="650.0" x2="650.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="650.0" cy="100" r="6"/>
+            <text class="tt-read-digit" x="650.0" y="152" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="750.0" x2="750.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="750.0" cy="100" r="6"/>
+            <text class="tt-read-digit" x="750.0" y="152" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="850.0" x2="850.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="850.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="850.0" y="152" text-anchor="middle">1</text>
+            </g>
+            <line class="tt-cursor" data-wave-cursor x1="100" x2="100" y1="20" y2="160"/>
+            <text x="800" y="188">Time →</text>
+            </svg>
             </div>
-            <p class="tm-time-label">Time →</p>
+            </div>
+            <div class="tt-report">
+            <div class="tt-output">
+            <span>Data read</span>
+            <output data-wave-output aria-label="Data read">11110001</output>
+            </div>
+            <p class="tt-status" data-wave-status aria-live="polite">
+            </p>
+            </div>
+            <p class="tm-note" data-time-static>At one read per time unit, the same high level gives four 1s. The following low level gives three 0s. The final high level gives one 1. Reading too often or too slowly changes the result.</p>
+            </div>
+            </section>
+<section id="clock" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">A timing signal</p>
+            <h2>A clock makes regular pulses</h2>
+            <p>A <strong>clock</strong> is an electronic circuit that produces a repeating timing signal. It does not tell the time of day.</p>
+            <div class="tt-clock-source">
+            <div>
+            <strong>Clock circuit</strong>
+            <p>Produces regular pulses</p>
+            </div>
+            <svg viewBox="0 0 400 80" role="img" aria-label="Four equally spaced clock pulses">
+            <path class="tt-clock" d="M10 65H40V15H80V65H130V15H170V65H220V15H260V65H310V15H350V65H390"/>
+            </svg>
+            <div>
+            <strong>Agreed read points</strong>
+            <p>For example, each rise from 0 to 1</p>
+            </div>
+            </div>
             <div class="tm-two">
-              <article class="lesson-card">
-                <h3>Mark each unit</h3>
-                <p>A start bit helps the receiver find the beginning. Stop bits mark its end.</p>
-              </article>
-              <article class="lesson-card">
-                <h3>Keep time within the unit</h3>
-                <p>The devices agree on the bit speed. Each bit still has a set duration.</p>
-              </article>
+            <article class="lesson-card">
+            <h3>Regular spacing</h3>
+            <p>The clock defines the time between reads.</p>
+            </article>
+            <article class="lesson-card">
+            <h3>More pulses per second</h3>
+            <p>The devices can read bits more often, if the link supports that rate.</p>
+            </article>
             </div>
-            <p><strong>Example:</strong> a simple sensor sends a short reading only when its value changes.</p>
-            <p class="tm-note">There is no continuous shared clock between units. The receiver starts its local timing again at each start bit.</p>
-          </section>
-          <section id="start-stop" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">Step by step</p>
-            <h2>Follow one asynchronous unit</h2>
-            <p>One common format: <strong>1 start bit + 8 data bits + 1 stop bit</strong>. Read left to right in sending order.</p>
-            <div class="tm-walk" data-lesson-walkthrough data-no-slide-advance>
-              <div data-walkthrough-controls hidden><span data-walkthrough-status aria-live="polite"></span>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-prev>Previous step</button>
-                <button type="button" class="primary-link" data-walkthrough-next>Next step</button>
-                <button type="button" class="lesson-secondary-action" data-walkthrough-reset>Restart</button>
-              </div>
-              <div data-walkthrough-step="Find the start">
-                <h3 class="tm-static-title">Find the start</h3>
-                <div class="tm-frame-scroll" tabindex="0" aria-label="Asynchronous unit, in sending order">
-                  <div class="tm-frame"><span class="tm-idle">Idle<br>1</span><span class="tm-control is-current">Start<br><b>0</b></span><span class="tm-frame-data "><small>Data 1</small><b>1</b></span><span class="tm-frame-data "><small>Data 2</small><b>0</b></span><span class="tm-frame-data "><small>Data 3</small><b>1</b></span><span class="tm-frame-data "><small>Data 4</small><b>1</b></span><span class="tm-frame-data "><small>Data 5</small><b>0</b></span><span class="tm-frame-data "><small>Data 6</small><b>0</b></span><span class="tm-frame-data "><small>Data 7</small><b>1</b></span><span class="tm-frame-data "><small>Data 8</small><b>0</b></span><span class="tm-control ">Stop<br><b>1</b></span><span class="tm-idle">Idle<br>1</span>
-                  </div>
-                </div>
-                <p class="tm-note">The line is idle at 1. A start bit of 0 tells the receiver to begin timing this unit.</p>
-              </div>
-              <div data-walkthrough-step="Read eight data bits">
-                <h3 class="tm-static-title">Read eight data bits</h3>
-                <div class="tm-frame-scroll" tabindex="0" aria-label="Asynchronous unit, in sending order">
-                  <div class="tm-frame"><span class="tm-idle">Idle<br>1</span><span class="tm-control ">Start<br><b>0</b></span><span class="tm-frame-data is-current"><small>Data 1</small><b>1</b></span><span class="tm-frame-data is-current"><small>Data 2</small><b>0</b></span><span class="tm-frame-data is-current"><small>Data 3</small><b>1</b></span><span class="tm-frame-data is-current"><small>Data 4</small><b>1</b></span><span class="tm-frame-data is-current"><small>Data 5</small><b>0</b></span><span class="tm-frame-data is-current"><small>Data 6</small><b>0</b></span><span class="tm-frame-data is-current"><small>Data 7</small><b>1</b></span><span class="tm-frame-data is-current"><small>Data 8</small><b>0</b></span><span class="tm-control ">Stop<br><b>1</b></span><span class="tm-idle">Idle<br>1</span>
-                  </div>
-                </div>
-                <p class="tm-note">The receiver reads eight data bits at the agreed speed. These are the useful data.</p>
-              </div>
-              <div data-walkthrough-step="Check the stop bit">
-                <h3 class="tm-static-title">Check the stop bit</h3>
-                <div class="tm-frame-scroll" tabindex="0" aria-label="Asynchronous unit, in sending order">
-                  <div class="tm-frame"><span class="tm-idle">Idle<br>1</span><span class="tm-control ">Start<br><b>0</b></span><span class="tm-frame-data "><small>Data 1</small><b>1</b></span><span class="tm-frame-data "><small>Data 2</small><b>0</b></span><span class="tm-frame-data "><small>Data 3</small><b>1</b></span><span class="tm-frame-data "><small>Data 4</small><b>1</b></span><span class="tm-frame-data "><small>Data 5</small><b>0</b></span><span class="tm-frame-data "><small>Data 6</small><b>0</b></span><span class="tm-frame-data "><small>Data 7</small><b>1</b></span><span class="tm-frame-data "><small>Data 8</small><b>0</b></span><span class="tm-control is-current">Stop<br><b>1</b></span><span class="tm-idle">Idle<br>1</span>
-                  </div>
-                </div>
-                <p class="tm-note">A stop bit of 1 ends this unit. The line can remain idle until the next unit starts.</p>
-              </div>
+            <p class="tm-note">The next question is how both devices get the same timing: share a timing signal, or use local timers set to the same bit rate.</p>
+            <details>
+            <summary>How can a link share timing?</summary>
+            <p>Some links use a separate clock line. Others recover timing from the data signal. The next example uses a separate line.</p>
+            </details>
+            </section>
+<section id="synchronous" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Shared timing</p>
+            <h2>Synchronous: send a clock with the data</h2>
+            <span id="combine" class="tm-anchor-alias">
+            </span>
+            <div class="tt-connection">
+            <div>
+            <strong>Computer</strong>
+            <small>Generates the clock</small>
             </div>
-            <p class="tm-note">Start and stop bits are control information. They are not part of the eight data bits.</p>
-          </section>
-          <section id="overhead" class="lesson-section panel" data-lesson-section>
+            <div>
+            <div class="tt-wire">Serial: one data path →</div>
+            <div class="tt-wire tt-wire--clock">Synchronous: shared clock →</div>
+            </div>
+            <div>
+            <strong>Lamp controller</strong>
+            <small>Reads on each clock rise</small>
+            </div>
+            </div>
+            <div data-wave-tool="sync" data-no-slide-advance>
+            <div class="tt-controls" data-time-controls hidden>
+            <button type="button" class="primary-link" data-time-play>Play</button>
+            <button type="button" class="lesson-secondary-action" data-time-next>Next read</button>
+            <button type="button" class="lesson-secondary-action" data-time-reset>Restart</button>
+            <label>Read position<input type="range" min="0" max="8" step="0.01" value="0" data-time-range>
+            <output data-time-clock>0.00</output>
+            </label>
+            </div>
+            <div class="tt-scroll" tabindex="0" aria-label="Signal and read times">
+            <div class="tt-wave-scene">
+            <svg class="tt-wave" viewBox="0 0 960 238" role="img" aria-label="The data signal stays high for four time units, low for three, then high for one.">
+            <text x="24" y="30">Data</text>
+            <text x="60" y="48">1</text>
+            <text x="60" y="106">0</text>
+            <path class="tt-signal" d="M100 42H200.000V42H300.000V42H400.000V42H500.000V100H600.000V100H700.000V100H800.000V42H900.000"/>
+            <text x="14" y="155">Clock</text>
+            <path class="tt-clock" d="M100 170H150.0V134H180.0V170H250.0V134H280.0V170H350.0V134H380.0V170H450.0V134H480.0V170H550.0V134H580.0V170H650.0V134H680.0V170H750.0V134H780.0V170H850.0V134H880.0V170H900"/>
+            <g data-wave-grid>
+            <line class="tt-read-line is-read" x1="150.0" x2="150.0" y1="22" y2="170"/>
+            <circle class="tt-read-dot is-read" cx="150.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="150.0" y="202" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="250.0" x2="250.0" y1="22" y2="170"/>
+            <circle class="tt-read-dot is-read" cx="250.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="250.0" y="202" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="350.0" x2="350.0" y1="22" y2="170"/>
+            <circle class="tt-read-dot is-read" cx="350.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="350.0" y="202" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="450.0" x2="450.0" y1="22" y2="170"/>
+            <circle class="tt-read-dot is-read" cx="450.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="450.0" y="202" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="550.0" x2="550.0" y1="22" y2="170"/>
+            <circle class="tt-read-dot is-read" cx="550.0" cy="100" r="6"/>
+            <text class="tt-read-digit" x="550.0" y="202" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="650.0" x2="650.0" y1="22" y2="170"/>
+            <circle class="tt-read-dot is-read" cx="650.0" cy="100" r="6"/>
+            <text class="tt-read-digit" x="650.0" y="202" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="750.0" x2="750.0" y1="22" y2="170"/>
+            <circle class="tt-read-dot is-read" cx="750.0" cy="100" r="6"/>
+            <text class="tt-read-digit" x="750.0" y="202" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="850.0" x2="850.0" y1="22" y2="170"/>
+            <circle class="tt-read-dot is-read" cx="850.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="850.0" y="202" text-anchor="middle">1</text>
+            </g>
+            <line class="tt-cursor" data-wave-cursor x1="100" x2="100" y1="20" y2="210"/>
+            <text x="800" y="232">Time →</text>
+            </svg>
+            </div>
+            </div>
+            <div class="tt-report">
+            <div class="tt-output">
+            <span>Data read</span>
+            <output data-wave-output aria-label="Data read">11110001</output>
+            </div>
+            <p class="tt-status" data-wave-status aria-live="polite">
+            </p>
+            </div>
+            <p class="tm-note" data-time-static>At each marked clock rise, the data is stable. The receiver reads 11110001 in order. The clock travels on its own line in this example.</p>
+            </div>
+            </section>
+<section id="asynchronous" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Local timing</p>
+            <h2>Asynchronous: agree a rate, then find the start</h2>
+            <p>In this start/stop system, each device has its <strong>own timer</strong>. No separate clock signal travels between them.</p>
+            <div class="tt-local-clocks">
+            <article>
+            <h3>Sender</h3>
+            <strong>1,000 bits per second</strong>
+            <p>One bit lasts 1 millisecond.</p>
+            <svg viewBox="0 0 320 60" aria-hidden="true">
+            <path class="tt-clock" d="M10 50H30V10H60V50H110V10H140V50H190V10H220V50H270V10H300V50"/>
+            </svg>
+            </article>
+            <b>Same setting</b>
+            <article>
+            <h3>Receiver</h3>
+            <strong>1,000 bits per second</strong>
+            <p>Read once per millisecond.</p>
+            <svg viewBox="0 0 320 60" aria-hidden="true">
+            <path class="tt-clock" d="M10 50H50V10H80V50H130V10H160V50H210V10H240V50H290V10H310V50"/>
+            </svg>
+            </article>
+            </div>
+            <div class="tt-start-line">Start bit detected → align the receiver’s read times for this unit</div>
+            <p class="tm-note">The bit rate and data format are set on both devices before the transfer. The start bit marks <strong>when this unit begins</strong>; it does not tell the receiver the bit rate.</p>
+            </section>
+<section id="start-stop" class="lesson-section panel" data-lesson-section>
+            <p class="eyebrow">Follow the read times</p>
+            <h2>Read one asynchronous unit</h2>
+            <p>The line waits at 1. A <strong>start bit</strong> of 0 begins this unit. The receiver then uses its local timer to read the data.</p>
+            <div data-wave-tool="async" data-no-slide-advance>
+            <div class="tt-controls" data-time-controls hidden>
+            <button type="button" class="primary-link" data-time-play>Play</button>
+            <button type="button" class="lesson-secondary-action" data-time-next>Next read</button>
+            <button type="button" class="lesson-secondary-action" data-time-reset>Restart</button>
+            <label>Read position<input type="range" min="0" max="12" step="0.01" value="0" data-time-range>
+            <output data-time-clock>0.00</output>
+            </label>
+            </div>
+            <div class="tt-scroll" tabindex="0" aria-label="Signal and read times">
+            <div class="tt-wave-scene">
+            <div class="tt-frame-key">
+            <span data-frame-part="0,1">Idle</span>
+            <span class="tt-control" data-frame-part="1,2">Start<br>0</span>
+            <span class="tt-data" data-frame-part="2,10">8 data bits · sending order</span>
+            <span class="tt-control" data-frame-part="10,11">Stop<br>1</span>
+            <span data-frame-part="11,13">Idle</span>
+            </div>
+            <svg class="tt-wave" viewBox="0 0 960 198" role="img" aria-label="Idle 1, start 0, data 11110001, stop 1, then idle 1.">
+            <text x="24" y="30">Data</text>
+            <text x="60" y="48">1</text>
+            <text x="60" y="106">0</text>
+            <path class="tt-signal" d="M100 42H166.667V100H233.333V42H300.000V42H366.667V42H433.333V42H500.000V100H566.667V100H633.333V100H700.000V42H766.667V42H833.333V42H900.000"/>
+            <g data-wave-grid>
+            <line class="tt-read-line is-read" x1="266.66666666666663" x2="266.66666666666663" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="266.66666666666663" cy="42" r="6"/>
+            <text class="tt-read-digit" x="266.66666666666663" y="152" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="333.33333333333337" x2="333.33333333333337" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="333.33333333333337" cy="42" r="6"/>
+            <text class="tt-read-digit" x="333.33333333333337" y="152" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="400.0" x2="400.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="400.0" cy="42" r="6"/>
+            <text class="tt-read-digit" x="400.0" y="152" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="466.6666666666667" x2="466.6666666666667" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="466.6666666666667" cy="42" r="6"/>
+            <text class="tt-read-digit" x="466.6666666666667" y="152" text-anchor="middle">1</text>
+            <line class="tt-read-line is-read" x1="533.3333333333333" x2="533.3333333333333" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="533.3333333333333" cy="100" r="6"/>
+            <text class="tt-read-digit" x="533.3333333333333" y="152" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="600.0" x2="600.0" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="600.0" cy="100" r="6"/>
+            <text class="tt-read-digit" x="600.0" y="152" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="666.6666666666666" x2="666.6666666666666" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="666.6666666666666" cy="100" r="6"/>
+            <text class="tt-read-digit" x="666.6666666666666" y="152" text-anchor="middle">0</text>
+            <line class="tt-read-line is-read" x1="733.3333333333334" x2="733.3333333333334" y1="22" y2="118"/>
+            <circle class="tt-read-dot is-read" cx="733.3333333333334" cy="42" r="6"/>
+            <text class="tt-read-digit" x="733.3333333333334" y="152" text-anchor="middle">1</text>
+            </g>
+            <line class="tt-cursor" data-wave-cursor x1="100" x2="100" y1="20" y2="160"/>
+            <text x="800" y="188">Time →</text>
+            </svg>
+            </div>
+            </div>
+            <div class="tt-report">
+            <div class="tt-output">
+            <span>Data read</span>
+            <output data-wave-output aria-label="Data read">11110001</output>
+            </div>
+            <p class="tt-status" data-wave-status aria-live="polite">
+            </p>
+            </div>
+            <p class="tm-note" data-time-static>The start bit aligns timing. Eight data reads give 11110001. The stop bit is 1. Start and stop bits are control information; neither enters the data result.</p>
+            </div>
+            </section>
+<section id="overhead" class="lesson-section panel" data-lesson-section>
             <p class="eyebrow">Why the choice matters</p>
             <h2>Control bits take time too</h2>
             <p><strong>Overhead</strong> is extra information sent to support the transfer.</p>
@@ -700,7 +768,7 @@
                   <tr>
                     <th>What must agree?</th>
                     <td>Clock timing and the data format.</td>
-                    <td>Bit speed and the data format.</td>
+                    <td>The same bit rate and data format, set before transfer.</td>
                   </tr>
                   <tr>
                     <th>What often suits it?</th>
@@ -712,40 +780,7 @@
             </div>
             <p class="tm-note">These are useful choices, not fixed rules. A synchronous link can pause, and an asynchronous link can send units back to back.</p>
           </section>
-          <section id="combine" class="lesson-section panel" data-lesson-section>
-            <p class="eyebrow">Two descriptions, one link</p>
-            <h2>One transfer can be serial and synchronous</h2>
-            <p>A computer reads a sensor. One path carries data; another carries the clock.</p>
-            <div class="tm-combined">
-              <div class="tm-device">
-                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#meter"/>
-                </svg>
-                <strong>Sensor</strong>
-              </div>
-              <div>
-                <div class="tm-labelled-line"><strong>Data: one bit after another →</strong>
-                </div>
-                <div class="tm-labelled-line tm-clock-line"><strong>← Clock from the computer</strong>
-                </div>
-              </div>
-              <div class="tm-device">
-                <svg class="tm-icon" viewBox="0 0 120 110" aria-hidden="true"><use href="../../assets/images/communication/devices.svg#pc"/>
-                </svg>
-                <strong>Computer</strong>
-              </div>
-            </div>
-            <div class="tm-two">
-              <article class="lesson-card">
-                <h3>Serial describes the data</h3>
-                <p>There is one data path in this direction. The clock line does not carry another data bit.</p>
-              </article>
-              <article class="lesson-card">
-                <h3>Synchronous describes timing</h3>
-                <p>The clock keeps the sender and receiver in step.</p>
-              </article>
-            </div>
-            <p class="tm-note">This is a simplified sensor interface. Power and other control connections are not shown.</p>
-          </section>
+
           <template data-teacher-divider>
             <h2>Choose for the task</h2>
             <p>Use the requirements, then explain the trade-off</p>

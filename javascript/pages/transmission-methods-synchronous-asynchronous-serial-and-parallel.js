@@ -1,6 +1,7 @@
 import { initLessonPage } from "../core/lesson-shell.js"
 import { initLessonWalkthroughs } from "../core/lesson-walkthrough.js"
-import { initTeachingAnimations } from "../core/teaching-animation.js"
+import { initTransmissionComparison } from "../core/transmission-comparison.js"
+import { initTransmissionTiming } from "../core/transmission-timing.js"
 import { initPairedScenarios } from "../core/paired-scenarios.js"
 import { transmissionScenarios } from "../data/transmission-scenarios.js"
 
@@ -42,6 +43,7 @@ const lessonConfig = {
 // The retired viewer store is retained. Demonstrations use temporary state.
 initLessonPage(lessonConfig)
 initLessonWalkthroughs()
-initTeachingAnimations()
+initTransmissionComparison()
+initTransmissionTiming()
 initPairedScenarios(transmissionScenarios)
 document.body.dataset.transmissionReady = "true"
